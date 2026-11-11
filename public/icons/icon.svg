@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 100) rotate(48) scale(560)">
+      <stop stop-color="#1b2447"/>
+      <stop offset=".55" stop-color="#0a0f20"/>
+      <stop offset="1" stop-color="#05070f"/>
+    </radialGradient>
+    <linearGradient id="aurora" x1="120" y1="80" x2="400" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#54f7db"/>
+      <stop offset=".5" stop-color="#21e6c9"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="24" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <circle cx="256" cy="240" r="118" fill="url(#aurora)" opacity=".16" filter="url(#glow)"/>
+  <path d="M146 330V204c0-10 8-16 17-13l78 27c8 3 15 12 15 21v109c0 9-7 13-15 10l-78-27c-9-3-17-11-17-21Z" fill="url(#aurora)" opacity=".92"/>
+  <path d="M366 330V204c0-10-8-16-17-13l-78 27c-8 3-15 12-15 21v109c0 9 7 13 15 10l78-27c9-3 17-11 17-21Z" fill="url(#aurora)" opacity=".62"/>
+  <circle cx="256" cy="168" r="40" fill="#fff8dd"/>
+  <circle cx="256" cy="168" r="40" fill="url(#aurora)" opacity=".25"/>
+  <path d="M256 112v18M256 206v18M200 168h18M294 168h18M216 128l13 13M283 195l13 13M296 128l-13 13M229 195l-13 13" stroke="#fff8dd" stroke-width="8" stroke-linecap="round" opacity=".85"/>
+  <path d="M256 236v96" stroke="#05070f" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+</svg>

@@ -1,0 +1,56 @@
+{
+  "name": "Jessica — AI Learning Universe",
+  "short_name": "Jessica",
+  "description": "A gamified, offline-first AI learning platform for Egyptian primary and preparatory students.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#05070f",
+  "theme_color": "#05070f",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ask Jessica",
+      "short_name": "Chat",
+      "url": "./index.html#/library",
+      "description": "Open your textbooks and ask anything"
+    },
+    {
+      "name": "Daily Quest",
+      "short_name": "Quests",
+      "url": "./index.html#/",
+      "description": "Claim today's learning quests"
+    }
+  ]
+}

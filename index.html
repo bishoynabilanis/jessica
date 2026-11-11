@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Jessica — AI Learning Universe</title>
+    <meta name="description" content="Jessica is a gamified AI tutor for Egyptian first-preparatory language school students. Study smarter with your own Gemini key, offline PDFs, flashcards, labs and quests." />
+    <meta name="theme-color" content="#05070f" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta property="og:title" content="Jessica — AI Learning Universe" />
+    <meta property="og:description" content="Your elite, gamified AI study companion for 1st Preparatory." />
+    <meta name="og:type" content="website" />
+    <meta name="apple-mobile-web-app-title" content="Jessica" />
+    <script>
+      // Apply the saved language before first paint so RTL never flashes LTR.
+      try {
+        var raw = localStorage.getItem('jessica-profile-v1')
+        var saved = raw && JSON.parse(raw)
+        var lang = saved && saved.state && saved.state.settings && saved.state.settings.language
+        if (lang === 'ar') {
+          document.documentElement.lang = 'ar'
+          document.documentElement.dir = 'rtl'
+          document.title = 'Jessica — عالم تعلّم ذكي'
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
