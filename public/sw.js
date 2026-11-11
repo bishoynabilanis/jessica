@@ -1,8 +1,8 @@
 /* Jessica service worker — offline shell + runtime media cache + local notifications */
-const VERSION = 'jessica-v3'
+const VERSION = 'jessica-v4'
 const SHELL = `${VERSION}-shell`
 const RUNTIME = `${VERSION}-runtime`
-const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg']
+const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
