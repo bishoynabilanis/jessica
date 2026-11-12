@@ -6,9 +6,9 @@
     <title>Jessica — AI Learning Universe</title>
     <meta name="description" content="Jessica is a gamified AI tutor for Egyptian first-preparatory language school students. Study smarter with your own Gemini key, offline PDFs, flashcards, labs and quests." />
     <meta name="theme-color" content="#05070f" />
-    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta property="og:title" content="Jessica — AI Learning Universe" />
@@ -28,9 +28,141 @@
         }
       } catch (e) {}
     </script>
+    <style>
+      #boot-fallback {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: radial-gradient(circle at 50% 18%, #13203a 0%, #05070f 62%);
+        color: #e8eefc;
+        font-family: 'Segoe UI', 'Tahoma', 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
+        text-align: center;
+      }
+      #boot-fallback[hidden] { display: none; }
+      #boot-fallback .boot-card {
+        max-width: 380px;
+        border: 1px solid rgba(120, 180, 255, 0.22);
+        background: rgba(14, 22, 40, 0.86);
+        border-radius: 22px;
+        padding: 26px 22px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      }
+      #boot-fallback .boot-logo {
+        display: inline-grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        background: linear-gradient(140deg, #2ee6c5, #46c2ff);
+        color: #04121a;
+        font-weight: 900;
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      #boot-fallback h1 { font-size: 18px; margin: 0 0 8px; }
+      #boot-fallback p {
+        margin: 0 0 6px;
+        font-size: 12.5px;
+        line-height: 1.8;
+        color: #9fb3d4;
+      }
+      #boot-fallback button {
+        margin-top: 14px;
+        border: 0;
+        border-radius: 14px;
+        padding: 11px 18px;
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+        color: #04121a;
+        background: linear-gradient(140deg, #2ee6c5, #46c2ff);
+      }
+      #boot-fallback small { display: block; margin-top: 10px; font-size: 10.5px; color: #7288a8; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Shows a readable reason instead of a blank white screen when the app cannot boot. -->
+    <div id="boot-fallback" hidden dir="rtl" lang="ar">
+      <div class="boot-card">
+        <div class="boot-logo">J</div>
+        <h1>التطبيق مش قادر يفتح</h1>
+        <p id="boot-reason">حصلت مشكلة أثناء التحميل.</p>
+        <p>جرّب إعادة المحاولة. لو المشكلة مستمرة، حدّث المتصفح أو افتح اللينك من Chrome أو Safari.</p>
+        <button id="boot-retry" type="button">إعادة المحاولة</button>
+        <small>Jessica needs a modern browser and an internet connection on first load.</small>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var root = document.getElementById('root')
+        var fallback = document.getElementById('boot-fallback')
+        var reason = document.getElementById('boot-reason')
+        var started = Date.now()
+        var shown = false
+
+        function show(message) {
+          if (shown || (root && root.childElementCount)) return
+          shown = true
+          if (message && reason) reason.textContent = message
+          fallback.hidden = false
+        }
+
+        function hide() {
+          shown = false
+          fallback.hidden = true
+        }
+
+        var timer = setInterval(function () {
+          if (root && root.childElementCount) {
+            hide()
+            clearInterval(timer)
+          } else if (Date.now() - started > 9000) {
+            show('التحميل أخد وقت أطول من المعتاد.')
+            clearInterval(timer)
+          }
+        }, 400)
+
+        window.addEventListener(
+          'error',
+          function (event) {
+            var target = event.target
+            if (target && target.tagName === 'SCRIPT') show('ملف التطبيق لم يتحمّل من السيرفر.')
+          },
+          true,
+        )
+
+        document.getElementById('boot-retry').addEventListener('click', function () {
+          fallback.querySelector('button').textContent = 'بنجرّب تاني…'
+          var reload = function () {
+            window.location.reload()
+          }
+          if ('serviceWorker' in navigator) {
+            var tasks = []
+            if (navigator.serviceWorker.getRegistrations) {
+              tasks.push(
+                navigator.serviceWorker.getRegistrations().then(function (regs) {
+                  return Promise.all(regs.map(function (reg) { return reg.unregister() }))
+                }),
+              )
+            }
+            if (window.caches && caches.keys) {
+              tasks.push(caches.keys().then(function (keys) {
+                return Promise.all(keys.map(function (key) { return caches.delete(key) }))
+              }))
+            }
+            Promise.all(tasks).then(reload, reload)
+          } else {
+            reload()
+          }
+        })
+      })()
+    </script>
   </body>
 </html>

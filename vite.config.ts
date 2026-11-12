@@ -9,7 +9,9 @@ export default defineConfig({
     alias: { '@': path.resolve(__dirname, 'src') },
   },
   build: {
-    target: 'es2020',
+    // Chrome 64+/Safari 12+ stay supported; older browsers get the friendly
+    // "can't open" screen from index.html instead of a blank page.
+    target: 'es2017',
     chunkSizeWarningLimit: 1400,
     rollupOptions: {
       output: {

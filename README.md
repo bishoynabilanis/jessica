@@ -90,6 +90,11 @@ The build is 100% static. `vite.config.ts` uses `base: './'`, so the same `dist/
 **or** in a sub-path (GitHub Pages project sites). The app is a PWA, so visitors can install it on
 Android/iOS/desktop and it keeps working offline.
 
+> ⚠️ **Egypt note:** `*.netlify.app` subdomains are blocked by Egyptian ISPs (verified on the Netlify
+> forum and r/Egypt_Developers), so a Netlify Drop link shows a blank/blocked page inside Egypt even
+> though it opens everywhere else. Use GitHub Pages, Vercel, Firebase Hosting, or a custom domain.
+> See [`DEPLOY-AR.md`](./DEPLOY-AR.md) for Arabic step-by-step instructions.
+
 ### Option A — Vercel (recommended, 2 minutes)
 
 1. Create a GitHub repository and push this project.
