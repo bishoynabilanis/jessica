@@ -243,6 +243,7 @@ export interface Settings {
   parentPhone: string
   studentName: string
   gradeLevel: GradeLevel
+  primaryUi: 'auto' | 'kids' | 'study'
   grade: string
   school: string
 }

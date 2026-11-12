@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/Button'
 import { RefreshCw, WifiOff } from 'lucide-react'
 import { useUI } from '@/store/useUI'
 import { tr } from '@/i18n'
-import { stageForGrade } from '@/lib/stage'
+import { useKidsWorld } from '@/lib/stage'
 
 export function AppShell() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -25,7 +25,8 @@ export function AppShell() {
   const reduceMotion = useApp((s) => s.settings.reduceMotion)
   const rtl = useApp((s) => s.settings.language === 'ar')
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
-  const kids = stageForGrade(gradeLevel) === 'primary'
+  const primaryUi = useApp((s) => s.settings.primaryUi)
+  const kids = useKidsWorld(gradeLevel, primaryUi)
   const { updateReady, applyUpdate } = useServiceWorker()
   const pushToast = useUI((s) => s.pushToast)
   const [offline, setOffline] = useState(!navigator.onLine)

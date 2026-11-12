@@ -30,7 +30,7 @@ import { sendLocalNotification, useDailyRiddleNotification } from '@/hooks/usePl
 import { riddleForDate } from '@/data/riddles'
 import { todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
-import { stageForGrade } from '@/lib/stage'
+import { useKidsWorld } from '@/lib/stage'
 
 function NotFound() {
   return (
@@ -56,6 +56,7 @@ function NotFound() {
 export default function App() {
   const onboarded = useApp((s) => s.onboarded)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
+  const primaryUi = useApp((s) => s.settings.primaryUi)
   const apiKey = useApp((s) => s.apiKey)
   const customBooks = useApp((s) => s.customBooks)
   const notifications = useApp((s) => s.settings.notifications)
@@ -80,7 +81,7 @@ export default function App() {
   // Hard gate: a Gemini key and at least one imported book are required.
   if (!apiKey.trim() || customBooks.length === 0) return <SetupGate />
 
-  if (stageForGrade(gradeLevel) === 'primary') return <KidsApp />
+  if (useKidsWorld(gradeLevel, primaryUi)) return <KidsApp />
 
   return (
     <HashRouter>

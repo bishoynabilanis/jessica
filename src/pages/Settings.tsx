@@ -541,6 +541,24 @@ export function Settings() {
               )}
             </div>
 
+            {stageForGrade(settings.gradeLevel) === 'primary' && (
+              <div className="mb-3">
+                <span className="label mb-1.5 block">{tr('Primary interface')}</span>
+                <Segmented
+                  options={[
+                    { value: 'auto', label: 'Automatic' },
+                    { value: 'kids', label: 'Kids world' },
+                    { value: 'study', label: 'Study mode' },
+                  ]}
+                  value={settings.primaryUi}
+                  onChange={(value) => updateSettings({ primaryUi: value as 'auto' | 'kids' | 'study' })}
+                />
+                <p className="mt-1 text-[10px] text-muted-2">
+                  {tr('Automatic: playful world for grades 1–4, full study tools for 5–6.')}
+                </p>
+              </div>
+            )}
+
             <div className="mb-3">
               <span className="label mb-1.5 flex items-center gap-1.5">
                 <Languages className="h-3 w-3" /> {tr('Language')}

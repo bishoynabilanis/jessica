@@ -8,7 +8,7 @@ import { cn, firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
-import { stageForGrade } from '@/lib/stage'
+import { useKidsWorld } from '@/lib/stage'
 
 export function TopBar({ onMenu }: { onMenu: () => void }) {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
   const toggleQuickPanel = useUI((s) => s.toggleQuickPanel)
   const [riddleOpen, setRiddleOpen] = useState(false)
   const { level, into, needed, progress } = levelInfo(xp)
-  const kids = stageForGrade(settings.gradeLevel) === 'primary'
+  const kids = useKidsWorld(settings.gradeLevel, settings.primaryUi)
 
   const pageLabel = useMemo(() => {
     const found = navItems.find((n) => (n.path === '/' ? location.pathname === '/' : location.pathname.startsWith(n.path)))

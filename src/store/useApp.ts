@@ -53,6 +53,7 @@ const defaultSettings: Settings = {
   studentName: '',
   gradeLevel: 1,
   curriculum: 'egypt',
+  primaryUi: 'auto',
   aiProvider: 'gemini',
   aiBaseUrl: 'https://api.openai.com/v1',
   grade: 'First Preparatory',
