@@ -6,6 +6,7 @@ export type Subject =
   | 'Science'
   | 'Mathematics'
   | 'Social Studies'
+  | 'Religion'
 
 export type LanguageCode = 'en' | 'ar' | 'de' | 'fr'
 
@@ -216,6 +217,8 @@ export interface DailyLogEntry {
   seconds: number
 }
 
+export type SchoolType = 'government' | 'languages' | 'private' | 'azhar'
+
 export type GradeLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
 export type Curriculum = 'egypt' | 'gulf' | 'international' | 'other'
@@ -230,6 +233,9 @@ export interface Settings {
   aiBaseUrl: string
   curriculum: Curriculum
   language: UiLanguage
+  voiceLocale: string
+  shareCounts: boolean
+  schoolType: SchoolType
   textScale: number
   dyslexiaFont: boolean
   reduceMotion: boolean

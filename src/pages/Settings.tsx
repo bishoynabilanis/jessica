@@ -12,6 +12,7 @@ import {
   Fingerprint,
   GraduationCap,
   KeyRound,
+  Globe2,
   Languages,
   Laptop,
   Loader2,
@@ -51,6 +52,10 @@ import { cn, todayKey } from '@/lib/utils'
 import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { gradeLabel } from '@/data/officialBooks'
+import { VOICE_LOCALES, defaultVoiceLocale } from '@/lib/voices'
+import { SCHOOL_TYPES } from '@/lib/school'
+import { localOpens, readCounters, type AppCounters } from '@/lib/counter'
+import { useSpeech } from '@/lib/speech'
 import { tr, UI_LANGUAGES } from '@/i18n'
 
 type KeyStatus = 'idle' | 'checking' | 'valid' | 'invalid'
@@ -78,7 +83,23 @@ export function Settings() {
     onboarded,
   } = state
   const pushToast = useUI((s) => s.pushToast)
+
+  const refreshCounters = async () => {
+    setCounting(true)
+    try {
+      setCounters(await readCounters())
+    } finally {
+      setCounting(false)
+    }
+  }
+
+  useEffect(() => {
+    void refreshCounters()
+  }, [])
   const { canInstall, installed, install } = useInstallPrompt()
+  const { speak } = useSpeech()
+  const [counters, setCounters] = useState<AppCounters | null>(null)
+  const [counting, setCounting] = useState(false)
   const { level } = levelInfo(xp)
 
   const [draftKey, setDraftKey] = useState(apiKey)
@@ -490,6 +511,30 @@ export function Settings() {
               </div>
             </div>
 
+            {settings.curriculum === 'egypt' && (
+  <div className="mt-3">
+    <span className="label mb-1.5 block">{tr('School type')}</span>
+    <div className="grid grid-cols-2 gap-1.5">
+      {SCHOOL_TYPES.map((option) => (
+        <button
+          key={option.id}
+          onClick={() => updateSettings({ schoolType: option.id })}
+          className={cn(
+            'rounded-2xl border p-2.5 text-start transition',
+            settings.schoolType === option.id
+              ? 'border-aurora-400/50 bg-aurora-400/10'
+              : 'border-line bg-card-2 hover:bg-white/5',
+          )}
+        >
+          <span className="text-base">{option.emoji}</span>
+          <span className="mt-1 block text-[11px] font-extrabold text-main">{tr(option.label)}</span>
+          <span className="block text-[9px] leading-snug text-muted">{tr(option.hint)}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
             <div className="mb-3">
               <span className="label mb-1.5 block">
                 {hasOfficialLibrary(settings.curriculum) ? tr('Stage') : tr('Learner level')}
@@ -583,6 +628,35 @@ export function Settings() {
                 ))}
               </div>
               <p className="mt-1 text-[10px] text-muted-2">{tr('You can switch any time from the top bar.')}</p>
+            </div>
+
+            <div className="mb-3">
+              <span className="label mb-1.5 flex items-center gap-1.5">
+                <Volume2 className="h-3 w-3" /> {tr('Voice & accent')}
+              </span>
+              <select
+                value={settings.voiceLocale}
+                onChange={(event) => updateSettings({ voiceLocale: event.target.value })}
+                className="field text-sm"
+              >
+                <option value="">{tr('Automatic')} · {defaultVoiceLocale(settings)}</option>
+                {VOICE_LOCALES.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label} — {item.id}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-1 text-[10px] leading-relaxed text-muted-2">
+                {tr('Used for read-aloud and voice input. The browser picks the closest installed voice to this accent.')}
+              </p>
+              <Button
+                size="sm"
+                variant="secondary"
+                className="mt-1.5"
+                onClick={() => speak(tr('This is how Jessica sounds on your device.'), settings.language)}
+              >
+                <Volume2 className="h-3.5 w-3.5" /> {tr('Test the voice')}
+              </Button>
             </div>
 
             <div className="mb-3 grid grid-cols-2 gap-2">
@@ -754,6 +828,44 @@ export function Settings() {
               <span className="chip border-aurora-400/25 text-aurora-200">
                 <CloudOff className="h-3 w-3" /> {tr("Offline shell")}
               </span>
+            </div>
+          </Card>
+
+          {/* COMMUNITY COUNTER */}
+          <Card className="p-4 sm:p-5">
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Globe2 className="h-4 w-4 text-aurora-300" />
+                <h2 className="text-sm font-extrabold text-main">{tr('Community counter')}</h2>
+              </div>
+              <Button size="sm" variant="secondary" onClick={refreshCounters} loading={counting}>
+                {tr('Refresh')}
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="rounded-xl border border-line bg-card-2 p-3">
+                <p className="font-display text-xl font-extrabold text-main">
+                  {counters?.opens != null ? counters.opens.toLocaleString() : '—'}
+                </p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('App opens')}</p>
+              </div>
+              <div className="rounded-xl border border-line bg-card-2 p-3">
+                <p className="font-display text-xl font-extrabold text-main">
+                  {counters?.installs != null ? counters.installs.toLocaleString() : '—'}
+                </p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Installs')}</p>
+              </div>
+            </div>
+            <p className="mt-2 text-[10px] text-muted-2">
+              {tr('Your device opened it {n} times.', { n: localOpens() })}
+            </p>
+            <div className="mt-3 border-t border-line pt-3">
+              <Toggle
+                checked={settings.shareCounts}
+                onChange={(value) => updateSettings({ shareCounts: value })}
+                label={tr('Contribute to the anonymous counter')}
+                description={tr('Only a number is incremented — no identifiers and no personal data.')}
+              />
             </div>
           </Card>
 

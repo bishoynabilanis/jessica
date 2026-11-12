@@ -1,5 +1,7 @@
 import type { Book, ChapterText, ChatMessage, RoleplayPersona } from '@/types'
 import { getLanguage } from '@/i18n'
+import { useApp } from '@/store/useApp'
+import { dialectTone, resolveVoiceLocale } from '@/lib/voices'
 
 const MAX_CONTEXT = 52_000
 
@@ -174,9 +176,10 @@ export function studentProfile(book?: Book) {
 export function languageRule(kind: 'tutor' | 'content' = 'content') {
   const lang = getLanguage()
   if (lang === 'ar') {
+    const tone = dialectTone(resolveVoiceLocale('ar', useApp.getState().settings))
     return kind === 'tutor'
-      ? 'The app language is ARABIC. Reply in clear Modern Standard Arabic with a warm Egyptian tone. Keep subject terminology, quotes and textbook exercises in their original language with a short Arabic gloss. Keep math and formulas unchanged.'
-      : 'The app language is ARABIC. Write every learner-facing title, explanation, label and sentence in Modern Standard Arabic with a friendly Egyptian tone. Keep textbook terms and quoted source text in their original language with a short Arabic gloss. JSON keys and value formats stay exactly as specified.'
+      ? `The app language is ARABIC. Reply in clear Modern Standard Arabic with ${tone}. Keep subject terminology, quotes and textbook exercises in their original language with a short Arabic gloss. Keep math and formulas unchanged.`
+      : `The app language is ARABIC. Write every learner-facing title, explanation, label and sentence in Modern Standard Arabic with ${tone}. Keep textbook terms and quoted source text in their original language with a short Arabic gloss. JSON keys and value formats stay exactly as specified.`
   }
   const names: Record<string, string> = {
     fr: 'FRENCH',

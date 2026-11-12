@@ -20,6 +20,7 @@ import type { Book, Subject } from '@/types'
 import { subjectMeta } from '@/data/books'
 import { gradeLabel, officialFor, type OfficialBook } from '@/data/officialBooks'
 import { GLOBAL_LEVELS, hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
+import { subjectsForSchool } from '@/lib/school'
 import { useApp } from '@/store/useApp'
 import { BookCard } from '@/components/common/BookCard'
 import { PageHeader } from '@/components/common/PageHeader'
@@ -34,8 +35,6 @@ import { deleteChapterCache, deletePdfBytes } from '@/lib/db'
 import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { useUI } from '@/store/useUI'
 import { tr } from '@/i18n'
-
-const subjects: (Subject | 'All')[] = ['All', 'English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies']
 
 export function Library() {
   const settings = useApp((s) => s.settings)
@@ -67,13 +66,14 @@ export function Library() {
   const grade = settings.gradeLevel
   const curriculum = settings.curriculum
   const official = hasOfficialLibrary(curriculum)
+  const subjects: (Subject | 'All')[] = ['All', ...subjectsForSchool(settings.schoolType)]
   const stage = stageForGrade(grade)
 
   const catalog = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return officialFor(grade, term, subject).filter(
-      (book) => !q || `${book.title} ${book.subject} ${book.term}`.toLowerCase().includes(q),
-    )
+    return officialFor(grade, term, subject)
+      .filter((book) => subjects.includes(book.subject))
+      .filter((book) => !q || `${book.title} ${book.subject} ${book.term}`.toLowerCase().includes(q))
   }, [grade, term, subject, query])
 
   const imported = useMemo(() => {
@@ -100,7 +100,7 @@ export function Library() {
 
   const stats = [
     ...(official
-      ? [{ label: tr('Official books'), value: officialFor(grade, term, 'All').length, hint: levelLabel(grade, curriculum), icon: LibraryBig }]
+      ? [{ label: tr('Official books'), value: officialFor(grade, term, 'All').filter((book) => subjects.includes(book.subject)).length, hint: levelLabel(grade, curriculum), icon: LibraryBig }]
       : []),
     { label: tr('In my library'), value: imported.length, hint: tr('{n} completed', { n: finished }), icon: CheckCircle2 },
     { label: tr('Read so far'), value: `${readPages}/${totalPages}`, hint: tr('pages across your books'), icon: BookOpen },

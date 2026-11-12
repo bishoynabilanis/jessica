@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { AlertTriangle, Bookmark, CalendarCheck, FileText, FlaskConical, Gamepad2, GraduationCap, Home, LibraryBig, Mic, MoreHorizontal, Orbit, Settings, Sparkles, Target, Users } from 'lucide-react'
+import { AlertTriangle, Bookmark, Brain, CalendarCheck, FileText, FlaskConical, Gamepad2, GraduationCap, Home, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, Settings, Sparkles, Target, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
@@ -20,6 +20,8 @@ const more = [
   { path: '/mistakes', label: tr("Mistakes"), icon: AlertTriangle, hint: tr("Wrong answers and drills") },
   { path: '/skills', label: tr("Skills map"), icon: Target, hint: tr("Mastery and readiness") },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck, hint: tr("Today’s three missions") },
+  { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare, hint: tr("Answer with a page source") },
+  { path: '/practice', label: tr("Adaptive practice"), icon: Brain, hint: tr("Weak-first questions") },
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText, hint: tr("Printable sheets and answer keys") },
   { path: '/teacher', label: tr("Class mode"), icon: Users, hint: tr("Assignments, QR codes and results") },
   { path: '/constellation', label: tr("Learning map"), icon: Orbit, hint: tr("Your curriculum constellation") },

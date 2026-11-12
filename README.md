@@ -26,6 +26,7 @@ The whole interface is available in **English and Arabic** (full RTL layout, Cai
 | **Motivation** | XP & levels, daily streaks, rotating quests, coins, evolving mascot with looks/cosmetics, daily riddle, learning constellation, gentle proactive nudges |
 | **Comfort** | Dark/light themes, text scaling, Atkinson Hyperlegible (dyslexia-friendly), reduced motion, offline shell, local notifications, question read-aloud, crash boundary, global search (⌘K) |
 | **Privacy** | Everything in `localStorage` + IndexedDB, JSON backup/restore, full ZIP backup with books and flashcards, one-click wipe, parent WhatsApp report generated on-device |
+| **Schools** | Government, private, language and Al-Azhar school types; subjects and the official catalog adapt (French/German only for language schools) |
 | **Languages & regions** | English, Arabic, French, Spanish, German, Turkish and Indonesian UI (translated core, English fallback), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
 | **Primary mode** | A separate kids world for Primary 1–4 by default (5–6 get the full study shell, switchable in Settings): its own shell and routes, bright world theme, floating scenery, big controls, daily gift and stickers, sticker book, badges, parent gate, read-to-me page reader and age-appropriate explanations |
 

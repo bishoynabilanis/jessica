@@ -2,8 +2,10 @@ import { NavLink } from 'react-router-dom'
 import {
   AlertTriangle,
   Bookmark,
+  Brain,
   CalendarCheck,
   FlaskConical,
+  MessagesSquare,
   Gamepad2,
   GraduationCap,
   Home,
@@ -27,6 +29,8 @@ import { useKidsWorld } from '@/lib/stage'
 export const navItems = [
   { path: '/', label: tr("Home"), icon: Home },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck },
+  { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare },
+  { path: '/practice', label: tr("Adaptive practice"), icon: Brain },
   { path: '/library', label: tr("Library"), icon: LibraryBig },
   { path: '/study', label: tr("Study Hub"), icon: GraduationCap },
   { path: '/games', label: tr("Arcade"), icon: Gamepad2 },

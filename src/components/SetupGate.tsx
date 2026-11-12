@@ -20,6 +20,7 @@ import { validateKey } from '@/lib/gemini'
 import { PROVIDERS, providerFor } from '@/lib/providers'
 import { officialFor, type OfficialBook } from '@/data/officialBooks'
 import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
+import { subjectsForSchool } from '@/lib/school'
 import { subjectMeta } from '@/data/books'
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { cn } from '@/lib/utils'
@@ -48,7 +49,10 @@ export function SetupGate() {
   const provider = providerFor(settings.aiProvider)
   const grade = settings.gradeLevel
   const isEgypt = hasOfficialLibrary(settings.curriculum)
-  const books = useMemo(() => officialFor(grade, 'Term 1', 'All').slice(0, 6), [grade])
+  const books = useMemo(() => {
+    const allowed = subjectsForSchool(settings.schoolType)
+    return officialFor(grade, 'Term 1', 'All').filter((book) => allowed.includes(book.subject)).slice(0, 6)
+  }, [grade, settings.schoolType])
   const keyDone = Boolean(apiKey.trim())
   const bookDone = customBooks.length > 0
   const done = keyDone && bookDone

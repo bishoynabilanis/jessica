@@ -5,7 +5,7 @@ import { deleteChapterCache, deletePdfBytes, savePdfBytes } from '@/lib/db'
 import { extractChapterFromBytes } from '@/lib/pdf'
 import { detectUnits } from '@/lib/units'
 
-export const SUBJECTS: Subject[] = ['English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies']
+export const SUBJECTS: Subject[] = ['English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies', 'Religion']
 
 export interface ImportMeta {
   title: string

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { useApp } from '@/store/useApp'
+import { pickVoice, resolveVoiceLocale } from '@/lib/voices'
 
 export const speechLang: Record<string, string> = {
   en: 'en-US',
@@ -38,13 +40,13 @@ export function useSpeech() {
       if (!supported || !text.trim()) return
       window.speechSynthesis.cancel()
       const utter = new SpeechSynthesisUtterance(text)
-      utter.lang = speechLang[lang] || lang
+      const settings = useApp.getState().settings
+      const locale = resolveVoiceLocale(lang, settings)
+      utter.lang = locale
       utter.rate = opts?.rate ?? 0.97
       utter.pitch = opts?.pitch ?? 1
-      const langVoices = window.speechSynthesis
-        .getVoices()
-        .filter((v) => v.lang.toLowerCase().startsWith((utter.lang || 'en').slice(0, 2)))
-      if (langVoices[0]) utter.voice = langVoices[0]
+      const voice = pickVoice(window.speechSynthesis.getVoices(), locale)
+      if (voice) utter.voice = voice
       utter.onstart = () => setSpeaking(true)
       utter.onend = () => {
         setSpeaking(false)
@@ -97,7 +99,7 @@ export function useDictation(lang: string, onText: (text: string) => void) {
     const Ctor = w.SpeechRecognition || w.webkitSpeechRecognition
     if (!Ctor) return null
     const rec: RecognitionLike = new Ctor()
-    rec.lang = speechLang[lang] || lang
+    rec.lang = resolveVoiceLocale(lang, useApp.getState().settings)
     rec.continuous = false
     rec.interimResults = true
     rec.onresult = (event: any) => {

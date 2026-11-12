@@ -21,6 +21,7 @@ import { cn } from '@/lib/utils'
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
+import { SCHOOL_TYPES } from '@/lib/school'
 import { gradeLabel } from '@/data/officialBooks'
 
 const features = [
@@ -206,6 +207,30 @@ export function Onboarding() {
                       ))}
                     </div>
                   </div>
+
+                  {settings.curriculum === 'egypt' && (
+  <div className="mt-3">
+    <span className="label mb-1.5 block">{tr('School type')}</span>
+    <div className="grid grid-cols-2 gap-1.5">
+      {SCHOOL_TYPES.map((option) => (
+        <button
+          key={option.id}
+          onClick={() => updateSettings({ schoolType: option.id })}
+          className={cn(
+            'rounded-2xl border p-2.5 text-start transition',
+            settings.schoolType === option.id
+              ? 'border-aurora-400/50 bg-aurora-400/10'
+              : 'border-line bg-card-2 hover:bg-white/5',
+          )}
+        >
+          <span className="text-base">{option.emoji}</span>
+          <span className="mt-1 block text-[11px] font-extrabold text-main">{tr(option.label)}</span>
+          <span className="block text-[9px] leading-snug text-muted">{tr(option.hint)}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
                   <div className="mt-3">
                     <span className="label mb-1.5 block">

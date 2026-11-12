@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { Suspense, useCallback, useEffect, useRef } from 'react'
 import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 import { Compass, Home } from 'lucide-react'
 import { AppShell } from '@/components/layout/AppShell'
@@ -7,30 +7,50 @@ import { SetupGate } from '@/components/SetupGate'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Dashboard } from '@/pages/Dashboard'
-import { KidsApp } from '@/kids/KidsApp'
-import { Library } from '@/pages/Library'
-import { Reader } from '@/pages/Reader'
-import { StudyHub } from '@/pages/StudyHub'
-import { Games } from '@/pages/Games'
-import { Labs } from '@/pages/Labs'
-import { Constellation } from '@/pages/Constellation'
-import { Vault } from '@/pages/Vault'
-import { MascotPage } from '@/pages/MascotPage'
-import { Settings } from '@/pages/Settings'
-import { Battle } from '@/pages/Battle'
-import { Worksheets } from '@/pages/Worksheets'
-import { ReadingCoach } from '@/pages/ReadingCoach'
-import { Teacher } from '@/pages/Teacher'
-import { Assignment } from '@/pages/Assignment'
-import { Mistakes } from '@/pages/Mistakes'
-import { Skills } from '@/pages/Skills'
-import { DailyPlan } from '@/pages/DailyPlan'
+import { Mascot } from '@/components/Mascot'
+import {
+  LazyAsk,
+  LazyAssignment,
+  LazyBattle,
+  LazyConstellation,
+  LazyDailyPlan,
+  LazyGames,
+  LazyKidsApp,
+  LazyLabs,
+  LazyLibrary,
+  LazyMascotPage,
+  LazyMistakes,
+  LazyPractice,
+  LazyReader,
+  LazyReadingCoach,
+  LazySettings,
+  LazySkills,
+  LazyStudyHub,
+  LazyTeacher,
+  LazyVault,
+  LazyWorksheets,
+} from '@/pages/lazy'
 import { useApp } from '@/store/useApp'
 import { sendLocalNotification, useDailyRiddleNotification } from '@/hooks/usePlatform'
 import { riddleForDate } from '@/data/riddles'
 import { todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
 import { useKidsWorld } from '@/lib/stage'
+import { registerInstall, registerOpen } from '@/lib/counter'
+
+function RouteFallback() {
+  return (
+    <div className="grid min-h-[60dvh] place-items-center">
+      <div className="flex flex-col items-center gap-3 text-center">
+        <Mascot xp={0} size={92} mood="thinking" animate={false} />
+        <div className="h-1.5 w-32 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-1/2 animate-pulse rounded-full bg-aurora-400" />
+        </div>
+        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-2">{tr('Loading')}</p>
+      </div>
+    </div>
+  )
+}
 
 function NotFound() {
   return (
@@ -64,6 +84,15 @@ export default function App() {
   const booted = useRef(false)
 
   useEffect(() => {
+    void registerOpen()
+    const onInstall = () => {
+      void registerInstall()
+    }
+    window.addEventListener('appinstalled', onInstall)
+    return () => window.removeEventListener('appinstalled', onInstall)
+  }, [])
+
+  useEffect(() => {
     if (booted.current) return
     booted.current = true
     bootstrap()
@@ -81,33 +110,42 @@ export default function App() {
   // Hard gate: a Gemini key and at least one imported book are required.
   if (!apiKey.trim() || customBooks.length === 0) return <SetupGate />
 
-  if (useKidsWorld(gradeLevel, primaryUi)) return <KidsApp />
+  if (useKidsWorld(gradeLevel, primaryUi))
+    return (
+      <Suspense fallback={<RouteFallback />}>
+        <LazyKidsApp />
+      </Suspense>
+    )
 
   return (
     <HashRouter>
+      <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<Dashboard />} />
-          <Route path="library" element={<Library />} />
-          <Route path="reader/:bookId" element={<Reader />} />
-          <Route path="study" element={<StudyHub />} />
-          <Route path="games" element={<Games />} />
-          <Route path="labs" element={<Labs />} />
-          <Route path="constellation" element={<Constellation />} />
-          <Route path="vault" element={<Vault />} />
-          <Route path="mascot" element={<MascotPage />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="battle" element={<Battle />} />
-          <Route path="worksheets" element={<Worksheets />} />
-          <Route path="reading" element={<ReadingCoach />} />
-          <Route path="teacher" element={<Teacher />} />
-          <Route path="assign" element={<Assignment />} />
-          <Route path="mistakes" element={<Mistakes />} />
-          <Route path="skills" element={<Skills />} />
-          <Route path="plan" element={<DailyPlan />} />
+          <Route path="library" element={<LazyLibrary />} />
+          <Route path="reader/:bookId" element={<LazyReader />} />
+          <Route path="study" element={<LazyStudyHub />} />
+          <Route path="games" element={<LazyGames />} />
+          <Route path="labs" element={<LazyLabs />} />
+          <Route path="constellation" element={<LazyConstellation />} />
+          <Route path="vault" element={<LazyVault />} />
+          <Route path="mascot" element={<LazyMascotPage />} />
+          <Route path="settings" element={<LazySettings />} />
+          <Route path="battle" element={<LazyBattle />} />
+          <Route path="worksheets" element={<LazyWorksheets />} />
+          <Route path="reading" element={<LazyReadingCoach />} />
+          <Route path="teacher" element={<LazyTeacher />} />
+          <Route path="assign" element={<LazyAssignment />} />
+          <Route path="mistakes" element={<LazyMistakes />} />
+          <Route path="skills" element={<LazySkills />} />
+          <Route path="plan" element={<LazyDailyPlan />} />
+          <Route path="ask" element={<LazyAsk />} />
+          <Route path="practice" element={<LazyPractice />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      </Suspense>
     </HashRouter>
   )
 }

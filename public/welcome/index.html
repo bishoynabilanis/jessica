@@ -107,7 +107,9 @@
           <span class="pill">📚 38 كتاب وزارة رسمي</span>
           <span class="pill">🧠 +70 ميزة</span>
           <span class="pill">🎒 ابتدائي 1–6 وإعدادي 1–3</span>
+          <span class="pill">🏫 حكومي وخاص ولغات</span>
           <span class="pill">🌍 7 لغات</span>
+          <span class="pill" id="opens-count" hidden></span>
         </div>
       </div>
       <div class="hero-visual">
@@ -229,6 +231,10 @@
           <p>أيوه. افتح اللينك في Safari، اضغط زر المشاركة، وبعدين «إضافة إلى الشاشة الرئيسية».</p>
         </details>
         <details>
+          <summary>بيشتغل للمدارس الحكومية والخاصة واللغات؟</summary>
+          <p>أيوه. بتختار نوع مدرستك (حكومي / خاص / لغات / أزهر) والتطبيق يظبط المواد والكتب المناسبة — مدارس اللغات بتشوف الفرنساوي والألماني كمان.</p>
+        </details>
+        <details>
           <summary>لو مادتي مش موجودة في كتالوج الوزارة؟</summary>
           <p>استورد أي PDF من جهازك، وجيسيكا تفهرسه وتعلّم منه عادي.</p>
         </details>
@@ -257,5 +263,18 @@
     </span>
   </div>
 </footer>
+<script>
+(function () {
+  fetch('https://abacus.jasoncameron.dev/get/jessica-bishoy/opens', { cache: 'no-store' })
+    .then(function (r) { return r.json() })
+    .then(function (j) {
+      if (!j || typeof j.value !== 'number' || j.value < 5) return
+      var el = document.getElementById('opens-count')
+      el.textContent = '🔥 ' + j.value.toLocaleString('ar-EG') + ' فتحة'
+      el.hidden = false
+    })
+    .catch(function () {})
+})()
+</script>
 </body>
 </html>
