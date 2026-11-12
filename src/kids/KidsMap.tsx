@@ -12,10 +12,11 @@ export function KidsMap() {
   const navigate = useNavigate()
   const { bookId: routeBook } = useParams()
   const customBooks = useApp((s) => s.customBooks)
+  const grade = useApp((s) => s.settings.gradeLevel)
   const lessonProgress = useApp((s) => s.lessonProgress)
   const unitMastery = useApp((s) => s.unitMastery)
   const completedTopics = useApp((s) => s.completedTopics)
-  const books = useMemo(() => customBooks.filter((b) => b.grade === 4), [customBooks])
+  const books = useMemo(() => customBooks.filter((b) => b.grade === grade), [customBooks, grade])
   const [bookId, setBookId] = useState(routeBook || books[0]?.id || '')
   const book = books.find((item) => item.id === bookId) || books[0]
   const units = book?.units || []

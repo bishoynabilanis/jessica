@@ -149,16 +149,16 @@ ${retrieveContext(chapter, book?.subject || 'summary', 30_000)}`
  * concrete teaching style than the preparatory grades.
  */
 export function profileForGrade(grade?: number) {
-  if (grade === 4) {
+  if (grade && grade <= 6) {
+    const age = grade + 5
     return {
-      age: 9,
-      label: 'Primary 4 (الصف الرابع الابتدائي)',
-      style:
-        'This is a 9-year-old, not a teenager. Use very short sentences, concrete examples from home, toys, games, food and school life, one idea per paragraph, and explain any new word. Avoid abstract grammar jargon. Keep answers under 120 words unless the child asks for more. Be warm and encouraging.',
+      age,
+      label: `Primary ${grade}`,
+      style: `This is a ${age}-year-old primary student, not a teenager. Use very short sentences, concrete examples from home, toys, games, food and school life, one idea per paragraph, and explain any new word. Avoid abstract grammar jargon. Keep answers under 120 words unless the child asks for more. Be warm and encouraging.`,
     }
   }
   const label =
-    grade === 2 ? 'Second Preparatory' : grade === 3 ? 'Third Preparatory' : 'First Preparatory'
+    grade === 8 ? 'Second Preparatory' : grade === 9 ? 'Third Preparatory' : 'First Preparatory'
   return {
     age: 13,
     label,
@@ -199,7 +199,7 @@ export function languageRule(kind: 'tutor' | 'content' = 'content') {
 
 export function quizPrompt(book: Book | undefined, chapter: ChapterText | undefined, count = 5) {
   return `Create a ${count}-question multiple-choice quiz for this student based on the textbook context below.
-Difficulty: ${studentProfile(book).label} (age ${studentProfile(book).age}). Mix recall, understanding and one application question. ${book?.grade === 4 ? 'Use very simple wording and concrete examples.' : ''}
+Difficulty: ${studentProfile(book).label} (age ${studentProfile(book).age}). Mix recall, understanding and one application question. ${(book?.grade ?? 99) <= 6 ? 'Use very simple wording and concrete examples.' : ''}
 Use the textbook's language for questions (${book?.language || 'en'}), and add a short Arabic hint inside the explanation when useful.
 
 Return ONLY valid JSON matching:
@@ -353,9 +353,9 @@ ${languageRule()}`
 }
 
 export function questsPrompt(name: string, completed: string[], weak: string[], grade?: number) {
-  const primary = grade === 4
-  return `Generate 4 daily micro-quests for a ${primary ? '9-year-old Primary 4' : '13-year-old Egyptian'} student named ${name || 'student'}.
-Make them specific, achievable in 5-20 minutes, and fun. ${primary ? 'Keep titles and descriptions very simple and concrete for a 9-year-old.' : ''} Use a mix of these kinds ONLY:
+  const primary = (grade ?? 99) <= 6
+  return `Generate 4 daily micro-quests for a ${primary ? 'primary-school' : '13-year-old Egyptian'} student named ${name || 'student'}.
+Make them specific, achievable in 5-20 minutes, and fun. ${primary ? 'Keep titles and descriptions very simple and concrete for a young child.' : ''} Use a mix of these kinds ONLY:
 quiz (complete a quiz), pages (read pages), cards (review flashcards), chat (ask the tutor questions), study (study minutes), riddle (solve the daily riddle), essay (write a paragraph), voice (speak/record practice).
 Completed topics: ${completed.slice(-8).join(', ') || 'none yet'}.
 Weak areas: ${weak.join(', ') || 'unknown'}.

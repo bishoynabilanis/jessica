@@ -41,7 +41,7 @@ books, and an AI tutor grounded in the real page. The gap to a global product is
 
 ## Phase 2 — Content at global scale (3–4 weeks)
 
-1. Term 2 for all Egyptian grades; Primary 5–6; Secondary 1–3.
+1. ✅ Primary 1–6 catalog (20 books) and the primary world for every primary grade. Term 2 next.
 2. A community **book catalog** format (JSON) that anyone can contribute — country, grade,
    subject, term, URL and checksum.
 3. Import from Google Drive / Files / camera scan → OCR → book.

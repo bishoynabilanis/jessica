@@ -1637,4 +1637,9 @@ export const indonesian: Record<string, string> = {
   "Nova": "Baru",
   "Dragon": "Naga",
   "Astral": "Astral",
+  "First Primary": "Kelas 1",
+  "Second Primary": "Kelas 2",
+  "Third Primary": "Kelas 3",
+  "Fifth Primary": "Kelas 5",
+  "Sixth Primary": "Kelas 6",
 }

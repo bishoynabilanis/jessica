@@ -1,16 +1,12 @@
-import type { LanguageCode, Subject } from '@/types'
+import type { GradeLevel, LanguageCode, Subject } from '@/types'
 
 /**
- * Official Egyptian Ministry of Education books for the preparatory stage,
- * hosted on the ministry's public content blob storage.
- *
- * The files are downloaded by the student, then imported into the app so the
- * text extraction and the AI tutor stay 100% local. The ministry portal itself
- * blocks access from outside Egypt, but the PDF blobs are public.
+ * Official Egyptian Ministry of Education books on the ministry's public blob.
+ * Primary 1–6 and preparatory 1–3 (internal grades 7–9).
  */
 export interface OfficialBook {
   id: string
-  grade: 1 | 2 | 3 | 4
+  grade: GradeLevel
   subject: Subject
   term: 'Term 1' | 'Term 2'
   title: string
@@ -24,7 +20,72 @@ const BLOB = 'https://elearnningcontent.blob.core.windows.net/elearnningcontent'
 const file = (path: string) => `${BLOB}/${path}`
 
 export const officialBooks: OfficialBook[] = [
-  /* ------------------------------ Grade 1 ------------------------------ */
+  /* ------------------------------ Primary 1 ------------------------------ */
+  {
+    id: 'off-p1-english-t1',
+    grade: 1,
+    subject: 'English',
+    term: 'Term 1',
+    title: 'English — Primary 1',
+    url: file('2026/Primary/Primary1/Term1/StudentBook/English_Prim1_Tr1.pdf'),
+    sizeMb: 59.7,
+    language: 'en',
+  },
+  {
+    id: 'off-p1-arabic-t1',
+    grade: 1,
+    subject: 'Arabic',
+    term: 'Term 1',
+    title: 'اللغة العربية — الصف الأول الابتدائي',
+    url: file('2026/Primary/Primary1/Term1/StudentBook/Arabic_prim1_T1.pdf'),
+    sizeMb: 16.7,
+    language: 'ar',
+  },
+
+  /* ------------------------------ Primary 2 ------------------------------ */
+  {
+    id: 'off-p2-english-t1',
+    grade: 2,
+    subject: 'English',
+    term: 'Term 1',
+    title: 'English — Primary 2',
+    url: file('2026/Primary/Primary2/Term1/StudentBook/English_Prim2_Tr1.pdf'),
+    sizeMb: 26.3,
+    language: 'en',
+  },
+  {
+    id: 'off-p2-arabic-t1',
+    grade: 2,
+    subject: 'Arabic',
+    term: 'Term 1',
+    title: 'اللغة العربية — الصف الثاني الابتدائي',
+    url: file('2026/Primary/Primary2/Term1/StudentBook/Arabic_Prim2_T1.pdf'),
+    sizeMb: 27.8,
+    language: 'ar',
+  },
+
+  /* ------------------------------ Primary 3 ------------------------------ */
+  {
+    id: 'off-p3-english-t1',
+    grade: 3,
+    subject: 'English',
+    term: 'Term 1',
+    title: 'English — Primary 3',
+    url: file('2026/Primary/Primary3/Term1/StudentBook/English_Prim3_Tr1.pdf'),
+    sizeMb: 11.9,
+    language: 'en',
+  },
+  {
+    id: 'off-p3-math-t1',
+    grade: 3,
+    subject: 'Mathematics',
+    term: 'Term 1',
+    title: 'Mathematics — Primary 3',
+    url: file('2026/Primary/Primary3/Term1/StudentBook/Math_EN_prim3_TR1.pdf'),
+    sizeMb: 5.7,
+    language: 'en',
+  },
+
   /* ------------------------------ Primary 4 ------------------------------ */
   {
     id: 'off-p4-english-t1',
@@ -43,7 +104,7 @@ export const officialBooks: OfficialBook[] = [
     term: 'Term 1',
     title: 'اللغة العربية — الصف الرابع الابتدائي',
     url: file('2026/Primary/Primary4/Term1/StudentBook/Arabic_prim4_T1.pdf'),
-    sizeMb: 18.2,
+    sizeMb: 17.3,
     language: 'ar',
   },
   {
@@ -53,7 +114,7 @@ export const officialBooks: OfficialBook[] = [
     term: 'Term 1',
     title: 'Mathematics — Primary 4',
     url: file('2026/Primary/Primary4/Term1/StudentBook/Math_EN_prim4_TR1.pdf'),
-    sizeMb: 24.6,
+    sizeMb: 23.4,
     language: 'en',
   },
   {
@@ -63,7 +124,7 @@ export const officialBooks: OfficialBook[] = [
     term: 'Term 1',
     title: 'Science — Primary 4',
     url: file('2026/Primary/Primary4/Term1/StudentBook/Science_prim4_TR1.pdf'),
-    sizeMb: 5.9,
+    sizeMb: 5.7,
     language: 'en',
   },
   {
@@ -73,13 +134,108 @@ export const officialBooks: OfficialBook[] = [
     term: 'Term 1',
     title: 'Social Studies — Primary 4',
     url: file('2026_2027/Primary/Primary4/Term1/StudentBook/Social_studies_prim4_t1.pdf'),
-    sizeMb: 64.3,
+    sizeMb: 61.4,
     language: 'en',
   },
 
+  /* ------------------------------ Primary 5 ------------------------------ */
+  {
+    id: 'off-p5-english-t1',
+    grade: 5,
+    subject: 'English',
+    term: 'Term 1',
+    title: 'English — Primary 5',
+    url: file('2026/Primary/Primary5/Term1/StudentBook/English_Prim5_Tr1.pdf'),
+    sizeMb: 16.7,
+    language: 'en',
+  },
+  {
+    id: 'off-p5-arabic-t1',
+    grade: 5,
+    subject: 'Arabic',
+    term: 'Term 1',
+    title: 'اللغة العربية — الصف الخامس الابتدائي',
+    url: file('2026/Primary/Primary5/Term1/StudentBook/Arabic_prim5_T1.pdf'),
+    sizeMb: 21.8,
+    language: 'ar',
+  },
+  {
+    id: 'off-p5-math-t1',
+    grade: 5,
+    subject: 'Mathematics',
+    term: 'Term 1',
+    title: 'Mathematics — Primary 5',
+    url: file('2026_2027/Primary/Primary5/Term1/StudentBook/Math_EN_prim5_t1.pdf'),
+    sizeMb: 35.5,
+    language: 'en',
+  },
+  {
+    id: 'off-p5-science-t1',
+    grade: 5,
+    subject: 'Science',
+    term: 'Term 1',
+    title: 'Science — Primary 5',
+    url: file('2026/Primary/Primary5/Term1/StudentBook/Science_EN_prim5_TR1.pdf'),
+    sizeMb: 56.8,
+    language: 'en',
+  },
+  {
+    id: 'off-p5-social-t1',
+    grade: 5,
+    subject: 'Social Studies',
+    term: 'Term 1',
+    title: 'Social Studies — Primary 5',
+    url: file('2026_2027/Primary/Primary5/Term1/StudentBook/Social_studies_prim5_t1.pdf'),
+    sizeMb: 14.3,
+    language: 'en',
+  },
+
+  /* ------------------------------ Primary 6 ------------------------------ */
+  {
+    id: 'off-p6-english-t1',
+    grade: 6,
+    subject: 'English',
+    term: 'Term 1',
+    title: 'English — Primary 6',
+    url: file('2026/Primary/Primary6/Term1/StudentBook/English_Prim6_Tr1.pdf'),
+    sizeMb: 15.2,
+    language: 'en',
+  },
+  {
+    id: 'off-p6-arabic-t1',
+    grade: 6,
+    subject: 'Arabic',
+    term: 'Term 1',
+    title: 'اللغة العربية — الصف السادس الابتدائي',
+    url: file('2026/Primary/Primary6/Term1/StudentBook/Arabic_prim6_T1.pdf'),
+    sizeMb: 18.1,
+    language: 'ar',
+  },
+  {
+    id: 'off-p6-math-t1',
+    grade: 6,
+    subject: 'Mathematics',
+    term: 'Term 1',
+    title: 'Mathematics — Primary 6',
+    url: file('2026/Primary/Primary6/Term1/StudentBook/Math_EN_Prim6_TR1.pdf'),
+    sizeMb: 6.4,
+    language: 'en',
+  },
+  {
+    id: 'off-p6-science-t1',
+    grade: 6,
+    subject: 'Science',
+    term: 'Term 1',
+    title: 'Science — Primary 6',
+    url: file('2026_2027/Primary/Primary6/Term1/StudentBook/Science_EN_prim6_TR1.pdf'),
+    sizeMb: 25.3,
+    language: 'en',
+  },
+
+  /* ------------------------------ Preparatory 1 (grade 7) ------------------------------ */
   {
     id: 'off-g1-english-t1',
-    grade: 1,
+    grade: 7,
     subject: 'English',
     term: 'Term 1',
     title: 'English — First Preparatory',
@@ -89,7 +245,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g1-arabic-t1',
-    grade: 1,
+    grade: 7,
     subject: 'Arabic',
     term: 'Term 1',
     title: 'اللغة العربية — الصف الأول الإعدادي',
@@ -99,7 +255,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g1-math-t1',
-    grade: 1,
+    grade: 7,
     subject: 'Mathematics',
     term: 'Term 1',
     title: 'Mathematics — First Preparatory',
@@ -109,7 +265,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g1-science-t1',
-    grade: 1,
+    grade: 7,
     subject: 'Science',
     term: 'Term 1',
     title: 'Science — First Preparatory',
@@ -119,7 +275,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g1-social-t1',
-    grade: 1,
+    grade: 7,
     subject: 'Social Studies',
     term: 'Term 1',
     title: 'Social Studies — First Preparatory',
@@ -129,7 +285,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g1-french-t1',
-    grade: 1,
+    grade: 7,
     subject: 'French',
     term: 'Term 1',
     title: 'Français — Première Préparatoire',
@@ -138,10 +294,10 @@ export const officialBooks: OfficialBook[] = [
     language: 'fr',
   },
 
-  /* ------------------------------ Grade 2 ------------------------------ */
+  /* ------------------------------ Preparatory 2 (grade 8) ------------------------------ */
   {
     id: 'off-g2-english-t1',
-    grade: 2,
+    grade: 8,
     subject: 'English',
     term: 'Term 1',
     title: 'English — Second Preparatory',
@@ -151,7 +307,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g2-arabic-t1',
-    grade: 2,
+    grade: 8,
     subject: 'Arabic',
     term: 'Term 1',
     title: 'اللغة العربية — الصف الثاني الإعدادي',
@@ -161,7 +317,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g2-math-t1',
-    grade: 2,
+    grade: 8,
     subject: 'Mathematics',
     term: 'Term 1',
     title: 'Mathematics — Second Preparatory',
@@ -171,7 +327,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g2-science-t1',
-    grade: 2,
+    grade: 8,
     subject: 'Science',
     term: 'Term 1',
     title: 'Science — Second Preparatory',
@@ -181,7 +337,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g2-social-t1',
-    grade: 2,
+    grade: 8,
     subject: 'Social Studies',
     term: 'Term 1',
     title: 'Social Studies — Second Preparatory',
@@ -191,7 +347,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g2-french-t1',
-    grade: 2,
+    grade: 8,
     subject: 'French',
     term: 'Term 1',
     title: 'Français — Deuxième Préparatoire',
@@ -200,10 +356,10 @@ export const officialBooks: OfficialBook[] = [
     language: 'fr',
   },
 
-  /* ------------------------------ Grade 3 ------------------------------ */
+  /* ------------------------------ Preparatory 3 (grade 9) ------------------------------ */
   {
     id: 'off-g3-english-t1',
-    grade: 3,
+    grade: 9,
     subject: 'English',
     term: 'Term 1',
     title: 'English — Third Preparatory',
@@ -213,7 +369,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g3-arabic-t1',
-    grade: 3,
+    grade: 9,
     subject: 'Arabic',
     term: 'Term 1',
     title: 'اللغة العربية — الصف الثالث الإعدادي',
@@ -223,7 +379,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g3-math-t1',
-    grade: 3,
+    grade: 9,
     subject: 'Mathematics',
     term: 'Term 1',
     title: 'Mathematics — Third Preparatory',
@@ -233,7 +389,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g3-science-t1',
-    grade: 3,
+    grade: 9,
     subject: 'Science',
     term: 'Term 1',
     title: 'Science — Third Preparatory',
@@ -243,7 +399,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g3-social-t1',
-    grade: 3,
+    grade: 9,
     subject: 'Social Studies',
     term: 'Term 1',
     title: 'Social Studies — Third Preparatory',
@@ -253,7 +409,7 @@ export const officialBooks: OfficialBook[] = [
   },
   {
     id: 'off-g3-french-t1',
-    grade: 3,
+    grade: 9,
     subject: 'French',
     term: 'Term 1',
     title: 'Français — Troisième Préparatoire',
@@ -263,18 +419,24 @@ export const officialBooks: OfficialBook[] = [
   },
 ]
 
-export function officialFor(grade: 1 | 2 | 3 | 4, term: 'Term 1' | 'Term 2', subject: Subject | 'All') {
+const PRIMARY_LABELS = [
+  'First Primary',
+  'Second Primary',
+  'Third Primary',
+  'Fourth Primary',
+  'Fifth Primary',
+  'Sixth Primary',
+]
+
+const PREP_LABELS = ['First Preparatory', 'Second Preparatory', 'Third Preparatory']
+
+export function officialFor(grade: GradeLevel, term: 'Term 1' | 'Term 2', subject: Subject | 'All') {
   return officialBooks.filter(
     (book) => book.grade === grade && book.term === term && (subject === 'All' || book.subject === subject),
   )
 }
 
-export function gradeLabel(grade: 1 | 2 | 3 | 4) {
-  return grade === 4
-    ? 'Fourth Primary'
-    : grade === 1
-      ? 'First Preparatory'
-      : grade === 2
-        ? 'Second Preparatory'
-        : 'Third Preparatory'
+export function gradeLabel(grade: GradeLevel) {
+  if (grade <= 6) return PRIMARY_LABELS[grade - 1]
+  return PREP_LABELS[grade - 7] || 'Preparatory'
 }

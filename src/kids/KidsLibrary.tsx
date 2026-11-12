@@ -1,7 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import { BookOpen, Download, Info, Sparkles, Trash2, Upload } from 'lucide-react'
 import type { OfficialBook } from '@/data/officialBooks'
-import { officialFor, gradeLabel } from '@/data/officialBooks'
+import { officialFor } from '@/data/officialBooks'
+import { levelLabel } from '@/lib/curriculum'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { BookCard } from '@/components/common/BookCard'
@@ -15,6 +16,8 @@ import { tr } from '@/i18n'
 
 export function KidsLibrary() {
   const customBooks = useApp((s) => s.customBooks)
+  const grade = useApp((s) => s.settings.gradeLevel)
+  const curriculum = useApp((s) => s.settings.curriculum)
   const removeCustomBook = useApp((s) => s.removeCustomBook)
   const pushToast = useUI((s) => s.pushToast)
   const [pendingFile, setPendingFile] = useState<File | null>(null)
@@ -22,8 +25,8 @@ export function KidsLibrary() {
   const [batchFiles, setBatchFiles] = useState<File[] | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const books = useMemo(() => customBooks.filter((b) => b.grade === 4), [customBooks])
-  const official = officialFor(4, 'Term 1', 'All')
+  const books = useMemo(() => customBooks.filter((b) => b.grade === grade), [customBooks, grade])
+  const official = useMemo(() => officialFor(grade, 'Term 1', 'All'), [grade])
   const importedByCatalog = useMemo(() => {
     const map = new Map<string, (typeof books)[number]>()
     for (const book of books) if (book.catalogId) map.set(book.catalogId, book)
@@ -105,7 +108,7 @@ export function KidsLibrary() {
             <Sparkles className="h-4 w-4" />
           </span>
           <div>
-            <p className="text-sm font-extrabold text-main">{tr('Official books for {grade}', { grade: tr(gradeLabel(4)) })}</p>
+            <p className="text-sm font-extrabold text-main">{tr('Official books for {grade}', { grade: levelLabel(grade, curriculum) })}</p>
             <p className="text-[10px] leading-relaxed text-muted">
               {tr('A grown-up can download the PDF and add it once. Jessica will read it with you.')}
             </p>

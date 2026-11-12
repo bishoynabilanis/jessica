@@ -13,18 +13,11 @@ import {
   SUBJECTS,
 } from '@/lib/importBook'
 import { tr } from '@/i18n'
+import { gradeLabel } from '@/data/officialBooks'
+import { gradesForStage } from '@/lib/stage'
+import type { GradeLevel } from '@/types'
 
 const MAX_BYTES = 150 * 1024 * 1024
-
-function gradeLabel(grade: 1 | 2 | 3 | 4) {
-  return grade === 4
-    ? 'Fourth Primary'
-    : grade === 1
-      ? 'First Preparatory'
-      : grade === 2
-        ? 'Second Preparatory'
-        : 'Third Preparatory'
-}
 
 export function AddBookModal({
   file,
@@ -43,7 +36,7 @@ export function AddBookModal({
   const [title, setTitle] = useState('')
   const [subject, setSubject] = useState<Subject>('English')
   const [term, setTerm] = useState<'Term 1' | 'Term 2'>('Term 1')
-  const [grade, setGrade] = useState<1 | 2 | 3 | 4>(defaultGrade)
+  const [grade, setGrade] = useState<GradeLevel>(defaultGrade)
   const [busy, setBusy] = useState(false)
   const [progress, setProgress] = useState({ page: 0, total: 0 })
   const [error, setError] = useState('')
@@ -153,14 +146,15 @@ export function AddBookModal({
               <span className="label mb-1 block">{tr('Grade')}</span>
               <select
                 value={grade}
-                onChange={(e) => setGrade(Number(e.target.value) as 1 | 2 | 3 | 4)}
+                onChange={(e) => setGrade(Number(e.target.value) as GradeLevel)}
                 className="field text-sm"
                 disabled={busy}
               >
-                <option value={1}>{tr('First Preparatory')}</option>
-                <option value={2}>{tr('Second Preparatory')}</option>
-                <option value={3}>{tr('Third Preparatory')}</option>
-                <option value={4}>{tr('Fourth Primary')}</option>
+                {[...gradesForStage('primary'), ...gradesForStage('prep')].map((value) => (
+                  <option key={value} value={value}>
+                    {tr(gradeLabel(value))}
+                  </option>
+                ))}
               </select>
             </label>
             <label className="block">

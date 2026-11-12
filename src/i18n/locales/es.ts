@@ -1637,4 +1637,9 @@ export const spanish: Record<string, string> = {
   "Nova": "nueva",
   "Dragon": "Dragón",
   "Astral": "astral",
+  "First Primary": "Primero de primaria",
+  "Second Primary": "Segundo de primaria",
+  "Third Primary": "Tercero de primaria",
+  "Fifth Primary": "Quinto de primaria",
+  "Sixth Primary": "Sexto de primaria",
 }

@@ -1637,4 +1637,9 @@ export const turkish: Record<string, string> = {
   "Nova": "Nova",
   "Dragon": "Ejderha",
   "Astral": "astral",
+  "First Primary": "1. Sınıf",
+  "Second Primary": "2. Sınıf",
+  "Third Primary": "3. Sınıf",
+  "Fifth Primary": "5. Sınıf",
+  "Sixth Primary": "6. Sınıf",
 }

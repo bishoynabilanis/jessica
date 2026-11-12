@@ -767,7 +767,25 @@ export const useApp = create<AppState>()(
     }),
     {
       name: 'jessica-profile-v1',
-      version: 2,
+      version: 3,
+      migrate: (persisted: unknown, version: number) => {
+        const state = (persisted || {}) as Record<string, unknown>
+        if (version < 3) {
+          const settings = state.settings as { gradeLevel?: number } | undefined
+          if (settings && typeof settings.gradeLevel === 'number') {
+            const grade = settings.gradeLevel
+            settings.gradeLevel = grade >= 1 && grade <= 3 ? grade + 6 : 4
+          }
+          const books = state.customBooks as { grade?: number }[] | undefined
+          if (Array.isArray(books)) {
+            state.customBooks = books.map((book) => {
+              if (!book || typeof book.grade !== 'number') return book
+              return { ...book, grade: book.grade >= 1 && book.grade <= 3 ? book.grade + 6 : 4 }
+            })
+          }
+        }
+        return state
+      },
       storage: createJSONStorage(() => localStorage),
       merge: (persisted, current) => {
         const saved = (persisted || {}) as Partial<AppState>

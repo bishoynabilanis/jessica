@@ -23,7 +23,7 @@ export function KidsHome() {
   const setName = useApp((s) => s.setName)
   const [giftId, setGiftId] = useState<string | null>(null)
   const { level, progress } = levelInfo(xp)
-  const books = customBooks.filter((b) => b.grade === 4)
+  const books = customBooks.filter((b) => b.grade === settings.gradeLevel)
   const quest = quests.find((q) => !q.claimed)
   const activeTasks = parentTasks.filter((task) => !task.done).slice(0, 2)
   const todayXp = dailyLog[todayKey()]?.xp || 0
@@ -113,7 +113,7 @@ export function KidsHome() {
         <div className="relative flex flex-col items-center gap-4 p-5 sm:flex-row sm:p-7">
           <div className="min-w-0 flex-1 text-center sm:text-start">
             <span className="chip border-white/70 bg-white/70 text-amber-700 shadow-sm">
-              🧸 {levelLabel(4, settings.curriculum)}
+              🧸 {levelLabel(settings.gradeLevel, settings.curriculum)}
             </span>
             <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink-950 sm:text-4xl">
               {name ? tr('Hi {name}!', { name: firstName(name) }) : tr('Hi there!')}{' '}

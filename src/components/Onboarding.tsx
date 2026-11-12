@@ -19,8 +19,9 @@ import { Segmented } from '@/components/ui/Toggle'
 import { useApp } from '@/store/useApp'
 import { cn } from '@/lib/utils'
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
-import { defaultGradeForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
+import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
+import { gradeLabel } from '@/data/officialBooks'
 
 const features = [
   { icon: BookOpen, label: 'Read any PDF', hint: 'Highlight a sentence → instant explanation' },
@@ -211,14 +212,32 @@ export function Onboarding() {
                       {hasOfficialLibrary(settings.curriculum) ? tr('Stage') : tr('Learner level')}
                     </span>
                     {hasOfficialLibrary(settings.curriculum) ? (
-                      <Segmented
-                        options={[
-                          { value: 'primary', label: 'Primary stage' },
-                          { value: 'prep', label: 'Preparatory stage' },
-                        ]}
-                        value={stageForGrade(settings.gradeLevel)}
-                        onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
-                      />
+                      <>
+                        <Segmented
+                          options={[
+                            { value: 'primary', label: 'Primary stage' },
+                            { value: 'prep', label: 'Preparatory stage' },
+                          ]}
+                          value={stageForGrade(settings.gradeLevel)}
+                          onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
+                        />
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {gradesForStage(stageForGrade(settings.gradeLevel)).map((value) => (
+                            <button
+                              key={value}
+                              onClick={() => updateSettings({ gradeLevel: value })}
+                              className={cn(
+                                'rounded-xl border px-2.5 py-1.5 text-[10px] font-bold transition',
+                                settings.gradeLevel === value
+                                  ? 'border-aurora-400/50 bg-aurora-400/15 text-aurora-200'
+                                  : 'border-line bg-card-2 text-muted hover:text-main',
+                              )}
+                            >
+                              {tr(gradeLabel(value))}
+                            </button>
+                          ))}
+                        </div>
+                      </>
                     ) : (
                       <div className="grid gap-1.5">
                         {GLOBAL_LEVELS.map((level) => (

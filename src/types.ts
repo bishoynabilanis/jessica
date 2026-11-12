@@ -27,8 +27,8 @@ export interface Book {
   description: string
   file: string
   pageCount: number
-  /** 1, 2 or 3 for the Egyptian preparatory grade. */
-  grade?: 1 | 2 | 3 | 4
+  /** 1–6 primary, 7–9 preparatory. */
+  grade?: GradeLevel
   /** True when the student added this PDF from their own device. */
   custom?: boolean
   /** Official catalog entry this file was imported from. */
@@ -216,6 +216,8 @@ export interface DailyLogEntry {
   seconds: number
 }
 
+export type GradeLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
 export type Curriculum = 'egypt' | 'gulf' | 'international' | 'other'
 
 export type AiProvider = 'gemini' | 'openai' | 'anthropic' | 'openrouter' | 'custom'
@@ -240,7 +242,7 @@ export interface Settings {
   notifications: boolean
   parentPhone: string
   studentName: string
-  gradeLevel: 1 | 2 | 3 | 4
+  gradeLevel: GradeLevel
   grade: string
   school: string
 }

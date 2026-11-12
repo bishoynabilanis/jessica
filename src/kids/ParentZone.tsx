@@ -67,7 +67,7 @@ function ParentDashboard() {
   const [pinNew, setPinNew] = useState('')
   const [pinConfirm, setPinConfirm] = useState('')
   const [pinError, setPinError] = useState('')
-  const books = customBooks.filter((b) => b.grade === 4)
+  const books = customBooks.filter((b) => b.grade === settings.gradeLevel)
   const bookIds = new Set(books.map((book) => book.id))
   const today = todayKey()
 
@@ -127,7 +127,7 @@ function ParentDashboard() {
     if (settings.language === 'ar') {
       return [
         `تقرير Jessica — ${date}`,
-        `الطالب: ${name || '—'} · ${levelLabel(4, settings.curriculum)}`,
+        `الطالب: ${name || '—'} · ${levelLabel(settings.gradeLevel, settings.curriculum)}`,
         `وقت الاستخدام هذا الأسبوع: ${weekMinutes} دقيقة (النهارده ${usageToday} دقيقة)`,
         `الدروس المكتملة: ${lessons}`,
         `الوحدات المتقنة: ${unitsMastered} من ${books.reduce((sum, book) => sum + (book.units?.length || 0), 0)}`,
@@ -148,7 +148,7 @@ function ParentDashboard() {
     }
     return [
       `Jessica report — ${date}`,
-      `Student: ${name || '—'} · ${levelLabel(4, settings.curriculum)}`,
+      `Student: ${name || '—'} · ${levelLabel(settings.gradeLevel, settings.curriculum)}`,
       `This week: ${weekMinutes} minutes (today ${usageToday})`,
       `Lessons completed: ${lessons}`,
       `Units mastered: ${unitsMastered}`,
@@ -171,7 +171,7 @@ function ParentDashboard() {
           <p className="text-[10px] font-extrabold uppercase tracking-wide text-amber-700">{tr('Parent zone')}</p>
           <h1 className="font-display text-2xl font-extrabold text-ink-950 sm:text-3xl">👨‍👩‍👧 {tr('Parent dashboard')}</h1>
           <p className="mt-1 text-xs font-semibold text-ink-600">
-            {name ? tr('Everything {name} did, at a glance.', { name: name.split(' ')[0] }) : levelLabel(4, settings.curriculum)}
+            {name ? tr('Everything {name} did, at a glance.', { name: name.split(' ')[0] }) : levelLabel(settings.gradeLevel, settings.curriculum)}
           </p>
         </div>
         <Button variant="secondary" size="sm" onClick={() => navigate('/kids')}>
@@ -509,7 +509,7 @@ function ParentDashboard() {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
           <tbody>
             <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('Student')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{name || '—'}</td></tr>
-            <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('Grade')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{levelLabel(4, settings.curriculum)}</td></tr>
+            <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('Grade')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{levelLabel(settings.gradeLevel, settings.curriculum)}</td></tr>
             <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('This week')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{weekMinutes} {tr('min')}</td></tr>
             <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('Lessons')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{lessons}</td></tr>
             <tr><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{tr('Units mastered')}</td><td style={{ padding: 6, borderBottom: '1px solid #ddd' }}>{unitsMastered}</td></tr>

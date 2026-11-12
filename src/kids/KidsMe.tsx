@@ -10,10 +10,10 @@ import { tr } from '@/i18n'
 
 export function KidsMe() {
   const navigate = useNavigate()
-  const { name, xp, streak, customBooks, completedTopics, mascotName, mascotLook, bookProgress, kidsStickers } = useApp()
+  const { name, xp, streak, customBooks, completedTopics, mascotName, mascotLook, bookProgress, kidsStickers, settings } = useApp()
   const { level, progress } = levelInfo(xp)
   const { current } = mascotForXp(xp)
-  const books = customBooks.filter((b) => b.grade === 4)
+  const books = customBooks.filter((b) => b.grade === settings.gradeLevel)
   const booksStarted = books.filter((b) => (bookProgress[b.id]?.lastPage || 0) > 0).length
 
   const badges = [

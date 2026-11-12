@@ -1637,4 +1637,9 @@ export const german: Record<string, string> = {
   "Nova": "Nova",
   "Dragon": "Drache",
   "Astral": "Astral",
+  "First Primary": "Erste Klasse",
+  "Second Primary": "Zweite Klasse",
+  "Third Primary": "Dritte Klasse",
+  "Fifth Primary": "Fünfte Klasse",
+  "Sixth Primary": "Sechste Klasse",
 }

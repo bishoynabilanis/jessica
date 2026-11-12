@@ -1,4 +1,4 @@
-import type { Book, LanguageCode, Subject } from '@/types'
+import type { Book, GradeLevel, LanguageCode, Subject } from '@/types'
 import { subjectMeta } from '@/data/books'
 import { officialBooks, type OfficialBook } from '@/data/officialBooks'
 import { deleteChapterCache, deletePdfBytes, savePdfBytes } from '@/lib/db'
@@ -11,7 +11,7 @@ export interface ImportMeta {
   title: string
   subject: Subject
   term: 'Term 1' | 'Term 2'
-  grade: 1 | 2 | 3 | 4
+  grade: GradeLevel
   catalog?: OfficialBook | null
 }
 
@@ -35,20 +35,38 @@ export function titleFromFile(name: string) {
 /** Guess grade, subject and term from an official file name. */
 export function detectFromFilename(name: string) {
   const clean = name.toLowerCase().replace(/[%_\-\s]+/g, ' ')
-  const gradeMatch =
+  let grade: GradeLevel | undefined
+
+  // Preparatory 1–3 (internal grades 7–9)
+  const prepMatch =
     clean.match(/(?:prep(?:aratory)?|prp|pe)\s*([123])\b/) ||
     clean.match(/\b([123])\s*(?:prep|prp|اعدادي|إعدادي)\b/) ||
     clean.match(/\b(first|second|third)\s*(?:prep|prp)\b/)
-  let grade: 1 | 2 | 3 | 4 | undefined
-  if (gradeMatch) {
-    const raw = gradeMatch[1]
-    grade = raw === '1' || raw === 'first' ? 1 : raw === '2' || raw === 'second' ? 2 : 3
+  if (prepMatch) {
+    const raw = prepMatch[1]
+    const index = raw === '1' || raw === 'first' ? 1 : raw === '2' || raw === 'second' ? 2 : 3
+    grade = (index + 6) as GradeLevel
   }
+
+  // Primary 1–6
   if (!grade) {
-    if (/(?:primary|prim|p)\s*4\b|4\s*(?:prim|ابتدائ)|رابع[ةه]?\s*ابتدائ/.test(clean)) grade = 4
-    else if (/اول[ى]?\s*اعداد|أول[ى]?\s*إعداد/.test(name)) grade = 1
-    else if (/ثاني[ةه]?\s*اعداد|ثاني[ةه]?\s*إعداد/.test(name)) grade = 2
-    else if (/ثالث[ةه]?\s*اعداد|ثالث[ةه]?\s*إعداد/.test(name)) grade = 3
+    const primaryMatch =
+      clean.match(/(?:primary|prim|p)\s*([1-6])\b/) ||
+      clean.match(/\b([1-6])\s*(?:primary|prim)\b/) ||
+      clean.match(/\bgrade\s*([1-6])\b/)
+    if (primaryMatch) grade = Number(primaryMatch[1]) as GradeLevel
+  }
+
+  if (!grade) {
+    if (/رابع[ةه]?\s*ابتدائ/.test(name)) grade = 4
+    else if (/خامس[ةه]?\s*ابتدائ/.test(name)) grade = 5
+    else if (/سادس[ةه]?\s*ابتدائ/.test(name)) grade = 6
+    else if (/ثالث[ةه]?\s*ابتدائ/.test(name)) grade = 3
+    else if (/ثاني[ةه]?\s*ابتدائ/.test(name)) grade = 2
+    else if (/اول[ى]?\s*ابتدائ|أول[ى]?\s*ابتدائ/.test(name)) grade = 1
+    else if (/اول[ى]?\s*اعداد|أول[ى]?\s*إعداد/.test(name)) grade = 7
+    else if (/ثاني[ةه]?\s*اعداد|ثاني[ةه]?\s*إعداد/.test(name)) grade = 8
+    else if (/ثالث[ةه]?\s*اعداد|ثالث[ةه]?\s*إعداد/.test(name)) grade = 9
   }
 
   let subject: Subject | undefined
@@ -65,7 +83,7 @@ export function detectFromFilename(name: string) {
   return { grade, subject, term }
 }
 
-export function matchCatalog(meta: { grade?: 1 | 2 | 3 | 4; subject?: Subject; term?: 'Term 1' | 'Term 2' }) {
+export function matchCatalog(meta: { grade?: GradeLevel; subject?: Subject; term?: 'Term 1' | 'Term 2' }) {
   if (!meta.grade || !meta.subject) return undefined
   return officialBooks.find(
     (book) => book.grade === meta.grade && book.subject === meta.subject && book.term === (meta.term || 'Term 1'),
