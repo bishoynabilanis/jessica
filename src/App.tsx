@@ -18,6 +18,7 @@ import {
   LazyConstellation,
   LazyDailyPlan,
   LazyDisclaimer,
+  LazyExamCalendar,
   LazyGames,
   LazyFeedback,
   LazyHelp,
@@ -151,6 +152,7 @@ export default function App() {
           <Route path="mistakes" element={<LazyMistakes />} />
           <Route path="skills" element={<LazySkills />} />
           <Route path="plan" element={<LazyDailyPlan />} />
+          <Route path="calendar" element={<LazyExamCalendar />} />
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
           <Route path="help" element={<LazyHelp />} />

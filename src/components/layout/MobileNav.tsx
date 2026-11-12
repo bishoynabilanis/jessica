@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { AlertTriangle, Bookmark, Brain, CalendarCheck, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Settings, Sparkles, Target, Users } from 'lucide-react'
+import { AlertTriangle, Bookmark, Brain, CalendarCheck, CalendarDays, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Settings, Sparkles, Target, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
@@ -20,6 +20,7 @@ const more = [
   { path: '/mistakes', label: tr("Mistakes"), icon: AlertTriangle, hint: tr("Wrong answers and drills") },
   { path: '/skills', label: tr("Skills map"), icon: Target, hint: tr("Mastery and readiness") },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck, hint: tr("Today’s three missions") },
+  { path: '/calendar', label: tr("Exam calendar"), icon: CalendarDays, hint: tr("Dates, week plan and exam night") },
   { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare, hint: tr("Answer with a page source") },
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain, hint: tr("Weak-first questions") },
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText, hint: tr("Printable sheets and answer keys") },

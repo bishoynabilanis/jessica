@@ -4,6 +4,7 @@ import {
   Bookmark,
   Brain,
   CalendarCheck,
+  CalendarDays,
   FlaskConical,
   MessagesSquare,
   HelpCircle,
@@ -33,6 +34,7 @@ import { useKidsWorld } from '@/lib/stage'
 export const navItems = [
   { path: '/', label: tr("Home"), icon: Home },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck },
+  { path: '/calendar', label: tr("Exam calendar"), icon: CalendarDays },
   { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare },
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain },
   { path: '/library', label: tr("Library"), icon: LibraryBig },
