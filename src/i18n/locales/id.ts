@@ -1916,4 +1916,8 @@ export const indonesian: Record<string, string> = {
   "Add your exam dates and Jessica builds a week that adapts when a day slips.": "Tambahkan tanggal ujian Anda dan Jessica akan membuat jadwal mingguan yang dapat disesuaikan jika ada hari yang terlewat.",
   "{n} days left": "{n} hari lagi",
   "Review due flashcards": "Tinjau flashcard yang jatuh tempo",
+  "{done}/{total} units": "{done}/{total} unit",
+  "Prepare 5 units": "Siapkan 5 unit",
+  "Prepared {n} units": "{n} unit disiapkan",
+  "They now work offline in adaptive practice.": "Sekarang berfungsi offline di latihan adaptif.",
 }

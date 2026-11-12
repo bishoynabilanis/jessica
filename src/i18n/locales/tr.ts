@@ -1916,4 +1916,8 @@ export const turkish: Record<string, string> = {
   "Add your exam dates and Jessica builds a week that adapts when a day slips.": "Sınav tarihlerini ekleyin; Jessica, bir gün kaydığında uyum sağlayan bir hafta oluşturur.",
   "{n} days left": "{n} gün kaldı",
   "Review due flashcards": "Tekrar zamanı gelen bilgi kartlarını gözden geçir",
+  "{done}/{total} units": "{done}/{total} ünite",
+  "Prepare 5 units": "5 ünite hazırla",
+  "Prepared {n} units": "{n} ünite hazırlandı",
+  "They now work offline in adaptive practice.": "Artık uyarlanabilir alıştırmada çevrimdışı çalışıyorlar.",
 }

@@ -1916,4 +1916,8 @@ export const german: Record<string, string> = {
   "Add your exam dates and Jessica builds a week that adapts when a day slips.": "Fügen Sie Ihre Prüfungstermine hinzu und Jessica erstellt eine Woche, die sich anpasst, wenn ein Tag verschoben wird.",
   "{n} days left": "{n} days left",
   "Review due flashcards": "Fällige Karteikarten wiederholen",
+  "{done}/{total} units": "{done}/{total} Einheiten",
+  "Prepare 5 units": "5 Einheiten vorbereiten",
+  "Prepared {n} units": "{n} Einheiten vorbereitet",
+  "They now work offline in adaptive practice.": "Sie funktionieren jetzt offline in der adaptiven Übung.",
 }

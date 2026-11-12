@@ -93,6 +93,28 @@ export default function App() {
   const booted = useRef(false)
 
   useEffect(() => {
+    // Warm the most-used routes on idle connections only; skip on save-data/2G.
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    if (connection?.saveData || /2g/i.test(connection?.effectiveType || '')) return
+    const prefetch = () => {
+      void import('@/pages/Library')
+      void import('@/pages/StudyHub')
+      void import('@/pages/DailyPlan')
+      void import('@/pages/ExamCalendar')
+    }
+    let idle: number
+    if (typeof window.requestIdleCallback === 'function') {
+      idle = window.requestIdleCallback(prefetch, { timeout: 4000 })
+    } else {
+      idle = window.setTimeout(prefetch, 2500)
+    }
+    return () => {
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle)
+      else window.clearTimeout(idle)
+    }
+  }, [])
+
+  useEffect(() => {
     void registerOpen()
     const onInstall = () => {
       void registerInstall()
