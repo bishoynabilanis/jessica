@@ -235,6 +235,7 @@ export interface Settings {
   language: UiLanguage
   voiceLocale: string
   shareCounts: boolean
+  shareErrors: boolean
   schoolType: SchoolType
   textScale: number
   dyslexiaFont: boolean

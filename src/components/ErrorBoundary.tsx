@@ -3,6 +3,7 @@ import { AlertTriangle, Copy, Home, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { tr } from '@/i18n'
 import { rememberCrash } from '@/lib/diagnostics'
+import { reportError } from '@/lib/errorReporting'
 
 const LOG_KEY = 'jessica-error-log'
 
@@ -18,6 +19,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
+    void reportError({ message: error.message, stack: error.stack, source: 'boundary' })
     try {
       const log = JSON.parse(localStorage.getItem(LOG_KEY) || '[]') as unknown[]
       log.unshift({

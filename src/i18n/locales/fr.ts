@@ -1920,4 +1920,8 @@ export const french: Record<string, string> = {
   "Prepare 5 units": "Préparer 5 unités",
   "Prepared {n} units": "{n} unités préparées",
   "They now work offline in adaptive practice.": "Elles fonctionnent maintenant hors ligne en pratique adaptative.",
+  "Send anonymous crash reports": "Envoyer des rapports de plantage anonymes",
+  "Only the error message and app context — no names, keys or book content.": "Uniquement le message d'erreur et le contexte de l'app — aucun nom, clé ni contenu de livre.",
+  "Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports — both can be turned off.": "Vos livres, votre clé et votre progression restent dans ce navigateur. L'app envoie des requêtes uniquement à votre fournisseur d'IA, au serveur du ministère, au compteur anonyme et aux rapports de plantage anonymes — désactivables.",
+  "Jessica has no account and no server. Your books, key and progress live in this browser. The only network requests are to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports (both can be turned off).": "Jessica n'a ni compte ni serveur. Vos livres, clé et progression restent dans ce navigateur. Les seules requêtes réseau vont à votre fournisseur d'IA, au serveur du ministère, au compteur anonyme et aux rapports de plantage anonymes (désactivables).",
 }

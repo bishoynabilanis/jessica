@@ -1920,4 +1920,8 @@ export const indonesian: Record<string, string> = {
   "Prepare 5 units": "Siapkan 5 unit",
   "Prepared {n} units": "{n} unit disiapkan",
   "They now work offline in adaptive practice.": "Sekarang berfungsi offline di latihan adaptif.",
+  "Send anonymous crash reports": "Kirim laporan crash anonim",
+  "Only the error message and app context — no names, keys or book content.": "Hanya pesan kesalahan dan konteks aplikasi — tanpa nama, kunci, atau isi buku.",
+  "Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports — both can be turned off.": "Bukumu, kuncimu, dan progresmu hanya tersimpan di peramban ini. Aplikasi hanya mengirim permintaan ke penyedia AI, server kementerian, penghitung anonim, dan laporan crash anonim — keduanya bisa dimatikan.",
+  "Jessica has no account and no server. Your books, key and progress live in this browser. The only network requests are to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports (both can be turned off).": "Jessica tidak punya akun atau server. Bukumu, kuncimu, dan progresmu ada di peramban ini. Satu-satunya permintaan jaringan adalah ke penyedia AI, server kementerian, penghitung anonim, dan laporan crash anonim (keduanya bisa dimatikan).",
 }

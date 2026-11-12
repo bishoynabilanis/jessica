@@ -45,6 +45,7 @@ import { todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
 import { useKidsWorld } from '@/lib/stage'
 import { registerInstall, registerOpen } from '@/lib/counter'
+import { reportError } from '@/lib/errorReporting'
 
 function RouteFallback() {
   return (
@@ -111,6 +112,27 @@ export default function App() {
     return () => {
       if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle)
       else window.clearTimeout(idle)
+    }
+  }, [])
+
+  useEffect(() => {
+    const onError = (event: ErrorEvent) => {
+      if (!event.error) return
+      void reportError({ message: event.error.message || event.message, stack: event.error.stack, source: 'window' })
+    }
+    const onRejection = (event: PromiseRejectionEvent) => {
+      const reason = event.reason as { message?: string; stack?: string } | undefined
+      void reportError({
+        message: reason?.message || String(event.reason).slice(0, 200),
+        stack: reason?.stack,
+        source: 'promise',
+      })
+    }
+    window.addEventListener('error', onError)
+    window.addEventListener('unhandledrejection', onRejection)
+    return () => {
+      window.removeEventListener('error', onError)
+      window.removeEventListener('unhandledrejection', onRejection)
     }
   }, [])
 

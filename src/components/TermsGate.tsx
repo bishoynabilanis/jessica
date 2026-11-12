@@ -73,7 +73,7 @@ export function TermsGate() {
               {tr('Jessica is an independent study tool and is not affiliated with or endorsed by the Ministry of Education.')}
             </p>
             <p>
-              {tr('Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host and the anonymous usage counter if enabled.')}
+              {tr('Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports — both can be turned off.')}
             </p>
           </div>
         )}

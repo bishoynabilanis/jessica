@@ -57,6 +57,7 @@ const defaultSettings: Settings = {
   primaryUi: 'auto',
   voiceLocale: '',
   shareCounts: true,
+  shareErrors: true,
   schoolType: 'government',
   aiProvider: 'gemini',
   aiBaseUrl: 'https://api.openai.com/v1',

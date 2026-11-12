@@ -1920,4 +1920,8 @@ export const turkish: Record<string, string> = {
   "Prepare 5 units": "5 ünite hazırla",
   "Prepared {n} units": "{n} ünite hazırlandı",
   "They now work offline in adaptive practice.": "Artık uyarlanabilir alıştırmada çevrimdışı çalışıyorlar.",
+  "Send anonymous crash reports": "Anonim çökme raporları gönder",
+  "Only the error message and app context — no names, keys or book content.": "Yalnızca hata mesajı ve uygulama bağlamı — isim, anahtar veya kitap içeriği yok.",
+  "Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports — both can be turned off.": "Kitapların, anahtarın ve ilerlemen yalnızca bu tarayıcıda kalır. Uygulama yalnızca yapay zekâ sağlayıcına, bakanlık sunucusuna, anonim sayaca ve anonim çökme raporlarına istek gönderir — ikisi de kapatılabilir.",
+  "Jessica has no account and no server. Your books, key and progress live in this browser. The only network requests are to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports (both can be turned off).": "Jessica'da hesap ve sunucu yok. Kitapların, anahtarın ve ilerlemen bu tarayıcıda kalır. Tek ağ istekleri yapay zekâ sağlayıcına, bakanlık sunucusuna, anonim sayaca ve anonim çökme raporlarına gider (ikisi de kapatılabilir).",
 }

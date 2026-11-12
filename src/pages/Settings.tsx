@@ -993,6 +993,12 @@ export function Settings() {
                 label={tr('Contribute to the anonymous counter')}
                 description={tr('Only a number is incremented — no identifiers and no personal data.')}
               />
+              <Toggle
+                checked={settings.shareErrors}
+                onChange={(value) => updateSettings({ shareErrors: value })}
+                label={tr('Send anonymous crash reports')}
+                description={tr('Only the error message and app context — no names, keys or book content.')}
+              />
             </div>
           </Card>
 

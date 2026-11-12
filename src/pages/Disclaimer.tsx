@@ -70,7 +70,7 @@ export function Disclaimer() {
       <Card className="space-y-2 p-5">
         <h2 className="text-sm font-extrabold text-main">{tr('Your data stays with you')}</h2>
         <p className="text-[11px] leading-relaxed text-muted">
-          {tr('Jessica has no account and no server. Your books, key and progress live in this browser. The only network requests are to your AI provider, the Ministry file host and the anonymous usage counter (if enabled).')}
+          {tr('Jessica has no account and no server. Your books, key and progress live in this browser. The only network requests are to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports (both can be turned off).')}
         </p>
         {SUPPORT_WHATSAPP && (
           <p className="text-[10px] text-muted-2">

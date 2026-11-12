@@ -20,6 +20,7 @@ const profile = {
       theme: 'dark',
       voiceLocale: '',
       shareCounts: false,
+      shareErrors: false,
     },
     customBooks: [
       {
