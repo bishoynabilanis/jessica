@@ -28,8 +28,8 @@ books, and an AI tutor grounded in the real page. The gap to a global product is
 
 1. ✅ **Country & curriculum selector** at setup: Egypt, Gulf, International, Other.
    Learner bands adapt, and the Egyptian catalog only appears for Egypt.
-2. 🔄 **More UI languages**: French and Spanish shipped (beta, English fallback); German, Turkish,
-   Indonesian, Urdu (RTL) and Portuguese next. AI answers already follow the UI language.
+2. ✅ **UI languages**: English, Arabic, French, Spanish, German, Turkish and Indonesian ship with
+   on-demand locale packs. Urdu (RTL) and Portuguese next. AI answers follow the UI language.
 3. ✅ **Multi-provider AI**: Gemini, OpenAI, Anthropic, OpenRouter and any OpenAI-compatible endpoint.
 4. **Accessibility to 100**: main landmarks, focus states, keyboard traps, screen-reader
    labels on icon-only buttons, captions for generated audio.

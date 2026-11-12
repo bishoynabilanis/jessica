@@ -11,15 +11,36 @@ import '@fontsource/atkinson-hyperlegible/700.css'
 import 'katex/dist/katex.min.css'
 import './index.css'
 import App from './App'
-import { I18nProvider } from './i18n'
+import { I18nProvider, loadLanguage } from './i18n'
+import type { UiLanguage } from './types'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ErrorBoundary>
-      <I18nProvider>
-        <App />
-      </I18nProvider>
-    </ErrorBoundary>
-  </StrictMode>,
-)
+function savedLanguage(): UiLanguage | undefined {
+  try {
+    const raw = localStorage.getItem('jessica-profile-v1')
+    const parsed = raw ? JSON.parse(raw) : null
+    return parsed?.state?.settings?.language as UiLanguage | undefined
+  } catch {
+    return undefined
+  }
+}
+
+function start() {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <ErrorBoundary>
+        <I18nProvider>
+          <App />
+        </I18nProvider>
+      </ErrorBoundary>
+    </StrictMode>,
+  )
+}
+
+const language = savedLanguage()
+if (language && language !== 'en' && language !== 'ar') {
+  // Load the locale pack before the first paint so the UI never flashes English.
+  loadLanguage(language).finally(start)
+} else {
+  start()
+}

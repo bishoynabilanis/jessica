@@ -5,11 +5,10 @@
  * `tr()` is intentionally callable outside React so PDF exports, prompts and
  * plain helpers can use the same translations.
  */
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useApp } from '@/store/useApp'
 import type { UiLanguage } from '@/types'
-import { french } from './locales/fr'
-import { spanish } from './locales/es'
+
 
 export type Language = UiLanguage
 
@@ -1704,18 +1703,15 @@ export const arabic: Record<string, string> = {
   "Astral": "أسترال",
 }
 
-const locales: Record<Language, Record<string, string>> = {
-  en: {},
-  ar: arabic,
-  fr: french,
-  es: spanish,
-}
 
 export const UI_LANGUAGES: { id: Language; label: string; short: string }[] = [
   { id: 'en', label: 'English', short: 'EN' },
   { id: 'ar', label: 'العربية', short: 'ع' },
   { id: 'fr', label: 'Français', short: 'FR' },
   { id: 'es', label: 'Español', short: 'ES' },
+  { id: 'de', label: 'Deutsch', short: 'DE' },
+  { id: 'tr', label: 'Türkçe', short: 'TR' },
+  { id: 'id', label: 'Bahasa Indonesia', short: 'ID' },
 ]
 
 export function nextLanguage(current: Language): Language {
@@ -1723,13 +1719,39 @@ export function nextLanguage(current: Language): Language {
   return UI_LANGUAGES[(index + 1) % UI_LANGUAGES.length].id
 }
 
+const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: arabic }
+
+const loaders: Partial<Record<Language, () => Promise<Record<string, string>>>> = {
+  fr: () => import('./locales/fr').then((module) => module.french),
+  es: () => import('./locales/es').then((module) => module.spanish),
+  de: () => import('./locales/de').then((module) => module.german),
+  tr: () => import('./locales/tr').then((module) => module.turkish),
+  id: () => import('./locales/id').then((module) => module.indonesian),
+  ur: () => import('./locales/ur').then((module) => module.urdu),
+}
+
+export async function loadLanguage(language: Language): Promise<void> {
+  if (cache[language]) return
+  const loader = loaders[language]
+  if (!loader) return
+  try {
+    cache[language] = await loader()
+  } catch {
+    cache[language] = {}
+  }
+}
+
+export function isLanguageLoaded(language: Language): boolean {
+  return Boolean(cache[language])
+}
+
 let active: Language = 'en'
 
 export function setI18nLanguage(language: Language | undefined) {
-  active = language && language in locales ? language : 'en'
+  active = language && cache[language] ? language : 'en'
   if (typeof document !== 'undefined') {
     document.documentElement.lang = active
-    document.documentElement.dir = active === 'ar' ? 'rtl' : 'ltr'
+    document.documentElement.dir = active === 'ar' || active === 'ur' ? 'rtl' : 'ltr'
     document.title =
       active === 'ar'
         ? 'Jessica — عالم تعلّم ذكي'
@@ -1737,7 +1759,15 @@ export function setI18nLanguage(language: Language | undefined) {
           ? "Jessica — Apprends avec l'IA"
           : active === 'es'
             ? 'Jessica — Aprende con IA'
-            : 'Jessica — AI Learning Universe'
+            : active === 'de'
+              ? 'Jessica — Lerne mit KI'
+              : active === 'tr'
+                ? 'Jessica — Yapay zekâ ile öğren'
+                : active === 'id'
+                  ? 'Jessica — Belajar dengan AI'
+                  : active === 'ur'
+                    ? 'Jessica — اے آئی سے سیکھیں'
+                    : 'Jessica — AI Learning Universe'
   }
 }
 
@@ -1746,6 +1776,10 @@ export function dateLocale() {
   if (active === 'ar') return 'ar-EG'
   if (active === 'fr') return 'fr-FR'
   if (active === 'es') return 'es-ES'
+  if (active === 'de') return 'de-DE'
+  if (active === 'tr') return 'tr-TR'
+  if (active === 'id') return 'id-ID'
+  if (active === 'ur') return 'ur-PK'
   return 'en-GB'
 }
 
@@ -1767,15 +1801,42 @@ export function tr(text: string, vars?: Record<string, string | number>) {
   const lead = text.match(/^\s*/)?.[0] ?? ''
   const trail = text.match(/\s*$/)?.[0] ?? ''
   const key = text.replace(/\s+/g, ' ').trim()
-  const translated = locales[active][key] ?? key
+  const translated = (cache[active] || {})[key] ?? key
   return lead + fill(translated, vars) + trail
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const language = useApp((s) => s.settings.language)
-  setI18nLanguage(language)
+  const [, force] = useState(0)
+  const [ready, setReady] = useState(() => isLanguageLoaded(language))
+
   useEffect(() => {
-    setI18nLanguage(language)
+    let cancelled = false
+    if (isLanguageLoaded(language)) {
+      setI18nLanguage(language)
+      setReady(true)
+      force((value) => value + 1)
+      return
+    }
+    setReady(false)
+    loadLanguage(language).then(() => {
+      if (cancelled) return
+      setI18nLanguage(language)
+      setReady(true)
+      force((value) => value + 1)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [language])
+
+  setI18nLanguage(language)
+  if (!ready) {
+    return (
+      <div className="grid min-h-dvh place-items-center bg-ink-950 text-sm font-bold text-muted">
+        Loading…
+      </div>
+    )
+  }
   return <Fragment key={language}>{children}</Fragment>
 }

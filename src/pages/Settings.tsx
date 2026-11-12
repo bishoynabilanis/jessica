@@ -539,7 +539,7 @@ export function Settings() {
                     )}
                   >
                     {item.label}
-                    {item.id === 'fr' || item.id === 'es' ? (
+                    {item.id !== 'en' && item.id !== 'ar' ? (
                       <span className="ms-1 text-[8px] font-semibold uppercase text-muted-2">beta</span>
                     ) : null}
                   </button>

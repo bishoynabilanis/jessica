@@ -26,7 +26,7 @@ The whole interface is available in **English and Arabic** (full RTL layout, Cai
 | **Motivation** | XP & levels, daily streaks, rotating quests, coins, evolving mascot with looks/cosmetics, daily riddle, learning constellation, gentle proactive nudges |
 | **Comfort** | Dark/light themes, text scaling, Atkinson Hyperlegible (dyslexia-friendly), reduced motion, offline shell, local notifications, question read-aloud, crash boundary, global search (⌘K) |
 | **Privacy** | Everything in `localStorage` + IndexedDB, JSON backup/restore, full ZIP backup with books and flashcards, one-click wipe, parent WhatsApp report generated on-device |
-| **Languages & regions** | English, Arabic, French and Spanish UI (French/Spanish beta), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
+| **Languages & regions** | English, Arabic, French, Spanish, German, Turkish and Indonesian UI (translated core, English fallback), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
 | **Primary mode** | A separate kids world for Primary 4: its own shell and routes, bright world theme, floating scenery, big controls, daily gift and stickers, sticker book, badges, parent gate, read-to-me page reader and age-appropriate explanations |
 
 The 7th-grade curriculum covers **English, Arabic, German, French, Science, Mathematics and Social Studies**.
