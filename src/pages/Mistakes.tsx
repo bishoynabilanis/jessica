@@ -14,7 +14,7 @@ import {
 import type { QuizQuestion } from '@/types'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
-import { generateText } from '@/lib/gemini'
+import { generateJSON, generateText } from '@/lib/gemini'
 import { putCard } from '@/lib/db'
 import { newCard } from '@/lib/srs'
 import { PageHeader } from '@/components/common/PageHeader'
@@ -30,6 +30,9 @@ export function Mistakes() {
   const [subject, setSubject] = useState('All')
   const [explaining, setExplaining] = useState<string | null>(null)
   const [practice, setPractice] = useState<QuizQuestion[] | null>(null)
+  const [similar, setSimilar] = useState<Record<string, { question: string; options: string[]; answer: number; explanation: string } | undefined>>({})
+  const [similarBusy, setSimilarBusy] = useState<string | null>(null)
+  const [similarPick, setSimilarPick] = useState<Record<string, number>>({})
 
   const subjects = useMemo(() => ['All', ...new Set(mistakes.map((item) => item.subject))], [mistakes])
   const filtered = subject === 'All' ? mistakes : mistakes.filter((item) => item.subject === subject)
@@ -65,6 +68,41 @@ Write in the app language: (1) why the chosen answer is wrong, (2) the correct i
       pushToast({ title: tr('Could not explain this mistake'), description: err instanceof Error ? err.message : tr('Try again.'), type: 'error' })
     } finally {
       setExplaining(null)
+    }
+  }
+
+  const makeSimilar = async (id: string) => {
+    const entry = mistakes.find((item) => item.id === id)
+    if (!entry) return
+    if (!apiKey) {
+      pushToast({ title: tr('Add your Gemini key first'), type: 'info' })
+      return
+    }
+    setSimilarBusy(id)
+    try {
+      const data = await generateJSON<{ question: string; options: string[]; answer: number; explanation: string }>({
+        apiKey,
+        model,
+        temperature: 0.6,
+        maxOutputTokens: 500,
+        system: 'You are Jessica, a patient tutor. Write one new multiple-choice question that practises the same skill as the student\'s mistake.',
+        parts: [
+          {
+            text: `Original question: ${entry.question}
+Options: ${entry.options.map((option, index) => `${String.fromCharCode(65 + index)}. ${option}`).join(' | ')}
+Correct answer: ${entry.options[entry.answer]}
+Topic: ${entry.topic || entry.subject}
+Create ONE new question on the same skill but with different wording and numbers/context. Return ONLY JSON:
+{"question":"...","options":["...","...","...","..."],"answer":0,"explanation":"..."}
+Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
+          },
+        ],
+      })
+      setSimilar((current) => ({ ...current, [id]: data }))
+    } catch (err) {
+      pushToast({ title: tr('Could not create a similar question'), description: err instanceof Error ? err.message : tr('Try again.'), type: 'error' })
+    } finally {
+      setSimilarBusy(null)
     }
   }
 
@@ -222,10 +260,46 @@ Write in the app language: (1) why the chosen answer is wrong, (2) the correct i
                   </p>
                 )}
 
+                {similar[item.id] && (
+                  <div className="mt-2 rounded-xl border border-aurora-400/25 bg-aurora-400/5 p-2.5">
+                    <p className="text-[10px] font-bold text-aurora-200">{tr('Try a similar question')}</p>
+                    <p className="mt-1 text-[11px] font-semibold text-main" dir="auto">{similar[item.id]?.question}</p>
+                    <div className="mt-1.5 grid gap-1">
+                      {similar[item.id]?.options.map((option, index) => {
+                        const picked = similarPick[item.id] === index
+                        const correct = similar[item.id]?.answer === index
+                        const revealed = similarPick[item.id] !== undefined
+                        return (
+                          <button
+                            key={index}
+                            onClick={() => setSimilarPick((current) => ({ ...current, [item.id]: index }))}
+                            className={cn(
+                              'rounded-lg border px-2 py-1.5 text-start text-[10px] font-semibold transition',
+                              revealed && correct
+                                ? 'border-aurora-400/50 bg-aurora-400/15 text-aurora-200'
+                                : picked
+                                  ? 'border-coral/40 bg-coral/10 text-coral'
+                                  : 'border-line bg-card-2 text-main hover:bg-white/5',
+                            )}
+                          >
+                            {String.fromCharCode(65 + index)}. {option}
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {similarPick[item.id] !== undefined && (
+                      <p className="mt-1.5 text-[10px] leading-relaxed text-muted" dir="auto">{similar[item.id]?.explanation}</p>
+                    )}
+                  </div>
+                )}
+
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   <Button size="sm" variant="secondary" onClick={() => explain(item.id)} loading={explaining === item.id}>
                     {explaining === item.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
                     {tr('Explain my mistake')}
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => makeSimilar(item.id)} loading={similarBusy === item.id}>
+                    <Sparkles className="h-3.5 w-3.5" /> {tr('Similar question')}
                   </Button>
                   <Button size="sm" variant="ghost" onClick={() => makeCard(item.id)}>
                     <Brain className="h-3.5 w-3.5" /> {tr('Make a card')}

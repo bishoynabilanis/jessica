@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   Award,
   Brain,
+  Share2,
   CheckCircle2,
   Download,
   FileText,
@@ -23,6 +24,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar } from '@/components/ui/Card'
 import { cn, pct, todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
+import { shareAchievement } from '@/lib/shareCard'
 
 interface StoredBank {
   id: string
@@ -187,6 +189,27 @@ export function Skills() {
             </Button>
             <Button size="sm" variant="ghost" onClick={() => window.print()}>
               <Printer className="h-3.5 w-3.5" /> {tr('Certificate')}
+            </Button>
+            <Button
+              size="sm"
+              onClick={async () => {
+                const result = await shareAchievement({
+                  title: tr('Certificate of achievement'),
+                  subtitle: name || tr('Student'),
+                  emoji: '🏆',
+                  lines: [
+                    `${tr('Level')} ${level}`,
+                    `${xp} XP`,
+                    `${streak} ${tr('day streak')}`,
+                    `${completedTopics.length} ${tr('units mastered')}`,
+                  ],
+                })
+                if (result === 'downloaded') {
+                  pushToast({ title: tr('Certificate downloaded'), type: 'success' })
+                }
+              }}
+            >
+              <Share2 className="h-3.5 w-3.5" /> {tr('Share')}
             </Button>
           </>
         }

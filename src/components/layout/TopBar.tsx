@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Bell, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Sparkles, Sun, Zap } from 'lucide-react'
+import { Bell, Camera, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Sparkles, Sun, Zap } from 'lucide-react'
 import { useApp, levelInfo } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { Mascot } from '@/components/Mascot'
 import { cn, firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
+import { VisionSolverModal } from '@/components/tools/VisionSolver'
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { useKidsWorld } from '@/lib/stage'
 
@@ -17,6 +18,7 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
   const { updateSettings } = useApp()
   const toggleQuickPanel = useUI((s) => s.toggleQuickPanel)
   const [riddleOpen, setRiddleOpen] = useState(false)
+  const [scanOpen, setScanOpen] = useState(false)
   const { level, into, needed, progress } = levelInfo(xp)
   const kids = useKidsWorld(settings.gradeLevel, settings.primaryUi)
 
@@ -80,6 +82,14 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
 
           <div className="flex items-center gap-1.5">
             <button
+              onClick={() => setScanOpen(true)}
+              className="grid h-9 w-9 place-items-center rounded-xl text-muted transition hover:bg-white/5 hover:text-main"
+              aria-label={tr('Scan a page')}
+              title={tr('Scan a page')}
+            >
+              <Camera className="h-4 w-4" />
+            </button>
+            <button
               onClick={() => window.dispatchEvent(new Event('jessica-search'))}
               className="grid h-9 w-9 place-items-center rounded-xl text-muted transition hover:bg-white/5 hover:text-main"
               aria-label={tr('Search')}
@@ -142,6 +152,7 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
         </div>
       </header>
       <RiddleModal open={riddleOpen} onClose={() => setRiddleOpen(false)} />
+      <VisionSolverModal open={scanOpen} onClose={() => setScanOpen(false)} />
     </>
   )
 }
