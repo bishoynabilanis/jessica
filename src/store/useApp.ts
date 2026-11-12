@@ -1,7 +1,8 @@
 import { create } from 'zustand'
-import { getLanguage } from '@/i18n'
+import { getLanguage, dateLocale } from '@/i18n'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
+  AiProvider,
   Book,
   DailyLogEntry,
   ParentTask,
@@ -18,6 +19,7 @@ import { dayKeyOffset, todayKey, uid } from '@/lib/utils'
 import { riddleForDate } from '@/data/riddles'
 import { giftStickers } from '@/data/kids'
 import { useUI } from './useUI'
+import { providerFor } from '@/lib/providers'
 
 export const XP_PER_LEVEL = 300
 
@@ -51,6 +53,8 @@ const defaultSettings: Settings = {
   studentName: '',
   gradeLevel: 1,
   curriculum: 'egypt',
+  aiProvider: 'gemini',
+  aiBaseUrl: 'https://api.openai.com/v1',
   grade: 'First Preparatory',
   school: '',
 }
@@ -134,6 +138,7 @@ export interface AppState {
   exams: ExamResult[]
   settings: Settings
   apiKey: string
+  aiKeys: Record<AiProvider, string>
   model: string
   mascotName: string
   mascotLook: string
@@ -183,6 +188,7 @@ export interface AppState {
   updateSettings: (patch: Partial<Settings>) => void
   setName: (name: string) => void
   setApiKey: (key: string) => void
+  setProvider: (provider: AiProvider) => void
   setModel: (model: string) => void
   setMascot: (patch: { name?: string; look?: string }) => void
   answerRiddle: (selected: number) => boolean
@@ -236,6 +242,7 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   exams: [],
   settings: defaultSettings,
   apiKey: '',
+  aiKeys: { gemini: '', openai: '', anthropic: '', openrouter: '', custom: '' },
   model: 'gemini-1.5-flash',
   mascotName: 'Jessling',
   mascotLook: 'classic',
@@ -699,7 +706,17 @@ export const useApp = create<AppState>()(
 
       updateSettings: (patch) => set((state) => ({ settings: { ...state.settings, ...patch } })),
       setName: (name) => set({ name: name.slice(0, 40) }),
-      setApiKey: (apiKey) => set({ apiKey: apiKey.trim() }),
+      setApiKey: (apiKey) =>
+        set((state) => ({
+          apiKey: apiKey.trim(),
+          aiKeys: { ...state.aiKeys, [state.settings.aiProvider]: apiKey.trim() },
+        })),
+      setProvider: (provider) =>
+        set((state) => ({
+          settings: { ...state.settings, aiProvider: provider },
+          apiKey: state.aiKeys[provider] || '',
+          model: providerFor(provider).defaultModel,
+        })),
       setModel: (model) => set({ model }),
 
       setMascot: (patch) =>
@@ -783,7 +800,7 @@ export function weekLog(state: AppState = useApp.getState()) {
       date,
       xp: state.dailyLog[date]?.xp || 0,
       seconds: state.dailyLog[date]?.seconds || 0,
-      label: new Date(date).toLocaleDateString(getLanguage() === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'narrow' }),
+      label: new Date(date).toLocaleDateString(dateLocale(), { weekday: 'narrow' }),
       day: Number(date.slice(-2)),
     }
   })

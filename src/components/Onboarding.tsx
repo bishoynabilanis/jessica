@@ -18,7 +18,7 @@ import { Button } from '@/components/ui/Button'
 import { Segmented } from '@/components/ui/Toggle'
 import { useApp } from '@/store/useApp'
 import { cn } from '@/lib/utils'
-import { tr } from '@/i18n'
+import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { defaultGradeForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 
@@ -93,11 +93,11 @@ export function Onboarding() {
                 </span>
               </div>
               <button
-                onClick={() => updateSettings({ language: settings.language === 'ar' ? 'en' : 'ar' })}
+                onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
                 className="chip border-aurora-400/30 bg-aurora-400/10 text-[10px] font-bold text-aurora-200"
                 title={tr('Switch language')}
               >
-                {settings.language === 'ar' ? 'English' : 'العربية'}
+                {UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.label}
               </button>
               <div className="ml-auto flex items-center gap-1.5">
                 {[0, 1, 2].map((i) => (

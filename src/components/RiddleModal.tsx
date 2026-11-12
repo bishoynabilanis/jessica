@@ -7,7 +7,7 @@ import { useUI } from '@/store/useUI'
 import { requestNotificationPermission, sendLocalNotification } from '@/hooks/usePlatform'
 import { Button } from '@/components/ui/Button'
 import { Modal } from '@/components/ui/Modal'
-import { getLanguage, tr } from '@/i18n'
+import { getLanguage, tr, dateLocale } from '@/i18n'
 
 export function RiddleCard({ compact }: { compact?: boolean }) {
   const riddle = useApp((s) => s.riddle)
@@ -50,7 +50,7 @@ export function RiddleCard({ compact }: { compact?: boolean }) {
           </span>
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-sun">{tr("Daily riddle")}</p>
-            <p className="text-[10px] text-muted">{tr(riddle.subject)} · {new Date().toLocaleDateString(getLanguage() === 'ar' ? 'ar-EG' : 'en-GB')}</p>
+            <p className="text-[10px] text-muted">{tr(riddle.subject)} · {new Date().toLocaleDateString(dateLocale())}</p>
           </div>
         </div>
         <span className="chip border-sun/30 bg-sun/10 text-sun">

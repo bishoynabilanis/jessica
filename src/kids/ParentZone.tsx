@@ -29,7 +29,7 @@ import { hashPin, validPin } from '@/lib/pin'
 import { requestNotificationPermission, sendLocalNotification } from '@/hooks/usePlatform'
 import { levelLabel } from '@/lib/curriculum'
 import { cn, dayKeyOffset, pct, todayKey } from '@/lib/utils'
-import { tr } from '@/i18n'
+import { tr, dateLocale } from '@/i18n'
 
 const LIMITS = [0, 15, 20, 30, 45]
 
@@ -123,7 +123,7 @@ function ParentDashboard() {
   ]
 
   const buildReport = () => {
-    const date = new Date().toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB')
+    const date = new Date().toLocaleDateString(dateLocale())
     if (settings.language === 'ar') {
       return [
         `تقرير Jessica — ${date}`,
@@ -504,7 +504,7 @@ function ParentDashboard() {
       <div className="print-report" dir={settings.language === 'ar' ? 'rtl' : 'ltr'}>
         <h1 style={{ fontSize: 24, fontWeight: 800, margin: 0 }}>Jessica — {tr('Weekly report')}</h1>
         <p style={{ margin: '4px 0 16px', fontSize: 12, color: '#555' }}>
-          {new Date().toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB')}
+          {new Date().toLocaleDateString(dateLocale())}
         </p>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
           <tbody>
@@ -528,7 +528,7 @@ function ParentDashboard() {
           <tbody>
             {weekDays.map((day) => (
               <tr key={day.date}>
-                <td style={{ padding: 4, borderBottom: '1px solid #eee' }}>{new Date(day.date).toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB')}</td>
+                <td style={{ padding: 4, borderBottom: '1px solid #eee' }}>{new Date(day.date).toLocaleDateString(dateLocale())}</td>
                 <td style={{ padding: 4, borderBottom: '1px solid #eee' }}>{day.minutes}</td>
               </tr>
             ))}

@@ -218,10 +218,16 @@ export interface DailyLogEntry {
 
 export type Curriculum = 'egypt' | 'gulf' | 'international' | 'other'
 
+export type AiProvider = 'gemini' | 'openai' | 'anthropic' | 'openrouter' | 'custom'
+
+export type UiLanguage = 'en' | 'ar' | 'fr' | 'es'
+
 export interface Settings {
   theme: 'dark' | 'light'
+  aiProvider: AiProvider
+  aiBaseUrl: string
   curriculum: Curriculum
-  language: 'en' | 'ar'
+  language: UiLanguage
   textScale: number
   dyslexiaFont: boolean
   reduceMotion: boolean

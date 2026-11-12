@@ -34,7 +34,7 @@ export async function requestPersistentStorage() {
   }
 }
 
-export function formatBytes(bytes: number, lang: 'en' | 'ar' = 'en') {
+export function formatBytes(bytes: number, lang: string = 'en') {
   if (!bytes) return lang === 'ar' ? '٠ ميجا' : '0 MB'
   const mb = bytes / (1024 * 1024)
   const value = mb >= 1024 ? `${(mb / 1024).toFixed(2)} GB` : `${mb < 10 ? mb.toFixed(1) : Math.round(mb)} MB`

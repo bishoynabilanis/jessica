@@ -41,7 +41,7 @@ import { questsPrompt } from '@/lib/prompts'
 import { cn, firstName, formatDuration, pct, todayKey } from '@/lib/utils'
 import { useApp, levelInfo, weekLog } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
-import { tr } from '@/i18n'
+import { tr, dateLocale } from '@/i18n'
 
 const questIcons = {
   quiz: Gamepad2,
@@ -209,7 +209,7 @@ export function Dashboard() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow={`${new Date().toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} · ${levelLabel(settings.gradeLevel, settings.curriculum)}`}
+        eyebrow={`${new Date().toLocaleDateString(dateLocale(), { weekday: 'long', day: 'numeric', month: 'long' })} · ${levelLabel(settings.gradeLevel, settings.curriculum)}`}
         title={name ? tr('Let’s make today count, {name}.', { name: firstName(name) }) : tr("Welcome to your learning universe.")}
         subtitle={tr("Read a little, recall a lot, and let Jessica turn confusion into “aha!” moments.")}
         actions={
@@ -613,7 +613,7 @@ export function Dashboard() {
             <div>
               <p className="text-sm font-extrabold text-main">{tr("Latest mock exam:")} {tr(exams[0].subject)}</p>
               <p className="text-[11px] text-muted">
-                {exams[0].score}/{exams[0].total} · {new Date(exams[0].date).toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB')} ·{' '}
+                {exams[0].score}/{exams[0].total} · {new Date(exams[0].date).toLocaleDateString(dateLocale())} ·{' '}
                 {exams[0].weakTopics.length ? `${tr('Revise')} ${exams[0].weakTopics.slice(0, 2).join(', ')}` : tr('Clean sweep!')}
               </p>
             </div>

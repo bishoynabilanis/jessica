@@ -37,10 +37,8 @@ import { Card, ProgressBar } from '@/components/ui/Card'
 import { Toggle, Segmented } from '@/components/ui/Toggle'
 import { useApp, levelInfo } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
-import {
-  GEMINI_MODELS,
-  validateKey,
-} from '@/lib/gemini'
+import { validateKey } from '@/lib/gemini'
+import { PROVIDERS, providerFor } from '@/lib/providers'
 import {
   requestNotificationPermission,
   sendLocalNotification,
@@ -52,7 +50,7 @@ import { riddleForDate } from '@/data/riddles'
 import { cn, todayKey } from '@/lib/utils'
 import { defaultGradeForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
-import { tr } from '@/i18n'
+import { tr, UI_LANGUAGES } from '@/i18n'
 
 type KeyStatus = 'idle' | 'checking' | 'valid' | 'invalid'
 
@@ -66,6 +64,7 @@ export function Settings() {
     settings,
     setName,
     setApiKey,
+    setProvider,
     setModel,
     updateSettings,
     importState,
@@ -85,6 +84,7 @@ export function Settings() {
   const [showKey, setShowKey] = useState(false)
   const [keyStatus, setKeyStatus] = useState<KeyStatus>(apiKey ? 'valid' : 'idle')
   const [keyMessage, setKeyMessage] = useState(apiKey ? tr('Saved on this device.') : '')
+  const provider = providerFor(settings.aiProvider)
   const [profile, setProfile] = useState({
     name,
     studentName: settings.studentName,
@@ -240,9 +240,9 @@ export function Settings() {
                 <KeyRound className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <h2 className="font-display text-base font-extrabold text-main">{tr("Gemini API key")}</h2>
+                <h2 className="font-display text-base font-extrabold text-main">{tr("AI provider & key")}</h2>
                 <p className="text-[11px] leading-relaxed text-muted">
-                  {tr("Create a free key in Google AI Studio, paste it below, and the tutor unlocks. The key is stored in\n                  localStorage on this device only.")}
+                  {tr("Bring your own key from Gemini, OpenAI, Claude or any compatible endpoint. It is stored in this browser only.")}
                 </p>
               </div>
               <span
@@ -256,6 +256,29 @@ export function Settings() {
               </span>
             </div>
 
+            <div className="mb-2.5 grid grid-cols-2 gap-1.5 sm:grid-cols-3">
+              {PROVIDERS.map((option) => (
+                <button
+                  key={option.id}
+                  onClick={() => {
+                    setProvider(option.id)
+                    setDraftKey('')
+                    setKeyStatus('idle')
+                    setKeyMessage('')
+                  }}
+                  className={cn(
+                    'rounded-xl border px-2.5 py-2 text-start transition',
+                    settings.aiProvider === option.id
+                      ? 'border-aurora-400/50 bg-aurora-400/10'
+                      : 'border-line bg-card-2 hover:bg-white/5',
+                  )}
+                >
+                  <span className="block text-[10px] font-extrabold text-main">{option.label}</span>
+                  <span className="block text-[8px] leading-snug text-muted">{tr(option.tagline)}</span>
+                </button>
+              ))}
+            </div>
+
             <div className="flex flex-col gap-2 sm:flex-row">
               <div className="relative flex-1">
                 <input
@@ -265,7 +288,7 @@ export function Settings() {
                     setKeyStatus('idle')
                   }}
                   type={showKey ? 'text' : 'password'}
-                  placeholder={tr("AIza…")}
+                  placeholder={provider.keyHint}
                   spellCheck={false}
                   autoComplete="off"
                   className="field pr-10 font-mono text-xs"
@@ -284,18 +307,20 @@ export function Settings() {
               </Button>
             </div>
 
-            <a
-              href="https://aistudio.google.com/app/apikey"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-3 py-2 text-[11px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
-            >
-              <KeyRound className="h-3.5 w-3.5" />
-              {tr('Get a free API key from Google AI Studio')}
-              <ChevronRight className="h-3.5 w-3.5" />
-            </a>
+            {provider.docsUrl && (
+              <a
+                href={provider.docsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-3 py-2 text-[11px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
+              >
+                <KeyRound className="h-3.5 w-3.5" />
+                {tr('Get a key from {provider}', { provider: provider.label })}
+                <ChevronRight className="h-3.5 w-3.5" />
+              </a>
+            )}
 
-            {!apiKey && <KeyTutorial />}
+            {!apiKey && settings.aiProvider === 'gemini' && <KeyTutorial />}
 
             {keyMessage && (
               <p
@@ -313,10 +338,34 @@ export function Settings() {
               </p>
             )}
 
+            {settings.aiProvider === 'custom' && (
+              <label className="mt-3 block">
+                <span className="label mb-1 block">{tr('Endpoint base URL')}</span>
+                <input
+                  value={settings.aiBaseUrl}
+                  onChange={(e) => updateSettings({ aiBaseUrl: e.target.value })}
+                  placeholder="https://api.example.com/v1"
+                  dir="ltr"
+                  spellCheck={false}
+                  className="field font-mono text-[11px]"
+                />
+              </label>
+            )}
+
             <div className="mt-3">
               <span className="label mb-1.5 block">{tr("Model")}</span>
+              {settings.aiProvider === 'custom' ? (
+                <input
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  placeholder="model-name"
+                  dir="ltr"
+                  spellCheck={false}
+                  className="field font-mono text-[11px]"
+                />
+              ) : (
               <div className="grid gap-1.5 sm:grid-cols-2">
-                {GEMINI_MODELS.map((m) => (
+                {provider.models.map((m) => (
                   <button
                     key={m.id}
                     onClick={() => {
@@ -333,12 +382,13 @@ export function Settings() {
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[10px] font-extrabold text-main">{m.label}</span>
-                      <span className="block truncate text-[9px] text-muted">{tr(m.hint)}</span>
+                      <span className="block truncate text-[9px] text-muted">{m.hint ? tr(m.hint) : ''}</span>
                     </span>
                     {model === m.id && <Check className="h-3.5 w-3.5 shrink-0 text-aurora-300" />}
                   </button>
                 ))}
               </div>
+              )}
             </div>
 
             <div className="mt-3 flex items-start gap-2 rounded-xl border border-sun/20 bg-sun/10 p-2.5">
@@ -476,14 +526,25 @@ export function Settings() {
               <span className="label mb-1.5 flex items-center gap-1.5">
                 <Languages className="h-3 w-3" /> {tr('Language')}
               </span>
-              <Segmented
-                options={[
-                  { value: 'en', label: 'English' },
-                  { value: 'ar', label: 'Arabic' },
-                ]}
-                value={settings.language}
-                onChange={(language) => updateSettings({ language })}
-              />
+              <div className="grid grid-cols-2 gap-1.5">
+                {UI_LANGUAGES.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => updateSettings({ language: item.id })}
+                    className={cn(
+                      'rounded-xl border px-3 py-2 text-start text-[11px] font-bold transition',
+                      settings.language === item.id
+                        ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
+                        : 'border-line bg-card-2 text-muted hover:text-main',
+                    )}
+                  >
+                    {item.label}
+                    {item.id === 'fr' || item.id === 'es' ? (
+                      <span className="ms-1 text-[8px] font-semibold uppercase text-muted-2">beta</span>
+                    ) : null}
+                  </button>
+                ))}
+              </div>
               <p className="mt-1 text-[10px] text-muted-2">{tr('You can switch any time from the top bar.')}</p>
             </div>
 

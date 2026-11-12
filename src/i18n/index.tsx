@@ -7,8 +7,11 @@
  */
 import { Fragment, useEffect } from 'react'
 import { useApp } from '@/store/useApp'
+import type { UiLanguage } from '@/types'
+import { french } from './locales/fr'
+import { spanish } from './locales/es'
 
-export type Language = 'en' | 'ar'
+export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* ------------------------------- Shell & nav ------------------------------ */
@@ -719,6 +722,17 @@ export const arabic: Record<string, string> = {
   'Level up!': 'مستوى جديد!',
   'New badge unlocked': 'شارة جديدة اتفتحت',
   'Keep going': 'كمّل',
+  "Paste your API key first.": "الصق مفتاح الـ API الأول.",
+  "1. Connect your AI key": "١. اربط مفتاح الذكاء الاصطناعي",
+  "AI provider & key": "مزوّد الذكاء الاصطناعي والمفتاح",
+  "Bring your own key from Gemini, OpenAI, Claude or any compatible endpoint. It is stored in this browser only.": "هات مفتاحك من Gemini أو OpenAI أو Claude أو أي API متوافق. بيتخزن في المتصفح ده بس.",
+  "Free key from Google AI Studio": "مفتاح مجاني من Google AI Studio",
+  "GPT-4o family": "عائلة GPT-4o",
+  "Claude 3.5 / 4": "كلود ٣.٥ / ٤",
+  "One key, hundreds of models": "مفتاح واحد لمئات الموديلات",
+  "Any OpenAI-compatible API": "أي API متوافق مع OpenAI",
+  "Get a key from {provider}": "جيب مفتاح من {provider}",
+  "Endpoint base URL": "رابط الـ API",
   "Where do you study?": "بتدرس فين؟",
   "Egypt": "مصر",
   "Gulf": "الخليج",
@@ -1690,15 +1704,49 @@ export const arabic: Record<string, string> = {
   "Astral": "أسترال",
 }
 
+const locales: Record<Language, Record<string, string>> = {
+  en: {},
+  ar: arabic,
+  fr: french,
+  es: spanish,
+}
+
+export const UI_LANGUAGES: { id: Language; label: string; short: string }[] = [
+  { id: 'en', label: 'English', short: 'EN' },
+  { id: 'ar', label: 'العربية', short: 'ع' },
+  { id: 'fr', label: 'Français', short: 'FR' },
+  { id: 'es', label: 'Español', short: 'ES' },
+]
+
+export function nextLanguage(current: Language): Language {
+  const index = UI_LANGUAGES.findIndex((item) => item.id === current)
+  return UI_LANGUAGES[(index + 1) % UI_LANGUAGES.length].id
+}
+
 let active: Language = 'en'
 
 export function setI18nLanguage(language: Language | undefined) {
-  active = language === 'ar' ? 'ar' : 'en'
+  active = language && language in locales ? language : 'en'
   if (typeof document !== 'undefined') {
     document.documentElement.lang = active
     document.documentElement.dir = active === 'ar' ? 'rtl' : 'ltr'
-    document.title = active === 'ar' ? 'Jessica — عالم تعلّم ذكي' : 'Jessica — AI Learning Universe'
+    document.title =
+      active === 'ar'
+        ? 'Jessica — عالم تعلّم ذكي'
+        : active === 'fr'
+          ? "Jessica — Apprends avec l'IA"
+          : active === 'es'
+            ? 'Jessica — Aprende con IA'
+            : 'Jessica — AI Learning Universe'
   }
+}
+
+/** Locale used for dates and numbers. */
+export function dateLocale() {
+  if (active === 'ar') return 'ar-EG'
+  if (active === 'fr') return 'fr-FR'
+  if (active === 'es') return 'es-ES'
+  return 'en-GB'
 }
 
 export function getLanguage(): Language {
@@ -1719,7 +1767,7 @@ export function tr(text: string, vars?: Record<string, string | number>) {
   const lead = text.match(/^\s*/)?.[0] ?? ''
   const trail = text.match(/\s*$/)?.[0] ?? ''
   const key = text.replace(/\s+/g, ' ').trim()
-  const translated = arabic[key] ?? key
+  const translated = locales[active][key] ?? key
   return lead + fill(translated, vars) + trail
 }
 

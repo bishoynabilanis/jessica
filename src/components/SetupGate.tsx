@@ -17,10 +17,11 @@ import { AddBookModal } from '@/components/library/AddBookModal'
 import { KeyTutorial } from '@/components/KeyTutorial'
 import { useApp } from '@/store/useApp'
 import { validateKey } from '@/lib/gemini'
+import { PROVIDERS, providerFor } from '@/lib/providers'
 import { officialFor, type OfficialBook } from '@/data/officialBooks'
 import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
 import { subjectMeta } from '@/data/books'
-import { tr } from '@/i18n'
+import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { cn } from '@/lib/utils'
 
 type KeyStatus = 'idle' | 'checking' | 'ok' | 'error'
@@ -32,6 +33,7 @@ type KeyStatus = 'idle' | 'checking' | 'ok' | 'error'
 export function SetupGate() {
   const apiKey = useApp((s) => s.apiKey)
   const setApiKey = useApp((s) => s.setApiKey)
+  const setProvider = useApp((s) => s.setProvider)
   const settings = useApp((s) => s.settings)
   const customBooks = useApp((s) => s.customBooks)
   const updateSettings = useApp((s) => s.updateSettings)
@@ -43,6 +45,7 @@ export function SetupGate() {
   const [catalog, setCatalog] = useState<OfficialBook | null>(null)
   const fileInput = useRef<HTMLInputElement>(null)
 
+  const provider = providerFor(settings.aiProvider)
   const grade = settings.gradeLevel
   const isEgypt = hasOfficialLibrary(settings.curriculum)
   const books = useMemo(() => officialFor(grade, 'Term 1', 'All').slice(0, 6), [grade])
@@ -54,7 +57,7 @@ export function SetupGate() {
     const key = draftKey.trim()
     if (!key) {
       setStatus('error')
-      setMessage(tr('Paste your Gemini key first.'))
+      setMessage(tr('Paste your API key first.'))
       return
     }
     if (skipCheck) {
@@ -100,11 +103,11 @@ export function SetupGate() {
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => updateSettings({ language: settings.language === 'ar' ? 'en' : 'ar' })}
+              onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
               className="chip border-aurora-400/30 bg-aurora-400/10 text-[10px] font-bold text-aurora-200"
               title={tr('Switch language')}
             >
-              {settings.language === 'ar' ? 'English' : 'العربية'}
+              {UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.short}
             </button>
             <span
               className={cn(
@@ -139,7 +142,7 @@ export function SetupGate() {
                 {keyDone ? <Check className="h-5 w-5" /> : <KeyRound className="h-5 w-5" />}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-extrabold text-main">{tr('1. Connect your Gemini key')}</p>
+                <p className="text-sm font-extrabold text-main">{tr('1. Connect your AI key')}</p>
                 <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
                   {tr('Free from Google AI Studio. It is stored in this browser only and never sent anywhere else.')}
                 </p>
@@ -150,6 +153,28 @@ export function SetupGate() {
                   </p>
                 ) : (
                   <div className="mt-2.5 space-y-2">
+                    <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
+                      {PROVIDERS.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => {
+                            setProvider(option.id)
+                            setDraftKey('')
+                            setStatus('idle')
+                            setMessage('')
+                          }}
+                          className={cn(
+                            'rounded-xl border px-2 py-1.5 text-start text-[10px] font-bold transition',
+                            settings.aiProvider === option.id
+                              ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
+                              : 'border-line bg-card-2 text-muted hover:text-main',
+                          )}
+                        >
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
+
                     <div className="flex flex-col gap-2 sm:flex-row">
                       <input
                         value={draftKey}
@@ -158,7 +183,7 @@ export function SetupGate() {
                           setStatus('idle')
                         }}
                         type="password"
-                        placeholder={tr('AIza…')}
+                        placeholder={provider.keyHint}
                         spellCheck={false}
                         autoComplete="off"
                         className="field flex-1 font-mono text-xs"
@@ -173,16 +198,18 @@ export function SetupGate() {
                       </Button>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <a
-                        href="https://aistudio.google.com/app/apikey"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-2.5 py-1.5 text-[10px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
-                      >
-                        <KeyRound className="h-3 w-3" />
-                        {tr('Get a free key from Google AI Studio')}
-                        <ArrowRight className="h-3 w-3" />
-                      </a>
+                      {provider.docsUrl && (
+                        <a
+                          href={provider.docsUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-2.5 py-1.5 text-[10px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
+                        >
+                          <KeyRound className="h-3 w-3" />
+                          {tr('Get a key from {provider}', { provider: provider.label })}
+                          <ArrowRight className="h-3 w-3" />
+                        </a>
+                      )}
                       {status === 'error' && (
                         <button
                           onClick={() => saveKey(true)}
@@ -203,7 +230,7 @@ export function SetupGate() {
                         {message}
                       </p>
                     )}
-                    <KeyTutorial />
+                    {settings.aiProvider === 'gemini' && <KeyTutorial />}
                   </div>
                 )}
               </div>

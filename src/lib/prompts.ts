@@ -172,10 +172,17 @@ export function studentProfile(book?: Book) {
 }
 
 export function languageRule(kind: 'tutor' | 'content' = 'content') {
-  if (getLanguage() === 'ar') {
+  const lang = getLanguage()
+  if (lang === 'ar') {
     return kind === 'tutor'
       ? 'The app language is ARABIC. Reply in clear Modern Standard Arabic with a warm Egyptian tone. Keep subject terminology, quotes and textbook exercises in their original language with a short Arabic gloss. Keep math and formulas unchanged.'
       : 'The app language is ARABIC. Write every learner-facing title, explanation, label and sentence in Modern Standard Arabic with a friendly Egyptian tone. Keep textbook terms and quoted source text in their original language with a short Arabic gloss. JSON keys and value formats stay exactly as specified.'
+  }
+  if (lang === 'fr' || lang === 'es') {
+    const name = lang === 'fr' ? 'FRENCH' : 'SPANISH'
+    return kind === 'tutor'
+      ? `The app language is ${name}. Reply in clear ${name} with a friendly tone. Keep subject terminology, quotes and textbook exercises in their original language with a short ${name} gloss. Keep math and formulas unchanged.`
+      : `The app language is ${name}. Write every learner-facing title, explanation, label and sentence in clear ${name}. Keep textbook terms and quoted source text in their original language with a short ${name} gloss. JSON keys and value formats stay exactly as specified.`
   }
   return 'The app language is ENGLISH. Write every learner-facing title, explanation, label and sentence in clear English. Keep textbook terms in their original language.'
 }

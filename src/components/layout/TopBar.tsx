@@ -7,7 +7,7 @@ import { Mascot } from '@/components/Mascot'
 import { cn, firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
-import { tr } from '@/i18n'
+import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { stageForGrade } from '@/lib/stage'
 
 export function TopBar({ onMenu }: { onMenu: () => void }) {
@@ -111,13 +111,13 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
               {settings.theme === 'dark' ? <MoonStar className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </button>
             <button
-              onClick={() => updateSettings({ language: settings.language === 'ar' ? 'en' : 'ar' })}
+              onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
               className="flex h-9 items-center gap-1.5 rounded-xl px-2 text-[11px] font-extrabold uppercase text-muted transition hover:bg-white/5 hover:text-main"
               aria-label={tr('Switch language')}
               title={tr('Switch language')}
             >
               <Languages className="h-4 w-4" />
-              <span className="hidden sm:inline">{settings.language === 'ar' ? 'EN' : 'ع'}</span>
+              <span className="hidden sm:inline">{UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.short}</span>
             </button>
             <button
               onClick={() => navigate('/settings')}
