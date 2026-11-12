@@ -14,6 +14,7 @@ import {
 import { Mascot } from '@/components/Mascot'
 import { Button } from '@/components/ui/Button'
 import { AddBookModal } from '@/components/library/AddBookModal'
+import { KeyTutorial } from '@/components/KeyTutorial'
 import { useApp } from '@/store/useApp'
 import { validateKey } from '@/lib/gemini'
 import { gradeLabel, officialFor, type OfficialBook } from '@/data/officialBooks'
@@ -200,6 +201,7 @@ export function SetupGate() {
                         {message}
                       </p>
                     )}
+                    <KeyTutorial />
                   </div>
                 )}
               </div>

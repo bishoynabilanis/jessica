@@ -13,6 +13,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { Mascot } from '@/components/Mascot'
+import { KeyTutorial } from '@/components/KeyTutorial'
 import { Button } from '@/components/ui/Button'
 import { Segmented } from '@/components/ui/Toggle'
 import { useApp } from '@/store/useApp'
@@ -246,6 +247,8 @@ export function Onboarding() {
                     {tr('Get a free API key from Google AI Studio')}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </a>
+
+                  {!apiKey && <KeyTutorial />}
 
                   <div className="mt-3 rounded-2xl border border-aurora-400/20 bg-aurora-400/5 p-3">
                     <p className="flex items-center gap-1.5 text-[10px] font-bold text-aurora-200">

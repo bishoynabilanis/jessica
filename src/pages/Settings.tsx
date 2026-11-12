@@ -31,6 +31,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
+import { KeyTutorial } from '@/components/KeyTutorial'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar } from '@/components/ui/Card'
 import { Toggle, Segmented } from '@/components/ui/Toggle'
@@ -292,6 +293,8 @@ export function Settings() {
               {tr('Get a free API key from Google AI Studio')}
               <ChevronRight className="h-3.5 w-3.5" />
             </a>
+
+            {!apiKey && <KeyTutorial />}
 
             {keyMessage && (
               <p
