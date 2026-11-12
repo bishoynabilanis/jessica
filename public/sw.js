@@ -1,5 +1,5 @@
 /* Jessica service worker — offline shell + runtime media cache + local notifications */
-const VERSION = 'jessica-v4'
+const VERSION = 'jessica-v5'
 const SHELL = `${VERSION}-shell`
 const RUNTIME = `${VERSION}-runtime`
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']

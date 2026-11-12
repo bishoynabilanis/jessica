@@ -3,6 +3,7 @@ import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 import { Compass, Home } from 'lucide-react'
 import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
+import { SetupGate } from '@/components/SetupGate'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Dashboard } from '@/pages/Dashboard'
@@ -55,6 +56,8 @@ function NotFound() {
 export default function App() {
   const onboarded = useApp((s) => s.onboarded)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
+  const apiKey = useApp((s) => s.apiKey)
+  const customBooks = useApp((s) => s.customBooks)
   const notifications = useApp((s) => s.settings.notifications)
   const bootstrap = useApp((s) => s.bootstrap)
   const booted = useRef(false)
@@ -73,6 +76,10 @@ export default function App() {
   useDailyRiddleNotification(notifications && onboarded, notifyRiddle)
 
   if (!onboarded) return <Onboarding />
+
+  // Hard gate: a Gemini key and at least one imported book are required.
+  if (!apiKey.trim() || customBooks.length === 0) return <SetupGate />
+
   if (stageForGrade(gradeLevel) === 'primary') return <KidsApp />
 
   return (

@@ -145,7 +145,7 @@ export function Onboarding() {
 
               {step === 1 && (
                 <div className="animate-slide-up">
-                  <p className="label text-aurora-300">{tr("Step 1 of 2")}</p>
+                  <p className="label text-aurora-300">{tr("About you")}</p>
                   <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">
                     {tr("What should I call you?")}
                   </h1>
@@ -176,10 +176,10 @@ export function Onboarding() {
 
               {step === 2 && (
                 <div className="animate-slide-up">
-                  <p className="label text-aurora-300">{tr("Step 2 of 2")}</p>
+                  <p className="label text-aurora-300">{tr("Almost there")}</p>
                   <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">{tr("Make it comfortable.")}</h1>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    {tr("Choose how Jessica looks. The AI tutor needs a free Gemini key — you can add it now or later.")}
+                    {tr("Choose how Jessica looks. The AI tutor needs a free Gemini key — you'll connect it on the next screen to unlock the app.")}
                   </p>
 
                   <div className="mt-4">
@@ -221,7 +221,7 @@ export function Onboarding() {
 
                   <label className="mt-3 block">
                     <span className="label mb-1.5 flex items-center gap-1.5">
-                      <KeyRound className="h-3 w-3" /> {tr("Gemini API key")} <span className="normal-case tracking-normal text-muted-2">{tr("(optional now)")}</span>
+                      <KeyRound className="h-3 w-3" /> {tr("Gemini API key")} <span className="normal-case tracking-normal text-muted-2">{tr("(required)")}</span>
                     </span>
                     <input
                       value={draftKey}
@@ -252,7 +252,7 @@ export function Onboarding() {
                       <Sparkles className="h-3 w-3" /> {tr("You’re all set")}
                     </p>
                     <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
-                      {tr("Start with the Library, ask your first question, and keep the streak alive. Your companion is\n                      waiting.")}
+                      {tr("Next: connect your key and add one book. The app opens as soon as both are ready.")}
                     </p>
                   </div>
                 </div>
@@ -273,7 +273,7 @@ export function Onboarding() {
                 }}
                 disabled={step === 1 && !draftName.trim()}
               >
-                {step === 2 ? tr('Enter Jessica') : tr('Continue')}
+                {step === 2 ? tr('Finish setup') : tr('Continue')}
                 <ArrowRight className="h-4 w-4 rtl-flip" />
               </Button>
             </div>

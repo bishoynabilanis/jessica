@@ -48,10 +48,11 @@ Requirements: **Node.js 18+** and npm.
 
 1. Open [Google AI Studio](https://aistudio.google.com/app/apikey).
 2. Create a free API key.
-3. Paste it in the onboarding screen or in **Settings → Gemini API key → Save & test**.
+3. Paste it in the setup screen and press **Verify and connect**.
+4. Import at least one book (official Ministry PDF or your own file).
 
-The key is saved only in this browser's `localStorage`. The app works without a key for reading,
-flashcards, the vault, planner, labs and games — AI features unlock when a key is present.
+A valid key **and** at least one imported book are required before the app opens. Both stay on the
+device: the key in `localStorage`, the books in IndexedDB.
 
 ---
 
