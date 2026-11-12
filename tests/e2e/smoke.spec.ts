@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test'
 const profile = {
   state: {
     onboarded: true,
+    acceptedTerms: 1,
     name: 'Tester',
     apiKey: 'AIzaFAKE',
     model: 'gemini-1.5-flash',
