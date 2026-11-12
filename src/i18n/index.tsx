@@ -64,7 +64,7 @@ export const arabic: Record<string, string> = {
   'Your whole school year,': 'عامك الدراسي كله،',
   'one smart app.': 'في تطبيق واحد ذكي.',
   'English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.': 'إنجليزي، عربي، ألماني، فرنسي، علوم ورياضيات — مع مدرّس ذكي يعرف صفحة كتابك فعلًا. بدون حسابات أو اشتراكات أو خروج لبياناتك من جهازك.',
-  '32 features': '٣٢ ميزة',
+  '70+ features': 'أكتر من ٧٠ ميزة',
   'Everything unlocked': 'كله مفتوح',
   '100% local': '١٠٠٪ على جهازك',
   'Your data stays here': 'بياناتك تفضل هنا',

@@ -126,7 +126,7 @@ export function Onboarding() {
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-2">
                     {[
-                      { label: tr("32 features"), hint: tr("Everything unlocked") },
+                      { label: tr("70+ features"), hint: tr("Everything unlocked") },
                       { label: tr("100% local"), hint: tr("Your data stays here") },
                       { label: tr("BYOK free"), hint: tr("Your own Gemini key") },
                       { label: tr("Works offline"), hint: tr("Books & cards") },

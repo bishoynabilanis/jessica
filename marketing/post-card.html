@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Jessica — post card</title>
+<style>
+  @font-face { font-family: 'CairoX'; font-weight: 400; src: url('fonts/cairo-arabic-400-normal.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+  @font-face { font-family: 'CairoX'; font-weight: 600; src: url('fonts/cairo-arabic-600-normal.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+  @font-face { font-family: 'CairoX'; font-weight: 700; src: url('fonts/cairo-arabic-700-normal.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+  @font-face { font-family: 'CairoX'; font-weight: 800; src: url('fonts/cairo-arabic-800-normal.woff2') format('woff2'); unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; }
+  @font-face { font-family: 'CairoX'; font-weight: 400; src: url('fonts/cairo-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'CairoX'; font-weight: 600; src: url('fonts/cairo-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'CairoX'; font-weight: 700; src: url('fonts/cairo-latin-700-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'CairoX'; font-weight: 800; src: url('fonts/cairo-latin-800-normal.woff2') format('woff2'); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    font-family: 'CairoX', sans-serif;
+    background: #05060a;
+    color: #f2f5fb;
+    position: relative;
+  }
+  .bg { position: absolute; inset: 0; pointer-events: none; }
+  .bg::before {
+    content: ''; position: absolute; width: 900px; height: 900px; right: -260px; top: -420px;
+    background: radial-gradient(circle, rgba(124,58,237,.35), transparent 62%);
+  }
+  .bg::after {
+    content: ''; position: absolute; width: 820px; height: 820px; left: -300px; top: 240px;
+    background: radial-gradient(circle, rgba(20,224,190,.16), transparent 65%);
+  }
+  .wrap { position: relative; padding: 44px 56px 0; height: 100%; display: flex; flex-direction: column; }
+
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .mark {
+    width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center;
+    background: linear-gradient(140deg, #2ee6c5, #46c2ff); color: #04121a;
+    font-weight: 800; font-size: 24px;
+  }
+  .brand b { font-size: 27px; font-weight: 800; letter-spacing: -.4px; }
+  .brand b i { color: #2ee6c5; font-style: normal; }
+  .nav { display: flex; align-items: center; gap: 10px; }
+  .nav span { font-size: 15px; color: #9aa7bd; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08); }
+  .nav .free { color: #04121a; background: linear-gradient(140deg,#2ee6c5,#46c2ff); border: 0; font-weight: 800; }
+
+  .hero { text-align: center; margin-top: 30px; }
+  .laurels { display: flex; justify-content: center; gap: 14px; margin-bottom: 16px; }
+  .laurels span {
+    font-size: 13px; font-weight: 700; color: #c9d3e6; padding: 7px 14px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03);
+  }
+  h1 { font-size: 74px; line-height: 1.18; font-weight: 800; letter-spacing: -1.4px; }
+  h1 .grad {
+    background: linear-gradient(92deg,#a78bfa,#f472b6 55%,#2ee6c5);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    position: relative; display: inline-block;
+  }
+  h1 .grad svg { position: absolute; right: 16%; left: 16%; bottom: -18px; width: 68%; height: 14px; }
+  .sub { max-width: 790px; margin: 34px auto 0; font-size: 21px; line-height: 1.95; color: #9aa7bd; font-weight: 600; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 22px;
+    padding: 14px 30px; border-radius: 999px; font-size: 18px; font-weight: 800; color: #0a0f18;
+    background: linear-gradient(140deg,#f4f6fb,#cfd7e6);
+  }
+  .cta b { font-weight: 800; }
+
+  .icons { display: flex; justify-content: center; align-items: center; gap: 9px; margin-top: 24px; }
+  .ic {
+    width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font-size: 21px;
+    background: #0f1420; border: 1px solid rgba(255,255,255,.09); box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  }
+  .ic.more { width: auto; padding: 0 14px; font-size: 12px; font-weight: 800; color: #9aa7bd; white-space: nowrap; }
+
+  .panel {
+    margin-top: 26px; border-radius: 30px; padding: 20px;
+    background: linear-gradient(135deg, #7c3aed 0%, #9b4dff 42%, #e051d8 100%);
+    box-shadow: 0 30px 70px rgba(124,58,237,.35);
+  }
+  .panel h2 { text-align: center; font-size: 24px; font-weight: 800; margin-bottom: 14px; color: #fff; }
+  .window {
+    background: #0a0c13; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.09);
+    display: flex; flex-direction: row-reverse; height: 392px;
+  }
+  .side { width: 74px; border-left: 1px solid rgba(255,255,255,.07); padding: 14px 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .side i { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 15px; font-style: normal; color: #8f9cb4; }
+  .side i.on { background: rgba(46,230,197,.14); color: #2ee6c5; }
+  .main { flex: 1; padding: 16px 20px; }
+  .main .row { display: flex; align-items: center; justify-content: space-between; }
+  .main .row b { font-size: 16px; font-weight: 800; }
+  .pill { font-size: 11px; font-weight: 700; color: #9aa7bd; border: 1px solid rgba(255,255,255,.1); padding: 5px 10px; border-radius: 999px; }
+  .kpi { display: flex; align-items: flex-end; gap: 10px; margin-top: 10px; }
+  .kpi .big { font-size: 34px; font-weight: 800; letter-spacing: -.6px; }
+  .kpi .up { font-size: 12px; font-weight: 800; color: #2ee6c5; background: rgba(46,230,197,.12); padding: 4px 8px; border-radius: 8px; margin-bottom: 6px; }
+  .chart { margin-top: 8px; }
+  .cards3 { display: flex; gap: 10px; margin-top: 10px; }
+  .card3 { flex: 1; background: #0f1420; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; padding: 9px 11px; }
+  .card3 span { display: block; font-size: 10px; color: #7e8ba2; font-weight: 700; }
+  .card3 b { font-size: 16px; font-weight: 800; }
+  .card3 b em { font-style: normal; font-size: 10px; color: #7e8ba2; font-weight: 600; }
+
+  .stats { display: flex; gap: 14px; margin-top: 20px; }
+  .stat {
+    flex: 1; border-radius: 18px; padding: 14px 16px; color: #fff; position: relative; overflow: hidden;
+  }
+  .stat:nth-child(1) { background: linear-gradient(140deg,#7c3aed,#a855f7); }
+  .stat:nth-child(2) { background: linear-gradient(140deg,#0ea5e9,#22d3ee); }
+  .stat:nth-child(3) { background: linear-gradient(140deg,#059669,#2ee6c5); }
+  .stat:nth-child(4) { background: linear-gradient(140deg,#db2777,#f472b6); }
+  .stat b { display: block; font-size: 30px; font-weight: 800; letter-spacing: -.6px; }
+  .stat span { font-size: 12px; font-weight: 700; opacity: .92; }
+
+  .foot { margin-top: auto; padding: 16px 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #6f7c92; font-size: 14px; font-weight: 700; }
+  .foot .dot { width: 6px; height: 6px; border-radius: 50%; background: #2ee6c5; }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <span class="mark">J</span>
+        <b dir="ltr">jessica<i>.</i></b>
+      </div>
+      <div class="nav">
+        <span>المزايا</span>
+        <span>كتب الوزارة</span>
+        <span>الامتحانات</span>
+        <span class="free">مجاني ١٠٠٪</span>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="laurels">
+        <span>بدون حساب</span>
+        <span>بدون اشتراك</span>
+        <span>يشتغل أوفلاين</span>
+      </div>
+      <h1>
+        ذاكر على أوتوبايلوت<br>
+        <span class="grad">بالذكاء الاصطناعي
+          <svg viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M6 13 C 150 3, 430 3, 594 12" stroke="#f472b6" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/></svg>
+        </span>
+      </h1>
+      <p class="sub">Jessica بتقرأ كتاب الوزارة معاك، تشرح أي صفحة، تلخّص، تعمل امتحانات وبطاقات مراجعة — وكل ده على جهازك، بدون حساب ولا اشتراك.</p>
+      <div class="cta">افتح التطبيق مجانًا <b>←</b></div>
+    </div>
+
+    <div class="icons">
+      <span class="ic">🇬🇧</span>
+      <span class="ic">📖</span>
+      <span class="ic">🇩🇪</span>
+      <span class="ic">🇫🇷</span>
+      <span class="ic">🔬</span>
+      <span class="ic">📐</span>
+      <span class="ic">🌍</span>
+      <span class="ic more">+٤ صفوف</span>
+    </div>
+
+    <div class="panel">
+      <h2>شوف تقدّمك</h2>
+      <div class="window">
+        <div class="side">
+          <i class="on">⌂</i>
+          <i>📚</i>
+          <i>🧠</i>
+          <i>📝</i>
+          <i>⚙</i>
+        </div>
+        <div class="main">
+          <div class="row">
+            <b>تقدّمك هذا الأسبوع</b>
+            <span class="pill">٧ أيام</span>
+          </div>
+          <div class="kpi">
+            <span class="big">٨٦٪</span>
+            <span class="up">+١٢٪</span>
+            <span class="pill" style="margin-bottom:6px">إتقان الوحدات</span>
+          </div>
+          <div class="chart">
+            <svg width="100%" height="150" viewBox="0 0 640 150" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#a855f7" stop-opacity=".55"/>
+                  <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 118 C 60 96, 96 120, 140 100 S 220 60, 268 76 S 350 108, 396 84 S 470 34, 520 48 S 596 28, 640 40 L 640 150 L 0 150 Z" fill="url(#g1)"/>
+              <path d="M0 118 C 60 96, 96 120, 140 100 S 220 60, 268 76 S 350 108, 396 84 S 470 34, 520 48 S 596 28, 640 40" fill="none" stroke="#c084fc" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="520" cy="48" r="6" fill="#f472b6"/>
+            </svg>
+          </div>
+          <div class="cards3">
+            <div class="card3"><span>سلسلة الأيام</span><b>١٢ <em>يوم</em></b></div>
+            <div class="card3"><span>بطاقات مراجعة</span><b>٤٨ <em>بطاقة</em></b></div>
+            <div class="card3"><span>امتحانات</span><b>٧ <em>محاكاة</em></b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>+٧٠</b><span>ميزة ذكية</span></div>
+      <div class="stat"><b>٢٣</b><span>كتاب وزارة</span></div>
+      <div class="stat"><b>٦</b><span>مواد دراسية</span></div>
+      <div class="stat"><b>١٠٠٪</b><span>على جهازك</span></div>
+    </div>
+
+    <div class="foot">
+      <span class="dot"></span>
+      <span>bishoynabilanis.github.io/jessica</span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</body>
+</html>
