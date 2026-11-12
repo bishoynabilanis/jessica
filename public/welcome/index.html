@@ -106,6 +106,7 @@
         <div class="hero-actions">
           <a class="btn" href="../">افتح التطبيق مجانًا ←</a>
           <a class="btn ghost" href="#how">إزاي أبدأ؟</a>
+          <button class="btn ghost" type="button" onclick="shareApp()">🔗 شارك التطبيق</button>
         </div>
         <div class="hero-points">
           <span class="pill">📚 38 كتاب وزارة رسمي</span>
@@ -374,6 +375,7 @@
       <h2>ابدأ مذاكرتك دلوقتي</h2>
       <p>مجاني، بدون حساب، وبيشتغل على أي موبايل.</p>
       <a class="btn" href="../">افتح Jessica ←</a>
+      <button class="btn ghost" type="button" onclick="shareApp()">🔗 شارك مع صاحبك</button>
     </div>
   </div>
 </main>
@@ -404,6 +406,18 @@
     })
     .catch(function () {})
 })()
+</script>
+
+<script>
+function shareApp() {
+  var url = 'https://bishoynabilanis.github.io/jessica/welcome/';
+  var text = 'Jessica — تطبيق مذاكرة مجاني لطلاب مصر: كتب الوزارة الرسمية + مدرس ذكاء اصطناعي + امتحانات، يشتغل أوفلاين وبدون حساب.';
+  if (navigator.share) {
+    navigator.share({ title: 'Jessica', text: text, url: url }).catch(function () {});
+    return;
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener');
+}
 </script>
 </body>
 </html>

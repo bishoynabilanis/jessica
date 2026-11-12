@@ -134,6 +134,7 @@ function page(grade, { title, description, body, slug }) {
   <div class="hero-actions" style="justify-content:center">
     <a class="btn" href="../../../">افتح Jessica مجانًا ←</a>
     <a class="btn ghost" href="../../#install">طريقة التثبيت</a>
+    <button class="btn ghost" type="button" onclick="navigator.share ? navigator.share({ title: document.title, url: location.href }).catch(function(){}) : window.open('https://wa.me/?text=' + encodeURIComponent(document.title + ' ' + location.href), '_blank')">🔗 شارك الصفحة</button>
   </div>
 </section>
 <section>

@@ -1,17 +1,29 @@
-# Jessica — AI Learning Universe 🌙
+# Jessica — تطبيق مذاكرة بالذكاء الاصطناعي 🇪🇬
 
-**Live site:** <https://bishoynabilanis.github.io/jessica/> — works in Egypt (Netlify's `*.netlify.app`
-domains are blocked by Egyptian ISPs).
+[**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help)
 
-A fully client-side, gamified study PWA for **Egyptian First Preparatory language-school students**.
-Jessica reads the actual textbook page with the student, explains it, quizzes them, and turns revision into a game —
-with **no backend, no accounts and no subscriptions**.
+[![Deploy](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml)
+[![E2E](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ee6c5.svg)](LICENSE)
 
-The whole interface is available in **English and Arabic** (full RTL layout, Cairo typography and Arabic-first AI answers).
-واجهة التطبيق متاحة بالكامل باللغتين **الإنجليزية والعربية** مع دعم كامل للاتجاه من اليمين لليسار وردود ذكية بالعربية.
+A free, **fully client-side** study PWA for Egyptian students from **Primary 1 to Preparatory 3**.
+Jessica reads the actual Ministry textbook page with the student, explains it, quizzes them, corrects
+their paper answer sheet from a photo, and turns revision into a game — with **no backend, no accounts
+and no subscriptions**.
 
-> **Bring your own key (BYOK):** the AI runs on the student's own Google Gemini API key. Every request goes
-> straight from the browser to Google. Nothing is proxied, stored on a server or shared.
+- 📚 **38 official Ministry books** (Term 1) with direct links, importable once and readable offline.
+- 🧠 **BYOK AI tutor**: Gemini, OpenAI, Claude, OpenRouter or any OpenAI-compatible endpoint.
+- 📸 **Photo solver**: snap a maths problem, a science diagram or a paragraph → steps, answer and a similar question.
+- 🌙 **Exam night, adaptive practice, flashcards (SM-2), mock exams, bubble-sheet scanner, class mode.**
+- 🌍 **7 UI languages**: Arabic (RTL), English, French, Spanish, German, Turkish, Indonesian.
+- 🔒 **Private by design**: books, key and progress stay in the browser (localStorage + IndexedDB).
+
+![Jessica dashboard](public/welcome/shots/dashboard.jpg)
+
+> **Bring your own key (BYOK):** every AI request goes straight from the browser to the provider.
+> Nothing is proxied, stored on a server or shared.
+>
+> **Live in Egypt:** GitHub Pages works where `*.netlify.app` domains are blocked by Egyptian ISPs.
 
 ---
 
@@ -31,7 +43,7 @@ The whole interface is available in **English and Arabic** (full RTL layout, Cai
 | **Languages & regions** | English, Arabic, French, Spanish, German, Turkish and Indonesian UI (translated core, English fallback), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
 | **Primary mode** | A separate kids world for Primary 1–4 by default (5–6 get the full study shell, switchable in Settings): its own shell and routes, bright world theme, floating scenery, big controls, daily gift and stickers, sticker book, badges, parent gate, read-to-me page reader and age-appropriate explanations |
 
-The 7th-grade curriculum covers **English, Arabic, German, French, Science, Mathematics and Social Studies**.
+The official catalog covers **Arabic, English, Mathematics, Science, Social Studies, French, German and Religion** depending on the grade and school type (government, private, language or Al-Azhar).
 
 ---
 

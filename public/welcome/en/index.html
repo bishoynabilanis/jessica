@@ -72,6 +72,7 @@
         <div class="hero-actions">
           <a class="btn" href="../../">Open the app free →</a>
           <a class="btn ghost" href="#how">How do I start?</a>
+          <button class="btn ghost" type="button" onclick="shareApp()">🔗 Share the app</button>
         </div>
         <div class="hero-points">
           <span class="pill">📚 38 official books</span>
@@ -325,6 +326,7 @@
       <h2>Start studying today</h2>
       <p>Free, no account, works on any phone.</p>
       <a class="btn" href="../../">Open Jessica →</a>
+      <button class="btn ghost" type="button" onclick="shareApp()">🔗 Share with a friend</button>
     </div>
   </div>
 </main>
@@ -355,6 +357,18 @@
     })
     .catch(function () {})
 })()
+</script>
+
+<script>
+function shareApp() {
+  var url = 'https://bishoynabilanis.github.io/jessica/welcome/en/';
+  var text = 'Jessica — a free study app for Egyptian students: official Ministry books + an AI tutor + exams. Offline and account-free.';
+  if (navigator.share) {
+    navigator.share({ title: 'Jessica', text: text, url: url }).catch(function () {});
+    return;
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener');
+}
 </script>
 </body>
 </html>
