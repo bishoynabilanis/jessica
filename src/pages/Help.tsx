@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { getLanguage, tr } from '@/i18n'
 import { geminiKeyVideo, youtubeWatchUrl } from '@/data/tutorials'
+import { SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '@/data/support'
 
 interface FaqItem {
   question: string
@@ -252,6 +253,16 @@ export function Help() {
           <Link to="/feedback">
             <Button size="sm" variant="secondary">{tr('Contact us')}</Button>
           </Link>
+          {SUPPORT_WHATSAPP && (
+            <a href={`https://wa.me/${SUPPORT_WHATSAPP}`} target="_blank" rel="noreferrer">
+              <Button size="sm" variant="ghost">{tr('WhatsApp')}</Button>
+            </a>
+          )}
+          {SUPPORT_EMAIL && (
+            <a href={`mailto:${SUPPORT_EMAIL}`}>
+              <Button size="sm" variant="ghost">{tr('Email')}</Button>
+            </a>
+          )}
           <a href={youtubeWatchUrl(geminiKeyVideo)} target="_blank" rel="noreferrer">
             <Button size="sm" variant="secondary">
               <Youtube className="h-3.5 w-3.5" /> {tr('Key video')}

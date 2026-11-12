@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { useUI } from '@/store/useUI'
 import { useApp } from '@/store/useApp'
 import { tr } from '@/i18n'
-import { GITHUB_ISSUES, SUPPORT_EMAIL, SUPPORT_INSTAGRAM, SUPPORT_WHATSAPP } from '@/data/support'
+import { GITHUB_ISSUES, SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '@/data/support'
 import { autoSummary, buildReport, lastCrash } from '@/lib/diagnostics'
 
 type Kind = 'suggestion' | 'complaint' | 'bug'
@@ -53,8 +53,6 @@ export function Feedback() {
 
   const github = () =>
     `${GITHUB_ISSUES}?title=${encodeURIComponent(`[${label}] Jessica feedback`)}&body=${encodeURIComponent(report())}`
-
-  const instagram = () => (SUPPORT_INSTAGRAM ? `https://ig.me/m/${SUPPORT_INSTAGRAM}` : '')
 
   const whatsapp = () =>
     SUPPORT_WHATSAPP
@@ -157,10 +155,10 @@ export function Feedback() {
               <MessageSquareWarning className="h-3.5 w-3.5" /> {tr('Send on WhatsApp')}
             </Button>
           </a>
-          {SUPPORT_INSTAGRAM && (
-            <a href={instagram()} target="_blank" rel="noreferrer">
+          {SUPPORT_EMAIL && (
+            <a href={mailto()} rel="noreferrer">
               <Button variant="ghost">
-                <MessageSquareWarning className="h-3.5 w-3.5" /> {tr('Send on Instagram')}
+                <Mail className="h-3.5 w-3.5" /> {tr('Send by email')}
               </Button>
             </a>
           )}
@@ -173,9 +171,11 @@ export function Feedback() {
 
         {(SUPPORT_EMAIL || SUPPORT_WHATSAPP) && (
           <p className="text-[9px] text-muted-2">
-            {SUPPORT_WHATSAPP
-              ? tr('Messages open in WhatsApp so you can send them in one tap.')
-              : tr('Messages go to {email}.', { email: SUPPORT_EMAIL })}
+            {SUPPORT_WHATSAPP && SUPPORT_EMAIL
+              ? tr('Send it on WhatsApp in one tap, or by email to {email}.', { email: SUPPORT_EMAIL })
+              : SUPPORT_WHATSAPP
+                ? tr('Messages open in WhatsApp so you can send them in one tap.')
+                : tr('Messages go to {email}.', { email: SUPPORT_EMAIL })}
           </p>
         )}
 

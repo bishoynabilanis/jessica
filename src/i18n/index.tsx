@@ -721,6 +721,8 @@ export const arabic: Record<string, string> = {
   'Level up!': 'مستوى جديد!',
   'New badge unlocked': 'شارة جديدة اتفتحت',
   'Keep going': 'كمّل',
+  "Send by email": "ابعت بالإيميل",
+  "Send it on WhatsApp in one tap, or by email to {email}.": "ابعتها على واتساب بضغطة، أو بالإيميل على {email}.",
   "Send a report": "ابعت تقرير",
   "Report a bug": "بلّغ عن مشكلة",
   "We prepared the report for you — just review it and send. No need to explain the problem.": "جهّزنا التقرير لك — راجعه وابعته. مش محتاج تشرح المشكلة.",
