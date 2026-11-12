@@ -164,3 +164,14 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 .install-qr img { width: 150px; height: 150px; border-radius: 14px; background: #fff; padding: 8px; }
 .install-qr p { font-size: 13px; color: var(--muted); max-width: 320px; }
 @media (max-width: 960px) { .install-grid { grid-template-columns: 1fr; } }
+
+.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.shot { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--panel); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+.shot .bar { display: flex; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.02); }
+.shot .bar i { width: 9px; height: 9px; border-radius: 50%; background: #3b4458; display: block; }
+.shot .bar i:nth-child(1) { background: #ff5f57; }
+.shot .bar i:nth-child(2) { background: #febc2e; }
+.shot .bar i:nth-child(3) { background: #28c840; }
+.shot img { display: block; width: 100%; height: auto; }
+.shot figcaption { padding: 10px 14px; font-size: 12px; color: var(--muted); }
+@media (max-width: 960px) { .shots { grid-template-columns: 1fr; } }
