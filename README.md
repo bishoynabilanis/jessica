@@ -1,5 +1,8 @@
 # Jessica — AI Learning Universe 🌙
 
+**Live site:** <https://bishoynabilanis.github.io/jessica/> — works in Egypt (Netlify's `*.netlify.app`
+domains are blocked by Egyptian ISPs).
+
 A fully client-side, gamified study PWA for **Egyptian First Preparatory language-school students**.
 Jessica reads the actual textbook page with the student, explains it, quizzes them, and turns revision into a game —
 with **no backend, no accounts and no subscriptions**.
