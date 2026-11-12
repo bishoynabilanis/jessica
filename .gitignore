@@ -10,3 +10,6 @@ dist/
 test-results/
 playwright-report/
 .cache/
+marketing/video/.hyperframes/
+marketing/video/renders/
+marketing/video/node_modules/
