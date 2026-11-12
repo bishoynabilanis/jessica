@@ -38,3 +38,30 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Tell Bing, Yandex and other IndexNow engines about the new pages.
+      # Google does not use IndexNow; submit the sitemap once in Search Console.
+      - name: Ping IndexNow
+        run: |
+          curl -sS -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "bishoynabilanis.github.io",
+              "key": "8f3c1d7a9b2e6f405a1c8d3e7b9f2a64",
+              "keyLocation": "https://bishoynabilanis.github.io/jessica/8f3c1d7a9b2e6f405a1c8d3e7b9f2a64.txt",
+              "urlList": [
+                "https://bishoynabilanis.github.io/jessica/",
+                "https://bishoynabilanis.github.io/jessica/welcome/",
+                "https://bishoynabilanis.github.io/jessica/welcome/en/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-1/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-2/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-3/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-4/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-5/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/primary-6/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/prep-1/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/prep-2/",
+                "https://bishoynabilanis.github.io/jessica/welcome/grades/prep-3/"
+              ]
+            }' || true

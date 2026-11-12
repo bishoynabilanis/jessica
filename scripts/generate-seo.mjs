@@ -33,6 +33,29 @@ const LABELS = {
   9: ['الثالث الإعدادي', 'Third Preparatory', 'prep-3'],
 }
 
+const STAGE = {
+  1: { stage: 'المرحلة الابتدائية', about: 'الصف الأول الابتدائي هو أول سنة في المدرسة، وهدفه تعليم الحروف والأرقام والقراءة والكتابة من الصفر. الكتب هنا بسيطة ومصوّرة، والأفضل مراجعتها مع الطفل ١٠ دقايق كل يوم بدل جلسات طويلة.', why: 'المنهج في أولى ابتدائي بيبني الأساس: لو الطفل قرأ وكتب كويس من هنا، كل السنوات اللي بعده بتبقى أسهل.' },
+  2: { stage: 'المرحلة الابتدائية', about: 'الصف الثاني الابتدائي بيبني على أساس الأول: قراءة نصوص أطول، جمع وطرح بأرقام أكبر، وعلوم أولية عن الجسم والنبات. الكتب بتزوّد التدريبات تدريجيًا عشان الطفل يثبّت المهارة قبل اللي بعدها.', why: 'لو الطفل اتأخر في القراءة هنا، التأخير بيكبر في تالتة ورابعة، فمراجعة أسبوعية بسيطة بتوفر مجهود كبير بعدين.' },
+  3: { stage: 'المرحلة الابتدائية', about: 'الصف الثالث الابتدائي بيدخل مفاهيم جديدة زي الضرب والقسمة والعلوم البيئية، وبيبدأ يطلب من الطفل يفكر مش يحفظ بس. الكتب الرسمية هنا هي المرجع اللي الامتحان بييجي منه حرفيًا.', why: 'ثالثة ابتدائي أول سنة بيظهر فيها فرق واضح بين طالب فاهم وطالب حافظ، والكتب الرسمية بتديك نفس ترتيب المنهج.' },
+  4: { stage: 'المرحلة الابتدائية', about: 'الصف الرابع الابتدائي بداية المنهج متعدد المواد بشكل أوسع: علوم ورياضيات ودراسات ولغات. عدد الكتب بيزيد، وده بيخلي تنظيم المذاكرة أهم من عدد الساعات.', why: 'مع تعدد المواد، الطالب اللي عنده خطة أسبوعية بسيطة بيفضل متقدم من غير ضغط آخر السنة.' },
+  5: { stage: 'المرحلة الابتدائية', about: 'الصف الخامس الابتدائي بيكبّر المفاهيم: كسور وأعداد عشرية، ودورات في العلوم، ودراسات أعمق. الكتب هنا بتفصّل الشرح بأمثلة، والامتحان بيعتمد على فهم الفكرة مش الحفظ.', why: 'خامسة بتبدأ تجهيز الطالب للإعدادي، فالمهارات اللي بتتبني فيها بتظهر نتيجتها في أولى إعدادي.' },
+  6: { stage: 'المرحلة الابتدائية', about: 'الصف السادس الابتدائي آخر سنة ابتدائي، وهدفه تثبيت الأساس قبل نقلة الإعدادي. المنهج فيه مراجعة لمفاهيم سابقة مع تعمق أكبر، وده بيخليه سنة مفصلية.', why: 'سادسة ابتدائي فرصة أخيرة لتقوية القراءة والرياضيات قبل ما المواد تزيد في الإعدادي.' },
+  7: { stage: 'المرحلة الإعدادية', about: 'الصف الأول الإعدادي أول نقلة حقيقية في طريقة المذاكرة: مواد أكتر، مفاهيم أعمق، وامتحانات بتحتاج تنظيم. الكتب الرسمية هنا هي الحد الأدنى اللي لازم يتذاكر، مش كل حاجة.', why: 'أولى إعدادي بتحدد عادة المذاكرة لباقي الإعدادي، والبداية المنظمة بتوفر تعب كبير بعدين.' },
+  8: { stage: 'المرحلة الإعدادية', about: 'الصف الثاني الإعدادي بيكمّل بناء المفاهيم في العلوم والرياضيات والدراسات، وبيبدأ يطلب تحليل وربط بين الدروس. الاعتماد على الملخصات بس هنا بيبقى خطر.', why: 'ثانية إعدادي سنة الفرق: اللي بيفهم من الكتاب بيحل أي صيغة سؤال، واللي بيحفظ بيقع في أول سؤال مختلف.' },
+  9: { stage: 'المرحلة الإعدادية', about: 'الصف الثالث الإعدادي سنة الشهادة الإعدادية، وأهم سنة في المرحلة. المنهج محدود لكن الامتحان بيقيس الفهم والتطبيق، والكتب الرسمية هي المرجع الأدق.', why: 'في سنة الشهادة، حل امتحانات سنوات سابقة على نفس المنهج بيفرق أكتر من أي حاجة تانية.' },
+}
+
+const SUBJECT_AR = {
+  English: 'إنجليزي',
+  Arabic: 'عربي',
+  Mathematics: 'رياضيات',
+  Science: 'علوم',
+  'Social Studies': 'دراسات اجتماعية',
+  French: 'فرنساوي',
+  German: 'ألماني',
+  Religion: 'تربية دينية',
+}
+
 const BASE = 'https://bishoynabilanis.github.io/jessica'
 const outRoot = 'public/welcome/grades'
 fs.rmSync(outRoot, { recursive: true, force: true })
@@ -45,12 +68,21 @@ function page(grade, { title, description, body, slug }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
 <meta name="description" content="${description}">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${BASE}/welcome/grades/${slug}/">
 <link rel="alternate" hreflang="ar" href="${BASE}/welcome/grades/${slug}/">
+<link rel="alternate" hreflang="x-default" href="${BASE}/welcome/grades/${slug}/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Jessica">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:url" content="${BASE}/welcome/grades/${slug}/">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
 <meta property="og:image" content="${BASE}/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${description}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,9 +101,25 @@ function page(grade, { title, description, body, slug }) {
   .grade-nav a { font-size: 12px; font-weight: 700; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); }
   .grade-nav a:hover { color: var(--text); }
   .note { font-size: 12px; color: var(--muted); line-height: 1.9; margin-top: 16px; }
+  .about { display: grid; gap: 18px; margin-top: 34px; }
+  .about p { color: var(--muted); line-height: 2; font-size: 14px; }
+  .about h2 { font-size: 22px; margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+  .chips span { border: 1px solid rgba(46,230,197,.28); background: rgba(46,230,197,.07); color: var(--mint); border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 700; }
+  .why { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
+  .why div { border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; background: rgba(255,255,255,.03); font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .why b { display: block; color: var(--text); font-size: 13px; margin-bottom: 2px; }
+  @media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${description}","url":"${BASE}/welcome/grades/${slug}/","inLanguage":"ar"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Jessica","item":"${BASE}/welcome/"},
+  {"@type":"ListItem","position":2,"name":"كتب الوزارة","item":"${BASE}/welcome/grades/"},
+  {"@type":"ListItem","position":3,"name":"${body.gradeLabel}","item":"${BASE}/welcome/grades/${slug}/"}
+]}
 </script>
 </head>
 <body>
@@ -96,6 +144,19 @@ function page(grade, { title, description, body, slug }) {
   </table>
   <p class="note">${body.note}</p>
   <div class="grade-nav">${body.nav}</div>
+</section>
+<section class="about">
+  <div>
+    <h2>عن الصف ${body.gradeLabel}</h2>
+    <p>${body.about}</p>
+    <div class="chips">${body.chips}</div>
+    <p>${body.whyIntro}</p>
+  </div>
+  <div class="why">
+    <div><b>📥 تحميل مباشر</b>ملفات PDF رسمية من سيرفر الوزارة، من غير روابط وسيطة.</div>
+    <div><b>🤖 مدرس ذكي</b>بعد الاستيراد، جيسيكا تشرح أي صفحة وتولّد أسئلة منها.</div>
+    <div><b>📴 أوفلاين</b>الكتاب والبطاقات والملاحظات تشتغل بدون إنترنت.</div>
+  </div>
 </section>
 </div>
 </main>
@@ -126,6 +187,11 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   const description = `تحميل كتب الوزارة الرسمية للصف ${arLabel} (${enLabel}) الترم الأول — ${list.length} كتاب بروابط مباشرة، مع تطبيق Jessica المجاني للمذاكرة بالذكاء الاصطناعي.`
   const note =
     'حقوق الطبع والنشر ملك وزارة التربية والتعليم. الروابط منشورة على سيرفرات الوزارة الرسمية، والاستخدام للمذاكرة الشخصية فقط. لو مادتك مش موجودة تقدر تستورد أي PDF من جهازك داخل التطبيق.'
+  const stage = STAGE[grade]
+  const subjects = [...new Set(list.map((book) => book.subject))]
+  const chips = subjects.map((subject) => `<span>${SUBJECT_AR[subject] || subject}</span>`).join('')
+  const about = `${stage.about} في الصفحة دي ${list.length} كتاب رسمي متاح للترم الأول${subjects.length ? ` في ${subjects.length} مواد: ${subjects.map((subject) => SUBJECT_AR[subject] || subject).join('، ')}` : ''}.`
+  const whyIntro = stage.why
 
   const dir = path.join(outRoot, slug)
   fs.mkdirSync(dir, { recursive: true })
@@ -135,7 +201,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
       title: `كتب الوزارة ${arLabel} — تحميل PDF رسمي | Jessica`,
       description,
       slug,
-      body: { heading, intro, rows, note, nav },
+      body: { heading, intro, rows, note, nav, gradeLabel: arLabel, about, chips, whyIntro },
     }),
   )
   console.log(slug, list.length)
@@ -149,9 +215,104 @@ const cards = Object.entries(LABELS)
   })
   .join('')
 
+const gradeCards = Object.entries(LABELS)
+  .map(([g, [ar, en, slug]]) => {
+    const count = books.filter((book) => book.grade === Number(g) && book.term === 'Term 1').length
+    const subjects = [...new Set(books.filter((b) => b.grade === Number(g) && b.term === 'Term 1').map((b) => b.subject))]
+    return `<a class="grade" href="./${slug}/"><strong>${ar}</strong><span>${count} كتاب${subjects.length ? ` · ${subjects.slice(0, 3).map((subject) => SUBJECT_AR[subject] || subject).join(' · ')}` : ''}</span></a>`
+  })
+  .join('')
+
+const today = new Date().toISOString().slice(0, 10)
+
 fs.mkdirSync(outRoot, { recursive: true })
 fs.writeFileSync(
   path.join(outRoot, 'index.html'),
-  `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>كتب الوزارة لكل الصفوف — Jessica</title><meta name="description" content="روابط رسمية لكتب وزارة التربية والتعليم المصرية من الأول الابتدائي للتالت الإعدادي، مع تطبيق Jessica المجاني للمذاكرة."><link rel="canonical" href="${BASE}/welcome/grades/"><link rel="stylesheet" href="../style.css"></head><body><div class="bg-glow"></div><header><div class="wrap nav"><a class="brand" href="../"><span class="mark">J</span><span>jessica<i>.</i></span></a><a class="btn sm" href="../../">افتح التطبيق</a></div></header><main><div class="wrap"><section class="grade-hero"><h1>كتب الوزارة لكل الصفوف</h1><p>اختار صفك وهتلاقي كل الكتب المتاحة بروابط رسمية.</p></section><div class="grades">${cards}</div></div></main><footer><div class="wrap foot"><span>© Jessica</span><span><a href="../">الرئيسية</a></span></div></footer></body></html>`,
+  `<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كتب الوزارة لكل الصفوف — تحميل PDF رسمي | Jessica</title>
+<meta name="description" content="روابط رسمية لكتب وزارة التربية والتعليم المصرية من الأول الابتدائي للتالت الإعدادي — ${books.length} كتاب للترم الأول، مع تطبيق Jessica المجاني للمذاكرة بالذكاء الاصطناعي.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="${BASE}/welcome/grades/">
+<link rel="alternate" hreflang="ar" href="${BASE}/welcome/grades/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jessica">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:url" content="${BASE}/welcome/grades/">
+<meta property="og:title" content="كتب الوزارة لكل الصفوف — Jessica">
+<meta property="og:description" content="روابط رسمية لكتب وزارة التربية والتعليم المصرية من الأول الابتدائي للتالت الإعدادي.">
+<meta property="og:image" content="${BASE}/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .grade-hero { padding: 60px 0 20px; text-align: center; }
+  .grade-hero h1 { font-size: clamp(30px, 4vw, 46px); margin: 12px 0; }
+  .grade-hero p { color: var(--muted); max-width: 680px; margin-inline: auto; line-height: 2; }
+  .grades { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
+  .grade { border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; background: rgba(255,255,255,.03); display: flex; flex-direction: column; gap: 4px; }
+  .grade strong { font-size: 15px; }
+  .grade span { font-size: 11px; color: var(--muted); }
+  .grade:hover { border-color: rgba(46,230,197,.4); }
+  .about { margin-top: 34px; color: var(--muted); font-size: 13.5px; line-height: 2; }
+  @media (max-width: 860px) { .grades { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .grades { grid-template-columns: 1fr; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"كتب الوزارة لكل الصفوف","description":"روابط رسمية لكتب وزارة التربية والتعليم المصرية من الأول الابتدائي للتالت الإعدادي.","url":"${BASE}/welcome/grades/","inLanguage":"ar"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Jessica","item":"${BASE}/welcome/"},
+  {"@type":"ListItem","position":2,"name":"كتب الوزارة","item":"${BASE}/welcome/grades/"}
+]}
+</script>
+</head>
+<body>
+<div class="bg-glow"></div>
+<header><div class="wrap nav"><a class="brand" href="../"><span class="mark">J</span><span>jessica<i>.</i></span></a><a class="btn sm" href="../../">افتح التطبيق</a></div></header>
+<main><div class="wrap">
+<section class="grade-hero">
+  <span class="eyebrow">🇪🇬 ${books.length} كتاب رسمي</span>
+  <h1>كتب الوزارة لكل الصفوف</h1>
+  <p>من الأول الابتدائي للتالت الإعدادي. اختار صفك، نزّل الكتب الرسمية للترم الأول بروابط مباشرة، واستوردها في Jessica مرة واحدة عشان تذاكر منها أوفلاين.</p>
+</section>
+<div class="grades">${gradeCards}</div>
+<p class="about">كل الكتب منشورة على سيرفر وزارة التربية والتعليم الرسمي، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبدون حساب، وبيشتغل على الموبايل والتابلت والكمبيوتر، ويقدر يقرا أي PDF تستورده من جهازك لو مادتك مش موجودة في الكتالوج.</p>
+</div></main>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../../">التطبيق</a></span></div></footer>
+</body>
+</html>`,
 )
-console.log('index done')
+
+const urls = [
+  { loc: `${BASE}/welcome/`, freq: 'weekly', priority: '1.0' },
+  { loc: `${BASE}/welcome/en/`, freq: 'weekly', priority: '0.9' },
+  { loc: `${BASE}/welcome/grades/`, freq: 'weekly', priority: '0.9' },
+  ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/grades/${slug}/`, freq: 'monthly', priority: '0.8' })),
+  { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
+]
+fs.writeFileSync(
+  'public/sitemap.xml',
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) => `  <url>
+    <loc>${url.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${url.freq}</changefreq>
+    <priority>${url.priority}</priority>
+  </url>`,
+  )
+  .join('\n')}
+</urlset>
+`,
+)
+console.log('index + sitemap done')
