@@ -32,7 +32,8 @@
 
 💬 لو المحتوى ده مفيد ليك اعمل لايك وشير للبوست واكتب **Jessica** في تعليق، وأنا أبعتلك اللينك وطريقة التثبيت خطوة بخطوة.
 
-🔗 اللينك: https://bishoynabilanis.github.io/jessica
+🔗 اللينك القصير: https://is.gd/jessicaapp
+🔗 المباشر: https://bishoynabilanis.github.io/jessica
 💻 الكود: https://github.com/bishoynabilanis/jessica
 
 #Jessica #تعليم #مذاكرة #ذكاء_اصطناعي #طلاب_مصر #الإعدادية #الابتدائية #EdTech #AI #OpenSource
