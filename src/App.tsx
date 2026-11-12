@@ -4,6 +4,8 @@ import { Compass, Home } from 'lucide-react'
 import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
 import { SetupGate } from '@/components/SetupGate'
+import { TermsGate } from '@/components/TermsGate'
+import { TERMS_VERSION } from '@/data/terms'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Dashboard } from '@/pages/Dashboard'
@@ -12,8 +14,10 @@ import {
   LazyAsk,
   LazyAssignment,
   LazyBattle,
+  LazyBubbleSheet,
   LazyConstellation,
   LazyDailyPlan,
+  LazyDisclaimer,
   LazyGames,
   LazyFeedback,
   LazyHelp,
@@ -78,6 +82,7 @@ function NotFound() {
 
 export default function App() {
   const onboarded = useApp((s) => s.onboarded)
+  const acceptedTerms = useApp((s) => s.acceptedTerms)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
   const apiKey = useApp((s) => s.apiKey)
@@ -109,6 +114,9 @@ export default function App() {
   useDailyRiddleNotification(notifications && onboarded, notifyRiddle)
 
   if (!onboarded) return <Onboarding />
+
+  // Mandatory disclaimer: every learner accepts before entering.
+  if (acceptedTerms < TERMS_VERSION) return <TermsGate />
 
   // Hard gate: a Gemini key and at least one imported book are required.
   if (!apiKey.trim() || customBooks.length === 0) return <SetupGate />
@@ -147,6 +155,8 @@ export default function App() {
           <Route path="practice" element={<LazyPractice />} />
           <Route path="help" element={<LazyHelp />} />
           <Route path="install" element={<LazyInstall />} />
+          <Route path="scan" element={<LazyBubbleSheet />} />
+          <Route path="disclaimer" element={<LazyDisclaimer />} />
           <Route path="feedback" element={<LazyFeedback />} />
           <Route path="*" element={<NotFound />} />
         </Route>

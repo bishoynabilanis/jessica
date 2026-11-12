@@ -351,6 +351,12 @@ export function Library() {
             <p className="text-[10px] text-muted">
               {tr(gradeLabel(grade))} · {tr(term)} · {tr('Ministry of Education')}
             </p>
+            <p className="mt-1 text-[9px] leading-relaxed text-muted-2">
+              {tr('Books belong to the Ministry of Education. For personal study only.')}{' '}
+              <Link to="/disclaimer" className="font-bold text-aurora-300 hover:underline">
+                {tr('Disclaimer')}
+              </Link>
+            </p>
           </div>
           <span className="chip border-sun/25 bg-sun/10 text-sun">
             <Download className="h-3 w-3" /> {tr('Download then import')}

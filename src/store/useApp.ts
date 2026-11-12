@@ -150,6 +150,7 @@ export interface AppState {
   mascotLook: string
   riddle: RiddleState
   onboarded: boolean
+  acceptedTerms: number
   installDismissed: boolean
   lastSeen: number
   notificationsDate: string
@@ -202,6 +203,7 @@ export interface AppState {
   answerRiddle: (selected: number) => boolean
   markNotifications: (date: string) => void
   setOnboarded: () => void
+  acceptTerms: (version: number) => void
   dismissInstall: () => void
   importState: (data: Partial<AppState>) => void
   resetAll: () => void
@@ -257,6 +259,7 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   mascotLook: 'classic',
   riddle: freshRiddle(),
   onboarded: false,
+  acceptedTerms: 0,
   installDismissed: false,
   lastSeen: Date.now(),
   notificationsDate: '',
@@ -767,6 +770,7 @@ export const useApp = create<AppState>()(
 
       markNotifications: (date) => set({ notificationsDate: date }),
       setOnboarded: () => set({ onboarded: true }),
+      acceptTerms: (version) => set({ acceptedTerms: version }),
       dismissInstall: () => set({ installDismissed: true }),
 
       importState: (data) => {

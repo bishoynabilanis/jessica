@@ -7,6 +7,8 @@ import {
   FlaskConical,
   MessagesSquare,
   HelpCircle,
+  ScanLine,
+  Scale,
   Download,
   Gamepad2,
   GraduationCap,
@@ -46,7 +48,9 @@ export const navItems = [
   { path: '/vault', label: tr("Vault"), icon: Bookmark },
   { path: '/mascot', label: tr("Companion"), icon: Sparkles },
   { path: '/install', label: tr("Install app"), icon: Download },
+  { path: '/scan', label: tr("Scan answer sheet"), icon: ScanLine },
   { path: '/help', label: tr("Help centre"), icon: HelpCircle },
+  { path: '/disclaimer', label: tr("Disclaimer"), icon: Scale },
   { path: '/settings', label: tr("Settings"), icon: Settings },
 ]
 

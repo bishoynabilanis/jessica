@@ -855,6 +855,7 @@ export function Settings() {
               <div className="flex gap-2">
                 <a href="#/help"><Button size="sm" variant="secondary">{tr('Help centre')}</Button></a>
                 <a href="#/feedback"><Button size="sm">{tr('Suggestions & complaints')}</Button></a>
+                <a href="#/disclaimer"><Button size="sm" variant="ghost">{tr('Disclaimer')}</Button></a>
               </div>
             </div>
           </Card>

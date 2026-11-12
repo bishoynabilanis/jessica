@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { AlertTriangle, Bookmark, Brain, CalendarCheck, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, Settings, Sparkles, Target, Users } from 'lucide-react'
+import { AlertTriangle, Bookmark, Brain, CalendarCheck, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Settings, Sparkles, Target, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
@@ -28,7 +28,9 @@ const more = [
   { path: '/vault', label: tr("Knowledge Vault"), icon: Bookmark, hint: tr("Saved answers & rules") },
   { path: '/mascot', label: tr("Companion"), icon: Sparkles, hint: tr("Evolve your study buddy") },
   { path: '/install', label: tr("Install app"), icon: Download, hint: tr("Phone, tablet or computer") },
+  { path: '/scan', label: tr("Scan answer sheet"), icon: ScanLine, hint: tr("Correct a paper sheet") },
   { path: '/help', label: tr("Help centre"), icon: HelpCircle, hint: tr("Answers and guides") },
+  { path: '/disclaimer', label: tr("Disclaimer"), icon: Scale, hint: tr("Books copyright and AI limits") },
   { path: '/feedback', label: tr("Suggestions & complaints"), icon: HelpCircle, hint: tr("Tell us what to improve") },
   { path: '/settings', label: tr("Settings"), icon: Settings, hint: tr("API key, accessibility, data") },
 ]

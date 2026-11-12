@@ -263,6 +263,9 @@ export function Help() {
               <Button size="sm" variant="ghost">{tr('Email')}</Button>
             </a>
           )}
+          <Link to="/disclaimer">
+            <Button size="sm" variant="ghost">{tr('Disclaimer')}</Button>
+          </Link>
           <a href={youtubeWatchUrl(geminiKeyVideo)} target="_blank" rel="noreferrer">
             <Button size="sm" variant="secondary">
               <Youtube className="h-3.5 w-3.5" /> {tr('Key video')}
