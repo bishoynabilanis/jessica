@@ -155,3 +155,12 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
   .grid { grid-template-columns: 1fr; }
   .hero-actions .btn { width: 100%; }
 }
+
+.install-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.install-card { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+.install-card h3 { font-size: 16px; margin-bottom: 10px; }
+.install-card ol { margin: 0; padding-inline-start: 18px; display: grid; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.install-qr { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; margin-top: 22px; padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); }
+.install-qr img { width: 150px; height: 150px; border-radius: 14px; background: #fff; padding: 8px; }
+.install-qr p { font-size: 13px; color: var(--muted); max-width: 320px; }
+@media (max-width: 960px) { .install-grid { grid-template-columns: 1fr; } }

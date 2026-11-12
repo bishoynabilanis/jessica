@@ -19,6 +19,8 @@ import {
   Timer,
   Trophy,
   Zap,
+  Download,
+  X,
 } from 'lucide-react'
 import { BookCard } from '@/components/common/BookCard'
 import { KeyNotice, useRequireKey } from '@/components/common/KeyNotice'
@@ -84,6 +86,8 @@ export function Dashboard() {
     apiKey,
     model,
     settings,
+    installDismissed,
+    dismissInstall,
     bookProgress,
     completedTopics,
     customBooks,
@@ -253,6 +257,37 @@ export function Dashboard() {
       )}
 
       <KeyNotice />
+
+      {!installed && !installDismissed && (
+        <Card className="flex flex-wrap items-center justify-between gap-3 border-aurora-400/20 bg-aurora-400/5 p-4">
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-aurora-400/15 text-aurora-300">
+              <Download className="h-5 w-5" />
+            </span>
+            <div>
+              <p className="text-sm font-extrabold text-main">{tr('Install Jessica on your device')}</p>
+              <p className="text-[10px] text-muted">{tr('One tap, then it works offline like any app.')}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {canInstall && (
+              <Button size="sm" onClick={() => install()}>
+                {tr('Install now')}
+              </Button>
+            )}
+            <Link to="/install">
+              <Button size="sm" variant="secondary">{tr('Install guide')}</Button>
+            </Link>
+            <button
+              onClick={() => dismissInstall()}
+              className="grid h-8 w-8 place-items-center rounded-lg text-muted transition hover:bg-white/5 hover:text-main"
+              aria-label={tr('Dismiss')}
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </Card>
+      )}
 
       <Card className="p-4 sm:p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">

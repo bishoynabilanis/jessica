@@ -834,6 +834,11 @@ export function Settings() {
                 <Smartphone className="h-3.5 w-3.5" />
                 {installed ? tr('Already installed') : canInstall ? tr('Install Jessica') : tr('How to install')}
               </Button>
+              <a href="#/install">
+                <Button size="sm" variant="ghost">
+                  <Download className="h-3.5 w-3.5" /> {tr('Install guide')}
+                </Button>
+              </a>
               <span className="chip border-aurora-400/25 text-aurora-200">
                 <CloudOff className="h-3 w-3" /> {tr("Offline shell")}
               </span>

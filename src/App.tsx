@@ -17,6 +17,7 @@ import {
   LazyGames,
   LazyFeedback,
   LazyHelp,
+  LazyInstall,
   LazyKidsApp,
   LazyLabs,
   LazyLibrary,
@@ -145,6 +146,7 @@ export default function App() {
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
           <Route path="help" element={<LazyHelp />} />
+          <Route path="install" element={<LazyInstall />} />
           <Route path="feedback" element={<LazyFeedback />} />
           <Route path="*" element={<NotFound />} />
         </Route>
