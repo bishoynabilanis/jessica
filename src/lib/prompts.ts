@@ -205,8 +205,9 @@ Difficulty: ${studentProfile(book).label} (age ${studentProfile(book).age}). Mix
 Use the textbook's language for questions (${book?.language || 'en'}), and add a short Arabic hint inside the explanation when useful.
 
 Return ONLY valid JSON matching:
-{"questions":[{"question":"...","options":["...","...","...","..."],"answer":0,"explanation":"...","topic":"..."}]}
+{"questions":[{"question":"...","options":["...","...","...","..."],"answer":0,"explanation":"...","topic":"...","difficulty":"easy"}]}
 - Exactly 4 options per question.
+- "difficulty" is "easy", "medium" or "hard". Mix them: about 30% easy, 50% medium, 20% hard.
 - "answer" is the zero-based index of the correct option.
 - "topic" is a 1-3 word curriculum concept (e.g. "present simple", "photosynthesis").
 - Explanations max 35 words.
@@ -338,10 +339,23 @@ ${retrieveContext(chapter, topic, 25_000)}
 ${languageRule()}`
 }
 
-export function examPrompt(book: Book | undefined, chapter: ChapterText | undefined, count = 10) {
+export type ExamMix = 'support' | 'balanced' | 'challenge'
+
+export function examPrompt(
+  book: Book | undefined,
+  chapter: ChapterText | undefined,
+  count = 10,
+  mix: ExamMix = 'balanced',
+) {
+  const mixLine =
+    mix === 'support'
+      ? 'Difficulty: supportive. 70% recall and understanding, 30% application. Keep wording simple and encouraging.'
+      : mix === 'challenge'
+        ? 'Difficulty: challenging. 25% recall, 50% application, 25% higher-order thinking. Include one multi-step problem.'
+        : 'Difficulty: balanced. 50% understanding/application, 25% recall, 25% challenge.'
   return `Create a formal mock exam for ${studentProfile(book).label} (language schools), following Ministry of Education style.
 Subject: ${book?.subject || 'General revision'} — ${book?.title || 'First term'}.
-Include ${count} multiple-choice questions: 60% understanding/application, 20% recall, 20% challenging.
+Include ${count} multiple-choice questions. ${mixLine}
 Each question has 4 options, one correct answer, a topic label, and a short explanation.
 Use ${book?.language || 'English'}. No trick questions outside the syllabus.
 

@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Markdown } from '@/components/Markdown'
 import { buildLibraryIndex, searchLibrary, scoreText } from '@/lib/librarySearch'
-import { generateText } from '@/lib/gemini'
+import { generateJSON, generateText } from '@/lib/gemini'
 import { languageRule } from '@/lib/prompts'
 import { tr } from '@/i18n'
 
@@ -39,6 +39,7 @@ export function Ask() {
   const [sources, setSources] = useState<Source[]>([])
   const [mode, setMode] = useState<'idle' | 'ai' | 'search'>('idle')
   const [error, setError] = useState('')
+  const [ranked, setRanked] = useState(false)
 
   const coverage = useMemo(() => {
     const books = customBooks.length
@@ -56,7 +57,38 @@ export function Ask() {
     setSources([])
     try {
       const index = await buildLibraryIndex(customBooks)
-      const passages = searchLibrary(index, q, 7)
+      let passages = searchLibrary(index, q, 12)
+      let aiRanked = false
+      if (apiKey.trim() && passages.length > 3) {
+        try {
+          const list = passages
+            .map((passage, position) => `[${position}] (${passage.bookTitle}, page ${passage.page}) ${passage.text.slice(0, 300)}`)
+            .join('\n')
+          const ranking = await generateJSON<{ ids: number[] }>({
+            apiKey,
+            model,
+            temperature: 0,
+            maxOutputTokens: 200,
+            system: 'You rank textbook passages by how directly they answer a student question. Return only JSON.',
+            parts: [
+              {
+                text: `Question: ${q}\n\nPassages:\n${list}\n\nReturn {"ids":[the 6 most relevant passage indices, best first]}`,
+              },
+            ],
+          })
+          const ids = (ranking.ids || []).filter(
+            (value) => Number.isInteger(value) && value >= 0 && value < passages.length,
+          )
+          const unique = [...new Set(ids)].slice(0, 6)
+          if (unique.length) {
+            passages = unique.map((position) => passages[position])
+            aiRanked = true
+          }
+        } catch {
+          /* keep keyword order */
+        }
+      }
+      setRanked(aiRanked)
 
       const noteHits = [
         ...vault.map((entry) => ({
@@ -203,8 +235,15 @@ export function Ask() {
             <h2 className="font-display text-base font-extrabold text-main">
               {mode === 'ai' ? tr('Sources') : tr('Matches in your library')}
             </h2>
-            <span className="chip border-aurora-400/25 text-aurora-200">
-              <BookOpen className="h-3 w-3" /> {sources.length}
+            <span className="flex items-center gap-1.5">
+              {ranked && (
+                <span className="chip border-violet-neon/30 bg-violet-neon/10 text-violet-glow">
+                  {tr('AI-ranked')}
+                </span>
+              )}
+              <span className="chip border-aurora-400/25 text-aurora-200">
+                <BookOpen className="h-3 w-3" /> {sources.length}
+              </span>
             </span>
           </div>
           {sources.map((source) => (

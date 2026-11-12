@@ -26,7 +26,7 @@ import { Markdown } from '@/components/Markdown'
 import { Mascot } from '@/components/Mascot'
 import { useRequireKey } from '@/components/common/KeyNotice'
 import { generateJSON } from '@/lib/gemini'
-import { examPrompt } from '@/lib/prompts'
+import { examPrompt, type ExamMix } from '@/lib/prompts'
 import { extractChapter } from '@/lib/pdf'
 import { exportCertificatePdf } from '@/lib/pdfExport'
 import { saveExam } from '@/lib/db'
@@ -69,6 +69,7 @@ export function ExamSimulator({
   const { speak, stop, speaking } = useSpeech()
   const [stage, setStage] = useState<Stage>('setup')
   const [count, setCount] = useState(10)
+  const [mix, setMix] = useState<ExamMix>('balanced')
   const [minutes, setMinutes] = useState(12)
   const [questions, setQuestions] = useState<ExamQuestion[]>([])
   const [index, setIndex] = useState(0)
@@ -163,7 +164,7 @@ export function ExamSimulator({
         apiKey,
         model,
         system: 'You are a Ministry of Education exam writer for Egyptian First Preparatory language schools. Return only JSON.',
-        parts: [{ text: examPrompt(book, source, count) }],
+        parts: [{ text: examPrompt(book, source, count, mix) }],
         temperature: 0.55,
         maxOutputTokens: 3600,
       })
@@ -359,6 +360,27 @@ export function ExamSimulator({
                 ))}
               </div>
             </label>
+          </div>
+
+          <div>
+            <span className="label mb-1.5 block">{tr('Difficulty mix')}</span>
+            <div className="grid grid-cols-3 gap-1 rounded-xl border border-line bg-card-2 p-1">
+              {(['support', 'balanced', 'challenge'] as ExamMix[]).map((option) => (
+                <button
+                  key={option}
+                  onClick={() => setMix(option)}
+                  className={cn(
+                    'rounded-lg py-1.5 text-[11px] font-bold',
+                    mix === option ? 'bg-aurora-400 text-ink-950' : 'text-muted',
+                  )}
+                >
+                  {tr(option === 'support' ? 'Supportive' : option === 'challenge' ? 'Challenging' : 'Balanced')}
+                </button>
+              ))}
+            </div>
+            <p className="mt-1 text-[9px] text-muted-2">
+              {tr('Supportive keeps wording simple; challenging adds multi-step questions.')}
+            </p>
           </div>
 
           <div className="rounded-2xl border border-line bg-card-2 p-3">

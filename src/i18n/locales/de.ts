@@ -1812,4 +1812,12 @@ export const german: Record<string, string> = {
   "Kids world": "KIDS-WORLD",
   "Study mode": "Studienpensum:",
   "Automatic: playful world for grades 1–4, full study tools for 5–6.": "Automatisch: Spielerische Welt für die Klassen 1–4, umfassende Lernwerkzeuge für die Klassen 5–6.",
+  "Difficulty mix": "Schwierigkeitsmix",
+  "Supportive": "Unterstützend",
+  "Balanced": "Ausgeglichen",
+  "Challenging": "Fordernd",
+  "Supportive keeps wording simple; challenging adds multi-step questions.": "Unterstützend vereinfacht die Formulierung; fordernd ergänzt mehrstufige Aufgaben.",
+  "Adaptive difficulty": "Adaptive Schwierigkeit",
+  "Read explanation": "Erklärung vorlesen",
+  "AI-ranked": "KI-sortiert",
 }

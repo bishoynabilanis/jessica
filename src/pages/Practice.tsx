@@ -154,6 +154,14 @@ export function Practice() {
       let weight = 2
       if (weakKeys.has(key)) weight = 4
       else if (accuracy !== null && accuracy < 0.9) weight = 3
+
+      // Adaptive difficulty: easier questions when accuracy is low, harder when high.
+      const wanted = accuracy === null ? 'medium' : accuracy < 0.5 ? 'easy' : accuracy > 0.8 ? 'hard' : 'medium'
+      if (candidate.question.difficulty) {
+        if (candidate.question.difficulty === wanted) weight += 3
+      } else {
+        weight += 1
+      }
       return { ...candidate, weight }
     })
     const sorted = shuffle(scored).sort((a, b) => b.weight - a.weight)
@@ -249,8 +257,13 @@ export function Practice() {
                 <p className="text-[10px] text-muted">{tr('From {n} saved questions in your banks.', { n: pool.length })}</p>
               </div>
             </div>
-            <span className="chip border-sun/25 bg-sun/10 text-sun">
-              <TrendingUp className="h-3 w-3" /> {tr('Weak-first')}
+            <span className="flex flex-wrap gap-1.5">
+              <span className="chip border-sun/25 bg-sun/10 text-sun">
+                <TrendingUp className="h-3 w-3" /> {tr('Weak-first')}
+              </span>
+              <span className="chip border-aurora-400/25 bg-aurora-400/10 text-aurora-200">
+                {tr('Adaptive difficulty')}
+              </span>
             </span>
           </Card>
 

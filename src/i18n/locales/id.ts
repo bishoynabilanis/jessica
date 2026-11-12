@@ -1812,4 +1812,12 @@ export const indonesian: Record<string, string> = {
   "Kids world": "Dunia anak-anak",
   "Study mode": "Mode belajar",
   "Automatic: playful world for grades 1–4, full study tools for 5–6.": "Otomatis: dunia yang menyenangkan untuk kelas 1–4, alat belajar lengkap untuk kelas 5–6.",
+  "Difficulty mix": "Campuran kesulitan",
+  "Supportive": "Mendukung",
+  "Balanced": "Seimbang",
+  "Challenging": "Menantang",
+  "Supportive keeps wording simple; challenging adds multi-step questions.": "Mode mendukung menyederhanakan kalimat; mode menantang menambah soal bertahap.",
+  "Adaptive difficulty": "Kesulitan adaptif",
+  "Read explanation": "Bacakan penjelasan",
+  "AI-ranked": "Diurutkan AI",
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   AlertTriangle,
   Brain,
+  Volume2,
   CheckCircle2,
   ChevronRight,
   Loader2,
@@ -14,6 +15,7 @@ import {
 import type { QuizQuestion } from '@/types'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
+import { useSpeech } from '@/lib/speech'
 import { generateJSON, generateText } from '@/lib/gemini'
 import { putCard } from '@/lib/db'
 import { newCard } from '@/lib/srs'
@@ -27,6 +29,7 @@ import { tr } from '@/i18n'
 export function Mistakes() {
   const { mistakes, apiKey, model, removeMistake, clearMistakes, setMistakeExplanation } = useApp()
   const pushToast = useUI((s) => s.pushToast)
+  const { speak, stop, speaking } = useSpeech()
   const [subject, setSubject] = useState('All')
   const [explaining, setExplaining] = useState<string | null>(null)
   const [practice, setPractice] = useState<QuizQuestion[] | null>(null)
@@ -300,6 +303,21 @@ Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
                   </Button>
                   <Button size="sm" variant="ghost" onClick={() => makeSimilar(item.id)} loading={similarBusy === item.id}>
                     <Sparkles className="h-3.5 w-3.5" /> {tr('Similar question')}
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    disabled={!item.aiExplanation && !item.explanation}
+                    onClick={() => {
+                      if (speaking) {
+                        stop()
+                        return
+                      }
+                      const text = item.aiExplanation || item.explanation
+                      speak(text, /[\u0600-\u06FF]/.test(text) ? 'ar' : 'en')
+                    }}
+                  >
+                    <Volume2 className="h-3.5 w-3.5" /> {speaking ? tr('Stop') : tr('Read explanation')}
                   </Button>
                   <Button size="sm" variant="ghost" onClick={() => makeCard(item.id)}>
                     <Brain className="h-3.5 w-3.5" /> {tr('Make a card')}

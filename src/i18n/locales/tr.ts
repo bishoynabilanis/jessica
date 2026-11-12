@@ -1812,4 +1812,12 @@ export const turkish: Record<string, string> = {
   "Kids world": "Çocuk dünyası",
   "Study mode": "Çalışma modu",
   "Automatic: playful world for grades 1–4, full study tools for 5–6.": "Otomatik: 1-4. sınıflar için eğlenceli dünya, 5-6. sınıflar için kapsamlı çalışma araçları.",
+  "Difficulty mix": "Zorluk karışımı",
+  "Supportive": "Destekleyici",
+  "Balanced": "Dengeli",
+  "Challenging": "Zorlayıcı",
+  "Supportive keeps wording simple; challenging adds multi-step questions.": "Destekleyici ifadeleri basitleştirir; zorlayıcı çok adımlı sorular ekler.",
+  "Adaptive difficulty": "Uyarlanabilir zorluk",
+  "Read explanation": "Açıklamayı oku",
+  "AI-ranked": "AI sıralı",
 }
