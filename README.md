@@ -205,6 +205,15 @@ src/
 
 ## 🧪 Quality checks
 
+End-to-end smoke tests (Playwright + local Chrome):
+
+```bash
+npm run build
+npm run test:e2e
+```
+
+Covers the dashboard, ask-across-books, adaptive practice, help centre, auto bug reports and the install guide.
+
 ```bash
 npm run build     # strict TypeScript + production bundle
 ```
