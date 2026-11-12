@@ -6,6 +6,8 @@ import { tr } from '@/i18n'
 
 export function Toaster() {
   const { toasts, dismiss } = useUI()
+  // Marketing screenshots pass ?clean=1 to hide transient toasts.
+  if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('clean')) return null
   return (
     <div className="pointer-events-none fixed inset-x-3 bottom-24 z-[95] flex flex-col items-center gap-2 sm:inset-x-auto sm:bottom-5 sm:right-5 sm:items-end">
       <AnimatePresence>

@@ -225,7 +225,7 @@ export type Curriculum = 'egypt' | 'gulf' | 'international' | 'other'
 
 export type AiProvider = 'gemini' | 'openai' | 'anthropic' | 'openrouter' | 'custom'
 
-export type UiLanguage = 'en' | 'ar' | 'fr' | 'es' | 'de' | 'tr' | 'id' | 'ur'
+export type UiLanguage = 'en' | 'ar' | 'fr' | 'es' | 'de' | 'tr' | 'id'
 
 export interface Settings {
   theme: 'dark' | 'light'

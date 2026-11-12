@@ -2,6 +2,7 @@ import { Component, type ErrorInfo, type ReactNode } from 'react'
 import { AlertTriangle, Copy, Home, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { tr } from '@/i18n'
+import { rememberCrash } from '@/lib/diagnostics'
 
 const LOG_KEY = 'jessica-error-log'
 
@@ -63,6 +64,15 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
               onClick={() => navigator.clipboard?.writeText(details).catch(() => undefined)}
             >
               <Copy className="h-3.5 w-3.5" /> {tr('Copy details')}
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                rememberCrash(`${this.state.error?.message || ''}\n${this.state.error?.stack || ''}`)
+                window.location.href = './#/feedback?kind=bug&auto=1'
+              }}
+            >
+              <AlertTriangle className="h-3.5 w-3.5" /> {tr('Send a report')}
             </Button>
           </div>
           <p className="mt-3 text-[9px] text-muted-2">

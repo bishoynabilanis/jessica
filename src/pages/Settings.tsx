@@ -13,6 +13,7 @@ import {
   GraduationCap,
   KeyRound,
   Globe2,
+  Share2,
   Languages,
   Laptop,
   Loader2,
@@ -54,6 +55,7 @@ import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { gradeLabel } from '@/data/officialBooks'
 import { VOICE_LOCALES, defaultVoiceLocale } from '@/lib/voices'
 import { SCHOOL_TYPES } from '@/lib/school'
+import { ShareAppModal } from '@/components/ShareApp'
 import { localOpens, readCounters, type AppCounters } from '@/lib/counter'
 import { useSpeech } from '@/lib/speech'
 import { tr, UI_LANGUAGES } from '@/i18n'
@@ -100,6 +102,7 @@ export function Settings() {
   const { speak } = useSpeech()
   const [counters, setCounters] = useState<AppCounters | null>(null)
   const [counting, setCounting] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
   const { level } = levelInfo(xp)
 
   const [draftKey, setDraftKey] = useState(apiKey)
@@ -828,6 +831,33 @@ export function Settings() {
               <span className="chip border-aurora-400/25 text-aurora-200">
                 <CloudOff className="h-3 w-3" /> {tr("Offline shell")}
               </span>
+            </div>
+          </Card>
+
+          {/* HELP */}
+          <Card className="p-4 sm:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 className="text-sm font-extrabold text-main">{tr('Help & feedback')}</h2>
+                <p className="mt-0.5 text-[10px] text-muted">{tr('Guides, answers, and a direct line for suggestions or complaints.')}</p>
+              </div>
+              <div className="flex gap-2">
+                <a href="#/help"><Button size="sm" variant="secondary">{tr('Help centre')}</Button></a>
+                <a href="#/feedback"><Button size="sm">{tr('Suggestions & complaints')}</Button></a>
+              </div>
+            </div>
+          </Card>
+
+          {/* SHARE */}
+          <Card className="p-4 sm:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 className="text-sm font-extrabold text-main">{tr('Share the app')}</h2>
+                <p className="mt-0.5 text-[10px] text-muted">{tr('Anyone can install it from the link — no account needed.')}</p>
+              </div>
+              <Button size="sm" onClick={() => setShareOpen(true)}>
+                <Share2 className="h-3.5 w-3.5" /> {tr('Share Jessica')}
+              </Button>
             </div>
           </Card>
 

@@ -721,6 +721,44 @@ export const arabic: Record<string, string> = {
   'Level up!': 'مستوى جديد!',
   'New badge unlocked': 'شارة جديدة اتفتحت',
   'Keep going': 'كمّل',
+  "Send a report": "ابعت تقرير",
+  "Report a bug": "بلّغ عن مشكلة",
+  "We prepared the report for you — just review it and send. No need to explain the problem.": "جهّزنا التقرير لك — راجعه وابعته. مش محتاج تشرح المشكلة.",
+  "Send on Instagram": "ابعت على إنستجرام",
+  "Help centre": "مركز المساعدة",
+  "Suggestions & complaints": "اقتراحات وشكاوي",
+  "Answers and guides": "إجابات وأدلة",
+  "Tell us what to improve": "قولنا نحسّن إيه",
+  "Help & feedback": "المساعدة والاقتراحات",
+  "Guides, answers, and a direct line for suggestions or complaints.": "أدلة وإجابات وخط مباشر للاقتراحات والشكاوي.",
+  "How can we help?": "نساعدك في إيه؟",
+  "Quick answers for setup, studying, privacy and schools.": "إجابات سريعة للإعداد والمذاكرة والخصوصية والمدارس.",
+  "Search help…": "دوّر في المساعدة…",
+  "No answers match your search. Ask us directly.": "مفيش إجابة مطابقة. اسألنا مباشرة.",
+  "Still stuck?": "لسه محتاج مساعدة؟",
+  "Send a suggestion, a complaint or a bug report — we read everything.": "ابعت اقتراح أو شكوى أو مشكلة — بنقرأ كل حاجة.",
+  "Contact us": "كلّمنا",
+  "Key video": "فيديو المفتاح",
+  "We read everything": "بنقرأ كل حاجة",
+  "Tell us what to improve, what broke, or what you wish Jessica did.": "قولنا نحسّن إيه، إيه اللي باظ، أو نفسك Jessica تعمل إيه.",
+  "Type": "النوع",
+  "Suggestion": "اقتراح",
+  "Complaint": "شكوى",
+  "Bug report": "مشكلة تقنية",
+  "Your message": "رسالتك",
+  "Describe the idea, the problem or the bug with as much detail as you can.": "اوصف الفكرة أو المشكلة بتفاصيل أكتر.",
+  "Email or WhatsApp (optional)": "إيميل أو واتساب (اختياري)",
+  "So we can reply to you": "عشان نقدر نرد عليك",
+  "Copy report": "انسخ التقرير",
+  "Open on GitHub": "افتح على GitHub",
+  "Messages go to {email}.": "الرسائل بتروح على {email}.",
+  "Messages open in WhatsApp so you can send them in one tap.": "الرسالة بتفتح في واتساب عشان تبعتها بضغطة.",
+  "Thanks! Your report is ready to send. We read every message and use it to improve Jessica.": "شكرًا! تقريرك جاهز للإرسال. بنقرأ كل رسالة وبنحسّن Jessica بيها.",
+  "No account needed. The report includes only your message, optional contact and basic app info (language, grade, school type, device) so we can reproduce the issue.": "مفيش حساب مطلوب. التقرير فيه رسالتك ووسيلة التواصل (اختياري) ومعلومات بسيطة (اللغة، الصف، نوع المدرسة، الجهاز) عشان نقدر نعالج المشكلة.",
+  "Paste it in any message or email.": "الصقه في أي رسالة أو إيميل.",
+  "Could not copy": "تعذّر النسخ",
+  "Write your message first": "اكتب رسالتك الأول",
+  "Email": "إيميل",
   "Question banks: {q} questions in {u} units": "بنوك الأسئلة: {q} سؤال في {u} وحدة",
   "Prepare one unit with AI, then practise it offline as many times as you want.": "جهّز وحدة بالذكاء الاصطناعي، وبعدها اتدرب عليها أوفلاين براحتك.",
   "Prepare next unit": "جهّز الوحدة الجاية",
@@ -1813,7 +1851,6 @@ const loaders: Partial<Record<Language, () => Promise<Record<string, string>>>> 
   de: () => import('./locales/de').then((module) => module.german),
   tr: () => import('./locales/tr').then((module) => module.turkish),
   id: () => import('./locales/id').then((module) => module.indonesian),
-  ur: () => import('./locales/ur').then((module) => module.urdu),
 }
 
 export async function loadLanguage(language: Language): Promise<void> {
@@ -1837,7 +1874,7 @@ export function setI18nLanguage(language: Language | undefined) {
   active = language && cache[language] ? language : 'en'
   if (typeof document !== 'undefined') {
     document.documentElement.lang = active
-    document.documentElement.dir = active === 'ar' || active === 'ur' ? 'rtl' : 'ltr'
+    document.documentElement.dir = active === 'ar' ? 'rtl' : 'ltr'
     document.title =
       active === 'ar'
         ? 'Jessica — عالم تعلّم ذكي'
@@ -1851,9 +1888,7 @@ export function setI18nLanguage(language: Language | undefined) {
                 ? 'Jessica — Yapay zekâ ile öğren'
                 : active === 'id'
                   ? 'Jessica — Belajar dengan AI'
-                  : active === 'ur'
-                    ? 'Jessica — اے آئی سے سیکھیں'
-                    : 'Jessica — AI Learning Universe'
+                  : 'Jessica — AI Learning Universe'
   }
 }
 
@@ -1865,7 +1900,6 @@ export function dateLocale() {
   if (active === 'de') return 'de-DE'
   if (active === 'tr') return 'tr-TR'
   if (active === 'id') return 'id-ID'
-  if (active === 'ur') return 'ur-PK'
   return 'en-GB'
 }
 

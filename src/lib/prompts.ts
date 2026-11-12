@@ -187,7 +187,6 @@ export function languageRule(kind: 'tutor' | 'content' = 'content') {
     de: 'GERMAN',
     tr: 'TURKISH',
     id: 'INDONESIAN',
-    ur: 'URDU',
   }
   const name = names[lang]
   if (name) {

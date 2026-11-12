@@ -39,7 +39,6 @@ export const VOICE_LOCALES: VoiceLocale[] = [
   { id: 'es-MX', label: 'Español (México)', language: 'es' },
   { id: 'tr-TR', label: 'Türkçe', language: 'tr' },
   { id: 'id-ID', label: 'Bahasa Indonesia', language: 'id' },
-  { id: 'ur-PK', label: 'اردو', language: 'ur' },
 ]
 
 const UI_DEFAULT: Record<string, string> = {
@@ -50,7 +49,6 @@ const UI_DEFAULT: Record<string, string> = {
   es: 'es-ES',
   tr: 'tr-TR',
   id: 'id-ID',
-  ur: 'ur-PK',
 }
 
 /** The dialect a country/curriculum suggests before any manual choice. */
@@ -82,7 +80,6 @@ const speechFallback: Record<string, string> = {
   es: 'es-ES',
   tr: 'tr-TR',
   id: 'id-ID',
-  ur: 'ur-PK',
 }
 
 function scoreVoice(voice: SpeechSynthesisVoice, locale: string) {
