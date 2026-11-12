@@ -80,7 +80,7 @@ export function SetupGate() {
   }
 
   return (
-    <div className="relative min-h-dvh overflow-hidden px-4 py-8">
+    <div role="main" className="relative min-h-dvh overflow-hidden px-4 py-8">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/3 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-violet-neon/20 blur-[120px]" />
         <div className="absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full bg-aurora-400/15 blur-[120px]" />
