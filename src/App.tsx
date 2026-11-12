@@ -31,8 +31,10 @@ import {
   LazyPractice,
   LazyReader,
   LazyReadingCoach,
+  LazyReport,
   LazySettings,
   LazySkills,
+  LazySolve,
   LazyStudyHub,
   LazyTeacher,
   LazyVault,
@@ -197,6 +199,8 @@ export default function App() {
           <Route path="skills" element={<LazySkills />} />
           <Route path="plan" element={<LazyDailyPlan />} />
           <Route path="calendar" element={<LazyExamCalendar />} />
+          <Route path="solve" element={<LazySolve />} />
+          <Route path="report" element={<LazyReport />} />
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
           <Route path="help" element={<LazyHelp />} />

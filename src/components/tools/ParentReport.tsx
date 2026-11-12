@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { Copy, ExternalLink, MessageCircle, Phone, Send } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { BarChart3, Copy, ExternalLink, MessageCircle, Phone, Send } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
 import { useApp, levelInfo, weekLog } from '@/store/useApp'
@@ -10,6 +11,7 @@ import { tr } from '@/i18n'
 
 export function ParentReportModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const state = useApp()
+  const navigate = useNavigate()
   const pushToast = useUI((s) => s.pushToast)
   const [phone, setPhone] = useState(state.settings.parentPhone)
   const [message, setMessage] = useState('')
@@ -95,6 +97,16 @@ export function ParentReportModal({ open, onClose }: { open: boolean; onClose: (
             </Button>
             <Button size="sm" onClick={sendWhatsApp}>
               <Send className="h-3.5 w-3.5" /> {tr("Send on WhatsApp")}
+            </Button>
+            <Button
+              size="sm"
+              variant="violet"
+              onClick={() => {
+                onClose()
+                navigate('/report')
+              }}
+            >
+              <BarChart3 className="h-3.5 w-3.5" /> {tr("Full week page")}
             </Button>
           </div>
         </div>

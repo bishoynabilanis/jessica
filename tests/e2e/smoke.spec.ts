@@ -80,3 +80,17 @@ test('install page explains every device', async ({ page }) => {
   await expect(page.locator('body')).toContainText('Android')
   await expect(page.locator('body')).toContainText('Computer')
 })
+
+test('photo solver opens with the camera actions', async ({ page }) => {
+  await page.goto('/#/solve')
+  await expect(page.locator('body')).toContainText('Snap any question and understand it')
+  await expect(page.getByRole('button', { name: 'Open camera' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Upload a photo' })).toBeVisible()
+})
+
+test('weekly parent report shows the week stats', async ({ page }) => {
+  await page.goto('/#/report')
+  await expect(page.locator('body')).toContainText('This week, in one page')
+  await expect(page.locator('body')).toContainText('Focus this week')
+  await expect(page.locator('body')).toContainText('Active days')
+})

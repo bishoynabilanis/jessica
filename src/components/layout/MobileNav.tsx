@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { AlertTriangle, Bookmark, Brain, CalendarCheck, CalendarDays, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Settings, Sparkles, Target, Users } from 'lucide-react'
+import { AlertTriangle, BarChart3, Bookmark, Brain, Camera, CalendarCheck, CalendarDays, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Settings, Sparkles, Target, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
@@ -25,10 +25,12 @@ const more = [
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain, hint: tr("Weak-first questions") },
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText, hint: tr("Printable sheets and answer keys") },
   { path: '/teacher', label: tr("Class mode"), icon: Users, hint: tr("Assignments, QR codes and results") },
+  { path: '/report', label: tr("Parent report"), icon: BarChart3, hint: tr("Minutes, subjects and weak topics") },
   { path: '/constellation', label: tr("Learning map"), icon: Orbit, hint: tr("Your curriculum constellation") },
   { path: '/vault', label: tr("Knowledge Vault"), icon: Bookmark, hint: tr("Saved answers & rules") },
   { path: '/mascot', label: tr("Companion"), icon: Sparkles, hint: tr("Evolve your study buddy") },
   { path: '/install', label: tr("Install app"), icon: Download, hint: tr("Phone, tablet or computer") },
+  { path: '/solve', label: tr("Photo solver"), icon: Camera, hint: tr("Snap a question and understand it") },
   { path: '/scan', label: tr("Scan answer sheet"), icon: ScanLine, hint: tr("Correct a paper sheet") },
   { path: '/help', label: tr("Help centre"), icon: HelpCircle, hint: tr("Answers and guides") },
   { path: '/disclaimer', label: tr("Disclaimer"), icon: Scale, hint: tr("Books copyright and AI limits") },

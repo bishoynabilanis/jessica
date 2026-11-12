@@ -14,6 +14,7 @@ import {
   MessageCircle,
   Orbit,
   Play,
+  Share2,
   Sparkles,
   Target,
   Timer,
@@ -36,6 +37,7 @@ import { mascotForXp } from '@/data/mascots'
 import { subjectMeta } from '@/data/books'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
+import { shareStory } from '@/lib/shareCard'
 import { levelLabel } from '@/lib/curriculum'
 import type { Book, Quest } from '@/types'
 import { generateJSON } from '@/lib/gemini'
@@ -65,6 +67,25 @@ export function Dashboard() {
   const [dueCount, setDueCount] = useState(0)
   const { canInstall, installed, install } = useInstallPrompt()
   const aiTried = useRef(false)
+
+  const shareWeek = async () => {
+    const seconds = week.reduce((sum, day) => sum + day.seconds, 0)
+    const active = week.filter((day) => day.xp > 0 || day.seconds > 0).length
+    const outcome = await shareStory({
+      title: name ? tr('{name}’s week', { name }) : tr('My learning week'),
+      subtitle: tr('A week of learning, in one card'),
+      emoji: streak >= 5 ? '🔥' : '📚',
+      stats: [
+        { value: formatDuration(seconds), label: tr('Focus time') },
+        { value: `${active}/7`, label: tr('Active days') },
+        { value: String(streak), label: tr('Day streak') },
+      ],
+      line: tr('Every small step counts.'),
+      footer: levelLabel(settings.gradeLevel, settings.curriculum),
+    })
+    if (outcome === 'downloaded') pushToast({ title: tr('Card saved as an image'), type: 'success' })
+    if (outcome === 'cancelled') pushToast({ title: tr('Sharing cancelled'), type: 'info' })
+  }
 
   useEffect(() => {
     dueCards()
@@ -555,14 +576,27 @@ export function Dashboard() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="p-4 sm:p-5 lg:col-span-2">
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="label mb-1 text-violet-glow">{tr("Weekly momentum")}</p>
               <h3 className="font-display text-lg font-extrabold text-main">{tr("XP earned this week")}</h3>
             </div>
-            <div className="text-right">
-              <p className="font-display text-xl font-extrabold text-main">{week.reduce((s, d) => s + d.xp, 0)}</p>
-              <p className="text-[9px] font-bold uppercase tracking-wider text-muted">{tr("total XP")}</p>
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <p className="font-display text-xl font-extrabold text-main">{week.reduce((s, d) => s + d.xp, 0)}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-muted">{tr("total XP")}</p>
+              </div>
+              <div className="flex gap-1.5">
+                <Button variant="ghost" size="icon-sm" onClick={shareWeek} aria-label={tr('Share my week')}>
+                  <Share2 className="h-3.5 w-3.5" />
+                </Button>
+                <Link
+                  to="/report"
+                  className="grid h-9 place-items-center rounded-xl border border-line bg-card-2 px-2.5 text-[10px] font-bold text-muted transition hover:text-main"
+                >
+                  {tr('Weekly report')}
+                </Link>
+              </div>
             </div>
           </div>
           <div className="flex h-32 items-end gap-2">
