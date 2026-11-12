@@ -1997,4 +1997,12 @@ export const turkish: Record<string, string> = {
   "jessica": "jessica",
   "Minutes, subjects and weak topics": "Dakikalar, dersler ve zayıf konular",
   "Snap a question and understand it": "Bir soruyu fotoğrafla ve anla",
+  "Use it for": "Şunlar için kullan",
+  "Maths problems": "Matematik problemleri",
+  "Step by step with the rule being used.": "Kullanılan kural ile adım adım.",
+  "Science diagrams": "Fen şemaları",
+  "Explain the drawing or the experiment.": "Çizimi veya deneyi açıklar.",
+  "Translation": "Çeviri",
+  "An English or French paragraph, with the meaning.": "Anlamıyla birlikte İngilizce veya Fransızca bir paragraf.",
+  "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Analizden sonra: daha basit bir açıklama, benzer bir soru ve takip soruları.",
 }

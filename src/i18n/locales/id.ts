@@ -1997,4 +1997,12 @@ export const indonesian: Record<string, string> = {
   "jessica": "jessica",
   "Minutes, subjects and weak topics": "Menit, pelajaran, dan topik lemah",
   "Snap a question and understand it": "Foto soal dan pahami",
+  "Use it for": "Gunakan untuk",
+  "Maths problems": "Soal matematika",
+  "Step by step with the rule being used.": "Langkah demi langkah dengan aturan yang dipakai.",
+  "Science diagrams": "Diagram sains",
+  "Explain the drawing or the experiment.": "Menjelaskan gambar atau percobaan.",
+  "Translation": "Terjemahan",
+  "An English or French paragraph, with the meaning.": "Paragraf bahasa Inggris atau Prancis, beserta artinya.",
+  "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Setelah analisis: penjelasan lebih sederhana, soal serupa, dan pertanyaan lanjutan.",
 }

@@ -429,6 +429,28 @@ Student asks: ${message}`,
         </p>
       </Card>
 
+      {!result && !busy && (
+        <div className="space-y-3">
+          <p className="label">{tr('Use it for')}</p>
+          <div className="grid gap-2 sm:grid-cols-3">
+            {[
+              { emoji: '📐', title: tr('Maths problems'), detail: tr('Step by step with the rule being used.') },
+              { emoji: '🔬', title: tr('Science diagrams'), detail: tr('Explain the drawing or the experiment.') },
+              { emoji: '🌍', title: tr('Translation'), detail: tr('An English or French paragraph, with the meaning.') },
+            ].map((item) => (
+              <Card key={item.title} className="p-3">
+                <span className="text-xl">{item.emoji}</span>
+                <p className="mt-1.5 text-xs font-extrabold text-main">{item.title}</p>
+                <p className="text-[10px] leading-relaxed text-muted">{item.detail}</p>
+              </Card>
+            ))}
+          </div>
+          <p className="text-center text-[10px] text-muted-2">
+            {tr('After the analysis: a simpler explanation, a similar question and follow-up questions.')}
+          </p>
+        </div>
+      )}
+
       {busy && (
         <Card className="flex items-center gap-3 p-4">
           <Loader2 className="h-5 w-5 animate-spin text-aurora-300" />

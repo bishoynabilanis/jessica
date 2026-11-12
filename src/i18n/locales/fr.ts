@@ -1997,4 +1997,12 @@ export const french: Record<string, string> = {
   "jessica": "jessica",
   "Minutes, subjects and weak topics": "Minutes, matières et points faibles",
   "Snap a question and understand it": "Photographiez une question et comprenez-la",
+  "Use it for": "Utiliser pour",
+  "Maths problems": "Problèmes de maths",
+  "Step by step with the rule being used.": "Étape par étape avec la règle utilisée.",
+  "Science diagrams": "Schémas de sciences",
+  "Explain the drawing or the experiment.": "Explique le dessin ou l'expérience.",
+  "Translation": "Traduction",
+  "An English or French paragraph, with the meaning.": "Un paragraphe en anglais ou en français, avec le sens.",
+  "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Après l'analyse : une explication plus simple, une question similaire et des questions de suivi.",
 }
