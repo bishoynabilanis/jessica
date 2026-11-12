@@ -1,0 +1,211 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
+const FEATURES = [
+  {
+    slug: 'ask',
+    icon: '🔎',
+    accent: '#2ee6c5',
+    title: 'اسأل كل كتبك',
+    sub: 'سؤال واحد يبحث في كل كتبك وملاحظاتك — ويرد بمصدر الصفحة.',
+    visual: 'chat',
+  },
+  {
+    slug: 'practice',
+    icon: '🎯',
+    accent: '#a78bfa',
+    title: 'تدريب تكيفي',
+    sub: 'أسئلة على أضعف مهاراتك، وبنك أسئلة جاهز يشتغل أوفلاين.',
+    visual: 'question',
+  },
+  {
+    slug: 'night',
+    icon: '🌙',
+    accent: '#ffd166',
+    title: 'ليلة الامتحان',
+    sub: '٣٠ دقيقة: ملخص سريع، تدريب ١٠ أسئلة، وبطاقات مراجعة.',
+    visual: 'steps',
+  },
+  {
+    slug: 'scan',
+    icon: '📷',
+    accent: '#f472b6',
+    title: 'صحّح ورقتك بالكاميرا',
+    sub: 'صوّر البابل شيت، وجيسيكا تصحح كل سؤال وتضيف الغلطات لدفتر الأخطاء.',
+    visual: 'bubbles',
+  },
+  {
+    slug: 'kids',
+    icon: '🧒',
+    accent: '#46c2ff',
+    title: 'عالم الابتدائي',
+    sub: 'دروس ٥ دقايق، ستيكرز، هدية يومية، وخريطة مغامرات.',
+    visual: 'kids',
+  },
+]
+
+const SIZES = { width: 1920, height: 1080 }
+
+function visualMarkup(kind, accent) {
+  if (kind === 'chat') {
+    return `
+      <div class="mock">
+        <div class="bubble q">اشرح البناء الضوئي من كتاب العلوم</div>
+        <div class="bubble a">
+          <span class="dot"></span>
+          النبات بيستخدم ضوء الشمس والماء وثاني أكسيد الكربون عشان ينتج غذاءه…
+        </div>
+        <div class="source">📖 Science — صفحة ٤٢</div>
+      </div>`
+  }
+  if (kind === 'question') {
+    return `
+      <div class="mock">
+        <div class="qmeta"><span>سؤال ٣ من ١٠</span><span class="chip">سهل</span></div>
+        <p class="qtext">ما ناتج ٢ + ٢؟</p>
+        <div class="opts"><span>A. 3</span><span class="ok">B. 4</span><span>C. 5</span><span>D. 6</span></div>
+        <div class="bank">🃏 بنك الأسئلة: ٤٨ سؤال · أوفلاين</div>
+      </div>`
+  }
+  if (kind === 'steps') {
+    return `
+      <div class="mock steps">
+        <div class="step"><b>١٠</b><span>دقايق ملخص</span></div>
+        <div class="step"><b>١٥</b><span>دقيقة تدريب</span></div>
+        <div class="step"><b>٥</b><span>دقايق بطاقات</span></div>
+      </div>`
+  }
+  if (kind === 'bubbles') {
+    const marks = [1, 1, 0, 1, 1, 1, 0, 1, 1, 1]
+    return `
+      <div class="mock">
+        <div class="bubbles">${marks
+          .map(
+            (ok, index) =>
+              `<span class="${ok ? 'ok' : 'bad'}">${index + 1}<i>${ok ? '✓' : '✕'}</i></span>`,
+          )
+          .join('')}</div>
+        <div class="score">٨ / ١٠ <small>النتيجة اتسجلت في دفتر الأخطاء</small></div>
+      </div>`
+  }
+  return `
+    <div class="mock kids">
+      <img src="assets/mascot.png" alt="" />
+      <div class="stickers"><span>⭐</span><span>🎁</span><span>🏅</span><span>🗺️</span></div>
+    </div>`
+}
+
+function html(feature) {
+  const id = `feature-${feature.slug}`
+  return `<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family:'CairoAr'; src:url('assets/fonts/cairo-arabic-800-normal.woff2') format('woff2'); font-weight:800; font-display:block; unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF; }
+@font-face { font-family:'CairoAr'; src:url('assets/fonts/cairo-arabic-600-normal.woff2') format('woff2'); font-weight:600; font-display:block; unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF; }
+@font-face { font-family:'CairoAr'; src:url('assets/fonts/cairo-latin-800-normal.woff2') format('woff2'); font-weight:800; font-display:block; }
+@font-face { font-family:'CairoAr'; src:url('assets/fonts/cairo-latin-600-normal.woff2') format('woff2'); font-weight:600; font-display:block; }
+:root { --accent:${feature.accent}; --ink:#eef3ff; --muted:#9aa7bd; --bg:#05070f; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:${SIZES.width}px; height:${SIZES.height}px; overflow:hidden; background:var(--bg); font-family:'CairoAr', system-ui, sans-serif; color:var(--ink); }
+#root { position:relative; width:100%; height:100%; }
+.scene { position:absolute; inset:0; background:var(--bg); overflow:hidden; }
+.glow { position:absolute; width:820px; height:820px; border-radius:50%; filter:blur(120px); background:color-mix(in srgb, var(--accent) 30%, transparent); }
+.g1 { top:-320px; right:-220px; }
+.g2 { bottom:-340px; left:-200px; opacity:.5; }
+.wrap { position:relative; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 120px; text-align:center; }
+.icon { width:118px; height:118px; border-radius:32px; display:grid; place-items:center; font-size:56px; background:color-mix(in srgb, var(--accent) 16%, transparent); border:1px solid color-mix(in srgb, var(--accent) 38%, transparent); margin-bottom:26px; }
+h1 { font-size:104px; line-height:1.15; font-weight:800; letter-spacing:-2px; }
+h1 span { color:var(--accent); }
+p.sub { margin-top:22px; max-width:1080px; color:var(--muted); font-size:34px; line-height:1.85; font-weight:600; }
+.chiprow { display:flex; gap:12px; margin-top:30px; }
+.chiprow span { border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); background:color-mix(in srgb, var(--accent) 10%, transparent); color:var(--accent); padding:10px 22px; border-radius:999px; font-size:22px; font-weight:700; }
+.mock { width:960px; border-radius:34px; border:1px solid rgba(255,255,255,.14); background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); padding:36px; box-shadow:0 50px 120px rgba(0,0,0,.55); text-align:right; }
+.bubble { border-radius:22px; padding:20px 24px; font-size:26px; line-height:1.8; font-weight:600; }
+.bubble.q { background:rgba(255,255,255,.08); color:var(--ink); width:fit-content; margin-inline-start:auto; }
+.bubble.a { margin-top:18px; background:color-mix(in srgb, var(--accent) 12%, transparent); border:1px solid color-mix(in srgb, var(--accent) 28%, transparent); display:flex; gap:12px; align-items:flex-start; }
+.dot { width:14px; height:14px; border-radius:50%; background:var(--accent); margin-top:12px; flex-shrink:0; }
+.source { margin-top:16px; display:inline-flex; align-items:center; gap:8px; font-size:20px; color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); padding:8px 16px; border-radius:12px; }
+.qmeta { display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:22px; font-weight:700; }
+.chip { border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); color:var(--accent); padding:4px 14px; border-radius:999px; font-size:18px; }
+.qtext { margin-top:20px; font-size:38px; font-weight:800; }
+.opts { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+.opts span { border:1px solid rgba(255,255,255,.14); border-radius:16px; padding:16px 20px; font-size:24px; font-weight:700; color:var(--muted); }
+.opts .ok { border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:color-mix(in srgb, var(--accent) 14%, transparent); color:var(--ink); }
+.bank { margin-top:22px; font-size:20px; color:var(--muted); }
+.steps { display:flex; gap:18px; justify-content:space-between; }
+.step { flex:1; border:1px solid rgba(255,255,255,.14); border-radius:24px; padding:28px 18px; display:flex; flex-direction:column; gap:8px; align-items:center; }
+.step b { font-size:64px; color:var(--accent); font-weight:800; }
+.step span { font-size:22px; color:var(--muted); font-weight:700; }
+.bubbles { display:grid; grid-template-columns:repeat(10, 1fr); gap:10px; }
+.bubbles span { position:relative; aspect-ratio:1; border-radius:50%; display:grid; place-items:center; font-size:18px; font-weight:800; border:1px solid rgba(255,255,255,.14); color:var(--muted); }
+.bubbles .ok { border-color:color-mix(in srgb, #2ee6c5 45%, transparent); background:rgba(46,230,197,.12); color:#9ff5e6; }
+.bubbles .bad { border-color:rgba(255,120,140,.45); background:rgba(255,120,140,.12); color:#ffb3c0; }
+.bubbles i { position:absolute; bottom:-8px; font-style:normal; font-size:14px; }
+.score { margin-top:22px; font-size:56px; font-weight:800; color:var(--ink); }
+.score small { display:block; font-size:20px; color:var(--muted); font-weight:600; margin-top:4px; }
+.kids { display:flex; align-items:center; gap:40px; justify-content:center; }
+.kids img { height:420px; filter:drop-shadow(0 30px 50px rgba(0,0,0,.5)); }
+.stickers { display:flex; flex-direction:column; gap:16px; font-size:56px; }
+.cta { display:inline-flex; align-items:center; gap:14px; margin-top:34px; padding:24px 50px; border-radius:999px; background:linear-gradient(140deg, #2ee6c5, #46c2ff); color:#04121a; font-size:36px; font-weight:800; }
+.link { margin-top:24px; font-size:26px; color:var(--muted); font-weight:600; direction:ltr; }
+.qr { width:180px; height:180px; margin-top:26px; border-radius:22px; background:#fff; padding:10px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="${id}" data-start="0" data-duration="12" data-width="${SIZES.width}" data-height="${SIZES.height}">
+  <audio id="music" src="assets/music.m4a" data-start="0" data-duration="12" data-volume="0.42" data-fade-in="0.6" data-fade-out="1.2"></audio>
+
+  <section class="scene clip" data-start="0" data-duration="4" data-track-index="0">
+    <div class="glow g1"></div><div class="glow g2"></div>
+    <div class="wrap">
+      <div class="icon" id="f-icon">${feature.icon}</div>
+      <h1 id="f-title">${feature.title}</h1>
+      <p class="sub" id="f-sub">${feature.sub}</p>
+      <div class="chiprow" id="f-chips"><span>مجاني</span><span>بدون حساب</span><span>أوفلاين</span></div>
+    </div>
+  </section>
+
+  <section class="scene clip" data-start="4" data-duration="4" data-track-index="1">
+    <div class="glow g1"></div><div class="glow g2"></div>
+    <div class="wrap">${visualMarkup(feature.visual, feature.accent)}</div>
+  </section>
+
+  <section class="scene clip" data-start="8" data-duration="4" data-track-index="2">
+    <div class="glow g1"></div><div class="glow g2"></div>
+    <div class="wrap">
+      <h1 id="c-title">ابدأ دلوقتي<br><span>مجانًا.</span></h1>
+      <p class="sub" id="c-sub">كتب الوزارة + مدرس ذكي + امتحانات — على جهازك.</p>
+      <div class="cta" id="c-cta">افتح Jessica ←</div>
+      <p class="link" id="c-link">bishoynabilanis.github.io/jessica</p>
+      <img class="qr" id="c-qr" src="assets/qr.png" alt="QR">
+    </div>
+  </section>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo('#f-icon', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0.1);
+  tl.fromTo('#f-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.22);
+  tl.fromTo('#f-sub', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.4);
+  tl.fromTo('#f-chips', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.55);
+  tl.fromTo('.scene:nth-of-type(2) .mock', { opacity: 0, y: 60, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' }, 4.2);
+  tl.fromTo('#c-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 8.15);
+  tl.fromTo('#c-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 8.32);
+  tl.fromTo('#c-cta', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' }, 8.48);
+  tl.fromTo('#c-link', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.out' }, 8.64);
+  tl.fromTo('#c-qr', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }, 8.72);
+  window.__timelines['${id}'] = tl;
+  tl.seek(0);
+</script>
+</body>
+</html>`
+}
+
+fs.mkdirSync('compositions', { recursive: true })
+for (const feature of FEATURES) {
+  fs.writeFileSync(path.join('compositions', `feature-${feature.slug}.html`), html(feature))
+  console.log('wrote', feature.slug)
+}
