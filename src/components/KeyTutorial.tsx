@@ -34,7 +34,7 @@ export function KeyTutorial({ className }: { className?: string }) {
           <img
             src={youtubeThumbUrl(video)}
             alt=""
-            loading="lazy"
+            referrerPolicy="no-referrer"
             className="h-[58px] w-[102px] object-cover"
             draggable={false}
           />
