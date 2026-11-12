@@ -20,6 +20,7 @@ import { riddleForDate } from '@/data/riddles'
 import { giftStickers } from '@/data/kids'
 import { useUI } from './useUI'
 import { providerFor } from '@/lib/providers'
+import type { OfficialBook } from '@/data/officialBooks'
 
 export const XP_PER_LEVEL = 300
 
@@ -123,6 +124,7 @@ export interface AppState {
   topicLog: TopicLogEntry[]
   bookProgress: Record<string, { lastPage: number; total: number; updatedAt: number }>
   customBooks: Book[]
+  communityBooks: OfficialBook[]
   bookmarks: Record<string, number[]>
   pageNotes: Record<string, Record<string, string>>
   unitMastery: Record<string, { best: number; total: number; attempts: number; lastAt: number; weak?: Record<string, number> }>
@@ -162,6 +164,8 @@ export interface AppState {
   completeTopic: (id: string, title: string, subject: string) => void
   setBookProgress: (bookId: string, page: number, total: number) => void
   addCustomBook: (book: Book) => void
+  addCommunityBooks: (books: OfficialBook[]) => void
+  clearCommunityBooks: () => void
   removeCustomBook: (id: string) => void
   toggleBookmark: (bookId: string, page: number) => void
   setPageNote: (bookId: string, page: number, note: string) => void
@@ -227,6 +231,7 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   topicLog: [],
   bookProgress: {},
   customBooks: [],
+  communityBooks: [],
   bookmarks: {},
   pageNotes: {},
   unitMastery: {},
@@ -428,6 +433,11 @@ export const useApp = create<AppState>()(
         }))
       },
 
+      addCommunityBooks: (books) =>
+        set((state) => ({
+          communityBooks: [...books, ...state.communityBooks.filter((item) => !books.some((book) => book.url === item.url))].slice(0, 300),
+        })),
+      clearCommunityBooks: () => set({ communityBooks: [] }),
       addCustomBook: (book) => {
         set((state) => ({
           customBooks: [book, ...state.customBooks.filter((b) => b.id !== book.id)],

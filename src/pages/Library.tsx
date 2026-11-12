@@ -42,6 +42,7 @@ export function Library() {
   const bookProgress = useApp((s) => s.bookProgress)
   const completedTopics = useApp((s) => s.completedTopics)
   const customBooks = useApp((s) => s.customBooks)
+  const communityBooks = useApp((s) => s.communityBooks)
   const removeCustomBook = useApp((s) => s.removeCustomBook)
   const pushToast = useUI((s) => s.pushToast)
 
@@ -71,10 +72,13 @@ export function Library() {
 
   const catalog = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return officialFor(grade, term, subject)
+    const community = communityBooks.filter(
+      (book) => book.grade === grade && book.term === term && (subject === 'All' || book.subject === subject),
+    )
+    return [...officialFor(grade, term, subject), ...community]
       .filter((book) => subjects.includes(book.subject))
       .filter((book) => !q || `${book.title} ${book.subject} ${book.term}`.toLowerCase().includes(q))
-  }, [grade, term, subject, query])
+  }, [grade, term, subject, query, communityBooks, subjects])
 
   const imported = useMemo(() => {
     const q = query.trim().toLowerCase()

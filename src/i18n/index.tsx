@@ -721,6 +721,17 @@ export const arabic: Record<string, string> = {
   'Level up!': 'مستوى جديد!',
   'New badge unlocked': 'شارة جديدة اتفتحت',
   'Keep going': 'كمّل',
+  "Community library": "مكتبة المجتمع",
+  "{n} books": "{n} كتاب",
+  "A teacher or a school can share a catalog file. Import it to see their books in your library, then download and import the PDF locally.": "مدرس أو مدرسة يقدروا يشاركوا ملف كتالوج. استورده عشان تشوف كتبهم في مكتبتك، وبعدها نزّل الـ PDF واستورده محليًا.",
+  "Import catalog": "استورد كتالوج",
+  "Download template": "نزّل القالب",
+  "Export my catalog": "صدّر كتالوجي",
+  "No valid books in this file": "مفيش كتب صالحة في الملف ده",
+  "{n} books added to your library": "اتضاف {n} كتاب لمكتبتك",
+  "{n} entries were skipped.": "اتخطّى {n} عنصر.",
+  "Could not read this catalog file": "تعذّر قراءة ملف الكتالوج",
+  "Community": "المجتمع",
   "Send by email": "ابعت بالإيميل",
   "Send it on WhatsApp in one tap, or by email to {email}.": "ابعتها على واتساب بضغطة، أو بالإيميل على {email}.",
   "Send a report": "ابعت تقرير",
@@ -1919,6 +1930,7 @@ function fill(text: string, vars?: Record<string, string | number>) {
  * JSX gives us, so wrapping text nodes does not glue words together.
  */
 export function tr(text: string, vars?: Record<string, string | number>) {
+  if (typeof text !== 'string') return text == null ? '' : String(text)
   if (active === 'en') return fill(text, vars)
   const lead = text.match(/^\s*/)?.[0] ?? ''
   const trail = text.match(/\s*$/)?.[0] ?? ''

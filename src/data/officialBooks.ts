@@ -13,6 +13,7 @@ export interface OfficialBook {
   url: string
   sizeMb: number
   language: LanguageCode
+  community?: boolean
 }
 
 const BLOB = 'https://elearnningcontent.blob.core.windows.net/elearnningcontent'

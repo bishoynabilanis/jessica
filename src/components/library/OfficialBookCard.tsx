@@ -37,8 +37,11 @@ export function OfficialBookCard({
             <Check className="h-3 w-3" /> {tr('In your library')}
           </span>
         ) : (
-          <span className="chip border-sun/25 bg-sun/10 text-sun">
-            {entry.sizeMb} MB
+          <span className="flex items-center gap-1">
+            {entry.community && (
+              <span className="chip border-violet-neon/30 bg-violet-neon/10 text-violet-glow">{tr('Community')}</span>
+            )}
+            <span className="chip border-sun/25 bg-sun/10 text-sun">{entry.sizeMb} MB</span>
           </span>
         )}
       </div>

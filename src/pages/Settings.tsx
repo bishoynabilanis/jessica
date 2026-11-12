@@ -13,6 +13,7 @@ import {
   GraduationCap,
   KeyRound,
   Globe2,
+  Users,
   Share2,
   Languages,
   Laptop,
@@ -56,6 +57,7 @@ import { gradeLabel } from '@/data/officialBooks'
 import { VOICE_LOCALES, defaultVoiceLocale } from '@/lib/voices'
 import { SCHOOL_TYPES } from '@/lib/school'
 import { ShareAppModal } from '@/components/ShareApp'
+import { catalogTemplate, parseCommunityCatalog } from '@/lib/communityCatalog'
 import { localOpens, readCounters, type AppCounters } from '@/lib/counter'
 import { useSpeech } from '@/lib/speech'
 import { tr, UI_LANGUAGES } from '@/i18n'
@@ -82,6 +84,9 @@ export function Settings() {
     exams,
     completedTopics,
     bookProgress,
+    communityBooks,
+    addCommunityBooks,
+    clearCommunityBooks,
     onboarded,
   } = state
   const pushToast = useUI((s) => s.pushToast)
@@ -103,6 +108,7 @@ export function Settings() {
   const [counters, setCounters] = useState<AppCounters | null>(null)
   const [counting, setCounting] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
+  const communityRef = useRef<HTMLInputElement>(null)
   const { level } = levelInfo(xp)
 
   const [draftKey, setDraftKey] = useState(apiKey)
@@ -846,6 +852,91 @@ export function Settings() {
                 <a href="#/feedback"><Button size="sm">{tr('Suggestions & complaints')}</Button></a>
               </div>
             </div>
+          </Card>
+
+          {/* COMMUNITY CATALOG */}
+          <Card className="p-4 sm:p-5">
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Users className="h-4 w-4 text-violet-glow" />
+                <h2 className="text-sm font-extrabold text-main">{tr('Community library')}</h2>
+              </div>
+              <span className="chip border-violet-neon/25 bg-violet-neon/10 text-violet-glow">
+                {tr('{n} books', { n: communityBooks.length })}
+              </span>
+            </div>
+            <p className="mb-3 text-[10px] leading-relaxed text-muted">
+              {tr('A teacher or a school can share a catalog file. Import it to see their books in your library, then download and import the PDF locally.')}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button size="sm" onClick={() => communityRef.current?.click()}>
+                {tr('Import catalog')}
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => {
+                  const blob = new Blob([catalogTemplate()], { type: 'application/json' })
+                  const url = URL.createObjectURL(blob)
+                  const link = document.createElement('a')
+                  link.href = url
+                  link.download = 'jessica-catalog-template.json'
+                  link.click()
+                  URL.revokeObjectURL(url)
+                }}
+              >
+                {tr('Download template')}
+              </Button>
+              {communityBooks.length > 0 && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+                    const blob = new Blob([JSON.stringify({ books: communityBooks }, null, 2)], { type: 'application/json' })
+                    const url = URL.createObjectURL(blob)
+                    const link = document.createElement('a')
+                    link.href = url
+                    link.download = 'jessica-community-catalog.json'
+                    link.click()
+                    URL.revokeObjectURL(url)
+                  }}
+                >
+                  {tr('Export my catalog')}
+                </Button>
+              )}
+              {communityBooks.length > 0 && (
+                <Button size="sm" variant="ghost" onClick={() => clearCommunityBooks()}>
+                  {tr('Clear')}
+                </Button>
+              )}
+            </div>
+            <input
+              ref={communityRef}
+              type="file"
+              accept="application/json,.json"
+              className="hidden"
+              onChange={async (event) => {
+                const file = event.target.files?.[0]
+                event.target.value = ''
+                if (!file) return
+                try {
+                  const raw = JSON.parse(await file.text())
+                  const { books, skipped } = parseCommunityCatalog(raw)
+                  if (!books.length) {
+                    pushToast({ title: tr('No valid books in this file'), type: 'error' })
+                    return
+                  }
+                  addCommunityBooks(books)
+                  pushToast({
+                    title: tr('{n} books added to your library', { n: books.length }),
+                    description: skipped ? tr('{n} entries were skipped.', { n: skipped }) : undefined,
+                    type: 'success',
+                  })
+                } catch {
+                  pushToast({ title: tr('Could not read this catalog file'), type: 'error' })
+                }
+              }}
+            />
           </Card>
 
           {/* SHARE */}
