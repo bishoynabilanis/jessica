@@ -216,8 +216,11 @@ export interface DailyLogEntry {
   seconds: number
 }
 
+export type Curriculum = 'egypt' | 'gulf' | 'international' | 'other'
+
 export interface Settings {
   theme: 'dark' | 'light'
+  curriculum: Curriculum
   language: 'en' | 'ar'
   textScale: number
   dyslexiaFont: boolean

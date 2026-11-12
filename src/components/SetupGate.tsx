@@ -17,7 +17,8 @@ import { AddBookModal } from '@/components/library/AddBookModal'
 import { KeyTutorial } from '@/components/KeyTutorial'
 import { useApp } from '@/store/useApp'
 import { validateKey } from '@/lib/gemini'
-import { gradeLabel, officialFor, type OfficialBook } from '@/data/officialBooks'
+import { officialFor, type OfficialBook } from '@/data/officialBooks'
+import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
 import { subjectMeta } from '@/data/books'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
@@ -43,6 +44,7 @@ export function SetupGate() {
   const fileInput = useRef<HTMLInputElement>(null)
 
   const grade = settings.gradeLevel
+  const isEgypt = hasOfficialLibrary(settings.curriculum)
   const books = useMemo(() => officialFor(grade, 'Term 1', 'All').slice(0, 6), [grade])
   const keyDone = Boolean(apiKey.trim())
   const bookDone = customBooks.length > 0
@@ -227,7 +229,7 @@ export function SetupGate() {
                 <p className="text-sm font-extrabold text-main">{tr('2. Add at least one book')}</p>
                 <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
                   {tr('Download a Ministry book or pick a PDF from your device. {grade} · {n} in your library', {
-                    grade: tr(gradeLabel(grade)),
+                    grade: levelLabel(grade, settings.curriculum),
                     n: customBooks.length,
                   })}
                 </p>
@@ -244,7 +246,7 @@ export function SetupGate() {
                       </Button>
                     </div>
 
-                    <div className="mt-3 space-y-1.5">
+                    <div className={cn('mt-3 space-y-1.5', !isEgypt && 'hidden')}>
                       {books.map((entry) => {
                         const meta = subjectMeta[entry.subject] || { emoji: '📚', color: '#21e6c9' }
                         return (
@@ -280,7 +282,9 @@ export function SetupGate() {
                       })}
                     </div>
                     <p className="mt-2 text-[9px] leading-relaxed text-muted-2">
-                      {tr('Tip: download the PDF first, then tap Import and choose the file you just saved.')}
+                      {isEgypt
+                        ? tr('Tip: download the PDF first, then tap Import and choose the file you just saved.')
+                        : tr('Your curriculum has no official catalog yet — import any textbook PDF and Jessica will read it.')}
                     </p>
                   </>
                 )}

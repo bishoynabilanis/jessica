@@ -51,6 +51,7 @@ import { exportFullBackup, restoreFullBackup } from '@/lib/backup'
 import { riddleForDate } from '@/data/riddles'
 import { cn, todayKey } from '@/lib/utils'
 import { defaultGradeForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
+import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { tr } from '@/i18n'
 
 type KeyStatus = 'idle' | 'checking' | 'valid' | 'invalid'
@@ -418,15 +419,57 @@ export function Settings() {
             <p className="mb-2 text-[10px] text-muted">{tr("Small adjustments that make reading and focus easier.")}</p>
 
             <div className="mb-3">
-              <span className="label mb-1.5 block">{tr('Stage')}</span>
-              <Segmented
-                options={[
-                  { value: 'primary', label: 'Primary stage' },
-                  { value: 'prep', label: 'Preparatory stage' },
-                ]}
-                value={stageForGrade(settings.gradeLevel)}
-                onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
-              />
+              <span className="label mb-1.5 block">{tr('Where do you study?')}</span>
+              <div className="grid grid-cols-2 gap-1.5">
+                {CURRICULA.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => updateSettings({ curriculum: option.id })}
+                    className={cn(
+                      'rounded-xl border px-2.5 py-2 text-start transition',
+                      settings.curriculum === option.id
+                        ? 'border-aurora-400/50 bg-aurora-400/10'
+                        : 'border-line bg-card-2 hover:bg-white/5',
+                    )}
+                  >
+                    <span className="text-sm">{option.emoji}</span>
+                    <span className="ms-1.5 text-[11px] font-extrabold text-main">{tr(option.label)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <span className="label mb-1.5 block">
+                {hasOfficialLibrary(settings.curriculum) ? tr('Stage') : tr('Learner level')}
+              </span>
+              {hasOfficialLibrary(settings.curriculum) ? (
+                <Segmented
+                  options={[
+                    { value: 'primary', label: 'Primary stage' },
+                    { value: 'prep', label: 'Preparatory stage' },
+                  ]}
+                  value={stageForGrade(settings.gradeLevel)}
+                  onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
+                />
+              ) : (
+                <div className="grid gap-1.5">
+                  {GLOBAL_LEVELS.map((level) => (
+                    <button
+                      key={level.grade}
+                      onClick={() => updateSettings({ gradeLevel: level.grade })}
+                      className={cn(
+                        'rounded-xl border px-3 py-2 text-start text-[11px] font-bold transition',
+                        settings.gradeLevel === level.grade
+                          ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
+                          : 'border-line bg-card-2 text-muted hover:text-main',
+                      )}
+                    >
+                      {tr(level.label)}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="mb-3">

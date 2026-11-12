@@ -19,6 +19,7 @@ import {
 import type { Book, Subject } from '@/types'
 import { subjectMeta } from '@/data/books'
 import { gradeLabel, officialFor, type OfficialBook } from '@/data/officialBooks'
+import { GLOBAL_LEVELS, hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
 import { useApp } from '@/store/useApp'
 import { BookCard } from '@/components/common/BookCard'
 import { PageHeader } from '@/components/common/PageHeader'
@@ -64,6 +65,8 @@ export function Library() {
   }, [customBooks.length])
 
   const grade = settings.gradeLevel
+  const curriculum = settings.curriculum
+  const official = hasOfficialLibrary(curriculum)
   const stage = stageForGrade(grade)
 
   const catalog = useMemo(() => {
@@ -96,7 +99,9 @@ export function Library() {
   }
 
   const stats = [
-    { label: tr('Official books'), value: officialFor(grade, term, 'All').length, hint: tr(gradeLabel(grade)), icon: LibraryBig },
+    ...(official
+      ? [{ label: tr('Official books'), value: officialFor(grade, term, 'All').length, hint: levelLabel(grade, curriculum), icon: LibraryBig }]
+      : []),
     { label: tr('In my library'), value: imported.length, hint: tr('{n} completed', { n: finished }), icon: CheckCircle2 },
     { label: tr('Read so far'), value: `${readPages}/${totalPages}`, hint: tr('pages across your books'), icon: BookOpen },
     { label: tr('Chapters mastered'), value: completedTopics.length, hint: tr('Across all subjects'), icon: GraduationCap },
@@ -137,7 +142,7 @@ export function Library() {
       <PageHeader
         eyebrow={tr('Your digital bookshelf')}
         title={tr('Library')}
-        subtitle={tr('Official Egyptian Ministry books for primary and preparatory grades. Download a book, import it once, and Jessica teaches from its real pages at the right level — fully on your device.')}
+        subtitle={official ? tr('Official Egyptian Ministry books for primary and preparatory grades. Download a book, import it once, and Jessica teaches from its real pages at the right level — fully on your device.') : tr('Import any textbook PDF. Jessica indexes it on your device and teaches from its real pages — no official catalog needed.')}
         icon={<LibraryBig className="h-5 w-5" />}
         actions={
           <>
@@ -172,6 +177,7 @@ export function Library() {
       {/* Grade + term */}
       <Card className="p-3 sm:p-4">
         <div className="flex flex-col gap-3">
+          {official && (
           <div>
             <p className="label mb-1.5">{tr('Stage')}</p>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -212,21 +218,23 @@ export function Library() {
             </div>
           </div>
 
+          )}
+
           <div>
-            <p className="label mb-1.5">{tr('Grade')}</p>
+            <p className="label mb-1.5">{tr(official ? 'Grade' : 'Learner level')}</p>
             <div className="flex flex-wrap gap-1.5">
-              {gradesForStage(stage).map((g) => (
+              {(official ? gradesForStage(stage).map((g) => ({ grade: g, label: tr(gradeLabel(g)) })) : GLOBAL_LEVELS.map((l) => ({ grade: l.grade, label: tr(l.label) }))).map((item) => (
                 <button
-                  key={g}
-                  onClick={() => updateSettings({ gradeLevel: g })}
+                  key={item.grade}
+                  onClick={() => updateSettings({ gradeLevel: item.grade })}
                   className={cn(
                     'rounded-xl border px-3 py-1.5 text-[11px] font-bold transition',
-                    grade === g
+                    grade === item.grade
                       ? 'border-aurora-400/50 bg-aurora-400/15 text-aurora-200'
                       : 'border-line bg-card-2 text-muted hover:text-main',
                   )}
                 >
-                  {tr(gradeLabel(g))}
+                  {item.label}
                 </button>
               ))}
             </div>
@@ -331,6 +339,7 @@ export function Library() {
         </section>
       )}
 
+      {official && (
       <section className="space-y-2.5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -372,6 +381,7 @@ export function Library() {
           </div>
         )}
       </section>
+      )}
 
       <Card className="p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">

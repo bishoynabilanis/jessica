@@ -26,8 +26,8 @@ books, and an AI tutor grounded in the real page. The gap to a global product is
 
 **Goal:** a student in France, Turkey or Indonesia can finish setup without seeing "Egypt".
 
-1. **Country & curriculum selector** at setup: Egypt, Gulf, North Africa, International
-   (IGCSE/IB/American), "Other — upload my own books". Grade names, terms and subjects adapt.
+1. ✅ **Country & curriculum selector** at setup: Egypt, Gulf, International, Other.
+   Learner bands adapt, and the Egyptian catalog only appears for Egypt.
 2. **More UI languages**: French, Spanish, German, Turkish, Indonesian, Urdu (RTL),
    Portuguese. Same dictionary pipeline, AI answers follow the UI language.
 3. **Multi-provider AI**: keep Gemini, add OpenAI, Anthropic, OpenRouter and a custom

@@ -9,14 +9,14 @@ import { Card } from '@/components/ui/Card'
 import { useUI } from '@/store/useUI'
 import { Modal } from '@/components/ui/Modal'
 import { giftStickers } from '@/data/kids'
-import { gradeLabel } from '@/data/officialBooks'
+import { levelLabel } from '@/lib/curriculum'
 import { useApp, levelInfo } from '@/store/useApp'
 import { firstName, pct, todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
 
 export function KidsHome() {
   const navigate = useNavigate()
-  const { name, xp, streak, customBooks, quests, dailyLog, kidsGift, claimKidsGift, bookProgress, parentTasks, completeParentTask } = useApp()
+  const { name, xp, streak, customBooks, quests, dailyLog, kidsGift, claimKidsGift, bookProgress, parentTasks, completeParentTask, settings } = useApp()
   const pushToast = useUI((s) => s.pushToast)
   const [giftOpen, setGiftOpen] = useState(false)
   const [draftName, setDraftName] = useState('')
@@ -113,7 +113,7 @@ export function KidsHome() {
         <div className="relative flex flex-col items-center gap-4 p-5 sm:flex-row sm:p-7">
           <div className="min-w-0 flex-1 text-center sm:text-start">
             <span className="chip border-white/70 bg-white/70 text-amber-700 shadow-sm">
-              🧸 {tr(gradeLabel(4))}
+              🧸 {levelLabel(4, settings.curriculum)}
             </span>
             <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink-950 sm:text-4xl">
               {name ? tr('Hi {name}!', { name: firstName(name) }) : tr('Hi there!')}{' '}

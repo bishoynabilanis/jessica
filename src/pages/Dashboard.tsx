@@ -34,7 +34,7 @@ import { mascotForXp } from '@/data/mascots'
 import { subjectMeta } from '@/data/books'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
-import { gradeLabel } from '@/data/officialBooks'
+import { levelLabel } from '@/lib/curriculum'
 import type { Book, Quest } from '@/types'
 import { generateJSON } from '@/lib/gemini'
 import { questsPrompt } from '@/lib/prompts'
@@ -209,7 +209,7 @@ export function Dashboard() {
   return (
     <div className="space-y-5">
       <PageHeader
-        eyebrow={`${new Date().toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} · ${tr(gradeLabel(settings.gradeLevel))}`}
+        eyebrow={`${new Date().toLocaleDateString(settings.language === 'ar' ? 'ar-EG' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} · ${levelLabel(settings.gradeLevel, settings.curriculum)}`}
         title={name ? tr('Let’s make today count, {name}.', { name: firstName(name) }) : tr("Welcome to your learning universe.")}
         subtitle={tr("Read a little, recall a lot, and let Jessica turn confusion into “aha!” moments.")}
         actions={

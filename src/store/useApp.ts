@@ -50,6 +50,7 @@ const defaultSettings: Settings = {
   parentPhone: '',
   studentName: '',
   gradeLevel: 1,
+  curriculum: 'egypt',
   grade: 'First Preparatory',
   school: '',
 }

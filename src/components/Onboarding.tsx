@@ -20,6 +20,7 @@ import { useApp } from '@/store/useApp'
 import { cn } from '@/lib/utils'
 import { tr } from '@/i18n'
 import { defaultGradeForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
+import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 
 const features = [
   { icon: BookOpen, label: 'Read any PDF', hint: 'Highlight a sentence → instant explanation' },
@@ -115,7 +116,7 @@ export function Onboarding() {
               {step === 0 && (
                 <div className="animate-slide-up">
                   <span className="chip border-aurora-400/30 bg-aurora-400/10 text-aurora-200">
-                    <GraduationCap className="h-3 w-3" /> {tr("Primary & Preparatory · Language Schools")}
+                    <GraduationCap className="h-3 w-3" /> {tr("Primary, preparatory and beyond")}
                   </span>
                   <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-main sm:text-4xl">
                     {tr("Your whole school year,")}
@@ -184,15 +185,59 @@ export function Onboarding() {
                   </p>
 
                   <div className="mt-4">
-                    <span className="label mb-1.5 block">{tr('Stage')}</span>
-                    <Segmented
-                      options={[
-                        { value: 'primary', label: 'Primary stage' },
-                        { value: 'prep', label: 'Preparatory stage' },
-                      ]}
-                      value={stageForGrade(settings.gradeLevel)}
-                      onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
-                    />
+                    <span className="label mb-1.5 block">{tr('Where do you study?')}</span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {CURRICULA.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => updateSettings({ curriculum: option.id })}
+                          className={cn(
+                            'rounded-2xl border p-2.5 text-start transition',
+                            settings.curriculum === option.id
+                              ? 'border-aurora-400/50 bg-aurora-400/10'
+                              : 'border-line bg-card-2 hover:bg-white/5',
+                          )}
+                        >
+                          <span className="text-base">{option.emoji}</span>
+                          <span className="mt-1 block text-[11px] font-extrabold text-main">{tr(option.label)}</span>
+                          <span className="block text-[9px] leading-snug text-muted">{tr(option.hint)}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-3">
+                    <span className="label mb-1.5 block">
+                      {hasOfficialLibrary(settings.curriculum) ? tr('Stage') : tr('Learner level')}
+                    </span>
+                    {hasOfficialLibrary(settings.curriculum) ? (
+                      <Segmented
+                        options={[
+                          { value: 'primary', label: 'Primary stage' },
+                          { value: 'prep', label: 'Preparatory stage' },
+                        ]}
+                        value={stageForGrade(settings.gradeLevel)}
+                        onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
+                      />
+                    ) : (
+                      <div className="grid gap-1.5">
+                        {GLOBAL_LEVELS.map((level) => (
+                          <button
+                            key={level.grade}
+                            onClick={() => updateSettings({ gradeLevel: level.grade })}
+                            className={cn(
+                              'flex items-center justify-between gap-2 rounded-xl border px-3 py-2 text-start text-[11px] font-bold transition',
+                              settings.gradeLevel === level.grade
+                                ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
+                                : 'border-line bg-card-2 text-muted hover:text-main',
+                            )}
+                          >
+                            <span>{tr(level.label)}</span>
+                            <span className="text-[9px] font-semibold text-muted-2">{tr(level.hint)}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-3 grid grid-cols-2 gap-2">
