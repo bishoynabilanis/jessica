@@ -199,7 +199,7 @@ function page(grade, { title, description, body, slug }) {
     <tbody>${body.rows}</tbody>
   </table>
   <p class="note">${body.note}</p>
-  <div class="grade-nav">${body.nav}<a href="../../guides/">📘 أدلة المذاكرة</a></div>
+  <div class="grade-nav">${body.nav}<a href="../../quiz/${body.slug}/">⏱️ اختبر نفسك</a><a href="../../guides/">📘 أدلة المذاكرة</a></div>
 </section>
 <section class="about">
   <div>
@@ -266,7 +266,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
       title: `كتب الوزارة ${arLabel} — تحميل PDF رسمي | Jessica`,
       description,
       slug,
-      body: { heading, intro, rows, note, nav, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson },
+      body: { heading, intro, rows, note, nav, slug, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson },
     }),
   )
   console.log(slug, list.length)
@@ -365,6 +365,8 @@ const urls = [
   { loc: `${BASE}/welcome/guides/study-method/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/welcome/guides/exam-week/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/welcome/guides/bubble-sheet/`, freq: 'monthly', priority: '0.7' },
+  { loc: `${BASE}/welcome/quiz/`, freq: 'weekly', priority: '0.9' },
+  ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/quiz/${slug}/`, freq: 'weekly', priority: '0.8' })),
   { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
 ]
 fs.writeFileSync(
