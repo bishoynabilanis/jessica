@@ -420,7 +420,7 @@ const urls = [
   { loc: `${BASE}/welcome/quiz/`, freq: 'weekly', priority: '0.9' },
   { loc: `${BASE}/welcome/install/`, freq: 'monthly', priority: '0.8' },
   { loc: `${BASE}/welcome/topics/`, freq: 'weekly', priority: '0.9' },
-  ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety'].map((slug) => ({
+  ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests'].map((slug) => ({
     loc: `${BASE}/welcome/topics/${slug}/`,
     freq: 'monthly',
     priority: '0.8',
