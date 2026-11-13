@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   watch:
@@ -19,12 +20,23 @@ jobs:
         with:
           node-version: 20
 
+      # Keyless Google auth (Workload Identity Federation). If it is not
+      # configured yet the step is skipped and the health checks still run.
+      - id: google
+        continue-on-error: true
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/941077287263/locations/global/workloadIdentityPools/github/providers/jessica
+          service_account: jessica-watch@hermes-youtube-513013.iam.gserviceaccount.com
+          token_format: access_token
+
       - name: Check the site, sitemap and Search Console
         env:
           SITE_URL: https://bishoynabilanis.github.io/jessica
           GSC_SITE_URL: ${{ vars.GSC_SITE_URL || 'https://bishoynabilanis.github.io/jessica/' }}
           NTFY_TOPIC: ${{ vars.NTFY_TOPIC || 'jessica-ops-5d2a8c71' }}
           INDEXNOW_KEY: 8f3c1d7a9b2e6f405a1c8d3e7b9f2a64
+          GSC_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
           GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
         run: node scripts/seo-watch.mjs
 

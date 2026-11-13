@@ -218,12 +218,14 @@ const badUrls = await checkUrls(urls.length ? urls : KEY_PAGES)
 await pingIndexNow(urls.length ? urls : KEY_PAGES)
 
 let report = null
-if (process.env.GSC_SERVICE_ACCOUNT) {
-  try {
+try {
+  if (process.env.GSC_ACCESS_TOKEN) {
+    report = await gscReport(process.env.GSC_ACCESS_TOKEN)
+  } else if (process.env.GSC_SERVICE_ACCOUNT) {
     report = await gscReport(await googleToken(process.env.GSC_SERVICE_ACCOUNT))
-  } catch (error) {
-    record('Search Console API', false, error.message)
   }
+} catch (error) {
+  record('Search Console API', false, error.message)
 }
 
 const text = markdown(report)
