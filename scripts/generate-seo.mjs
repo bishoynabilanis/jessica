@@ -162,6 +162,17 @@ function page(grade, { title, description, body, slug }) {
   .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
   .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   .faq p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+  .related { margin-top: 30px; }
+  .related h2 { font-size: 20px; margin-bottom: 10px; }
+  .rel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rel-grid a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .rel-grid a:hover { color: var(--text); border-color: rgba(46,230,197,.35); }
+  .exam { margin-top: 34px; border: 1px solid rgba(46,230,197,.28); background: rgba(46,230,197,.06); border-radius: 20px; padding: 20px; }
+  .exam h2 { font-size: 21px; margin-bottom: 10px; }
+  .exam p { color: var(--muted); font-size: 14px; line-height: 2; }
+  .exam ol { margin: 12px 0 8px; padding-inline-start: 20px; display: grid; gap: 8px; }
+  .exam li { color: var(--muted); font-size: 13px; line-height: 1.95; }
+  .exam li b { color: var(--text); }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${description}","url":"${BASE}/welcome/grades/${slug}/","inLanguage":"ar"}
@@ -218,6 +229,11 @@ function page(grade, { title, description, body, slug }) {
   <h2>أسئلة شائعة عن الصف ${body.gradeLabel}</h2>
   ${body.faqHtml}
 </section>
+${body.examHtml}
+<section class="related">
+  <h2>روابط مهمة</h2>
+  <div class="rel-grid">${body.related}</div>
+</section>
 </div>
 </main>
 <footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../../">الرئيسية</a> · <a href="../../../#/disclaimer">إخلاء المسؤولية</a></span></div></footer>
@@ -258,6 +274,40 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
     faqItems.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   )
 
+  const all = Object.values(LABELS)
+  const at = all.findIndex(([, , s]) => s === slug)
+  const prev = at > 0 ? all[at - 1] : null
+  const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null
+  const rel = [
+    `<a href="../../quiz/${slug}/">⏱️ اختبار رياضيات ${arLabel}</a>`,
+    `<a href="../../guides/exam-week/">🗓️ خطة آخر أسبوع قبل الامتحان</a>`,
+    `<a href="../../guides/study-method/">📖 إزاي تذاكر من الكتاب</a>`,
+  ]
+  if (prev) rel.push(`<a href="../${prev[2]}/">→ كتب ${prev[0]}</a>`)
+  if (next) rel.push(`<a href="../${next[2]}/">← كتب ${next[0]}</a>`)
+  if (['primary-6', 'prep-1', 'prep-2'].includes(slug)) {
+    rel.push(`<a href="../prep-3/">🟣 كتب تالتة إعدادي (سنة الشهادة)</a>`)
+  }
+  if (slug === 'prep-3') {
+    rel.push(`<a href="../../guides/bubble-sheet/">✏️ حل البابل شيت صح</a>`)
+  }
+  const related = rel.join('')
+
+  const examHtml =
+    slug === 'prep-3'
+      ? `<section class="exam">
+  <h2>امتحانات تالتة إعدادي: إزاي تحوّل المذاكرة لدرجات</h2>
+  <p>سنة الشهادة مش امتحان واحد — هي ٩ شهور بيتبني فيها الفرق. الطالب اللي بيذاكر صح مش بيحل أسئلة أكتر، هو بيراجع غلطاته أقل. الخطة دي مبنية على نفس المنهج الرسمي الموجود فوق.</p>
+  <ol>
+    <li><b>اقرأ الدرس من الكتاب مرة واحدة بس.</b> وبعدها اقفل الكتاب واكتب اللي فهمته في ٣ جمل. اللي مش قادر تكتبه هو اللي هتراجعه، مش الدرس كله.</li>
+    <li><b>امتحان بتوقيت كل أسبوع.</b> ٦٠ دقيقة، من غير موبايل، وبعدها صحّح فورًا. التصحيح هو اللي بيعلّم، مش الحل.</li>
+    <li><b>دفتر أخطاء واحد.</b> كل غلطة تتكتب بقاعدة الصح جنبها. قبل أي امتحان، راجع الدفتر مش الكتاب.</li>
+    <li><b>مراجعة متباعدة.</b> الدرس يتزار بعد يوم، ٣ أيام، أسبوع. كل مرة ٥ دقايق، مش ساعة.</li>
+  </ol>
+  <p>وابدأ بقياس سريع: <a href="../../quiz/prep-3/" style="color:var(--mint);font-weight:700">اختبار رياضيات تالتة إعدادي في ٦٠ ثانية</a> — ١٠ أسئلة بتقولك مهارتك الحقيقية، وبعدها افتح الكتاب على الصفحة اللي محتاجها.</p>
+</section>`
+      : ''
+
   const dir = path.join(outRoot, slug)
   fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(
@@ -266,7 +316,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
       title: `كتب الوزارة ${arLabel} — تحميل PDF رسمي | Jessica`,
       description,
       slug,
-      body: { heading, intro, rows, note, nav, slug, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson },
+      body: { heading, intro, rows, note, nav, slug, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson, related, examHtml },
     }),
   )
   console.log(slug, list.length)

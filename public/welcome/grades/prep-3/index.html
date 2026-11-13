@@ -52,6 +52,17 @@
   .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
   .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   .faq p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+  .related { margin-top: 30px; }
+  .related h2 { font-size: 20px; margin-bottom: 10px; }
+  .rel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rel-grid a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .rel-grid a:hover { color: var(--text); border-color: rgba(46,230,197,.35); }
+  .exam { margin-top: 34px; border: 1px solid rgba(46,230,197,.28); background: rgba(46,230,197,.06); border-radius: 20px; padding: 20px; }
+  .exam h2 { font-size: 21px; margin-bottom: 10px; }
+  .exam p { color: var(--muted); font-size: 14px; line-height: 2; }
+  .exam ol { margin: 12px 0 8px; padding-inline-start: 20px; display: grid; gap: 8px; }
+  .exam li { color: var(--muted); font-size: 13px; line-height: 1.95; }
+  .exam li b { color: var(--text); }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"كتب الوزارة الثالث الإعدادي — تحميل PDF رسمي | Jessica","description":"تحميل كتب الوزارة الرسمية للصف الثالث الإعدادي (Third Preparatory) الترم الأول — 6 كتاب بروابط مباشرة، مع تطبيق Jessica المجاني للمذاكرة بالذكاء الاصطناعي.","url":"https://bishoynabilanis.github.io/jessica/welcome/grades/prep-3/","inLanguage":"ar"}
@@ -107,6 +118,21 @@
 <section class="faq">
   <h2>أسئلة شائعة عن الصف الثالث الإعدادي</h2>
   <details><summary>إيه أفضل طريقة مراجعة لتالتة إعدادي؟</summary><p>ابدأ بمراجعة الفكرة من الكتاب، بعدها حل امتحان كامل بتوقيت، وبعدها راجع الغلطات فقط. التصحيح أهم من حل امتحانات كتير من غير مراجعة.</p></details><details><summary>هل حل امتحانات سنوات سابقة مهم؟</summary><p>أيوه، هو أهم حاجة في سنة الشهادة. بيعرّفك شكل الأسئلة، وبيكشف النقط اللي بتغلط فيها تحت ضغط الوقت. حل ٣ امتحانات بتركيز أفضل من ١٠ من غير تصحيح.</p></details><details><summary>هل الكتب دي رسمية؟</summary><p>أيوه، كل الكتب بروابط مباشرة من سيرفر وزارة التربية والتعليم، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبيشتغل على جهازك.</p></details><details><summary>إزاي أذاكر من غير إنترنت؟</summary><p>نزّل الكتاب مرة واحدة واستورده في تطبيق Jessica. بعد كده القراءة والبطاقات والملاحظات تشتغل أوفلاين.</p></details><details><summary>مادتي مش موجودة في الكتالوج، أعمل إيه؟</summary><p>استورد أي PDF من جهازك داخل التطبيق، وجيسيكا تفهرسه وتديك أسئلة منه زي أي كتاب رسمي.</p></details>
+</section>
+<section class="exam">
+  <h2>امتحانات تالتة إعدادي: إزاي تحوّل المذاكرة لدرجات</h2>
+  <p>سنة الشهادة مش امتحان واحد — هي ٩ شهور بيتبني فيها الفرق. الطالب اللي بيذاكر صح مش بيحل أسئلة أكتر، هو بيراجع غلطاته أقل. الخطة دي مبنية على نفس المنهج الرسمي الموجود فوق.</p>
+  <ol>
+    <li><b>اقرأ الدرس من الكتاب مرة واحدة بس.</b> وبعدها اقفل الكتاب واكتب اللي فهمته في ٣ جمل. اللي مش قادر تكتبه هو اللي هتراجعه، مش الدرس كله.</li>
+    <li><b>امتحان بتوقيت كل أسبوع.</b> ٦٠ دقيقة، من غير موبايل، وبعدها صحّح فورًا. التصحيح هو اللي بيعلّم، مش الحل.</li>
+    <li><b>دفتر أخطاء واحد.</b> كل غلطة تتكتب بقاعدة الصح جنبها. قبل أي امتحان، راجع الدفتر مش الكتاب.</li>
+    <li><b>مراجعة متباعدة.</b> الدرس يتزار بعد يوم، ٣ أيام، أسبوع. كل مرة ٥ دقايق، مش ساعة.</li>
+  </ol>
+  <p>وابدأ بقياس سريع: <a href="../../quiz/prep-3/" style="color:var(--mint);font-weight:700">اختبار رياضيات تالتة إعدادي في ٦٠ ثانية</a> — ١٠ أسئلة بتقولك مهارتك الحقيقية، وبعدها افتح الكتاب على الصفحة اللي محتاجها.</p>
+</section>
+<section class="related">
+  <h2>روابط مهمة</h2>
+  <div class="rel-grid"><a href="../../quiz/prep-3/">⏱️ اختبار رياضيات الثالث الإعدادي</a><a href="../../guides/exam-week/">🗓️ خطة آخر أسبوع قبل الامتحان</a><a href="../../guides/study-method/">📖 إزاي تذاكر من الكتاب</a><a href="../prep-2/">→ كتب الثاني الإعدادي</a><a href="../../guides/bubble-sheet/">✏️ حل البابل شيت صح</a></div>
 </section>
 </div>
 </main>
