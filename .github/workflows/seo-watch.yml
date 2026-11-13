@@ -34,7 +34,7 @@ jobs:
           workload_identity_provider: projects/941077287263/locations/global/workloadIdentityPools/github/providers/jessica
           service_account: jessica-watch@hermes-youtube-513013.iam.gserviceaccount.com
           token_format: access_token
-          access_token_scopes: https://www.googleapis.com/auth/webmasters.readonly
+          access_token_scopes: https://www.googleapis.com/auth/webmasters
 
       - name: Check the site, sitemap and Search Console
         env:
