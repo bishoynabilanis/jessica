@@ -281,6 +281,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   const rel = [
     `<a href="../../quiz/${slug}/">⏱️ اختبار رياضيات ${arLabel}</a>`,
     `<a href="../../install/">📲 تثبيت التطبيق على الموبايل</a>`,
+    `<a href="../../topics/">🧭 مواضيع المذاكرة</a>`,
     `<a href="../../guides/exam-week/">🗓️ خطة آخر أسبوع قبل الامتحان</a>`,
     `<a href="../../guides/study-method/">📖 إزاي تذاكر من الكتاب</a>`,
   ]
@@ -402,7 +403,7 @@ fs.writeFileSync(
 <div class="grades">${gradeCards}</div>
 <p class="about">كل الكتب منشورة على سيرفر وزارة التربية والتعليم الرسمي، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبدون حساب، وبيشتغل على الموبايل والتابلت والكمبيوتر، ويقدر يقرا أي PDF تستورده من جهازك لو مادتك مش موجودة في الكتالوج.</p>
 </div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../../">التطبيق</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../topics/">مواضيع المذاكرة</a> · <a href="../install/">التثبيت</a> · <a href="../../">التطبيق</a></span></div></footer>
 </body>
 </html>`,
 )
@@ -418,6 +419,12 @@ const urls = [
   { loc: `${BASE}/welcome/guides/bubble-sheet/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/welcome/quiz/`, freq: 'weekly', priority: '0.9' },
   { loc: `${BASE}/welcome/install/`, freq: 'monthly', priority: '0.8' },
+  { loc: `${BASE}/welcome/topics/`, freq: 'weekly', priority: '0.9' },
+  ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety'].map((slug) => ({
+    loc: `${BASE}/welcome/topics/${slug}/`,
+    freq: 'monthly',
+    priority: '0.8',
+  })),
   ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/quiz/${slug}/`, freq: 'weekly', priority: '0.8' })),
   { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
 ]

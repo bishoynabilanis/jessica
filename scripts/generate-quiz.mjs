@@ -125,7 +125,7 @@ ${JSON.stringify(jsonld)}
 <main><div class="wrap">
 ${body}
 </div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="${up}">الرئيسية</a> · <a href="${up}quiz/">الاختبارات</a> · <a href="${up}grades/">كتب الوزارة</a> · <a href="${up}guides/">أدلة المذاكرة</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="${up}">الرئيسية</a> · <a href="${up}quiz/">الاختبارات</a> · <a href="${up}grades/">كتب الوزارة</a> · <a href="${up}guides/">أدلة المذاكرة</a> · <a href="${up}topics/">مواضيع المذاكرة</a></span></div></footer>
 <script src="${up}quiz.js"></script>
 </body>
 </html>

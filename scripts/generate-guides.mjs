@@ -362,7 +362,7 @@ ${JSON.stringify(indexLd)}
 <div class="guide-grid">${cards.join('\n')}</div>
 <p class="guides-note">الأدلة دي مكتوبة لطلاب المدارس المصرية من الأول الابتدائي للتالت الإعدادي، وبتشتغل مع أي كتاب رسمي. <a href="../grades/" style="color:var(--mint)">نزّل كتب صفك من هنا</a>.</p>
 </div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a></span></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../topics/">مواضيع المذاكرة</a></span></footer>
 </body>
 </html>`,
 )

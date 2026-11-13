@@ -109,6 +109,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/study-plan/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/homework/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/parents/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/math/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/topics/exam-anxiety/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bishoynabilanis.github.io/jessica/welcome/quiz/primary-1/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
