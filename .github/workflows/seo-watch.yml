@@ -1,0 +1,38 @@
+name: SEO watch
+
+on:
+  schedule:
+    # Every day at 05:30 UTC (07:30 in Cairo in winter).
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check the site, sitemap and Search Console
+        env:
+          SITE_URL: https://bishoynabilanis.github.io/jessica
+          GSC_SITE_URL: ${{ vars.GSC_SITE_URL || 'https://bishoynabilanis.github.io/jessica/' }}
+          NTFY_TOPIC: ${{ vars.NTFY_TOPIC || 'jessica-ops-5d2a8c71' }}
+          INDEXNOW_KEY: 8f3c1d7a9b2e6f405a1c8d3e7b9f2a64
+          GSC_SERVICE_ACCOUNT: ${{ secrets.GSC_SERVICE_ACCOUNT }}
+        run: node scripts/seo-watch.mjs
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-report
+          path: seo-report.md
+          retention-days: 30
+          if-no-files-found: ignore
