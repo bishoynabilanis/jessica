@@ -103,6 +103,35 @@ function base64url(input) {
   return Buffer.from(input).toString('base64url')
 }
 
+async function searchAnalytics(token, dimension, rowLimit) {
+  const fmt = (date) => date.toISOString().slice(0, 10)
+  const body = {
+    startDate: fmt(new Date(Date.now() - 28 * 86400000)),
+    endDate: fmt(new Date()),
+    rowLimit,
+    dataType: 'web',
+  }
+  if (dimension) body.dimensions = [dimension]
+  const res = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}/searchAnalytics/query`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(20000),
+    },
+  )
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error?.message || `searchAnalytics HTTP ${res.status}`)
+  return (data.rows || []).map((row) => ({
+    key: dimension ? row.keys?.[0] || '' : '',
+    clicks: row.clicks || 0,
+    impressions: row.impressions || 0,
+    ctr: row.ctr || 0,
+    position: row.position || 0,
+  }))
+}
+
 async function googleToken(raw) {
   const { client_email, private_key } = JSON.parse(raw)
   const now = Math.floor(Date.now() / 1000)
@@ -170,7 +199,19 @@ async function gscReport(token) {
       inspections.push({ url, verdict: 'ERROR', coverage: error.message, crawl: '', lastCrawl: '' })
     }
   }
-  return { sitemaps, inspections }
+
+  let analytics = null
+  try {
+    analytics = {
+      totals: (await searchAnalytics(token, null, 1))[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 },
+      queries: await searchAnalytics(token, 'query', 15),
+      pages: await searchAnalytics(token, 'page', 10),
+    }
+  } catch (error) {
+    analytics = { error: error.message, totals: null, queries: [], pages: [] }
+  }
+
+  return { sitemaps, inspections, analytics }
 }
 
 /* -------------------------------- report ------------------------------ */
@@ -188,6 +229,31 @@ function markdown(report) {
     lines.push('', '## Search Console — index status', '', '| URL | Verdict | Coverage | Fetch | Last crawl |', '| --- | --- | --- | --- | --- |')
     for (const item of report.inspections) {
       lines.push(`| ${item.url.replace(SITE, '')} | ${item.verdict} | ${item.coverage} | ${item.crawl} | ${item.lastCrawl ? item.lastCrawl.slice(0, 10) : '—'} |`)
+    }
+
+    const analytics = report.analytics
+    if (analytics?.error) {
+      lines.push('', '## Search Console — last 28 days', '', `⚠️ Search Analytics unavailable: ${analytics.error}`)
+    } else if (analytics) {
+      const { totals } = analytics
+      lines.push(
+        '',
+        '## Search Console — last 28 days',
+        '',
+        `**${totals.clicks}** clicks · **${totals.impressions}** impressions · CTR **${(totals.ctr * 100).toFixed(1)}%** · avg position **${totals.position.toFixed(1)}**`,
+      )
+
+      lines.push('', '### Top queries', '', '| Query | Clicks | Impressions | CTR | Position |', '| --- | --- | --- | --- | --- |')
+      if (!analytics.queries.length) lines.push('| — no query data yet — | | | | |')
+      for (const row of analytics.queries) {
+        lines.push(`| ${row.key} | ${row.clicks} | ${row.impressions} | ${(row.ctr * 100).toFixed(1)}% | ${row.position.toFixed(1)} |`)
+      }
+
+      lines.push('', '### Top pages', '', '| Page | Clicks | Impressions | CTR | Position |', '| --- | --- | --- | --- | --- |')
+      if (!analytics.pages.length) lines.push('| — no page data yet — | | | | |')
+      for (const row of analytics.pages) {
+        lines.push(`| ${row.key.replace(SITE, '')} | ${row.clicks} | ${row.impressions} | ${(row.ctr * 100).toFixed(1)}% | ${row.position.toFixed(1)} |`)
+      }
     }
   } else {
     lines.push('', '## Search Console', '', 'Not configured. Add the `GSC_SERVICE_ACCOUNT` secret and `GSC_SITE_URL` variable to include index status.', '', 'See `marketing/growth/automation-ar.md` for the 10-minute setup.')
