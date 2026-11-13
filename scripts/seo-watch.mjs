@@ -219,11 +219,14 @@ await pingIndexNow(urls.length ? urls : KEY_PAGES)
 
 let report = null
 try {
-  if (process.env.GSC_ACCESS_TOKEN) {
-    report = await gscReport(process.env.GSC_ACCESS_TOKEN)
-  } else if (process.env.GSC_SERVICE_ACCOUNT) {
-    report = await gscReport(await googleToken(process.env.GSC_SERVICE_ACCOUNT))
+  const token = process.env.GSC_ACCESS_TOKEN || (process.env.GSC_SERVICE_ACCOUNT ? await googleToken(process.env.GSC_SERVICE_ACCOUNT) : '')
+  if (token && process.env.SITEMAP_RESET === '1') {
+    const endpoint = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}/sitemaps/${encodeURIComponent(SITEMAP_URL)}`
+    await fetch(endpoint, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }).catch(() => {})
+    const put = await fetch(endpoint, { method: 'PUT', headers: { Authorization: `Bearer ${token}` } })
+    record('Sitemap re-submitted', put.ok, `HTTP ${put.status}`)
   }
+  if (token) report = await gscReport(token)
 } catch (error) {
   record('Search Console API', false, error.message)
 }
