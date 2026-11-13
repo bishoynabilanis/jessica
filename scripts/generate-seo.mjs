@@ -56,7 +56,54 @@ const SUBJECT_AR = {
   Religion: 'تربية دينية',
 }
 
+
+const FAQ = {
+  1: [
+    ['ابني لسه بيتعلم الحروف، الكتب دي مناسبة؟', 'أيوه، كتب أولى ابتدائي مبنية خطوة بخطوة من الحروف للأصوات للكلمات. ابدأ بجلسة ١٠ دقايق يوميًا، وخلي الطفل يقرأ بصوت عالي قبل ما تحل أي تدريب.'],
+    ['إيه أهم حاجة أتابعها في أولى ابتدائي؟', 'القراءة والكتابة أكتر من الحفظ. لو الطفل قدر يقرأ كلمة جديدة ويكتبها لوحده، يبقى الأساس سليم وهيكمل أسهل في تانية وتالتة.'],
+  ],
+  2: [
+    ['إيه أهم مهارة في تانية ابتدائي؟', 'القراءة بطلاقة والجمع والطرح الذهني. لو الطفل لسه بيعدّ على صواحبه، خصص ٥ دقايق يوميًا لجدول الضرب البسيط والجمع السريع.'],
+    ['ابني بينسى اللي ذاكره، أعمل إيه؟', 'النسيان طبيعي. راجع نفس الدرس بعد يوم وبعد ٣ أيام وبعد أسبوع. المراجعة القصيرة المتكررة أقوى من جلسة طويلة واحدة.'],
+  ],
+  3: [
+    ['هل الضرب والقسمة بيبدأوا فعلاً في تالتة؟', 'أيوه، تالتة ابتدائي بتبدأ جدول الضرب والقسمة البسيطة، ومعاها علوم بيئية. لو الأساس ده اتأسس صح، رابعة وخامسة بيبقوا أسهل بكتير.'],
+    ['إزاي أخلي الطفل يحب العلوم؟', 'اربط الدرس بحاجة من البيت: النبات اللي على البلكونة، المية والنور. بعدها اقرأ الدرس من الكتاب واسأله سؤال واحد يشرحه بكلامه.'],
+  ],
+  4: [
+    ['المنهج الجديد في رابعة ابتدائي صعب؟', 'المواد كترت مش لأن كل مادة صعبة، لكن لأن التنظيم بقى مهم. خطة أسبوعية بسيطة (مادة كل يوم) أفضل من مذاكرة كل المواد آخر الأسبوع.'],
+    ['إزاي أوزع وقت المذاكرة في رابعة؟', '٤٥ دقيقة يوميًا كافية: ٢٠ دقيقة قراءة من الكتاب، ١٥ دقيقة حل أسئلة، و١٠ دقايق مراجعة سريعة للدرس القديم.'],
+  ],
+  5: [
+    ['إزاي أجهز لخامسة والإعدادي قريب؟', 'خامسة هي سنة بناء المهارات: كسور وأعداد عشرية وقراءة نصوص أطول. ركز على الفهم والتدريب، مش على حفظ الملخصات، وهتلاقي أولى إعدادي أسهل.'],
+    ['هل الكسور هي أصعب حاجة في خامسة؟', 'الكسور والأعداد العشرية أكتر حاجة بتوقف الطلبة، والسبب إنها بتتبني على القسمة. راجع القسمة الأول لو لسه ضعيفة، وبعدها الكسور هتبقى منطقية.'],
+  ],
+  6: [
+    ['إيه اللي لازم يخلص قبل الإعدادي؟', 'القراءة بطلاقة، العمليات الأربع على الكسور والأعداد العشرية، ومعرفة إزاي يلخص درس بكلامه. لو التلاتة دول تمام، الانتقال للإعدادي هيكون سلس.'],
+    ['إزاي أتعامل مع ضغط سادسة ابتدائي؟', 'قسّم الأسبوع: ٣ أيام مواد أساسية ويوم مراجعة ويوم حل امتحان. المذاكرة المنتظمة ٤٥ دقيقة بتغلب جلسات ٤ ساعات آخر الأسبوع.'],
+  ],
+  7: [
+    ['أولى إعدادي نقلة صعبة؟', 'هي نقلة في الكم مش في النوع: مواد أكتر ومفاهيم أعمق. الفرق الحقيقي إن الطالب يبدأ يعتمد على الكتاب والملاحظات بدل الحفظ قبل الامتحان.'],
+    ['إزاي أذاكر الرياضيات في أولى إعدادي؟', 'افهم القانون أولًا، بعدها حل ٣ أمثلة من الكتاب، وبعدها ٥ أسئلة من غير ما تبص على الحل. أي قانون مش قادر تشرحه بكلامك يبقى لسه محتاج مراجعة.'],
+  ],
+  8: [
+    ['إزاي أحسن درجة العلوم في تانية إعدادي؟', 'العلوم هنا بتبدأ تربط مفاهيم: اقرأ الدرس، ارسم مخطط بسيط بأيدك، وبعدها حل أسئلة الكتاب. الرسم والمخطط بيثبتوا المعلومة أكتر من إعادة القراءة.'],
+    ['ثانية إعدادي محتاجة حفظ أكتر؟', 'لأ، محتاجة فهم وربط. الحفظ لوحده بينفع في سؤال واحد، لكن أسئلة «ليه» و«قارن» بتحتاج تكون فاهم العلاقة بين الدروس.'],
+  ],
+  9: [
+    ['إيه أفضل طريقة مراجعة لتالتة إعدادي؟', 'ابدأ بمراجعة الفكرة من الكتاب، بعدها حل امتحان كامل بتوقيت، وبعدها راجع الغلطات فقط. التصحيح أهم من حل امتحانات كتير من غير مراجعة.'],
+    ['هل حل امتحانات سنوات سابقة مهم؟', 'أيوه، هو أهم حاجة في سنة الشهادة. بيعرّفك شكل الأسئلة، وبيكشف النقط اللي بتغلط فيها تحت ضغط الوقت. حل ٣ امتحانات بتركيز أفضل من ١٠ من غير تصحيح.'],
+  ],
+}
+
+const SHARED_FAQ = [
+  ['هل الكتب دي رسمية؟', 'أيوه، كل الكتب بروابط مباشرة من سيرفر وزارة التربية والتعليم، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبيشتغل على جهازك.'],
+  ['إزاي أذاكر من غير إنترنت؟', 'نزّل الكتاب مرة واحدة واستورده في تطبيق Jessica. بعد كده القراءة والبطاقات والملاحظات تشتغل أوفلاين.'],
+  ['مادتي مش موجودة في الكتالوج، أعمل إيه؟', 'استورد أي PDF من جهازك داخل التطبيق، وجيسيكا تفهرسه وتديك أسئلة منه زي أي كتاب رسمي.'],
+]
+
 const BASE = 'https://bishoynabilanis.github.io/jessica'
+
 const outRoot = 'public/welcome/grades'
 fs.rmSync(outRoot, { recursive: true, force: true })
 
@@ -110,9 +157,17 @@ function page(grade, { title, description, body, slug }) {
   .why div { border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; background: rgba(255,255,255,.03); font-size: 12px; color: var(--muted); line-height: 1.8; }
   .why b { display: block; color: var(--text); font-size: 13px; margin-bottom: 2px; }
   @media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+  .faq { margin-top: 30px; }
+  .faq h2 { font-size: 22px; margin-bottom: 12px; }
+  .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+  .faq p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.9; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"${title}","description":"${description}","url":"${BASE}/welcome/grades/${slug}/","inLanguage":"ar"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":${body.faqJson}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -144,7 +199,7 @@ function page(grade, { title, description, body, slug }) {
     <tbody>${body.rows}</tbody>
   </table>
   <p class="note">${body.note}</p>
-  <div class="grade-nav">${body.nav}</div>
+  <div class="grade-nav">${body.nav}<a href="../../guides/">📘 أدلة المذاكرة</a></div>
 </section>
 <section class="about">
   <div>
@@ -158,6 +213,10 @@ function page(grade, { title, description, body, slug }) {
     <div><b>🤖 مدرس ذكي</b>بعد الاستيراد، جيسيكا تشرح أي صفحة وتولّد أسئلة منها.</div>
     <div><b>📴 أوفلاين</b>الكتاب والبطاقات والملاحظات تشتغل بدون إنترنت.</div>
   </div>
+</section>
+<section class="faq">
+  <h2>أسئلة شائعة عن الصف ${body.gradeLabel}</h2>
+  ${body.faqHtml}
 </section>
 </div>
 </main>
@@ -193,6 +252,11 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   const chips = subjects.map((subject) => `<span>${SUBJECT_AR[subject] || subject}</span>`).join('')
   const about = `${stage.about} في الصفحة دي ${list.length} كتاب رسمي متاح للترم الأول${subjects.length ? ` في ${subjects.length} مواد: ${subjects.map((subject) => SUBJECT_AR[subject] || subject).join('، ')}` : ''}.`
   const whyIntro = stage.why
+  const faqItems = [...(FAQ[grade] || []), ...SHARED_FAQ]
+  const faqHtml = faqItems.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')
+  const faqJson = JSON.stringify(
+    faqItems.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  )
 
   const dir = path.join(outRoot, slug)
   fs.mkdirSync(dir, { recursive: true })
@@ -202,7 +266,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
       title: `كتب الوزارة ${arLabel} — تحميل PDF رسمي | Jessica`,
       description,
       slug,
-      body: { heading, intro, rows, note, nav, gradeLabel: arLabel, about, chips, whyIntro },
+      body: { heading, intro, rows, note, nav, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson },
     }),
   )
   console.log(slug, list.length)
@@ -297,6 +361,10 @@ const urls = [
   { loc: `${BASE}/welcome/en/`, freq: 'weekly', priority: '0.9' },
   { loc: `${BASE}/welcome/grades/`, freq: 'weekly', priority: '0.9' },
   ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/grades/${slug}/`, freq: 'monthly', priority: '0.8' })),
+  { loc: `${BASE}/welcome/guides/`, freq: 'monthly', priority: '0.8' },
+  { loc: `${BASE}/welcome/guides/study-method/`, freq: 'monthly', priority: '0.7' },
+  { loc: `${BASE}/welcome/guides/exam-week/`, freq: 'monthly', priority: '0.7' },
+  { loc: `${BASE}/welcome/guides/bubble-sheet/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
 ]
 fs.writeFileSync(

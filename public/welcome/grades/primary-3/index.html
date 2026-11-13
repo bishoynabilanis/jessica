@@ -47,9 +47,17 @@
   .why div { border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; background: rgba(255,255,255,.03); font-size: 12px; color: var(--muted); line-height: 1.8; }
   .why b { display: block; color: var(--text); font-size: 13px; margin-bottom: 2px; }
   @media (max-width: 760px) { .why { grid-template-columns: 1fr; } }
+  .faq { margin-top: 30px; }
+  .faq h2 { font-size: 22px; margin-bottom: 12px; }
+  .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+  .faq p { margin-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.9; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"كتب الوزارة الثالث الابتدائي — تحميل PDF رسمي | Jessica","description":"تحميل كتب الوزارة الرسمية للصف الثالث الابتدائي (Third Primary) الترم الأول — 2 كتاب بروابط مباشرة، مع تطبيق Jessica المجاني للمذاكرة بالذكاء الاصطناعي.","url":"https://bishoynabilanis.github.io/jessica/welcome/grades/primary-3/","inLanguage":"ar"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"هل الضرب والقسمة بيبدأوا فعلاً في تالتة؟","acceptedAnswer":{"@type":"Answer","text":"أيوه، تالتة ابتدائي بتبدأ جدول الضرب والقسمة البسيطة، ومعاها علوم بيئية. لو الأساس ده اتأسس صح، رابعة وخامسة بيبقوا أسهل بكتير."}},{"@type":"Question","name":"إزاي أخلي الطفل يحب العلوم؟","acceptedAnswer":{"@type":"Answer","text":"اربط الدرس بحاجة من البيت: النبات اللي على البلكونة، المية والنور. بعدها اقرأ الدرس من الكتاب واسأله سؤال واحد يشرحه بكلامه."}},{"@type":"Question","name":"هل الكتب دي رسمية؟","acceptedAnswer":{"@type":"Answer","text":"أيوه، كل الكتب بروابط مباشرة من سيرفر وزارة التربية والتعليم، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبيشتغل على جهازك."}},{"@type":"Question","name":"إزاي أذاكر من غير إنترنت؟","acceptedAnswer":{"@type":"Answer","text":"نزّل الكتاب مرة واحدة واستورده في تطبيق Jessica. بعد كده القراءة والبطاقات والملاحظات تشتغل أوفلاين."}},{"@type":"Question","name":"مادتي مش موجودة في الكتالوج، أعمل إيه؟","acceptedAnswer":{"@type":"Answer","text":"استورد أي PDF من جهازك داخل التطبيق، وجيسيكا تفهرسه وتديك أسئلة منه زي أي كتاب رسمي."}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -81,7 +89,7 @@
     <tbody><tr><td>English</td><td>English — Primary 3</td><td>11.9 MB</td><td><a class="book-link" href="https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Primary/Primary3/Term1/StudentBook/English_Prim3_Tr1.pdf" target="_blank" rel="noreferrer">تحميل PDF</a></td></tr><tr><td>Mathematics</td><td>Mathematics — Primary 3</td><td>5.7 MB</td><td><a class="book-link" href="https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026/Primary/Primary3/Term1/StudentBook/Math_EN_prim3_TR1.pdf" target="_blank" rel="noreferrer">تحميل PDF</a></td></tr></tbody>
   </table>
   <p class="note">حقوق الطبع والنشر ملك وزارة التربية والتعليم. الروابط منشورة على سيرفرات الوزارة الرسمية، والاستخدام للمذاكرة الشخصية فقط. لو مادتك مش موجودة تقدر تستورد أي PDF من جهازك داخل التطبيق.</p>
-  <div class="grade-nav"><a href="../primary-1/">الأول الابتدائي</a><a href="../primary-2/">الثاني الابتدائي</a><a href="../primary-3/">الثالث الابتدائي</a><a href="../primary-4/">الرابع الابتدائي</a><a href="../primary-5/">الخامس الابتدائي</a><a href="../primary-6/">السادس الابتدائي</a><a href="../prep-1/">الأول الإعدادي</a><a href="../prep-2/">الثاني الإعدادي</a><a href="../prep-3/">الثالث الإعدادي</a></div>
+  <div class="grade-nav"><a href="../primary-1/">الأول الابتدائي</a><a href="../primary-2/">الثاني الابتدائي</a><a href="../primary-3/">الثالث الابتدائي</a><a href="../primary-4/">الرابع الابتدائي</a><a href="../primary-5/">الخامس الابتدائي</a><a href="../primary-6/">السادس الابتدائي</a><a href="../prep-1/">الأول الإعدادي</a><a href="../prep-2/">الثاني الإعدادي</a><a href="../prep-3/">الثالث الإعدادي</a><a href="../../guides/">📘 أدلة المذاكرة</a></div>
 </section>
 <section class="about">
   <div>
@@ -95,6 +103,10 @@
     <div><b>🤖 مدرس ذكي</b>بعد الاستيراد، جيسيكا تشرح أي صفحة وتولّد أسئلة منها.</div>
     <div><b>📴 أوفلاين</b>الكتاب والبطاقات والملاحظات تشتغل بدون إنترنت.</div>
   </div>
+</section>
+<section class="faq">
+  <h2>أسئلة شائعة عن الصف الثالث الابتدائي</h2>
+  <details><summary>هل الضرب والقسمة بيبدأوا فعلاً في تالتة؟</summary><p>أيوه، تالتة ابتدائي بتبدأ جدول الضرب والقسمة البسيطة، ومعاها علوم بيئية. لو الأساس ده اتأسس صح، رابعة وخامسة بيبقوا أسهل بكتير.</p></details><details><summary>إزاي أخلي الطفل يحب العلوم؟</summary><p>اربط الدرس بحاجة من البيت: النبات اللي على البلكونة، المية والنور. بعدها اقرأ الدرس من الكتاب واسأله سؤال واحد يشرحه بكلامه.</p></details><details><summary>هل الكتب دي رسمية؟</summary><p>أيوه، كل الكتب بروابط مباشرة من سيرفر وزارة التربية والتعليم، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبيشتغل على جهازك.</p></details><details><summary>إزاي أذاكر من غير إنترنت؟</summary><p>نزّل الكتاب مرة واحدة واستورده في تطبيق Jessica. بعد كده القراءة والبطاقات والملاحظات تشتغل أوفلاين.</p></details><details><summary>مادتي مش موجودة في الكتالوج، أعمل إيه؟</summary><p>استورد أي PDF من جهازك داخل التطبيق، وجيسيكا تفهرسه وتديك أسئلة منه زي أي كتاب رسمي.</p></details>
 </section>
 </div>
 </main>
