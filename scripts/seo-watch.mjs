@@ -236,4 +236,4 @@ console.log(text)
 fs.writeFileSync('seo-report.md', `${text}\n`)
 if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${text}\n`)
 await notify(text)
-if (badUrls > 0 || problems.some((item) => item.startsWith('Sitemap'))) process.exitCode = 1
+if (badUrls > 0 || problems.some((item) => item.startsWith('Sitemap:'))) process.exitCode = 1
