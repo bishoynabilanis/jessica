@@ -98,8 +98,8 @@ const head = `<!doctype html>
 <meta name="twitter:title" content="تثبيت Jessica على الموبايل والكمبيوتر">
 <meta name="twitter:description" content="خطوات التثبيت كاملة، وحلول المشاكل الشائعة.">
 <meta name="twitter:image" content="${BASE}/og.jpg">
-<link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../../icons/icon-192.png">
+<link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
