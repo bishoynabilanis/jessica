@@ -280,6 +280,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null
   const rel = [
     `<a href="../../quiz/${slug}/">⏱️ اختبار رياضيات ${arLabel}</a>`,
+    `<a href="../../install/">📲 تثبيت التطبيق على الموبايل</a>`,
     `<a href="../../guides/exam-week/">🗓️ خطة آخر أسبوع قبل الامتحان</a>`,
     `<a href="../../guides/study-method/">📖 إزاي تذاكر من الكتاب</a>`,
   ]
@@ -416,6 +417,7 @@ const urls = [
   { loc: `${BASE}/welcome/guides/exam-week/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/welcome/guides/bubble-sheet/`, freq: 'monthly', priority: '0.7' },
   { loc: `${BASE}/welcome/quiz/`, freq: 'weekly', priority: '0.9' },
+  { loc: `${BASE}/welcome/install/`, freq: 'monthly', priority: '0.8' },
   ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/quiz/${slug}/`, freq: 'weekly', priority: '0.8' })),
   { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
 ]

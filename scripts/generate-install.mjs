@@ -1,0 +1,249 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
+const BASE = 'https://bishoynabilanis.github.io/jessica'
+const OUT = 'public/welcome/install'
+
+const STEPS = [
+  {
+    emoji: '🤖',
+    title: 'Chrome أو Samsung Internet',
+    items: [
+      'افتح اللينك <b dir="ltr">is.gd/jessicaapp</b> في <b>Chrome</b>. لو اللينك فتح جوه فيسبوك أو واتساب، اضغط القائمة ⋮ واختار «فتح في المتصفح».',
+      'استنى الصفحة تحمّل خالص (٥–١٠ ثواني على نت عادي).',
+      'اضغط قائمة ⋮ (تلات نقط فوق على اليمين).',
+      'اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».',
+      'اضغط «تثبيت». الأيقونة هتنزل على الشاشة الرئيسية، وهتفتح في شاشة كاملة من غير شريط المتصفح.',
+    ],
+    note: 'لو مش لاقي «تثبيت التطبيق»: جرّب تحديث Chrome من Play Store، أو استخدم «إضافة إلى الشاشة الرئيسية» — نفس النتيجة.',
+  },
+  {
+    emoji: '📱',
+    title: 'Safari على آيفون وآيباد',
+    items: [
+      'افتح اللينك في <b>Safari</b> تحديدًا. على الآيفون أي متصفح تاني (Chrome أو فيسبوك) مش هيعرف يثبّت.',
+      'اضغط زر المشاركة (المربع اللي فيه سهم طالع) في آخر الشاشة.',
+      'انزل لتحت واختار «إضافة إلى الشاشة الرئيسية» (Add to Home Screen).',
+      'اكتب الاسم «Jessica» واضغط «إضافة».',
+    ],
+    note: 'iOS بيحفظ بيانات الموقع طالما مستخدمتش «مسح بيانات الموقع» من إعدادات Safari، فتقدّم ابنك بيفضل موجود.',
+  },
+  {
+    emoji: '💻',
+    title: 'Chrome أو Edge على الكمبيوتر',
+    items: [
+      'افتح اللينك في Chrome أو Edge.',
+      'اضغط أيقونة التثبيت الصغيرة (شاشة عليها سهم) في شريط العنوان.',
+      'اضغط «تثبيت».',
+      'التطبيق هيفتح في نافذة مستقلة، وهيبقى له اختصار على الديسكتوب.',
+    ],
+    note: 'على ويندوز التثبيت بيشتغل من نفس المتصفح. لو الأيقونة مش ظاهرة، من قائمة المتصفح اختار «تثبيت Jessica».',
+  },
+]
+
+const AFTER = [
+  ['أيقونة على الشاشة الرئيسية', 'بتفتح زي أي تطبيق، من غير شريط عناوين ولا إعلانات.'],
+  ['يشتغل أوفلاين', 'بعد أول فتح وتحميل كتاب، القراءة والبطاقات والملاحظات والامتحانات المحفوظة بتشتغل بدون إنترنت.'],
+  ['بدون حساب وبدون تسجيل', 'مفيش إيميل ولا رقم تليفون. مفيش سيرفر بيستقبل بياناتك.'],
+  ['بياناتك على جهازك', 'الكتب في ذاكرة المتصفح، والمفتاح (لو استخدمته) محفوظ محليًا. مفيش حد بيشوفها غيرك.'],
+]
+
+const FIXES = [
+  ['مش لاقي زر التثبيت على أندرويد؟', 'اتأكد إنك فاتح على <b>https</b> وفي Chrome مش متصفح جوه تطبيق تاني. جرّب ⋮ ← «إضافة إلى الشاشة الرئيسية»؛ بتعمل نفس الشغل.'],
+  ['الأيقونة نزلت بس بتفتح في المتصفح؟', 'ده معناه إن التثبيت اتعمل كاختصار مش كتطبيق. امسح الاختصار، افتح اللينك في Chrome، واستنى ثانية زيادة قبل ما تضغط «تثبيت التطبيق».'],
+  ['آيفون مش بيديني خيار الإضافة؟', 'لازم Safari. لو فاتح من فيسبوك، اضغط ⋯ ← «فتح في Safari».'],
+  ['التطبيق مش بيفتح أوفلاين؟', 'افتحه مرة واحدة وأنت متصل، واستنى تحميل الكتب اللي محتاجها. بعد كده اقفل النت وجرّب.'],
+  ['مسحت بيانات المتصفح — راح كل حاجة؟', 'أيوه، البيانات محلية بالكامل، فمسح بيانات الموقع بيمسح التقدّم والكتب. امسح بيانات المواقع التانية بس، وابعد عن «مسح كل البيانات».'],
+  ['ممكن أثبّته على أكتر من جهاز؟', 'أيوه، كل جهاز بيتثبت لوحده وتقدّمه مستقل. المزامنة بين الأجهزة مش موجودة حاليًا لأن مفيش حساب ولا سيرفر.'],
+]
+
+const FAQ = [
+  ['هل التثبيت بياخد مساحة كبيرة؟', 'التطبيق نفسه صغير (أقل من ٢ ميجا). المساحة بتزيد مع الكتب اللي بتستوردها، والكتاب الواحد بين ٢ و٢٠ ميجا حسب المادة.'],
+  ['هل محتاج حساب جوجل أو فيسبوك؟', 'لا. مفيش تسجيل خالص. تفتح وتذاكر.'],
+  ['التطبيق شغال على التابلت؟', 'أيوه، على أندرويد تابلت وآيباد. نفس خطوات الموبايل.'],
+  ['هل فيه إعلانات أو مشتريات جوه التطبيق؟', 'لا إعلانات ولا مشتريات ولا اشتراك. التطبيق مجاني ومفتوح المصدر.'],
+  ['المدرس الذكي محتاج مفتاح — ده إجباري؟', 'لا. الكتب والاختبارات والمراجعة شغالين من أول ثانية. المدرس الذكي (شرح أي صفحة بالذكاء الاصطناعي) اختياري، وبمفتاح Gemini مجاني من Google AI Studio.'],
+  ['ينفع أستخدمه على آيفون قديم؟', 'ينفع طالما iOS 13 أو أحدث وبتستخدم Safari. النسخ الأقدم ممكن تفتح التطبيق في المتصفح من غير تثبيت.'],
+]
+
+function card(step) {
+  return `<div class="step-card">
+  <h3>${step.emoji} ${step.title}</h3>
+  <ol>${step.items.map((item) => `<li>${item}</li>`).join('')}</ol>
+  <div class="step-note">💡 ${step.note}</div>
+</div>`
+}
+
+const head = `<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تثبيت Jessica على الموبايل والكمبيوتر — خطوة بخطوة | Jessica</title>
+<meta name="description" content="طريقة تثبيت تطبيق Jessica على أندرويد وآيفون والكمبيوتر في أقل من دقيقة: خطوات مصوّرة بالكلام، وحلول لأشهر مشاكل التثبيت، وإيه اللي بيتغير بعد التثبيت.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="${BASE}/welcome/install/">
+<link rel="alternate" hreflang="ar" href="${BASE}/welcome/install/">
+<link rel="alternate" hreflang="x-default" href="${BASE}/welcome/install/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jessica">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:url" content="${BASE}/welcome/install/">
+<meta property="og:title" content="تثبيت Jessica على الموبايل والكمبيوتر — خطوة بخطوة">
+<meta property="og:description" content="أندرويد، آيفون، وكمبيوتر: خطوات التثبيت كاملة، وحلول المشاكل الشائعة.">
+<meta property="og:image" content="${BASE}/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="تثبيت Jessica على الموبايل والكمبيوتر">
+<meta name="twitter:description" content="خطوات التثبيت كاملة، وحلول المشاكل الشائعة.">
+<meta name="twitter:image" content="${BASE}/og.jpg">
+<link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .article { max-width: 780px; margin: 0 auto; padding: 40px 0 60px; }
+  .article .eyebrow { display: inline-flex; }
+  .article h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.4; margin: 14px 0; }
+  .article .meta { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  .article h2 { font-size: 21px; margin: 30px 0 10px; }
+  .article p { color: var(--muted); line-height: 2.1; font-size: 15px; margin-bottom: 10px; }
+  .lead { border-inline-start: 3px solid var(--mint); padding-inline-start: 14px; }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 6px; }
+  .quick a { border: 1px solid var(--line); background: rgba(255,255,255,.04); border-radius: 999px; padding: 9px 16px; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .quick a:hover { color: var(--text); border-color: rgba(46,230,197,.35); }
+  .step-card { border: 1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 20px; padding: 18px 20px; margin-bottom: 12px; }
+  .step-card h3 { font-size: 16px; margin-bottom: 12px; }
+  .step-card ol { margin: 0; padding-inline-start: 20px; display: grid; gap: 9px; }
+  .step-card li { color: var(--muted); font-size: 14px; line-height: 1.95; }
+  .step-card li b { color: var(--text); }
+  .step-note { margin-top: 12px; border-radius: 14px; background: rgba(46,230,197,.07); border: 1px solid rgba(46,230,197,.22); padding: 10px 14px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+  .after { display: grid; gap: 10px; margin-top: 12px; }
+  .after div { border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; background: rgba(255,255,255,.02); }
+  .after b { display: block; font-size: 14px; margin-bottom: 3px; }
+  .after span { color: var(--muted); font-size: 13px; line-height: 1.85; }
+  .cta-box { margin-top: 30px; border: 1px solid rgba(46,230,197,.3); background: rgba(46,230,197,.07); border-radius: 18px; padding: 18px; text-align: center; }
+  .cta-box p { color: var(--text); font-weight: 700; margin-bottom: 10px; }
+  .faq { margin-top: 34px; }
+  .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+  .faq p { margin-bottom: 0; }
+  .rel-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .rel-grid a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .rel-grid a:hover { color: var(--text); border-color: rgba(46,230,197,.35); }
+  .qr-wrap { display: flex; align-items: center; gap: 16px; margin-top: 18px; border: 1px solid var(--line); border-radius: 18px; padding: 14px 18px; background: rgba(255,255,255,.02); }
+  .qr-wrap img { width: 96px; height: 96px; border-radius: 10px; background: #fff; padding: 4px; }
+  .qr-wrap p { margin: 0; font-size: 13px; }
+  .back { display: inline-block; margin-top: 26px; color: var(--mint); font-size: 13px; font-weight: 700; }
+</style>
+<script type="application/ld+json">
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'إزاي تثبّت تطبيق Jessica على الموبايل أو الكمبيوتر',
+  description: 'خطوات تثبيت تطبيق Jessica كتطبيق (PWA) على أندرويد وآيفون والكمبيوتر.',
+  inLanguage: 'ar',
+  totalTime: 'PT1M',
+  step: [
+    { '@type': 'HowToStep', name: 'افتح اللينك في المتصفح', text: 'افتح is.gd/jessicaapp في Chrome على أندرويد أو Safari على آيفون.' },
+    { '@type': 'HowToStep', name: 'اختار التثبيت', text: 'من قائمة المتصفح اختار «تثبيت التطبيق»، أو من زر المشاركة على آيفون اختار «إضافة إلى الشاشة الرئيسية».' },
+    { '@type': 'HowToStep', name: 'أكّد', text: 'اضغط «تثبيت» أو «إضافة»، وهتظهر أيقونة Jessica على شاشتك الرئيسية.' },
+  ],
+})}
+</script>
+<script type="application/ld+json">
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+})}
+</script>
+<script type="application/ld+json">
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Jessica', item: `${BASE}/welcome/` },
+    { '@type': 'ListItem', position: 2, name: 'تثبيت التطبيق', item: `${BASE}/welcome/install/` },
+  ],
+})}
+</script>
+</head>
+<body>
+<div class="bg-glow"></div>
+<header><div class="wrap nav"><a class="brand" href="../"><span class="mark">J</span><span>jessica<i>.</i></span></a><a class="btn sm" href="../../">افتح التطبيق</a></div></header>
+<main><div class="wrap"><article class="article">
+<span class="eyebrow">📲 دليل التثبيت</span>
+<h1>ثبّت Jessica على الموبايل أو الكمبيوتر في أقل من دقيقة</h1>
+<p class="meta">⏱️ دقيقة قراءة واحدة · آخر تحديث نوفمبر ٢٠٢٦</p>
+<p class="lead">Jessica مش تطبيق بيتحمّل من المتجر — هو تطبيق ويب بتثبّته من المتصفح نفسه. مفيش انتظار تحميل، مفيش حساب، ومفيش مساحة كبيرة. الفرق إنه بعد التثبيت بيفتح زي أي تطبيق عادي، وبيشتغل أوفلاين.</p>
+
+<div class="quick">
+  <a href="#android">🤖 أندرويد</a>
+  <a href="#ios">📱 آيفون</a>
+  <a href="#desktop">💻 كمبيوتر</a>
+  <a href="#after">✅ بعد التثبيت</a>
+  <a href="#fix">🛠️ لو التثبيت مش ظاهر</a>
+</div>
+
+<h2>قبل ما تبدأ — ٣ حاجات بسيطة</h2>
+<p>١) افتح اللينك في متصفح حقيقي، مش جوّه فيسبوك أو واتساب (لو فتح جوّاهم، اضغط ⋮ أو ⋯ واختار «فتح في المتصفح»).<br>
+٢) اتأكد إن اللينك بيبدأ بـ <b dir="ltr">https</b> — ده شرط التثبيت.<br>
+٣) استنى الصفحة تحمّل خالص قبل ما تضغط تثبيت.</p>
+
+<h2 id="android">🤖 أندرويد</h2>
+${card(STEPS[0])}
+
+<h2 id="ios">📱 آيفون وآيباد</h2>
+<p>الآيفون مش بيدعم زر «تثبيت التطبيق» جوه Safari زي أندرويد، بس النتيجة واحدة من خلال زر المشاركة.</p>
+${card(STEPS[1])}
+
+<h2 id="desktop">💻 كمبيوتر</h2>
+${card(STEPS[2])}
+
+<h2 id="after">إيه اللي بيتغير بعد التثبيت؟</h2>
+<div class="after">
+${AFTER.map(([title, text]) => `<div><b>${title}</b><span>${text}</span></div>`).join('')}
+</div>
+
+<h2 id="fix">لو التثبيت مش ظاهر أو مش شغال</h2>
+${FIXES.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}
+
+<div class="qr-wrap">
+  <img src="../qr.png" alt="QR كود لتحميل Jessica" width="96" height="96" loading="lazy">
+  <p><b>بتشرح لحد على التليفون؟</b><br>خلّيه يمسح الكود بكاميرا الموبايل، أو ابعتله اللينك القصير <b dir="ltr">is.gd/jessicaapp</b></p>
+</div>
+
+<div class="cta-box">
+  <p>جاهز تجرّب؟ أول حاجة اعملها: اختبار ٦٠ ثانية على مستوى صف ابنك.</p>
+  <a class="btn" href="../quiz/">⏱️ ابدأ اختبار ٦٠ ثانية</a>
+  <a class="btn ghost" href="../../">📲 افتح التطبيق كامل</a>
+</div>
+
+<div class="faq">
+  <h2>أسئلة شائعة عن التثبيت</h2>
+  ${FAQ.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('')}
+</div>
+
+<h2>روابط مهمة</h2>
+<div class="rel-grid">
+  <a href="../grades/">📚 كتب الوزارة لكل الصفوف</a>
+  <a href="../quiz/">⏱️ اختبار ٦٠ ثانية</a>
+  <a href="../guides/">📘 أدلة المذاكرة</a>
+  <a href="../">🏠 الصفحة الرئيسية</a>
+  <a href="../../#/disclaimer">⚖️ إخلاء المسؤولية</a>
+</div>
+<a class="back" href="../">← رجوع للصفحة الرئيسية</a>
+</article></div></main>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
+</body>
+</html>
+`
+
+fs.rmSync(OUT, { recursive: true, force: true })
+fs.mkdirSync(OUT, { recursive: true })
+fs.writeFileSync(path.join(OUT, 'index.html'), head)
+console.log('install page written')
