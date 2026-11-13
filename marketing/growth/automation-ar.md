@@ -24,48 +24,26 @@ jessica-ops-5d2a8c71
 
 ---
 
-## الجزء الاختياري: تقرير جوجل اليومي (١٠ دقايق إعداد)
+## تقرير جوجل اليومي — ✅ متفعّل بالفعل
 
-لو عايز التقرير اليومي يقولك كمان:
-- الـ sitemap اتقرأ ولا لسه.
-- كل صفحة **Indexed** ولا **Discovered** ولا **Crawled**.
-- آخر زحف كان إمتى.
+مش محتاج تعمل أي حاجة. اتظبط كده:
 
-محتاج تديني صلاحية قراءة لحساب خدمة (Service Account). الخطوات:
+- **Service Account**: `jessica-watch@hermes-youtube-513013.iam.gserviceaccount.com`
+- **صلاحيته في Search Console**: Owner على `https://bishoynabilanis.github.io/jessica/`
+- **التحقق**: keyless عن طريق Workload Identity Federation من GitHub Actions (مفيش مفاتيح مخزنة).
+- **الصلاحية**: `webmasters` (قراءة + كتابة) — عشان يقدر يعيد إرسال الـ sitemap لوحده.
 
-### ١) في Google Cloud
-1. افتح <https://console.cloud.google.com/>.
-2. **New project** ← اسمه `jessica-seo` ← Create.
-3. من **APIs & Services → Library** دوّر على:
-   **Google Search Console API** ← **Enable**.
-4. **APIs & Services → Credentials → Create credentials → Service account**.
-   - الاسم: `jessica-watch` ← Create.
-5. افتح الـ service account ← **Keys → Add key → Create new key → JSON** ← نزّل الملف.
+### اللي بيظهر في التقرير اليومي
+- حالة الـ sitemap: آخر قراءة + عدد الروابط المكتشفة + أخطاء.
+- لكل صفحة مهمة: **Verdict** (PASS / NEUTRAL / FAIL) و**Coverage** (Indexed / Crawled – not indexed / Discovered) وآخر زحف.
 
-### ٢) في Search Console
-1. افتح <https://search.google.com/search-console>.
-2. **Settings → Users and permissions → Add user**.
-3. الصق **client_email** اللي جوه ملف JSON (شكله `jessica-watch@....iam.gserviceaccount.com`).
-4. Permission: **Owner** ← Add.
+### إعادة إرسال الـ sitemap يدويًا
+لو التقرير قال إن الـ sitemap مش مقروء:
+1. **Actions → SEO watch → Run workflow**.
+2. فعّل خيار **reset_sitemap**.
+3. Run.
 
-### ٣) في GitHub
-1. افتح: `https://github.com/bishoynabilanis/jessica/settings/secrets/actions`
-2. **New repository secret**:
-   - Name: `GSC_SERVICE_ACCOUNT`
-   - Secret: الصق **محتوى ملف JSON كامل**.
-3. من نفس الصفحة، تبويب **Variables** ← **New repository variable**:
-   - Name: `GSC_SITE_URL`
-   - Value: `https://bishoynabilanis.github.io/jessica/`
-4. ارجع لـ **Actions → SEO watch → Run workflow** وشوف النتيجة.
-
-من اللحظة دي، كل يوم الصبح هتلاقي في التقرير:
-
-| URL | Verdict | Coverage | Last crawl |
-| --- | --- | --- | --- |
-| /welcome/ | PASS | Submitted and indexed | 2026-11-14 |
-| /welcome/grades/primary-4/ | NEUTRAL | Discovered – currently not indexed | — |
-
----
+هيحذف القديم ويعيد إرساله من جديد (بيحتاج صلاحية Owner، وهي متفعّلة).
 
 ## تنبيهات إضافية (اختيارية)
 
