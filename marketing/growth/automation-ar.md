@@ -14,6 +14,30 @@
 - التقرير اليومي بيتحفظ كـ artifact اسمه `seo-report` لمدة ٣٠ يوم.
 - تقدر تشغله في أي وقت يدوي: **Actions → SEO watch → Run workflow**.
 
+### عشان تستقبل الإشعارات على الموبايل
+
+**أسهل طريقة: تطبيق ntfy (مجاني)**
+
+| الجهاز | اللينك |
+| --- | --- |
+| iPhone / iPad | https://apps.apple.com/app/ntfy/id1625396347 |
+| Android | https://play.google.com/store/apps/details?id=io.heckel.ntfy |
+
+بعد التثبيت:
+1. افتح التطبيق واسمح بالإشعارات.
+2. دوس **+** ← **Subscribe to topic**.
+3. اكتب: `jessica-ops-5d2a8c71`.
+4. خلاص — هتوصلك التنبيهات.
+
+> مش محتاج تسجل دخول في التطبيق. الحساب على ntfy.sh بيفيد بس في حجز الموضوع أو مزامنة الاشتراكات (Pro)، مش في الاستقبال.
+
+**من غير تطبيق (PWA):**
+1. افتح من الموبايل: <https://is.gd/jessicaalerts>
+2. اسمح بالإشعارات.
+3. Safari: مشاركة ← **إضافة إلى الشاشة الرئيسية**. Chrome: ⋮ ← **تثبيت التطبيق**.
+
+**QR جاهز للاسكان:** `marketing/growth/jessica-alerts-qr.png`
+
 ### عشان تستقبل الإشعارات
 1. نزّل تطبيق **ntfy** (مجاني).
 2. Subscribe to topic:
