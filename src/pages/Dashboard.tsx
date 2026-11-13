@@ -47,8 +47,19 @@ import { useApp, levelInfo, weekLog } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { tr, dateLocale } from '@/i18n'
 
-const questIcons = {
-  quiz: Gamepad2,
+const QUIZ_SLUGS = [
+  'primary-1',
+  'primary-2',
+  'primary-3',
+  'primary-4',
+  'primary-5',
+  'primary-6',
+  'prep-1',
+  'prep-2',
+  'prep-3',
+]
+
+const questIcons = {  quiz: Gamepad2,
   pages: BookOpen,
   cards: Layers,
   chat: MessageCircle,
@@ -381,6 +392,18 @@ export function Dashboard() {
               </Button>
               <Button variant="ghost" onClick={() => navigate('/games')}>
                 <Gamepad2 className="h-4 w-4" /> {tr("Quick quiz")}
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  window.open(
+                    `${import.meta.env.BASE_URL}welcome/quiz/${QUIZ_SLUGS[Math.min(8, Math.max(0, Number(settings.gradeLevel) - 1))]}/`,
+                    '_blank',
+                    'noopener',
+                  )
+                }
+              >
+                <Timer className="h-4 w-4" /> {tr('60-second quiz')}
               </Button>
             </div>
 

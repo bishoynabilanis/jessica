@@ -2005,4 +2005,5 @@ export const indonesian: Record<string, string> = {
   "Translation": "Terjemahan",
   "An English or French paragraph, with the meaning.": "Paragraf bahasa Inggris atau Prancis, beserta artinya.",
   "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Setelah analisis: penjelasan lebih sederhana, soal serupa, dan pertanyaan lanjutan.",
+  "60-second quiz": "Kuis 60 detik",
 }

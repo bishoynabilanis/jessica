@@ -1428,6 +1428,7 @@ export const arabic: Record<string, string> = {
   "no limit set": "مفيش حد متحدد",
   "Last 7 days": "آخر ٧ أيام",
   "Weekly report": "تقرير أسبوعي",
+  "60-second quiz": "اختبار ٦٠ ثانية",
   "Generate a short message you can send to a parent or keep for yourself.": "اعمل رسالة قصيرة تبعتها لولي الأمر أو تحتفظ بيها.",
   "Generate report": "اعمل التقرير",
   "Tap Generate report to see the weekly summary.": "دوس «اعمل التقرير» عشان تشوف ملخص الأسبوع.",

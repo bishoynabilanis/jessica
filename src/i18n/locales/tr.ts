@@ -2005,4 +2005,5 @@ export const turkish: Record<string, string> = {
   "Translation": "Çeviri",
   "An English or French paragraph, with the meaning.": "Anlamıyla birlikte İngilizce veya Fransızca bir paragraf.",
   "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Analizden sonra: daha basit bir açıklama, benzer bir soru ve takip soruları.",
+  "60-second quiz": "60 saniyelik test",
 }

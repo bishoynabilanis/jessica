@@ -285,6 +285,7 @@ ${body}
   <p>${guide.cta}</p>
   <p style="font-weight:400;font-size:13px">جيسيكا مجانية، بدون حساب، وبتشتغل على كتب الوزارة الرسمية.</p>
   <a class="btn" href="../../../">افتح Jessica ←</a>
+  <a class="btn ghost" href="../../quiz/">⏱️ اختبر نفسك في ٦٠ ثانية</a>
 </div>
 <div class="faq"><h2>أسئلة شائعة</h2>${faq}</div>
 ${foot({ slug: guide.slug })}

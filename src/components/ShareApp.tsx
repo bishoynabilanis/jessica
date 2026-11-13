@@ -7,6 +7,7 @@ import { tr } from '@/i18n'
 
 const APP_URL = 'https://bishoynabilanis.github.io/jessica/'
 const SHORT_URL = 'https://is.gd/jessicaapp'
+const QUIZ_URL = 'https://is.gd/jessicaquiz'
 
 export function shareMessage() {
   return tr(
@@ -120,6 +121,18 @@ export function ShareAppModal({ open, onClose }: { open: boolean; onClose: () =>
             {copied ? tr('Copied') : tr('Copy')}
           </Button>
         </div>
+
+        <a
+          href={QUIZ_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex w-full items-center justify-between gap-2 rounded-2xl border border-aurora-400/30 bg-aurora-400/10 px-3 py-2.5 text-[11px] font-bold text-aurora-300"
+        >
+          <span>⏱️ {tr('60-second quiz')}</span>
+          <span dir="ltr" className="text-[10px] opacity-80">
+            is.gd/jessicaquiz
+          </span>
+        </a>
 
         <div className="grid w-full grid-cols-2 gap-1.5">
           {targets.map((target) => (

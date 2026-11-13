@@ -2005,4 +2005,5 @@ export const german: Record<string, string> = {
   "Translation": "Übersetzung",
   "An English or French paragraph, with the meaning.": "Ein englischer oder französischer Absatz mit der Bedeutung.",
   "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Nach der Analyse: eine einfachere Erklärung, eine ähnliche Frage und Rückfragen.",
+  "60-second quiz": "60-Sekunden-Quiz",
 }

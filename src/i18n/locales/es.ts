@@ -2005,4 +2005,5 @@ export const spanish: Record<string, string> = {
   "Translation": "Traducción",
   "An English or French paragraph, with the meaning.": "Un párrafo en inglés o francés, con el significado.",
   "After the analysis: a simpler explanation, a similar question and follow-up questions.": "Después del análisis: una explicación más simple, una pregunta similar y preguntas de seguimiento.",
+  "60-second quiz": "Test de 60 segundos",
 }
