@@ -1,5 +1,7 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  "Continue without a key": "Continuer sans clé",
+  "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica s'ouvre dès qu'un livre est dans ta bibliothèque. La clé IA est facultative et peut être ajoutée plus tard. Tout reste sur cet appareil.",
   "Paste your API key first.": "Colle d'abord ta clé API.",
   "1. Connect your AI key": "1. Connecte ta clé IA",
   "{n} of 2 done": "{n} sur 2 fait",

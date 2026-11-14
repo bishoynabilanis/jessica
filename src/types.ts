@@ -253,6 +253,8 @@ export interface Settings {
   primaryUi: 'auto' | 'kids' | 'study'
   grade: string
   school: string
+  /** The AI key is optional: books, quizzes and flashcards work without one. */
+  keyOptional: boolean
 }
 
 export interface BattlePayload {

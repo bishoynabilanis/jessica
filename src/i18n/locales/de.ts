@@ -1,5 +1,7 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  "Continue without a key": "Ohne Schlüssel fortfahren",
+  "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica öffnet sich, sobald ein Buch in deiner Bibliothek ist. Der KI-Schlüssel ist optional und kann später hinzugefügt werden. Alles bleibt auf diesem Gerät.",
   "Home": "Start",
   "Library": "Bibliothek",
   "Study Hub": "Studienzentrum",

@@ -1,5 +1,7 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  "Continue without a key": "Lanjutkan tanpa kunci",
+  "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica terbuka setelah ada satu buku di perpustakaanmu. Kunci AI opsional dan bisa ditambahkan nanti. Semua tetap di perangkat ini.",
   "Home": "Beranda",
   "Library": "Perpustakaan",
   "Study Hub": "Pusat Studi",

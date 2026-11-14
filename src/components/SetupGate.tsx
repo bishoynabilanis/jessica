@@ -53,7 +53,8 @@ export function SetupGate() {
     const allowed = subjectsForSchool(settings.schoolType)
     return officialFor(grade, 'Term 1', 'All').filter((book) => allowed.includes(book.subject)).slice(0, 6)
   }, [grade, settings.schoolType])
-  const keyDone = Boolean(apiKey.trim())
+  const keyOptional = settings.keyOptional
+  const keyDone = Boolean(apiKey.trim()) || keyOptional
   const bookDone = customBooks.length > 0
   const done = keyDone && bookDone
 
@@ -126,7 +127,7 @@ export function SetupGate() {
         </div>
 
         <p className="mt-3 max-w-xl text-[11px] leading-relaxed text-muted">
-          {tr('Jessica only opens when the AI tutor is connected and at least one book is in your library. Everything stays on this device.')}
+          {tr('Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.')}
         </p>
 
         <div className="mt-5 space-y-3">
@@ -213,6 +214,14 @@ export function SetupGate() {
                           {tr('Get a key from {provider}', { provider: provider.label })}
                           <ArrowRight className="h-3 w-3" />
                         </a>
+                      )}
+                      {!apiKey.trim() && (
+                        <button
+                          onClick={() => updateSettings({ keyOptional: true })}
+                          className="text-[10px] font-bold text-muted underline decoration-dotted underline-offset-2 hover:text-main"
+                        >
+                          {tr('Continue without a key')}
+                        </button>
                       )}
                       {status === 'error' && (
                         <button

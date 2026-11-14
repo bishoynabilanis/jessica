@@ -1,5 +1,7 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  "Continue without a key": "Anahtar olmadan devam et",
+  "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica kitaplığında bir kitap olduğunda açılır. Yapay zekâ anahtarı isteğe bağlıdır, sonra ekleyebilirsin. Her şey bu cihazda kalır.",
   "Home": "Ana sayfa",
   "Library": "Kitaplık",
   "Study Hub": "Çalışma Merkezi",

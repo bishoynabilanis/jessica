@@ -107,6 +107,8 @@ export const arabic: Record<string, string> = {
   'Completed': 'مكتمل',
   'read': 'مقروء',
   'Add your Gemini API key': 'ضيف مفتاح Gemini API',
+  'Continue without a key': 'كمّل بدون مفتاح',
+  'Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.': 'جيسيكا بتفتح بمجرد ما يكون في كتاب واحد في مكتبتك. مفتاح الذكاء الاصطناعي اختياري وتقدر تضيفه بعدين. كل حاجة بتفضل على الجهاز ده.',
   'It is free and takes about a minute. Your key never leaves this browser.': 'مجاني وبياخد حوالي دقيقة. مفتاحك مش بيخرج من المتصفح ده.',
   'English': 'الإنجليزية',
   'Arabic': 'العربية',

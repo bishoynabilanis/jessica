@@ -1,5 +1,7 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  "Continue without a key": "Continuar sin clave",
+  "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica se abre en cuanto haya un libro en tu biblioteca. La clave de IA es opcional y puedes añadirla después. Todo se queda en este dispositivo.",
   "Home": "Inicio",
   "Library": "Biblioteca",
   "Study Hub": "Centro de estudios",

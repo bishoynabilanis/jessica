@@ -63,6 +63,7 @@ const defaultSettings: Settings = {
   aiBaseUrl: 'https://api.openai.com/v1',
   grade: 'First Preparatory',
   school: '',
+  keyOptional: false,
 }
 
 function questTemplates(dateKey: string): Quest[] {

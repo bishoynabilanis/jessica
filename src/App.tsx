@@ -90,6 +90,7 @@ export default function App() {
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
   const apiKey = useApp((s) => s.apiKey)
+  const keyOptional = useApp((s) => s.settings.keyOptional)
   const customBooks = useApp((s) => s.customBooks)
   const notifications = useApp((s) => s.settings.notifications)
   const bootstrap = useApp((s) => s.bootstrap)
@@ -165,8 +166,8 @@ export default function App() {
   // Mandatory disclaimer: every learner accepts before entering.
   if (acceptedTerms < TERMS_VERSION) return <TermsGate />
 
-  // Hard gate: a Gemini key and at least one imported book are required.
-  if (!apiKey.trim() || customBooks.length === 0) return <SetupGate />
+  // The AI key is optional; only one imported book is required to open the app.
+  if ((!apiKey.trim() && !keyOptional) || customBooks.length === 0) return <SetupGate />
 
   if (useKidsWorld(gradeLevel, primaryUi))
     return (
