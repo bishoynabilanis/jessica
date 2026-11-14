@@ -1,5 +1,15 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  "Your first five minutes": "Tes cinq premières minutes",
+  "Three small steps, then Jessica starts working for you.": "Trois petites étapes et Jessica travaille pour toi.",
+  "Open your book": "Ouvre ton livre",
+  "Any page works — tap a sentence for an explanation.": "N'importe quelle page : touche une phrase pour l'explication.",
+  "Solve your first drill": "Résous ton premier exercice",
+  "Five questions and you will see exactly where you stand.": "Cinq questions et tu verras où tu en es.",
+  "Plan your day": "Planifie ta journée",
+  "Jessica turns your progress into three small missions.": "Jessica transforme tes progrès en trois petites missions.",
+  "{n} of 3 done": "{n} sur 3 fait",
+  "Hide for now": "Masquer pour l'instant",
   "Continue without a key": "Continuer sans clé",
   "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica s'ouvre dès qu'un livre est dans ta bibliothèque. La clé IA est facultative et peut être ajoutée plus tard. Tout reste sur cet appareil.",
   "Paste your API key first.": "Colle d'abord ta clé API.",

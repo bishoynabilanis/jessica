@@ -3,6 +3,7 @@ import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 import { Compass, Home } from 'lucide-react'
 import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
+import { RouteMemory } from '@/components/RouteMemory'
 import { SetupGate } from '@/components/SetupGate'
 import { TermsGate } from '@/components/TermsGate'
 import { TERMS_VERSION } from '@/data/terms'
@@ -194,6 +195,7 @@ export default function App() {
 
   return (
     <HashRouter>
+      <RouteMemory />
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route element={<AppShell />}>

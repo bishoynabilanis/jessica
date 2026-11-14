@@ -29,6 +29,7 @@ import { PageHeader } from '@/components/common/PageHeader'
 import { StatCard } from '@/components/common/StatCard'
 import { Mascot } from '@/components/Mascot'
 import { ParentReportModal } from '@/components/tools/ParentReport'
+import { QuickStart } from '@/components/QuickStart'
 import { RiddleCard } from '@/components/RiddleModal'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar, SectionTitle, Spinner } from '@/components/ui/Card'
@@ -138,6 +139,13 @@ export function Dashboard() {
   const { level, progress, into, needed } = levelInfo(xp)
   const mascot = mascotForXp(xp)
   const today = dailyLog[todayKey()] || { xp: 0, seconds: 0 }
+  const lastBook = useMemo(() => {
+    const entries = Object.entries(bookProgress)
+      .map(([id, entry]) => ({ id, at: entry.updatedAt || 0 }))
+      .sort((a, b) => b.at - a.at)
+    const top = entries[0]
+    return top ? customBooks.find((book) => book.id === top.id) : undefined
+  }, [bookProgress, customBooks])
   const week = weekLog(state)
   const maxWeekXp = Math.max(40, ...week.map((d) => d.xp))
   const todayTopics = topicLog.filter((t) => t.date === todayKey()).slice(0, 3)
@@ -258,8 +266,8 @@ export function Dashboard() {
                 <Sparkles className="h-4 w-4" /> {tr("Install app")}
               </Button>
             )}
-            <Button size="md" onClick={() => navigate('/library')}>
-              <Play className="h-4 w-4" /> {tr("Continue learning")}
+            <Button size="md" onClick={() => navigate(lastBook ? `/reader/${lastBook.id}` : '/library')}>
+              <Play className="h-4 w-4" /> {lastBook ? tr('Pick up where you left off') : tr('Continue learning')}
             </Button>
           </>
         }
@@ -287,6 +295,8 @@ export function Dashboard() {
           </div>
         </Card>
       )}
+
+      <QuickStart />
 
       <KeyNotice />
 

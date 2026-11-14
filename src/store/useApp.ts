@@ -64,6 +64,7 @@ const defaultSettings: Settings = {
   grade: 'First Preparatory',
   school: '',
   keyOptional: false,
+  quickStart: true,
 }
 
 function questTemplates(dateKey: string): Quest[] {

@@ -255,6 +255,8 @@ export interface Settings {
   school: string
   /** The AI key is optional: books, quizzes and flashcards work without one. */
   keyOptional: boolean
+  /** First-run checklist stays visible until the learner hides or finishes it. */
+  quickStart: boolean
 }
 
 export interface BattlePayload {

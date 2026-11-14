@@ -13,6 +13,17 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* ---------------------------- First run ---------------------------- */
+  "Your first five minutes": "أول ٥ دقايق مع جيسيكا",
+  "Three small steps, then Jessica starts working for you.": "ثلاث خطوات صغيرة وجيسيكا تبدأ تشتغل معاك.",
+  "Open your book": "افتح كتابك",
+  "Any page works — tap a sentence for an explanation.": "أي صفحة تنفع — اضغط على جملة تشوف شرحها.",
+  "Solve your first drill": "حل أول تدريب",
+  "Five questions and you will see exactly where you stand.": "٥ أسئلة كفاية تعرف منها مستواك فين.",
+  "Plan your day": "خطّط يومك",
+  "Jessica turns your progress into three small missions.": "جيسيكا تحوّل تقدّمك لـ٣ مهام صغيرة.",
+  "{n} of 3 done": "{n} من ٣ خلصوا",
+  "Hide for now": "خبّيها دلوقتي",
   /* ------------------------------- Shell & nav ------------------------------ */
   'Home': 'الرئيسية',
   'Library': 'المكتبة',

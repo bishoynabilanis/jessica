@@ -1,5 +1,15 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  "Your first five minutes": "İlk beş dakikan",
+  "Three small steps, then Jessica starts working for you.": "Üç küçük adım, sonra Jessica senin için çalışır.",
+  "Open your book": "Kitabını aç",
+  "Any page works — tap a sentence for an explanation.": "Her sayfa olur — açıklama için bir cümleye dokun.",
+  "Solve your first drill": "İlk alıştırmanı çöz",
+  "Five questions and you will see exactly where you stand.": "Beş soru ve nerede olduğunu tam görürsün.",
+  "Plan your day": "Gününü planla",
+  "Jessica turns your progress into three small missions.": "Jessica ilerlemeni üç küçük göreve çevirir.",
+  "{n} of 3 done": "3 görevden {n} tamam",
+  "Hide for now": "Şimdilik gizle",
   "Continue without a key": "Anahtar olmadan devam et",
   "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica kitaplığında bir kitap olduğunda açılır. Yapay zekâ anahtarı isteğe bağlıdır, sonra ekleyebilirsin. Her şey bu cihazda kalır.",
   "Home": "Ana sayfa",

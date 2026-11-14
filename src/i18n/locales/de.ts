@@ -1,5 +1,15 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  "Your first five minutes": "Deine ersten fünf Minuten",
+  "Three small steps, then Jessica starts working for you.": "Drei kleine Schritte, dann arbeitet Jessica für dich.",
+  "Open your book": "Öffne dein Buch",
+  "Any page works — tap a sentence for an explanation.": "Jede Seite geht – tippe einen Satz an für die Erklärung.",
+  "Solve your first drill": "Löse deine erste Übung",
+  "Five questions and you will see exactly where you stand.": "Fünf Fragen und du siehst genau, wo du stehst.",
+  "Plan your day": "Plane deinen Tag",
+  "Jessica turns your progress into three small missions.": "Jessica macht aus deinem Fortschritt drei kleine Missionen.",
+  "{n} of 3 done": "{n} von 3 erledigt",
+  "Hide for now": "Erstmal ausblenden",
   "Continue without a key": "Ohne Schlüssel fortfahren",
   "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica öffnet sich, sobald ein Buch in deiner Bibliothek ist. Der KI-Schlüssel ist optional und kann später hinzugefügt werden. Alles bleibt auf diesem Gerät.",
   "Home": "Start",

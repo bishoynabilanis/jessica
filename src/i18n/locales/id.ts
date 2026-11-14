@@ -1,5 +1,15 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  "Your first five minutes": "Lima menit pertamamu",
+  "Three small steps, then Jessica starts working for you.": "Tiga langkah kecil, lalu Jessica mulai bekerja untukmu.",
+  "Open your book": "Buka bukumu",
+  "Any page works — tap a sentence for an explanation.": "Halaman apa saja bisa — ketuk kalimat untuk penjelasan.",
+  "Solve your first drill": "Kerjakan latihan pertamamu",
+  "Five questions and you will see exactly where you stand.": "Lima soal dan kamu akan tahu posisimu.",
+  "Plan your day": "Rencanakan harimu",
+  "Jessica turns your progress into three small missions.": "Jessica mengubah kemajuanmu jadi tiga misi kecil.",
+  "{n} of 3 done": "{n} dari 3 selesai",
+  "Hide for now": "Sembunyikan dulu",
   "Continue without a key": "Lanjutkan tanpa kunci",
   "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica terbuka setelah ada satu buku di perpustakaanmu. Kunci AI opsional dan bisa ditambahkan nanti. Semua tetap di perangkat ini.",
   "Home": "Beranda",

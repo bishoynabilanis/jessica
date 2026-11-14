@@ -1,5 +1,15 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  "Your first five minutes": "Tus primeros cinco minutos",
+  "Three small steps, then Jessica starts working for you.": "Tres pasos pequeños y Jessica empieza a trabajar para ti.",
+  "Open your book": "Abre tu libro",
+  "Any page works — tap a sentence for an explanation.": "Cualquier página sirve: toca una frase para ver la explicación.",
+  "Solve your first drill": "Resuelve tu primer ejercicio",
+  "Five questions and you will see exactly where you stand.": "Cinco preguntas y verás exactamente dónde estás.",
+  "Plan your day": "Planifica tu día",
+  "Jessica turns your progress into three small missions.": "Jessica convierte tu progreso en tres misiones pequeñas.",
+  "{n} of 3 done": "{n} de 3 hechos",
+  "Hide for now": "Ocultar por ahora",
   "Continue without a key": "Continuar sin clave",
   "Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.": "Jessica se abre en cuanto haya un libro en tu biblioteca. La clave de IA es opcional y puedes añadirla después. Todo se queda en este dispositivo.",
   "Home": "Inicio",
