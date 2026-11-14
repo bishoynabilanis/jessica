@@ -1,5 +1,9 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Lesson cards --------------------------- */
+  "Lesson check": "Lektionsprüfung",
+  "{n} cards added to your review": "{n} Karten zu deiner Wiederholung hinzugefügt.",
+
   /* --------------------------- Courses --------------------------- */
   "Courses": "Kurse",
   "My courses": "Meine Kurse",

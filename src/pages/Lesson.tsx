@@ -21,9 +21,11 @@ import {
 } from 'lucide-react'
 import type { ChapterText, QuizQuestion } from '@/types'
 import { useApp } from '@/store/useApp'
-import { getQuizzes } from '@/lib/db'
+import { useUI } from '@/store/useUI'
+import { allCards, getQuizzes, putCards } from '@/lib/db'
 import { openChapter } from '@/lib/library'
 import { clozeQuiz, keyTerms, objectivesOf } from '@/lib/lesson'
+import { newCard } from '@/lib/srs'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar, Spinner } from '@/components/ui/Card'
 import { cn, pct } from '@/lib/utils'
@@ -63,6 +65,7 @@ export function Lesson() {
   const completeLesson = useApp((s) => s.completeLesson)
   const completeTopic = useApp((s) => s.completeTopic)
   const recordSkill = useApp((s) => s.recordSkill)
+  const pushToast = useUI((s) => s.pushToast)
 
   const book = customBooks.find((item) => item.id === bookId)
   const unit = book?.units?.find((item) => item.id === unitId)
@@ -172,10 +175,36 @@ export function Lesson() {
     setLessonStep(key, STEPS.indexOf(next))
   }
 
-  const finish = () => {
+  const finish = async () => {
     questions.forEach((question) => {
       recordSkill(book?.subject || 'Study', unit?.title || '', answers[question.id] === question.answer)
     })
+
+    // Every miss becomes a flashcard, so tomorrow's review is built from it.
+    const missed = questions.filter((question) => answers[question.id] !== question.answer)
+    if (missed.length && book && unit) {
+      try {
+        const existing = new Set((await allCards()).map((card) => card.front))
+        const cards = missed
+          .filter((question) => !existing.has(question.prompt))
+          .map((question) =>
+            newCard({
+              bookId: book.id,
+              subject: book.subject,
+              front: question.prompt,
+              back: [question.options[question.answer], question.explanation].filter(Boolean).join(' — '),
+              source: `${unit.title} · ${tr('Lesson check')}`,
+            }),
+          )
+        if (cards.length) {
+          await putCards(cards)
+          pushToast({ title: tr('{n} cards added to your review', { n: num(cards.length) }), type: 'info' })
+        }
+      } catch {
+        // A full or private-mode database should never block the result screen.
+      }
+    }
+
     if (passed && unit) {
       completeTopic(key, unit.title, book?.subject || 'Study')
       completeLesson(key)

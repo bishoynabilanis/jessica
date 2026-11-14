@@ -1,5 +1,9 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Lesson cards --------------------------- */
+  "Lesson check": "Cek pelajaran",
+  "{n} cards added to your review": "{n} kartu ditambahkan ke ulanganmu.",
+
   /* --------------------------- Courses --------------------------- */
   "Courses": "Kursus",
   "My courses": "Kursusku",

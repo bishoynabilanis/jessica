@@ -1,5 +1,9 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Lesson cards --------------------------- */
+  "Lesson check": "Comprobación de la lección",
+  "{n} cards added to your review": "{n} tarjetas añadidas a tu repaso.",
+
   /* --------------------------- Courses --------------------------- */
   "Courses": "Cursos",
   "My courses": "Mis cursos",

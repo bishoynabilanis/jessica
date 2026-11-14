@@ -70,6 +70,7 @@ async function seedChapter(page: Page) {
       const request = indexedDB.open('jessica-db', 1)
       request.onupgradeneeded = () => {
         if (!request.result.objectStoreNames.contains('kv')) request.result.createObjectStore('kv')
+        if (!request.result.objectStoreNames.contains('cards')) request.result.createObjectStore('cards', { keyPath: 'id' })
       }
       request.onsuccess = () => {
         const database = request.result
@@ -129,6 +130,30 @@ test('a unit becomes a four-step lesson that ends in a result', async ({ page })
     expect(progress.step).toBeGreaterThanOrEqual(0)
   }
   expect(Object.keys(state.skillStats).some((key) => key === 'Science|الضغط')).toBe(true)
+
+  // Every miss is turned into a flashcard for tomorrow's review.
+  const result = await page.getByTestId('lesson-step').innerText()
+  const scored = result.match(/answered (\d+) of (\d+)/)
+  expect(scored).not.toBeNull()
+  const missed = Number(scored![2]) - Number(scored![1])
+  const cards = await page.evaluate(
+    () =>
+      new Promise<number>((resolve) => {
+        const request = indexedDB.open('jessica-db', 1)
+        request.onsuccess = () => {
+          try {
+            const tx = request.result.transaction('cards', 'readonly')
+            const count = tx.objectStore('cards').count()
+            count.onsuccess = () => resolve(count.result)
+            count.onerror = () => resolve(-1)
+          } catch {
+            resolve(-1)
+          }
+        }
+        request.onerror = () => resolve(-1)
+      }),
+  )
+  expect(cards).toBe(missed)
 })
 
 test('a unit without extracted text asks the learner to open the book first', async ({ page }) => {

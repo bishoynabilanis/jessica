@@ -1,5 +1,9 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Lesson cards --------------------------- */
+  "Lesson check": "Ders kontrolü",
+  "{n} cards added to your review": "Tekrarına {n} kart eklendi.",
+
   /* --------------------------- Courses --------------------------- */
   "Courses": "Kurslar",
   "My courses": "Kurslarım",

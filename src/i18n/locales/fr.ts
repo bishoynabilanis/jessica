@@ -1,5 +1,9 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Lesson cards --------------------------- */
+  "Lesson check": "Vérification de la leçon",
+  "{n} cards added to your review": "{n} cartes ajoutées à ta révision.",
+
   /* --------------------------- Courses --------------------------- */
   "Courses": "Cours",
   "My courses": "Mes cours",
