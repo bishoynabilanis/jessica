@@ -1,5 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Community --------------------------- */
+  "Community group": "Grup komunitas",
+
   /* --------------------------- Lesson cards --------------------------- */
   "Lesson check": "Cek pelajaran",
   "{n} cards added to your review": "{n} kartu ditambahkan ke ulanganmu.",

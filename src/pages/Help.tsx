@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { getLanguage, tr } from '@/i18n'
 import { geminiKeyVideo, youtubeWatchUrl } from '@/data/tutorials'
-import { SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '@/data/support'
+import { COMMUNITY_GROUP, SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '@/data/support'
 
 interface FaqItem {
   question: string
@@ -256,6 +256,11 @@ export function Help() {
           {SUPPORT_WHATSAPP && (
             <a href={`https://wa.me/${SUPPORT_WHATSAPP}`} target="_blank" rel="noreferrer">
               <Button size="sm" variant="ghost">{tr('WhatsApp')}</Button>
+            </a>
+          )}
+          {COMMUNITY_GROUP && (
+            <a href={COMMUNITY_GROUP} target="_blank" rel="noreferrer">
+              <Button size="sm" variant="secondary">{tr('Community group')}</Button>
             </a>
           )}
           {SUPPORT_EMAIL && (

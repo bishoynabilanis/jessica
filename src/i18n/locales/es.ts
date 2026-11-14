@@ -1,5 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Community --------------------------- */
+  "Community group": "Grupo de la comunidad",
+
   /* --------------------------- Lesson cards --------------------------- */
   "Lesson check": "Comprobación de la lección",
   "{n} cards added to your review": "{n} tarjetas añadidas a tu repaso.",

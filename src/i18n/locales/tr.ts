@@ -1,5 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Community --------------------------- */
+  "Community group": "Topluluk grubu",
+
   /* --------------------------- Lesson cards --------------------------- */
   "Lesson check": "Ders kontrolü",
   "{n} cards added to your review": "Tekrarına {n} kart eklendi.",
