@@ -1,6 +1,6 @@
 # Jessica — تطبيق مذاكرة بالذكاء الاصطناعي 🇪🇬
 
-[**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help)
+[**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help) · [جروب المجتمع](https://is.gd/jessicagroup)
 
 | الصفحة | إيه اللي فيها |
 | --- | --- |
@@ -245,6 +245,13 @@ studio tool grid, whiteboard, study hub, arcade, labs, constellation, vault, mas
 parent report, daily riddle and theme/model switching.
 
 ---
+
+## 💬 Community
+
+Questions, study tips and release notes live in the Facebook group — the same place parents and
+students ask for help:
+
+**[Jessica | جيسيكا — مذاكرة أذكى لأولادنا](https://is.gd/jessicagroup)** (public group, Arabic)
 
 ## 🇪🇬 بالعربي السريع
 
