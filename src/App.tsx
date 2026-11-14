@@ -97,22 +97,38 @@ export default function App() {
   const booted = useRef(false)
 
   useEffect(() => {
-    // Warm the most-used routes on idle connections only; skip on save-data/2G.
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
-    if (connection?.saveData || /2g/i.test(connection?.effectiveType || '')) return
+    // Warm the two most-used routes, but only on a fast, idle connection:
+    // on 3G this prefetch competes with the first paint it is meant to speed up.
+    type NetInfo = { saveData?: boolean; effectiveType?: string; downlink?: number }
+    const connection = (navigator as Navigator & { connection?: NetInfo }).connection
+    const slow =
+      connection?.saveData ||
+      /2g|3g/i.test(connection?.effectiveType || '') ||
+      (typeof connection?.downlink === 'number' && connection.downlink < 2)
+    if (slow) return
+
+    let idle: number | undefined
     const prefetch = () => {
       void import('@/pages/Library')
       void import('@/pages/StudyHub')
-      void import('@/pages/DailyPlan')
-      void import('@/pages/ExamCalendar')
     }
-    let idle: number
-    if (typeof window.requestIdleCallback === 'function') {
-      idle = window.requestIdleCallback(prefetch, { timeout: 4000 })
-    } else {
-      idle = window.setTimeout(prefetch, 2500)
+    const schedule = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        idle = window.requestIdleCallback(prefetch, { timeout: 6000 })
+      } else {
+        idle = window.setTimeout(prefetch, 3000)
+      }
     }
+    let onLoad: (() => void) | undefined
+    if (document.readyState === 'complete') schedule()
+    else {
+      onLoad = schedule
+      window.addEventListener('load', onLoad, { once: true })
+    }
+
     return () => {
+      if (onLoad) window.removeEventListener('load', onLoad)
+      if (idle === undefined) return
       if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle)
       else window.clearTimeout(idle)
     }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Bell, Camera, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Share2, Sparkles, Sun, Zap } from 'lucide-react'
 import { useApp, levelInfo } from '@/store/useApp'
@@ -7,8 +7,12 @@ import { Mascot } from '@/components/Mascot'
 import { cn, firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
-import { VisionSolverModal } from '@/components/tools/VisionSolver'
-import { ShareAppModal } from '@/components/ShareApp'
+// These two modals pull in markdown/katex and the QR encoder, which are only
+// needed once the learner actually opens them — keep them out of the first load.
+const VisionSolverModal = lazy(() =>
+  import('@/components/tools/VisionSolver').then((m) => ({ default: m.VisionSolverModal })),
+)
+const ShareAppModal = lazy(() => import('@/components/ShareApp').then((m) => ({ default: m.ShareAppModal })))
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
 import { useKidsWorld } from '@/lib/stage'
 
@@ -162,8 +166,10 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
         </div>
       </header>
       <RiddleModal open={riddleOpen} onClose={() => setRiddleOpen(false)} />
-      <VisionSolverModal open={scanOpen} onClose={() => setScanOpen(false)} />
-      <ShareAppModal open={shareOpen} onClose={() => setShareOpen(false)} />
+      <Suspense fallback={null}>
+        {scanOpen && <VisionSolverModal open onClose={() => setScanOpen(false)} />}
+        {shareOpen && <ShareAppModal open onClose={() => setShareOpen(false)} />}
+      </Suspense>
     </>
   )
 }

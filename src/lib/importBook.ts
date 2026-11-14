@@ -2,7 +2,6 @@ import type { Book, GradeLevel, LanguageCode, Subject } from '@/types'
 import { subjectMeta } from '@/data/books'
 import { officialBooks, type OfficialBook } from '@/data/officialBooks'
 import { deleteChapterCache, deletePdfBytes, savePdfBytes } from '@/lib/db'
-import { extractChapterFromBytes } from '@/lib/pdf'
 import { detectUnits } from '@/lib/units'
 
 export const SUBJECTS: Subject[] = ['English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies', 'Religion']
@@ -111,7 +110,7 @@ export async function importPdfFile(
     await savePdfBytes(id, bytes)
     stored = true
 
-    const chapter = await extractChapterFromBytes(bytes, id, onProgress)
+    const chapter = await (await import('@/lib/pdf')).extractChapterFromBytes(bytes, id, onProgress)
     const pageCount = chapter.pages.length
     const units = detectUnits(chapter.pages, pageCount)
     const subject = meta.subject

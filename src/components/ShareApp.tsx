@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import QRCode from 'qrcode'
 import { Check, Copy, Mail, MessageCircle, Send, Share2, X } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
@@ -21,14 +20,22 @@ export function ShareAppModal({ open, onClose }: { open: boolean; onClose: () =>
 
   useEffect(() => {
     if (!open) return
-    QRCode.toDataURL(SHORT_URL, {
-      width: 560,
-      margin: 2,
-      errorCorrectionLevel: 'M',
-      color: { dark: '#0b1020', light: '#ffffff' },
-    })
-      .then(setQr)
-      .catch(() => undefined)
+    let cancelled = false
+    void import('qrcode').then(({ default: QRCode }) =>
+      QRCode.toDataURL(SHORT_URL, {
+        width: 560,
+        margin: 2,
+        errorCorrectionLevel: 'M',
+        color: { dark: '#0b1020', light: '#ffffff' },
+      })
+        .then((data) => {
+          if (!cancelled) setQr(data)
+        })
+        .catch(() => undefined),
+    )
+    return () => {
+      cancelled = true
+    }
   }, [open])
 
   const message = `${shareMessage()}\n${SHORT_URL}`
