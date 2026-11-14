@@ -2,7 +2,7 @@
   "name": "jessica-edu-pwa",
   "private": true,
   "version": "1.0.0",
-  "description": "Jessica \u2014 an AI-powered, gamified learning companion for Egyptian first-preparatory language school students.",
+  "description": "Jessica — an AI-powered, gamified learning companion for Egyptian first-preparatory language school students.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "icons": "node scripts/generate-icons.mjs",
     "postinstall": "node scripts/generate-icons.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "content": "node scripts/generate-seo.mjs && node scripts/generate-quiz.mjs && node scripts/generate-guides.mjs && node scripts/generate-topics.mjs && node scripts/generate-install.mjs && node scripts/generate-feed.mjs"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.1.1",
