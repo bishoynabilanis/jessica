@@ -151,3 +151,18 @@
   color: var(--mint, #2ee6c5);
   text-align: center;
 }
+
+.quiz-challenge-hint {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 620px;
+  margin: 22px auto 0;
+  border: 1px solid rgba(46, 230, 197, 0.35);
+  background: rgba(46, 230, 197, 0.08);
+  border-radius: 18px;
+  padding: 14px 18px;
+  text-align: center;
+}
+.quiz-challenge-hint strong { color: #7ff3dd; font-size: 15px; }
+.quiz-challenge-hint span { color: var(--muted, #98a6bf); font-size: 13px; line-height: 1.9; }
