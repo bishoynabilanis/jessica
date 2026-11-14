@@ -104,11 +104,14 @@ function shell({ up, title, description, canonical, jsonld, bodyAttrs, body }) {
 <meta property="og:url" content="${canonical}">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
-<meta property="og:image" content="${BASE}/og.jpg">
+<meta property="og:image" content="${BASE}/welcome/quiz/og-quiz.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="اختبار ٦٠ ثانية — ١٠ أسئلة على مستوى صفك">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${description}">
-<meta name="twitter:image" content="${BASE}/og.jpg">
+<meta name="twitter:image" content="${BASE}/welcome/quiz/og-quiz.jpg">
 <link rel="icon" href="${up}../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
