@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        width: 1080px; height: 1350px; background: #fbf8f0; color: #101828;
+        font-family: 'Cairo', 'Geeza Pro', Arial, sans-serif; padding: 64px 60px 0; position: relative;
+      }
+      .top { display: flex; align-items: center; justify-content: space-between; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .j { width: 48px; height: 48px; border-radius: 14px; background: #0f766e; color: #fff; display: grid; place-items: center; font-weight: 900; font-size: 26px; }
+      .brand b { font-size: 20px; letter-spacing: .22em; color: #0f766e; }
+      .tag { font-size: 19px; font-weight: 700; color: #8a7a53; }
+      h1 { margin-top: 34px; font-size: 58px; font-weight: 900; line-height: 1.2; }
+      h1 em { font-style: normal; color: #0f766e; }
+      p.sub { margin-top: 10px; font-size: 24px; color: #5b6478; }
+      table { width: 100%; margin-top: 34px; border-collapse: separate; border-spacing: 0 10px; }
+      th { font-size: 17px; font-weight: 800; color: #8a7a53; padding-bottom: 4px; }
+      th:first-child { text-align: right; }
+      td { background: #fff; border-top: 1px solid #e8dfc9; border-bottom: 1px solid #e8dfc9; padding: 14px 12px; font-size: 24px; }
+      tr td:first-child { border-radius: 0 16px 16px 0; border-right: 1px solid #e8dfc9; font-weight: 900; width: 200px; }
+      tr td:last-child { border-radius: 16px 0 0 16px; border-left: 1px solid #e8dfc9; }
+      .box { width: 44px; height: 44px; border: 2px solid #cfc3a2; border-radius: 10px; margin: 0 auto; display: grid; place-items: center; font-size: 20px; color: #b9ab86; }
+      .weekend td { background: #f4efe1; }
+      .rules { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      .rule { background: #0f766e0d; border: 1px solid #0f766e33; border-radius: 16px; padding: 16px; }
+      .rule b { display: block; font-size: 20px; color: #0f766e; margin-bottom: 4px; }
+      .rule span { font-size: 18px; color: #4b5563; line-height: 1.5; }
+      .foot {
+        position: absolute; left: 0; right: 0; bottom: 0; height: 92px; background: #0f766e; color: #fff;
+        display: flex; align-items: center; justify-content: space-between; padding: 0 60px; font-size: 22px; font-weight: 800;
+      }
+      .foot span { color: #bff3ea; font-weight: 700; font-size: 19px; }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <div class="brand"><span class="j">J</span><b>JESSICA</b></div>
+      <span class="tag">خطة أسبوع · تطبع أو تتصوّر</span>
+    </div>
+
+    <h1>خطة <em>مذاكرة</em> أسبوعية<br />لمدة ٥ أيام مش ٧.</h1>
+    <p class="sub">٣ مربعات كل يوم. لو كمّلت ٥ أيام في الأسبوع — يبقى الأسبوع ناجح.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>اليوم</th>
+          <th>مراجعة ١٥ د</th>
+          <th>مذاكرة ٤٥ د</th>
+          <th>سؤال واحد</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>السبت</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr><td>الأحد</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr><td>الاثنين</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr><td>الثلاثاء</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr><td>الأربعاء</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr class="weekend"><td>الخميس</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+        <tr class="weekend"><td>الجمعة</td><td><div class="box"></div></td><td><div class="box"></div></td><td><div class="box"></div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="rules">
+      <div class="rule"><b>١) نفس الميعاد</b><span>٤٥ دقيقة في نفس الوقت كل يوم أحسن من ٣ ساعات مرة واحدة.</span></div>
+      <div class="rule"><b>٢) ابدأ بالأصعب</b><span>أول ٢٠ دقيقة لأصعب مادة، مش لأسهل واحدة.</span></div>
+      <div class="rule"><b>٣) اسأل: فهمت إيه؟</b><span>مش «ذاكرت كام؟» — «شرحلي حاجة واحدة فهمتها».</span></div>
+    </div>
+
+    <div class="foot">
+      <b>التطبيق بيبني الخطة لوحده من تقدم ابنك</b>
+      <span>is.gd/jessicaapp</span>
+    </div>
+  </body>
+</html>

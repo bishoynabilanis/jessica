@@ -1,5 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Share --------------------------- */
+  "Community and questions: {url}": "Communauté et questions : {url}",
+
   /* --------------------------- Community --------------------------- */
   "Community group": "Groupe communautaire",
 

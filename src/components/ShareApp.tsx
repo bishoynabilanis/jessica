@@ -7,6 +7,7 @@ import { tr } from '@/i18n'
 const APP_URL = 'https://bishoynabilanis.github.io/jessica/'
 const SHORT_URL = 'https://is.gd/jessicaapp'
 const QUIZ_URL = 'https://is.gd/jessicaquiz'
+const COMMUNITY_URL = 'https://is.gd/jessicagroup'
 
 export function shareMessage() {
   return tr(
@@ -38,7 +39,7 @@ export function ShareAppModal({ open, onClose }: { open: boolean; onClose: () =>
     }
   }, [open])
 
-  const message = `${shareMessage()}\n${SHORT_URL}`
+  const message = `${shareMessage()}\n${SHORT_URL}\n${tr('Community and questions: {url}', { url: COMMUNITY_URL })}`
   const encoded = encodeURIComponent(message)
   const encodedUrl = encodeURIComponent(SHORT_URL)
 

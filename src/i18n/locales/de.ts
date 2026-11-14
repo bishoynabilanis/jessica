@@ -1,5 +1,8 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Share --------------------------- */
+  "Community and questions: {url}": "Community und Fragen: {url}",
+
   /* --------------------------- Community --------------------------- */
   "Community group": "Community-Gruppe",
 

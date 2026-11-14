@@ -1,5 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Share --------------------------- */
+  "Community and questions: {url}": "Topluluk ve sorular: {url}",
+
   /* --------------------------- Community --------------------------- */
   "Community group": "Topluluk grubu",
 

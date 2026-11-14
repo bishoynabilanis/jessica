@@ -13,6 +13,9 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Share --------------------------- */
+  "Community and questions: {url}": "جروب الأسئلة والاقتراحات: {url}",
+
   /* --------------------------- Community --------------------------- */
   "Community group": "جروب المجتمع",
 

@@ -1,5 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Share --------------------------- */
+  "Community and questions: {url}": "Komunitas dan pertanyaan: {url}",
+
   /* --------------------------- Community --------------------------- */
   "Community group": "Grup komunitas",
 
