@@ -1,5 +1,9 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "Leçon : {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "Lecture, termes clés et une courte vérification — environ {n} minutes.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "Unité maîtrisée !",
   "{title} marked complete.": "{title} est marquée terminée.",

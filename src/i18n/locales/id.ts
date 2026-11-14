@@ -1,5 +1,9 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "Pelajaran: {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "Baca, istilah kunci, dan cek singkat — sekitar {n} menit.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "Unit dikuasai!",
   "{title} marked complete.": "{title} ditandai selesai.",

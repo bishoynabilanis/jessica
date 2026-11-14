@@ -1,5 +1,9 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "Lektion: {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "Lesen, Schlüsselbegriffe und eine kurze Prüfung – etwa {n} Minuten.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "Einheit gemeistert!",
   "{title} marked complete.": "{title} ist als abgeschlossen markiert.",

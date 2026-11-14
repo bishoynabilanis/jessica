@@ -1,6 +1,6 @@
 import type { Book, PlanTask } from '@/types'
 import { todayKey } from '@/lib/utils'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 
 export interface DailyMission {
   id: string
@@ -87,16 +87,12 @@ export function buildDailyPlan(input: PlanInput): DailyMission[] {
     )
     if (nextUnit) {
       add({
-        id: `read-${nextUnit.id}`,
-        emoji: '📖',
-        title: tr('Read {unit}', { unit: nextUnit.title }),
-        hint: tr('Pages {from}–{to} from {book}.', {
-          from: nextUnit.startPage,
-          to: nextUnit.endPage,
-          book: fallbackBook.title,
-        }),
-        to: `/reader/${fallbackBook.id}?page=${nextUnit.startPage}`,
-        minutes: 10,
+        id: `lesson-${nextUnit.id}`,
+        emoji: '🎓',
+        title: tr('Lesson: {unit}', { unit: nextUnit.title }),
+        hint: tr('Read, key terms and a short check — about {n} minutes.', { n: num(8) }),
+        to: `/lesson/${fallbackBook.id}/${nextUnit.id}`,
+        minutes: 8,
       })
     }
   }

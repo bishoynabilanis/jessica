@@ -1,5 +1,9 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "Lección: {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "Lectura, términos clave y una comprobación corta: unos {n} minutos.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "¡Unidad dominada!",
   "{title} marked complete.": "{title} queda completada.",

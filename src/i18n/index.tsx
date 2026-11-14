@@ -13,6 +13,10 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "درس: {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "اقرا + المصطلحات + اختبار قصير — حوالي {n} دقايق.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "الوحدة اتقنت!",
   "{title} marked complete.": "{title} اتسجلت مكتملة.",

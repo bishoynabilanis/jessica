@@ -1,5 +1,9 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Daily lesson mission --------------------------- */
+  "Lesson: {unit}": "Ders: {unit}",
+  "Read, key terms and a short check — about {n} minutes.": "Okuma, anahtar terimler ve kısa bir kontrol — yaklaşık {n} dakika.",
+
   /* --------------------------- Mastery toast --------------------------- */
   "Chapter mastered!": "Ünite tamamlandı!",
   "{title} marked complete.": "{title} tamamlandı olarak işaretlendi.",
