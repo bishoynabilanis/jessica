@@ -341,6 +341,22 @@
     card: document.getElementById('quiz-save-card'),
   }
 
+  /* --- challenge links: /welcome/quiz/<grade>/?beat=8 --- */
+  var params = new URLSearchParams(location.search)
+  var challengeBeat = Math.max(0, Math.min(TOTAL, parseInt(params.get('beat') || '0', 10) || 0))
+  var challengeFrom = (params.get('from') || '')
+    .replace(/[^\p{L}\p{N} _-]/gu, '')
+    .trim()
+    .slice(0, 18)
+
+  if (challengeBeat > 0 && el.start) {
+    var challengeBanner = document.createElement('div')
+    challengeBanner.className = 'quiz-challenge'
+    challengeBanner.textContent =
+      '🔥 ' + (challengeFrom || 'صاحبك') + ' جاب ' + ar(challengeBeat) + '/' + ar(TOTAL) + ' في الاختبار ده — تقدر تغلبه؟'
+    el.start.insertBefore(challengeBanner, el.start.firstChild)
+  }
+
   function makeQuestion() {
     var bank = BANKS[grade] || BANKS['prep-3']
     return bank()
@@ -475,9 +491,30 @@
     }
 
     var url = location.origin + location.pathname
+    var challengeUrl = url + '?beat=' + state.score
+    var shareUrl = challengeBeat > 0 ? challengeUrl : url
+
+    if (challengeBeat > 0) {
+      var verdict = document.createElement('p')
+      verdict.className = 'quiz-challenge-verdict'
+      var rival = challengeFrom || 'صاحبك'
+      var diff = state.score - challengeBeat
+      if (diff > 0) {
+        verdict.textContent = '💥 كسرت التحدي! ' + ar(state.score) + ' مقابل ' + ar(challengeBeat) + ' لـ' + rival
+      } else if (diff === 0) {
+        verdict.textContent = '🤝 تعادل ' + ar(state.score) + ' مقابل ' + ar(challengeBeat) + ' — إجابة واحدة كانت كفاية تغلبه'
+      } else if (challengeBeat >= TOTAL) {
+        verdict.textContent = '😅 ' + rival + ' جاب ' + ar(challengeBeat) + '/' + ar(TOTAL) + ' — التعادل هو أقصى حاجة توصلها'
+      } else {
+        verdict.textContent =
+          'لسه محتاج ' + ar(challengeBeat - state.score + 1) + ' إجابة صح عشان تغلب ' + rival + ' (' + ar(challengeBeat) + '/' + ar(TOTAL) + ')'
+      }
+      el.score.insertAdjacentElement('afterend', verdict)
+    }
+
     var text =
       'جبت ' + ar(state.score) + '/' + ar(TOTAL) + ' في اختبار رياضيات ' + gradeName + ' في ' + formatTime(state.elapsed) + ' ⏱️\n' +
-      'تقدر تجيب أكتر؟ جرّب الاختبار المجاني 👇\n' + url
+      (challengeBeat > 0 ? 'تحدي مستمر — ' : '') + 'تقدر تجيب أكتر؟ جرّب الاختبار المجاني 👇\n' + shareUrl
     var encoded = encodeURIComponent(text)
     el.share.href = 'https://wa.me/?text=' + encoded
     el.copy.onclick = function () {
