@@ -2,6 +2,15 @@
 
 [**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help)
 
+| الصفحة | إيه اللي فيها |
+| --- | --- |
+| [⏱️ اختبار ٦٠ ثانية](https://bishoynabilanis.github.io/jessica/welcome/quiz/) | ١٠ أسئلة على مستوى الصف، تصحيح فوري وشرح — من غير تحميل |
+| [📚 كتب الوزارة لكل الصفوف](https://bishoynabilanis.github.io/jessica/welcome/grades/) | ٣٨ كتاب PDF رسمي مقسّم على ٩ صفوف |
+| [🧭 مواضيع المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/topics/) | جدول مذاكرة، حل الواجب، الرياضيات، الحفظ، الإنجليزي، قلق الامتحان |
+| [📘 أدلة المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/guides/) | طريقة المذاكرة من الكتاب، آخر أسبوع، البابل شيت |
+| [📲 دليل التثبيت](https://bishoynabilanis.github.io/jessica/welcome/install/) | تثبيت التطبيق على أندرويد وآيفون والكمبيوتر خطوة بخطوة |
+| [🇬🇧 English landing](https://bishoynabilanis.github.io/jessica/welcome/en/) | النسخة الإنجليزية من صفحة الهبوط |
+
 [![Deploy](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml)
 [![E2E](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2ee6c5.svg)](LICENSE)
