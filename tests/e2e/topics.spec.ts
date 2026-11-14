@@ -70,12 +70,12 @@ test('topic pages are linked from the landing page and topic hub', async ({ page
 
 test('grade pages link to the topics that fit that grade', async ({ page }) => {
   await page.goto('/welcome/grades/prep-3/')
-  await expect(page.locator('a[href="../../topics/midyear/"]')).toBeVisible()
-  await expect(page.locator('a[href="../../topics/exam-anxiety/"]')).toBeVisible()
+  await expect(page.locator('a[href="../../topics/midyear/"]').first()).toBeVisible()
+  await expect(page.locator('a[href="../../topics/exam-anxiety/"]').first()).toBeVisible()
 
   await page.goto('/welcome/grades/primary-1/')
-  await expect(page.locator('a[href="../../topics/primary-kid/"]')).toBeVisible()
+  await expect(page.locator('a[href="../../topics/primary-kid/"]').first()).toBeVisible()
 
   await page.goto('/welcome/grades/prep-1/')
-  await expect(page.locator('a[href="../../topics/study-notes/"]')).toBeVisible()
+  await expect(page.locator('a[href="../../topics/study-notes/"]').first()).toBeVisible()
 })
