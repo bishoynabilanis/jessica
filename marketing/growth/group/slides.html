@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #05070f; font-family: 'Cairo', 'Geeza Pro', Arial, sans-serif; }
+      .slide {
+        width: 1080px; height: 1350px; position: relative; overflow: hidden;
+        background:
+          radial-gradient(700px 420px at 90% -5%, rgba(139, 92, 246, 0.4), transparent 60%),
+          radial-gradient(600px 420px at 5% 105%, rgba(33, 230, 201, 0.28), transparent 60%),
+          linear-gradient(150deg, #070b18, #0b1226 60%, #101a33);
+        color: #f2f6ff; padding: 74px 64px 60px; display: flex; flex-direction: column;
+      }
+      .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 54px 54px; mask-image: radial-gradient(900px 700px at 50% 30%, #000 35%, transparent 85%); }
+      .brand { position: relative; display: flex; align-items: center; justify-content: space-between; }
+      .brand .mark { display: flex; align-items: center; gap: 12px; }
+      .brand .j { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, #21e6c9, #6b8cff); color: #061018; display: grid; place-items: center; font-weight: 900; font-size: 24px; }
+      .brand .name { font-size: 17px; letter-spacing: 0.26em; font-weight: 800; color: #9fb2d8; }
+      .step { font-size: 18px; font-weight: 800; color: #8fa3c8; }
+      h1 { position: relative; margin-top: 40px; font-size: 64px; line-height: 1.2; font-weight: 900; }
+      h1 em { font-style: normal; color: #21e6c9; }
+      p.sub { position: relative; margin-top: 14px; font-size: 27px; line-height: 1.6; color: #c4d2ee; }
+      .shotwrap { flex: 1; display: grid; align-items: center; padding: 26px 0; }
+      .shot {
+        position: relative; border-radius: 28px; overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: 0 40px 90px rgba(0,0,0,0.55);
+        background: #0b1226;
+      }
+      .shot img { display: block; width: 100%; }
+      .foot { position: relative; margin-top: auto; padding-top: 26px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.12); }
+      .foot span { font-size: 21px; font-weight: 700; color: #9fb2d8; }
+      .foot b { font-size: 21px; font-weight: 800; color: #21e6c9; direction: ltr; }
+    </style>
+  </head>
+  <body>
+    <section class="slide" id="s1">
+      <div class="grid"></div>
+      <div class="brand"><div class="mark"><span class="j">J</span><span class="name">JESSICA</span></div><span class="step">١ من ٣</span></div>
+      <h1>اقرأ من <em>كتابك</em><br />مش من ملخصات.</h1>
+      <p class="sub">الدرس بيتقسم صفحات من كتاب الوزارة نفسه — كل صفحة قدامك بالظبط زي ما هي.</p>
+      <div class="shotwrap"><div class="shot"><img src="file:///tmp/s-read.png" alt="" /></div></div>
+      <div class="foot"><span>مجاني · بدون حساب</span><b>is.gd/jessicaapp</b></div>
+    </section>
+
+    <section class="slide" id="s2">
+      <div class="grid"></div>
+      <div class="brand"><div class="mark"><span class="j">J</span><span class="name">JESSICA</span></div><span class="step">٢ من ٣</span></div>
+      <h1>المصطلحات <em>اللي هتيجي</em><br />في الامتحان.</h1>
+      <p class="sub">التطبيق بيقرأ نص الوحدة ويطلع أهم الكلمات اللي بتتكرر — من غير مفتاح ولا إنترنت.</p>
+      <div class="shotwrap"><div class="shot"><img src="file:///tmp/s-terms.png" alt="" /></div></div>
+      <div class="foot"><span>مجاني · بدون حساب</span><b>is.gd/jessicaapp</b></div>
+    </section>
+
+    <section class="slide" id="s3">
+      <div class="grid"></div>
+      <div class="brand"><div class="mark"><span class="j">J</span><span class="name">JESSICA</span></div><span class="step">٣ من ٣</span></div>
+      <h1>اختبر نفسك<br /><em>قبل</em> ما تحس إنك جاهز.</h1>
+      <p class="sub">٤ أسئلة على الوحدة، تصحيح فوري وشرح لكل إجابة — والوحدة بتتسجل مكتملة لما تعدّي.</p>
+      <div class="shotwrap"><div class="shot"><img src="file:///tmp/s-check.png" alt="" /></div></div>
+      <div class="foot"><span>مجاني · بدون حساب</span><b>is.gd/jessicaapp</b></div>
+    </section>
+  </body>
+</html>
