@@ -1,0 +1,51 @@
+<template>
+  <style>
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+    #root {
+      position: absolute; inset: 0; overflow: hidden; color: #ffffff;
+      font-family: 'Cairo', sans-serif; direction: rtl; background: #06070a;
+    }
+    .bgshot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.18; }
+    .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(760px 760px at 50% 46%, rgba(6, 7, 10, 0.3), rgba(6, 7, 10, 0.95) 78%);
+    }
+    .wrap {
+      position: absolute; inset: 0; padding: 0 120px; display: flex; flex-direction: column;
+      justify-content: center; text-align: center;
+    }
+    .eyebrow { color: #ff9a4d; font-size: 30px; font-weight: 800; }
+    h2 { margin-top: 12px; font-size: 60px; font-weight: 900; line-height: 1.28; }
+    .grid { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .cell b {
+      display: block; font-size: 120px; font-weight: 900; line-height: 1.05; color: #ff7a1a;
+      text-shadow: 0 0 46px rgba(255, 122, 26, 0.5), 0 0 110px rgba(255, 122, 26, 0.25);
+    }
+    .cell span { display: block; margin-top: 8px; font-size: 27px; font-weight: 700; color: #d5d9e2; }
+    .cell.wide b { font-size: 66px; }
+  </style>
+  <div id="root" data-composition-id="numbers" data-width="1080" data-height="1920">
+    <img class="bgshot" src="assets/shots/bg-plan.png" alt="" />
+    <div class="vignette"></div>
+    <div class="wrap" data-layout-allow-overflow="1">
+      <p id="nb-eyebrow" class="clip eyebrow" data-start="0.05" data-duration="2.9" data-layout-allow-safe-zone="1">كل حاجة في مكان واحد</p>
+      <h2 id="nb-title" class="clip" data-start="0.15" data-duration="2.8" data-layout-allow-safe-zone="1">من غير تعقيد</h2>
+      <div class="grid">
+        <div id="nb-c1" class="clip cell" data-start="0.5" data-duration="2.4" data-layout-allow-safe-zone="1"><b>٤</b><span>خطوات للدرس</span></div>
+        <div id="nb-c2" class="clip cell" data-start="0.7" data-duration="2.1999999999999997" data-layout-allow-safe-zone="1"><b>١٢</b><span>سؤال مستوى</span></div>
+        <div id="nb-c3" class="clip cell" data-start="0.9" data-duration="2.0" data-layout-allow-safe-zone="1"><b>٢٠</b><span>دقيقة خطة</span></div>
+        <div id="nb-c4" class="clip cell" data-start="1.1" data-duration="1.7999999999999998" data-layout-allow-safe-zone="1"><b>١</b><span>شهادة إنجاز</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#nb-eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#nb-title', { opacity: 0, y: 24, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.5, ease: 'power4.out' }, 0.15)
+    ;['#nb-c1', '#nb-c2', '#nb-c3', '#nb-c4'].forEach((id, i) => {
+      tl.fromTo(id, { opacity: 0, y: 24, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.6)' }, 0.5 + i * 0.2)
+    })
+    tl.to('.wrap', { opacity: 0, y: -26, duration: 0.3, ease: 'power2.in' }, 2.7)
+    window.__timelines['numbers'] = tl
+  </script>
+</template>

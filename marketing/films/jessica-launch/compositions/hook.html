@@ -1,95 +1,51 @@
 <template>
   <style>
-    @font-face {
-      font-family: 'Cairo';
-      src: url('assets/fonts/Cairo.ttf') format('truetype');
-      font-weight: 200 900;
-    }
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
     #root {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      background:
-        radial-gradient(700px 560px at 88% -8%, rgba(139, 92, 246, 0.5), transparent 62%),
-        radial-gradient(620px 520px at 4% 106%, rgba(33, 230, 201, 0.3), transparent 62%),
-        linear-gradient(155deg, #060a15, #0a1020 58%, #0e1730);
-      color: #f4f7ff;
-      font-family: 'Cairo', sans-serif;
-      direction: rtl;
+      position: absolute; inset: 0; overflow: hidden; color: #ffffff;
+      font-family: 'Cairo', sans-serif; direction: rtl; background: #06070a;
     }
-    .grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 68px 68px;
-      -webkit-mask-image: radial-gradient(760px 760px at 50% 42%, #000 28%, transparent 82%);
-      mask-image: radial-gradient(760px 760px at 50% 42%, #000 28%, transparent 82%);
+    .bgshot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22; }
+    .vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(760px 760px at 50% 46%, rgba(6, 7, 10, 0.25), rgba(6, 7, 10, 0.94) 78%);
     }
+    .mark { position: absolute; top: 130px; left: 0; right: 0; text-align: center; }
+    .mark b { font-size: 34px; letter-spacing: 0.18em; font-weight: 800; color: #fff; }
+    .mark i { display: block; width: 130px; height: 6px; background: #ff7a1a; margin: 14px auto 0; border-radius: 99px; }
     .box {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 150px;
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center; padding: 0 120px;
     }
-    .eyebrow {
-      color: #9fb2d8;
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    h1 {
-      font-size: 72px;
-      font-weight: 900;
-      line-height: 1.34;
-      letter-spacing: 0;
-      margin-top: 26px;
-    }
-    .line2 {
-      color: #21e6c9;
-      margin-top: 10px;
-    }
-    .underline {
-      margin-top: 34px;
-      width: 420px;
-      height: 18px;
-      transform-origin: right center;
-    }
-    .foot {
-      position: absolute;
-      bottom: 300px;
-      right: 150px;
-      color: #7d8cab;
-      font-size: 26px;
-      font-weight: 600;
-    }
+    .eyebrow { color: #ff9a4d; font-size: 30px; font-weight: 800; }
+    h1 { font-size: 92px; font-weight: 900; line-height: 1.3; margin-top: 26px; }
+    h1 .glow { color: #ff7a1a; text-shadow: 0 0 44px rgba(255, 122, 26, 0.55), 0 0 100px rgba(255, 122, 26, 0.28); }
+    .foot { position: absolute; bottom: 290px; left: 0; right: 0; text-align: center; color: #8b8f9a; font-size: 26px; font-weight: 600; }
   </style>
   <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
-    <div class="grid"></div>
-    <div class="box">
-      <p id="hook-eyebrow" class="clip eyebrow" data-layout-allow-safe-zone="1" data-start="0.15" data-duration="3.1">
-        الحقيقة اللي بتتقال بعد الامتحان
-      </p>
-      <h1 id="hook-l1" class="clip" data-layout-allow-safe-zone="1" data-start="0.35" data-duration="2.95">٣ ساعات مذاكرة…</h1>
-      <h1 id="hook-l2" class="clip line2" data-layout-allow-safe-zone="1" data-start="0.95" data-duration="2.35">ومفيش نتيجة؟</h1>
-      <svg id="hook-line" class="clip underline" data-layout-allow-safe-zone="1" data-start="1.55" data-duration="1.7" viewBox="0 0 420 18" fill="none">
-        <path d="M4 12C96 4 188 14 276 8C330 4 380 10 416 6" stroke="#21e6c9" stroke-width="7" stroke-linecap="round" />
-      </svg>
+    <img class="bgshot" src="assets/shots/bg-check.png" alt="" />
+    <div class="vignette"></div>
+    <div id="hk-mark" class="clip mark" data-start="0.05" data-duration="3.3" data-layout-allow-safe-zone="1">
+      <b>JESSICA</b>
+      <i></i>
     </div>
-    <p id="hook-foot" class="clip foot" data-layout-allow-safe-zone="1" data-start="2.1" data-duration="1.2">مش ضعف ذاكرة. دي طريقة مذاكرة.</p>
+    <div class="box" data-layout-allow-overflow="1">
+      <p id="hk-eyebrow" class="clip eyebrow" data-start="0.35" data-duration="3" data-layout-allow-safe-zone="1">الحقيقة اللي بتتقال بعد الامتحان</p>
+      <h1 id="hk-l1" class="clip" data-start="0.6" data-duration="2.75" data-layout-allow-safe-zone="1">٣ ساعات مذاكرة…</h1>
+      <h1 id="hk-l2" class="clip" data-start="1.15" data-duration="2.2" data-layout-allow-safe-zone="1"><span class="glow">ومفيش نتيجة؟</span></h1>
+    </div>
+    <p id="hk-foot" class="clip foot" data-start="2.35" data-duration="1.05" data-layout-allow-safe-zone="1">مش ضعف ذاكرة. دي طريقة مذاكرة.</p>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true })
-    tl.fromTo('#hook-eyebrow', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, 0.15)
-    tl.fromTo('#hook-l1', { opacity: 0, y: 40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7, ease: 'power4.out' }, 0.35)
-    tl.fromTo('#hook-l2', { opacity: 0, y: 44, filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7, ease: 'power4.out' }, 0.95)
-    tl.fromTo('#hook-line', { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: 'power2.out' }, 1.55)
-    tl.fromTo('#hook-foot', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 2.05)
-    tl.to('.box', { opacity: 0, y: -46, duration: 0.42, ease: 'power2.in' }, 2.95)
-    tl.to('#hook-foot', { opacity: 0, duration: 0.25 }, 2.95)
+    tl.fromTo('#hk-mark', { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#hk-eyebrow', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 0.35)
+    tl.fromTo('#hk-l1', { opacity: 0, y: 36, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, ease: 'power4.out' }, 0.6)
+    tl.fromTo('#hk-l2', { opacity: 0, y: 40, scale: 0.96, filter: 'blur(12px)' }, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.6, ease: 'power4.out' }, 1.15)
+    tl.fromTo('#hk-foot', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 2.35)
+    tl.to('.box', { opacity: 0, y: -40, duration: 0.4, ease: 'power2.in' }, 3.0)
+    tl.to('#hk-foot', { opacity: 0, duration: 0.25 }, 3.0)
+    tl.to('#hk-mark', { opacity: 0, duration: 0.3 }, 3.0)
     window.__timelines['hook'] = tl
   </script>
 </template>
