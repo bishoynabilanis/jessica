@@ -166,3 +166,14 @@
 }
 .quiz-challenge-hint strong { color: #7ff3dd; font-size: 15px; }
 .quiz-challenge-hint span { color: var(--muted, #98a6bf); font-size: 13px; line-height: 1.9; }
+
+.quiz-related { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.quiz-related a {
+  border: 1px solid var(--line, rgba(255,255,255,.12));
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted, #98a6bf);
+}
+.quiz-related a:hover { color: var(--text, #eef3ff); border-color: rgba(46, 230, 197, .35); }

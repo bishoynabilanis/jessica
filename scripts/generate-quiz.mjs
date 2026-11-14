@@ -210,10 +210,11 @@ function gradePage(grade) {
     <p class="quiz-tier" id="quiz-tier"></p>
     <p class="quiz-mini">الوقت: <span id="quiz-time">٠:٠٠</span></p>
     <div class="quiz-actions">
-      <a class="btn quiz-share" id="quiz-share" href="#" target="_blank" rel="noopener">شارك نتيجتك على واتساب</a>
+      <a class="btn quiz-share" id="quiz-share" href="#" target="_blank" rel="noopener">🔥 ابعت التحدي على واتساب</a>
       <button class="btn ghost" id="quiz-save-card" type="button">نزّل كارت النتيجة</button>
-      <button class="btn ghost" id="quiz-copy" type="button">انسخ النتيجة</button>
+      <button class="btn ghost" id="quiz-copy" type="button">انسخ لينك التحدي</button>
       <button class="btn ghost" id="quiz-retry" type="button">أعد الاختبار</button>
+      <a class="btn ghost" href="../../../">📲 افتح التطبيق كامل</a>
     </div>
     <div class="quiz-review" id="quiz-review" hidden></div>
   </div>
@@ -236,6 +237,12 @@ function gradePage(grade) {
   <p>جيسيكا فيها كتب ${grade.name} الرسمية PDF، ومدرس ذكي يشرح أي صفحة، وبطاقات مراجعة — مجانًا وبدون حساب.</p>
   <a class="btn" href="${up}../">افتح Jessica ←</a>
   <a class="btn ghost" href="${up}grades/${grade.slug}/">نزّل كتب ${grade.name}</a>
+  <div class="quiz-related">
+    <a href="${up}topics/study-plan/">🗓️ جدول مذاكرة</a>
+    <a href="${up}topics/math/">➗ إزاي تذاكر رياضيات</a>
+    <a href="${up}topics/exam-anxiety/">🧠 قلق الامتحان</a>
+    <a href="${up}topics/">🧭 كل مواضيع المذاكرة</a>
+  </div>
 </section>
 
 <section class="quiz-others">
@@ -302,6 +309,11 @@ function indexPage() {
   <p>جيسيكا فيها كتب الوزارة الرسمية لكل الصفوف، ومدرس ذكي يشرح أي صفحة، وبطاقات مراجعة — كل ده مجانًا وبدون حساب.</p>
   <a class="btn" href="${up}../">افتح Jessica ←</a>
   <a class="btn ghost" href="${up}grades/">كتب الوزارة</a>
+  <div class="quiz-related">
+    <a href="${up}install/">📲 تثبيت التطبيق</a>
+    <a href="${up}guides/">📘 أدلة المذاكرة</a>
+    <a href="${up}topics/">🧭 مواضيع المذاكرة</a>
+  </div>
 </section>`
 
   return shell({
