@@ -1,5 +1,29 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "Tu certificado",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "Un registro A4 imprimible de todo lo que has ganado: imprímelo, guárdalo en PDF o escanea el código para comprobarlo.",
+  "Back to skills": "Volver a habilidades",
+  "Verified copy": "Copia verificada",
+  "This copy was opened from the certificate code, so the details match the original.": "Esta copia se abrió desde el código del certificado, así que los datos coinciden con el original.",
+  "Not earned yet": "Aún no obtenido",
+  "Earn it by finishing your first unit or reaching 200 XP.": "Consíguelo terminando tu primera unidad o llegando a 200 XP.",
+  "Print / Save as PDF": "Imprimir / Guardar en PDF",
+  "A4 · print ready": "A4 · listo para imprimir",
+  "day streak": "días seguidos",
+  "Skills practised": "Habilidades practicadas",
+  "Certificate shared": "Certificado compartido",
+  "This certificate is awarded to": "Este certificado se otorga a",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "por alcanzar el nivel {level} en {grade}, dominar {units} unidades y practicar {skills} habilidades con {xp} XP.",
+  "Issued on": "Emitido el",
+  "Certificate ID": "ID del certificado",
+  "Your learning companion": "Tu compañero de aprendizaje",
+  "Scan to verify": "Escanea para verificar",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "Un certificado digital de Jessica: generado en este dispositivo, sin servidor.",
+  "Preview": "Vista previa",
+  "The code opens a read-only copy of this certificate on any device.": "El código abre una copia de solo lectura de este certificado en cualquier dispositivo.",
+  "Learning universe": "Universo de aprendizaje",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "Test de nivel",
   "Where do you actually stand?": "¿Dónde estás realmente?",

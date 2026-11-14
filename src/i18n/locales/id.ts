@@ -1,5 +1,29 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "Sertifikatmu",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "Catatan A4 yang bisa dicetak dari semua yang sudah kamu raih — cetak, simpan sebagai PDF, atau pindai kodenya.",
+  "Back to skills": "Kembali ke keterampilan",
+  "Verified copy": "Salinan terverifikasi",
+  "This copy was opened from the certificate code, so the details match the original.": "Salinan ini dibuka dari kode sertifikat, jadi datanya sama dengan aslinya.",
+  "Not earned yet": "Belum diperoleh",
+  "Earn it by finishing your first unit or reaching 200 XP.": "Dapatkan dengan menyelesaikan unit pertamamu atau mencapai 200 XP.",
+  "Print / Save as PDF": "Cetak / Simpan PDF",
+  "A4 · print ready": "A4 · siap cetak",
+  "day streak": "hari berturut-turut",
+  "Skills practised": "Keterampilan dilatih",
+  "Certificate shared": "Sertifikat dibagikan",
+  "This certificate is awarded to": "Sertifikat ini diberikan kepada",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "karena mencapai level {level} di {grade}, menguasai {units} unit, dan melatih {skills} keterampilan dengan {xp} XP.",
+  "Issued on": "Diterbitkan pada",
+  "Certificate ID": "ID sertifikat",
+  "Your learning companion": "Pendamping belajarmu",
+  "Scan to verify": "Pindai untuk verifikasi",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "Sertifikat digital dari Jessica — dibuat di perangkat ini, tanpa server.",
+  "Preview": "Pratinjau",
+  "The code opens a read-only copy of this certificate on any device.": "Kode ini membuka salinan hanya-baca dari sertifikat ini di perangkat mana pun.",
+  "Learning universe": "Semesta belajar",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "Tes level",
   "Where do you actually stand?": "Sebenarnya di mana posisimu?",

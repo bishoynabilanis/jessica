@@ -38,11 +38,17 @@ html.light {
 
 html {
   scroll-behavior: smooth;
+  /* RTL layouts can overhang by a few dozen pixels on phones; clip instead of
+     scrolling sideways. `clip` keeps sticky headers working. */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-height: 100dvh;
+  /* RTL layouts can overhang by a few dozen pixels on phones; clip instead of
+     scrolling sideways. `clip` keeps sticky headers working. */
+  overflow-x: clip;
   background-color: var(--bg);
   background-image: var(--app-bg-image, radial-gradient(1200px 600px at 10% -10%, rgba(139, 92, 246, 0.22), transparent 60%),
       radial-gradient(1000px 560px at 100% 0%, rgba(33, 230, 201, 0.14), transparent 55%),
@@ -614,4 +620,33 @@ html.kids-mode .pdf-stage {
     border-radius: 0 !important;
   }
   @page { margin: 0; }
+}
+
+/* --------------------------- Printable certificate --------------------------- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  .cert-print,
+  .cert-print * {
+    visibility: visible;
+  }
+
+  .cert-print {
+    position: absolute;
+    inset: 0;
+    width: 210mm;
+    min-height: 297mm;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+  }
 }

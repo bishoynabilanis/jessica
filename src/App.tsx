@@ -18,6 +18,7 @@ import {
   LazyBubbleSheet,
   LazyConstellation,
   LazyDiagnostic,
+  LazyCertificate,
   LazyDailyPlan,
   LazyDisclaimer,
   LazyExamCalendar,
@@ -224,6 +225,7 @@ export default function App() {
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
           <Route path="diagnostic" element={<LazyDiagnostic />} />
+          <Route path="certificate" element={<LazyCertificate />} />
           <Route path="help" element={<LazyHelp />} />
           <Route path="install" element={<LazyInstall />} />
           <Route path="scan" element={<LazyBubbleSheet />} />

@@ -70,7 +70,7 @@ export function AppShell() {
         <div className="absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-sky/10 blur-[120px]" />
       </div>
 
-      <aside className="fixed inset-y-0 start-0 z-50 hidden w-[264px] border-e border-line bg-app/60 backdrop-blur-2xl lg:block">
+      <aside className="print:hidden fixed inset-y-0 start-0 z-50 hidden w-[264px] border-e border-line bg-app/60 backdrop-blur-2xl lg:block">
         <SidebarContent />
       </aside>
 
@@ -94,12 +94,12 @@ export function AppShell() {
       <div className="lg:ps-[264px]">
         <TopBar onMenu={() => setMenuOpen(true)} />
         {offline && (
-          <div className="flex items-center justify-center gap-2 border-b border-sun/20 bg-sun/10 px-4 py-1.5 text-[11px] font-semibold text-sun">
+          <div className="print:hidden flex items-center justify-center gap-2 border-b border-sun/20 bg-sun/10 px-4 py-1.5 text-[11px] font-semibold text-sun">
             <WifiOff className="h-3.5 w-3.5" /> {tr('Offline mode — reading, flashcards and labs still work. AI needs a connection.')}
           </div>
         )}
         {updateReady && (
-          <div className="flex items-center justify-between gap-2 border-b border-aurora-400/20 bg-aurora-400/10 px-4 py-1.5 text-[11px] font-semibold text-aurora-200">
+          <div className="print:hidden flex items-center justify-between gap-2 border-b border-aurora-400/20 bg-aurora-400/10 px-4 py-1.5 text-[11px] font-semibold text-aurora-200">
             <span>{tr('New version available.')}</span>
             <Button size="sm" variant="primary" onClick={applyUpdate} className="h-7 px-2 text-[10px]">
               <RefreshCw className="h-3 w-3" /> {tr('Refresh')}

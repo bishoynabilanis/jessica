@@ -187,9 +187,11 @@ export function Skills() {
             <Button size="sm" variant="secondary" onClick={exportCsv} disabled={!skills.length}>
               <Download className="h-3.5 w-3.5" /> {tr('Export CSV')}
             </Button>
-            <Button size="sm" variant="ghost" onClick={() => window.print()}>
-              <Printer className="h-3.5 w-3.5" /> {tr('Certificate')}
-            </Button>
+            <Link to="/certificate">
+              <Button size="sm" variant="ghost">
+                <Printer className="h-3.5 w-3.5" /> {tr('Certificate')}
+              </Button>
+            </Link>
             <Button
               size="sm"
               onClick={async () => {
@@ -365,21 +367,6 @@ export function Skills() {
         </div>
       </Card>
 
-      <div className="certificate-print" dir="rtl">
-        <div style={{ border: '6px double #e0a800', padding: 40, textAlign: 'center', fontFamily: 'Cairo, sans-serif' }}>
-          <p style={{ letterSpacing: 4, fontSize: 12, color: '#777' }}>JESSICA LEARNING</p>
-          <h1 style={{ fontSize: 30, margin: '12px 0', color: '#0b1220' }}>شهادة إنجاز</h1>
-          <p style={{ fontSize: 14 }}>تُمنح هذه الشهادة إلى</p>
-          <p style={{ fontSize: 26, fontWeight: 800, margin: '8px 0', color: '#047a6d' }}>{name || '—'}</p>
-          <p style={{ fontSize: 13, lineHeight: 1.9 }}>
-            لإتمام {completedTopics.length} وحدة دراسية، والوصول إلى المستوى {level}،
-            <br />والمحافظة على سلسلة {streak} يوم من التعلم المستمر.
-          </p>
-          <p style={{ marginTop: 20, fontSize: 11, color: '#666' }}>
-            {new Date().toLocaleDateString('ar-EG')} · Jessica — عالم تعلّم ذكي
-          </p>
-        </div>
-      </div>
     </div>
   )
 }

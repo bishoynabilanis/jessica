@@ -1,5 +1,29 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "Dein Zertifikat",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "Eine druckbare A4-Urkunde über alles, was du erreicht hast – drucken, als PDF speichern oder den Code scannen.",
+  "Back to skills": "Zurück zu den Kompetenzen",
+  "Verified copy": "Geprüfte Kopie",
+  "This copy was opened from the certificate code, so the details match the original.": "Diese Kopie wurde über den Zertifikatscode geöffnet, daher stimmen die Angaben mit dem Original überein.",
+  "Not earned yet": "Noch nicht verdient",
+  "Earn it by finishing your first unit or reaching 200 XP.": "Verdiene es, indem du deine erste Einheit abschließt oder 200 XP erreichst.",
+  "Print / Save as PDF": "Drucken / Als PDF speichern",
+  "A4 · print ready": "A4 · druckfertig",
+  "day streak": "Tage in Folge",
+  "Skills practised": "Geübte Fähigkeiten",
+  "Certificate shared": "Zertifikat geteilt",
+  "This certificate is awarded to": "Dieses Zertifikat wird verliehen an",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "für Stufe {level} in {grade}, {units} gemeisterte Einheiten und {skills} geübte Fähigkeiten bei {xp} XP.",
+  "Issued on": "Ausgestellt am",
+  "Certificate ID": "Zertifikats-ID",
+  "Your learning companion": "Dein Lernbegleiter",
+  "Scan to verify": "Zum Prüfen scannen",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "Ein digitales Zertifikat von Jessica – auf diesem Gerät erstellt, ohne Server.",
+  "Preview": "Vorschau",
+  "The code opens a read-only copy of this certificate on any device.": "Der Code öffnet eine schreibgeschützte Kopie dieses Zertifikats auf jedem Gerät.",
+  "Learning universe": "Lernuniversum",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "Einstufungstest",
   "Where do you actually stand?": "Wo stehst du wirklich?",

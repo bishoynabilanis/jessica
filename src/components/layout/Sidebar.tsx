@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import {
   AlertTriangle,
+  Award,
   Bookmark,
   Brain,
   CalendarCheck,
@@ -48,6 +49,7 @@ export const navItems = [
   { path: '/reading', label: tr("Reading coach"), icon: Mic },
   { path: '/mistakes', label: tr("Mistakes"), icon: AlertTriangle },
   { path: '/skills', label: tr("Skills map"), icon: Target },
+  { path: '/certificate', label: tr("Certificate"), icon: Award },
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText },
   { path: '/teacher', label: tr("Class mode"), icon: Users },
   { path: '/report', label: tr("Parent report"), icon: BarChart3 },

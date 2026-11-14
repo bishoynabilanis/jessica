@@ -1,5 +1,29 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "Ton certificat",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "Un relevé A4 imprimable de tout ce que tu as gagné — imprime-le, enregistre-le en PDF ou scanne le code pour le vérifier.",
+  "Back to skills": "Retour aux compétences",
+  "Verified copy": "Copie vérifiée",
+  "This copy was opened from the certificate code, so the details match the original.": "Cette copie a été ouverte depuis le code du certificat : les détails correspondent à l’original.",
+  "Not earned yet": "Pas encore obtenu",
+  "Earn it by finishing your first unit or reaching 200 XP.": "Obtiens-le en terminant ta première unité ou en atteignant 200 XP.",
+  "Print / Save as PDF": "Imprimer / Enregistrer en PDF",
+  "A4 · print ready": "A4 · prêt à imprimer",
+  "day streak": "jours d’affilée",
+  "Skills practised": "Compétences travaillées",
+  "Certificate shared": "Certificat partagé",
+  "This certificate is awarded to": "Ce certificat est décerné à",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "pour avoir atteint le niveau {level} en {grade}, maîtrisé {units} unités et travaillé {skills} compétences, soit {xp} XP.",
+  "Issued on": "Délivré le",
+  "Certificate ID": "Identifiant du certificat",
+  "Your learning companion": "Ton compagnon d’apprentissage",
+  "Scan to verify": "Scanner pour vérifier",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "Un certificat numérique de Jessica — généré sur cet appareil, sans serveur.",
+  "Preview": "Aperçu",
+  "The code opens a read-only copy of this certificate on any device.": "Le code ouvre une copie en lecture seule de ce certificat sur n’importe quel appareil.",
+  "Learning universe": "Univers d’apprentissage",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "Test de niveau",
   "Where do you actually stand?": "Où en es-tu vraiment ?",

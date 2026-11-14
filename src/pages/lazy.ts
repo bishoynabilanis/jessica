@@ -29,6 +29,7 @@ export const LazyDailyPlan = page(() => import('@/pages/DailyPlan'), 'DailyPlan'
 export const LazyAsk = page(() => import('@/pages/Ask'), 'Ask')
 export const LazyPractice = page(() => import('@/pages/Practice'), 'Practice')
 export const LazyDiagnostic = page(() => import('@/pages/Diagnostic'), 'Diagnostic')
+export const LazyCertificate = page(() => import('@/pages/Certificate'), 'Certificate')
 export const LazyHelp = page(() => import('@/pages/Help'), 'Help')
 export const LazyFeedback = page(() => import('@/pages/Feedback'), 'Feedback')
 export const LazyInstall = page(() => import('@/pages/Install'), 'Install')

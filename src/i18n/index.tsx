@@ -13,6 +13,30 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "شهادة إنجازك",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "سجل A4 قابل للطباعة لكل اللي كسبته — اطبعه، احفظه PDF، أو امسح الكود للتأكد منه.",
+  "Back to skills": "رجوع لخريطة المهارات",
+  "Verified copy": "نسخة موثّقة",
+  "This copy was opened from the certificate code, so the details match the original.": "النسخة دي اتفتحت من كود الشهادة، فالبيانات مطابقة للأصل.",
+  "Not earned yet": "لسه مش مستحقة",
+  "Earn it by finishing your first unit or reaching 200 XP.": "استحقها لما تخلّص أول وحدة أو توصل ٢٠٠ نقطة خبرة.",
+  "Print / Save as PDF": "طباعة / حفظ PDF",
+  "A4 · print ready": "A4 · جاهزة للطباعة",
+  "day streak": "يوم متتالي",
+  "Skills practised": "مهارات تم التدرب عليها",
+  "Certificate shared": "تم مشاركة الشهادة",
+  "This certificate is awarded to": "تُمنح هذه الشهادة إلى",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "للوصول إلى المستوى {level} في {grade}، وإتقان {units} وحدة، والتدرّب على {skills} مهارة، بإجمالي {xp} نقطة خبرة.",
+  "Issued on": "تاريخ الإصدار",
+  "Certificate ID": "كود الشهادة",
+  "Your learning companion": "رفيقة التعلّم",
+  "Scan to verify": "امسح للتحقق",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "شهادة رقمية من جيسيكا — اتولدت على جهازك من غير أي سيرفر.",
+  "Preview": "معاينة",
+  "The code opens a read-only copy of this certificate on any device.": "الكود بيفتح نسخة للقراءة فقط من الشهادة على أي جهاز.",
+  "Learning universe": "عالم تعلّم",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "اختبار المستوى",
   "Where do you actually stand?": "إنت واقف فين بالظبط؟",

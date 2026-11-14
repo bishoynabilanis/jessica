@@ -1,5 +1,29 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Certificate --------------------------- */
+  "Your certificate": "Sertifikan",
+  "A printable A4 record of everything you have earned — print it, save it as PDF, or scan the code to check it.": "Kazandığın her şeyin yazdırılabilir A4 kaydı — yazdır, PDF olarak kaydet ya da kodu okutup doğrula.",
+  "Back to skills": "Becerilere dön",
+  "Verified copy": "Doğrulanmış kopya",
+  "This copy was opened from the certificate code, so the details match the original.": "Bu kopya sertifika koduyla açıldı, bu yüzden bilgiler aslıyla aynı.",
+  "Not earned yet": "Henüz kazanılmadı",
+  "Earn it by finishing your first unit or reaching 200 XP.": "İlk üniteni bitirerek ya da 200 XP’ye ulaşarak kazan.",
+  "Print / Save as PDF": "Yazdır / PDF olarak kaydet",
+  "A4 · print ready": "A4 · yazdırmaya hazır",
+  "day streak": "gün üst üste",
+  "Skills practised": "Çalışılan beceriler",
+  "Certificate shared": "Sertifika paylaşıldı",
+  "This certificate is awarded to": "Bu sertifika şu kişiye verilir",
+  "for reaching level {level} in {grade}, mastering {units} units and practising {skills} skills across {xp} XP.": "{grade} sınıfında {level}. seviyeye ulaştığı, {units} üniteyi tamamladığı ve {xp} XP ile {skills} beceri çalıştığı için.",
+  "Issued on": "Veriliş tarihi",
+  "Certificate ID": "Sertifika no",
+  "Your learning companion": "Öğrenme yol arkadaşın",
+  "Scan to verify": "Doğrulamak için okut",
+  "A digital certificate from Jessica — generated on this device, no server involved.": "Jessica’dan dijital bir sertifika — bu cihazda oluşturuldu, sunucu yok.",
+  "Preview": "Önizleme",
+  "The code opens a read-only copy of this certificate on any device.": "Kod, bu sertifikanın salt okunur bir kopyasını her cihazda açar.",
+  "Learning universe": "Öğrenme evreni",
+
   /* --------------------------- Level test --------------------------- */
   "Level test": "Seviye testi",
   "Where do you actually stand?": "Gerçekte neredesin?",
