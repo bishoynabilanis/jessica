@@ -1,5 +1,15 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "Bölümleri yeniden tara",
+  "No text to analyse yet": "Henüz analiz edilecek metin yok",
+  "Open the book once so Jessica can read it.": "Jessica okuyabilsin diye kitabı bir kez aç.",
+  "Chapters re-scanned: {n}": "{n} bölüm bulundu",
+  "No chapter headings found": "Bölüm başlığı bulunamadı",
+  "The course now follows the real units in your book.": "Kurs artık kitabının gerçek ünitelerini izliyor.",
+  "The book keeps its current sections.": "Kitap mevcut bölümlerini koruyor.",
+  "Could not read this book": "Bu kitap okunamadı",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "Topluluk ve sorular: {url}",
 

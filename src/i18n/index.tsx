@@ -13,6 +13,16 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "إعادة تحليل الفصول",
+  "No text to analyse yet": "لسه مفيش نص نتحلله",
+  "Open the book once so Jessica can read it.": "افتح الكتاب مرة عشان جيسيكا تقراه.",
+  "Chapters re-scanned: {n}": "اتعرّفنا على {n} فصل من الكتاب",
+  "No chapter headings found": "ملقيناش عناوين فصول",
+  "The course now follows the real units in your book.": "الكورس بقى ماشي على وحدات الكتاب الحقيقية.",
+  "The book keeps its current sections.": "الكتاب هيفضل على أقسامه الحالية.",
+  "Could not read this book": "مقدرناش نقرا الكتاب ده",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "جروب الأسئلة والاقتراحات: {url}",
 

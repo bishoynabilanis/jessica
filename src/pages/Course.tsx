@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
   ArrowRight,
@@ -8,16 +8,20 @@ import {
   GraduationCap,
   Layers,
   Play,
+  RefreshCw,
   RotateCcw,
   Sparkles,
   Trophy,
 } from 'lucide-react'
 import { subjectMeta } from '@/data/books'
 import { useApp } from '@/store/useApp'
+import { useUI } from '@/store/useUI'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar } from '@/components/ui/Card'
 import { buildCourse, lessonLink } from '@/lib/course'
+import { openChapter } from '@/lib/library'
+import { detectUnits } from '@/lib/units'
 import { levelLabel } from '@/lib/curriculum'
 import { cn } from '@/lib/utils'
 import { num, tr } from '@/i18n'
@@ -30,6 +34,9 @@ export function Course() {
   const unitMastery = useApp((s) => s.unitMastery)
   const completedTopics = useApp((s) => s.completedTopics)
   const lessonProgress = useApp((s) => s.lessonProgress)
+  const addCustomBook = useApp((s) => s.addCustomBook)
+  const pushToast = useUI((s) => s.pushToast)
+  const [rescanning, setRescanning] = useState(false)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const curriculum = useApp((s) => s.settings.curriculum)
 
@@ -53,6 +60,33 @@ export function Course() {
         />
       </Card>
     )
+  }
+
+  const genericUnits = course.lessons.length > 0 && course.lessons.every((lesson) =>
+    /^(القسم|Part)\s+[\d٠-٩]+$/.test(lesson.unit.title.trim()),
+  )
+
+  const rescan = async () => {
+    setRescanning(true)
+    try {
+      const chapter = await openChapter(book)
+      if (!chapter?.pages?.length) {
+        pushToast({ title: tr('No text to analyse yet'), description: tr('Open the book once so Jessica can read it.'), type: 'info' })
+        return
+      }
+      const units = detectUnits(chapter.pages, book.pageCount)
+      const better = units.length >= 2 && !units.every((unit) => /^(القسم|Part)\s+[\d٠-٩]+$/.test(unit.title.trim()))
+      addCustomBook({ ...book, units: better ? units : book.units })
+      pushToast({
+        title: better ? tr('Chapters re-scanned: {n}', { n: num(units.length) }) : tr('No chapter headings found'),
+        description: better ? tr('The course now follows the real units in your book.') : tr('The book keeps its current sections.'),
+        type: better ? 'success' : 'info',
+      })
+    } catch {
+      pushToast({ title: tr('Could not read this book'), type: 'error' })
+    } finally {
+      setRescanning(false)
+    }
   }
 
   const meta = subjectMeta[book.subject] || { emoji: '📚', color: '#21e6c9' }
@@ -131,6 +165,11 @@ export function Course() {
               <BookOpen className="h-4 w-4" /> {tr('Open the book')}
             </Button>
           </Link>
+          {genericUnits && (
+            <Button size="md" variant="ghost" onClick={rescan} loading={rescanning}>
+              <RefreshCw className="h-4 w-4" /> {tr('Re-scan chapters')}
+            </Button>
+          )}
         </div>
       </Card>
 

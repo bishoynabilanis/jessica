@@ -1,5 +1,15 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "Réanalyser les chapitres",
+  "No text to analyse yet": "Pas encore de texte à analyser",
+  "Open the book once so Jessica can read it.": "Ouvre le livre une fois pour que Jessica le lise.",
+  "Chapters re-scanned: {n}": "{n} chapitres détectés",
+  "No chapter headings found": "Aucun titre de chapitre trouvé",
+  "The course now follows the real units in your book.": "Le cours suit maintenant les vraies unités de ton livre.",
+  "The book keeps its current sections.": "Le livre garde ses sections actuelles.",
+  "Could not read this book": "Impossible de lire ce livre",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "Communauté et questions : {url}",
 

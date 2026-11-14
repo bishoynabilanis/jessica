@@ -1,5 +1,15 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "Reanalizar capítulos",
+  "No text to analyse yet": "Aún no hay texto que analizar",
+  "Open the book once so Jessica can read it.": "Abre el libro una vez para que Jessica lo lea.",
+  "Chapters re-scanned: {n}": "{n} capítulos detectados",
+  "No chapter headings found": "No se encontraron títulos de capítulos",
+  "The course now follows the real units in your book.": "El curso ya sigue las unidades reales de tu libro.",
+  "The book keeps its current sections.": "El libro mantiene sus secciones actuales.",
+  "Could not read this book": "No se pudo leer este libro",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "Comunidad y preguntas: {url}",
 

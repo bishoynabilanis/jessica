@@ -1,5 +1,15 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "Pindai ulang bab",
+  "No text to analyse yet": "Belum ada teks untuk dianalisis",
+  "Open the book once so Jessica can read it.": "Buka bukunya sekali agar Jessica bisa membacanya.",
+  "Chapters re-scanned: {n}": "{n} bab terdeteksi",
+  "No chapter headings found": "Tidak ada judul bab ditemukan",
+  "The course now follows the real units in your book.": "Kursus kini mengikuti unit asli bukumu.",
+  "The book keeps its current sections.": "Buku tetap memakai bagian yang sekarang.",
+  "Could not read this book": "Buku ini tidak bisa dibaca",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "Komunitas dan pertanyaan: {url}",
 

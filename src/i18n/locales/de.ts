@@ -1,5 +1,15 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Re-scan --------------------------- */
+  "Re-scan chapters": "Kapitel neu erkennen",
+  "No text to analyse yet": "Noch kein Text zum Auswerten",
+  "Open the book once so Jessica can read it.": "Öffne das Buch einmal, damit Jessica es liest.",
+  "Chapters re-scanned: {n}": "{n} Kapitel erkannt",
+  "No chapter headings found": "Keine Kapitelüberschriften gefunden",
+  "The course now follows the real units in your book.": "Der Kurs folgt jetzt den echten Einheiten deines Buchs.",
+  "The book keeps its current sections.": "Das Buch behält seine aktuellen Abschnitte.",
+  "Could not read this book": "Dieses Buch konnte nicht gelesen werden",
+
   /* --------------------------- Share --------------------------- */
   "Community and questions: {url}": "Community und Fragen: {url}",
 
