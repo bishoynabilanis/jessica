@@ -177,3 +177,5 @@
   color: var(--muted, #98a6bf);
 }
 .quiz-related a:hover { color: var(--text, #eef3ff); border-color: rgba(46, 230, 197, .35); }
+
+.quiz-full-btn { width: 100%; margin-top: 10px; }

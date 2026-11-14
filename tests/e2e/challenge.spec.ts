@@ -49,3 +49,27 @@ test('a losing run tells the player how many correct answers are missing', async
 
   await expect(page.locator('.quiz-challenge-verdict')).toContainText('لسه محتاج')
 })
+
+test('the full 20-question exam can be started from the start screen', async ({ page }) => {
+  await page.goto('/welcome/quiz/prep-3/')
+  const fullButton = page.locator('.quiz-full-btn')
+  await expect(fullButton).toBeVisible()
+  await fullButton.click()
+  await expect(page.locator('#quiz-counter')).toContainText('من ٢٠')
+  await expect(page.locator('.quiz-full-btn')).toHaveCount(0)
+})
+
+test('a 20-question challenge keeps the mode in the shared link', async ({ page }) => {
+  await page.goto('/welcome/quiz/prep-3/?n=20&beat=15')
+  await expect(page.locator('.quiz-challenge')).toContainText('١٥/٢٠')
+  await page.click('#quiz-start-btn')
+  for (let i = 0; i < 20; i++) {
+    await page.locator('.quiz-choice[data-correct="1"]').first().click()
+    await expect(page.locator('#quiz-feedback')).toBeVisible()
+    await page.click('#quiz-next')
+  }
+  await expect(page.locator('#quiz-score')).toHaveText('٢٠/٢٠')
+  const href = decodeURIComponent((await page.locator('#quiz-share').getAttribute('href')) || '')
+  expect(href).toContain('beat=20')
+  expect(href).toContain('n=20')
+})

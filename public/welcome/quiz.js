@@ -315,6 +315,7 @@
   /* ---------- quiz engine ---------- */
 
   var TOTAL = 10
+  var TOTAL_FULL = 20
   var state = { index: 0, score: 0, questions: [], startedAt: 0, elapsed: 0, wrong: [], locked: false }
 
   var el = {
@@ -343,6 +344,7 @@
 
   /* --- challenge links: /welcome/quiz/<grade>/?beat=8 --- */
   var params = new URLSearchParams(location.search)
+  if (params.get('n') === '20') TOTAL = TOTAL_FULL
   var challengeBeat = Math.max(0, Math.min(TOTAL, parseInt(params.get('beat') || '0', 10) || 0))
   var challengeFrom = (params.get('from') || '')
     .replace(/[^\p{L}\p{N} _-]/gu, '')
@@ -355,6 +357,19 @@
     challengeBanner.textContent =
       '🔥 ' + (challengeFrom || 'صاحبك') + ' جاب ' + ar(challengeBeat) + '/' + ar(TOTAL) + ' في الاختبار ده — تقدر تغلبه؟'
     el.start.insertBefore(challengeBanner, el.start.firstChild)
+  }
+
+  if (TOTAL === 10 && el.startBtn) {
+    var fullBtn = document.createElement('button')
+    fullBtn.type = 'button'
+    fullBtn.className = 'btn ghost quiz-full-btn'
+    fullBtn.textContent = '📝 امتحان كامل — ٢٠ سؤال'
+    fullBtn.addEventListener('click', function () {
+      TOTAL = TOTAL_FULL
+      fullBtn.remove()
+      startQuiz()
+    })
+    el.startBtn.insertAdjacentElement('afterend', fullBtn)
   }
 
   function makeQuestion() {
@@ -458,15 +473,17 @@
     el.result.hidden = false
     el.score.textContent = ar(state.score) + '/' + ar(TOTAL)
     el.time.textContent = formatTime(state.elapsed)
-    var tier = state.score === TOTAL ? 'أسطورة رياضيات 🏆' : state.score >= 8 ? 'ممتاز 🔥' : state.score >= 6 ? 'كويس 👍 كمّل' : 'محتاج مراجعة 💪'
+    var ratio = state.score / TOTAL
+    var tier = ratio === 1 ? 'أسطورة رياضيات 🏆' : ratio >= 0.8 ? 'ممتاز 🔥' : ratio >= 0.6 ? 'كويس 👍 كمّل' : 'محتاج مراجعة 💪'
     el.tier.textContent = tier + ' — ' + gradeName
     el.bar.style.width = '100%'
 
     var best = 0
     try {
-      best = Number(localStorage.getItem('jessica-quiz-' + grade) || 0)
+      var bestKey = 'jessica-quiz-' + grade + (TOTAL === TOTAL_FULL ? '-20' : '')
+      best = Number(localStorage.getItem(bestKey) || 0)
       if (state.score > best) {
-        localStorage.setItem('jessica-quiz-' + grade, String(state.score))
+        localStorage.setItem(bestKey, String(state.score))
         best = state.score
       }
     } catch (err) {
@@ -491,7 +508,7 @@
     }
 
     var url = location.origin + location.pathname
-    var challengeUrl = url + '?beat=' + state.score
+    var challengeUrl = url + '?beat=' + state.score + (TOTAL === TOTAL_FULL ? '&n=20' : '')
     var shareUrl = challengeBeat > 0 ? challengeUrl : url
 
     if (challengeBeat > 0) {
@@ -562,7 +579,8 @@
     ctx.font = '700 38px Cairo, system-ui, sans-serif'
     ctx.fillText('الوقت: ' + formatTime(state.elapsed), 540, 660)
 
-    var tier = state.score === TOTAL ? 'أسطورة رياضيات 🏆' : state.score >= 8 ? 'ممتاز 🔥' : state.score >= 6 ? 'كويس 👍' : 'محتاج مراجعة 💪'
+    var ratio = state.score / TOTAL
+    var tier = ratio === 1 ? 'أسطورة رياضيات 🏆' : ratio >= 0.8 ? 'ممتاز 🔥' : ratio >= 0.6 ? 'كويس 👍' : 'محتاج مراجعة 💪'
     ctx.fillStyle = '#ffd166'
     ctx.font = '800 54px Cairo, system-ui, sans-serif'
     ctx.fillText(tier, 540, 780)
