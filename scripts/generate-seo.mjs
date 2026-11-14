@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 
 const BLOB = 'https://elearnningcontent.blob.core.windows.net/elearnningcontent'
 const source = fs.readFileSync('src/data/officialBooks.ts', 'utf8')
@@ -141,7 +142,8 @@ function page(grade, { title, description, body, slug }) {
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../style.css">
 <style>
   .grade-hero { padding: 60px 0 20px; text-align: center; }
@@ -400,7 +402,8 @@ fs.writeFileSync(
 <link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../style.css">
 <style>
   .grade-hero { padding: 60px 0 20px; text-align: center; }
@@ -453,25 +456,50 @@ fs.writeFileSync(
 )
 
 const urls = [
-  { loc: `${BASE}/welcome/`, freq: 'weekly', priority: '1.0' },
-  { loc: `${BASE}/welcome/en/`, freq: 'weekly', priority: '0.9' },
-  { loc: `${BASE}/welcome/grades/`, freq: 'weekly', priority: '0.9' },
-  ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/grades/${slug}/`, freq: 'monthly', priority: '0.8' })),
-  { loc: `${BASE}/welcome/guides/`, freq: 'monthly', priority: '0.8' },
-  { loc: `${BASE}/welcome/guides/study-method/`, freq: 'monthly', priority: '0.7' },
-  { loc: `${BASE}/welcome/guides/exam-week/`, freq: 'monthly', priority: '0.7' },
-  { loc: `${BASE}/welcome/guides/bubble-sheet/`, freq: 'monthly', priority: '0.7' },
-  { loc: `${BASE}/welcome/quiz/`, freq: 'weekly', priority: '0.9' },
-  { loc: `${BASE}/welcome/install/`, freq: 'monthly', priority: '0.8' },
-  { loc: `${BASE}/welcome/topics/`, freq: 'weekly', priority: '0.9' },
-  ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests', 'focus', 'science', 'arabic', 'primary-kid', 'midyear', 'word-problems', 'study-notes'].map((slug) => ({
-    loc: `${BASE}/welcome/topics/${slug}/`,
+  { loc: `${BASE}/welcome/`, file: 'public/welcome/index.html', freq: 'weekly', priority: '1.0' },
+  { loc: `${BASE}/welcome/en/`, file: 'public/welcome/en/index.html', freq: 'weekly', priority: '0.9' },
+  { loc: `${BASE}/welcome/grades/`, file: 'public/welcome/grades/index.html', freq: 'weekly', priority: '0.9' },
+  ...Object.values(LABELS).map(([, , slug]) => ({
+    loc: `${BASE}/welcome/grades/${slug}/`,
+    file: `public/welcome/grades/${slug}/index.html`,
     freq: 'monthly',
     priority: '0.8',
   })),
-  ...Object.values(LABELS).map(([, , slug]) => ({ loc: `${BASE}/welcome/quiz/${slug}/`, freq: 'weekly', priority: '0.8' })),
-  { loc: `${BASE}/`, freq: 'weekly', priority: '0.7' },
+  { loc: `${BASE}/welcome/guides/`, file: 'public/welcome/guides/index.html', freq: 'monthly', priority: '0.8' },
+  ...['study-method', 'exam-week', 'bubble-sheet'].map((slug) => ({
+    loc: `${BASE}/welcome/guides/${slug}/`,
+    file: `public/welcome/guides/${slug}/index.html`,
+    freq: 'monthly',
+    priority: '0.7',
+  })),
+  { loc: `${BASE}/welcome/quiz/`, file: 'public/welcome/quiz/index.html', freq: 'weekly', priority: '0.9' },
+  { loc: `${BASE}/welcome/install/`, file: 'public/welcome/install/index.html', freq: 'monthly', priority: '0.8' },
+  { loc: `${BASE}/welcome/topics/`, file: 'public/welcome/topics/index.html', freq: 'weekly', priority: '0.9' },
+  ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests', 'focus', 'science', 'arabic', 'primary-kid', 'midyear', 'word-problems', 'study-notes'].map((slug) => ({
+    loc: `${BASE}/welcome/topics/${slug}/`,
+    file: `public/welcome/topics/${slug}/index.html`,
+    freq: 'monthly',
+    priority: '0.8',
+  })),
+  ...Object.values(LABELS).map(([, , slug]) => ({
+    loc: `${BASE}/welcome/quiz/${slug}/`,
+    file: `public/welcome/quiz/${slug}/index.html`,
+    freq: 'weekly',
+    priority: '0.8',
+  })),
+  { loc: `${BASE}/`, file: 'index.html', freq: 'weekly', priority: '0.7' },
 ]
+
+/** Real last-modified date per page (from git), falling back to today. */
+function lastModified(file) {
+  try {
+    const out = execSync(`git log -1 --format=%cs -- "${file}"`, { encoding: 'utf8' }).trim()
+    return out || today
+  } catch {
+    return today
+  }
+}
+for (const url of urls) url.lastmod = lastModified(url.file)
 fs.writeFileSync(
   'public/sitemap.xml',
   `<?xml version="1.0" encoding="UTF-8"?>
@@ -480,7 +508,7 @@ ${urls
   .map(
     (url) => `  <url>
     <loc>${url.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.freq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`,
