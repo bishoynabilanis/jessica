@@ -27,7 +27,8 @@ function normalizeArabic(text: string) {
 function isArabicBook(pages: PageText[]) {
   const sample = pages.slice(0, 8).map((p) => p.text).join(' ').slice(0, 4000)
   const arabic = (sample.match(/[\u0600-\u06FF]/g) || []).length
-  return arabic > sample.length * 0.35
+  const solid = sample.replace(/\s+/g, '').length || 1
+  return arabic / solid > 0.3
 }
 
 function cleanTitle(raw: string) {
@@ -82,9 +83,51 @@ function matchHeading(text: string) {
   return null
 }
 
+const AR_ORDINALS = [
+  'الأولى', 'الثانية', 'الثالثة', 'الرابعة', 'الخامسة', 'السادسة', 'السابعة', 'الثامنة',
+  'التاسعة', 'العاشرة', 'الحادية عشرة', 'الثانية عشرة',
+  'الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس',
+]
+
+/**
+ * Arabic headings are short standalone lines ("الوحدة الأولى: الضغط").
+ * Matching them strictly beats guessing from a wall of text, and the generic
+ * "القسم" fallback stays for books that really have no headings.
+ */
+function matchArabicHeading(text: string) {
+  const rawLines = text
+    .split('\n')
+    .map((line) => line.replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+  const lines = rawLines.map(normalizeArabic).slice(0, 3)
+  const ordinals = AR_ORDINALS.map(normalizeArabic)
+
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex]
+    if (line.length > 70) continue
+    const match = /^(الوحده|الوحدة|الدرس|الفصل|المحور)\s*(?:رقم\s*)?([٠-٩0-9]{1,2}|[\u0621-\u064A]{3,16})?\s*[:\-–—]?\s*(.*)$/.exec(line)
+    if (!match) continue
+    const label = match[1].startsWith('الوحد') ? 'الوحدة' : match[1]
+    let number = (match[2] || '').trim()
+    // An Arabic word is only a number when it is an ordinal we know.
+    if (number && /[\u0621-\u064A]/.test(number) && !ordinals.includes(number)) number = ''
+    const rest = (match[3] || '').replace(/[.…]+$/g, '').trim()
+    if (!number && !rest) continue
+    if (!number && rest.length < 3) continue
+    if (!number && rest.length > 40) continue
+    // "الفصل بين..." is a sentence about separation, not a chapter heading.
+    if (!number && /^(بين|في|من|على|عن|الى|إلى|هو|هي|هذا|هذه|ذلك|تلك)\s/.test(rest)) continue
+    // Keep the heading exactly as printed in the book (normalisation would
+    // turn "الأولى" into "الاولي" and "الحرارة" into "الحراره").
+    const title = (rawLines[lineIndex] || '').replace(/[.…]+$/, '').slice(0, 70)
+    return { key: `${label}|${number}|${rest.slice(0, 24)}`, title }
+  }
+  return null
+}
+
 function fallbackUnits(pageCount: number, arabic = false): BookUnit[] {
-  if (pageCount < 40) return []
-  const size = 20
+  if (pageCount < 16) return []
+  const size = pageCount < 40 ? 10 : pageCount < 80 ? 14 : 20
   const units: BookUnit[] = []
   for (let start = 3, index = 1; start <= pageCount; start += size, index++) {
     const endPage = Math.min(pageCount, start + size - 1)
@@ -94,16 +137,13 @@ function fallbackUnits(pageCount: number, arabic = false): BookUnit[] {
       startPage: start,
       endPage,
     })
-    if (units.length >= 12) break
+    if (units.length >= 14) break
   }
   return units
 }
 
 export function detectUnits(pages: PageText[], pageCount = pages.length): BookUnit[] {
   const arabic = isArabicBook(pages)
-  // Arabic textbooks use presentation-form ligatures that make heading parsing
-  // unreliable, so they get clean numbered sections instead of garbled titles.
-  if (arabic) return fallbackUnits(pageCount, true)
 
   const found: { key: string; title: string; page: number }[] = []
   let currentKey = ''
@@ -113,14 +153,14 @@ export function detectUnits(pages: PageText[], pageCount = pages.length): BookUn
     if (page.page <= 2) return
     if (TOC.test(page.text.slice(0, 400))) return
 
-    const hit = matchHeading(page.text)
+    const hit = arabic ? matchArabicHeading(page.text) : matchHeading(page.text)
     if (!hit) return
     if (hit.key === currentKey) return
     currentKey = hit.key
     found.push({ ...hit, page: page.page })
   })
 
-  if (found.length < 2) return fallbackUnits(pageCount)
+  if (found.length < 2) return fallbackUnits(pageCount, arabic)
 
   return found.map((unit, index) => ({
     id: `unit-${index + 1}`,
