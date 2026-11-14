@@ -1,6 +1,19 @@
 import { test, expect } from '@playwright/test'
 
-const topics = ['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests']
+const topics = [
+  'study-plan',
+  'homework',
+  'parents',
+  'math',
+  'exam-anxiety',
+  'memorization',
+  'english',
+  'monthly-tests',
+  'focus',
+  'science',
+  'arabic',
+  'primary-kid',
+]
 
 test('topic hub lists every topic page', async ({ page }) => {
   const response = await page.goto('/welcome/topics/')
