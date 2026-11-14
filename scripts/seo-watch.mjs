@@ -21,9 +21,15 @@ const INDEXNOW_KEY = process.env.INDEXNOW_KEY || '8f3c1d7a9b2e6f405a1c8d3e7b9f2a
 const UA = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 const KEY_PAGES = [
   `${SITE}/welcome/`,
+  `${SITE}/welcome/en/`,
   `${SITE}/welcome/grades/`,
-  `${SITE}/welcome/grades/prep-3/`,
   `${SITE}/welcome/grades/primary-4/`,
+  `${SITE}/welcome/grades/prep-3/`,
+  `${SITE}/welcome/quiz/prep-3/`,
+  `${SITE}/welcome/guides/study-method/`,
+  `${SITE}/welcome/install/`,
+  `${SITE}/welcome/topics/`,
+  `${SITE}/welcome/topics/parents/`,
 ]
 
 const rows = []
