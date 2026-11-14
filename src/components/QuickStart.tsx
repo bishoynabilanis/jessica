@@ -2,7 +2,7 @@ import { BookOpen, Check, ChevronLeft, Sparkles, Target, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Card } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 
 /**
@@ -63,7 +63,7 @@ export function QuickStart() {
         </div>
         <div className="flex shrink-0 items-center gap-1.5">
           <span className="chip border-aurora-400/25 bg-aurora-400/10 text-[10px] font-bold text-aurora-200">
-            {tr('{n} of 3 done', { n: done })}
+            {tr('{n} of 3 done', { n: num(done) })}
           </span>
           <button
             onClick={() => updateSettings({ quickStart: false })}

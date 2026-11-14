@@ -2205,6 +2205,15 @@ export function getLanguage(): Language {
   return active
 }
 
+const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩'
+
+/** Numbers read better in Arabic-Indic digits when the UI is Arabic. */
+export function num(value: number | string): string {
+  const text = String(value)
+  if (getLanguage() !== 'ar') return text
+  return text.replace(/[0-9]/g, (digit) => AR_DIGITS[Number(digit)])
+}
+
 function fill(text: string, vars?: Record<string, string | number>) {
   if (!vars) return text
   return text.replace(/\{(\w+)\}/g, (_, key: string) => String(vars[key] ?? `{${key}}`))

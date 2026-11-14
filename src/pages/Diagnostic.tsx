@@ -8,7 +8,7 @@ import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { levelLabel } from '@/lib/curriculum'
 import { levelBand, placementTest, scoreBySkill } from '@/lib/placement'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 
 type Phase = 'intro' | 'quiz' | 'result'
@@ -131,7 +131,7 @@ export function Diagnostic() {
         <Card className="p-5">
           <div className="flex items-center justify-between gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-2">
-              {tr('Question {n} of {m}', { n: index + 1, m: questions.length })}
+              {tr('Question {n} of {m}', { n: num(index + 1), m: num(questions.length) })}
             </span>
             <span className="chip border-line bg-white/5 text-[10px] font-bold text-muted">{tr(current.skill)}</span>
           </div>
@@ -206,8 +206,8 @@ export function Diagnostic() {
               </div>
               <div className="text-end">
                 <p className="font-display text-3xl font-extrabold text-main">
-                  {score}
-                  <span className="text-lg text-muted-2">/{questions.length}</span>
+                  {num(score)}
+                  <span className="text-lg text-muted-2">/{num(questions.length)}</span>
                 </p>
                 <p className="text-[10px] text-muted">{tr('correct answers')}</p>
               </div>
@@ -221,7 +221,7 @@ export function Diagnostic() {
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[11px] font-bold text-main">{tr(item.skill)}</span>
                       <span className="text-[10px] font-bold text-muted">
-                        {item.correct}/{item.total}
+                        {num(item.correct)}/{num(item.total)}
                       </span>
                     </div>
                     <ProgressBar
