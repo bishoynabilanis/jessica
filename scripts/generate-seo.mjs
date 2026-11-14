@@ -289,8 +289,20 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   const at = all.findIndex(([, , s]) => s === slug)
   const prev = at > 0 ? all[at - 1] : null
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null
+  const gradeTopics = {
+    'primary-1': [['primary-kid', '🧸 مساعدة طفلك في القراءة والحساب'], ['study-plan', '🗓️ جدول مذاكرة للصغار']],
+    'primary-2': [['primary-kid', '🧸 مساعدة طفلك في القراءة والحساب'], ['study-plan', '🗓️ جدول مذاكرة للصغار']],
+    'primary-3': [['primary-kid', '🧸 مساعدة طفلك في القراءة والحساب'], ['memorization', '🧩 إزاي تحفظ بدون نسيان']],
+    'primary-4': [['study-plan', '🗓️ جدول مذاكرة'], ['math', '➗ إزاي تذاكر رياضيات'], ['memorization', '🧩 إزاي تحفظ']],
+    'primary-5': [['study-plan', '🗓️ جدول مذاكرة'], ['math', '➗ إزاي تذاكر رياضيات'], ['word-problems', '🧮 حل المسائل الكلامية']],
+    'primary-6': [['math', '➗ إزاي تذاكر رياضيات'], ['word-problems', '🧮 حل المسائل الكلامية'], ['study-notes', '🗒️ ملاحظات الحصة']],
+    'prep-1': [['math', '➗ إزاي تذاكر رياضيات'], ['study-notes', '🗒️ ملاحظات الحصة'], ['focus', '🎯 التركيز والتشتت']],
+    'prep-2': [['math', '➗ إزاي تذاكر رياضيات'], ['word-problems', '🧮 حل المسائل الكلامية'], ['science', '🔬 مذاكرة العلوم']],
+    'prep-3': [['midyear', '📆 خطة امتحانات نصف السنة'], ['exam-anxiety', '🧠 قلق الامتحان'], ['word-problems', '🧮 حل المسائل الكلامية'], ['math', '➗ إزاي تذاكر رياضيات']],
+  }
   const rel = [
     `<a href="../../quiz/${slug}/">⏱️ اختبار رياضيات ${arLabel}</a>`,
+    ...(gradeTopics[slug] || []).map(([topicSlug, label]) => `<a href="../../topics/${topicSlug}/">${label}</a>`),
     `<a href="../../install/">📲 تثبيت التطبيق على الموبايل</a>`,
     `<a href="../../topics/">🧭 مواضيع المذاكرة</a>`,
     `<a href="../../guides/exam-week/">🗓️ خطة آخر أسبوع قبل الامتحان</a>`,
