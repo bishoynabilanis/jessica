@@ -361,6 +361,16 @@ ${JSON.stringify(indexLd)}
 </section>
 <div class="guide-grid">${cards.join('\n')}</div>
 <p class="guides-note">الأدلة دي مكتوبة لطلاب المدارس المصرية من الأول الابتدائي للتالت الإعدادي، وبتشتغل مع أي كتاب رسمي. <a href="../grades/" style="color:var(--mint)">نزّل كتب صفك من هنا</a>.</p>
+<section class="guides-note" style="margin-top:24px">
+  <h2 style="font-size:20px;color:var(--text);margin-bottom:10px">إزاي تستخدم الأدلة؟</h2>
+  <p>مش لازم تقرأهم كلهم مرة واحدة. ابدأ بالدليل اللي بيعالج مشكلتك دلوقتي:</p>
+  <ul style="margin:12px 0;padding-inline-start:20px;display:grid;gap:8px">
+    <li><b>بتذاكر كتير وبتنسى؟</b> ابدأ بـ «إزاي تذاكر من كتاب الوزارة» — بيغيّر طريقة القراءة مش عدد الساعات.</li>
+    <li><b>الامتحان قرب؟</b> «خطة آخر أسبوع» مقسّمة على ٧ أيام ومكتوبة عشان تتنفذ مش تتقرأ.</li>
+    <li><b>بتغلط في البابل شيت؟</b> الدليل التالت بيشرح توزيع الوقت وطريقة نقل الإجابات من غير أخطاء.</li>
+  </ul>
+  <p>بعد كل دليل، فيه اختبار ٦٠ ثانية بيقيس اللي فهمته — <a href="../quiz/" style="color:var(--mint)">جرّبه من هنا</a>.</p>
+</section>
 </div></main>
 <footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../topics/">مواضيع المذاكرة</a></span></footer>
 </body>

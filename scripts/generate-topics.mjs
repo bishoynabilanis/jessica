@@ -12,6 +12,7 @@ const OUT = 'public/welcome/topics'
 const TOPICS = [
   {
     slug: 'study-plan',
+    seoTitle: 'جدول مذاكرة جاهز في ١٠ دقايق | Jessica',
     emoji: '🗓️',
     card: 'جدول مذاكرة',
     title: 'جدول مذاكرة يومي وأسبوعي جاهز للطلاب — طريقة تبنيه في ١٠ دقايق',
@@ -69,6 +70,7 @@ const TOPICS = [
   },
   {
     slug: 'homework',
+    seoTitle: 'حل الواجب بالكاميرا من غير نقل | Jessica',
     emoji: '📸',
     card: 'حل الواجب',
     title: 'حل الواجب بالكاميرا: إزاي تستخدم الذكاء الاصطناعي من غير ما تنقل الحل',
@@ -119,6 +121,7 @@ const TOPICS = [
   },
   {
     slug: 'parents',
+    seoTitle: 'دليل ولي الأمر لمتابعة المذاكرة | Jessica',
     emoji: '👨‍👩‍👦',
     card: 'دليل ولي الأمر',
     title: 'دليل ولي الأمر: إزاي تساعد ابنك يذاكر من غير مشاكل يومية',
@@ -177,6 +180,7 @@ const TOPICS = [
   },
   {
     slug: 'math',
+    seoTitle: 'إزاي تذاكر رياضيات صح | Jessica',
     emoji: '➗',
     card: 'مذاكرة الرياضيات',
     title: 'إزاي تذاكر رياضيات صح: من الحفظ للتطبيق في ٥ خطوات',
@@ -234,6 +238,7 @@ const TOPICS = [
   },
   {
     slug: 'exam-anxiety',
+    seoTitle: 'التوتر قبل الامتحان: ٧ خطوات | Jessica',
     emoji: '🧠',
     card: 'التوتر قبل الامتحان',
     title: 'التوتر قبل الامتحان: ٧ خطوات عملية تهدّي الأعصاب وتفرق في الدرجة',
@@ -291,6 +296,7 @@ const TOPICS = [
   },
   {
     slug: 'memorization',
+    seoTitle: 'إزاي تحفظ بسرعة بدون نسيان | Jessica',
     emoji: '🧩',
     card: 'الحفظ بدون نسيان',
     title: 'إزاي تحفظ بسرعة ومن غير نسيان: ٥ طرق بتشتغل فعلًا',
@@ -349,6 +355,7 @@ const TOPICS = [
   },
   {
     slug: 'english',
+    seoTitle: 'إزاي تذاكر إنجليزي صح | Jessica',
     emoji: '🔤',
     card: 'مذاكرة الإنجليزي',
     title: 'إزاي تذاكر إنجليزي صح: خطة يومية للكلمات والجرامر والاستماع',
@@ -406,6 +413,7 @@ const TOPICS = [
   },
   {
     slug: 'monthly-tests',
+    seoTitle: 'الاستعداد لامتحانات الشهر | Jessica',
     emoji: '📝',
     card: 'امتحانات الشهر',
     title: 'إزاي تستعد لامتحانات الشهر والتقييمات المدرسية من غير ضغط',
@@ -464,6 +472,7 @@ const TOPICS = [
   },
   {
     slug: 'focus',
+    seoTitle: 'التركيز في المذاكرة: ٦ خطوات | Jessica',
     emoji: '🎯',
     card: 'التركيز والتشتت',
     title: 'إزاي تركز في المذاكرة: ٦ خطوات ضد التشتت والموبايل',
@@ -529,6 +538,7 @@ const TOPICS = [
   },
   {
     slug: 'science',
+    seoTitle: 'إزاي تذاكر العلوم صح | Jessica',
     emoji: '🔬',
     card: 'مذاكرة العلوم',
     title: 'إزاي تذاكر العلوم: فهم الظاهرة بدل حفظ الكلام',
@@ -587,6 +597,7 @@ const TOPICS = [
   },
   {
     slug: 'arabic',
+    seoTitle: 'إزاي تذاكر النحو والعربي | Jessica',
     emoji: '📖',
     card: 'مذاكرة العربي',
     title: 'إزاي تذاكر النحو واللغة العربية من غير حفظ أعمى',
@@ -645,6 +656,7 @@ const TOPICS = [
   },
   {
     slug: 'primary-kid',
+    seoTitle: 'مساعدة طفلك في الابتدائي | Jessica',
     emoji: '🧸',
     card: 'مساعدة طفلك في الابتدائي',
     title: 'إزاي تساعد طفلك في الابتدائي: خطة أول ٣ سنوات',
@@ -717,7 +729,7 @@ function head({ topic, ld }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${topic.title} | Jessica</title>
+<title>${topic.seoTitle || topic.title}</title>
 <meta name="description" content="${topic.description}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${url}">
@@ -847,7 +859,7 @@ const hub = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>مواضيع المذاكرة: جدول مذاكرة، حل الواجب، الحفظ، الإنجليزي، وقلق الامتحان | Jessica</title>
+<title>مواضيع المذاكرة: جدول، حفظ، رياضيات | Jessica</title>
 <meta name="description" content="مواضيع عملية للطلاب وأولياء الأمور في مصر: جدول مذاكرة واقعي، حل الواجب بالذكاء الاصطناعي بدون نقل، مذاكرة الرياضيات، قلق الامتحان، ودليل ولي الأمر.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${BASE}/welcome/topics/">
