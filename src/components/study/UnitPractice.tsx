@@ -238,8 +238,16 @@ export function UnitPractice() {
                   : tr('Not practised yet · start with a 5-question quiz')}
               </p>
             </div>
-            <Button size="sm" onClick={() => setQuizUnit(focusUnit.unit)} disabled={!chapterFor(focusUnit.unit)}>
-              <Play className="h-3.5 w-3.5" /> {tr('Quiz now')}
+            <Button size="sm" onClick={() => navigate(`/lesson/${book!.id}/${focusUnit.unit.id}`)}>
+              <Play className="h-3.5 w-3.5" /> {tr('Start lesson')}
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setQuizUnit(focusUnit.unit)}
+              disabled={!chapterFor(focusUnit.unit)}
+            >
+              {tr('Quiz now')}
             </Button>
           </div>
         )}
@@ -341,8 +349,11 @@ export function UnitPractice() {
                     <Button size="sm" variant="ghost" onClick={() => navigate(`/reader/${book.id}?page=${unit.startPage}`)}>
                       <BookOpen className="h-3.5 w-3.5" /> {tr('Open')}
                     </Button>
-                    <Button size="sm" variant="secondary" onClick={() => setQuizUnit(unit)} disabled={!unitChapter}>
-                      <Play className="h-3.5 w-3.5" /> {tr('Quiz')}
+                    <Button size="sm" onClick={() => navigate(`/lesson/${book.id}/${unit.id}`)}>
+                      <Play className="h-3.5 w-3.5" /> {tr('Lesson')}
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => setQuizUnit(unit)} disabled={!unitChapter}>
+                      {tr('Quiz')}
                     </Button>
                     {!kids && (
                       <Button size="sm" variant="secondary" onClick={() => setExamUnit(unit)} disabled={!unitChapter}>

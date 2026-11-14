@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getLanguage, dateLocale } from '@/i18n'
+import { getLanguage, dateLocale, tr } from '@/i18n'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
   AiProvider,
@@ -423,8 +423,8 @@ export const useApp = create<AppState>()(
         })
         get().addXP(50, true)
         useUI.getState().pushToast({
-          title: 'Chapter mastered!',
-          description: `${title} marked complete.`,
+          title: tr('Chapter mastered!'),
+          description: tr('{title} marked complete.', { title }),
           type: 'xp',
           xp: 50,
         })
