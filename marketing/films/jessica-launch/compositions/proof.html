@@ -1,0 +1,110 @@
+<template>
+  <style>
+    @font-face {
+      font-family: 'Cairo';
+      src: url('assets/fonts/Cairo.ttf') format('truetype');
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(720px 600px at 82% -6%, rgba(33, 230, 201, 0.26), transparent 60%),
+        radial-gradient(700px 620px at 8% 106%, rgba(139, 92, 246, 0.34), transparent 62%),
+        linear-gradient(160deg, #060a15, #0a1020 58%, #0c1428);
+      color: #f4f7ff;
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+    .wrap {
+      position: absolute;
+      inset: 0;
+      padding: 200px 160px 0;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 24px;
+      font-weight: 800;
+      color: #9fb2d8;
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      padding: 8px 22px;
+    }
+    h2 {
+      margin-top: 26px;
+      font-size: 62px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    h2 em {
+      font-style: normal;
+      color: #21e6c9;
+    }
+    .sub {
+      margin-top: 12px;
+      font-size: 30px;
+      font-weight: 600;
+      color: #b9c7e4;
+    }
+    .shot {
+      position: absolute;
+      left: 128px;
+      right: 128px;
+      top: 540px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+    }
+    .badge {
+      position: absolute;
+      bottom: 280px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(33, 230, 201, 0.12);
+      border: 1.5px solid rgba(33, 230, 201, 0.45);
+      color: #d8fff8;
+      font-size: 26px;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .badge b {
+      color: #21e6c9;
+    }
+  </style>
+  <div id="root" data-composition-id="proof" data-width="1080" data-height="1920">
+    <div class="wrap">
+      <span id="pr-eyebrow" class="clip eyebrow" data-layout-allow-safe-zone="1" data-start="0.05" data-duration="2.9">بعد كل درس</span>
+      <h2 id="pr-title" class="clip" data-layout-allow-safe-zone="1" data-start="0.2" data-duration="2.75"><em>٤ أسئلة</em> تقولك إنت فين</h2>
+      <p id="pr-sub" class="clip sub" data-layout-allow-safe-zone="1" data-start="0.55" data-duration="2.4">تصحيح فوري وشرح لكل إجابة</p>
+    </div>
+    <div id="pr-shot" class="clip shot" data-layout-allow-safe-zone="1" data-start="0.7" data-duration="2.25">
+      <img src="assets/shots/check.png" alt="" />
+    </div>
+    <div id="pr-badge" class="clip badge" data-layout-allow-safe-zone="1" data-start="1.9" data-duration="1">الوحدة بتتسجل مكتملة عند <b>٦٠٪</b></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#pr-eyebrow', { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#pr-title', { opacity: 0, y: 30, filter: 'blur(9px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power4.out' }, 0.2)
+    tl.fromTo('#pr-sub', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 0.55)
+    tl.fromTo('#pr-shot', { opacity: 0, y: 90, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power3.out' }, 0.7)
+    tl.fromTo('#pr-shot', { scale: 1 }, { scale: 1.045, duration: 1.5, ease: 'none', immediateRender: false }, 1.4)
+    tl.fromTo('#pr-badge', { opacity: 0, y: 16, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.7)' }, 1.9)
+    tl.to('.wrap', { opacity: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 2.7)
+    tl.to('#pr-shot', { opacity: 0, y: -20, duration: 0.3, ease: 'power2.in' }, 2.7)
+    tl.to('#pr-badge', { opacity: 0, duration: 0.25 }, 2.7)
+    window.__timelines['proof'] = tl
+  </script>
+</template>

@@ -1,0 +1,51 @@
+<template>
+  <style>
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+    #root {
+      position: absolute; inset: 0; overflow: hidden; color: #f4f7ff;
+      font-family: 'Cairo', sans-serif; direction: rtl;
+      background:
+        radial-gradient(700px 580px at 84% -6%, rgba(33, 230, 201, 0.24), transparent 60%),
+        radial-gradient(700px 620px at 8% 106%, rgba(139, 92, 246, 0.32), transparent 62%),
+        linear-gradient(160deg, #060a15, #0a1020 58%, #0c1428);
+    }
+    .wrap { position: absolute; inset: 0; padding: 170px 150px 0; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 24px; font-weight: 800; color: #9fb2d8; border: 1.5px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 8px 22px; }
+    h2 { margin-top: 24px; font-size: 66px; font-weight: 900; line-height: 1.28; }
+    h2 em { font-style: normal; color: #21e6c9; }
+    .shot {
+      position: absolute; left: 56px; right: 56px; top: 580px; height: auto;
+      border-radius: 28px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.16);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.6); background: #0b1226;
+    }
+    .shot img { display: block; width: 100%; height: auto; }
+    .chips { position: absolute; left: 0; right: 0; bottom: 360px; display: flex; justify-content: center; gap: 14px; padding: 0 150px; }
+    .chip { background: rgba(33,230,201,0.1); border: 1.5px solid rgba(33,230,201,0.4); color: #d8fff8; font-size: 24px; font-weight: 800; padding: 12px 22px; border-radius: 999px; }
+  </style>
+  <div id="root" data-composition-id="test" data-width="1080" data-height="1920">
+    <div class="wrap">
+      <span id="ts-eyebrow" class="clip eyebrow" data-start="0.05" data-duration="3.3" data-layout-allow-safe-zone="1">اختبار المستوى</span>
+      <h2 id="ts-title" class="clip" data-start="0.2" data-duration="3.15" data-layout-allow-safe-zone="1">اعرف مستواه <em>في دقيقتين</em></h2>
+    </div>
+    <div id="ts-shot" class="clip shot" data-start="0.65" data-duration="2.7">
+      <img src="assets/shots/test-crop.png" alt="" />
+    </div>
+    <div id="ts-chips" class="clip chips" data-start="1.9" data-duration="1.35" data-layout-allow-safe-zone="1">
+      <span class="chip">مستوى</span>
+      <span class="chip">ثغرات</span>
+      <span class="chip">خطة</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#ts-eyebrow', { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#ts-title', { opacity: 0, y: 26, filter: 'blur(9px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power4.out' }, 0.2)
+    tl.fromTo('#ts-shot', { opacity: 0, y: 80, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' }, 0.65)
+    tl.fromTo('#ts-shot', { scale: 1 }, { scale: 1.03, duration: 1.6, ease: 'none', immediateRender: false }, 1.3)
+    tl.fromTo('#ts-chips', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 1.9)
+    tl.to('.wrap', { opacity: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 3.05)
+    tl.to('#ts-shot', { opacity: 0, y: -20, duration: 0.3 }, 3.05)
+    tl.to('#ts-chips', { opacity: 0, duration: 0.25 }, 3.05)
+    window.__timelines['test'] = tl
+  </script>
+</template>

@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+    #root {
+      position: absolute; inset: 0; overflow: hidden; color: #f4f7ff;
+      font-family: 'Cairo', sans-serif; direction: rtl;
+      background:
+        radial-gradient(760px 620px at 50% -10%, rgba(200, 162, 74, 0.22), transparent 62%),
+        radial-gradient(700px 600px at 10% 108%, rgba(139, 92, 246, 0.3), transparent 62%),
+        linear-gradient(160deg, #060a15, #0a1020 58%, #0c1428);
+    }
+    .wrap { position: absolute; inset: 0; padding: 150px 150px 0; text-align: center; }
+    h2 { font-size: 66px; font-weight: 900; line-height: 1.28; }
+    h2 em { font-style: normal; color: #e8c97a; }
+    .p { margin-top: 12px; font-size: 28px; font-weight: 700; color: #b9c7e4; }
+    .sheet {
+      position: absolute; left: 190px; right: 190px; top: 540px; border-radius: 18px;
+      overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.2);
+      background: #fff;
+    }
+    .sheet img { display: block; width: 100%; }
+  </style>
+  <div id="root" data-composition-id="cert" data-width="1080" data-height="1920">
+    <div class="wrap">
+      <h2 id="ct-title" class="clip" data-start="0.1" data-duration="2.9" data-layout-allow-safe-zone="1">شهادة <em>إنجاز</em></h2>
+      <p id="ct-sub" class="clip p" data-start="0.45" data-duration="2.55" data-layout-allow-safe-zone="1">لما يخلص دروس الكورس</p>
+    </div>
+    <div id="ct-sheet" class="clip sheet" data-start="0.55" data-duration="2.45">
+      <img src="assets/shots/cert.png" alt="" />
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#ct-title', { opacity: 0, y: 24, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power4.out' }, 0.1)
+    tl.fromTo('#ct-sub', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 0.45)
+    tl.fromTo('#ct-sheet', { opacity: 0, y: 110, rotate: 1.5, scale: 0.96 }, { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 0.75, ease: 'power3.out' }, 0.55)
+    tl.fromTo('#ct-sheet', { scale: 1 }, { scale: 1.02, duration: 1.5, ease: 'none', immediateRender: false }, 1.4)
+    tl.to('#ct-sheet', { opacity: 0, y: -30, duration: 0.35, ease: 'power2.in' }, 2.7)
+    tl.to('.wrap', { opacity: 0, y: -26, duration: 0.3 }, 2.7)
+    window.__timelines['cert'] = tl
+  </script>
+</template>

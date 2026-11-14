@@ -1,0 +1,46 @@
+<template>
+  <style>
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+    #root {
+      position: absolute; inset: 0; overflow: hidden; color: #f4f7ff;
+      font-family: 'Cairo', sans-serif; direction: rtl;
+      background:
+        radial-gradient(700px 600px at 14% -8%, rgba(139, 92, 246, 0.4), transparent 60%),
+        radial-gradient(660px 560px at 92% 108%, rgba(33, 230, 201, 0.24), transparent 62%),
+        linear-gradient(165deg, #060a15, #0a1020 62%, #0c1428);
+    }
+    .wrap { position: absolute; inset: 0; padding: 170px 150px 0; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 24px; font-weight: 800; color: #9fb2d8; border: 1.5px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 8px 22px; }
+    h2 { margin-top: 24px; font-size: 66px; font-weight: 900; line-height: 1.28; }
+    h2 em { font-style: normal; color: #21e6c9; }
+    .shot {
+      position: absolute; left: 56px; right: 56px; top: 560px; height: auto;
+      border-radius: 28px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.16);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.6); background: #0b1226;
+    }
+    .shot img { display: block; width: 100%; height: auto; }
+    .note { position: absolute; left: 150px; right: 150px; bottom: 340px; text-align: center; font-size: 27px; font-weight: 700; color: #b9c7e4; }
+  </style>
+  <div id="root" data-composition-id="plan" data-width="1080" data-height="1920">
+    <div class="wrap">
+      <span id="pl-eyebrow" class="clip eyebrow" data-start="0.05" data-duration="3.5" data-layout-allow-safe-zone="1">بعد الاختبار</span>
+      <h2 id="pl-title" class="clip" data-start="0.2" data-duration="3.35" data-layout-allow-safe-zone="1">خطة على مقاسه <em>كل يوم</em></h2>
+    </div>
+    <div id="pl-shot" class="clip shot" data-start="0.7" data-duration="2.9">
+      <img src="assets/shots/plan.png" alt="" />
+    </div>
+    <p id="pl-note" class="clip note" data-start="2.2" data-duration="1.4" data-layout-allow-safe-zone="1">٣ مهام صغيرة، مبنية من بياناته هو.</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#pl-eyebrow', { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#pl-title', { opacity: 0, y: 26, filter: 'blur(9px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power4.out' }, 0.2)
+    tl.fromTo('#pl-shot', { opacity: 0, y: 90, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power3.out' }, 0.7)
+    tl.fromTo('#pl-shot', { scale: 1 }, { scale: 1.025, duration: 2, ease: 'none', immediateRender: false }, 1.4)
+    tl.fromTo('#pl-note', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 2.2)
+    tl.to('.wrap', { opacity: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 3.25)
+    tl.to('#pl-shot', { opacity: 0, y: -24, duration: 0.3 }, 3.25)
+    tl.to('#pl-note', { opacity: 0, duration: 0.25 }, 3.25)
+    window.__timelines['plan'] = tl
+  </script>
+</template>

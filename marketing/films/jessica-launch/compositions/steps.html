@@ -1,0 +1,142 @@
+<template>
+  <style>
+    @font-face {
+      font-family: 'Cairo';
+      src: url('assets/fonts/Cairo.ttf') format('truetype');
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(700px 600px at 18% -8%, rgba(139, 92, 246, 0.36), transparent 60%),
+        radial-gradient(660px 560px at 92% 108%, rgba(33, 230, 201, 0.24), transparent 62%),
+        linear-gradient(165deg, #060a15, #0a1020 62%, #0c1428);
+      color: #f4f7ff;
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+    .wrap {
+      position: absolute;
+      inset: 0;
+      padding: 200px 160px 0;
+    }
+    .eyebrow {
+      font-size: 26px;
+      font-weight: 800;
+      color: #21e6c9;
+      letter-spacing: 0.04em;
+    }
+    h2 {
+      margin-top: 12px;
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .rows {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 20px 26px;
+    }
+    .num {
+      width: 62px;
+      height: 62px;
+      flex: none;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 900;
+      color: #061018;
+      background: linear-gradient(135deg, #21e6c9, #6b8cff);
+    }
+    .label {
+      font-size: 38px;
+      font-weight: 800;
+    }
+    .hint {
+      margin-top: 2px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #93a3c4;
+    }
+    .shot {
+      position: absolute;
+      left: 128px;
+      right: 128px;
+      bottom: -150px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 -20px 70px rgba(0, 0, 0, 0.55);
+      opacity: 0.9;
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+    }
+  </style>
+  <div id="root" data-composition-id="steps" data-width="1080" data-height="1920">
+    <div class="wrap" data-layout-allow-overflow="1">
+      <p id="st-eyebrow" class="clip eyebrow" data-layout-allow-safe-zone="1" data-start="0.05" data-duration="3.2">جوه التطبيق</p>
+      <h2 id="st-title" class="clip" data-layout-allow-safe-zone="1" data-start="0.15" data-duration="3.1">الوحدة بتتقسم <span style="color:#21e6c9">٤ خطوات</span></h2>
+      <div class="rows" data-layout-allow-overflow="1">
+        <div id="st-r1" class="clip row" data-layout-allow-safe-zone="1" data-start="0.45" data-duration="2.85">
+          <span class="num">١</span>
+          <span>
+            <span class="label">الأهداف</span>
+            <span class="hint">تعرف هتتعلم إيه قبل ما تبدأ</span>
+          </span>
+        </div>
+        <div id="st-r2" class="clip row" data-layout-allow-safe-zone="1" data-start="0.68" data-duration="2.62">
+          <span class="num">٢</span>
+          <span>
+            <span class="label">القراءة</span>
+            <span class="hint">من صفحة كتابك بالظبط</span>
+          </span>
+        </div>
+        <div id="st-r3" class="clip row" data-layout-allow-safe-zone="1" data-start="0.91" data-duration="2.39">
+          <span class="num">٣</span>
+          <span>
+            <span class="label">المصطلحات</span>
+            <span class="hint">أهم كلمات الوحدة من نصها</span>
+          </span>
+        </div>
+        <div id="st-r4" class="clip row" data-layout-allow-safe-zone="1" data-start="1.14" data-duration="2.16">
+          <span class="num">٤</span>
+          <span>
+            <span class="label">الاختبار</span>
+            <span class="hint">٤ أسئلة وشرح لكل إجابة</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="st-shot" class="clip shot" data-layout-allow-overflow="1" data-layout-allow-safe-zone="1" data-start="1.5" data-duration="1.8">
+      <img src="assets/shots/terms.png" alt="" />
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#st-eyebrow', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4, ease: 'power3.out' }, 0.05)
+    tl.fromTo('#st-title', { opacity: 0, y: 28, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power4.out' }, 0.15)
+    ;['#st-r1', '#st-r2', '#st-r3', '#st-r4'].forEach((id, index) => {
+      tl.fromTo(id, { opacity: 0, x: 70 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, 0.45 + index * 0.23)
+    })
+    tl.fromTo('#st-shot', { opacity: 0, y: 90 }, { opacity: 0.9, y: 0, duration: 0.7, ease: 'power3.out' }, 1.5)
+    tl.fromTo('#st-shot', { scale: 1 }, { scale: 1.05, duration: 1.6, ease: 'none' }, 1.9)
+    tl.to('.wrap', { opacity: 0, y: -34, duration: 0.34, ease: 'power2.in' }, 3.02)
+    tl.to('#st-shot', { opacity: 0, duration: 0.3 }, 3.02)
+    window.__timelines['steps'] = tl
+  </script>
+</template>

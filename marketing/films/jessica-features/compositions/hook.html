@@ -1,0 +1,36 @@
+<template>
+  <style>
+    @font-face { font-family: 'Cairo'; src: url('assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+    #root {
+      position: absolute; inset: 0; overflow: hidden; color: #f4f7ff;
+      font-family: 'Cairo', sans-serif; direction: rtl;
+      background:
+        radial-gradient(720px 560px at 86% -8%, rgba(139, 92, 246, 0.46), transparent 62%),
+        radial-gradient(640px 520px at 6% 106%, rgba(33, 230, 201, 0.28), transparent 62%),
+        linear-gradient(155deg, #060a15, #0a1020 58%, #0e1730);
+    }
+    .box { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 150px; }
+    .eyebrow { color: #9fb2d8; font-size: 30px; font-weight: 700; }
+    h1 { font-size: 68px; font-weight: 900; line-height: 1.34; margin-top: 24px; }
+    h1 em { font-style: normal; color: #21e6c9; }
+    .foot { position: absolute; bottom: 300px; right: 150px; color: #7d8cab; font-size: 26px; font-weight: 600; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div class="box">
+      <p id="hk-eyebrow" class="clip eyebrow" data-start="0.15" data-duration="3.05" data-layout-allow-safe-zone="1">سؤال بيضايق كل بيت</p>
+      <h1 id="hk-l1" class="clip" data-start="0.35" data-duration="2.85" data-layout-allow-safe-zone="1">ابنك بيذاكر…</h1>
+      <h1 id="hk-l2" class="clip" data-start="0.95" data-duration="2.25" data-layout-allow-safe-zone="1">بس <em>مش عارف</em><br />هو واقف فين؟</h1>
+    </div>
+    <p id="hk-foot" class="clip foot" data-start="2.15" data-duration="1.05" data-layout-allow-safe-zone="1">١٢ سؤال في دقيقتين تقولك بالظبط.</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true })
+    tl.fromTo('#hk-eyebrow', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.15)
+    tl.fromTo('#hk-l1', { opacity: 0, y: 40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.65, ease: 'power4.out' }, 0.35)
+    tl.fromTo('#hk-l2', { opacity: 0, y: 44, filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.65, ease: 'power4.out' }, 0.95)
+    tl.fromTo('#hk-foot', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 2.15)
+    tl.to('.box', { opacity: 0, y: -44, duration: 0.4, ease: 'power2.in' }, 2.8)
+    tl.to('#hk-foot', { opacity: 0, duration: 0.25 }, 2.8)
+    window.__timelines['hook'] = tl
+  </script>
+</template>
