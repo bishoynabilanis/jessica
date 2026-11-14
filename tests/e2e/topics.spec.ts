@@ -13,6 +13,7 @@ const topics = [
   'science',
   'arabic',
   'primary-kid',
+  'midyear',
 ]
 
 test('topic hub lists every topic page', async ({ page }) => {

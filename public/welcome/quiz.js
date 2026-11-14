@@ -569,7 +569,7 @@
 
     ctx.fillStyle = '#eef3ff'
     ctx.font = '700 42px Cairo, system-ui, sans-serif'
-    ctx.fillText('اختبار رياضيات ' + gradeName, 540, 250)
+    ctx.fillText((TOTAL === TOTAL_FULL ? 'امتحان كامل — ' : 'اختبار رياضيات ') + gradeName, 540, 250)
 
     ctx.fillStyle = '#ffffff'
     ctx.font = '900 210px Cairo, system-ui, sans-serif'
