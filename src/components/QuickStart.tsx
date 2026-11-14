@@ -32,9 +32,9 @@ export function QuickStart() {
     },
     {
       icon: Target,
-      title: 'Solve your first drill',
-      hint: 'Five questions and you will see exactly where you stand.',
-      to: '/practice',
+      title: 'Know your level',
+      hint: 'Twelve questions, two minutes, then a plan built on your real gaps.',
+      to: '/diagnostic',
       done: solved,
     },
     {
