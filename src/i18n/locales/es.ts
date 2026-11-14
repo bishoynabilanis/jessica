@@ -1,5 +1,29 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP esta semana · la semana pasada {mins} min. Mejor día: {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "{xp} XP esta semana · un nuevo comienzo. Mejor día: {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "Mi semana con Jessica",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} minutos · {lessons} lecciones · nivel {level}",
+  "Small steps, every day.": "Pequeños pasos, cada día.",
+  "Weekly review": "Resumen semanal",
+  "Your last 7 days": "Tus últimos 7 días",
+  "minutes studied": "minutos de estudio",
+  "active days": "días activos",
+  "answer accuracy": "precisión de respuestas",
+  "Nothing yet this week — one mission today is enough to start.": "Aún nada esta semana: una misión hoy basta para empezar.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "{xp} XP esta semana · {delta} respecto a la anterior. Mejor día: {day}.",
+  "Next week at a glance": "La próxima semana de un vistazo",
+  "3 small moves": "3 pequeños pasos",
+  "Next lesson in {book}": "Próxima lección en {book}",
+  "Weakest skill · {n}% accuracy": "Habilidad más débil · {n}% de acierto",
+  "Ten minutes of recall beats re-reading.": "Diez minutos de recuerdo valen más que releer.",
+  "Every lesson in your course is done.": "Todas las lecciones del curso están hechas.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "Reanalizar capítulos",
   "No text to analyse yet": "Aún no hay texto que analizar",

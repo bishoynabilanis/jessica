@@ -1,5 +1,29 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP minggu ini · minggu lalu {mins} menit. Hari terbaik: {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "{xp} XP minggu ini · awal baru. Hari terbaik: {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "Mingguku bersama Jessica",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} menit · {lessons} pelajaran · level {level}",
+  "Small steps, every day.": "Langkah kecil setiap hari.",
+  "Weekly review": "Tinjauan mingguan",
+  "Your last 7 days": "7 hari terakhirmu",
+  "minutes studied": "menit belajar",
+  "active days": "hari aktif",
+  "answer accuracy": "akurasi jawaban",
+  "Nothing yet this week — one mission today is enough to start.": "Belum ada apa-apa minggu ini — satu misi hari ini cukup untuk memulai.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "{xp} XP minggu ini · {delta} dari minggu lalu. Hari terbaik: {day}.",
+  "Next week at a glance": "Pekan depan sekilas",
+  "3 small moves": "3 langkah kecil",
+  "Next lesson in {book}": "Pelajaran berikutnya di {book}",
+  "Weakest skill · {n}% accuracy": "Keterampilan terlemah · {n}% akurasi",
+  "Ten minutes of recall beats re-reading.": "Sepuluh menit mengingat lebih baik daripada membaca ulang.",
+  "Every lesson in your course is done.": "Semua pelajaran di kursusmu sudah selesai.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "Pindai ulang bab",
   "No text to analyse yet": "Belum ada teks untuk dianalisis",

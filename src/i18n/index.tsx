@@ -13,6 +13,30 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} نقطة خبرة الأسبوع ده · الأسبوع اللي فات {mins} دقيقة. أحسن يوم: {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "{xp} نقطة خبرة الأسبوع ده · بداية جديدة. أحسن يوم: {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "أسبوعي مع جيسيكا",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} دقيقة · {lessons} درس · مستوى {level}",
+  "Small steps, every day.": "خطوات صغيرة كل يوم.",
+  "Weekly review": "مراجعة الأسبوع",
+  "Your last 7 days": "آخر ٧ أيام",
+  "minutes studied": "دقيقة مذاكرة",
+  "active days": "أيام نشاط",
+  "answer accuracy": "دقة الإجابات",
+  "Nothing yet this week — one mission today is enough to start.": "لسه مفيش حاجة الأسبوع ده — مهمة واحدة النهاردة كفاية للبداية.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "{xp} نقطة خبرة الأسبوع ده · {delta} عن الأسبوع اللي فات. أحسن يوم: {day}.",
+  "Next week at a glance": "الأسبوع الجاي في نظرة",
+  "3 small moves": "٣ حركات صغيرة",
+  "Next lesson in {book}": "الدرس الجاي في {book}",
+  "Weakest skill · {n}% accuracy": "أضعف مهارة · دقة {n}%",
+  "Ten minutes of recall beats re-reading.": "١٠ دقايق استرجاع أحسن من إعادة قراءة.",
+  "Every lesson in your course is done.": "كل دروس الكورس خلصت.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "إعادة تحليل الفصول",
   "No text to analyse yet": "لسه مفيش نص نتحلله",

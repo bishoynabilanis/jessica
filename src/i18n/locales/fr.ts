@@ -1,5 +1,29 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP cette semaine · la semaine dernière {mins} min. Meilleur jour : {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "{xp} XP cette semaine · un nouveau départ. Meilleur jour : {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "Ma semaine avec Jessica",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} minutes · {lessons} leçons · niveau {level}",
+  "Small steps, every day.": "De petits pas, chaque jour.",
+  "Weekly review": "Bilan de la semaine",
+  "Your last 7 days": "Tes 7 derniers jours",
+  "minutes studied": "minutes d’étude",
+  "active days": "jours actifs",
+  "answer accuracy": "précision des réponses",
+  "Nothing yet this week — one mission today is enough to start.": "Rien encore cette semaine — une mission aujourd’hui suffit pour commencer.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "{xp} XP cette semaine · {delta} par rapport à la semaine dernière. Meilleur jour : {day}.",
+  "Next week at a glance": "La semaine prochaine en un coup d’œil",
+  "3 small moves": "3 petits pas",
+  "Next lesson in {book}": "Prochaine leçon dans {book}",
+  "Weakest skill · {n}% accuracy": "Compétence la plus faible · {n}% de réussite",
+  "Ten minutes of recall beats re-reading.": "Dix minutes de rappel valent mieux que relire.",
+  "Every lesson in your course is done.": "Toutes les leçons de ton cours sont terminées.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "Réanalyser les chapitres",
   "No text to analyse yet": "Pas encore de texte à analyser",

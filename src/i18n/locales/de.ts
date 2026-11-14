@@ -1,5 +1,29 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP diese Woche · letzte Woche {mins} Min. Bester Tag: {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "{xp} XP diese Woche · ein neuer Start. Bester Tag: {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "Meine Woche mit Jessica",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} Minuten · {lessons} Lektionen · Stufe {level}",
+  "Small steps, every day.": "Kleine Schritte, jeden Tag.",
+  "Weekly review": "Wochenrückblick",
+  "Your last 7 days": "Deine letzten 7 Tage",
+  "minutes studied": "Minuten gelernt",
+  "active days": "aktive Tage",
+  "answer accuracy": "Antwortgenauigkeit",
+  "Nothing yet this week — one mission today is enough to start.": "Diese Woche noch nichts – eine Mission heute reicht zum Start.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "{xp} XP diese Woche · {delta} zur Vorwoche. Bester Tag: {day}.",
+  "Next week at a glance": "Die nächste Woche im Blick",
+  "3 small moves": "3 kleine Schritte",
+  "Next lesson in {book}": "Nächste Lektion in {book}",
+  "Weakest skill · {n}% accuracy": "Schwächste Fähigkeit · {n}% Trefferquote",
+  "Ten minutes of recall beats re-reading.": "Zehn Minuten Abruf schlagen erneutes Lesen.",
+  "Every lesson in your course is done.": "Alle Lektionen deines Kurses sind fertig.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "Kapitel neu erkennen",
   "No text to analyse yet": "Noch kein Text zum Auswerten",

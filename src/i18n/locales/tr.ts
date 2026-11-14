@@ -1,5 +1,29 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Weekly review 3 --------------------------- */
+  "{xp} XP this week · last week {mins} min. Best day: {day}.": "Bu hafta {xp} XP · geçen hafta {mins} dk. En iyi gün: {day}.",
+
+  /* --------------------------- Weekly review 2 --------------------------- */
+  "{xp} XP this week · a fresh start. Best day: {day}.": "Bu hafta {xp} XP · yeni bir başlangıç. En iyi gün: {day}.",
+
+  /* --------------------------- Weekly review --------------------------- */
+  "My week with Jessica": "Jessica ile haftam",
+  "{n} minutes · {lessons} lessons · level {level}": "{n} dakika · {lessons} ders · seviye {level}",
+  "Small steps, every day.": "Her gün küçük adımlar.",
+  "Weekly review": "Haftalık değerlendirme",
+  "Your last 7 days": "Son 7 günün",
+  "minutes studied": "dakika çalışma",
+  "active days": "aktif gün",
+  "answer accuracy": "cevap doğruluğu",
+  "Nothing yet this week — one mission today is enough to start.": "Bu hafta henüz bir şey yok — bugün bir görev başlamak için yeter.",
+  "{xp} XP this week · {delta} vs last week. Best day: {day}.": "Bu hafta {xp} XP · geçen haftaya göre {delta}. En iyi gün: {day}.",
+  "Next week at a glance": "Gelecek haftaya bakış",
+  "3 small moves": "3 küçük adım",
+  "Next lesson in {book}": "{book} içindeki sıradaki ders",
+  "Weakest skill · {n}% accuracy": "En zayıf beceri · %{n} doğruluk",
+  "Ten minutes of recall beats re-reading.": "On dakika hatırlama, tekrar okumaktan iyidir.",
+  "Every lesson in your course is done.": "Kursundaki tüm dersler tamam.",
+
   /* --------------------------- Re-scan --------------------------- */
   "Re-scan chapters": "Bölümleri yeniden tara",
   "No text to analyse yet": "Henüz analiz edilecek metin yok",

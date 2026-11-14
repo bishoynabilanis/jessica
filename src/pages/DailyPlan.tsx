@@ -7,6 +7,7 @@ import { buildDailyPlan } from '@/lib/dailyPlan'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
+import { WeeklyReview } from '@/components/study/WeeklyReview'
 import { tr } from '@/i18n'
 
 export function DailyPlan() {
@@ -88,6 +89,8 @@ export function DailyPlan() {
       <p className="text-center text-[10px] text-muted-2">
         {tr('Finish these three and your streak, skills and readiness all move forward.')}
       </p>
+
+      <WeeklyReview />
     </div>
   )
 }
