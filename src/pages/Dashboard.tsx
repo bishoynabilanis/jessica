@@ -38,6 +38,7 @@ import { mascotForXp } from '@/data/mascots'
 import { subjectMeta } from '@/data/books'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
+import { buildCourse } from '@/lib/course'
 import { shareStory } from '@/lib/shareCard'
 import { levelLabel } from '@/lib/curriculum'
 import type { Book, Quest } from '@/types'
@@ -146,6 +147,22 @@ export function Dashboard() {
     const top = entries[0]
     return top ? customBooks.find((book) => book.id === top.id) : undefined
   }, [bookProgress, customBooks])
+  const activeCourse = useMemo(() => {
+    const book = lastBook || customBooks[0]
+    if (!book) return undefined
+    return buildCourse(book, {
+      unitMastery: state.unitMastery,
+      completedTopics,
+      lessonProgress: state.lessonProgress,
+    })
+  }, [lastBook, customBooks, state.unitMastery, state.lessonProgress, completedTopics])
+  const nextLesson = activeCourse?.next
+  const continueTo = nextLesson
+    ? `/lesson/${activeCourse!.book.id}/${nextLesson.unit.id}`
+    : lastBook
+      ? `/reader/${lastBook.id}`
+      : '/library'
+
   const week = weekLog(state)
   const maxWeekXp = Math.max(40, ...week.map((d) => d.xp))
   const todayTopics = topicLog.filter((t) => t.date === todayKey()).slice(0, 3)
@@ -266,8 +283,13 @@ export function Dashboard() {
                 <Sparkles className="h-4 w-4" /> {tr("Install app")}
               </Button>
             )}
-            <Button size="md" onClick={() => navigate(lastBook ? `/reader/${lastBook.id}` : '/library')}>
-              <Play className="h-4 w-4" /> {lastBook ? tr('Pick up where you left off') : tr('Continue learning')}
+            <Button size="md" onClick={() => navigate(continueTo)}>
+              <Play className="h-4 w-4" />
+              {nextLesson
+                ? tr('Continue the course')
+                : lastBook
+                  ? tr('Pick up where you left off')
+                  : tr('Continue learning')}
             </Button>
           </>
         }
@@ -394,14 +416,18 @@ export function Dashboard() {
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2">
-              <Button onClick={() => navigate('/library')}>
-                <BookOpen className="h-4 w-4" /> {tr("Open a textbook")}
+              <Button onClick={() => navigate(nextLesson ? continueTo : '/library')}>
+                {nextLesson ? <Play className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}{' '}
+                {nextLesson ? tr('Continue learning') : tr('Open a textbook')}
               </Button>
-              <Button variant="secondary" onClick={() => navigate('/study?tab=review')}>
-                <Layers className="h-4 w-4" /> {tr("Review due cards")}
+              <Button variant="secondary" onClick={() => navigate('/courses')}>
+                <GraduationCap className="h-4 w-4" /> {tr('My courses')}
+              </Button>
+              <Button variant="ghost" onClick={() => navigate('/study?tab=review')}>
+                <Layers className="h-4 w-4" /> {tr('Review due cards')}
               </Button>
               <Button variant="ghost" onClick={() => navigate('/games')}>
-                <Gamepad2 className="h-4 w-4" /> {tr("Quick quiz")}
+                <Gamepad2 className="h-4 w-4" /> {tr('Quick quiz')}
               </Button>
               <Button
                 variant="ghost"

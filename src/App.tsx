@@ -20,6 +20,8 @@ import {
   LazyDiagnostic,
   LazyCertificate,
   LazyLesson,
+  LazyCourses,
+  LazyCourse,
   LazyDailyPlan,
   LazyDisclaimer,
   LazyExamCalendar,
@@ -228,6 +230,8 @@ export default function App() {
           <Route path="diagnostic" element={<LazyDiagnostic />} />
           <Route path="certificate" element={<LazyCertificate />} />
           <Route path="lesson/:bookId/:unitId" element={<LazyLesson />} />
+          <Route path="courses" element={<LazyCourses />} />
+          <Route path="course/:bookId" element={<LazyCourse />} />
           <Route path="help" element={<LazyHelp />} />
           <Route path="install" element={<LazyInstall />} />
           <Route path="scan" element={<LazyBubbleSheet />} />

@@ -15,6 +15,7 @@ const primary = [
 ]
 
 const more = [
+  { path: '/courses', label: tr("My courses"), icon: GraduationCap, hint: tr("Your books as lesson paths") },
   { path: '/labs', label: tr("Virtual labs"), icon: FlaskConical, hint: tr("Circuits, light and physics") },
   { path: '/reading', label: tr("Reading coach"), icon: Mic, hint: tr("Read aloud and get a score") },
   { path: '/mistakes', label: tr("Mistakes"), icon: AlertTriangle, hint: tr("Wrong answers and drills") },

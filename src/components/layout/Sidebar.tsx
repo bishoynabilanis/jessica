@@ -42,6 +42,7 @@ export const navItems = [
   { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare },
   { path: '/diagnostic', label: tr("Level test"), icon: Gauge },
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain },
+  { path: '/courses', label: tr("My courses"), icon: GraduationCap },
   { path: '/library', label: tr("Library"), icon: LibraryBig },
   { path: '/study', label: tr("Study Hub"), icon: GraduationCap },
   { path: '/games', label: tr("Arcade"), icon: Gamepad2 },

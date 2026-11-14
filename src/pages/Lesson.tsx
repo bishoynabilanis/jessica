@@ -176,8 +176,13 @@ export function Lesson() {
     questions.forEach((question) => {
       recordSkill(book?.subject || 'Study', unit?.title || '', answers[question.id] === question.answer)
     })
-    if (passed && unit) completeTopic(key, unit.title, book?.subject || 'Study')
-    completeLesson(key)
+    if (passed && unit) {
+      completeTopic(key, unit.title, book?.subject || 'Study')
+      completeLesson(key)
+    } else {
+      // Keep the lesson open at the check so a retry resumes there.
+      setLessonStep(key, STEPS.indexOf('check'))
+    }
     setStep('done')
   }
 

@@ -13,6 +13,35 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Courses --------------------------- */
+  "Courses": "الكورسات",
+  "My courses": "كورساتي",
+  "Your books, turned into a path: every unit is a four-step lesson with a check at the end.": "كتبك بقت مسار: كل وحدة درس من ٤ خطوات وفي الآخر اختبار.",
+  "No courses yet": "لسه مفيش كورسات",
+  "Import one book and Jessica turns its units into lessons, a progress path and a certificate.": "استورد كتاب واحد وجيسيكا تحوّل وحداته لدروس ومسار تقدّم وشهادة.",
+  "Lessons done": "دروس خلصتها",
+  "Of {n}": "من {n}",
+  "{mastered} of {total} lessons": "{mastered} من {total} درس",
+  "Open the book once so Jessica can split it into lessons.": "افتح الكتاب مرة عشان جيسيكا تقسّمه لدروس.",
+  "Course complete — your certificate is ready.": "الكورس خلص — شهادتك جاهزة.",
+  "Next: {lesson}": "اللي بعده: {lesson}",
+  "Start course": "ابدأ الكورس",
+  "Course": "الكورس",
+  "This course is not in your library": "الكورس ده مش في مكتبتك",
+  "Open the book from the library first, then it appears here as a course.": "افتح الكتاب من المكتبة الأول وبعدين هيظهر هنا ككورس.",
+  "{n} lessons": "{n} درس",
+  "50 XP per lesson": "٥٠ نقطة خبرة لكل درس",
+  "Continue the course": "كمّل الكورس",
+  "Start the course": "ابدأ الكورس",
+  "Open the book": "افتح الكتاب",
+  "No lessons yet": "لسه مفيش دروس",
+  "This book has no detected units yet. Open it once and Jessica will split it into lessons.": "الكتاب ده لسه مفيهوش وحدات. افتحه مرة وجيسيكا هتقسّمه لدروس.",
+  "More practice": "تدريب أكتر",
+  "In progress": "شغال عليه",
+  "Not started": "لسه مبدأش",
+  "50 XP": "٥٠ نقطة",
+  "Stopped at step {n} of 4": "وقفت عند الخطوة {n} من ٤",
+
   /* --------------------------- Daily lesson mission --------------------------- */
   "Lesson: {unit}": "درس: {unit}",
   "Read, key terms and a short check — about {n} minutes.": "اقرا + المصطلحات + اختبار قصير — حوالي {n} دقايق.",
