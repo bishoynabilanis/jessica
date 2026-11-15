@@ -13,6 +13,23 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "كل الإجابات صح!",
+  "Every answer right — try the next subject.": "جاوبت كل حاجة صح — جرّب مادة تانية.",
+  "A bank that never runs out": "بنك أسئلة مبيخلصش",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "كل سؤال بيتولد على جهازك من منهج صفك — بدون مفتاح وبدون نت، وكل إجابة ليها شرح.",
+  "Choose a subject": "اختار مادة",
+  "How many questions?": "كام سؤال؟",
+  "Start the drill": "ابدأ التدريب",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "الصف: {grade} · ٤ اختيارات لكل سؤال · شرح قصير بعد كل إجابة.",
+  "See my score": "شوف نتيجتي",
+  "score": "نتيجة",
+  "Weakest skill here: {skill} — {correct} of {total}.": "أضعف مهارة هنا: {skill} — {correct} من {total}.",
+  "New drill": "تدريب جديد",
+  "Change subject": "غيّر المادة",
+  "Seed {n} · every drill is new.": "نسخة {n} · كل تدريب جديد.",
+  "Endless generated drills": "تدريبات لا نهائية",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "اتسجلت {n} دقيقة",
   "That is {n} XP and another step on the plan.": "دي {n} نقطة خبرة وخطوة كمان في خطتك.",

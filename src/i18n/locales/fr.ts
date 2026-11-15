@@ -1,5 +1,22 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "Sans faute !",
+  "Every answer right — try the next subject.": "Tout est juste — essaie la matière suivante.",
+  "A bank that never runs out": "Une banque qui ne s’épuise jamais",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "Chaque question est générée sur cet appareil à partir de ton programme — sans clé, sans internet, et chaque réponse est expliquée.",
+  "Choose a subject": "Choisis une matière",
+  "How many questions?": "Combien de questions ?",
+  "Start the drill": "Commencer l’entraînement",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "Classe : {grade} · quatre options par question · une courte explication après chaque réponse.",
+  "See my score": "Voir mon score",
+  "score": "score",
+  "Weakest skill here: {skill} — {correct} of {total}.": "Compétence la plus faible : {skill} — {correct} sur {total}.",
+  "New drill": "Nouvel entraînement",
+  "Change subject": "Changer de matière",
+  "Seed {n} · every drill is new.": "Version {n} · chaque entraînement est nouveau.",
+  "Endless generated drills": "Entraînements infinis",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "{n} minutes enregistrées",
   "That is {n} XP and another step on the plan.": "Cela fait {n} XP et une étape de plus dans ton plan.",

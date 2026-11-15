@@ -1,5 +1,22 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "Tam isabet!",
+  "Every answer right — try the next subject.": "Hepsi doğru — sıradaki dersi dene.",
+  "A bank that never runs out": "Hiç tükenmeyen bir banka",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "Her soru bu cihazda senin sınıfından üretilir — anahtar yok, internet yok ve her cevap açıklanır.",
+  "Choose a subject": "Bir ders seç",
+  "How many questions?": "Kaç soru?",
+  "Start the drill": "Alıştırmaya başla",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "Sınıf: {grade} · soru başına dört seçenek · her cevaptan sonra kısa açıklama.",
+  "See my score": "Puanımı gör",
+  "score": "puan",
+  "Weakest skill here: {skill} — {correct} of {total}.": "Buradaki en zayıf beceri: {skill} — {total} içinde {correct}.",
+  "New drill": "Yeni alıştırma",
+  "Change subject": "Dersi değiştir",
+  "Seed {n} · every drill is new.": "Sürüm {n} · her alıştırma yeni.",
+  "Endless generated drills": "Sonsuz alıştırmalar",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "{n} dakika kaydedildi",
   "That is {n} XP and another step on the plan.": "Bu {n} XP ve planında bir adım daha.",

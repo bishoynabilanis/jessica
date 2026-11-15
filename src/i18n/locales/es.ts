@@ -1,5 +1,22 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "¡Pleno!",
+  "Every answer right — try the next subject.": "Todo correcto: prueba la siguiente materia.",
+  "A bank that never runs out": "Un banco que nunca se agota",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "Cada pregunta se genera en este dispositivo a partir de tu curso: sin clave, sin internet y con explicación en cada respuesta.",
+  "Choose a subject": "Elige una materia",
+  "How many questions?": "¿Cuántas preguntas?",
+  "Start the drill": "Empezar el entrenamiento",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "Curso: {grade} · cuatro opciones por pregunta · una breve explicación tras cada respuesta.",
+  "See my score": "Ver mi puntuación",
+  "score": "puntuación",
+  "Weakest skill here: {skill} — {correct} of {total}.": "Habilidad más débil aquí: {skill} — {correct} de {total}.",
+  "New drill": "Nuevo entrenamiento",
+  "Change subject": "Cambiar de materia",
+  "Seed {n} · every drill is new.": "Versión {n} · cada entrenamiento es nuevo.",
+  "Endless generated drills": "Entrenamientos infinitos",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "{n} minutos registrados",
   "That is {n} XP and another step on the plan.": "Son {n} XP y un paso más en tu plan.",

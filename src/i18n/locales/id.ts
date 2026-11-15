@@ -1,5 +1,22 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "Sempurna!",
+  "Every answer right — try the next subject.": "Semua benar — coba mata pelajaran berikutnya.",
+  "A bank that never runs out": "Bank yang tidak pernah habis",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "Setiap soal dibuat di perangkat ini dari kelasmu — tanpa kunci, tanpa internet, dan setiap jawaban dijelaskan.",
+  "Choose a subject": "Pilih mata pelajaran",
+  "How many questions?": "Berapa soal?",
+  "Start the drill": "Mulai latihan",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "Kelas: {grade} · empat pilihan per soal · penjelasan singkat setelah setiap jawaban.",
+  "See my score": "Lihat skorku",
+  "score": "skor",
+  "Weakest skill here: {skill} — {correct} of {total}.": "Keterampilan terlemah di sini: {skill} — {correct} dari {total}.",
+  "New drill": "Latihan baru",
+  "Change subject": "Ganti mata pelajaran",
+  "Seed {n} · every drill is new.": "Versi {n} · setiap latihan baru.",
+  "Endless generated drills": "Latihan tanpa habis",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "{n} menit tercatat",
   "That is {n} XP and another step on the plan.": "Itu {n} XP dan satu langkah lagi di rencanamu.",

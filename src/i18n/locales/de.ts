@@ -1,5 +1,22 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Question bank --------------------------- */
+  "Clean sheet!": "Alles richtig!",
+  "Every answer right — try the next subject.": "Alle Antworten richtig – probiere das nächste Fach.",
+  "A bank that never runs out": "Eine Bank, die nie leer wird",
+  "Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.": "Jede Frage wird auf diesem Gerät aus deinem Lehrplan erzeugt – ohne Schlüssel, ohne Internet, und jede Antwort wird erklärt.",
+  "Choose a subject": "Wähle ein Fach",
+  "How many questions?": "Wie viele Fragen?",
+  "Start the drill": "Training starten",
+  "Grade: {grade} · four options per question · a short explanation after every answer.": "Klasse: {grade} · vier Optionen pro Frage · eine kurze Erklärung nach jeder Antwort.",
+  "See my score": "Mein Ergebnis",
+  "score": "Ergebnis",
+  "Weakest skill here: {skill} — {correct} of {total}.": "Schwächste Fähigkeit hier: {skill} — {correct} von {total}.",
+  "New drill": "Neues Training",
+  "Change subject": "Fach wechseln",
+  "Seed {n} · every drill is new.": "Version {n} · jedes Training ist neu.",
+  "Endless generated drills": "Endlose Trainings",
+
   /* --------------------------- Focus timer --------------------------- */
   "{n} minutes logged": "{n} Minuten erfasst",
   "That is {n} XP and another step on the plan.": "Das sind {n} XP und ein weiterer Schritt in deinem Plan.",

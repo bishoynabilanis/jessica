@@ -32,6 +32,7 @@ export const LazyDiagnostic = page(() => import('@/pages/Diagnostic'), 'Diagnost
 export const LazyCertificate = page(() => import('@/pages/Certificate'), 'Certificate')
 export const LazyStats = page(() => import('@/pages/Stats'), 'Stats')
 export const LazyFocus = page(() => import('@/pages/Focus'), 'Focus')
+export const LazyBank = page(() => import('@/pages/Bank'), 'Bank')
 export const LazyLesson = page(() => import('@/pages/Lesson'), 'Lesson')
 export const LazyCourses = page(() => import('@/pages/Courses'), 'Courses')
 export const LazyCourse = page(() => import('@/pages/Course'), 'Course')
