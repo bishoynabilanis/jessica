@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Cairo'; src: url('file:///Volumes/Extreme%20Pro/تطبيق%20التعليم%20الشامل/marketing/films/jessica-launch/assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        width: 1080px; height: 1350px; font-family: 'Cairo', sans-serif; color: #f4f7ff; direction: rtl;
+        background:
+          radial-gradient(640px 560px at 88% -6%, rgba(139, 92, 246, 0.4), transparent 62%),
+          radial-gradient(600px 520px at 6% 106%, rgba(33, 230, 201, 0.26), transparent 62%),
+          linear-gradient(165deg, #060a15, #0a1020 60%, #0c1428);
+        padding: 90px 78px; position: relative; overflow: hidden; text-align: center;
+      }
+      .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(700px 700px at 50% 45%, #000 30%, transparent 85%); }
+      .kicker { position: relative; font-size: 24px; font-weight: 800; color: #21e6c9; }
+      h1 { position: relative; margin-top: 14px; font-size: 82px; font-weight: 900; line-height: 1.22; }
+      h1 em { font-style: normal; color: #21e6c9; }
+      .sub { position: relative; margin-top: 14px; font-size: 28px; font-weight: 600; color: #b9c7e4; }
+      .week { position: relative; margin-top: 64px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+      .day { background: rgba(255,255,255,.045); border: 1.5px solid rgba(255,255,255,.1); border-radius: 22px; padding: 22px 8px 18px; }
+      .day b { display: block; font-size: 26px; font-weight: 800; color: #dbe4f7; }
+      .day i { display: block; margin: 14px auto 0; width: 40px; height: 40px; border-radius: 12px; border: 2px solid rgba(255,255,255,.18); }
+      .day.on { background: rgba(33,230,201,.12); border-color: rgba(33,230,201,.45); }
+      .day.on b { color: #21e6c9; }
+      .day.on i { background: #21e6c9; border-color: #21e6c9; box-shadow: 0 0 24px rgba(33,230,201,.5); }
+      .day.off { opacity: .45; }
+      .badge { position: relative; margin: 44px auto 0; display: inline-flex; align-items: center; gap: 14px; background: rgba(33,230,201,.1); border: 1.5px solid rgba(33,230,201,.4); border-radius: 999px; padding: 14px 30px; font-size: 30px; font-weight: 800; color: #d8fff8; }
+      .badge b { color: #21e6c9; font-size: 32px; }
+      .foot { position: absolute; left: 78px; right: 78px; bottom: 72px; display: flex; align-items: center; justify-content: space-between; }
+      .foot p { font-size: 26px; font-weight: 700; color: #9fb2d8; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand .j { width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #21e6c9, #6b8cff); color: #061018; display: grid; place-items: center; font-weight: 900; font-size: 21px; }
+      .brand b { font-size: 19px; letter-spacing: .2em; color: #9fb2d8; }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <p class="kicker">خطة الأسبوع</p>
+    <h1>٢٥ دقيقة كل يوم<br /><em>أحسن من ٣ ساعات</em>.</h1>
+    <p class="sub">الراحة جزء من الخطة — مش فشل.</p>
+
+    <div class="week">
+      <div class="day on"><b>س</b><i></i></div>
+      <div class="day on"><b>ح</b><i></i></div>
+      <div class="day on"><b>ن</b><i></i></div>
+      <div class="day on"><b>ث</b><i></i></div>
+      <div class="day on"><b>ر</b><i></i></div>
+      <div class="day off"><b>خ</b><i></i></div>
+      <div class="day off"><b>ج</b><i></i></div>
+    </div>
+
+    <div class="badge"><b>٥ / ٧</b> أيام كفاية</div>
+
+    <div class="foot">
+      <p>ابدأ النهاردة — ٢٥ دقيقة.</p>
+      <div class="brand"><span class="j">J</span><b>JESSICA</b></div>
+    </div>
+  </body>
+</html>
