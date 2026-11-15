@@ -22,6 +22,7 @@ import {
   Orbit,
   Settings,
   Target,
+  Timer,
   FileText,
   Mic,
   Users,
@@ -38,6 +39,7 @@ import { useKidsWorld } from '@/lib/stage'
 export const navItems = [
   { path: '/', label: tr("Home"), icon: Home },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck },
+  { path: '/focus', label: tr("Focus timer"), icon: Timer },
   { path: '/calendar', label: tr("Exam calendar"), icon: CalendarDays },
   { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare },
   { path: '/diagnostic', label: tr("Level test"), icon: Gauge },

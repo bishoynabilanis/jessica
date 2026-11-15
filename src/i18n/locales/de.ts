@@ -1,5 +1,20 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "{n} Minuten erfasst",
+  "That is {n} XP and another step on the plan.": "Das sind {n} XP und ein weiterer Schritt in deinem Plan.",
+  "Break over — back to it.": "Pause vorbei – weiter geht’s.",
+  "Focus timer": "Fokus-Timer",
+  "Twenty-five minutes. That is the whole trick.": "Fünfundzwanzig Minuten. Mehr braucht es nicht.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "Wähle eine Länge, schließe alles andere und lass den Timer die Minuten in deinen Plan zählen.",
+  "Break 5": "Pause 5",
+  "Resume": "Weiter",
+  "Session done. Stand up, drink water, come back for the next one.": "Sitzung fertig. Steh auf, trink Wasser, komm für die nächste zurück.",
+  "Length": "Länge",
+  "{n} min": "{n} Min.",
+  "Minutes on this device today": "Minuten auf diesem Gerät heute",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "Der Timer läuft weiter, wenn du den Tab wechselst, und übersteht ein Neuladen. Am Ende ertönt ein Ton.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "Tagesverlauf",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Jeden Tag wird ein Schnappschuss gespeichert – ein schlechter Tag beim Zähler verliert den Trend nicht.",

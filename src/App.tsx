@@ -20,6 +20,7 @@ import {
   LazyDiagnostic,
   LazyCertificate,
   LazyStats,
+  LazyFocus,
   LazyLesson,
   LazyCourses,
   LazyCourse,
@@ -231,6 +232,7 @@ export default function App() {
           <Route path="diagnostic" element={<LazyDiagnostic />} />
           <Route path="certificate" element={<LazyCertificate />} />
           <Route path="stats" element={<LazyStats />} />
+          <Route path="focus" element={<LazyFocus />} />
           <Route path="lesson/:bookId/:unitId" element={<LazyLesson />} />
           <Route path="courses" element={<LazyCourses />} />
           <Route path="course/:bookId" element={<LazyCourse />} />

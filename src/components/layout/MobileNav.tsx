@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { AlertTriangle, Award, BarChart3, Bookmark, Brain, Camera, CalendarCheck, CalendarDays, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Gauge, Settings, Sparkles, Target, Users } from 'lucide-react'
+import { AlertTriangle, Award, BarChart3, Bookmark, Brain, Camera, CalendarCheck, CalendarDays, Download, FileText, FlaskConical, Gamepad2, GraduationCap, Home, HelpCircle, LibraryBig, MessagesSquare, Mic, MoreHorizontal, Orbit, ScanLine, Scale, Timer, Gauge, Settings, Sparkles, Target, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
@@ -23,6 +23,7 @@ const more = [
   { path: '/diagnostic', label: tr("Level test"), icon: Gauge, hint: tr("Twelve questions, two minutes") },
   { path: '/certificate', label: tr("Certificate"), icon: Award, hint: tr("Your printable A4 record") },
   { path: '/plan', label: tr("Daily plan"), icon: CalendarCheck, hint: tr("Today’s three missions") },
+  { path: '/focus', label: tr("Focus timer"), icon: Timer, hint: tr("25 minutes, counted into your plan") },
   { path: '/calendar', label: tr("Exam calendar"), icon: CalendarDays, hint: tr("Dates, week plan and exam night") },
   { path: '/ask', label: tr("Ask my books"), icon: MessagesSquare, hint: tr("Answer with a page source") },
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain, hint: tr("Weak-first questions") },

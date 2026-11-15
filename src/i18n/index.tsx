@@ -13,6 +13,21 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "اتسجلت {n} دقيقة",
+  "That is {n} XP and another step on the plan.": "دي {n} نقطة خبرة وخطوة كمان في خطتك.",
+  "Break over — back to it.": "الراحة خلصت — يلا نرجع.",
+  "Focus timer": "مؤقت التركيز",
+  "Twenty-five minutes. That is the whole trick.": "٢٥ دقيقة. ده كل السر.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "اختار المدة، اقفل كل حاجة، وسيب المؤقت يحسب الدقايق في خطتك.",
+  "Break 5": "راحة ٥",
+  "Resume": "كمّل",
+  "Session done. Stand up, drink water, come back for the next one.": "الجلسة خلصت. قوم اشرب مية وارجع للي بعدها.",
+  "Length": "المدة",
+  "{n} min": "{n} دقيقة",
+  "Minutes on this device today": "دقايق النهارده على الجهاز ده",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "المؤقت بيكمل لو غيّرت التاب، وبيقاوم إعادة التحميل. وفي صوت في الآخر.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "الأرشيف اليومي",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "بيتاخد نسخة كل يوم، فأي عطل في خدمة العدّاد مش بيضيّع الاتجاه.",

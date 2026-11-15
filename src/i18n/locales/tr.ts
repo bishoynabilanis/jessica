@@ -1,5 +1,20 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "{n} dakika kaydedildi",
+  "That is {n} XP and another step on the plan.": "Bu {n} XP ve planında bir adım daha.",
+  "Break over — back to it.": "Mola bitti — devam.",
+  "Focus timer": "Odak zamanlayıcısı",
+  "Twenty-five minutes. That is the whole trick.": "Yirmi beş dakika. Bütün sır bu.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "Bir süre seç, gerisini kapat ve zamanlayıcı dakikaları planına yazsın.",
+  "Break 5": "5 dk mola",
+  "Resume": "Devam et",
+  "Session done. Stand up, drink water, come back for the next one.": "Oturum bitti. Kalk, su iç, sonrakine dön.",
+  "Length": "Süre",
+  "{n} min": "{n} dk",
+  "Minutes on this device today": "Bugün bu cihazdaki dakikalar",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "Sekme değiştirsen de sayaç devam eder ve yenilemeye dayanır. Sonunda ses çalar.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "Günlük geçmiş",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Her gün bir anlık görüntü alınır; sayaçtaki kötü bir gün eğilimi kaybetmez.",

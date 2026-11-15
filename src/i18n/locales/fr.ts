@@ -1,5 +1,20 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "{n} minutes enregistrées",
+  "That is {n} XP and another step on the plan.": "Cela fait {n} XP et une étape de plus dans ton plan.",
+  "Break over — back to it.": "Pause terminée — on reprend.",
+  "Focus timer": "Minuteur de concentration",
+  "Twenty-five minutes. That is the whole trick.": "Vingt-cinq minutes. Tout est là.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "Choisis une durée, ferme le reste, et laisse le minuteur compter les minutes dans ton plan.",
+  "Break 5": "Pause 5",
+  "Resume": "Reprendre",
+  "Session done. Stand up, drink water, come back for the next one.": "Session terminée. Lève-toi, bois de l’eau, reviens pour la suivante.",
+  "Length": "Durée",
+  "{n} min": "{n} min",
+  "Minutes on this device today": "Minutes sur cet appareil aujourd’hui",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "Le minuteur continue si tu changes d’onglet et survit à un rafraîchissement. Un son joue à la fin.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "Historique quotidien",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Un relevé est pris chaque jour : une mauvaise journée du compteur ne perd pas la tendance.",

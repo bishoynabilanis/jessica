@@ -1,5 +1,20 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "{n} menit tercatat",
+  "That is {n} XP and another step on the plan.": "Itu {n} XP dan satu langkah lagi di rencanamu.",
+  "Break over — back to it.": "Istirahat selesai — lanjut.",
+  "Focus timer": "Pengatur waktu fokus",
+  "Twenty-five minutes. That is the whole trick.": "Dua puluh lima menit. Itu seluruh rahasianya.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "Pilih durasi, tutup yang lain, dan biarkan timer menghitung menitnya ke rencanamu.",
+  "Break 5": "Istirahat 5",
+  "Resume": "Lanjutkan",
+  "Session done. Stand up, drink water, come back for the next one.": "Sesi selesai. Berdiri, minum air, kembali untuk sesi berikutnya.",
+  "Length": "Durasi",
+  "{n} min": "{n} mnt",
+  "Minutes on this device today": "Menit di perangkat ini hari ini",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "Timer tetap berjalan jika kamu pindah tab dan bertahan saat halaman dimuat ulang. Ada bunyi di akhir.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "Riwayat harian",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Snapshot diambil setiap hari, jadi hari buruk di layanan penghitung tidak menghilangkan tren.",

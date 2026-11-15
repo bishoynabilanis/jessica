@@ -1,5 +1,20 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Focus timer --------------------------- */
+  "{n} minutes logged": "{n} minutos registrados",
+  "That is {n} XP and another step on the plan.": "Son {n} XP y un paso más en tu plan.",
+  "Break over — back to it.": "Descanso terminado: volvemos.",
+  "Focus timer": "Temporizador de concentración",
+  "Twenty-five minutes. That is the whole trick.": "Veinticinco minutos. Ahí está todo.",
+  "Pick a length, close everything else, and let the timer count the minutes into your plan.": "Elige una duración, cierra lo demás y deja que el temporizador sume los minutos a tu plan.",
+  "Break 5": "Descanso 5",
+  "Resume": "Continuar",
+  "Session done. Stand up, drink water, come back for the next one.": "Sesión terminada. Levántate, bebe agua y vuelve para la siguiente.",
+  "Length": "Duración",
+  "{n} min": "{n} min",
+  "Minutes on this device today": "Minutos en este dispositivo hoy",
+  "The timer keeps counting if you switch tabs, and it survives a refresh. Sound plays at the end.": "El temporizador sigue si cambias de pestaña y sobrevive a una recarga. Suena al terminar.",
+
   /* --------------------------- Stats history --------------------------- */
   "Daily history": "Historial diario",
   "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Cada día se guarda una copia: un mal día del contador no pierde la tendencia.",
