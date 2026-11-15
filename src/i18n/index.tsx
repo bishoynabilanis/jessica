@@ -14,6 +14,12 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "بنك أسئلة مبيخلصش",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "تدريبات لا نهائية مع شرح بعد كل إجابة، وامتحان مؤقت ٢٠ دقيقة، ومؤقت تركيز بيحسب دقايقك في الخطة.",
+  "Open the bank": "افتح البنك",
+  "Start 25 minutes": "ابدأ ٢٥ دقيقة",
+  "Hide this": "اقفل الإشعار ده",
+
   "Open my mistakes notebook": "افتح دفتر أخطائك",
 
   "Speed": "السرعة",

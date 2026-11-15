@@ -1,6 +1,12 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "Hiç tükenmeyen bir soru bankası",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Her cevaptan sonra açıklamalı sonsuz alıştırmalar, 20 dakikalık süreli sınav ve dakikalarını plana yazan odak zamanlayıcısı.",
+  "Open the bank": "Bankayı aç",
+  "Start 25 minutes": "25 dakika başlat",
+  "Hide this": "Gizle",
+
   "Open my mistakes notebook": "Hata defterimi aç",
 
   "Time is up — the paper is marked.": "Süre bitti — kâğıt değerlendirildi.",

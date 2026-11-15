@@ -75,6 +75,21 @@ export function Dashboard() {
   const navigate = useNavigate()
   const requireKey = useRequireKey()
   const [parentOpen, setParentOpen] = useState(false)
+  const [showNews, setShowNews] = useState(() => {
+    try {
+      return localStorage.getItem('jessica-whatsnew-v1') !== 'bank-focus'
+    } catch {
+      return true
+    }
+  })
+  const dismissNews = () => {
+    setShowNews(false)
+    try {
+      localStorage.setItem('jessica-whatsnew-v1', 'bank-focus')
+    } catch {
+      /* private mode */
+    }
+  }
   const [draftName, setDraftName] = useState('')
   const [questLoading, setQuestLoading] = useState(false)
   const [dueCount, setDueCount] = useState(0)
@@ -294,6 +309,39 @@ export function Dashboard() {
           </>
         }
       />
+
+      {showNews && (
+        <Card className="relative border-aurora-400/35 bg-gradient-to-l from-aurora-400/10 via-transparent to-violet-neon/10 p-3" data-testid="whats-new">
+          <button
+            onClick={dismissNews}
+            aria-label={tr('Hide this')}
+            className="absolute end-2 top-2 rounded-lg p-1 text-muted-2 transition hover:text-main"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-gradient-to-l from-aurora-400 to-violet-neon px-2 py-0.5 text-[9px] font-extrabold text-ink-950">
+              {tr('New')}
+            </span>
+            <p className="text-[12px] font-extrabold text-main">{tr('A question bank that never runs out')}</p>
+          </div>
+          <p className="mt-1 text-[10px] leading-relaxed text-muted">
+            {tr('Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.')}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <Link to="/bank">
+              <Button size="sm" data-testid="whats-new-bank">
+                <Layers className="h-3.5 w-3.5" /> {tr('Open the bank')}
+              </Button>
+            </Link>
+            <Link to="/focus">
+              <Button size="sm" variant="secondary">
+                <Timer className="h-3.5 w-3.5" /> {tr('Start 25 minutes')}
+              </Button>
+            </Link>
+          </div>
+        </Card>
+      )}
 
       {!name && (
         <Card className="flex flex-col gap-2 p-3 sm:flex-row sm:items-center">

@@ -1,6 +1,12 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "Eine Fragenbank, die nie leer wird",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Endlose Übungen mit Erklärung nach jeder Antwort, eine 20-minütige Prüfung und ein Fokus-Timer, der deine Minuten in den Plan zählt.",
+  "Open the bank": "Bank öffnen",
+  "Start 25 minutes": "25 Minuten starten",
+  "Hide this": "Ausblenden",
+
   "Open my mistakes notebook": "Mein Fehlerheft öffnen",
 
   "Time is up — the paper is marked.": "Zeit um – der Bogen ist korrigiert.",

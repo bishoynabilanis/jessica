@@ -1,6 +1,12 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "Une banque de questions qui ne s’épuise jamais",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Des entraînements sans fin avec une explication après chaque réponse, un examen chronométré de 20 minutes, et un minuteur qui compte tes minutes dans le plan.",
+  "Open the bank": "Ouvrir la banque",
+  "Start 25 minutes": "Commencer 25 minutes",
+  "Hide this": "Masquer",
+
   "Open my mistakes notebook": "Ouvre mon carnet d’erreurs",
 
   "Time is up — the paper is marked.": "Temps écoulé — la copie est corrigée.",

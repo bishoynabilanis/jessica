@@ -1,6 +1,12 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "Bank soal yang tidak pernah habis",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Latihan tanpa henti dengan penjelasan setelah setiap jawaban, ujian bertimer 20 menit, dan pengatur waktu fokus yang menghitung menitmu ke rencana.",
+  "Open the bank": "Buka bank",
+  "Start 25 minutes": "Mulai 25 menit",
+  "Hide this": "Sembunyikan",
+
   "Open my mistakes notebook": "Buka buku kesalahanku",
 
   "Time is up — the paper is marked.": "Waktu habis — lembar jawaban sudah dinilai.",

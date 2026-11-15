@@ -1,6 +1,12 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "A question bank that never runs out": "Un banco de preguntas que nunca se agota",
+  "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Entrenamientos infinitos con explicación tras cada respuesta, un examen cronometrado de 20 minutos y un temporizador que suma tus minutos al plan.",
+  "Open the bank": "Abrir el banco",
+  "Start 25 minutes": "Empezar 25 minutos",
+  "Hide this": "Ocultar",
+
   "Open my mistakes notebook": "Abrir mi cuaderno de errores",
 
   "Time is up — the paper is marked.": "Se acabó el tiempo: la hoja está corregida.",
