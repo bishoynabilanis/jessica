@@ -1,6 +1,23 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "Abrir mi cuaderno de errores",
+
+  "Time is up — the paper is marked.": "Se acabó el tiempo: la hoja está corregida.",
+  "Timed exam — 20 questions, 20 minutes": "Examen cronometrado: 20 preguntas, 20 minutos",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "El modo práctica muestra la respuesta al momento, con el motivo, y convierte cada fallo en una tarjeta de tu cuaderno de errores.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "El modo examen oculta las respuestas hasta que se acaba el tiempo, luego corrige toda la hoja y muestra tu punto débil.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "{n} de {m} respondidas: puedes cambiar cualquier respuesta antes de entregar.",
+  "Previous": "Anterior",
+  "Hand in the paper": "Entregar la hoja",
+  "The clock marked the paper for you.": "El reloj corrigió la hoja por ti.",
+  "Another paper": "Otra hoja",
+  "The whole paper, marked": "Toda la hoja, corregida",
+  "left blank": "en blanco",
+  "Answer: {answer}": "Respuesta: {answer}",
+  "You chose: {answer}": "Elegiste: {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "Cada fallo ya está en tu cuaderno de errores, con su explicación.",
+
   "Clean sheet!": "¡Pleno!",
   "Every answer right — try the next subject.": "Todo correcto: prueba la siguiente materia.",
   "A bank that never runs out": "Un banco que nunca se agota",

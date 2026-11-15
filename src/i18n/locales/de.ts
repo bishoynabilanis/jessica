@@ -1,6 +1,23 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "Mein Fehlerheft öffnen",
+
+  "Time is up — the paper is marked.": "Zeit um – der Bogen ist korrigiert.",
+  "Timed exam — 20 questions, 20 minutes": "Zeitgesteuerte Prüfung – 20 Fragen, 20 Minuten",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "Im Übungsmodus siehst du die Antwort sofort mit Begründung, und jeder Fehler wird eine Karte in deinem Fehlerheft.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "Im Prüfungsmodus bleiben die Antworten bis zum Ablauf der Zeit verborgen, dann wird der ganze Bogen korrigiert und deine Schwachstelle gezeigt.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "{n} von {m} beantwortet — du kannst jede Antwort vor der Abgabe ändern.",
+  "Previous": "Zurück",
+  "Hand in the paper": "Bogen abgeben",
+  "The clock marked the paper for you.": "Die Zeit hat den Bogen für dich korrigiert.",
+  "Another paper": "Ein neuer Bogen",
+  "The whole paper, marked": "Der ganze Bogen, korrigiert",
+  "left blank": "leer gelassen",
+  "Answer: {answer}": "Antwort: {answer}",
+  "You chose: {answer}": "Du hast gewählt: {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "Jeder Fehler steht schon in deinem Fehlerheft, mit Erklärung.",
+
   "Clean sheet!": "Alles richtig!",
   "Every answer right — try the next subject.": "Alle Antworten richtig – probiere das nächste Fach.",
   "A bank that never runs out": "Eine Bank, die nie leer wird",

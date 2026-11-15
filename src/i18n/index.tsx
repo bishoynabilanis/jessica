@@ -14,6 +14,30 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "افتح دفتر أخطائك",
+
+  "Speed": "السرعة",
+  "Pressure": "الضغط",
+  "Density": "الكثافة",
+  "Force": "القوة",
+  "Ohm’s law": "قانون أوم",
+  "Work": "الشغل",
+
+  "Time is up — the paper is marked.": "الوقت خلص — الورقة اتصححت.",
+  "Timed exam — 20 questions, 20 minutes": "امتحان مؤقت — ٢٠ سؤال في ٢٠ دقيقة",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "وضع التدريب بيوريك الإجابة على طول مع السبب، وكل غلطة بتتحول لكارت في دفتر أخطائك.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "وضع الامتحان بيخفي الإجابات لحد ما الوقت يخلص، وبعدها بيصحح الورقة كلها ويوريك نقطة ضعفك.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "جاوبت {n} من {m} — تقدر تغيّر أي إجابة قبل التسليم.",
+  "Previous": "السابق",
+  "Hand in the paper": "سلّم الورقة",
+  "The clock marked the paper for you.": "الوقت صحح الورقة بدالك.",
+  "Another paper": "ورقة تانية",
+  "The whole paper, marked": "الورقة كلها، مصححة",
+  "left blank": "فاضية",
+  "Answer: {answer}": "الإجابة: {answer}",
+  "You chose: {answer}": "انت اخترت: {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "كل غلطة اتسجلت في دفتر أخطائك ومعاها شرحها.",
+
   "Clean sheet!": "كل الإجابات صح!",
   "Every answer right — try the next subject.": "جاوبت كل حاجة صح — جرّب مادة تانية.",
   "A bank that never runs out": "بنك أسئلة مبيخلصش",

@@ -1,6 +1,23 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "Buka buku kesalahanku",
+
+  "Time is up — the paper is marked.": "Waktu habis — lembar jawaban sudah dinilai.",
+  "Timed exam — 20 questions, 20 minutes": "Ujian bertimer — 20 soal, 20 menit",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "Mode latihan langsung menampilkan jawaban beserta alasannya, dan setiap kesalahan menjadi kartu di buku kesalahanmu.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "Mode ujian menyembunyikan jawaban sampai waktu habis, lalu menilai seluruh lembar dan menunjukkan titik lemahmu.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "{n} dari {m} terjawab — kamu bisa mengubah jawaban sebelum mengumpulkan.",
+  "Previous": "Sebelumnya",
+  "Hand in the paper": "Kumpulkan lembar",
+  "The clock marked the paper for you.": "Waktu yang menilai lembarmu.",
+  "Another paper": "Lembar baru",
+  "The whole paper, marked": "Seluruh lembar, sudah dinilai",
+  "left blank": "dibiarkan kosong",
+  "Answer: {answer}": "Jawaban: {answer}",
+  "You chose: {answer}": "Kamu memilih: {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "Setiap kesalahan sudah ada di buku kesalahanmu, lengkap dengan penjelasannya.",
+
   "Clean sheet!": "Sempurna!",
   "Every answer right — try the next subject.": "Semua benar — coba mata pelajaran berikutnya.",
   "A bank that never runs out": "Bank yang tidak pernah habis",

@@ -474,6 +474,8 @@ const urls = [
   })),
   { loc: `${BASE}/welcome/quiz/`, file: 'public/welcome/quiz/index.html', freq: 'weekly', priority: '0.9' },
   { loc: `${BASE}/welcome/install/`, file: 'public/welcome/install/index.html', freq: 'monthly', priority: '0.8' },
+  { loc: `${BASE}/welcome/bank/`, file: 'public/welcome/bank/index.html', freq: 'monthly', priority: '0.9' },
+  { loc: `${BASE}/welcome/focus/`, file: 'public/welcome/focus/index.html', freq: 'monthly', priority: '0.9' },
   { loc: `${BASE}/welcome/topics/`, file: 'public/welcome/topics/index.html', freq: 'weekly', priority: '0.9' },
   ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests', 'focus', 'science', 'arabic', 'primary-kid', 'midyear', 'word-problems', 'study-notes'].map((slug) => ({
     loc: `${BASE}/welcome/topics/${slug}/`,

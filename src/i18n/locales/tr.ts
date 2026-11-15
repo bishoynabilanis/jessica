@@ -1,6 +1,23 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "Hata defterimi aç",
+
+  "Time is up — the paper is marked.": "Süre bitti — kâğıt değerlendirildi.",
+  "Timed exam — 20 questions, 20 minutes": "Süreli sınav — 20 soru, 20 dakika",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "Alıştırma modu cevabı nedeniyle birlikte hemen gösterir ve her yanlışı hata defterinde bir karta çevirir.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "Sınav modu cevapları süre bitene kadar gizler, sonra tüm kâğıdı değerlendirir ve zayıf noktanı gösterir.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "{m} sorudan {n} tanesi cevaplandı — teslim etmeden önce her cevabı değiştirebilirsin.",
+  "Previous": "Önceki",
+  "Hand in the paper": "Kâğıdı teslim et",
+  "The clock marked the paper for you.": "Kâğıdı senin yerine süre değerlendirdi.",
+  "Another paper": "Yeni bir kâğıt",
+  "The whole paper, marked": "Tüm kâğıt, değerlendirilmiş",
+  "left blank": "boş bırakıldı",
+  "Answer: {answer}": "Cevap: {answer}",
+  "You chose: {answer}": "Senin seçimin: {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "Her yanlış, açıklamasıyla birlikte hata defterinde.",
+
   "Clean sheet!": "Tam isabet!",
   "Every answer right — try the next subject.": "Hepsi doğru — sıradaki dersi dene.",
   "A bank that never runs out": "Hiç tükenmeyen bir banka",

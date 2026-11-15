@@ -78,6 +78,12 @@
   ]
 }
 </script>
+<style>
+  .card-link { display: block; color: inherit; position: relative; border-color: rgba(46, 230, 197, 0.32); background: linear-gradient(180deg, rgba(46, 230, 197, 0.09), rgba(12, 17, 32, 0.6)); transition: transform .18s ease, border-color .18s ease; }
+  .card-link:hover { transform: translateY(-2px); border-color: rgba(46, 230, 197, 0.55); }
+  .card-link .new { position: absolute; inset-inline-start: 16px; top: -9px; border-radius: 999px; padding: 3px 10px; font-size: 9px; font-weight: 800; letter-spacing: .06em; background: linear-gradient(90deg, #21e6c9, #6b8cff); color: #071018; }
+  .card-link .more { display: block; margin-top: 8px; font-size: 11px; font-weight: 800; color: #21e6c9; }
+</style>
 </head>
 <body>
 <div class="bg-glow"></div>
@@ -151,6 +157,8 @@
         <p>مش مجرد PDF ولا شات بوت — عالم مذاكرة كامل مبني على كتابك الحقيقي.</p>
       </div>
       <div class="grid">
+        <a class="card card-link" href="./focus/"><span class="new">جديد</span><div class="ic">⏱️</div><h3>مؤقت التركيز</h3><p>٢٥ دقيقة مذاكرة و٥ راحة. الدقايق بتتحوّل نقاط وبتظهر في خطتك، والمؤقت بيكمّل حتى لو غيّرت التاب.</p><span class="more">جرّب جلسة ←</span></a>
+        <a class="card card-link" href="./bank/"><span class="new">جديد</span><div class="ic">🧩</div><h3>بنك أسئلة لا نهائي</h3><p>تدريب ١٠ أو ٢٠ سؤال بيتولّد من منهج صفك، مع شرح كل إجابة وامتحان مؤقت ٢٠ دقيقة ودفتر أخطاء.</p><span class="more">ابدأ تدريب ←</span></a>
         <article class="card"><div class="ic">📚</div><h3>كتب الوزارة</h3><p>نزّل الكتاب واستورده مرة واحدة، وجيسيكا تقرأ منه الصفحة اللي انت فيها وترد من الكتاب نفسه.</p></article>
         <article class="card"><div class="ic">🧠</div><h3>مدرس ذكي</h3><p>حدّد أي فقرة → شرح، تبسيط، ترجمة، أو اسأل عن الصفحة كلها. بيجاوب بالعربي والمصري.</p></article>
         <article class="card"><div class="ic">📝</div><h3>مراجعة وامتحانات</h3><p>ملخصات، كويزات، بطاقات بتباعد ذكي، امتحان محاكاة بتوقيت وحفظ تلقائي.</p></article>

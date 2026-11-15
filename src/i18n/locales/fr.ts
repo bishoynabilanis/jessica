@@ -1,6 +1,23 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Open my mistakes notebook": "Ouvre mon carnet d’erreurs",
+
+  "Time is up — the paper is marked.": "Temps écoulé — la copie est corrigée.",
+  "Timed exam — 20 questions, 20 minutes": "Examen chronométré — 20 questions, 20 minutes",
+  "Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.": "Le mode entraînement montre la réponse tout de suite, avec la raison, et transforme chaque erreur en carte dans ton carnet d’erreurs.",
+  "Exam mode hides the answers until the clock runs out, then marks the whole paper and shows the weak spot.": "Le mode examen cache les réponses jusqu’à la fin du temps, puis corrige toute la copie et montre ton point faible.",
+  "{n} of {m} answered — you can change any answer before you hand it in.": "{n} sur {m} répondues — tu peux changer une réponse avant de rendre.",
+  "Previous": "Précédent",
+  "Hand in the paper": "Rendre la copie",
+  "The clock marked the paper for you.": "Le temps a corrigé la copie pour toi.",
+  "Another paper": "Une autre copie",
+  "The whole paper, marked": "Toute la copie, corrigée",
+  "left blank": "laissée vide",
+  "Answer: {answer}": "Réponse : {answer}",
+  "You chose: {answer}": "Tu as choisi : {answer}",
+  "Every miss is already in your mistakes notebook, with its explanation.": "Chaque erreur est déjà dans ton carnet d’erreurs, avec son explication.",
+
   "Clean sheet!": "Sans faute !",
   "Every answer right — try the next subject.": "Tout est juste — essaie la matière suivante.",
   "A bank that never runs out": "Une banque qui ne s’épuise jamais",
