@@ -1,5 +1,9 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "Günlük geçmiş",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Her gün bir anlık görüntü alınır; sayaçtaki kötü bir gün eğilimi kaybetmez.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "Sayılar",
   "The app, by the numbers": "Uygulama sayılarla",

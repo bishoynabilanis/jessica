@@ -16,6 +16,7 @@ export function Stats() {
   const completedTopics = useApp((s) => s.completedTopics)
   const [counters, setCounters] = useState<AppCounters | null>(null)
   const [loading, setLoading] = useState(true)
+  const [history, setHistory] = useState<{ date: string; opens: number | null }[] | null>(null)
 
   const { level } = levelInfo(xp)
   const today = dailyLog[todayKey()] || { xp: 0, seconds: 0 }
@@ -33,6 +34,10 @@ export function Stats() {
 
   useEffect(() => {
     void refresh()
+    fetch(`${import.meta.env.BASE_URL}stats.json`, { cache: 'no-store' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setHistory(Array.isArray(data?.days) ? data.days.slice(-14) : null))
+      .catch(() => setHistory(null))
   }, [])
 
   return (
@@ -73,6 +78,39 @@ export function Stats() {
           </p>
           <p className="mt-1 text-[10px] leading-relaxed text-muted">
             {tr('That is the honest install count: the browser fired “installed” or the app launched from the home screen.')}
+          </p>
+        </Card>
+      ) : null}
+
+      {history && history.length >= 2 ? (
+        <Card className="p-4 sm:p-5">
+          <div className="flex items-center justify-between gap-2">
+            <p className="label text-aurora-300">{tr('Daily history')}</p>
+            <span className="text-[9px] font-bold text-muted-2">
+              {tr('{n} days', { n: history.length })}
+            </span>
+          </div>
+          <div className="mt-3 flex h-20 items-end gap-1.5">
+            {history.map((day) => {
+              const max = Math.max(1, ...history.map((item) => item.opens || 0))
+              return (
+                <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
+                  <div className="flex h-14 w-full items-end justify-center">
+                    <div
+                      className="w-full max-w-[22px] rounded-t bg-gradient-to-t from-violet-neon/40 to-aurora-400"
+                      style={{ height: `${Math.max(6, ((day.opens || 0) / max) * 100)}%` }}
+                      title={`${day.date}: ${day.opens ?? '—'}`}
+                    />
+                  </div>
+                  <span className="text-[7px] font-bold text-muted-2" dir="ltr">
+                    {day.date.slice(5)}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+          <p className="mt-2 text-[10px] text-muted-2">
+            {tr('A snapshot is taken every day, so a bad day at the counter service never loses the trend.')}
           </p>
         </Card>
       ) : null}

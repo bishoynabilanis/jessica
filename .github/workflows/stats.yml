@@ -1,0 +1,34 @@
+name: Stats snapshot
+
+# Keeps a durable, dated copy of the anonymous counters. The free counter service
+# is only a live value; this file is the history the app can chart.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats-snapshot
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Snapshot counters
+        run: node scripts/snapshot-stats.mjs
+      - name: Commit the daily numbers
+        run: |
+          git config user.name "Jessica Bot"
+          git config user.email "bishoynabilanis@gmail.com"
+          git add public/stats.json
+          git diff --cached --quiet || git commit -m "stats: daily snapshot"
+          git push

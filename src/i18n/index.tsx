@@ -13,6 +13,10 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "الأرشيف اليومي",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "بيتاخد نسخة كل يوم، فأي عطل في خدمة العدّاد مش بيضيّع الاتجاه.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "الأرقام",
   "The app, by the numbers": "التطبيق بالأرقام",

@@ -1,5 +1,9 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "Historial diario",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Cada día se guarda una copia: un mal día del contador no pierde la tendencia.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "Cifras",
   "The app, by the numbers": "La app en cifras",

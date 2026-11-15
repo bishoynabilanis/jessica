@@ -1,5 +1,9 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "Historique quotidien",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Un relevé est pris chaque jour : une mauvaise journée du compteur ne perd pas la tendance.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "Chiffres",
   "The app, by the numbers": "L’app en chiffres",

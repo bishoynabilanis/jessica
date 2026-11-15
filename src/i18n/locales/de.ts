@@ -1,5 +1,9 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "Tagesverlauf",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Jeden Tag wird ein Schnappschuss gespeichert – ein schlechter Tag beim Zähler verliert den Trend nicht.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "Zahlen",
   "The app, by the numbers": "Die App in Zahlen",

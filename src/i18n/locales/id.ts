@@ -1,5 +1,9 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Stats history --------------------------- */
+  "Daily history": "Riwayat harian",
+  "A snapshot is taken every day, so a bad day at the counter service never loses the trend.": "Snapshot diambil setiap hari, jadi hari buruk di layanan penghitung tidak menghilangkan tren.",
+
   /* --------------------------- Numbers board --------------------------- */
   "Numbers": "Angka",
   "The app, by the numbers": "Aplikasi dalam angka",
