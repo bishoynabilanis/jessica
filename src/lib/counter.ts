@@ -2,13 +2,17 @@ const BASE = 'https://abacus.jasoncameron.dev'
 const NAMESPACE = 'jessica-bishoy'
 const OPEN_KEY = 'opens'
 const INSTALL_KEY = 'installs'
+const PWA_KEY = 'pwa-opens'
 const SESSION_FLAG = 'jessica-counted-session'
 const INSTALL_FLAG = 'jessica-counted-install'
+const PWA_FLAG = 'jessica-counted-pwa'
 const LOCAL_KEY = 'jessica-local-opens'
 
 export interface AppCounters {
   opens: number | null
   installs: number | null
+  /** Devices that opened the app from the home screen, even when `appinstalled` never fired. */
+  pwa: number | null
 }
 
 function readJson(value: unknown) {
@@ -67,10 +71,22 @@ function bumpLocal() {
   }
 }
 
+function isStandalone() {
+  try {
+    return (
+      (typeof matchMedia !== 'undefined' && matchMedia('(display-mode: standalone)').matches) ||
+      (navigator as Navigator & { standalone?: boolean }).standalone === true
+    )
+  } catch {
+    return false
+  }
+}
+
 /** Counts one open per browser session (anonymous, no identifiers). */
 export async function registerOpen() {
   bumpLocal()
   if (!shouldCount()) return
+  if (isStandalone()) await registerPwaOpen()
   try {
     if (sessionStorage.getItem(SESSION_FLAG)) return
     sessionStorage.setItem(SESSION_FLAG, '1')
@@ -78,6 +94,18 @@ export async function registerOpen() {
     /* private mode: still count once per page load */
   }
   await hit(OPEN_KEY)
+}
+
+/** Counts one installed device: the home-screen launch is the reliable signal. */
+export async function registerPwaOpen() {
+  if (!shouldCount()) return
+  try {
+    if (localStorage.getItem(PWA_FLAG)) return
+    localStorage.setItem(PWA_FLAG, '1')
+  } catch {
+    /* ignore */
+  }
+  await hit(PWA_KEY)
 }
 
 /** Counts one install per device, when the browser fires `appinstalled`. */
@@ -93,6 +121,6 @@ export async function registerInstall() {
 }
 
 export async function readCounters(): Promise<AppCounters> {
-  const [opens, installs] = await Promise.all([get(OPEN_KEY), get(INSTALL_KEY)])
-  return { opens, installs }
+  const [opens, installs, pwa] = await Promise.all([get(OPEN_KEY), get(INSTALL_KEY), get(PWA_KEY)])
+  return { opens, installs, pwa }
 }

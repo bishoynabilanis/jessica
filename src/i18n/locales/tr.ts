@@ -1,5 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} ana ekrandan açıldı",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "Bu hafta {xp} XP · geçen hafta {mins} dk. En iyi gün: {day}.",
 

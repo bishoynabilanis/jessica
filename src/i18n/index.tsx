@@ -13,6 +13,9 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} فتحوه من الشاشة الرئيسية",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} نقطة خبرة الأسبوع ده · الأسبوع اللي فات {mins} دقيقة. أحسن يوم: {day}.",
 

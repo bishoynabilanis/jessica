@@ -1,5 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} ouvert depuis l’écran d’accueil",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP cette semaine · la semaine dernière {mins} min. Meilleur jour : {day}.",
 

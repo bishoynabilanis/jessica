@@ -978,9 +978,14 @@ export function Settings() {
               </div>
               <div className="rounded-xl border border-line bg-card-2 p-3">
                 <p className="font-display text-xl font-extrabold text-main">
-                  {counters?.installs != null ? counters.installs.toLocaleString() : '—'}
+                  {counters ? ((counters.installs || 0) + (counters.pwa || 0)).toLocaleString() : '—'}
                 </p>
                 <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Installs')}</p>
+                {counters?.pwa ? (
+                  <p className="text-[9px] font-semibold text-aurora-300">
+                    {tr('{n} opened from the home screen', { n: counters.pwa })}
+                  </p>
+                ) : null}
               </div>
             </div>
             <p className="mt-2 text-[10px] text-muted-2">

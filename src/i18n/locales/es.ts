@@ -1,5 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} abiertos desde la pantalla de inicio",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP esta semana · la semana pasada {mins} min. Mejor día: {day}.",
 

@@ -1,5 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} dibuka dari layar utama",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP minggu ini · minggu lalu {mins} menit. Hari terbaik: {day}.",
 

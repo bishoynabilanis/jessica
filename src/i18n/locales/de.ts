@@ -1,5 +1,8 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Counter --------------------------- */
+  "{n} opened from the home screen": "{n} vom Startbildschirm geöffnet",
+
   /* --------------------------- Weekly review 3 --------------------------- */
   "{xp} XP this week · last week {mins} min. Best day: {day}.": "{xp} XP diese Woche · letzte Woche {mins} Min. Bester Tag: {day}.",
 
