@@ -1,5 +1,23 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "Zahlen",
+  "The app, by the numbers": "Die App in Zahlen",
+  "Anonymous totals from everyone, and your own progress on this device.": "Anonyme Summen aller und dein Fortschritt auf diesem Gerät.",
+  "Opens on this device": "Öffnungen auf diesem Gerät",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "Das ist die ehrliche Installationszahl: Der Browser meldete „installiert“ oder die App startete vom Startbildschirm.",
+  "On this device": "Auf diesem Gerät",
+  "Minutes today": "Minuten heute",
+  "{n} units mastered so far.": "{n} Einheiten gemeistert.",
+  "How these numbers work": "So entstehen diese Zahlen",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "Öffnungen: ein anonymer Zähler pro Sitzung, ohne Kennungen.",
+  "Installs: a launch from the home screen, counted once per device.": "Installationen: ein Start vom Startbildschirm, einmal pro Gerät gezählt.",
+  "Nothing about your books, answers or name ever leaves this device.": "Nichts über deine Bücher, Antworten oder deinen Namen verlässt dieses Gerät.",
+  "Share the app": "App teilen",
+  "Anyone can install it from the link — no account needed.": "Jeder kann sie über den Link installieren – ohne Konto.",
+  "Share Jessica": "Jessica teilen",
+  "Open the numbers board": "Zahlenübersicht öffnen",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} vom Startbildschirm geöffnet",
 

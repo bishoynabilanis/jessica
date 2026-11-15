@@ -1,5 +1,23 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "Angka",
+  "The app, by the numbers": "Aplikasi dalam angka",
+  "Anonymous totals from everyone, and your own progress on this device.": "Total anonim dari semua orang, dan progresmu di perangkat ini.",
+  "Opens on this device": "Pembukaan di perangkat ini",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "Itu angka pemasangan yang jujur: browser melaporkan “terpasang” atau aplikasi dibuka dari layar utama.",
+  "On this device": "Di perangkat ini",
+  "Minutes today": "Menit hari ini",
+  "{n} units mastered so far.": "{n} unit dikuasai sejauh ini.",
+  "How these numbers work": "Bagaimana angka ini dihitung",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "Pembukaan: satu kenaikan anonim per sesi, tanpa pengenal.",
+  "Installs: a launch from the home screen, counted once per device.": "Pemasangan: pembukaan dari layar utama, dihitung sekali per perangkat.",
+  "Nothing about your books, answers or name ever leaves this device.": "Tidak ada buku, jawaban, atau namamu yang keluar dari perangkat ini.",
+  "Share the app": "Bagikan aplikasi",
+  "Anyone can install it from the link — no account needed.": "Siapa pun bisa memasangnya dari tautan — tanpa akun.",
+  "Share Jessica": "Bagikan Jessica",
+  "Open the numbers board": "Buka panel angka",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} dibuka dari layar utama",
 

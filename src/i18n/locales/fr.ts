@@ -1,5 +1,23 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "Chiffres",
+  "The app, by the numbers": "L’app en chiffres",
+  "Anonymous totals from everyone, and your own progress on this device.": "Des totaux anonymes de tout le monde, et ta progression sur cet appareil.",
+  "Opens on this device": "Ouvertures sur cet appareil",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "C’est le vrai compteur d’installations : le navigateur a signalé « installé » ou l’app a été lancée depuis l’écran d’accueil.",
+  "On this device": "Sur cet appareil",
+  "Minutes today": "Minutes aujourd’hui",
+  "{n} units mastered so far.": "{n} unités maîtrisées jusqu’ici.",
+  "How these numbers work": "Comment ces chiffres sont calculés",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "Ouvertures : un incrément anonyme par session, sans identifiant.",
+  "Installs: a launch from the home screen, counted once per device.": "Installations : un lancement depuis l’écran d’accueil, compté une fois par appareil.",
+  "Nothing about your books, answers or name ever leaves this device.": "Rien sur tes livres, tes réponses ou ton nom ne quitte cet appareil.",
+  "Share the app": "Partager l’app",
+  "Anyone can install it from the link — no account needed.": "N’importe qui peut l’installer depuis le lien — sans compte.",
+  "Share Jessica": "Partager Jessica",
+  "Open the numbers board": "Ouvrir le tableau des chiffres",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} ouvert depuis l’écran d’accueil",
 

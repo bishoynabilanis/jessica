@@ -1,5 +1,23 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "Sayılar",
+  "The app, by the numbers": "Uygulama sayılarla",
+  "Anonymous totals from everyone, and your own progress on this device.": "Herkesten anonim toplamlar ve bu cihazdaki ilerlemen.",
+  "Opens on this device": "Bu cihazdaki açılışlar",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "Gerçek kurulum sayısı bu: tarayıcı “kuruldu” dedi ya da uygulama ana ekrandan açıldı.",
+  "On this device": "Bu cihazda",
+  "Minutes today": "Bugünkü dakikalar",
+  "{n} units mastered so far.": "Şimdiye kadar {n} ünite tamamlandı.",
+  "How these numbers work": "Bu sayılar nasıl hesaplanır",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "Açılışlar: oturum başına bir anonim artış, kimlik yok.",
+  "Installs: a launch from the home screen, counted once per device.": "Kurulumlar: ana ekrandan açılış, cihaz başına bir kez sayılır.",
+  "Nothing about your books, answers or name ever leaves this device.": "Kitapların, cevapların veya adın bu cihazdan çıkmaz.",
+  "Share the app": "Uygulamayı paylaş",
+  "Anyone can install it from the link — no account needed.": "Herkes bağlantıdan kurabilir — hesap gerekmez.",
+  "Share Jessica": "Jessica’yı paylaş",
+  "Open the numbers board": "Sayı panelini aç",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} ana ekrandan açıldı",
 

@@ -1,5 +1,23 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "Cifras",
+  "The app, by the numbers": "La app en cifras",
+  "Anonymous totals from everyone, and your own progress on this device.": "Totales anónimos de todos, y tu progreso en este dispositivo.",
+  "Opens on this device": "Aperturas en este dispositivo",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "Ese es el recuento real de instalaciones: el navegador avisó de «instalada» o la app se abrió desde la pantalla de inicio.",
+  "On this device": "En este dispositivo",
+  "Minutes today": "Minutos hoy",
+  "{n} units mastered so far.": "{n} unidades dominadas hasta ahora.",
+  "How these numbers work": "Cómo se calculan estas cifras",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "Aperturas: un incremento anónimo por sesión, sin identificadores.",
+  "Installs: a launch from the home screen, counted once per device.": "Instalaciones: una apertura desde la pantalla de inicio, contada una vez por dispositivo.",
+  "Nothing about your books, answers or name ever leaves this device.": "Nada sobre tus libros, respuestas o nombre sale de este dispositivo.",
+  "Share the app": "Compartir la app",
+  "Anyone can install it from the link — no account needed.": "Cualquiera puede instalarla desde el enlace, sin cuenta.",
+  "Share Jessica": "Compartir Jessica",
+  "Open the numbers board": "Abrir el panel de cifras",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} abiertos desde la pantalla de inicio",
 

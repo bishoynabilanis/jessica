@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import {
   AlertTriangle,
@@ -965,9 +966,14 @@ export function Settings() {
                 <Globe2 className="h-4 w-4 text-aurora-300" />
                 <h2 className="text-sm font-extrabold text-main">{tr('Community counter')}</h2>
               </div>
-              <Button size="sm" variant="secondary" onClick={refreshCounters} loading={counting}>
-                {tr('Refresh')}
-              </Button>
+              <div className="flex items-center gap-2">
+                <Link to="/stats">
+                  <Button size="sm" variant="ghost">{tr('Open the numbers board')}</Button>
+                </Link>
+                <Button size="sm" variant="secondary" onClick={refreshCounters} loading={counting}>
+                  {tr('Refresh')}
+                </Button>
+              </div>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div className="rounded-xl border border-line bg-card-2 p-3">

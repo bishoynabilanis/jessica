@@ -13,6 +13,24 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
+  /* --------------------------- Numbers board --------------------------- */
+  "Numbers": "الأرقام",
+  "The app, by the numbers": "التطبيق بالأرقام",
+  "Anonymous totals from everyone, and your own progress on this device.": "إجماليات مجهولة من الكل، وتقدمك إنت على الجهاز ده.",
+  "Opens on this device": "فتحات على الجهاز ده",
+  "That is the honest install count: the browser fired “installed” or the app launched from the home screen.": "ده رقم التثبيت الحقيقي: المتصفح أعلن «تم التثبيت» أو التطبيق اتفتح من الشاشة الرئيسية.",
+  "On this device": "على الجهاز ده",
+  "Minutes today": "دقايق النهارده",
+  "{n} units mastered so far.": "{n} وحدة متقنة لحد دلوقتي.",
+  "How these numbers work": "الأرقام دي بتتحسب إزاي",
+  "App opens: one anonymous increment per browsing session, no identifiers.": "فتحات التطبيق: زيادة مجهولة واحدة لكل جلسة، بدون أي تعريف.",
+  "Installs: a launch from the home screen, counted once per device.": "التثبيتات: فتح من الشاشة الرئيسية، مرة واحدة لكل جهاز.",
+  "Nothing about your books, answers or name ever leaves this device.": "مفيش أي حاجة عن كتبك أو إجاباتك أو اسمك بتسيب الجهاز.",
+  "Share the app": "شارك التطبيق",
+  "Anyone can install it from the link — no account needed.": "أي حد يثبّته من اللينك — من غير حساب.",
+  "Share Jessica": "شارك جيسيكا",
+  "Open the numbers board": "افتح لوحة الأرقام",
+
   /* --------------------------- Counter --------------------------- */
   "{n} opened from the home screen": "{n} فتحوه من الشاشة الرئيسية",
 
