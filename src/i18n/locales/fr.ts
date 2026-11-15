@@ -1,6 +1,11 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "Entraîne mes {n} erreurs",
+  "Mistakes drill": "Entraînement sur les erreurs",
+  "Energy": "Énergie",
+  "Weight": "Poids",
+
   "Print a sheet with the answer key": "Imprimer une feuille avec le corrigé",
   "Your last papers": "Tes dernières copies",
   "{n} papers kept on this device": "{n} copies gardées sur cet appareil",

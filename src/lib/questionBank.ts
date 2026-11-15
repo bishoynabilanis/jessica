@@ -125,6 +125,43 @@ const SCIENCE: Array<{ skill: string; make: () => Raw }> = [
     },
   },
   {
+    skill: 'Energy',
+    make() {
+      const m = rnd(1, 10)
+      const v = pick([2, 3, 4, 5])
+      return {
+        skill: 'Energy',
+        prompt: `طاقة حركة جسم كتلته ${ar(m)} كجم وسرعته ${ar(v)} م/ث = ؟ جول`,
+        value: String(Math.round(0.5 * m * v * v)),
+        why: `طاقة الحركة = ½ × الكتلة × مربع السرعة = ½ × ${ar(m)} × ${ar(v * v)} = ${ar(Math.round(0.5 * m * v * v))} جول`,
+      }
+    },
+  },
+  {
+    skill: 'Weight',
+    make() {
+      const m = rnd(2, 20)
+      return {
+        skill: 'Weight',
+        prompt: `وزن جسم كتلته ${ar(m)} كجم على سطح الأرض (ج = ${ar(10)}) = ؟ نيوتن`,
+        value: String(m * 10),
+        why: `الوزن = الكتلة × عجلة الجذب = ${ar(m)} × ${ar(10)} = ${ar(m * 10)} نيوتن`,
+      }
+    },
+  },
+  {
+    skill: 'Temperature',
+    make() {
+      const c = pick([0, 10, 25, 37, 50, 100])
+      return {
+        skill: 'Temperature',
+        prompt: `درجة حرارة ${ar(c)}° مئوية = ؟ كلفن`,
+        value: String(c + 273),
+        why: `الكلفن = المئوية + ٢٧٣ = ${ar(c)} + ${ar(273)} = ${ar(c + 273)} كلفن`,
+      }
+    },
+  },
+  {
     skill: 'Units',
     make() {
       const kg = rnd(2, 9)

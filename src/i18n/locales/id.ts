@@ -1,6 +1,11 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "Latih {n} kesalahanku",
+  "Mistakes drill": "Latihan kesalahan",
+  "Energy": "Energi",
+  "Weight": "Berat",
+
   "Print a sheet with the answer key": "Cetak lembar dengan kunci jawaban",
   "Your last papers": "Lembar terakhirmu",
   "{n} papers kept on this device": "{n} lembar tersimpan di perangkat ini",

@@ -14,6 +14,11 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "درّب على {n} غلطة عندك",
+  "Mistakes drill": "تدريب على الأخطاء",
+  "Energy": "الطاقة",
+  "Weight": "الوزن",
+
   "Print a sheet with the answer key": "اطبع ورقة مع مفتاح الإجابة",
   "Your last papers": "آخر أوراقك",
   "{n} papers kept on this device": "متسجل {n} ورقة على الجهاز ده",

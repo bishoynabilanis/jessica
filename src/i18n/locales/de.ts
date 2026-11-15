@@ -1,6 +1,11 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "Meine {n} Fehler üben",
+  "Mistakes drill": "Fehlertraining",
+  "Energy": "Energie",
+  "Weight": "Gewicht",
+
   "Print a sheet with the answer key": "Einen Bogen mit Lösungen drucken",
   "Your last papers": "Deine letzten Bögen",
   "{n} papers kept on this device": "{n} Bögen auf diesem Gerät gespeichert",

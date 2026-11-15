@@ -29,7 +29,7 @@ import { cn } from '@/lib/utils'
 import { dateLocale, num, tr } from '@/i18n'
 
 type Phase = 'intro' | 'quiz' | 'result'
-type Mode = 'drill' | 'exam'
+type Mode = 'drill' | 'exam' | 'mistakes'
 
 const COUNTS = [10, 20]
 const EXAM_COUNT = 20
@@ -59,6 +59,8 @@ export function Bank() {
   const curriculum = useApp((s) => s.settings.curriculum)
   const recordSkill = useApp((s) => s.recordSkill)
   const addMistake = useApp((s) => s.addMistake)
+  const mistakes = useApp((s) => s.mistakes)
+  const removeMistake = useApp((s) => s.removeMistake)
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
 
@@ -131,6 +133,14 @@ export function Bank() {
     const per = mode === 'exam' ? 3 : 2
     addXP(base + correct * per)
 
+    if (mode === 'mistakes') {
+      for (const question of questions) {
+        if (answers[question.id] === question.answer && question.id.startsWith('mistake-')) {
+          removeMistake(question.id.slice('mistake-'.length))
+        }
+      }
+    }
+
     const before = previousAttempt(subject, mode)
     setDelta(before ? correct - before.score : null)
     setAttempts(
@@ -181,6 +191,39 @@ export function Bank() {
     setStartedAt(Date.now())
     setNow(Date.now())
     setEndsAt(nextMode === 'exam' ? Date.now() + EXAM_SECONDS * 1000 : 0)
+    setPhase('quiz')
+  }
+
+  const mistakeQuestions = useMemo<BankQuestion[]>(
+    () =>
+      mistakes
+        .filter((item) => item.options.length >= 2 && item.answer >= 0 && item.answer < item.options.length)
+        .slice(0, EXAM_COUNT)
+        .map((item, position) => ({
+          id: `mistake-${item.id}`,
+          subject: (BANK_SUBJECTS.find((name) => name === item.subject) || 'Mathematics') as BankSubject,
+          skill: item.topic || tr('Mistakes'),
+          prompt: item.question,
+          options: item.options,
+          answer: item.answer,
+          explanation: item.aiExplanation || item.explanation || '',
+        })),
+    [mistakes],
+  )
+
+  const startMistakes = () => {
+    if (!mistakeQuestions.length) return
+    setMode('mistakes')
+    setQuestions(mistakeQuestions)
+    setSeed((value) => value + 1)
+    setIndex(0)
+    setPicked(null)
+    setAnswers({})
+    setTimedOut(false)
+    setDelta(null)
+    setPrintList(null)
+    setStartedAt(Date.now())
+    setEndsAt(0)
     setPhase('quiz')
   }
 
@@ -260,6 +303,15 @@ export function Bank() {
             <Button size="md" variant="secondary" onClick={() => start(subject, EXAM_COUNT, 'exam')} data-testid="bank-exam">
               <Clock className="h-4 w-4" /> {tr('Timed exam — 20 questions, 20 minutes')}
             </Button>
+            <Button
+              size="md"
+              variant="secondary"
+              onClick={startMistakes}
+              disabled={mistakeQuestions.length === 0}
+              data-testid="bank-mistakes"
+            >
+              <AlertTriangle className="h-4 w-4" /> {tr('Drill my {n} mistakes', { n: num(mistakeQuestions.length) })}
+            </Button>
             <Button size="md" variant="ghost" onClick={() => printPaper(buildDrill(subject, gradeLevel, count))} data-testid="bank-print">
               <Printer className="h-4 w-4" /> {tr('Print a sheet with the answer key')}
             </Button>
@@ -305,7 +357,7 @@ export function Bank() {
                     {tr(attempt.subject)}
                   </span>
                   <span className="text-[10px] font-bold text-muted-2">
-                    {attempt.mode === 'exam' ? tr('Timed exam') : tr('Practice')}
+                    {attempt.mode === 'exam' ? tr('Timed exam') : attempt.mode === 'mistakes' ? tr('Mistakes drill') : tr('Practice')}
                   </span>
                   <ProgressBar
                     value={attempt.score}
@@ -520,7 +572,7 @@ export function Bank() {
             )}
 
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <Button size="sm" onClick={() => start(subject, count, mode)}>
+              <Button size="sm" onClick={() => (mode === 'mistakes' ? startMistakes() : start(subject, count, mode))}>
                 <RotateCcw className="h-3.5 w-3.5" /> {mode === 'exam' ? tr('Another paper') : tr('New drill')}
               </Button>
               <Button size="sm" variant="secondary" onClick={() => setPhase('intro')}>

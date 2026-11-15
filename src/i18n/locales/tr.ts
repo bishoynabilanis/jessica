@@ -1,6 +1,11 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "{n} hatamı çalış",
+  "Mistakes drill": "Hata alıştırması",
+  "Energy": "Enerji",
+  "Weight": "Ağırlık",
+
   "Print a sheet with the answer key": "Cevap anahtarıyla bir sayfa yazdır",
   "Your last papers": "Son kâğıtların",
   "{n} papers kept on this device": "Bu cihazda {n} kâğıt saklandı",

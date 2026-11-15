@@ -1,6 +1,11 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Drill my {n} mistakes": "Entrenar mis {n} errores",
+  "Mistakes drill": "Entrenamiento de errores",
+  "Energy": "Energía",
+  "Weight": "Peso",
+
   "Print a sheet with the answer key": "Imprimir una hoja con las respuestas",
   "Your last papers": "Tus últimas hojas",
   "{n} papers kept on this device": "{n} hojas guardadas en este dispositivo",
