@@ -1,6 +1,13 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review your unit": "Repasa tu unidad",
+  "Start the unit review": "Empezar el repaso de la unidad",
+  "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 preguntas construidas primero desde esta unidad — su cuestionario guardado y luego sus propias páginas — y el banco de la materia completa el resto.",
+  "Unit review": "Repaso de unidad",
+  "{n} of these came from the unit itself": "{n} de estas preguntas vienen de la propia unidad",
+  "No questions for this unit yet — add its pages first.": "Aún no hay preguntas para esta unidad: añade sus páginas primero.",
+
   "Drill my {n} mistakes": "Entrenar mis {n} errores",
   "Mistakes drill": "Entrenamiento de errores",
   "Energy": "Energía",

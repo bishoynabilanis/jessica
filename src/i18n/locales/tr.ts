@@ -1,6 +1,13 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review your unit": "Üniteni tekrar et",
+  "Start the unit review": "Ünite tekrarını başlat",
+  "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "Önce bu üniteden 20 soru — kayıtlı quizi, sonra kendi sayfaları — kalanını ders bankası tamamlar.",
+  "Unit review": "Ünite tekrarı",
+  "{n} of these came from the unit itself": "Bunlardan {n} tanesi ünitenin kendisinden",
+  "No questions for this unit yet — add its pages first.": "Bu ünite için henüz soru yok — önce sayfalarını ekle.",
+
   "Drill my {n} mistakes": "{n} hatamı çalış",
   "Mistakes drill": "Hata alıştırması",
   "Energy": "Enerji",

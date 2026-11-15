@@ -1,6 +1,13 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review your unit": "Ulas unitmu",
+  "Start the unit review": "Mulai ulasan unit",
+  "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 soal dibangun dulu dari unit ini — kuis tersimpannya, lalu halaman-halamannya sendiri — sisanya diisi bank mata pelajaran.",
+  "Unit review": "Ulasan unit",
+  "{n} of these came from the unit itself": "{n} di antaranya berasal dari unit itu sendiri",
+  "No questions for this unit yet — add its pages first.": "Belum ada soal untuk unit ini — tambahkan halamannya dulu.",
+
   "Drill my {n} mistakes": "Latih {n} kesalahanku",
   "Mistakes drill": "Latihan kesalahan",
   "Energy": "Energi",

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   AlertTriangle,
   ArrowLeft,
+  BookOpen,
   ArrowRight,
   Check,
   Clock,
@@ -19,17 +20,19 @@ import {
 } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
-import { Card, ProgressBar } from '@/components/ui/Card'
+import { Card, ProgressBar, Spinner } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { BANK_SUBJECTS, buildDrill, type BankQuestion, type BankSubject } from '@/lib/questionBank'
 import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
 import { levelLabel } from '@/lib/curriculum'
+import { buildCourse } from '@/lib/course'
+import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
 import { cn } from '@/lib/utils'
 import { dateLocale, num, tr } from '@/i18n'
 
 type Phase = 'intro' | 'quiz' | 'result'
-type Mode = 'drill' | 'exam' | 'mistakes'
+type Mode = 'drill' | 'exam' | 'mistakes' | 'unit'
 
 const COUNTS = [10, 20]
 const EXAM_COUNT = 20
@@ -60,6 +63,11 @@ export function Bank() {
   const recordSkill = useApp((s) => s.recordSkill)
   const addMistake = useApp((s) => s.addMistake)
   const mistakes = useApp((s) => s.mistakes)
+  const customBooks = useApp((s) => s.customBooks)
+  const bookProgress = useApp((s) => s.bookProgress)
+  const unitMastery = useApp((s) => s.unitMastery)
+  const completedTopics = useApp((s) => s.completedTopics)
+  const lessonProgress = useApp((s) => s.lessonProgress)
   const removeMistake = useApp((s) => s.removeMistake)
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
@@ -80,6 +88,8 @@ export function Bank() {
   const [printList, setPrintList] = useState<BankQuestion[] | null>(null)
   const [attempts, setAttempts] = useState<BankAttempt[]>(() => readAttempts())
   const [delta, setDelta] = useState<number | null>(null)
+  const [unitBusy, setUnitBusy] = useState(false)
+  const [fromUnit, setFromUnit] = useState(0)
 
   const remaining = endsAt ? Math.max(0, Math.round((endsAt - now) / 1000)) : EXAM_SECONDS
 
@@ -201,7 +211,7 @@ export function Bank() {
         .slice(0, EXAM_COUNT)
         .map((item, position) => ({
           id: `mistake-${item.id}`,
-          subject: (BANK_SUBJECTS.find((name) => name === item.subject) || 'Mathematics') as BankSubject,
+          subject: toBankSubject(item.subject),
           skill: item.topic || tr('Mistakes'),
           prompt: item.question,
           options: item.options,
@@ -229,9 +239,9 @@ export function Bank() {
 
   const choose = (option: number) => {
     if (!current) return
-    if (mode === 'drill' && picked !== null) return
+    if (mode !== 'exam' && picked !== null) return
     setAnswers((prev) => ({ ...prev, [current.id]: option }))
-    if (mode === 'drill') setPicked(option)
+    if (mode !== 'exam') setPicked(option)
   }
 
   const next = () => {
@@ -241,6 +251,46 @@ export function Bank() {
       return
     }
     finish()
+  }
+
+  const unitTarget = useMemo(() => {
+    const entries = Object.entries(bookProgress)
+      .map(([id, entry]) => ({ id, at: entry?.updatedAt || 0 }))
+      .sort((a, b) => b.at - a.at)
+    const withUnits = customBooks.filter((book) => (book.units || []).length > 0)
+    const book = (entries.length ? withUnits.find((item) => item.id === entries[0].id) : undefined) || withUnits[0]
+    if (!book) return null
+    const course = buildCourse(book, { unitMastery, completedTopics, lessonProgress })
+    const lesson = course.next || course.lessons[0]
+    return lesson ? { book, unit: lesson.unit } : null
+  }, [bookProgress, customBooks, unitMastery, completedTopics, lessonProgress])
+
+  const startUnitReview = async () => {
+    if (!unitTarget || unitBusy) return
+    setUnitBusy(true)
+    try {
+      const review = await buildUnitReview(unitTarget.book, unitTarget.unit, gradeLevel, EXAM_COUNT)
+      if (!review.questions.length) {
+        pushToast({ title: tr('No questions for this unit yet — add its pages first.'), type: 'info' })
+        return
+      }
+      setFromUnit(review.fromUnit)
+      setMode('unit')
+      setSubject(toBankSubject(unitTarget.book.subject))
+      setQuestions(review.questions)
+      setSeed((value) => value + 1)
+      setIndex(0)
+      setPicked(null)
+      setAnswers({})
+      setTimedOut(false)
+      setDelta(null)
+      setPrintList(null)
+      setStartedAt(Date.now())
+      setEndsAt(0)
+      setPhase('quiz')
+    } finally {
+      setUnitBusy(false)
+    }
   }
 
   const answered = Object.keys(answers).length
@@ -266,6 +316,26 @@ export function Bank() {
         subtitle={tr('Every question is generated on this device from your own grade — no key, no internet, and every answer is explained.')}
         icon={<Layers className="h-5 w-5" />}
       />
+
+      {phase === 'intro' && unitTarget && (
+        <Card className="border-aurora-400/30 bg-gradient-to-l from-aurora-400/10 via-transparent to-transparent p-4" data-testid="bank-unit-card">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="label text-aurora-300">{tr('Review your unit')}</p>
+              <p className="mt-1 font-display text-sm font-extrabold text-main" dir="auto">
+                {unitTarget.book.title} · {unitTarget.unit.title}
+              </p>
+              <p className="mt-1 text-[10px] leading-relaxed text-muted">
+                {tr('20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.')}
+              </p>
+            </div>
+            <Button size="md" onClick={startUnitReview} disabled={unitBusy} data-testid="bank-unit">
+              {unitBusy ? <Spinner className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}
+              {tr('Start the unit review')}
+            </Button>
+          </div>
+        </Card>
+      )}
 
       {phase === 'intro' && (
         <Card className="p-5">
@@ -357,7 +427,7 @@ export function Bank() {
                     {tr(attempt.subject)}
                   </span>
                   <span className="text-[10px] font-bold text-muted-2">
-                    {attempt.mode === 'exam' ? tr('Timed exam') : attempt.mode === 'mistakes' ? tr('Mistakes drill') : tr('Practice')}
+                    {attempt.mode === 'exam' ? tr('Timed exam') : attempt.mode === 'mistakes' ? tr('Mistakes drill') : attempt.mode === 'unit' ? tr('Unit review') : tr('Practice')}
                   </span>
                   <ProgressBar
                     value={attempt.score}
@@ -412,7 +482,7 @@ export function Bank() {
             {current.options.map((option, optionIndex) => {
               const isCorrect = optionIndex === current.answer
               const isPicked = mode === 'exam' ? answers[current.id] === optionIndex : picked === optionIndex
-              const revealed = mode === 'drill' && picked !== null
+              const revealed = mode !== 'exam' && picked !== null
               return (
                 <button
                   key={`${current.id}-${optionIndex}`}
@@ -438,7 +508,7 @@ export function Bank() {
             })}
           </div>
 
-          {mode === 'drill' && picked !== null && (
+          {mode !== 'exam' && picked !== null && (
             <div className="mt-3 rounded-2xl border border-line bg-card-2 p-3">
               <p className="text-[11px] font-extrabold text-main">
                 {picked === current.answer ? tr('Correct — here is why') : tr('Not quite — here is the trick')}
@@ -497,7 +567,7 @@ export function Bank() {
                 size="md"
                 data-testid="bank-next"
                 onClick={next}
-                disabled={mode === 'drill' && picked === null}
+                disabled={mode !== 'exam' && picked === null}
               >
                 {index + 1 === questions.length
                   ? mode === 'exam'
@@ -524,6 +594,11 @@ export function Bank() {
             {timedOut && (
               <p className="mx-auto mt-2 w-fit rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-[10px] font-bold text-amber-200">
                 {tr('The clock marked the paper for you.')}
+              </p>
+            )}
+            {mode === 'unit' && fromUnit > 0 && (
+              <p className="mx-auto mt-2 w-fit rounded-full border border-violet-neon/40 bg-violet-neon/10 px-3 py-1 text-[10px] font-bold text-violet-200">
+                {tr('{n} of these came from the unit itself', { n: num(fromUnit) })}
               </p>
             )}
             {delta !== null && (
@@ -572,7 +647,7 @@ export function Bank() {
             )}
 
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <Button size="sm" onClick={() => (mode === 'mistakes' ? startMistakes() : start(subject, count, mode))}>
+              <Button size="sm" onClick={() => (mode === 'mistakes' ? startMistakes() : mode === 'unit' ? startUnitReview() : start(subject, count, mode))}>
                 <RotateCcw className="h-3.5 w-3.5" /> {mode === 'exam' ? tr('Another paper') : tr('New drill')}
               </Button>
               <Button size="sm" variant="secondary" onClick={() => setPhase('intro')}>

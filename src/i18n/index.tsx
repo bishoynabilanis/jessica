@@ -14,6 +14,13 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review your unit": "راجع وحدتك",
+  "Start the unit review": "ابدأ مراجعة الوحدة",
+  "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "٢٠ سؤال مبنيين من الوحدة الأول — الكويز المحفوظ بتاعها، وبعدين صفحاتها نفسها — والباقي من بنك المادة.",
+  "Unit review": "مراجعة وحدة",
+  "{n} of these came from the unit itself": "{n} سؤال منهم من الوحدة نفسها",
+  "No questions for this unit yet — add its pages first.": "مفيش أسئلة للوحدة دي لسه — ضيف صفحاتها الأول.",
+
   "Drill my {n} mistakes": "درّب على {n} غلطة عندك",
   "Mistakes drill": "تدريب على الأخطاء",
   "Energy": "الطاقة",

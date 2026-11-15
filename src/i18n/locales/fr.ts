@@ -1,6 +1,13 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review your unit": "Révise ton unité",
+  "Start the unit review": "Commencer la révision de l’unité",
+  "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 questions construites d’abord depuis cette unité — son quiz enregistré, puis ses propres pages — et la banque de la matière complète le reste.",
+  "Unit review": "Révision d’unité",
+  "{n} of these came from the unit itself": "{n} de ces questions viennent de l’unité elle-même",
+  "No questions for this unit yet — add its pages first.": "Pas encore de questions pour cette unité — ajoute ses pages d’abord.",
+
   "Drill my {n} mistakes": "Entraîne mes {n} erreurs",
   "Mistakes drill": "Entraînement sur les erreurs",
   "Energy": "Énergie",
