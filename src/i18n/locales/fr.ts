@@ -1,6 +1,18 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Print a sheet with the answer key": "Imprimer une feuille avec le corrigé",
+  "Your last papers": "Tes dernières copies",
+  "{n} papers kept on this device": "{n} copies gardées sur cet appareil",
+  "Timed exam": "Examen chronométré",
+  "{n} better than your last paper": "{n} de mieux que ta dernière copie",
+  "{n} below your last paper": "{n} de moins que ta dernière copie",
+  "Same as your last paper — push one more": "Comme ta dernière copie — pousse encore",
+  "Print this paper": "Imprimer cette copie",
+  "Practice sheet from Jessica · generated on this device": "Feuille d’entraînement de Jessica · générée sur cet appareil",
+  "Score": "Score",
+  "Answer key and why": "Corrigé et explications",
+
   "A question bank that never runs out": "Une banque de questions qui ne s’épuise jamais",
   "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Des entraînements sans fin avec une explication après chaque réponse, un examen chronométré de 20 minutes, et un minuteur qui compte tes minutes dans le plan.",
   "Open the bank": "Ouvrir la banque",

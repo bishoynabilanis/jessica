@@ -1,6 +1,18 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Print a sheet with the answer key": "Einen Bogen mit Lösungen drucken",
+  "Your last papers": "Deine letzten Bögen",
+  "{n} papers kept on this device": "{n} Bögen auf diesem Gerät gespeichert",
+  "Timed exam": "Zeitgesteuerte Prüfung",
+  "{n} better than your last paper": "{n} besser als dein letzter Bogen",
+  "{n} below your last paper": "{n} unter deinem letzten Bogen",
+  "Same as your last paper — push one more": "Gleich wie dein letzter Bogen – leg einen drauf",
+  "Print this paper": "Diesen Bogen drucken",
+  "Practice sheet from Jessica · generated on this device": "Übungsbogen von Jessica · auf diesem Gerät erzeugt",
+  "Score": "Punkte",
+  "Answer key and why": "Lösungen und Begründung",
+
   "A question bank that never runs out": "Eine Fragenbank, die nie leer wird",
   "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Endlose Übungen mit Erklärung nach jeder Antwort, eine 20-minütige Prüfung und ein Fokus-Timer, der deine Minuten in den Plan zählt.",
   "Open the bank": "Bank öffnen",

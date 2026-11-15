@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import {
   AlertTriangle,
@@ -6,7 +7,9 @@ import {
   ArrowRight,
   Check,
   Clock,
+  History,
   Layers,
+  Printer,
   RotateCcw,
   Send,
   Sparkles,
@@ -19,10 +22,11 @@ import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
-import { BANK_SUBJECTS, buildDrill, type BankSubject } from '@/lib/questionBank'
+import { BANK_SUBJECTS, buildDrill, type BankQuestion, type BankSubject } from '@/lib/questionBank'
+import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
 import { levelLabel } from '@/lib/curriculum'
 import { cn } from '@/lib/utils'
-import { num, tr } from '@/i18n'
+import { dateLocale, num, tr } from '@/i18n'
 
 type Phase = 'intro' | 'quiz' | 'result'
 type Mode = 'drill' | 'exam'
@@ -70,6 +74,10 @@ export function Bank() {
   const [endsAt, setEndsAt] = useState(0)
   const [now, setNow] = useState(Date.now())
   const [timedOut, setTimedOut] = useState(false)
+  const [startedAt, setStartedAt] = useState(0)
+  const [printList, setPrintList] = useState<BankQuestion[] | null>(null)
+  const [attempts, setAttempts] = useState<BankAttempt[]>(() => readAttempts())
+  const [delta, setDelta] = useState<number | null>(null)
 
   const remaining = endsAt ? Math.max(0, Math.round((endsAt - now) / 1000)) : EXAM_SECONDS
 
@@ -123,6 +131,18 @@ export function Bank() {
     const per = mode === 'exam' ? 3 : 2
     addXP(base + correct * per)
 
+    const before = previousAttempt(subject, mode)
+    setDelta(before ? correct - before.score : null)
+    setAttempts(
+      addAttempt({
+        subject,
+        mode,
+        score: correct,
+        total: questions.length,
+        seconds: startedAt ? Math.round((Date.now() - startedAt) / 1000) : 0,
+      }),
+    )
+
     if (reason === 'time') {
       pushToast({ title: tr('Time is up — the paper is marked.'), type: 'info' })
     } else if (correct === questions.length) {
@@ -156,6 +176,9 @@ export function Bank() {
     setPicked(null)
     setAnswers({})
     setTimedOut(false)
+    setDelta(null)
+    setPrintList(null)
+    setStartedAt(Date.now())
     setNow(Date.now())
     setEndsAt(nextMode === 'exam' ? Date.now() + EXAM_SECONDS * 1000 : 0)
     setPhase('quiz')
@@ -178,6 +201,19 @@ export function Bank() {
   }
 
   const answered = Object.keys(answers).length
+
+  const printPaper = (list: BankQuestion[]) => {
+    setPrintList(list)
+    document.body.classList.add('bank-print-mode')
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        const done = () => document.body.classList.remove('bank-print-mode')
+        window.addEventListener('afterprint', done, { once: true })
+        window.setTimeout(done, 60_000)
+        window.print()
+      }),
+    )
+  }
 
   return (
     <div className="space-y-5">
@@ -224,6 +260,9 @@ export function Bank() {
             <Button size="md" variant="secondary" onClick={() => start(subject, EXAM_COUNT, 'exam')} data-testid="bank-exam">
               <Clock className="h-4 w-4" /> {tr('Timed exam — 20 questions, 20 minutes')}
             </Button>
+            <Button size="md" variant="ghost" onClick={() => printPaper(buildDrill(subject, gradeLevel, count))} data-testid="bank-print">
+              <Printer className="h-4 w-4" /> {tr('Print a sheet with the answer key')}
+            </Button>
           </div>
 
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -244,6 +283,47 @@ export function Bank() {
               grade: levelLabel(gradeLevel, curriculum),
             })}
           </p>
+        </Card>
+      )}
+
+      {phase === 'intro' && attempts.length > 0 && (
+        <Card className="p-4" data-testid="bank-history">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="label flex items-center gap-1.5 text-aurora-300">
+              <History className="h-3.5 w-3.5" /> {tr('Your last papers')}
+            </p>
+            <span className="text-[10px] text-muted-2">
+              {tr('{n} papers kept on this device', { n: num(attempts.length) })}
+            </span>
+          </div>
+          <div className="mt-2 space-y-1.5">
+            {attempts.slice(0, 5).map((attempt) => {
+              const ratio = attempt.score / attempt.total
+              return (
+                <div key={attempt.id} className="flex items-center gap-2 rounded-xl border border-line bg-card-2 px-3 py-2">
+                  <span className="rounded-full border border-line bg-white/5 px-2 py-0.5 text-[9px] font-bold text-muted">
+                    {tr(attempt.subject)}
+                  </span>
+                  <span className="text-[10px] font-bold text-muted-2">
+                    {attempt.mode === 'exam' ? tr('Timed exam') : tr('Practice')}
+                  </span>
+                  <ProgressBar
+                    value={attempt.score}
+                    max={attempt.total}
+                    height="h-1"
+                    className="mx-1 hidden flex-1 sm:block"
+                    barClassName={ratio >= 0.6 ? 'from-aurora-400 to-aurora-400' : 'from-red-400 to-red-400'}
+                  />
+                  <span className="ms-auto text-[10px] text-muted-2">
+                    {new Date(attempt.at).toLocaleDateString(dateLocale(), { day: 'numeric', month: 'short' })}
+                  </span>
+                  <span className={cn('w-12 shrink-0 text-end font-display text-sm font-extrabold tabular-nums', ratio >= 0.6 ? 'text-aurora-300' : 'text-red-300')}>
+                    {num(attempt.score)}/{num(attempt.total)}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
         </Card>
       )}
 
@@ -394,6 +474,25 @@ export function Bank() {
                 {tr('The clock marked the paper for you.')}
               </p>
             )}
+            {delta !== null && (
+              <p
+                className={cn(
+                  'mx-auto mt-2 w-fit rounded-full border px-3 py-1 text-[10px] font-bold',
+                  delta > 0
+                    ? 'border-aurora-400/40 bg-aurora-400/10 text-aurora-200'
+                    : delta < 0
+                      ? 'border-red-400/40 bg-red-400/10 text-red-200'
+                      : 'border-line bg-white/5 text-muted',
+                )}
+                data-testid="bank-delta"
+              >
+                {delta > 0
+                  ? tr('{n} better than your last paper', { n: num(delta) })
+                  : delta < 0
+                    ? tr('{n} below your last paper', { n: num(Math.abs(delta)) })
+                    : tr('Same as your last paper — push one more')}
+              </p>
+            )}
             {weakest && (
               <p className="mx-auto mt-3 max-w-sm text-[11px] leading-relaxed text-muted">
                 {tr('Weakest skill here: {skill} — {correct} of {total}.', {
@@ -426,6 +525,9 @@ export function Bank() {
               </Button>
               <Button size="sm" variant="secondary" onClick={() => setPhase('intro')}>
                 <Layers className="h-3.5 w-3.5" /> {tr('Change subject')}
+              </Button>
+              <Button size="sm" variant="secondary" data-testid="bank-print-result" onClick={() => printPaper(questions)}>
+                <Printer className="h-3.5 w-3.5" /> {tr('Print this paper')}
               </Button>
               <Link to="/mistakes">
                 <Button size="sm" variant="secondary">
@@ -497,6 +599,67 @@ export function Bank() {
           </Card>
         </div>
       )}
+
+      {printList &&
+        createPortal(
+          <PaperSheet questions={printList} subject={tr(subject)} grade={levelLabel(gradeLevel, curriculum)} />,
+          document.body,
+        )}
+    </div>
+  )
+}
+
+/** The paper that comes out of the printer: questions first, key after. */
+function PaperSheet({ questions, subject, grade }: { questions: BankQuestion[]; subject: string; grade: string }) {
+  const language = useApp((s) => s.settings.language)
+  const letters = language === 'ar' ? ['أ', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D']
+
+  return (
+    <div className="bank-sheet worksheet-print bg-white text-[#0b1220]" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="flex items-start justify-between gap-4 border-b border-[#d7dbe3] pb-2">
+        <div>
+          <p className="text-[15px] font-extrabold">{subject} — {grade}</p>
+          <p className="text-[10px] text-[#5b6472]">{tr('Practice sheet from Jessica · generated on this device')}</p>
+        </div>
+        <p className="text-[10px] font-bold text-[#5b6472]">is.gd/jessicaapp</p>
+      </div>
+
+      <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[11px] font-bold text-[#374151]">
+        <span>{tr('Name')}: ....................................................</span>
+        <span>{tr('Date')}: ..........................</span>
+        <span>{tr('Score')}: ........ / {num(questions.length)}</span>
+      </div>
+
+      <ol className="mt-4 space-y-3">
+        {questions.map((question, questionIndex) => (
+          <li key={question.id} className="break-inside-avoid">
+            <p className="text-[12px] font-bold leading-relaxed" dir="auto">
+              <bdi dir="ltr">{num(questionIndex + 1)}.</bdi> {question.prompt}
+            </p>
+            <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-0.5 text-[11px] text-[#374151]">
+              {question.options.map((option, optionIndex) => (
+                <p key={`${question.id}-${optionIndex}`} dir="auto">
+                  <bdi dir="ltr" className="font-extrabold">{letters[optionIndex]})</bdi> {option}
+                </p>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div style={{ pageBreakBefore: 'always' }} className="pt-2">
+        <p className="text-[14px] font-extrabold">{tr('Answer key and why')}</p>
+        <div className="mt-2 grid grid-cols-2 gap-x-6 gap-y-1 text-[10px] leading-relaxed text-[#374151]">
+          {questions.map((question, questionIndex) => (
+            <p key={`${question.id}-key`} dir="auto">
+              <bdi dir="ltr" className="font-extrabold">
+                {num(questionIndex + 1)}) {letters[question.answer]})
+              </bdi>{' '}
+              {question.options[question.answer]} — {question.explanation}
+            </p>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

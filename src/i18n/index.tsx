@@ -14,6 +14,18 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Print a sheet with the answer key": "اطبع ورقة مع مفتاح الإجابة",
+  "Your last papers": "آخر أوراقك",
+  "{n} papers kept on this device": "متسجل {n} ورقة على الجهاز ده",
+  "Timed exam": "امتحان مؤقت",
+  "{n} better than your last paper": "أحسن من آخر ورقة بـ {n}",
+  "{n} below your last paper": "أقل من آخر ورقة بـ {n}",
+  "Same as your last paper — push one more": "نفس نتيجتك الأخيرة — حاول تزيد واحدة",
+  "Print this paper": "اطبع الورقة دي",
+  "Practice sheet from Jessica · generated on this device": "ورقة تدريب من جيسيكا · متولدة على جهازك",
+  "Score": "الدرجة",
+  "Answer key and why": "مفتاح الإجابة والسبب",
+
   "A question bank that never runs out": "بنك أسئلة مبيخلصش",
   "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "تدريبات لا نهائية مع شرح بعد كل إجابة، وامتحان مؤقت ٢٠ دقيقة، ومؤقت تركيز بيحسب دقايقك في الخطة.",
   "Open the bank": "افتح البنك",

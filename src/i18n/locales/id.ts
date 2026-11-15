@@ -1,6 +1,18 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Print a sheet with the answer key": "Cetak lembar dengan kunci jawaban",
+  "Your last papers": "Lembar terakhirmu",
+  "{n} papers kept on this device": "{n} lembar tersimpan di perangkat ini",
+  "Timed exam": "Ujian bertimer",
+  "{n} better than your last paper": "{n} lebih baik dari lembarmu sebelumnya",
+  "{n} below your last paper": "{n} di bawah lembarmu sebelumnya",
+  "Same as your last paper — push one more": "Sama dengan lembarmu sebelumnya — dorong satu lagi",
+  "Print this paper": "Cetak lembar ini",
+  "Practice sheet from Jessica · generated on this device": "Lembar latihan dari Jessica · dibuat di perangkat ini",
+  "Score": "Skor",
+  "Answer key and why": "Kunci jawaban dan alasannya",
+
   "A question bank that never runs out": "Bank soal yang tidak pernah habis",
   "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Latihan tanpa henti dengan penjelasan setelah setiap jawaban, ujian bertimer 20 menit, dan pengatur waktu fokus yang menghitung menitmu ke rencana.",
   "Open the bank": "Buka bank",

@@ -650,3 +650,28 @@ html.kids-mode .pdf-stage {
     break-inside: avoid;
   }
 }
+
+/* --------------------- Printable question sheet (bank) ---------------------- */
+.bank-sheet { display: none; }
+
+@media print {
+  body.bank-print-mode #root {
+    display: none !important;
+  }
+
+  body.bank-print-mode .bank-sheet {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    inset: auto !important;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 12mm;
+    background: #fff;
+    color: #0b1220;
+  }
+
+  body.bank-print-mode .bank-sheet * {
+    visibility: visible !important;
+  }
+}

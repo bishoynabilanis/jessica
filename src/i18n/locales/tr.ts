@@ -1,6 +1,18 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Print a sheet with the answer key": "Cevap anahtarıyla bir sayfa yazdır",
+  "Your last papers": "Son kâğıtların",
+  "{n} papers kept on this device": "Bu cihazda {n} kâğıt saklandı",
+  "Timed exam": "Süreli sınav",
+  "{n} better than your last paper": "Son kâğıdından {n} daha iyi",
+  "{n} below your last paper": "Son kâğıdından {n} daha düşük",
+  "Same as your last paper — push one more": "Son kâğıdınla aynı — bir tane daha zorla",
+  "Print this paper": "Bu kâğıdı yazdır",
+  "Practice sheet from Jessica · generated on this device": "Jessica alıştırma kâğıdı · bu cihazda üretildi",
+  "Score": "Puan",
+  "Answer key and why": "Cevap anahtarı ve nedeni",
+
   "A question bank that never runs out": "Hiç tükenmeyen bir soru bankası",
   "Endless drills with an explanation after every answer, a 20-minute timed exam, and a focus timer that counts your minutes into the plan.": "Her cevaptan sonra açıklamalı sonsuz alıştırmalar, 20 dakikalık süreli sınav ve dakikalarını plana yazan odak zamanlayıcısı.",
   "Open the bank": "Bankayı aç",
