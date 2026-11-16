@@ -1,6 +1,17 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "Sunting unit",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Ganti nama unit, perbaiki rentang halamannya, atau tambahkan milikmu. Kursus dan ulasan unit mengikuti daftar ini.",
+  "Unit title": "Judul unit",
+  "First page": "Halaman pertama",
+  "Last page": "Halaman terakhir",
+  "Add a unit": "Tambah unit",
+  "Save the units": "Simpan unit",
+  "Units saved": "Unit tersimpan",
+  "The course and the unit review follow this list now.": "Kursus dan ulasan unit kini mengikuti daftar ini.",
+  "Keep at least one unit with a title.": "Sisakan minimal satu unit dengan judul.",
+
   "No questions for this skill yet.": "Belum ada soal untuk keterampilan ini.",
 
   "Ten questions aimed at your weakest skills": "Sepuluh soal untuk keterampilan terlemahmu",

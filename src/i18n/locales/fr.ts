@@ -1,6 +1,17 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "Modifier les unités",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Renomme une unité, corrige ses pages ou ajoute les tiennes. Le cours et la révision d’unité suivent cette liste.",
+  "Unit title": "Titre de l’unité",
+  "First page": "Première page",
+  "Last page": "Dernière page",
+  "Add a unit": "Ajouter une unité",
+  "Save the units": "Enregistrer les unités",
+  "Units saved": "Unités enregistrées",
+  "The course and the unit review follow this list now.": "Le cours et la révision d’unité suivent désormais cette liste.",
+  "Keep at least one unit with a title.": "Garde au moins une unité avec un titre.",
+
   "No questions for this skill yet.": "Pas encore de questions pour cette compétence.",
 
   "Ten questions aimed at your weakest skills": "Dix questions sur tes compétences les plus faibles",

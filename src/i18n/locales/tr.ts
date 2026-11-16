@@ -1,6 +1,17 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "Üniteleri düzenle",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Bir üniteyi yeniden adlandır, sayfa aralığını düzelt veya kendi ünitelerini ekle. Kurs ve ünite tekrarı bu listeyi izler.",
+  "Unit title": "Ünite adı",
+  "First page": "İlk sayfa",
+  "Last page": "Son sayfa",
+  "Add a unit": "Ünite ekle",
+  "Save the units": "Üniteleri kaydet",
+  "Units saved": "Üniteler kaydedildi",
+  "The course and the unit review follow this list now.": "Kurs ve ünite tekrarı artık bu listeyi izliyor.",
+  "Keep at least one unit with a title.": "En az bir üniteyi başlıklı bırak.",
+
   "No questions for this skill yet.": "Bu beceri için henüz soru yok.",
 
   "Ten questions aimed at your weakest skills": "En zayıf becerilerine yönelik on soru",

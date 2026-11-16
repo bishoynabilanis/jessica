@@ -1,6 +1,17 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "Editar las unidades",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Renombra una unidad, corrige sus páginas o añade las tuyas. El curso y el repaso de unidad siguen esta lista.",
+  "Unit title": "Título de la unidad",
+  "First page": "Primera página",
+  "Last page": "Última página",
+  "Add a unit": "Añadir una unidad",
+  "Save the units": "Guardar las unidades",
+  "Units saved": "Unidades guardadas",
+  "The course and the unit review follow this list now.": "El curso y el repaso de unidad ya siguen esta lista.",
+  "Keep at least one unit with a title.": "Deja al menos una unidad con título.",
+
   "No questions for this skill yet.": "Aún no hay preguntas para esta habilidad.",
 
   "Ten questions aimed at your weakest skills": "Diez preguntas sobre tus habilidades más débiles",

@@ -1,6 +1,17 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "Einheiten bearbeiten",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Benenne eine Einheit um, korrigiere ihren Seitenbereich oder füge eigene hinzu. Kurs und Einheiten-Wiederholung folgen dieser Liste.",
+  "Unit title": "Titel der Einheit",
+  "First page": "Erste Seite",
+  "Last page": "Letzte Seite",
+  "Add a unit": "Einheit hinzufügen",
+  "Save the units": "Einheiten speichern",
+  "Units saved": "Einheiten gespeichert",
+  "The course and the unit review follow this list now.": "Kurs und Einheiten-Wiederholung folgen jetzt dieser Liste.",
+  "Keep at least one unit with a title.": "Mindestens eine Einheit mit Titel behalten.",
+
   "No questions for this skill yet.": "Noch keine Fragen für diese Fähigkeit.",
 
   "Ten questions aimed at your weakest skills": "Zehn Fragen zu deinen schwächsten Fähigkeiten",

@@ -14,6 +14,17 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Edit the units": "تعديل الوحدات",
+  "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "غيّر اسم وحدة، صحّح مداها من الصفحات، أو ضيف وحداتك. الكورس ومراجعة الوحدة بيمشوا على القايمة دي.",
+  "Unit title": "اسم الوحدة",
+  "First page": "أول صفحة",
+  "Last page": "آخر صفحة",
+  "Add a unit": "أضف وحدة",
+  "Save the units": "حفظ الوحدات",
+  "Units saved": "الوحدات اتحفظت",
+  "The course and the unit review follow this list now.": "الكورس ومراجعة الوحدة بقوا ماشيين على القايمة دي.",
+  "Keep at least one unit with a title.": "سيب وحدة واحدة على الأقل باسم.",
+
   "No questions for this skill yet.": "مفيش أسئلة للمهارة دي لسه.",
 
   "Ten questions aimed at your weakest skills": "١٠ أسئلة على أضعف مهاراتك",

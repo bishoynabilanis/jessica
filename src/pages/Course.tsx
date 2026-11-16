@@ -3,15 +3,20 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
   ArrowRight,
   BookOpen,
+  Check,
   CheckCircle2,
   Clock3,
   GraduationCap,
   Layers,
+  Pencil,
   Play,
+  Plus,
   RefreshCw,
   RotateCcw,
   Sparkles,
+  Trash2,
   Trophy,
+  X,
 } from 'lucide-react'
 import { subjectMeta } from '@/data/books'
 import { useApp } from '@/store/useApp'
@@ -19,6 +24,7 @@ import { useUI } from '@/store/useUI'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar } from '@/components/ui/Card'
+import type { BookUnit } from '@/types'
 import { buildCourse, lessonLink } from '@/lib/course'
 import { openChapter } from '@/lib/library'
 import { detectUnits } from '@/lib/units'
@@ -35,10 +41,58 @@ export function Course() {
   const completedTopics = useApp((s) => s.completedTopics)
   const lessonProgress = useApp((s) => s.lessonProgress)
   const addCustomBook = useApp((s) => s.addCustomBook)
+  const updateBookUnits = useApp((s) => s.updateBookUnits)
   const pushToast = useUI((s) => s.pushToast)
   const [rescanning, setRescanning] = useState(false)
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState<BookUnit[]>([])
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const curriculum = useApp((s) => s.settings.curriculum)
+
+  const startUnitEdit = () => {
+    if (!book) return
+    const existing = (book.units || []).map((unit) => ({ ...unit }))
+    setDraft(
+      existing.length
+        ? existing
+        : [{ id: 'unit-1', title: '', startPage: 1, endPage: Math.min(book.pageCount || 20, 20) }],
+    )
+    setEditing(true)
+  }
+
+  const patchUnit = (id: string, patch: Partial<BookUnit>) =>
+    setDraft((units) => units.map((unit) => (unit.id === id ? { ...unit, ...patch } : unit)))
+
+  const addDraftUnit = () =>
+    setDraft((units) => {
+      const last = units[units.length - 1]
+      const start = last ? Math.min(last.endPage + 1, (book?.pageCount || 100)) : 1
+      return [
+        ...units,
+        { id: `unit-${Date.now().toString(36)}`, title: '', startPage: start, endPage: Math.min(start + 9, book?.pageCount || start + 9) },
+      ]
+    })
+
+  const removeDraftUnit = (id: string) => setDraft((units) => units.filter((unit) => unit.id !== id))
+
+  const saveUnits = () => {
+    if (!book) return
+    const max = book.pageCount || 100
+    const clean = draft
+      .filter((unit) => unit.title.trim())
+      .map((unit) => {
+        const start = Math.max(1, Math.min(unit.startPage || 1, max))
+        const end = Math.max(start, Math.min(unit.endPage || start, max))
+        return { ...unit, title: unit.title.trim(), startPage: start, endPage: end }
+      })
+    if (!clean.length) {
+      pushToast({ title: tr('Keep at least one unit with a title.'), type: 'info' })
+      return
+    }
+    updateBookUnits(book.id, clean)
+    setEditing(false)
+    pushToast({ title: tr('Units saved'), description: tr('The course and the unit review follow this list now.'), type: 'success' })
+  }
 
   const course = useMemo(
     () => (book ? buildCourse(book, { unitMastery, completedTopics, lessonProgress }) : undefined),
@@ -170,8 +224,69 @@ export function Course() {
               <RefreshCw className="h-4 w-4" /> {tr('Re-scan chapters')}
             </Button>
           )}
+          <Button size="md" variant="ghost" onClick={startUnitEdit} data-testid="units-edit">
+            <Pencil className="h-4 w-4" /> {tr('Edit the units')}
+          </Button>
         </div>
       </Card>
+
+      {editing && (
+        <Card className="p-4" data-testid="units-editor">
+          <p className="label text-aurora-300">{tr('Edit the units')}</p>
+          <p className="mt-1 text-[10px] leading-relaxed text-muted">
+            {tr('Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.')}
+          </p>
+          <div className="mt-3 space-y-2">
+            {draft.map((unit, unitIndex) => (
+              <div key={unit.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-line bg-card-2 p-2">
+                <span className="w-5 shrink-0 text-[10px] font-bold text-muted-2">{num(unitIndex + 1)}</span>
+                <input
+                  value={unit.title}
+                  onChange={(event) => patchUnit(unit.id, { title: event.target.value })}
+                  placeholder={tr('Unit title')}
+                  aria-label={tr('Unit title')}
+                  className="min-w-0 flex-1 rounded-lg border border-line bg-white/5 px-2 py-1 text-[11px] font-bold text-main outline-none focus:border-aurora-400/50"
+                />
+                <input
+                  type="number"
+                  min={1}
+                  value={unit.startPage}
+                  onChange={(event) => patchUnit(unit.id, { startPage: Number(event.target.value) })}
+                  aria-label={tr('First page')}
+                  className="w-16 rounded-lg border border-line bg-white/5 px-2 py-1 text-[11px] font-bold text-main outline-none focus:border-aurora-400/50"
+                />
+                <span className="text-[10px] text-muted-2">→</span>
+                <input
+                  type="number"
+                  min={1}
+                  value={unit.endPage}
+                  onChange={(event) => patchUnit(unit.id, { endPage: Number(event.target.value) })}
+                  aria-label={tr('Last page')}
+                  className="w-16 rounded-lg border border-line bg-white/5 px-2 py-1 text-[11px] font-bold text-main outline-none focus:border-aurora-400/50"
+                />
+                <button
+                  onClick={() => removeDraftUnit(unit.id)}
+                  aria-label={tr('Delete')}
+                  className="rounded-lg border border-line p-1.5 text-muted-2 transition hover:border-red-400/40 hover:text-red-300"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Button size="sm" variant="secondary" onClick={addDraftUnit}>
+              <Plus className="h-3.5 w-3.5" /> {tr('Add a unit')}
+            </Button>
+            <Button size="sm" onClick={saveUnits} data-testid="units-save">
+              <Check className="h-3.5 w-3.5" /> {tr('Save the units')}
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>
+              <X className="h-3.5 w-3.5" /> {tr('Cancel')}
+            </Button>
+          </div>
+        </Card>
+      )}
 
       {course.total === 0 ? (
         <Card className="p-5">

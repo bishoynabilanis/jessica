@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { getLanguage, dateLocale, tr } from '@/i18n'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
+  BookUnit,
   AiProvider,
   Book,
   DailyLogEntry,
@@ -168,6 +169,7 @@ export interface AppState {
   completeTopic: (id: string, title: string, subject: string) => void
   setBookProgress: (bookId: string, page: number, total: number) => void
   addCustomBook: (book: Book) => void
+  updateBookUnits: (bookId: string, units: BookUnit[]) => void
   addCommunityBooks: (books: OfficialBook[]) => void
   clearCommunityBooks: () => void
   removeCustomBook: (id: string) => void
@@ -444,6 +446,12 @@ export const useApp = create<AppState>()(
           communityBooks: [...books, ...state.communityBooks.filter((item) => !books.some((book) => book.url === item.url))].slice(0, 300),
         })),
       clearCommunityBooks: () => set({ communityBooks: [] }),
+      updateBookUnits: (bookId, units) => {
+        set((state) => ({
+          customBooks: state.customBooks.map((book) => (book.id === bookId ? { ...book, units } : book)),
+        }))
+      },
+
       addCustomBook: (book) => {
         set((state) => ({
           customBooks: [book, ...state.customBooks.filter((b) => b.id !== book.id)],
