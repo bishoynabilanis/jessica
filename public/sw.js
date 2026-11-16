@@ -1,13 +1,15 @@
 /* Jessica service worker — offline shell + runtime media cache + local notifications */
-const VERSION = 'jessica-v5'
+// The build stamps the deploy id into the line below, so every deploy ships a
+// byte-different worker and the browser actually notices the update.
+const VERSION = 'jessica-__BUILD__'
 const SHELL = `${VERSION}-shell`
 const RUNTIME = `${VERSION}-runtime`
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(SHELL).then((cache) => cache.addAll(CORE).catch(() => undefined)).then(() => self.skipWaiting()),
-  )
+  // No skipWaiting here: the new worker waits until the app offers the user a
+  // refresh, so an update never swaps assets under a running session.
+  event.waitUntil(caches.open(SHELL).then((cache) => cache.addAll(CORE).catch(() => undefined)))
 })
 
 self.addEventListener('activate', (event) => {
@@ -44,7 +46,7 @@ self.addEventListener('fetch', (event) => {
   // Navigations: network-first with offline fallback to the cached shell.
   if (req.mode === 'navigate') {
     event.respondWith(
-      fetch(req)
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           const copy = res.clone()
           caches.open(SHELL).then((c) => c.put('./index.html', copy))

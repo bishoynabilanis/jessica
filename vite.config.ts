@@ -1,10 +1,40 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
+import { readFileSync, writeFileSync } from 'node:fs'
+
+/**
+ * Every deploy must be distinguishable to the browser. The service worker is
+ * copied verbatim from public/, so without a changing byte a browser can keep
+ * the old worker forever and users never learn there is a new version.
+ *
+ * This plugin stamps a deploy id into dist/sw.js and writes version.json, which
+ * the app polls to offer a refresh even if the worker check is bypassed.
+ */
+function buildVersion(): Plugin {
+  const version = `${(process.env.GITHUB_SHA || '').slice(0, 7) || 'dev'}-${Date.now().toString(36)}`
+  return {
+    name: 'jessica-build-version',
+    config() {
+      return { define: { __APP_VERSION__: JSON.stringify(version) } }
+    },
+    closeBundle() {
+      const dir = path.resolve(__dirname, 'dist')
+      const swPath = path.join(dir, 'sw.js')
+      try {
+        const sw = readFileSync(swPath, 'utf8').replace(/__BUILD__/g, version)
+        writeFileSync(swPath, sw)
+        writeFileSync(path.join(dir, 'version.json'), JSON.stringify({ version }, null, 2))
+      } catch {
+        /* a dev build without a service worker is still a valid build */
+      }
+    },
+  }
+}
 
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [react(), buildVersion()],
   resolve: {
     alias: { '@': path.resolve(__dirname, 'src') },
   },

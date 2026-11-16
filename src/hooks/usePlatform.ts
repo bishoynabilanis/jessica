@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /* --------------------------- PWA install prompt --------------------------- */
 interface BeforeInstallPromptEvent extends Event {
@@ -142,56 +142,93 @@ export function useDailyRiddleNotification(enabled: boolean, onFire: () => void)
 /* --------------------------- PWA registration ----------------------------- */
 export function useServiceWorker() {
   const [updateReady, setUpdateReady] = useState(false)
+  const regRef = useRef<ServiceWorkerRegistration | null>(null)
 
   useEffect(() => {
+    if (import.meta.env.DEV) return
     if (!('serviceWorker' in navigator)) return
     const base = import.meta.env.BASE_URL
     const hadController = !!navigator.serviceWorker.controller
     let refreshing = false
     let interval: number | undefined
 
-    // When a new service worker takes control, reload once so the new bundle runs.
-    const onControllerChange = () => {
-      if (!hadController || refreshing) return
+    const reloadOnce = () => {
+      if (refreshing) return
       refreshing = true
       window.location.reload()
     }
+
+    // A waiting worker means the new bundle is downloaded and ready.
+    const onControllerChange = () => {
+      if (!hadController) return
+      reloadOnce()
+    }
     navigator.serviceWorker.addEventListener('controllerchange', onControllerChange)
 
-    const onVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        navigator.serviceWorker.getRegistration().then((reg) => reg?.update().catch(() => undefined))
+    // The worker check can be bypassed (privacy settings, a stuck cache), so the
+    // app also compares the deploy id it was built with against version.json.
+    const checkVersion = async () => {
+      try {
+        const response = await fetch(`${base}version.json?ts=${Date.now()}`, { cache: 'no-store' })
+        if (!response.ok) return
+        const data = (await response.json()) as { version?: string }
+        if (data.version && data.version !== __APP_VERSION__) setUpdateReady(true)
+      } catch {
+        /* offline: the update will be noticed when the network returns */
       }
     }
-    document.addEventListener('visibilitychange', onVisibility)
+
+    const onWake = () => {
+      if (document.visibilityState !== 'visible') return
+      navigator.serviceWorker.getRegistration().then((reg) => reg?.update().catch(() => undefined))
+      void checkVersion()
+    }
+    document.addEventListener('visibilitychange', onWake)
+    window.addEventListener('online', onWake)
 
     navigator.serviceWorker
       .register(`${base}sw.js`, { scope: base, updateViaCache: 'none' })
       .then((reg) => {
+        regRef.current = reg
         const check = () => reg.update().catch(() => undefined)
-        interval = window.setInterval(check, 30 * 60 * 1000)
+        interval = window.setInterval(check, 15 * 60 * 1000)
+
+        const markWaiting = () => {
+          if (reg.waiting && navigator.serviceWorker.controller) setUpdateReady(true)
+        }
         reg.addEventListener('updatefound', () => {
           const worker = reg.installing
           worker?.addEventListener('statechange', () => {
-            if (worker.state === 'installed' && navigator.serviceWorker.controller) setUpdateReady(true)
+            if (worker.state === 'installed') markWaiting()
           })
         })
+        markWaiting()
         check()
       })
       .catch(() => undefined)
 
+    void checkVersion()
+    const versionTimer = window.setInterval(() => void checkVersion(), 5 * 60 * 1000)
+
     return () => {
       navigator.serviceWorker.removeEventListener('controllerchange', onControllerChange)
-      document.removeEventListener('visibilitychange', onVisibility)
+      document.removeEventListener('visibilitychange', onWake)
+      window.removeEventListener('online', onWake)
       if (interval) window.clearInterval(interval)
+      if (versionTimer) window.clearInterval(versionTimer)
     }
   }, [])
 
-  return {
-    updateReady,
-    applyUpdate: () => {
-      navigator.serviceWorker?.controller?.postMessage({ type: 'SKIP_WAITING' })
+  const applyUpdate = useCallback(() => {
+    const waiting = regRef.current?.waiting
+    if (!waiting) {
       window.location.reload()
-    },
-  }
+      return
+    }
+    // The waiting worker calls skipWaiting, then controllerchange reloads us.
+    waiting.postMessage({ type: 'SKIP_WAITING' })
+    window.setTimeout(() => window.location.reload(), 1600)
+  }, [])
+
+  return { updateReady, applyUpdate }
 }
