@@ -1,6 +1,15 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "Mis estrellas",
+  "You collected {n} stars in the last seven days.": "Ganaste {n} estrellas en los últimos siete días.",
+  "All my stars": "Todas mis estrellas",
+  "Days I played": "Días jugados",
+  "Your best day was {n} stars. Beat it!": "Tu mejor día: {n} estrellas. ¡Supléralo!",
+  "No stars yet this week — one paper is enough to start.": "Aún sin estrellas esta semana: una hoja basta para empezar.",
+  "Play a paper": "Jugar una hoja",
+  "days": "días",
+
   "Weekly challenge": "Reto semanal",
   "{n} of 3 practice papers this week": "{n} de 3 entrenamientos esta semana",
   "Collect 15 stars": "Recoger 15 estrellas",

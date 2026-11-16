@@ -1,6 +1,15 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "Mes étoiles",
+  "You collected {n} stars in the last seven days.": "Tu as gagné {n} étoiles ces sept derniers jours.",
+  "All my stars": "Toutes mes étoiles",
+  "Days I played": "Jours joués",
+  "Your best day was {n} stars. Beat it!": "Ton meilleur jour : {n} étoiles. Bats-le !",
+  "No stars yet this week — one paper is enough to start.": "Pas encore d’étoiles cette semaine — une fiche suffit pour commencer.",
+  "Play a paper": "Jouer une fiche",
+  "days": "jours",
+
   "Weekly challenge": "Défi de la semaine",
   "{n} of 3 practice papers this week": "{n} sur 3 entraînements cette semaine",
   "Collect 15 stars": "Récupérer 15 étoiles",

@@ -1,6 +1,15 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "Yıldızlarım",
+  "You collected {n} stars in the last seven days.": "Son yedi günde {n} yıldız topladın.",
+  "All my stars": "Tüm yıldızlarım",
+  "Days I played": "Oynadığım günler",
+  "Your best day was {n} stars. Beat it!": "En iyi günün: {n} yıldız. Geç onu!",
+  "No stars yet this week — one paper is enough to start.": "Bu hafta henüz yıldız yok — başlamak için bir kâğıt yeter.",
+  "Play a paper": "Bir kâğıt oyna",
+  "days": "gün",
+
   "Weekly challenge": "Haftanın görevi",
   "{n} of 3 practice papers this week": "Bu hafta 3 alıştırmadan {n} tanesi",
   "Collect 15 stars": "15 yıldız al",

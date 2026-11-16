@@ -14,6 +14,15 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "نجومي",
+  "You collected {n} stars in the last seven days.": "جمعت {n} نجمة في آخر ٧ أيام.",
+  "All my stars": "كل نجومي",
+  "Days I played": "أيام لعبت فيها",
+  "Your best day was {n} stars. Beat it!": "أحسن يوم كان {n} نجمة. اكسرها!",
+  "No stars yet this week — one paper is enough to start.": "مفيش نجوم الأسبوع ده لسه — ورقة واحدة تكفي عشان تبدأ.",
+  "Play a paper": "العب ورقة",
+  "days": "يوم",
+
   "Weekly challenge": "تحدي الأسبوع",
   "{n} of 3 practice papers this week": "{n} من ٣ تدريبات الأسبوع ده",
   "Collect 15 stars": "استلم ١٥ نجمة",

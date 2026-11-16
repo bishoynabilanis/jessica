@@ -1,6 +1,15 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "Meine Sterne",
+  "You collected {n} stars in the last seven days.": "Du hast in den letzten sieben Tagen {n} Sterne gesammelt.",
+  "All my stars": "Alle meine Sterne",
+  "Days I played": "Tage gespielt",
+  "Your best day was {n} stars. Beat it!": "Dein bester Tag: {n} Sterne. Überbiete ihn!",
+  "No stars yet this week — one paper is enough to start.": "Diese Woche noch keine Sterne – ein Bogen reicht zum Start.",
+  "Play a paper": "Einen Bogen spielen",
+  "days": "Tage",
+
   "Weekly challenge": "Wochen-Challenge",
   "{n} of 3 practice papers this week": "{n} von 3 Übungen diese Woche",
   "Collect 15 stars": "15 Sterne abholen",

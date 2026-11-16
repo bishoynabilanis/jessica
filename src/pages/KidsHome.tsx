@@ -151,6 +151,14 @@ export function KidsHome() {
             </div>
 
             <div className="mx-auto mt-4 max-w-sm rounded-2xl border border-white/70 bg-white/70 p-2.5 text-start sm:mx-0">
+              <button
+                onClick={() => navigate('/kids/stars')}
+                className="mb-2 flex w-full items-center justify-between rounded-xl bg-white/70 px-2.5 py-1.5 text-[10px] font-extrabold text-ink-700"
+                data-testid="kids-stars-entry"
+              >
+                <span>⭐ {tr('My stars')}</span>
+                <span className="text-ink-500">7 {tr('days')} ›</span>
+              </button>
               <div className="flex items-center justify-between text-[10px] font-extrabold text-ink-700">
                 <span>⭐ {tr('Today’s goal')}</span>
                 <span>

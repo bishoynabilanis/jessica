@@ -1,6 +1,15 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "My stars": "Bintangku",
+  "You collected {n} stars in the last seven days.": "Kamu mengumpulkan {n} bintang dalam tujuh hari terakhir.",
+  "All my stars": "Semua bintangku",
+  "Days I played": "Hari aku bermain",
+  "Your best day was {n} stars. Beat it!": "Hari terbaikmu: {n} bintang. Kalahkan!",
+  "No stars yet this week — one paper is enough to start.": "Belum ada bintang minggu ini — satu lembar cukup untuk mulai.",
+  "Play a paper": "Main satu lembar",
+  "days": "hari",
+
   "Weekly challenge": "Tantangan mingguan",
   "{n} of 3 practice papers this week": "{n} dari 3 latihan minggu ini",
   "Collect 15 stars": "Ambil 15 bintang",
