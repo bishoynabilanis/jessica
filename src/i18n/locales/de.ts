@@ -1,6 +1,29 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "Bogen korrigiert: {n} von {m}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "Mein Kind hat {n} von {m} auf einem Jessica-Bogen.",
+  "Grade a paper": "Bogen korrigieren",
+  "Tap the answers your child wrote": "Tippe die Antworten an, die dein Kind geschrieben hat",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "Jeder gedruckte Bogen wird hier mit Code gespeichert. Tippe an, was das Kind geschrieben hat, und die App korrigiert, erfasst die Fähigkeiten und legt die Fehler ab.",
+  "No printed sheets yet": "Noch keine gedruckten Bögen",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "Drucke zuerst einen Bogen aus der Fragenbank und komm mit den Antworten zurück.",
+  "Open the question bank": "Fragenbank öffnen",
+  "Printed sheets": "Gedruckte Bögen",
+  "Answered {n} of {m}": "{n} von {m} beantwortet",
+  "Mark the paper": "Bogen korrigieren",
+  "{n} better than the last paper": "{n} besser als der letzte Bogen",
+  "{n} below the last paper": "{n} unter dem letzten Bogen",
+  "Same as the last paper": "Gleich wie der letzte Bogen",
+  "Send the result": "Ergebnis senden",
+  "Grade another sheet": "Weiteren Bogen korrigieren",
+  "Print a new sheet": "Neuen Bogen drucken",
+  "Every miss is already in the mistakes notebook.": "Jeder Fehler steht schon im Fehlerheft.",
+  "Question by question": "Frage für Frage",
+  "The child wrote: {answer}": "Das Kind schrieb: {answer}",
+  "Mark the sheet your child solved": "Korrigiere den Bogen deines Kindes",
+  "Sheet code: {code} · grade it in the app": "Bogencode: {code} · in der App korrigieren",
+
   "New sticker: {name} {emoji}": "Neuer Sticker: {name} {emoji}",
 
   "You are on fire today!": "Du bist heute in Topform!",

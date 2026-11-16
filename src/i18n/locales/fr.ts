@@ -1,6 +1,29 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "Copie corrigée : {n} sur {m}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "Mon enfant a eu {n} sur {m} sur une fiche Jessica.",
+  "Grade a paper": "Corriger une copie",
+  "Tap the answers your child wrote": "Touche les réponses écrites par ton enfant",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "Chaque fiche imprimée est gardée ici avec un code. Touche ce que l’enfant a écrit et l’app corrige, enregistre les compétences et range les erreurs.",
+  "No printed sheets yet": "Aucune fiche imprimée",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "Imprime d’abord une fiche depuis la banque de questions, puis reviens avec les réponses.",
+  "Open the question bank": "Ouvrir la banque de questions",
+  "Printed sheets": "Fiches imprimées",
+  "Answered {n} of {m}": "{n} sur {m} répondues",
+  "Mark the paper": "Corriger la copie",
+  "{n} better than the last paper": "{n} de mieux que la dernière copie",
+  "{n} below the last paper": "{n} de moins que la dernière copie",
+  "Same as the last paper": "Comme la dernière copie",
+  "Send the result": "Envoyer le résultat",
+  "Grade another sheet": "Corriger une autre fiche",
+  "Print a new sheet": "Imprimer une nouvelle fiche",
+  "Every miss is already in the mistakes notebook.": "Chaque erreur est déjà dans le carnet d’erreurs.",
+  "Question by question": "Question par question",
+  "The child wrote: {answer}": "L’enfant a écrit : {answer}",
+  "Mark the sheet your child solved": "Corrige la fiche de ton enfant",
+  "Sheet code: {code} · grade it in the app": "Code de la fiche : {code} · corrige-la dans l’app",
+
   "New sticker: {name} {emoji}": "Nouvel autocollant : {name} {emoji}",
 
   "You are on fire today!": "Tu es en feu aujourd’hui !",

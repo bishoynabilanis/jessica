@@ -1,6 +1,29 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "Kâğıt değerlendirildi: {m} üzerinden {n}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "Çocuğum bir Jessica kâğıdında {m} üzerinden {n} aldı.",
+  "Grade a paper": "Kâğıt değerlendir",
+  "Tap the answers your child wrote": "Çocuğunun yazdığı cevaplara dokun",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "Yazdırdığın her kâğıt burada bir kodla saklanır. Çocuğun kâğıda yazdığına dokun; uygulama değerlendirir, becerileri kaydeder ve hataları arşivler.",
+  "No printed sheets yet": "Henüz yazdırılmış kâğıt yok",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "Önce soru bankasından bir kâğıt yazdır, sonra cevaplarla dön.",
+  "Open the question bank": "Soru bankasını aç",
+  "Printed sheets": "Yazdırılmış kâğıtlar",
+  "Answered {n} of {m}": "{m} sorudan {n} cevaplandı",
+  "Mark the paper": "Kâğıdı değerlendir",
+  "{n} better than the last paper": "Son kâğıttan {n} daha iyi",
+  "{n} below the last paper": "Son kâğıttan {n} daha düşük",
+  "Same as the last paper": "Son kâğıtla aynı",
+  "Send the result": "Sonucu gönder",
+  "Grade another sheet": "Başka kâğıt değerlendir",
+  "Print a new sheet": "Yeni kâğıt yazdır",
+  "Every miss is already in the mistakes notebook.": "Her yanlış zaten hata defterinde.",
+  "Question by question": "Soru soru",
+  "The child wrote: {answer}": "Çocuk şunu yazdı: {answer}",
+  "Mark the sheet your child solved": "Çocuğunun çözdüğü kâğıdı değerlendir",
+  "Sheet code: {code} · grade it in the app": "Kâğıt kodu: {code} · uygulamada değerlendir",
+
   "New sticker: {name} {emoji}": "Yeni çıkartma: {name} {emoji}",
 
   "You are on fire today!": "Bugün harikasın!",

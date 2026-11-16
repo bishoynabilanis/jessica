@@ -1,6 +1,29 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "Hoja corregida: {n} de {m}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "Mi hijo sacó {n} de {m} en una hoja de Jessica.",
+  "Grade a paper": "Corregir una hoja",
+  "Tap the answers your child wrote": "Toca las respuestas que escribió tu hijo",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "Cada hoja impresa se guarda aquí con un código. Toca lo que escribió el niño y la app corrige, registra las habilidades y archiva los errores.",
+  "No printed sheets yet": "Aún no hay hojas impresas",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "Imprime primero una hoja desde el banco de preguntas y vuelve con las respuestas.",
+  "Open the question bank": "Abrir el banco de preguntas",
+  "Printed sheets": "Hojas impresas",
+  "Answered {n} of {m}": "{n} de {m} respondidas",
+  "Mark the paper": "Corregir la hoja",
+  "{n} better than the last paper": "{n} mejor que la última hoja",
+  "{n} below the last paper": "{n} por debajo de la última hoja",
+  "Same as the last paper": "Igual que la última hoja",
+  "Send the result": "Enviar el resultado",
+  "Grade another sheet": "Corregir otra hoja",
+  "Print a new sheet": "Imprimir una hoja nueva",
+  "Every miss is already in the mistakes notebook.": "Cada fallo ya está en el cuaderno de errores.",
+  "Question by question": "Pregunta por pregunta",
+  "The child wrote: {answer}": "El niño escribió: {answer}",
+  "Mark the sheet your child solved": "Corrige la hoja que resolvió tu hijo",
+  "Sheet code: {code} · grade it in the app": "Código de la hoja: {code} · corrígela en la app",
+
   "New sticker: {name} {emoji}": "Sticker nuevo: {name} {emoji}",
 
   "You are on fire today!": "¡Estás que ardes hoy!",

@@ -23,6 +23,7 @@ import {
   LazyStats,
   LazyFocus,
   LazyBank,
+  LazyGradePaper,
   LazyProfiles,
   LazyLesson,
   LazyCourses,
@@ -238,6 +239,7 @@ export default function App() {
           <Route path="stats" element={<LazyStats />} />
           <Route path="focus" element={<LazyFocus />} />
           <Route path="bank" element={<LazyBank />} />
+          <Route path="grade" element={<LazyGradePaper />} />
           <Route path="profiles" element={<LazyProfiles />} />
           <Route path="lesson/:bookId/:unitId" element={<LazyLesson />} />
           <Route path="courses" element={<LazyCourses />} />

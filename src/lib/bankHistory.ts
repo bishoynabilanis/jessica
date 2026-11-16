@@ -9,7 +9,7 @@ export interface BankAttempt {
   id: string
   at: number
   subject: BankSubject
-  mode: 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly'
+  mode: 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly' | 'paper'
   score: number
   total: number
   seconds: number
@@ -48,6 +48,6 @@ export function addAttempt(entry: Omit<BankAttempt, 'id' | 'at'>): BankAttempt[]
 }
 
 /** The previous attempt on the same subject and mode, for the delta line. */
-export function previousAttempt(subject: BankSubject, mode: 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly'): BankAttempt | null {
+export function previousAttempt(subject: BankSubject, mode: 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly' | 'paper'): BankAttempt | null {
   return readAttempts().find((item) => item.subject === subject && item.mode === mode) || null
 }

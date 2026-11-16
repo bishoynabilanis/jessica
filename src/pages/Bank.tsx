@@ -26,6 +26,7 @@ import { useUI } from '@/store/useUI'
 import { BANK_SUBJECTS, buildDrill, buildSkillDrill, weakestSkills, type BankQuestion, type BankSubject } from '@/lib/questionBank'
 import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
 import { celebrate } from '@/lib/celebrate'
+import { savePrintedPaper } from '@/lib/printedPapers'
 import { levelLabel } from '@/lib/curriculum'
 import { buildCourse } from '@/lib/course'
 import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
@@ -89,6 +90,7 @@ export function Bank() {
   const [timedOut, setTimedOut] = useState(false)
   const [startedAt, setStartedAt] = useState(0)
   const [printList, setPrintList] = useState<BankQuestion[] | null>(null)
+  const [printCode, setPrintCode] = useState('')
   const [attempts, setAttempts] = useState<BankAttempt[]>(() => readAttempts())
   const [delta, setDelta] = useState<number | null>(null)
   const [unitBusy, setUnitBusy] = useState(false)
@@ -348,6 +350,8 @@ export function Bank() {
   const answered = Object.keys(answers).length
 
   const printPaper = (list: BankQuestion[]) => {
+    const paper = savePrintedPaper(subject, list)
+    setPrintCode(paper.code)
     setPrintList(list)
     document.body.classList.add('bank-print-mode')
     requestAnimationFrame(() =>
@@ -804,7 +808,7 @@ export function Bank() {
 
       {printList &&
         createPortal(
-          <PaperSheet questions={printList} subject={tr(subject)} grade={levelLabel(gradeLevel, curriculum)} />,
+          <PaperSheet questions={printList} code={printCode} subject={tr(subject)} grade={levelLabel(gradeLevel, curriculum)} />,
           document.body,
         )}
     </div>
@@ -812,7 +816,7 @@ export function Bank() {
 }
 
 /** The paper that comes out of the printer: questions first, key after. */
-function PaperSheet({ questions, subject, grade }: { questions: BankQuestion[]; subject: string; grade: string }) {
+function PaperSheet({ questions, code, subject, grade }: { questions: BankQuestion[]; code: string; subject: string; grade: string }) {
   const language = useApp((s) => s.settings.language)
   const letters = language === 'ar' ? ['أ', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D']
 
@@ -822,6 +826,7 @@ function PaperSheet({ questions, subject, grade }: { questions: BankQuestion[]; 
         <div>
           <p className="text-[15px] font-extrabold">{subject} — {grade}</p>
           <p className="text-[10px] text-[#5b6472]">{tr('Practice sheet from Jessica · generated on this device')}</p>
+          {code && <p className="text-[10px] font-bold text-[#0f7f6d]">{tr('Sheet code: {code} · grade it in the app', { code })}</p>}
         </div>
         <p className="text-[10px] font-bold text-[#5b6472]">is.gd/jessicaapp</p>
       </div>

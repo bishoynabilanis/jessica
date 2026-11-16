@@ -1,6 +1,29 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "Lembar dinilai: {n} dari {m}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "Anak saya mendapat {n} dari {m} pada lembar Jessica.",
+  "Grade a paper": "Nilai lembar",
+  "Tap the answers your child wrote": "Ketuk jawaban yang ditulis anakmu",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "Setiap lembar yang dicetak disimpan di sini dengan kode. Ketuk apa yang ditulis anak dan aplikasi menilai, mencatat keterampilan, dan menyimpan kesalahan.",
+  "No printed sheets yet": "Belum ada lembar tercetak",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "Cetak lembar dari bank soal dulu, lalu kembali dengan jawabannya.",
+  "Open the question bank": "Buka bank soal",
+  "Printed sheets": "Lembar tercetak",
+  "Answered {n} of {m}": "{n} dari {m} terjawab",
+  "Mark the paper": "Nilai lembar",
+  "{n} better than the last paper": "{n} lebih baik dari lembar sebelumnya",
+  "{n} below the last paper": "{n} di bawah lembar sebelumnya",
+  "Same as the last paper": "Sama dengan lembar sebelumnya",
+  "Send the result": "Kirim hasil",
+  "Grade another sheet": "Nilai lembar lain",
+  "Print a new sheet": "Cetak lembar baru",
+  "Every miss is already in the mistakes notebook.": "Setiap kesalahan sudah ada di buku kesalahan.",
+  "Question by question": "Soal per soal",
+  "The child wrote: {answer}": "Anak menulis: {answer}",
+  "Mark the sheet your child solved": "Nilai lembar yang dikerjakan anakmu",
+  "Sheet code: {code} · grade it in the app": "Kode lembar: {code} · nilai di aplikasi",
+
   "New sticker: {name} {emoji}": "Stiker baru: {name} {emoji}",
 
   "You are on fire today!": "Kamu hebat hari ini!",

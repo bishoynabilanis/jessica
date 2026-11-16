@@ -14,6 +14,29 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Sheet marked: {n} out of {m}": "الورقة اتصححت: {n} من {m}",
+  "My child scored {n} out of {m} on a Jessica sheet.": "ابني جاب {n} من {m} في ورقة جيسيكا.",
+  "Grade a paper": "صحّح ورقة",
+  "Tap the answers your child wrote": "المس الإجابات اللي ابنك كتبها",
+  "Every sheet you print is saved here with a code. Tap what the child wrote on paper and the app marks it, records the skills and files the mistakes.": "كل ورقة بتطبعها بتتحفظ هنا بكود. المس اللي الطفل كتبه على الورق والتطبيق هيصحح ويحسب المهارات ويحفظ الأخطاء.",
+  "No printed sheets yet": "مفيش ورق مطبوع لسه",
+  "Print a sheet from the question bank first, then come back with the child’s answers.": "اطبع ورقة من بنك الأسئلة الأول وارجع بإجابات الطفل.",
+  "Open the question bank": "افتح بنك الأسئلة",
+  "Printed sheets": "الورق المطبوع",
+  "Answered {n} of {m}": "جاوبت {n} من {m}",
+  "Mark the paper": "صحّح الورقة",
+  "{n} better than the last paper": "أحسن من آخر ورقة بـ {n}",
+  "{n} below the last paper": "أقل من آخر ورقة بـ {n}",
+  "Same as the last paper": "زي آخر ورقة",
+  "Send the result": "ابعت النتيجة",
+  "Grade another sheet": "صحّح ورقة تانية",
+  "Print a new sheet": "اطبع ورقة جديدة",
+  "Every miss is already in the mistakes notebook.": "كل غلطة اتسجلت في دفتر الأخطاء.",
+  "Question by question": "سؤال بسؤال",
+  "The child wrote: {answer}": "الطفل كتب: {answer}",
+  "Mark the sheet your child solved": "صحّح الورقة اللي حلها ابنك",
+  "Sheet code: {code} · grade it in the app": "كود الورقة: {code} · صحّحها في التطبيق",
+
   "New sticker: {name} {emoji}": "ستيكر جديد: {name} {emoji}",
 
   "You are on fire today!": "انت نار النهارده!",
