@@ -1,6 +1,16 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "Revois {n} erreurs dues",
+  "Review {n} due now": "Revois {n} dues maintenant",
+  "{n} questions are back for review": "À réviser : {n}",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "Elles reviennent pile quand l’oubli commence — trois jours, une semaine, puis un mois.",
+  "Start the review": "Commencer la révision",
+  "Due now": "À revoir maintenant",
+  "Back in {n} days": "Retour dans {n} jours",
+  "{n} mistakes are due for review": "Erreurs à revoir : {n}",
+  "They come back exactly when forgetting starts.": "Elles reviennent pile quand l’oubli commence.",
+
   "Link copied — send it to anyone": "Lien copié — envoie-le à qui tu veux",
   "Whoever opens it gets the same paper.": "Qui l’ouvre reçoit la même copie.",
   "Could not copy the link": "Impossible de copier le lien",

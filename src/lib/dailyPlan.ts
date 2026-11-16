@@ -19,6 +19,8 @@ interface PlanInput {
   completedTopics: string[]
   examDates: Record<string, string>
   mistakes: number
+  /** Mistakes whose spaced-repetition date has arrived. */
+  dueMistakes: number
   dueCards: number
   planner: PlanTask[]
 }
@@ -66,6 +68,17 @@ export function buildDailyPlan(input: PlanInput): DailyMission[] {
     })
   }
 
+  if (input.dueMistakes > 0) {
+    add({
+      id: 'mistakes-due',
+      emoji: '🎯',
+      title: tr('{n} mistakes are due for review', { n: input.dueMistakes }),
+      hint: tr('They come back exactly when forgetting starts.'),
+      to: '/bank?mode=mistakes&due=1',
+      minutes: 5,
+    })
+  }
+
   if (input.dueCards > 0) {
     add({
       id: 'cards',
@@ -97,7 +110,7 @@ export function buildDailyPlan(input: PlanInput): DailyMission[] {
     }
   }
 
-  if (input.mistakes > 0) {
+  if (input.mistakes > 0 && input.dueMistakes === 0) {
     add({
       id: 'mistakes',
       emoji: '🎯',

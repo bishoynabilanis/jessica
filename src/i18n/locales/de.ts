@@ -1,6 +1,16 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "Wiederhole {n} fällige Fehler",
+  "Review {n} due now": "Jetzt {n} wiederholen",
+  "{n} questions are back for review": "Zur Wiederholung: {n}",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "Sie kommen genau dann zurück, wenn das Vergessen beginnt — nach drei Tagen, einer Woche, dann einem Monat.",
+  "Start the review": "Wiederholung starten",
+  "Due now": "Jetzt fällig",
+  "Back in {n} days": "Zurück in {n} Tagen",
+  "{n} mistakes are due for review": "Fällige Fehler: {n}",
+  "They come back exactly when forgetting starts.": "Sie kommen genau dann zurück, wenn das Vergessen beginnt.",
+
   "Link copied — send it to anyone": "Link kopiert — schick ihn weiter",
   "Whoever opens it gets the same paper.": "Wer ihn öffnet, bekommt denselben Bogen.",
   "Could not copy the link": "Link konnte nicht kopiert werden",

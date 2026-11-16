@@ -1,6 +1,16 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "Ulangi {n} kesalahan yang jatuh tempo",
+  "Review {n} due now": "Ulangi {n} sekarang",
+  "{n} questions are back for review": "Untuk diulang: {n}",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "Mereka kembali tepat saat lupa mulai — tiga hari, seminggu, lalu sebulan.",
+  "Start the review": "Mulai ulangan",
+  "Due now": "Jatuh tempo sekarang",
+  "Back in {n} days": "Kembali dalam {n} hari",
+  "{n} mistakes are due for review": "Kesalahan jatuh tempo: {n}",
+  "They come back exactly when forgetting starts.": "Mereka kembali tepat saat lupa mulai.",
+
   "Link copied — send it to anyone": "Tautan disalin — kirim ke siapa saja",
   "Whoever opens it gets the same paper.": "Siapa yang membukanya mendapat lembar yang sama.",
   "Could not copy the link": "Tidak bisa menyalin tautan",

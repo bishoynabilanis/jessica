@@ -23,7 +23,8 @@ import { QuizGame } from '@/components/tools/QuizGame'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState } from '@/components/ui/Card'
 import { cn } from '@/lib/utils'
-import { tr } from '@/i18n'
+import { daysUntilDue, dueMistakes, isDue, isMastered } from '@/lib/mistakeReview'
+import { num, tr } from '@/i18n'
 
 export function Mistakes() {
   const { mistakes, apiKey, model, removeMistake, clearMistakes, setMistakeExplanation } = useApp()
@@ -37,6 +38,7 @@ export function Mistakes() {
   const [similarPick, setSimilarPick] = useState<Record<string, number>>({})
 
   const subjects = useMemo(() => ['All', ...new Set(mistakes.map((item) => item.subject))], [mistakes])
+  const due = useMemo(() => dueMistakes(mistakes), [mistakes])
   const filtered = subject === 'All' ? mistakes : mistakes.filter((item) => item.subject === subject)
 
   const explain = async (id: string) => {
@@ -165,6 +167,13 @@ Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
         icon={<AlertTriangle className="h-5 w-5" />}
         actions={
           <>
+            {due.length > 0 && (
+              <Link to="/bank?mode=mistakes&due=1" data-testid="mistakes-due">
+                <Button size="sm">
+                  <Brain className="h-3.5 w-3.5" /> {tr('Review {n} due now', { n: num(due.length) })}
+                </Button>
+              </Link>
+            )}
             <Button size="sm" variant="secondary" onClick={startPractice} disabled={!filtered.length}>
               <Play className="h-3.5 w-3.5" /> {tr('Drill mistakes')}
             </Button>
@@ -181,6 +190,25 @@ Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
           </>
         }
       />
+
+      {due.length > 0 && (
+        <Card className="flex flex-wrap items-center justify-between gap-2 border-aurora-400/30 bg-aurora-400/5 p-4" data-testid="mistakes-due-card">
+          <div className="flex items-center gap-2">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-aurora-400/15 text-aurora-200">
+              <Brain className="h-5 w-5" />
+            </span>
+            <div>
+              <p className="text-sm font-extrabold text-main">{tr('{n} questions are back for review', { n: num(due.length) })}</p>
+              <p className="text-[10px] text-muted">{tr('They come back exactly when forgetting starts — three days, a week, then a month.')}</p>
+            </div>
+          </div>
+          <Link to="/bank?mode=mistakes&due=1">
+            <Button size="sm">
+              <Play className="h-3.5 w-3.5" /> {tr('Start the review')}
+            </Button>
+          </Link>
+        </Card>
+      )}
 
       {!mistakes.length ? (
         <EmptyState
@@ -218,9 +246,27 @@ Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
                     <p className="text-sm font-extrabold leading-relaxed text-main" dir="auto">
                       {item.question}
                     </p>
-                    <p className="mt-1 text-[9px] font-semibold text-muted">
-                      {tr(item.subject)} · {new Date(item.createdAt).toLocaleDateString()}
-                      {item.topic ? ` · ${item.topic}` : ''}
+                    <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[9px] font-semibold text-muted">
+                      <span>
+                        {tr(item.subject)} · {new Date(item.createdAt).toLocaleDateString()}
+                        {item.topic ? ` · ${item.topic}` : ''}
+                      </span>
+                      <span
+                        className={cn(
+                          'rounded-full px-1.5 py-0.5 text-[8px] font-bold',
+                          isDue(item)
+                            ? 'bg-aurora-400/20 text-aurora-200'
+                            : isMastered(item)
+                              ? 'bg-violet-neon/20 text-violet-200'
+                              : 'bg-white/5 text-muted-2',
+                        )}
+                      >
+                        {isMastered(item)
+                          ? tr('Mastered')
+                          : isDue(item)
+                            ? tr('Due now')
+                            : tr('Back in {n} days', { n: num(daysUntilDue(item)) })}
+                      </span>
                     </p>
                   </div>
                   <button

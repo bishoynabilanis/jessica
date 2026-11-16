@@ -31,6 +31,8 @@ import { SolutionSteps } from '@/components/tools/SolutionSteps'
 import { levelLabel } from '@/lib/curriculum'
 import { buildCourse } from '@/lib/course'
 import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
+import { dueMistakes } from '@/lib/mistakeReview'
+import type { MistakeEntry } from '@/types'
 import { cn } from '@/lib/utils'
 import { dateLocale, num, tr } from '@/i18n'
 
@@ -60,11 +62,22 @@ const clock = (seconds: number) => {
   return `${num(String(Math.floor(safe / 60)).padStart(2, '0'))}:${num(String(safe % 60).padStart(2, '0'))}`
 }
 
+const toMistakeQuestion = (item: MistakeEntry): BankQuestion => ({
+  id: `mistake-${item.id}`,
+  subject: toBankSubject(item.subject),
+  skill: item.topic || tr('Mistakes'),
+  prompt: item.question,
+  options: item.options,
+  answer: item.answer,
+  explanation: item.aiExplanation || item.explanation || '',
+})
+
 export function Bank() {
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const curriculum = useApp((s) => s.settings.curriculum)
   const recordSkill = useApp((s) => s.recordSkill)
   const addMistake = useApp((s) => s.addMistake)
+  const reviewMistake = useApp((s) => s.reviewMistake)
   const mistakes = useApp((s) => s.mistakes)
   const customBooks = useApp((s) => s.customBooks)
   const bookProgress = useApp((s) => s.bookProgress)
@@ -73,7 +86,6 @@ export function Bank() {
   const lessonProgress = useApp((s) => s.lessonProgress)
   const skillStats = useApp((s) => s.skillStats)
   const [searchParams, setSearchParams] = useSearchParams()
-  const removeMistake = useApp((s) => s.removeMistake)
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
 
@@ -152,9 +164,10 @@ export function Bank() {
 
     if (mode === 'mistakes') {
       for (const question of questions) {
-        if (answers[question.id] === question.answer && question.id.startsWith('mistake-')) {
-          removeMistake(question.id.slice('mistake-'.length))
-        }
+        if (!question.id.startsWith('mistake-')) continue
+        const chosen = answers[question.id]
+        if (chosen === undefined) continue
+        reviewMistake(question.id.slice('mistake-'.length), chosen === question.answer)
       }
     }
 
@@ -204,6 +217,14 @@ export function Bank() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // The notebook (and the daily plan) can open a due review directly.
+  useEffect(() => {
+    if (searchParams.get('mode') !== 'mistakes') return
+    startMistakes(searchParams.get('due') === '1')
+    setSearchParams({}, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // Exam clock: it keeps running while the tab is open and marks the paper at zero.
   useEffect(() => {
     if (phase !== 'quiz' || mode !== 'exam' || !endsAt) return
@@ -236,27 +257,26 @@ export function Bank() {
     setPhase('quiz')
   }
 
-  const mistakeQuestions = useMemo<BankQuestion[]>(
-    () =>
-      mistakes
-        .filter((item) => item.options.length >= 2 && item.answer >= 0 && item.answer < item.options.length)
-        .slice(0, EXAM_COUNT)
-        .map((item) => ({
-          id: `mistake-${item.id}`,
-          subject: toBankSubject(item.subject),
-          skill: item.topic || tr('Mistakes'),
-          prompt: item.question,
-          options: item.options,
-          answer: item.answer,
-          explanation: item.aiExplanation || item.explanation || '',
-        })),
+  const usableMistakes = useMemo(
+    () => mistakes.filter((item) => item.options.length >= 2 && item.answer >= 0 && item.answer < item.options.length),
     [mistakes],
   )
 
-  const startMistakes = () => {
-    if (!mistakeQuestions.length) return
+  const mistakeQuestions = useMemo<BankQuestion[]>(
+    () => usableMistakes.slice(0, EXAM_COUNT).map(toMistakeQuestion),
+    [usableMistakes],
+  )
+
+  const dueMistakeQuestions = useMemo<BankQuestion[]>(
+    () => dueMistakes(usableMistakes).slice(0, EXAM_COUNT).map(toMistakeQuestion),
+    [usableMistakes],
+  )
+
+  const startMistakes = (onlyDue = false) => {
+    const list = onlyDue && dueMistakeQuestions.length ? dueMistakeQuestions : mistakeQuestions
+    if (!list.length) return
     setMode('mistakes')
-    setQuestions(mistakeQuestions)
+    setQuestions(list)
     setSeed((value) => value + 1)
     setIndex(0)
     setPicked(null)
@@ -461,10 +481,21 @@ export function Bank() {
             <Button size="md" variant="secondary" onClick={() => start(subject, EXAM_COUNT, 'exam')} data-testid="bank-exam">
               <Clock className="h-4 w-4" /> {tr('Timed exam — 20 questions, 20 minutes')}
             </Button>
+            {dueMistakeQuestions.length > 0 && (
+              <Button
+                size="md"
+                variant="secondary"
+                onClick={() => startMistakes(true)}
+                data-testid="bank-due-mistakes"
+                className="border-aurora-400/40 bg-aurora-400/10"
+              >
+                <AlertTriangle className="h-4 w-4" /> {tr('Review {n} due mistakes', { n: num(dueMistakeQuestions.length) })}
+              </Button>
+            )}
             <Button
               size="md"
               variant="secondary"
-              onClick={startMistakes}
+              onClick={() => startMistakes(false)}
               disabled={mistakeQuestions.length === 0}
               data-testid="bank-mistakes"
             >

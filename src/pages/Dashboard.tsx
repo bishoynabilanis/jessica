@@ -38,6 +38,7 @@ import { mascotForXp } from '@/data/mascots'
 import { subjectMeta } from '@/data/books'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
+import { dueMistakes } from '@/lib/mistakeReview'
 import { buildCourse } from '@/lib/course'
 import { shareStory } from '@/lib/shareCard'
 import { levelLabel } from '@/lib/curriculum'
@@ -273,6 +274,7 @@ export function Dashboard() {
     completedTopics: state.completedTopics,
     examDates: state.examDates,
     mistakes: state.mistakes.length,
+    dueMistakes: dueMistakes(state.mistakes).length,
     dueCards: dueCount,
     planner: state.planner,
   })

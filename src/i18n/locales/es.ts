@@ -1,6 +1,16 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "Repasa {n} errores pendientes",
+  "Review {n} due now": "Repasa {n} ahora",
+  "{n} questions are back for review": "Para repasar: {n}",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "Vuelven justo cuando empieza el olvido: tres días, una semana y luego un mes.",
+  "Start the review": "Empezar el repaso",
+  "Due now": "Pendiente ahora",
+  "Back in {n} days": "Vuelve en {n} días",
+  "{n} mistakes are due for review": "Errores pendientes: {n}",
+  "They come back exactly when forgetting starts.": "Vuelven justo cuando empieza el olvido.",
+
   "Link copied — send it to anyone": "Enlace copiado: mándalo a quien quieras",
   "Whoever opens it gets the same paper.": "Quien lo abra recibe la misma hoja.",
   "Could not copy the link": "No se pudo copiar el enlace",

@@ -1,6 +1,16 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "{n} vakti gelen hatayı tekrar et",
+  "Review {n} due now": "{n} tanesini şimdi tekrar et",
+  "{n} questions are back for review": "Tekrar için: {n}",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "Tam unutma başlarken geri gelirler — üç gün, bir hafta, sonra bir ay.",
+  "Start the review": "Tekrara başla",
+  "Due now": "Şimdi vakti",
+  "Back in {n} days": "{n} gün sonra döner",
+  "{n} mistakes are due for review": "Vakti gelen hatalar: {n}",
+  "They come back exactly when forgetting starts.": "Tam unutma başlarken geri gelirler.",
+
   "Link copied — send it to anyone": "Bağlantı kopyalandı — dilediğine gönder",
   "Whoever opens it gets the same paper.": "Açan kişi aynı kâğıdı alır.",
   "Could not copy the link": "Bağlantı kopyalanamadı",

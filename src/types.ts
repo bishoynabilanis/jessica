@@ -102,6 +102,10 @@ export interface MistakeEntry {
   unitKey?: string
   aiExplanation?: string
   createdAt: number
+  /** Spaced repetition: when this question comes back, and how far along it is. */
+  reviewAt?: number
+  reviewStep?: number
+  reviewedAt?: number
 }
 
 export interface ParentTask {

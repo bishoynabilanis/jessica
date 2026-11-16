@@ -23,6 +23,7 @@ import { giftStickers, type KidSticker } from '@/data/kids'
 import { useUI } from './useUI'
 import { providerFor } from '@/lib/providers'
 import type { OfficialBook } from '@/data/officialBooks'
+import { initialReview, nextReview } from '@/lib/mistakeReview'
 
 export const XP_PER_LEVEL = 300
 
@@ -195,7 +196,8 @@ export interface AppState {
   addParentTask: (title: string, reward: number) => void
   completeParentTask: (id: string) => number | null
   removeParentTask: (id: string) => void
-  addMistake: (entry: Omit<MistakeEntry, 'id' | 'createdAt'>) => void
+  addMistake: (entry: Omit<MistakeEntry, 'id' | 'createdAt' | 'reviewAt' | 'reviewStep' | 'reviewedAt'>) => void
+  reviewMistake: (id: string, correct: boolean) => void
   removeMistake: (id: string) => void
   clearMistakes: () => void
   setMistakeExplanation: (id: string, text: string) => void
@@ -601,14 +603,29 @@ export const useApp = create<AppState>()(
               item.unitKey === entry.unitKey &&
               item.chosen === entry.chosen,
           )
-          if (duplicate) return state
+          if (duplicate) {
+            // Missed again outside a scheduled review: it comes back tomorrow.
+            return {
+              mistakes: state.mistakes.map((item) =>
+                item.id === duplicate.id ? { ...item, ...nextReview(item.reviewStep ?? 0, false) } : item,
+              ),
+            }
+          }
           return {
             mistakes: [
-              { ...entry, id: uid('m_'), createdAt: Date.now() },
+              { ...entry, ...initialReview(), id: uid('m_'), createdAt: Date.now() },
               ...state.mistakes,
             ].slice(0, 300),
           }
         })
+      },
+
+      reviewMistake: (id, correct) => {
+        set((state) => ({
+          mistakes: state.mistakes.map((item) =>
+            item.id === id ? { ...item, ...nextReview(item.reviewStep ?? 0, correct) } : item,
+          ),
+        }))
       },
 
       addHighlight: (bookId, page, text, color = '#ffd166') => {

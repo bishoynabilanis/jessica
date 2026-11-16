@@ -46,7 +46,7 @@ test.beforeEach(async ({ page }) => {
   }, MISTAKES)
 })
 
-test('the notebook becomes a drill, and a corrected mistake leaves it', async ({ page }) => {
+test('the notebook becomes a drill, and a corrected mistake moves one step out', async ({ page }) => {
   await page.goto('/#/bank')
 
   const button = page.getByTestId('bank-mistakes')
@@ -65,9 +65,18 @@ test('the notebook becomes a drill, and a corrected mistake leaves it', async ({
 
   await expect(page.getByRole('button', { name: /New drill/ })).toBeVisible()
 
-  const left = await page.evaluate(() => {
+  const after = await page.evaluate(() => {
     const raw = window.localStorage.getItem('jessica-profile-v1')
-    return raw ? JSON.parse(raw).state.mistakes.length : -1
+    const list = raw ? JSON.parse(raw).state.mistakes : []
+    return list.map((item: { reviewStep?: number; reviewAt?: number }) => ({
+      step: item.reviewStep,
+      inFuture: typeof item.reviewAt === 'number' && item.reviewAt > Date.now(),
+    }))
   })
-  expect(left).toBe(0)
+  // Correct answers are not deleted — they are rescheduled, one step further out.
+  expect(after.length).toBe(3)
+  for (const entry of after) {
+    expect(entry.step).toBe(1)
+    expect(entry.inFuture).toBe(true)
+  }
 })

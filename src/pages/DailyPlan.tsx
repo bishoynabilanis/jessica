@@ -4,6 +4,7 @@ import { ArrowRight, CalendarCheck, Clock, RefreshCw, Sparkles } from 'lucide-re
 import { useApp } from '@/store/useApp'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
+import { dueMistakes } from '@/lib/mistakeReview'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -31,10 +32,11 @@ export function DailyPlan() {
         completedTopics: state.completedTopics,
         examDates: state.examDates,
         mistakes: state.mistakes.length,
+        dueMistakes: dueMistakes(state.mistakes).length,
         dueCards: dueCount,
         planner: state.planner,
       }),
-    [state.skillStats, state.unitMastery, state.customBooks, state.bookProgress, state.completedTopics, state.examDates, state.mistakes.length, dueCount, state.planner],
+    [state.skillStats, state.unitMastery, state.customBooks, state.bookProgress, state.completedTopics, state.examDates, state.mistakes, dueCount, state.planner],
   )
 
   const total = missions.reduce((sum, mission) => sum + mission.minutes, 0)

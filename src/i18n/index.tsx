@@ -14,6 +14,16 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Review {n} due mistakes": "راجع {n} أسئلة مستحقة",
+  "Review {n} due now": "راجع المستحق ({n})",
+  "{n} questions are back for review": "للمراجعة: {n} أسئلة",
+  "They come back exactly when forgetting starts — three days, a week, then a month.": "بيرجعوا بالظبط لما النسيان يبدأ — بعد ٣ أيام، أسبوع، وبعدين شهر.",
+  "Start the review": "ابدأ المراجعة",
+  "Due now": "مستحق دلوقتي",
+  "Back in {n} days": "ترجع بعد {n} يوم",
+  "{n} mistakes are due for review": "أخطاء مستحقة: {n}",
+  "They come back exactly when forgetting starts.": "بيرجعوا بالظبط لما النسيان يبدأ.",
+
   "Link copied — send it to anyone": "اللينك اتنسخ — ابعته لأي حد",
   "Whoever opens it gets the same paper.": "اللي يفتحه هيجيله نفس الورقة.",
   "Could not copy the link": "مقدرتش أنسخ اللينك",
