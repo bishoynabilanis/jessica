@@ -1,6 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "New sticker: {name} {emoji}": "Sticker nuevo: {name} {emoji}",
+
   "You are on fire today!": "¡Estás que ardes hoy!",
   "That was quick and clean!": "¡Rápido y limpio!",
   "Your buddy is proud of you!": "¡Tu compañero está orgulloso de ti!",

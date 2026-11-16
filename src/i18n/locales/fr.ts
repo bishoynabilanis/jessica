@@ -1,6 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "New sticker: {name} {emoji}": "Nouvel autocollant : {name} {emoji}",
+
   "You are on fire today!": "Tu es en feu aujourd’hui !",
   "That was quick and clean!": "Rapide et propre !",
   "Your buddy is proud of you!": "Ton compagnon est fier de toi !",

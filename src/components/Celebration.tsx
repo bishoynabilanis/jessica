@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { onCelebrate } from '@/lib/celebrate'
 import { useApp } from '@/store/useApp'
+import { playFinish } from '@/lib/sound'
 
 const COLORS = ['#21e6c9', '#6b8cff', '#fbbf24', '#fb7185', '#a78bfa', '#34d399']
 
@@ -25,6 +26,7 @@ function makePieces() {
  */
 export function CelebrationLayer() {
   const reduceMotion = useApp((s) => s.settings.reduceMotion)
+  const sound = useApp((s) => s.settings.sound !== false)
   const [bursts, setBursts] = useState<Burst[]>([])
 
   useEffect(() => {
@@ -32,11 +34,12 @@ export function CelebrationLayer() {
     return onCelebrate(() => {
       const id = Date.now() + Math.random()
       setBursts((prev) => [...prev, { id, pieces: makePieces() }])
+      if (sound) playFinish()
       window.setTimeout(() => {
         setBursts((prev) => prev.filter((burst) => burst.id !== id))
       }, 2600)
     })
-  }, [reduceMotion])
+  }, [reduceMotion, sound])
 
   const show = useMemo(() => bursts.length > 0, [bursts])
 

@@ -17,8 +17,9 @@ import type {
   VaultEntry,
 } from '@/types'
 import { dayKeyOffset, todayKey, uid, weekKey } from '@/lib/utils'
+import { celebrate } from '@/lib/celebrate'
 import { riddleForDate } from '@/data/riddles'
-import { giftStickers } from '@/data/kids'
+import { giftStickers, type KidSticker } from '@/data/kids'
 import { useUI } from './useUI'
 import { providerFor } from '@/lib/providers'
 import type { OfficialBook } from '@/data/officialBooks'
@@ -184,7 +185,7 @@ export interface AppState {
   setExamDate: (subject: string, date: string) => void
   claimKidsGift: () => string | null
   recordPractice: () => number
-  claimPractice: () => number | null
+  claimPractice: () => { xp: number; sticker: KidSticker } | null
   setLessonStep: (key: string, step: number) => void
   completeLesson: (key: string) => void
   openLessonChest: (key: string) => { stars: number; sticker?: string } | null
@@ -350,6 +351,7 @@ export const useApp = create<AppState>()(
           lastSeen: Date.now(),
         })
 
+        if (after > before) celebrate()
         if (after > before && !silent) {
           useUI.getState().pushToast({
             title: `Level ${after} unlocked!`,
@@ -685,10 +687,15 @@ export const useApp = create<AppState>()(
         const week = weekKey()
         if (state.practiceClaimed[week]) return null
         if ((state.practiceWeeks[week] || 0) < 3) return null
-        set({ practiceClaimed: { ...state.practiceClaimed, [week]: true } })
+        const owned = new Set(state.kidsStickers)
+        const pool = giftStickers.filter((sticker) => !owned.has(sticker.id))
+        const sticker = (pool.length ? pool : giftStickers)[Math.floor(Math.random() * (pool.length || giftStickers.length))]
+        set({
+          practiceClaimed: { ...state.practiceClaimed, [week]: true },
+          kidsStickers: [...new Set([...state.kidsStickers, sticker.id])],
+        })
         state.addXP(15, true)
-        useUI.getState().pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: 15 })
-        return 15
+        return { xp: 15, sticker }
       },
 
       claimKidsGift: () => {

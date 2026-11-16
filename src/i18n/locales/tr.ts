@@ -1,6 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "New sticker: {name} {emoji}": "Yeni çıkartma: {name} {emoji}",
+
   "You are on fire today!": "Bugün harikasın!",
   "That was quick and clean!": "Hızlı ve temiz!",
   "Your buddy is proud of you!": "Arkadaşın seninle gurur duyuyor!",

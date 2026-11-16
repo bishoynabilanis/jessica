@@ -13,6 +13,7 @@ import {
   Target,
   Zap,
 } from 'lucide-react'
+import { celebrate } from '@/lib/celebrate'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar } from '@/components/ui/Card'
@@ -117,6 +118,18 @@ export function Certificate() {
   const record = scanned || own
   const id = certificateId(record)
   const earned = scanned ? true : units > 0 || xp >= 200
+
+  useEffect(() => {
+    if (!earned) return
+    const key = 'jessica-cert-celebrated'
+    try {
+      if (localStorage.getItem(key)) return
+      localStorage.setItem(key, '1')
+    } catch {
+      /* private mode: still celebrate once per visit */
+    }
+    celebrate()
+  }, [earned])
 
   const link = `${APP_URL}#/certificate?v=${base64url(JSON.stringify({ ...own, d: dateISO }))}`
 

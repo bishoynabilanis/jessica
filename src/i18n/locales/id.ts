@@ -1,6 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "New sticker: {name} {emoji}": "Stiker baru: {name} {emoji}",
+
   "You are on fire today!": "Kamu hebat hari ini!",
   "That was quick and clean!": "Cepat dan bersih!",
   "Your buddy is proud of you!": "Temanmu bangga padamu!",

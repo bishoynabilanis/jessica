@@ -1,6 +1,8 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "New sticker: {name} {emoji}": "Neuer Sticker: {name} {emoji}",
+
   "You are on fire today!": "Du bist heute in Topform!",
   "That was quick and clean!": "Schnell und sauber!",
   "Your buddy is proud of you!": "Dein Freund ist stolz auf dich!",

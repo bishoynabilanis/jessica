@@ -29,7 +29,12 @@ export function KidsHome() {
     const reward = claimPractice()
     if (reward) {
       celebrate()
-      pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: reward })
+      pushToast({
+        title: tr('Weekly challenge done! +15 stars'),
+        description: tr('New sticker: {name} {emoji}', { name: tr(reward.sticker.label), emoji: reward.sticker.emoji }),
+        type: 'xp',
+        xp: reward.xp,
+      })
     }
   }
   const [giftOpen, setGiftOpen] = useState(false)
