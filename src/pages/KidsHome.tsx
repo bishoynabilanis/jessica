@@ -117,7 +117,7 @@ export function KidsHome() {
             </span>
             <h1 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-ink-950 sm:text-4xl">
               {name ? tr('Hi {name}!', { name: firstName(name) }) : tr('Hi there!')}{' '}
-              <span className="block text-transparent [background:linear-gradient(100deg,#0284c7,#08c9b1,#8b5cf6)] [-webkit-background-clip:text] [background-clip:text]">
+              <span className="text-gradient-dark block">
                 {tr('Let’s learn and play')}
               </span>
             </h1>
