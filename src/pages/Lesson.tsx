@@ -13,6 +13,7 @@ import {
   Clock3,
   GraduationCap,
   Layers,
+  Play,
   RotateCcw,
   Sparkles,
   Target,
@@ -25,6 +26,8 @@ import { useUI } from '@/store/useUI'
 import { allCards, getQuizzes, putCards } from '@/lib/db'
 import { openChapter } from '@/lib/library'
 import { clozeQuiz, keyTerms, objectivesOf } from '@/lib/lesson'
+import { levelLabel } from '@/lib/curriculum'
+import { lessonVideoUrl } from '@/lib/youtube'
 import { newCard } from '@/lib/srs'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar, Spinner } from '@/components/ui/Card'
@@ -58,6 +61,7 @@ export function Lesson() {
   const navigate = useNavigate()
 
   const customBooks = useApp((s) => s.customBooks)
+  const settings = useApp((s) => s.settings)
   const lessonProgress = useApp((s) => s.lessonProgress)
   const completedTopics = useApp((s) => s.completedTopics)
   const unitMastery = useApp((s) => s.unitMastery)
@@ -263,7 +267,23 @@ export function Lesson() {
       <Card className="overflow-hidden p-0">
         <div className="border-b border-line bg-gradient-to-r from-violet-neon/15 via-card to-aurora-400/10 px-4 py-3">
           <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-violet-glow">{book.title}</p>
-          <h1 className="mt-0.5 font-display text-lg font-extrabold text-main">{unit.title}</h1>
+          <div className="mt-0.5 flex flex-wrap items-center justify-between gap-2">
+            <h1 className="font-display text-lg font-extrabold text-main">{unit.title}</h1>
+            <a
+              href={lessonVideoUrl({
+                title: unit.title,
+                subject: book.subject,
+                book: book.title,
+                grade: levelLabel(settings.gradeLevel, settings.curriculum),
+              })}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="lesson-video"
+              className="inline-flex items-center gap-1 rounded-full border border-line bg-white/5 px-2.5 py-1 text-[10px] font-extrabold text-muted transition hover:border-aurora-400/40 hover:text-main"
+            >
+              <Play className="h-3 w-3" /> {tr('Watch a video explanation')}
+            </a>
+          </div>
 
           <div className="mt-3 flex items-center gap-1">
             {STEPS.slice(0, 4).map((item, itemIndex) => (

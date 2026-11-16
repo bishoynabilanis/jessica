@@ -1,6 +1,9 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "Informatique",
+  "Watch a video explanation": "Voir une explication vidéo",
+
 
   "AI is ready on this device": "L’IA est prête sur cet appareil",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Le modèle hors ligne est chargé : le chat et les explications marchent sans internet ni clé.",

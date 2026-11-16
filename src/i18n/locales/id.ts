@@ -1,6 +1,9 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "Informatika",
+  "Watch a video explanation": "Tonton penjelasan video",
+
 
   "AI is ready on this device": "AI siap di perangkat ini",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Model offline sudah dimuat, jadi obrolan dan penjelasan berjalan tanpa internet dan tanpa kunci.",

@@ -1,6 +1,9 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "Bilişim",
+  "Watch a video explanation": "Video anlatımı izle",
+
 
   "AI is ready on this device": "Yapay zekâ bu cihazda hazır",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Çevrimdışı model yüklü: sohbet ve açıklamalar internetsiz ve anahtarsız çalışıyor.",

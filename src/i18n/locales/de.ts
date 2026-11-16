@@ -1,6 +1,9 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "Informatik",
+  "Watch a video explanation": "Videoerklärung ansehen",
+
 
   "AI is ready on this device": "Die KI ist auf diesem Gerät bereit",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Das Offline-Modell ist geladen: Chat und Erklärungen laufen ohne Internet und ohne Schlüssel.",

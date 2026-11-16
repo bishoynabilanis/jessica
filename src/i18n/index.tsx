@@ -14,6 +14,9 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "الحاسب الآلي",
+  "Watch a video explanation": "شوف شرح بالفيديو",
+
 
   "AI is ready on this device": "الذكاء الاصطناعي جاهز على الجهاز",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "الموديل الأوفلاين محمّل، فالشات والشرح بيشتغلوا بدون نت وبدون مفتاح.",

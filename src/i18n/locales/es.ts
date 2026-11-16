@@ -1,6 +1,9 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "ICT": "Informática",
+  "Watch a video explanation": "Ver una explicación en vídeo",
+
 
   "AI is ready on this device": "La IA está lista en este dispositivo",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "El modelo sin conexión está cargado: el chat y las explicaciones funcionan sin internet ni clave.",

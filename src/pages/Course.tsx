@@ -29,6 +29,7 @@ import { buildCourse, lessonLink } from '@/lib/course'
 import { openChapter } from '@/lib/library'
 import { detectUnits } from '@/lib/units'
 import { levelLabel } from '@/lib/curriculum'
+import { lessonVideoUrl } from '@/lib/youtube'
 import { cn } from '@/lib/utils'
 import { num, tr } from '@/i18n'
 
@@ -219,6 +220,20 @@ export function Course() {
               <BookOpen className="h-4 w-4" /> {tr('Open the book')}
             </Button>
           </Link>
+          <a
+            href={lessonVideoUrl({
+              title: course.next?.unit.title || book.title,
+              subject: book.subject,
+              book: book.title,
+              grade: levelLabel(gradeLevel, curriculum),
+            })}
+            target="_blank"
+            rel="noreferrer"
+            data-testid="course-video"
+            className="inline-flex items-center gap-2 rounded-2xl border border-line bg-white/5 px-4 py-2.5 text-[12px] font-extrabold text-muted transition hover:border-aurora-400/40 hover:text-main"
+          >
+            <Play className="h-4 w-4" /> {tr('Watch a video explanation')}
+          </a>
           {genericUnits && (
             <Button size="md" variant="ghost" onClick={rescan} loading={rescanning}>
               <RefreshCw className="h-4 w-4" /> {tr('Re-scan chapters')}

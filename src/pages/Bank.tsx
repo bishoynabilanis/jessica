@@ -420,7 +420,7 @@ export function Bank() {
       {phase === 'intro' && (
         <Card className="p-5">
           <p className="label text-aurora-300">{tr('Choose a subject')}</p>
-          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
             {BANK_SUBJECTS.map((item) => (
               <button
                 key={item}

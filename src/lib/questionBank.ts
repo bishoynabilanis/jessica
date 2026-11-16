@@ -7,7 +7,7 @@ import { placementTest } from '@/lib/placement'
  * network or AI key. This is the app's answer to a printed question book.
  */
 
-export type BankSubject = 'Mathematics' | 'Science' | 'English' | 'Arabic'
+export type BankSubject = 'Mathematics' | 'Science' | 'English' | 'Arabic' | 'Social Studies' | 'ICT'
 
 export interface BankQuestion {
   id: string
@@ -425,6 +425,187 @@ function rawFor(subject: BankSubject): Raw[] {
 }
 
 /** Build a drill: no duplicate prompts, four options each, answers explained. */
+
+/* ---------------------- Concept subjects (text options) ------------------- */
+
+interface TextItem {
+  skill: string
+  prompt: string
+  correct: string
+  wrongs: [string, string, string]
+  why: string
+}
+
+const SOCIAL_STUDIES: TextItem[] = [
+  {
+    skill: 'جغرافيا مصر',
+    prompt: 'النيل بيصب في أي بحر؟',
+    correct: 'البحر المتوسط',
+    wrongs: ['البحر الأحمر', 'البحر العربي', 'خليج السويس'],
+    why: 'فرعا النيل (دمياط ورشيد) بيصبو في البحر المتوسط شمال مصر.',
+  },
+  {
+    skill: 'جغرافيا مصر',
+    prompt: 'أطول نهر في مصر والعالم القديم؟',
+    correct: 'النيل',
+    wrongs: ['الفرات', 'دجلة', 'الأمازون'],
+    why: 'النيل أطول نهر بيمر في مصر، وبيعتمد عليه أكثر من ٩٠٪ من مية الشرب والزراعة.',
+  },
+  {
+    skill: 'جغرافيا مصر',
+    prompt: 'قناة السويس بتربط بين أي بحرين؟',
+    correct: 'المتوسط والأحمر',
+    wrongs: ['الأحمر والعربي', 'المتوسط والأسود', 'الأسود وقزوين'],
+    why: 'قناة السويس بتوصل البحر المتوسط بالبحر الأحمر، وبتقصّر طريق الملاحة بين أوروبا وآسيا.',
+  },
+  {
+    skill: 'محافظات',
+    prompt: 'عاصمة محافظة الإسكندرية هي؟',
+    correct: 'الإسكندرية',
+    wrongs: ['دمنهور', 'طنطا', 'كفر الشيخ'],
+    why: 'الإسكندرية هي العاصمة، ودمنهور عاصمة البحيرة وطنطا عاصمة الغربية.',
+  },
+  {
+    skill: 'تاريخ مصر',
+    prompt: 'مين اللي بنى الهرم الأكبر في الجيزة؟',
+    correct: 'خوفو',
+    wrongs: ['خفرع', 'منقرع', 'سنفرو'],
+    why: 'الهرم الأكبر بناه الملك خوفو من الأسرة الرابعة، وده اللي بنسميه الهرم الأكبر.',
+  },
+  {
+    skill: 'تاريخ مصر',
+    prompt: 'الحضارة اللي قامت على ضفاف النيل في الجنوب هي؟',
+    correct: 'الحضارة المصرية القديمة',
+    wrongs: ['الحضارة الرومانية', 'الحضارة الفينيقية', 'الحضارة الفارسية'],
+    why: 'الحضارة المصرية القديمة قامت على النيل، واعتمدت على الفيضان في الزراعة.',
+  },
+  {
+    skill: 'اقتصاد',
+    prompt: 'أشهر محصول زراعي مصري بيتبني عليه الاقتصاد زمان؟',
+    correct: 'القطن',
+    wrongs: ['البن', 'الكاكاو', 'الشاي'],
+    why: 'القطن المصري طويل التيلة واشتهر عالميًا، وكان أهم صادرات مصر لفترة طويلة.',
+  },
+  {
+    skill: 'مناخ',
+    prompt: 'أمطار مصر معظمها بتيجي في أي فصل؟',
+    correct: 'الشتاء',
+    wrongs: ['الصيف', 'الربيع', 'الخريف'],
+    why: 'مصر مناخها صحراوي، وأمطارها قليلة وبتتركز على السواحل في الشتاء.',
+  },
+  {
+    skill: 'مواطنة',
+    prompt: 'السلطة اللي بتسن القوانين في مصر هي؟',
+    correct: 'مجلس النواب',
+    wrongs: ['مجلس الوزراء', 'المحكمة الدستورية', 'مجلس الشيوخ'],
+    why: 'مجلس النواب هو اللي بيوافق على القوانين، والحكومة بتنفّذها والقضاء بيتحقق منها.',
+  },
+  {
+    skill: 'جغرافيا العالم',
+    prompt: 'أكبر قارة في المساحة هي؟',
+    correct: 'آسيا',
+    wrongs: ['أفريقيا', 'أوروبا', 'أمريكا الشمالية'],
+    why: 'آسيا أكبر قارة مساحة وسكانًا، وأفريقيا التانية مساحة.',
+  },
+  {
+    skill: 'جغرافيا مصر',
+    prompt: 'الصحراء اللي فيها واحة سيوة هي؟',
+    correct: 'الصحراء الغربية',
+    wrongs: ['الصحراء الشرقية', 'سيناء', 'الدلتا'],
+    why: 'سيوة في الصحراء الغربية، وغربها ليبيا.',
+  },
+  {
+    skill: 'خرائط',
+    prompt: 'الاتجاه اللي بتشرق منه الشمس على مصر هو؟',
+    correct: 'الشرق',
+    wrongs: ['الغرب', 'الشمال', 'الجنوب'],
+    why: 'الشمس بتشرق من الشرق وتغرب في الغرب، وعشان كده سيناء شرق مصر.',
+  },
+]
+
+const ICT: TextItem[] = [
+  {
+    skill: 'مكونات الكمبيوتر',
+    prompt: 'الذاكرة المؤقتة اللي بتضيع لما نقفل الجهاز اسمها؟',
+    correct: 'RAM',
+    wrongs: ['ROM', 'SSD', 'CPU'],
+    why: 'RAM ذاكرة عشوائية مؤقتة، بتتمسح مع إغلاق الجهاز، وROM دائمة.',
+  },
+  {
+    skill: 'مكونات الكمبيوتر',
+    prompt: 'العقل اللي بينفّذ الأوامر في الكمبيوتر هو؟',
+    correct: 'المعالج (CPU)',
+    wrongs: ['الذاكرة (RAM)', 'الشاشة', 'الهارد'],
+    why: 'المعالج بينفّذ التعليمات ويعمل العمليات الحسابية والمنطقية.',
+  },
+  {
+    skill: 'ملفات',
+    prompt: 'امتداد ملف صورة شفاف الخلفية هو؟',
+    correct: '.png',
+    wrongs: ['.docx', '.mp3', '.exe'],
+    why: 'PNG بيدعم الشفافية، أما DOCX مستند نصي وMP3 صوت وEXE برنامج.',
+  },
+  {
+    skill: 'إنترنت',
+    prompt: 'علامة لازم تكون في أي بريد إلكتروني صحيح؟',
+    correct: '@',
+    wrongs: ['#', '&', '*'],
+    why: 'الإيميل بيتكتب باسم المستخدم ثم @ ثم اسم النطاق، زي name@site.com.',
+  },
+  {
+    skill: 'أمان',
+    prompt: 'كلمة السر القوية لازم تكون؟',
+    correct: 'طويلة وفيها حروف وأرقام ورموز',
+    wrongs: ['اسمك وتاريخ ميلادك', 'كلمة واحدة سهلة', 'نفس كلمة السر في كل حاجة'],
+    why: 'الطول والتنويع بيصعّبوا التخمين، وتكرار نفس الكلمة خطر لو موقع اتخترق.',
+  },
+  {
+    skill: 'برامج',
+    prompt: 'البرنامج اللي بيفتح صفحات الويب اسمه؟',
+    correct: 'متصفح (Browser)',
+    wrongs: ['محرر نصوص', 'مشغل فيديو', 'برنامج ضغط'],
+    why: 'المتصفح زي Chrome وEdge بيفتح صفحات الويب ويعرضها.',
+  },
+  {
+    skill: 'ملفات',
+    prompt: 'عشان نحفظ نسخة من ملف باسم تاني بنستخدم؟',
+    correct: 'Save As',
+    wrongs: ['Print', 'Undo', 'Close'],
+    why: 'Save As بيحفظ نسخة باسم أو مكان جديد من غير ما نغيّر الأصل.',
+  },
+  {
+    skill: 'أمان',
+    prompt: 'الفيروس برنامج؟',
+    correct: 'ضار بيضر الجهاز والملفات',
+    wrongs: ['بيسرّع الجهاز', 'بينضّف الملفات', 'بيزوّد مساحة الهارد'],
+    why: 'الفيروس برنامج خبيث بيكرر نفسه ويضر الملفات، وبنحمي الجهاز بمكافح فيروسات.',
+  },
+]
+
+const TEXT_BANKS: Partial<Record<BankSubject, TextItem[]>> = {
+  'Social Studies': SOCIAL_STUDIES,
+  ICT,
+}
+
+function buildTextDrill(subject: BankSubject, count: number): BankQuestion[] {
+  const pool = TEXT_BANKS[subject] || []
+  if (!pool.length) return []
+  const wanted = Math.min(count, pool.length)
+  const picks = seededShuffle([...pool], `${subject}-${Date.now()}`).slice(0, wanted)
+  return picks.map((item, index) => {
+    const options = seededShuffle([item.correct, ...item.wrongs], `${item.prompt}-${index}`)
+    return {
+      id: `${subject}-${index}`,
+      subject,
+      skill: item.skill,
+      prompt: item.prompt,
+      options,
+      answer: options.indexOf(item.correct),
+      explanation: item.why,
+    }
+  })
+}
+
 export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10): BankQuestion[] {
   // Math questions already ship four options with an explanation.
   if (subject === 'Mathematics') {
@@ -438,6 +619,8 @@ export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10):
       explanation: question.why,
     }))
   }
+
+  if (subject === 'Social Studies' || subject === 'ICT') return buildTextDrill(subject, count)
 
   const seen = new Set<string>()
   const questions: BankQuestion[] = []
@@ -454,7 +637,7 @@ export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10):
   return questions
 }
 
-export const BANK_SUBJECTS: BankSubject[] = ['Mathematics', 'Science', 'English', 'Arabic']
+export const BANK_SUBJECTS: BankSubject[] = ['Mathematics', 'Science', 'English', 'Arabic', 'Social Studies', 'ICT']
 
 /* ------------------------------- Skill focus ------------------------------ */
 
@@ -463,6 +646,8 @@ const SUBJECT_PATTERNS: Array<[RegExp, BankSubject]> = [
   [/science|علوم/i, 'Science'],
   [/english|إنجليز|انجليز/i, 'English'],
   [/arabic|عربي|عربى/i, 'Arabic'],
+  [/social|دراسات|اجتماع/i, 'Social Studies'],
+  [/ict|كمبيوتر|حاسب|computer/i, 'ICT'],
 ]
 
 /** The four bank subjects are the app's subjects, spelled several ways elsewhere. */
