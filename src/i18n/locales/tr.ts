@@ -1,6 +1,14 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "Yapay zekâ iki ücretsiz şeyden birine ihtiyaç duyar: ayarlardan çevrimdışı modeli indir ya da Gemini anahtarını ekle.",
+  "Want the AI to work? Two free ways.": "Yapay zekâ çalışsın mı? İki ücretsiz yol.",
+  "Either of these is free, and both stay on your device.": "İkisi de ücretsiz ve cihazında kalır.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "Çevrimdışı modeli bir kez indir (~1,8 GB) ve yapay zekâ burada internetsiz çalışsın.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "Ya da Google AI Studio’dan ücretsiz bir Gemini anahtarı ekle — istediğinde silebilirsin.",
+  "Not now": "Şimdi değil",
+  "Free and no key needed: one download (~{size} GB).": "Ücretsiz ve anahtarsız: bir indirme (~{size} GB).",
+
   "AI: cloud or offline?": "Yapay zekâ: bulut mu, çevrimdışı mı?",
   "Cloud mode": "Bulut modu",
   "Offline on your device": "Cihazında çevrimdışı",

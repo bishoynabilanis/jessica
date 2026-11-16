@@ -1,6 +1,14 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "L’IA a besoin d’une de ces deux choses gratuites : télécharge le modèle hors ligne dans les réglages, ou ajoute ta clé Gemini.",
+  "Want the AI to work? Two free ways.": "Tu veux que l’IA marche ? Deux façons gratuites.",
+  "Either of these is free, and both stay on your device.": "Les deux sont gratuites et restent sur ton appareil.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "Télécharge le modèle hors ligne une fois (~1,8 Go) et l’IA tourne ici sans internet.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "Ou ajoute une clé Gemini gratuite depuis Google AI Studio — tu peux la supprimer à tout moment.",
+  "Not now": "Pas maintenant",
+  "Free and no key needed: one download (~{size} GB).": "Gratuit et sans clé : un téléchargement (~{size} Go).",
+
   "AI: cloud or offline?": "IA : cloud ou hors ligne ?",
   "Cloud mode": "Mode cloud",
   "Offline on your device": "Hors ligne sur ton appareil",

@@ -4,6 +4,8 @@ import { tr } from '@/i18n'
 import { useApp } from '@/store/useApp'
 import { GEMINI_MODELS as GEMINI_MODEL_LIST, providerFor, type ProviderModel } from './providers'
 import { proxyGenerate } from './ai/proxy'
+import { proxyConfigured } from './ai/config'
+import { notifyAiNeed } from './ai/setup'
 import { offlineGenerate, offlineReady } from './ai/offline'
 import { extractJson } from './ai/json'
 
@@ -411,11 +413,16 @@ async function anthropicStream(opts: GenerateOptions): Promise<string> {
 
 export async function generateText(opts: GenerateOptions): Promise<string> {
   const settings = useApp.getState().settings
-  if (settings.aiMode === 'offline') {
+  const wantsOffline = settings.aiMode === 'offline'
+  const hasKey = Boolean(keyFor(opts))
+
+  async function runOffline(): Promise<string> {
     if (hasImage(opts.parts)) {
+      notifyAiNeed('setup')
       throw new GeminiError(tr('Reading images needs cloud mode. Switch to cloud or add your key in settings.'), 0)
     }
     if (!offlineReady()) {
+      notifyAiNeed('setup')
       throw new GeminiError(tr('The offline model is not loaded. Download it from settings first (~1.8 GB).'), 0)
     }
     const text = await offlineGenerate(promptText(opts), {
@@ -426,7 +433,19 @@ export async function generateText(opts: GenerateOptions): Promise<string> {
     opts.onChunk?.(text)
     return text
   }
-  if (!keyFor(opts)) return proxyGenerate(opts)
+
+  // With no key the device model is the default: nobody has to bring a key.
+  if (!hasKey) {
+    if (wantsOffline || offlineReady()) return runOffline()
+    if (proxyConfigured()) return proxyGenerate(opts)
+    notifyAiNeed('setup')
+    throw new GeminiError(
+      tr('The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.'),
+      0,
+    )
+  }
+
+  if (wantsOffline) return runOffline()
   const provider = currentProvider()
   if (provider === 'gemini') return geminiGenerate(opts)
   if (provider === 'anthropic') return anthropicGenerate(opts)

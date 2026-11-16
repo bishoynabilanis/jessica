@@ -1,5 +1,6 @@
 import { PROXY_ENDPOINT_URL, proxyConfigured } from './config'
-import { consumeTrial, notifyTrialLimit, trialRemaining } from './trial'
+import { consumeTrial, trialRemaining } from './trial'
+import { notifyAiNeed } from './setup'
 import type { GenerateOptions, Part } from '@/lib/gemini'
 
 /**
@@ -28,7 +29,7 @@ export async function proxyGenerate(opts: Omit<GenerateOptions, 'apiKey'>): Prom
   if (!proxyConfigured()) throw new ProxyUnavailableError()
 
   if (trialRemaining() <= 0) {
-    notifyTrialLimit()
+    notifyAiNeed('limit')
     throw new TrialLimitError()
   }
 
@@ -57,7 +58,7 @@ export async function proxyGenerate(opts: Omit<GenerateOptions, 'apiKey'>): Prom
   }
 
   if (response.status === 429) {
-    notifyTrialLimit()
+    notifyAiNeed('limit')
     throw new TrialLimitError()
   }
 

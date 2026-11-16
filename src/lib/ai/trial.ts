@@ -2,9 +2,6 @@ import { TRIAL_ACTIONS_PER_DAY } from './config'
 
 const KEY = 'jessica-ai-trial-v1'
 
-type Listener = () => void
-const listeners = new Set<Listener>()
-
 interface TrialState {
   date: string
   used: number
@@ -50,15 +47,4 @@ export function consumeTrial(): boolean {
   if (state.used >= TRIAL_ACTIONS_PER_DAY) return false
   write({ date: state.date, used: state.used + 1 })
   return true
-}
-
-export function onTrialLimit(listener: Listener) {
-  listeners.add(listener)
-  return () => {
-    listeners.delete(listener)
-  }
-}
-
-export function notifyTrialLimit() {
-  for (const listener of listeners) listener()
 }

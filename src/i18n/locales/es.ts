@@ -1,6 +1,14 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "La IA necesita una de dos cosas gratis: descarga el modelo sin conexión en los ajustes o añade tu clave Gemini.",
+  "Want the AI to work? Two free ways.": "¿Quieres que la IA funcione? Dos formas gratis.",
+  "Either of these is free, and both stay on your device.": "Las dos son gratis y se quedan en tu dispositivo.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "Descarga el modelo sin conexión una vez (~1,8 GB) y la IA corre aquí sin internet.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "O añade una clave Gemini gratis desde Google AI Studio: puedes borrarla cuando quieras.",
+  "Not now": "Ahora no",
+  "Free and no key needed: one download (~{size} GB).": "Gratis y sin clave: una descarga (~{size} GB).",
+
   "AI: cloud or offline?": "IA: ¿nube o sin conexión?",
   "Cloud mode": "Modo nube",
   "Offline on your device": "Sin conexión en tu dispositivo",

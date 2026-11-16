@@ -14,6 +14,14 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "الذكاء الاصطناعي محتاج حاجة من اتنين مجانًا: نزّل موديل الأوفلاين من الإعدادات، أو حط مفتاح Gemini بتاعك.",
+  "Want the AI to work? Two free ways.": "عايز الذكاء الاصطناعي يشتغل؟ طريقتين مجانيين.",
+  "Either of these is free, and both stay on your device.": "الاتنين مجانيين، والاتنين بيتفضلوا على جهازك.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "نزّل موديل الأوفلاين مرة واحدة (~1.8 جيجا) والذكاء الاصطناعي هيشتغل هنا بدون نت.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "أو حط مفتاح Gemini مجاني من Google AI Studio — وتقدر تمسحه في أي وقت.",
+  "Not now": "مش دلوقتي",
+  "Free and no key needed: one download (~{size} GB).": "مجاني وبدون مفتاح: تحميل واحد (~{size} جيجا).",
+
   "AI: cloud or offline?": "الذكاء الاصطناعي: سحابي ولا أوفلاين؟",
   "Cloud mode": "الوضع السحابي",
   "Offline on your device": "أوفلاين على جهازك",

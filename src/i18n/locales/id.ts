@@ -1,6 +1,14 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "AI butuh salah satu dari dua hal gratis: unduh model offline di pengaturan, atau tambahkan kunci Gemini-mu.",
+  "Want the AI to work? Two free ways.": "Ingin AI berjalan? Dua cara gratis.",
+  "Either of these is free, and both stay on your device.": "Keduanya gratis dan tetap di perangkatmu.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "Unduh model offline sekali (~1,8 GB) dan AI berjalan di sini tanpa internet.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "Atau tambahkan kunci Gemini gratis dari Google AI Studio — bisa kamu hapus kapan saja.",
+  "Not now": "Nanti saja",
+  "Free and no key needed: one download (~{size} GB).": "Gratis dan tanpa kunci: satu unduhan (~{size} GB).",
+
   "AI: cloud or offline?": "AI: cloud atau offline?",
   "Cloud mode": "Mode cloud",
   "Offline on your device": "Offline di perangkatmu",

@@ -1,6 +1,14 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "Die KI braucht eines von zwei kostenlosen Dingen: lade das Offline-Modell in den Einstellungen oder trage deinen Gemini-Schlüssel ein.",
+  "Want the AI to work? Two free ways.": "Soll die KI laufen? Zwei kostenlose Wege.",
+  "Either of these is free, and both stay on your device.": "Beides ist kostenlos und bleibt auf deinem Gerät.",
+  "Download the offline model once (~1.8 GB) and the AI runs here with no internet.": "Lade das Offline-Modell einmal (~1,8 GB) und die KI läuft hier ohne Internet.",
+  "Or add a free Gemini key from Google AI Studio — you can delete it any time.": "Oder trage einen kostenlosen Gemini-Schlüssel von Google AI Studio ein — du kannst ihn jederzeit löschen.",
+  "Not now": "Jetzt nicht",
+  "Free and no key needed: one download (~{size} GB).": "Kostenlos und ohne Schlüssel: ein Download (~{size} GB).",
+
   "AI: cloud or offline?": "KI: Cloud oder offline?",
   "Cloud mode": "Cloud-Modus",
   "Offline on your device": "Offline auf deinem Gerät",

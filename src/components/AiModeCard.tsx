@@ -101,7 +101,9 @@ export function AiModeCard() {
             <Cpu className="h-3.5 w-3.5" /> {tr('Offline on your device')}
           </span>
           <span className="mt-1 block text-[10px] leading-relaxed text-muted">
-            {ready ? tr('Ready — works without internet.') : tr('One download needed (~{size} GB).', { size: String(OFFLINE_MODEL_SIZE_GB) })}
+            {ready
+              ? tr('Ready — works without internet.')
+              : tr('Free and no key needed: one download (~{size} GB).', { size: String(OFFLINE_MODEL_SIZE_GB) })}
           </span>
         </button>
       </div>

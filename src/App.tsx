@@ -5,7 +5,7 @@ import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
 import { RouteMemory } from '@/components/RouteMemory'
 import { CelebrationLayer } from '@/components/Celebration'
-import { TrialLimitModal } from '@/components/TrialLimitModal'
+import { AiNeedModal } from '@/components/AiNeedModal'
 import { SetupGate } from '@/components/SetupGate'
 import { TermsGate } from '@/components/TermsGate'
 import { TERMS_VERSION } from '@/data/terms'
@@ -208,7 +208,7 @@ export default function App() {
     <HashRouter>
       <RouteMemory />
       <CelebrationLayer />
-      <TrialLimitModal />
+      <AiNeedModal />
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route element={<AppShell />}>
