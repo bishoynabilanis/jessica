@@ -1,6 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Hey! I am Jessica. Let us study your lesson together, step by step.": "Salut ! Je suis Jessica. Révisons ta leçon ensemble, étape par étape.",
+
   "Voice on this device: {name}": "Voix sur cet appareil : {name}",
   "No matching voice is installed on this device yet.": "Aucune voix correspondante n’est installée sur cet appareil.",
   "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "Aucune voix égyptienne trouvée — l’app utilise la voix arabe la plus proche. Installe-en une depuis les réglages du système.",

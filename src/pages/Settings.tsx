@@ -685,7 +685,14 @@ export function Settings() {
                 size="sm"
                 variant="secondary"
                 className="mt-1.5"
-                onClick={() => speak(tr('This is how Jessica sounds on your device.'), settings.language)}
+                onClick={() =>
+                  speak(
+                    settings.language === 'ar'
+                      ? tr('Hey! I am Jessica. Let us study your lesson together, step by step.')
+                      : tr('This is how Jessica sounds on your device.'),
+                    settings.language,
+                  )
+                }
               >
                 <Volume2 className="h-3.5 w-3.5" /> {tr('Test the voice')}
               </Button>

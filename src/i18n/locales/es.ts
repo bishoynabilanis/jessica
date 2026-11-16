@@ -1,6 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Hey! I am Jessica. Let us study your lesson together, step by step.": "¡Hola! Soy Jessica. Estudiemos tu lección juntos, paso a paso.",
+
   "Voice on this device: {name}": "Voz en este dispositivo: {name}",
   "No matching voice is installed on this device yet.": "No hay ninguna voz compatible instalada en este dispositivo.",
   "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "No se encontró una voz egipcia: la app usa la voz árabe más cercana. Instala una desde los ajustes del sistema.",

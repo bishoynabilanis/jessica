@@ -1,6 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Hey! I am Jessica. Let us study your lesson together, step by step.": "Merhaba! Ben Jessica. Dersini adım adım birlikte çalışalım.",
+
   "Voice on this device: {name}": "Bu cihazdaki ses: {name}",
   "No matching voice is installed on this device yet.": "Bu cihazda uygun bir ses yüklü değil.",
   "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "Mısır sesi bulunamadı — uygulama en yakın Arapça sesi kullanıyor. Gerçek Mısır aksanı için sistem ayarlarından bir tane yükle.",
