@@ -181,12 +181,13 @@ export function useSpeech() {
   )
 
   const speak = useCallback(
-    (text: string, lang = 'en', opts?: { rate?: number; pitch?: number; onEnd?: () => void }) => {
+    (text: string, lang = 'en', opts?: { rate?: number; pitch?: number; engine?: 'device' | 'cloud'; onEnd?: () => void }) => {
       const clean = normalizeForSpeech(text)
       if (!clean) return
       const effective = detectSpeechLang(clean, lang)
       const settings = useApp.getState().settings
-      const wantsCloud = settings.voiceEngine === 'cloud' && isArabicText(clean) && !!geminiKey()
+      const engine = opts?.engine ?? settings.voiceEngine
+      const wantsCloud = engine === 'cloud' && isArabicText(clean) && !!geminiKey()
 
       requestRef.current += 1
       const requestId = requestRef.current

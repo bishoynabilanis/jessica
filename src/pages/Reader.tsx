@@ -41,6 +41,7 @@ import { ReaderStudio } from '@/components/reader/ReaderStudio'
 import { Modal } from '@/components/ui/Modal'
 import { useUI } from '@/store/useUI'
 import { speakable, useSpeech } from '@/lib/speech'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { ocrPdfPage } from '@/lib/ocr'
 import { tr } from '@/i18n'
 import { stageForGrade } from '@/lib/stage'
@@ -381,10 +382,13 @@ export function Reader() {
           </>
           )}
           {kids && (
-            <Button size="sm" variant="secondary" onClick={readAloud} disabled={!pageText}>
-              {speaking ? <StopCircle className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
-              <span className="hidden sm:inline">{speaking ? tr('Stop') : tr('Read to me')}</span>
-            </Button>
+            <>
+              <Button size="sm" variant="secondary" onClick={readAloud} disabled={!pageText}>
+                {speaking ? <StopCircle className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                <span className="hidden sm:inline">{speaking ? tr('Stop') : tr('Read to me')}</span>
+              </Button>
+              <ListenEgyptian text={speakable(pageText || '')} lang={book?.language || 'ar'} />
+            </>
           )}
           {!kids && (
           <button

@@ -1,6 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "Dengarkan dalam bahasa Mesir",
+
   "Device voice — free and offline": "Suara perangkat — gratis dan offline",
   "An Egyptian voice is installed here.": "Suara Mesir sudah terpasang di sini.",
   "Reads with the closest Arabic voice installed.": "Membaca dengan suara Arab terdekat yang terpasang.",

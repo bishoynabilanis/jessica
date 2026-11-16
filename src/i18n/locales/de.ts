@@ -1,6 +1,8 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "Ägyptisch anhören",
+
   "Device voice — free and offline": "Gerätestimme — kostenlos und offline",
   "An Egyptian voice is installed here.": "Hier ist eine ägyptische Stimme installiert.",
   "Reads with the closest Arabic voice installed.": "Liest mit der nächstgelegenen installierten arabischen Stimme.",

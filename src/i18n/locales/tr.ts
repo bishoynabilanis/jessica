@@ -1,6 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "Mısırca dinle",
+
   "Device voice — free and offline": "Cihaz sesi — ücretsiz ve çevrimdışı",
   "An Egyptian voice is installed here.": "Bu cihazda Mısır sesi yüklü.",
   "Reads with the closest Arabic voice installed.": "Yüklü en yakın Arapça sesle okur.",

@@ -14,6 +14,8 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "اسمع بالمصري",
+
   "Device voice — free and offline": "صوت الجهاز — مجاني وبدون إنترنت",
   "An Egyptian voice is installed here.": "فيه صوت مصري متسطّب على الجهاز ده.",
   "Reads with the closest Arabic voice installed.": "بيقرأ بأقرب صوت عربي متسطّب.",

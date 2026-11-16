@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-const seed = (geminiKey: string) => ({
+const seed = (geminiKey: string, mistakes: unknown[] = []) => ({
   state: {
     onboarded: true,
     acceptedTerms: 1,
@@ -14,7 +14,7 @@ const seed = (geminiKey: string) => ({
     customBooks: [{ id: 'b1', title: 'Maths', subject: 'Mathematics', grade: 7, term: 'Term 1', pageCount: 30, custom: true, units: [] }],
     completedTopics: [],
     skillStats: {},
-    mistakes: [],
+    mistakes,
     dailyLog: {},
     settings: {
       language: 'ar',
@@ -109,4 +109,38 @@ test('with a Gemini key the cloud panel offers the real Egyptian voices', async 
   await page.getByTestId('voice-cloud-select').selectOption('Kore')
   await page.reload()
   await expect(page.getByTestId('voice-cloud-select')).toHaveValue('Kore')
+})
+
+const arabicMistake = {
+  id: 'm_voice',
+  question: '٢ + ٢ = ؟',
+  options: ['٣', '٤', '٥', '٦'],
+  answer: 1,
+  chosen: 0,
+  explanation: '٢ + ٢ = ٤',
+  subject: 'Mathematics',
+  topic: 'الجمع',
+  createdAt: Date.now() - 5 * 86_400_000,
+}
+
+test('the notebook offers the Egyptian voice beside the explanation', async ({ page }) => {
+  await page.addInitScript((profile) => {
+    if (window.localStorage.getItem('jessica-profile-v1')) return
+    window.localStorage.setItem('jessica-profile-v1', JSON.stringify(profile))
+    window.localStorage.setItem('jessica-disclaimer-v1', '1')
+  }, seed('AIza-test-key', [arabicMistake]))
+
+  await page.goto('/#/mistakes')
+  await expect(page.getByTestId('listen-egyptian').first()).toBeVisible()
+})
+
+test('without a key the Egyptian button is not shown at all', async ({ page }) => {
+  await page.addInitScript((profile) => {
+    if (window.localStorage.getItem('jessica-profile-v1')) return
+    window.localStorage.setItem('jessica-profile-v1', JSON.stringify(profile))
+    window.localStorage.setItem('jessica-disclaimer-v1', '1')
+  }, seed('', [arabicMistake]))
+
+  await page.goto('/#/mistakes')
+  await expect(page.getByTestId('listen-egyptian')).toHaveCount(0)
 })

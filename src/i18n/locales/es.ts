@@ -1,6 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "Escuchar en egipcio",
+
   "Device voice — free and offline": "Voz del dispositivo: gratis y sin conexión",
   "An Egyptian voice is installed here.": "Aquí hay instalada una voz egipcia.",
   "Reads with the closest Arabic voice installed.": "Lee con la voz árabe más cercana instalada.",

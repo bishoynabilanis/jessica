@@ -1,6 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Listen in Egyptian": "Écouter en égyptien",
+
   "Device voice — free and offline": "Voix de l’appareil — gratuite et hors ligne",
   "An Egyptian voice is installed here.": "Une voix égyptienne est installée ici.",
   "Reads with the closest Arabic voice installed.": "Lit avec la voix arabe la plus proche installée.",

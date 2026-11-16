@@ -20,6 +20,7 @@ import { putCard } from '@/lib/db'
 import { newCard } from '@/lib/srs'
 import { PageHeader } from '@/components/common/PageHeader'
 import { QuizGame } from '@/components/tools/QuizGame'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState } from '@/components/ui/Card'
 import { cn } from '@/lib/utils'
@@ -364,6 +365,7 @@ Exactly 4 options. Explanation max 30 words. ${tr('Use the app language.')}`,
                   >
                     <Volume2 className="h-3.5 w-3.5" /> {speaking ? tr('Stop') : tr('Read explanation')}
                   </Button>
+                  <ListenEgyptian text={item.aiExplanation || item.explanation || ''} />
                   <Button size="sm" variant="ghost" onClick={() => makeCard(item.id)}>
                     <Brain className="h-3.5 w-3.5" /> {tr('Make a card')}
                   </Button>

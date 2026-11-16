@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { BookmarkPlus, Copy, Loader2, RefreshCw, Sparkles, StopCircle, Volume2 } from 'lucide-react'
 import type { Book, ChapterText } from '@/types'
 import { Button } from '@/components/ui/Button'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { Modal } from '@/components/ui/Modal'
 import { Markdown } from '@/components/Markdown'
 import { useRequireKey } from '@/components/common/KeyNotice'
@@ -132,6 +133,7 @@ export function UnitSummaryModal({
                 {speaking ? <StopCircle className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
                 {speaking ? tr('Stop') : tr('Listen')}
               </Button>
+              <ListenEgyptian text={speakable(summary)} lang={book.language} />
               <Button
                 size="sm"
                 variant="secondary"

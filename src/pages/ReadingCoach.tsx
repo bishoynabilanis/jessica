@@ -7,6 +7,7 @@ import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { useDictation, useSpeech } from '@/lib/speech'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { cn, pct } from '@/lib/utils'
 import { tr } from '@/i18n'
 
@@ -163,6 +164,7 @@ export function ReadingCoach() {
               <Button variant="secondary" onClick={() => speak(passage, book?.language || 'en')} disabled={!passage}>
                 <Volume2 className="h-4 w-4" /> {tr('Hear it first')}
               </Button>
+              <ListenEgyptian text={passage} lang={book?.language || 'ar'} />
               {!recording ? (
                 <Button onClick={start} disabled={!passage || !dictation.supported}>
                   <Mic className="h-4 w-4" /> {tr('Start reading')}
