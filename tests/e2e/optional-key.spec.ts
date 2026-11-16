@@ -57,17 +57,16 @@ test('the app opens without an API key when the learner chose to skip it', async
   await expect(page.locator('body')).toContainText('Tester')
 })
 
-test('the setup gate offers to continue without a key and then opens the app', async ({ page }) => {
+test('a missing key no longer blocks the app — the free trial takes over', async ({ page }) => {
   const payload = profile({})
   await page.addInitScript((data) => {
     window.localStorage.setItem('jessica-profile-v1', JSON.stringify(data))
     window.sessionStorage.setItem('jessica-counted-session', '1')
+    window.localStorage.setItem('jessica-disclaimer-v1', '1')
   }, payload)
 
   await page.goto('/#/')
-  const skip = page.getByRole('button', { name: 'Continue without a key' })
-  await expect(skip).toBeVisible()
-  await skip.click()
-
+  await expect(page.getByRole('button', { name: 'Continue without a key' })).toHaveCount(0)
   await expect(page.locator('body')).toContainText('Today’s plan')
+  await expect(page.locator('body')).toContainText('Tester')
 })

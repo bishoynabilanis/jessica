@@ -242,6 +242,8 @@ export interface Settings {
   reduceMotion: boolean
   /** Kid-world sound effects (right/wrong cues, finish). */
   sound: boolean
+  /** Where AI calls go: the shared trial proxy, the user's key, or the local model. */
+  aiMode: 'cloud' | 'offline'
   ttsRate: number
   autoSpeak: boolean
   pdfDark: boolean

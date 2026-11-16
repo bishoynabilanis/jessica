@@ -5,6 +5,7 @@ import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
 import { RouteMemory } from '@/components/RouteMemory'
 import { CelebrationLayer } from '@/components/Celebration'
+import { TrialLimitModal } from '@/components/TrialLimitModal'
 import { SetupGate } from '@/components/SetupGate'
 import { TermsGate } from '@/components/TermsGate'
 import { TERMS_VERSION } from '@/data/terms'
@@ -101,8 +102,6 @@ export default function App() {
   const acceptedTerms = useApp((s) => s.acceptedTerms)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
-  const apiKey = useApp((s) => s.apiKey)
-  const keyOptional = useApp((s) => s.settings.keyOptional)
   const customBooks = useApp((s) => s.customBooks)
   const notifications = useApp((s) => s.settings.notifications)
   const bootstrap = useApp((s) => s.bootstrap)
@@ -195,7 +194,8 @@ export default function App() {
   if (acceptedTerms < TERMS_VERSION) return <TermsGate />
 
   // The AI key is optional; only one imported book is required to open the app.
-  if ((!apiKey.trim() && !keyOptional) || customBooks.length === 0) return <SetupGate />
+  // A key is no longer a gate: without one the app runs on the free trial.
+  if (customBooks.length === 0) return <SetupGate />
 
   if (isKidsWorld(gradeLevel, primaryUi))
     return (
@@ -208,6 +208,7 @@ export default function App() {
     <HashRouter>
       <RouteMemory />
       <CelebrationLayer />
+      <TrialLimitModal />
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route element={<AppShell />}>

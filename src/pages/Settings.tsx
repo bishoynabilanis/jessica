@@ -36,6 +36,7 @@ import {
 } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
 import { KeyTutorial } from '@/components/KeyTutorial'
+import { AiModeCard } from '@/components/AiModeCard'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar } from '@/components/ui/Card'
 import { Toggle, Segmented } from '@/components/ui/Toggle'
@@ -365,6 +366,10 @@ export function Settings() {
             )}
 
             {!apiKey && settings.aiProvider === 'gemini' && <KeyTutorial />}
+
+            <div className="mt-3">
+              <AiModeCard />
+            </div>
 
             {keyMessage && (
               <p

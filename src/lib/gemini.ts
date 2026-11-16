@@ -1,7 +1,11 @@
 import type { AiProvider, LanguageCode } from '@/types'
 import { friendlyError } from './utils'
+import { tr } from '@/i18n'
 import { useApp } from '@/store/useApp'
 import { GEMINI_MODELS as GEMINI_MODEL_LIST, providerFor, type ProviderModel } from './providers'
+import { proxyGenerate } from './ai/proxy'
+import { offlineGenerate, offlineReady } from './ai/offline'
+import { extractJson } from './ai/json'
 
 const GEMINI_ROOT = 'https://generativelanguage.googleapis.com/v1beta'
 const ANTHROPIC_ROOT = 'https://api.anthropic.com'
@@ -35,6 +39,22 @@ export class GeminiError extends Error {
     this.name = 'GeminiError'
     this.status = status
   }
+}
+
+function promptText(opts: Omit<GenerateOptions, 'apiKey'>): string {
+  const lines: string[] = []
+  if (opts.system) lines.push(opts.system)
+  for (const item of opts.history || []) {
+    const text = item.parts.map((part) => ('text' in part ? part.text : '')).join(' ')
+    if (text.trim()) lines.push(`${item.role === 'model' ? 'Assistant' : 'User'}: ${text}`)
+  }
+  const last = opts.parts.map((part) => ('text' in part ? part.text : '')).join('\n')
+  if (last.trim()) lines.push(`User: ${last}`)
+  return lines.join('\n\n')
+}
+
+function hasImage(parts: Part[]) {
+  return parts.some((part) => 'inlineData' in part)
 }
 
 function currentProvider(): AiProvider {
@@ -390,7 +410,23 @@ async function anthropicStream(opts: GenerateOptions): Promise<string> {
 /* ------------------------------------------------------------------ */
 
 export async function generateText(opts: GenerateOptions): Promise<string> {
-  if (!keyFor(opts)) throw new GeminiError('Add your API key in Settings first.', 401)
+  const settings = useApp.getState().settings
+  if (settings.aiMode === 'offline') {
+    if (hasImage(opts.parts)) {
+      throw new GeminiError(tr('Reading images needs cloud mode. Switch to cloud or add your key in settings.'), 0)
+    }
+    if (!offlineReady()) {
+      throw new GeminiError(tr('The offline model is not loaded. Download it from settings first (~1.8 GB).'), 0)
+    }
+    const text = await offlineGenerate(promptText(opts), {
+      temperature: opts.temperature ?? 0.4,
+      maxTokens: opts.maxOutputTokens ?? 1200,
+    })
+    if (!text.trim()) throw new GeminiError(tr('The model returned nothing. Try again.'), 0)
+    opts.onChunk?.(text)
+    return text
+  }
+  if (!keyFor(opts)) return proxyGenerate(opts)
   const provider = currentProvider()
   if (provider === 'gemini') return geminiGenerate(opts)
   if (provider === 'anthropic') return anthropicGenerate(opts)
@@ -398,7 +434,8 @@ export async function generateText(opts: GenerateOptions): Promise<string> {
 }
 
 export async function streamText(opts: GenerateOptions): Promise<string> {
-  if (!keyFor(opts)) throw new GeminiError('Add your API key in Settings first.', 401)
+  const settings = useApp.getState().settings
+  if (settings.aiMode === 'offline' || !keyFor(opts)) return generateText(opts)
   const provider = currentProvider()
   if (provider === 'gemini') return geminiStream(opts)
   if (provider === 'anthropic') return anthropicStream(opts)
@@ -408,6 +445,8 @@ export async function streamText(opts: GenerateOptions): Promise<string> {
 export async function generateJSON<T>(opts: Omit<GenerateOptions, 'json'>): Promise<T> {
   const { parseJsonLoose } = await import('./utils')
   let raw = await generateText({ ...opts, json: true })
+  const repaired = extractJson<T>(raw)
+  if (repaired !== null) return repaired
   try {
     return parseJsonLoose<T>(raw)
   } catch {

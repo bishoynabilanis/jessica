@@ -46,6 +46,7 @@ const defaultSettings: Settings = {
   dyslexiaFont: false,
   reduceMotion: false,
   sound: true,
+  aiMode: 'cloud',
   ttsRate: 0.95,
   autoSpeak: false,
   pdfDark: false,

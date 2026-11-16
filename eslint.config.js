@@ -27,6 +27,10 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    files: ['cloudflare-worker/**/*.js'],
+    languageOptions: { globals: { ...globals.serviceworker, ...globals.browser } },
+  },
+  {
     files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },

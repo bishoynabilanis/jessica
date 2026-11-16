@@ -73,7 +73,11 @@ marketing/           growth assets: posts, stories, films (not shipped)
 - **Math in RTL**: Arabic-Indic digits are weak-directional. Pure math strings must be isolated (`<bdi dir="ltr">`) or they mirror inside Arabic sentences. `Bank.tsx` has the `RichText` helper for exactly this.
 - **Printing**: print-only views use the `worksheet-print` / `print-report` / `cert-print` classes in `src/index.css`. Multi-page papers render through a **portal to `document.body`** plus the `bank-print-mode` body class; without that, absolutely-positioned content is clipped to one page.
 - **Kids mode**: grades 1–6 open the `src/kids` shell regardless of route. Anything aimed at those grades must exist inside the kids shell, or be reachable through parent settings.
-- **AI**: `src/lib/gemini.ts` is the only gateway. Never hardcode keys, never send data anywhere except the user's chosen provider, and keep every AI feature optional with a graceful non-AI fallback.
+- **AI**: `src/lib/gemini.ts` is the only gateway, and it now routes through three modes:
+  - **cloud + key** (`settings.apiKey` set) → the user's own provider, no limits.
+  - **cloud + no key** → `src/lib/ai/proxy.ts` calls the Cloudflare Worker in `cloudflare-worker/` with a local daily counter (`src/lib/ai/trial.ts`); a 429 raises `TrialLimitError` and opens the Arabic limit modal.
+  - **offline** (`settings.aiMode === 'offline'`) → `src/lib/ai/offline.ts` loads `@mlc-ai/web-llm` from a CDN on demand and runs Qwen2.5 3B on WebGPU. Never import it statically, never enable it on iOS or devices under 6 GB, and keep the JSON repair helper (`src/lib/ai/json.ts`) around for the small model.
+  - The proxy URL lives in `src/lib/ai/config.ts` (empty = trial not configured). Never hardcode provider keys in the app; the worker reads `env.GEMINI_API_KEY`.
 
 ## Static site, SEO and generated pages
 
