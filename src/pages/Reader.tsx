@@ -260,7 +260,7 @@ export function Reader() {
   }
   const readAloud = () => {
     if (speaking) stop()
-    else if (pageText) speak(speakable(pageText))
+    else if (pageText) speak(speakable(pageText), book?.language || 'en')
   }
   const isBookmarked = book ? (bookmarks[book.id] || []).includes(page) : false
   const currentNote = book ? pageNotes[book.id]?.[String(page)] || '' : ''

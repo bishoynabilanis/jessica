@@ -61,6 +61,9 @@ const defaultSettings: Settings = {
   curriculum: 'egypt',
   primaryUi: 'auto',
   voiceLocale: '',
+  voiceEngine: 'device',
+  voiceName: '',
+  ttsVoice: 'Sulafat',
   shareCounts: true,
   shareErrors: true,
   schoolType: 'government',
@@ -868,6 +871,7 @@ export const useApp = create<AppState>()(
         return state
       },
       storage: createJSONStorage(() => localStorage),
+
       merge: (persisted, current) => {
         const saved = (persisted || {}) as Partial<AppState>
         return {

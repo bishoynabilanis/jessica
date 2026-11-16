@@ -57,6 +57,7 @@ import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage }
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { gradeLabel } from '@/data/officialBooks'
 import { VOICE_LOCALES, defaultVoiceLocale, pickVoice, resolveVoiceLocale } from '@/lib/voices'
+import { listEgyptianVoices, type CloudVoice } from '@/lib/ai/tts'
 import { SCHOOL_TYPES } from '@/lib/school'
 
 import { catalogTemplate, parseCommunityCatalog } from '@/lib/communityCatalog'
@@ -122,8 +123,59 @@ export function Settings() {
     return () => window.speechSynthesis.removeEventListener('voiceschanged', load)
   }, [])
   const arabicLocale = resolveVoiceLocale('ar', settings)
-  const activeVoice = pickVoice(ttsVoices, arabicLocale)
+  const activeVoice =
+    (settings.voiceName ? ttsVoices.find((voice) => voice.voiceURI === settings.voiceName) : undefined) ||
+    pickVoice(ttsVoices, arabicLocale)
   const hasEgyptianVoice = ttsVoices.some((voice) => /^ar-eg/i.test(voice.lang.replace('_', '-')))
+  const [cloudVoices, setCloudVoices] = useState<CloudVoice[]>([])
+  const [loadingCloudVoices, setLoadingCloudVoices] = useState(false)
+  const geminiReady = Boolean((state.aiKeys.gemini || (settings.aiProvider === 'gemini' ? apiKey : '')).trim())
+  const voiceOptions = ttsVoices.filter(
+    (voice) => voice.lang.split('-')[0].toLowerCase() === arabicLocale.split('-')[0].toLowerCase(),
+  )
+  const platform =
+    typeof navigator === 'undefined'
+      ? 'other'
+      : /android/i.test(navigator.userAgent)
+        ? 'android'
+        : /iphone|ipad|ipod/i.test(navigator.userAgent)
+          ? 'ios'
+          : /mac/i.test(navigator.platform)
+            ? 'mac'
+            : /win/i.test(navigator.platform)
+              ? 'windows'
+              : 'other'
+  const installHint =
+    platform === 'android'
+      ? 'Android: Settings → System → Languages → Text-to-speech → Google Speech Services → Install voice data → Arabic (Egypt).'
+      : platform === 'ios'
+        ? 'iPhone/iPad: Settings → Accessibility → Spoken Content → Voices → Arabic → Egypt.'
+        : platform === 'mac'
+          ? 'Mac: System Settings → Accessibility → Spoken Content → System Voice → Manage Voices → Arabic → Egypt.'
+          : platform === 'windows'
+            ? 'Windows: Settings → Time & Language → Speech → Add voices → Arabic (Egypt).'
+            : 'Open your system speech settings and install an Arabic (Egypt) voice.'
+
+  const loadCloudVoices = async () => {
+    const key = (state.aiKeys.gemini || (settings.aiProvider === 'gemini' ? apiKey : '')).trim()
+    if (!key) {
+      pushToast({ title: tr('Add a Gemini key first to use the Egyptian cloud voice.'), type: 'info' })
+      return
+    }
+    setLoadingCloudVoices(true)
+    try {
+      const list = await listEgyptianVoices(key)
+      setCloudVoices(list)
+      if (list.length && !list.some((voice) => voice.id === settings.ttsVoice)) {
+        updateSettings({ ttsVoice: list[0].id })
+      }
+      pushToast({ title: tr('{n} Egyptian voices ready.', { n: list.length }), type: 'success' })
+    } catch {
+      pushToast({ title: tr('Could not load the voice list.'), type: 'error' })
+    } finally {
+      setLoadingCloudVoices(false)
+    }
+  }
 
   const [draftKey, setDraftKey] = useState(apiKey)
   const [showKey, setShowKey] = useState(false)
@@ -661,35 +713,127 @@ export function Settings() {
               <span className="label mb-1.5 flex items-center gap-1.5">
                 <Volume2 className="h-3 w-3" /> {tr('Voice & accent')}
               </span>
-              <select
-                value={settings.voiceLocale}
-                onChange={(event) => updateSettings({ voiceLocale: event.target.value })}
-                className="field text-sm"
-              >
-                <option value="">{tr('Automatic')} · {defaultVoiceLocale(settings)}</option>
-                {VOICE_LOCALES.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label} — {item.id}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-1 text-[10px] leading-relaxed text-muted-2">
-                {tr('Used for read-aloud and voice input. The browser picks the closest installed voice to this accent.')}
-              </p>
-              <p className="mt-1 text-[10px] font-bold text-muted" data-testid="voice-in-use">
-                {activeVoice
-                  ? tr('Voice on this device: {name}', { name: `${activeVoice.name} (${activeVoice.lang})` })
-                  : tr('No matching voice is installed on this device yet.')}
-              </p>
-              {settings.language === 'ar' && !hasEgyptianVoice && (
-                <p className="mt-1 text-[10px] leading-relaxed text-amber-600">
-                  {tr('No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.')}
-                </p>
+
+              <div className="grid gap-2 sm:grid-cols-2">
+                <button
+                  type="button"
+                  data-testid="voice-engine-device"
+                  onClick={() => updateSettings({ voiceEngine: 'device' })}
+                  className={cn(
+                    'rounded-2xl border p-3 text-start transition',
+                    settings.voiceEngine !== 'cloud'
+                      ? 'border-aurora-400/50 bg-aurora-400/10'
+                      : 'border-line bg-card-2 hover:bg-white/5',
+                  )}
+                >
+                  <p className="text-xs font-bold text-main">{tr('Device voice — free and offline')}</p>
+                  <p className="mt-0.5 text-[10px] text-muted-2">
+                    {hasEgyptianVoice ? tr('An Egyptian voice is installed here.') : tr('Reads with the closest Arabic voice installed.')}
+                  </p>
+                </button>
+                <button
+                  type="button"
+                  data-testid="voice-engine-cloud"
+                  onClick={() => updateSettings({ voiceEngine: 'cloud' })}
+                  className={cn(
+                    'rounded-2xl border p-3 text-start transition',
+                    settings.voiceEngine === 'cloud'
+                      ? 'border-violet-neon/60 bg-violet-neon/15'
+                      : 'border-line bg-card-2 hover:bg-white/5',
+                  )}
+                >
+                  <p className="text-xs font-bold text-main">{tr('Gemini Egyptian voice — uses your key')}</p>
+                  <p className="mt-0.5 text-[10px] text-muted-2">
+                    {geminiReady ? tr('Real Egyptian Arabic, generated by Gemini.') : tr('Add a Gemini key first to use the Egyptian cloud voice.')}
+                  </p>
+                </button>
+              </div>
+
+              {settings.voiceEngine === 'cloud' ? (
+                <div className="mt-2 space-y-2" data-testid="voice-cloud-panel">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <select
+                      value={settings.ttsVoice}
+                      onChange={(event) => updateSettings({ ttsVoice: event.target.value })}
+                      className="field flex-1 text-sm"
+                      data-testid="voice-cloud-select"
+                    >
+                      {cloudVoices.length === 0 && (
+                        <>
+                          <option value="Sulafat">Sulafat — {tr('warm')}</option>
+                          <option value="Kore">Kore — {tr('clear')}</option>
+                          <option value="Aoede">Aoede — {tr('light')}</option>
+                          <option value="Achird">Achird — {tr('friendly')}</option>
+                        </>
+                      )}
+                      {cloudVoices.map((voice) => (
+                        <option key={voice.id} value={voice.id}>
+                          {voice.name}
+                          {voice.accent ? ` · ${voice.accent}` : ''}
+                        </option>
+                      ))}
+                    </select>
+                    <Button size="sm" variant="secondary" onClick={loadCloudVoices} loading={loadingCloudVoices} data-testid="voice-cloud-load">
+                      <Sparkles className="h-3.5 w-3.5" /> {loadingCloudVoices ? tr('Loading voices…') : tr('Load the Egyptian voices')}
+                    </Button>
+                  </div>
+                  <p className="text-[10px] leading-relaxed text-muted-2">
+                    {tr('Uses your Gemini key. Long passages cost more of your quota.')}
+                  </p>
+                  {!geminiReady && (
+                    <p className="text-[10px] font-bold leading-relaxed text-amber-600" data-testid="voice-cloud-key-note">
+                      {tr('Add a Gemini key first to use the Egyptian cloud voice.')}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div className="mt-2 space-y-2" data-testid="voice-device-panel">
+                  <select
+                    value={settings.voiceLocale}
+                    onChange={(event) => updateSettings({ voiceLocale: event.target.value })}
+                    className="field text-sm"
+                  >
+                    <option value="">{tr('Automatic')} · {defaultVoiceLocale(settings)}</option>
+                    {VOICE_LOCALES.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.label} — {item.id}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={settings.voiceName}
+                    onChange={(event) => updateSettings({ voiceName: event.target.value })}
+                    className="field text-sm"
+                    data-testid="voice-device-select"
+                  >
+                    <option value="">{tr('Automatic (best on this device)')}</option>
+                    {voiceOptions.map((voice) => (
+                      <option key={voice.voiceURI} value={voice.voiceURI}>
+                        {voice.name} ({voice.lang})
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-[10px] font-bold text-muted" data-testid="voice-in-use">
+                    {activeVoice
+                      ? tr('Selected voice: {name}', { name: `${activeVoice.name} (${activeVoice.lang})` })
+                      : tr('No matching voice is installed on this device yet.')}
+                  </p>
+                  {settings.language === 'ar' && !hasEgyptianVoice && (
+                    <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-2">
+                      <p className="text-[10px] font-bold text-amber-600">{tr('No Egyptian voice on this device')}</p>
+                      <p className="mt-1 text-[10px] leading-relaxed text-muted-2" data-testid="voice-install-hint">
+                        {tr(installHint)}
+                      </p>
+                    </div>
+                  )}
+                </div>
               )}
+
               <Button
                 size="sm"
                 variant="secondary"
                 className="mt-1.5"
+                data-testid="voice-test"
                 onClick={() =>
                   speak(
                     settings.language === 'ar'

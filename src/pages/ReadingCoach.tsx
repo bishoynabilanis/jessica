@@ -160,7 +160,7 @@ export function ReadingCoach() {
             </div>
 
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <Button variant="secondary" onClick={() => speak(passage)} disabled={!passage}>
+              <Button variant="secondary" onClick={() => speak(passage, book?.language || 'en')} disabled={!passage}>
                 <Volume2 className="h-4 w-4" /> {tr('Hear it first')}
               </Button>
               {!recording ? (

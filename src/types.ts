@@ -238,6 +238,12 @@ export interface Settings {
   curriculum: Curriculum
   language: UiLanguage
   voiceLocale: string
+  /** Device speech (free, offline) or the Gemini Egyptian voice (your key). */
+  voiceEngine: 'device' | 'cloud'
+  /** A specific installed device voice (voiceURI); empty means automatic. */
+  voiceName: string
+  /** Gemini TTS voice id used by the Egyptian cloud voice. */
+  ttsVoice: string
   shareCounts: boolean
   shareErrors: boolean
   schoolType: SchoolType

@@ -127,7 +127,7 @@ export function UnitSummaryModal({
               <Button
                 size="sm"
                 variant="secondary"
-                onClick={() => (speaking ? stop() : speak(speakable(summary)))}
+                onClick={() => (speaking ? stop() : speak(speakable(summary), book.language))}
               >
                 {speaking ? <StopCircle className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
                 {speaking ? tr('Stop') : tr('Listen')}
