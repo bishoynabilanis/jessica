@@ -1,6 +1,14 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "AI is ready on this device": "Die KI ist auf diesem Gerät bereit",
+  "The offline model is loaded, so chat and explanations work with no internet and no key.": "Das Offline-Modell ist geladen: Chat und Erklärungen laufen ohne Internet und ohne Schlüssel.",
+  "You are on the free trial. Add your own key any time for unlimited use.": "Du bist in der kostenlosen Testphase. Trage jederzeit deinen Schlüssel ein für unbegrenzte Nutzung.",
+  "Turn the AI on — free, no key": "KI einschalten — kostenlos, ohne Schlüssel",
+  "Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.": "Lade das Offline-Modell einmal (~1,8 GB) und alle KI-Funktionen laufen hier ohne Schlüssel und Internet.",
+  "This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.": "Dieses Gerät kann das Offline-Modell nicht ausführen, daher ist ein kostenloser Gemini-Schlüssel der Weg. Er bleibt auf deinem Gerät.",
+  "Download the model": "Modell herunterladen",
+
   "The offline model is already on this device — switch to it and go.": "Das Offline-Modell liegt schon auf diesem Gerät — aktiviere es und weiter.",
   "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "Offline-KI gibt es nur für Computer und starke Geräte. Nutze auf diesem Gerät einen kostenlosen Schlüssel.",
 

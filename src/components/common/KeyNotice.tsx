@@ -1,32 +1,61 @@
-import { KeyRound, Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { Cpu, KeyRound, Sparkles, Volume2, VolumeX } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useApp } from '@/store/useApp'
-import { useUI } from '@/store/useUI'
-import { useNavigate } from 'react-router-dom'
 import { useSpeech } from '@/lib/speech'
+import { proxyConfigured } from '@/lib/ai/config'
+import { notifyAiNeed } from '@/lib/ai/setup'
+import { offlineReady, offlineSupport } from '@/lib/ai/offline'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { tr } from '@/i18n'
 
 export function KeyNotice({ compact }: { compact?: boolean }) {
   const apiKey = useApp((s) => s.apiKey)
-  if (apiKey) return null
+  if (apiKey.trim()) return null
+
+  const ready = offlineReady()
+  const support = offlineSupport()
+  const trial = proxyConfigured()
+
+  // Nothing to sell here: everything the device can do for free is already on.
+  if (ready || trial) {
+    return (
+      <div className={cn('flex items-center gap-2.5 rounded-2xl border border-aurora-400/25 bg-aurora-400/10 p-3', compact && 'p-2.5')}>
+        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-aurora-400/15 text-aurora-300">
+          <Cpu className="h-4 w-4" />
+        </span>
+        <div>
+          <p className="text-xs font-bold text-main">{tr('AI is ready on this device')}</p>
+          <p className="text-[10px] leading-relaxed text-muted">
+            {ready
+              ? tr('The offline model is loaded, so chat and explanations work with no internet and no key.')
+              : tr('You are on the free trial. Add your own key any time for unlimited use.')}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={cn('flex flex-col gap-2 rounded-2xl border border-sun/25 bg-sun/10 p-3 sm:flex-row sm:items-center sm:justify-between', compact && 'p-2.5')}>
       <div className="flex items-center gap-2.5">
         <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-sun/15 text-sun">
-          <KeyRound className="h-4 w-4" />
+          {support.ok ? <Cpu className="h-4 w-4" /> : <KeyRound className="h-4 w-4" />}
         </span>
         <div>
-          <p className="text-xs font-bold text-main">{tr('Your AI tutor is one key away')}</p>
+          <p className="text-xs font-bold text-main">
+            {support.ok ? tr('Turn the AI on — free, no key') : tr('Your AI tutor is one key away')}
+          </p>
           <p className="text-[10px] leading-relaxed text-muted">
-            {tr('Add a free Gemini API key to unlock chat, quizzes, vision and more. It stays on your device.')}
+            {support.ok
+              ? tr('Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.')
+              : tr('This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.')}
           </p>
         </div>
       </div>
       <Link to="/settings">
         <Button size="sm" variant="secondary" className="shrink-0 border-sun/30 text-sun">
-          {tr('Add key')} <Sparkles className="h-3.5 w-3.5" />
+          {support.ok ? tr('Download the model') : tr('Add key')} <Sparkles className="h-3.5 w-3.5" />
         </Button>
       </Link>
     </div>
@@ -35,16 +64,10 @@ export function KeyNotice({ compact }: { compact?: boolean }) {
 
 export function useRequireKey() {
   const apiKey = useApp((s) => s.apiKey)
-  const pushToast = useUI((s) => s.pushToast)
-  const navigate = useNavigate()
   return () => {
-    if (apiKey.trim()) return true
-    pushToast({
-      title: tr('Add your Gemini API key'),
-      description: tr('It is free and takes about a minute. Your key never leaves this browser.'),
-      type: 'info',
-    })
-    navigate('/settings')
+    // A key is no longer the only door: the local model and the free trial count too.
+    if (apiKey.trim() || offlineReady() || proxyConfigured()) return true
+    notifyAiNeed('setup')
     return false
   }
 }

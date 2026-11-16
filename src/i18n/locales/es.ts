@@ -1,6 +1,14 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "AI is ready on this device": "La IA está lista en este dispositivo",
+  "The offline model is loaded, so chat and explanations work with no internet and no key.": "El modelo sin conexión está cargado: el chat y las explicaciones funcionan sin internet ni clave.",
+  "You are on the free trial. Add your own key any time for unlimited use.": "Estás en la prueba gratis. Añade tu clave cuando quieras para uso ilimitado.",
+  "Turn the AI on — free, no key": "Activa la IA: gratis y sin clave",
+  "Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.": "Descarga el modelo sin conexión una vez (~1,8 GB) y todas las funciones de IA funcionan aquí sin clave ni internet.",
+  "This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.": "Este dispositivo no puede ejecutar el modelo sin conexión, así que una clave Gemini gratis es la entrada. Se queda en tu dispositivo.",
+  "Download the model": "Descargar el modelo",
+
   "The offline model is already on this device — switch to it and go.": "El modelo sin conexión ya está en este dispositivo: actívalo y sigue.",
   "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "La IA sin conexión es solo para ordenadores y dispositivos potentes. En este dispositivo usa una clave gratis.",
 

@@ -1,6 +1,14 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "AI is ready on this device": "L’IA est prête sur cet appareil",
+  "The offline model is loaded, so chat and explanations work with no internet and no key.": "Le modèle hors ligne est chargé : le chat et les explications marchent sans internet ni clé.",
+  "You are on the free trial. Add your own key any time for unlimited use.": "Tu es sur l’essai gratuit. Ajoute ta clé quand tu veux pour un usage illimité.",
+  "Turn the AI on — free, no key": "Active l’IA — gratuit, sans clé",
+  "Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.": "Télécharge le modèle hors ligne une fois (~1,8 Go) et toutes les fonctions IA marchent ici sans clé ni internet.",
+  "This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.": "Cet appareil ne peut pas faire tourner le modèle hors ligne : une clé Gemini gratuite est la voie d’entrée. Elle reste sur ton appareil.",
+  "Download the model": "Télécharger le modèle",
+
   "The offline model is already on this device — switch to it and go.": "Le modèle hors ligne est déjà sur cet appareil — active-le et continue.",
   "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "L’IA hors ligne est réservée aux ordinateurs et appareils puissants. Sur cet appareil, utilise une clé gratuite.",
 

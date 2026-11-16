@@ -1,6 +1,14 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "AI is ready on this device": "AI siap di perangkat ini",
+  "The offline model is loaded, so chat and explanations work with no internet and no key.": "Model offline sudah dimuat, jadi obrolan dan penjelasan berjalan tanpa internet dan tanpa kunci.",
+  "You are on the free trial. Add your own key any time for unlimited use.": "Kamu dalam uji coba gratis. Tambahkan kuncimu kapan saja untuk pemakaian tanpa batas.",
+  "Turn the AI on — free, no key": "Nyalakan AI — gratis, tanpa kunci",
+  "Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.": "Unduh model offline sekali (~1,8 GB) dan semua fitur AI berjalan di sini tanpa kunci dan internet.",
+  "This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.": "Perangkat ini tidak bisa menjalankan model offline, jadi kunci Gemini gratis adalah jalannya. Kunci tetap di perangkatmu.",
+  "Download the model": "Unduh model",
+
   "The offline model is already on this device — switch to it and go.": "Model offline sudah ada di perangkat ini — aktifkan dan lanjut.",
   "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "AI offline hanya untuk komputer dan perangkat kuat. Di perangkat ini, pakai kunci gratis.",
 

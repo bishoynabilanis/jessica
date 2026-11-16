@@ -14,6 +14,14 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "AI is ready on this device": "الذكاء الاصطناعي جاهز على الجهاز",
+  "The offline model is loaded, so chat and explanations work with no internet and no key.": "الموديل الأوفلاين محمّل، فالشات والشرح بيشتغلوا بدون نت وبدون مفتاح.",
+  "You are on the free trial. Add your own key any time for unlimited use.": "انت على التجربة المجانية. تقدر تحط مفتاحك في أي وقت وتكمل من غير حدود.",
+  "Turn the AI on — free, no key": "شغّل الذكاء الاصطناعي — مجانًا وبدون مفتاح",
+  "Download the offline model once (~1.8 GB) and every AI feature works here without a key or internet.": "نزّل موديل الأوفلاين مرة واحدة (~1.8 جيجا) وكل ميزات الـAI هتشتغل هنا بدون مفتاح ولا نت.",
+  "This device cannot run the offline model, so a free Gemini key is the way in. It stays on your device.": "الجهاز ده مش قادر يشغّل الموديل الأوفلاين، فالطريق هو مفتاح Gemini مجاني. المفتاح بيتحفظ على جهازك بس.",
+  "Download the model": "نزّل الموديل",
+
   "The offline model is already on this device — switch to it and go.": "الموديل الأوفلاين محمّل على الجهاز بالفعل — حوّل عليه وكمّل.",
   "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "الأوفلاين متاح للكمبيوتر والأجهزة القوية بس حفاظًا على استقرار المتصفح. على الجهاز ده استخدم مفتاح مجاني.",
 
