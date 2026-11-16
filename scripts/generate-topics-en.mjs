@@ -174,6 +174,167 @@ const TOPICS = [
       },
     ],
   },
+  {
+    slug: 'homework',
+    title: 'Homework without the nightly fight',
+    description:
+      'A three-step homework routine that removes the argument, what to say when the child says “I don’t get it”, and when to stop and mark it instead.',
+    h1: 'Homework without the nightly fight',
+    lead:
+      'Most homework arguments are not about difficulty. They are about starting, about who is in charge, and about a parent hovering close enough to answer every hesitation.',
+    sections: [
+      {
+        h: 'The fight is usually about starting',
+        p: [
+          'A child who refuses homework at seven in the evening is often tired, hungry, or still deciding who wins. Fix the conditions first: a snack, ten minutes of nothing, then the bag on the table with the phone in another room.',
+          'Do not ask “do you have homework?” — the answer is always no. Ask them to open the bag and put the books on the table, then leave. The physical start does more than the negotiation.',
+        ],
+      },
+      {
+        h: 'The three-step routine',
+        list: [
+          'Step one — empty the bag: every book out, every task named out loud, one line of what it asks.',
+          'Step two — order by friction: start with the shortest task, not the hardest. Momentum first, stamina second.',
+          'Step three — check with questions, not answers: “show me the one you are sure about” before “is it right?”.',
+        ],
+      },
+      {
+        h: 'When the child says “I don’t get it”',
+        p: [
+          'Read the question aloud once, slowly. If that does not unlock it, read the page it came from together, or have the app read it. Then ask for one example and stop there — after that, mark it and move on.',
+          'A marked question is information for the teacher. A question solved by a parent at nine at night is information for nobody.',
+        ],
+      },
+      {
+        h: 'Ten minutes of practice beats an hour of copying',
+        p: [
+          'When the written work is done, ten questions on the same lesson is worth more than another page of copying. The question bank marks them instantly and shows the reason, so the child sees why an answer was wrong while the lesson is still warm.',
+          'Keep the session short and end on a win: the last question should be one they can answer.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Should I sit next to my child during homework?',
+        a: 'Sit nearby at first if they need it, then move away. Being watched makes every hesitation feel like a test.',
+      },
+      {
+        q: 'What if the homework takes two hours?',
+        a: 'Set a limit (forty minutes for primary) and mark what is unfinished. Two hours of grinding teaches avoidance, not the subject.',
+      },
+      {
+        q: 'My child finishes fast and makes careless mistakes. What helps?',
+        a: 'Ask them to read the question aloud before answering, and add ten questions from the bank afterwards. Speed without checking is the habit to break.',
+      },
+    ],
+  },
+  {
+    slug: 'memorization',
+    title: 'Memorising without cramming: what actually sticks',
+    description:
+      'Why re-reading feels like studying and is not, the three-pass method for a page of facts, and how spaced flashcards fit into a normal school night.',
+    h1: 'Memorising without cramming',
+    lead:
+      'Re-reading a page feels like studying because it is comfortable. It is also the least efficient way to remember anything. What sticks is the moment you try to produce the answer and cannot quite reach it.',
+    sections: [
+      {
+        h: 'Recognition is not recall',
+        p: [
+          'Highlighting and re-reading train recognition: the page looks familiar, so the brain says “I know this”. The exam asks for recall, which is a different skill.',
+          'Close the book and say the three points out loud. Whatever you cannot say is what you do not know yet — the rest you can stop revising.',
+        ],
+      },
+      {
+        h: 'The three-pass method',
+        list: [
+          'Pass one — read a short block (one heading, not the chapter) and mark only the words you could not produce yourself.',
+          'Pass two — close the book and write the block from memory in five lines, in your own words.',
+          'Pass three — check, correct in a different colour, and turn each correction into a question.',
+        ],
+      },
+      {
+        h: 'Space it, do not repeat it',
+        p: [
+          'One session tonight, ten minutes tomorrow, ten minutes in three days beats three hours tonight. The gap is doing the work; the forgetting and the recovery is what makes it durable.',
+          'In the app, the flashcards schedule themselves and the mistakes notebook brings back the exact questions that were missed — so you do not have to decide what to review.',
+        ],
+      },
+      {
+        h: 'Sleep is part of the method',
+        p: [
+          'Facts consolidated during sleep are the ones you keep. A late night before an exam trades tomorrow’s memory for tonight’s comfort. Stop an hour before bed and let the last pass settle.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'Is it better to write the answer or say it?',
+        a: 'Both work; writing is slower and closer to an exam. For a quick check on a school night, saying it out loud is enough.',
+      },
+      {
+        q: 'How many flashcards a day?',
+        a: 'Ten to fifteen minutes of due cards, not a fixed number. The app shows what is due, which is the point of spacing.',
+      },
+      {
+        q: 'What if my child memorises without understanding?',
+        a: 'Ask them to explain it in their own words, then give one question that applies it. If they cannot, the page needs a lesson, not more repetition.',
+      },
+    ],
+  },
+  {
+    slug: 'monthly-tests',
+    title: 'The monthly test: two weeks without burning out',
+    description:
+      'A two-week plan for the Egyptian monthly test: unit reviews early, timed papers later, the night before, and how to read the mark when it arrives.',
+    h1: 'The monthly test: two weeks without burning out',
+    lead:
+      'The monthly test is small enough to ignore and frequent enough to matter. Two weeks of short sessions beats one weekend of panic, and it leaves the child able to sit the next one without dread.',
+    sections: [
+      {
+        h: 'Week one: cover the units, not the subject',
+        p: [
+          'List the units the test covers — usually two or three — and give each one a review paper of twenty questions. Mark it, then drill only what was wrong.',
+          'Do not open a new unit in week one. The test is on what was taught, and new material this late competes with revision instead of adding to it.',
+        ],
+      },
+      {
+        h: 'Week two: the clock and the mistakes',
+        list: [
+          'Two timed papers of twenty minutes, at the same time of day as the real test.',
+          'After each paper, only the mistakes notebook. No new questions until the old ones are fixed.',
+          'The last two nights: nothing new. One pass over the notebook, then sleep.',
+        ],
+      },
+      {
+        h: 'The night before and the morning of',
+        p: [
+          'The night before, read the mistakes notebook once and stop. Pack the bag, sharpen the pencils, and set the alarm half an hour earlier than feels necessary.',
+          'In the morning, a small breakfast and two minutes reading the whole paper before writing. Most lost marks in a monthly test are misread questions, not unknown answers.',
+        ],
+      },
+      {
+        h: 'How to read the mark when it arrives',
+        p: [
+          'Separate the mark into three causes: did not know it, knew it and misread it, or ran out of time. Each one has a different fix — content, reading habit, or timed practice.',
+          'A low mark that is mostly careless mistakes is better news than a middle mark that is mostly gaps, and only the paper itself tells you which one you have.',
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: 'When should revision start?',
+        a: 'Two weeks before for a monthly test, three to four for a term exam. The first session should be a marked paper, not reading.',
+      },
+      {
+        q: 'Should we use old exam papers?',
+        a: 'Yes, if they are available — but only after the content is secure. Papers diagnose; they do not teach.',
+      },
+      {
+        q: 'What if the test is next week already?',
+        a: 'Do the unit review papers for the units covered, then the mistakes notebook. Skip everything else; it is the highest-value hour you have.',
+      },
+    ],
+  },
 ]
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -261,7 +422,7 @@ const HUB = {
   description:
     'Practical guides on building a study week, handling exam nerves and running Jessica at home — written for parents, short enough to act on tonight.',
   h1: 'Study guides you can act on tonight',
-  lead: 'Three guides, no filler: how to run the week, how to calm the last week before an exam, and how a parent sets the app up in five minutes.',
+  lead: 'Six guides, no filler: homework, memorising, the study week, exam nerves, monthly tests, and how a parent sets the app up in five minutes.',
 }
 
 let count = 0
@@ -375,8 +536,8 @@ ${TOPICS.map(
   (topic) => `<a class="topic-card" href="./${topic.slug}/"><b>${esc(topic.h1)}</b><span>${esc(topic.description)}</span></a>`,
 ).join('\n')}
 </div>
-<h2>Why these three first</h2>
-<p>They cover the three moments where families actually get stuck: the week that collapses by Tuesday, the last seven days before an exam, and the first five minutes after installing the app. Everything else is a variation on those.</p>
+<h2>How to use them</h2>
+<p>They cover the moments where families actually get stuck: the homework that turns into an argument, the week that collapses by Tuesday, the last seven days before an exam, and the monthly test that arrives faster than expected.</p>
 <h2>More topics in Arabic</h2>
 <p>There are fifteen longer guides in Arabic — subjects, memorisation, homework, monthly tests and more. They are written for the same audience and link back to the same tools.</p>
 <div class="rel-grid">

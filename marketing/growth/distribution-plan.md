@@ -172,3 +172,8 @@
 - **جديد:** `/welcome/en/topics/` + ٣ مقالات إنجليزي (parents · study-plan · exam-anxiety) — مولّدة من `scripts/generate-topics-en.mjs` بمحتوى مكتوب بالإنجليزي (Article + FAQPage + BreadcrumbList)، ومعاها hreflang للنسخة العربية.
 - **الربط:** لينك «Guides» في نافبار اللاندنج الإنجليزي + كارت، و`sitemap.xml` + `generate-seo.mjs`.
 - **الفهرس:** 53 صفحة، 0 مشاكل.
+
+## ٢٠٢٦-١١-١٦ (تكملة ٥) — ٣ أدلة إنجليزي إضافية
+
+- **جديد:** `/welcome/en/topics/homework/` · `memorization/` · `monthly-tests/` — بقى عندنا ٦ أدلة إنجليزي + صفحة تجميع محدّثة.
+- **الفهرس:** 56 صفحة، 0 مشاكل؛ الأربع لينكات الجديدة في `sitemap.xml` و`generate-seo.mjs`.

@@ -481,7 +481,7 @@ const urls = [
   { loc: `${BASE}/welcome/en/install/`, file: 'public/welcome/en/install/index.html', freq: 'monthly', priority: '0.8' },
   { loc: `${BASE}/welcome/en/quiz/`, file: 'public/welcome/en/quiz/index.html', freq: 'weekly', priority: '0.8' },
   { loc: `${BASE}/welcome/en/topics/`, file: 'public/welcome/en/topics/index.html', freq: 'monthly', priority: '0.8' },
-  ...['parents', 'study-plan', 'exam-anxiety'].map((slug) => ({
+  ...['parents', 'study-plan', 'exam-anxiety', 'homework', 'memorization', 'monthly-tests'].map((slug) => ({
     loc: `${BASE}/welcome/en/topics/${slug}/`,
     file: `public/welcome/en/topics/${slug}/index.html`,
     freq: 'monthly',
