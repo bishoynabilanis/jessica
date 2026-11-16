@@ -1,6 +1,27 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "D’une épreuve de l’école. Revois la leçon d’origine.",
+  "Paper saved — take it now or later.": "Copie enregistrée — utilise-la maintenant ou plus tard.",
+  "School exam": "Examen scolaire",
+  "Turn the paper from school into a real exam": "Transforme l’épreuve de l’école en vrai examen",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "Colle les questions une fois et Jessica les lance comme un examen chronométré — avec correction, carnet d’erreurs et score comparable.",
+  "Add a school paper": "Ajouter une épreuve",
+  "No school papers yet": "Aucune épreuve enregistrée",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "Colle les questions une fois ; l’app garde la copie pour la refaire avant l’examen.",
+  "Saved papers": "Épreuves enregistrées",
+  "How to write a line": "Comment écrire une ligne",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "La question, quatre options, puis le numéro de la bonne — une ligne par question. Les chiffres arabes marchent aussi.",
+  "Paper name, e.g. October exam": "Nom de la copie, ex. examen d’octobre",
+  "Paper name": "Nom de la copie",
+  "Paste the questions here, one line each:": "Colle les questions ici, une par ligne :",
+  "Fill an example": "Remplir un exemple",
+  "Check these lines: {lines}": "Vérifie ces lignes : {lines}",
+  "Save and start": "Enregistrer et commencer",
+  "Try it again": "Réessayer",
+  "All papers": "Toutes les copies",
+  "Paste the paper and run it": "Colle l’épreuve et lance-la",
+
   "ICT": "Informatique",
   "Watch a video explanation": "Voir une explication vidéo",
 

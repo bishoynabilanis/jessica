@@ -1,6 +1,27 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "De una hoja del colegio. Repasa la lección de origen.",
+  "Paper saved — take it now or later.": "Hoja guardada: úsala ahora o luego.",
+  "School exam": "Examen del colegio",
+  "Turn the paper from school into a real exam": "Convierte la hoja del colegio en un examen real",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "Pega las preguntas una vez y Jessica las ejecuta como examen cronometrado: con corrección, cuaderno de errores y nota comparable.",
+  "Add a school paper": "Añadir una hoja",
+  "No school papers yet": "Aún no hay hojas del colegio",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "Pega las preguntas una vez; la app guarda la hoja para repetirla antes del examen.",
+  "Saved papers": "Hojas guardadas",
+  "How to write a line": "Cómo escribir una línea",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "La pregunta, cuatro opciones y el número de la correcta: una línea por pregunta. Los dígitos árabes también sirven.",
+  "Paper name, e.g. October exam": "Nombre de la hoja, p. ej. examen de octubre",
+  "Paper name": "Nombre de la hoja",
+  "Paste the questions here, one line each:": "Pega las preguntas aquí, una por línea:",
+  "Fill an example": "Rellenar un ejemplo",
+  "Check these lines: {lines}": "Revisa estas líneas: {lines}",
+  "Save and start": "Guardar y empezar",
+  "Try it again": "Intentarlo otra vez",
+  "All papers": "Todas las hojas",
+  "Paste the paper and run it": "Pega la hoja y ejecútala",
+
   "ICT": "Informática",
   "Watch a video explanation": "Ver una explicación en vídeo",
 

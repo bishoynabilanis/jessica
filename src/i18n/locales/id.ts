@@ -1,6 +1,27 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "Dari lembar sekolah. Ulangi pelajaran asalnya.",
+  "Paper saved — take it now or later.": "Lembar tersimpan — pakai sekarang atau nanti.",
+  "School exam": "Ujian sekolah",
+  "Turn the paper from school into a real exam": "Ubah lembar sekolah jadi ujian sungguhan",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "Tempel soalnya sekali, Jessica menjalankannya sebagai ujian bertimer — dengan penilaian, buku kesalahan, dan skor yang bisa dibandingkan.",
+  "Add a school paper": "Tambah lembar sekolah",
+  "No school papers yet": "Belum ada lembar sekolah",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "Tempel soalnya sekali; aplikasi menyimpan lembar agar bisa diulang sebelum ujian.",
+  "Saved papers": "Lembar tersimpan",
+  "How to write a line": "Cara menulis satu baris",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "Soal, empat pilihan, lalu nomor yang benar — satu baris per soal. Angka Arab juga bisa.",
+  "Paper name, e.g. October exam": "Nama lembar, mis. ujian Oktober",
+  "Paper name": "Nama lembar",
+  "Paste the questions here, one line each:": "Tempel soal di sini, satu per baris:",
+  "Fill an example": "Isi contoh",
+  "Check these lines: {lines}": "Periksa baris ini: {lines}",
+  "Save and start": "Simpan dan mulai",
+  "Try it again": "Coba lagi",
+  "All papers": "Semua lembar",
+  "Paste the paper and run it": "Tempel lembar dan jalankan",
+
   "ICT": "Informatika",
   "Watch a video explanation": "Tonton penjelasan video",
 

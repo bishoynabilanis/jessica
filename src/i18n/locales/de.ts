@@ -1,6 +1,27 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "Aus einer Schulprüfung. Wiederhole die Lektion dahinter.",
+  "Paper saved — take it now or later.": "Bogen gespeichert — jetzt oder später nutzen.",
+  "School exam": "Schulprüfung",
+  "Turn the paper from school into a real exam": "Mach aus dem Schulbogen eine echte Prüfung",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "Füge die Fragen einmal ein und Jessica führt sie als zeitgesteuerte Prüfung aus — mit Korrektur, Fehlerheft und vergleichbarem Ergebnis.",
+  "Add a school paper": "Schulbogen hinzufügen",
+  "No school papers yet": "Noch keine Schulbögen",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "Füge die Fragen einmal ein; die App behält den Bogen für einen zweiten Versuch.",
+  "Saved papers": "Gespeicherte Bögen",
+  "How to write a line": "So schreibst du eine Zeile",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "Die Frage, vier Optionen, dann die Nummer der richtigen — eine Zeile pro Frage. Arabische Ziffern gehen auch.",
+  "Paper name, e.g. October exam": "Name des Bogens, z. B. Oktoberprüfung",
+  "Paper name": "Name des Bogens",
+  "Paste the questions here, one line each:": "Füge die Fragen hier ein, eine pro Zeile:",
+  "Fill an example": "Beispiel einfügen",
+  "Check these lines: {lines}": "Prüfe diese Zeilen: {lines}",
+  "Save and start": "Speichern und starten",
+  "Try it again": "Nochmal versuchen",
+  "All papers": "Alle Bögen",
+  "Paste the paper and run it": "Füge den Bogen ein und starte ihn",
+
   "ICT": "Informatik",
   "Watch a video explanation": "Videoerklärung ansehen",
 

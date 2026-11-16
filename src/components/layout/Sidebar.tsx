@@ -30,6 +30,7 @@ import {
   Sparkles,
   Zap,
   Check,
+  FilePlus2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useApp, levelInfo } from '@/store/useApp'
@@ -48,6 +49,7 @@ export const navItems = [
   { path: '/practice', label: tr("Adaptive practice"), icon: Brain },
   { path: '/bank', label: tr("Question bank"), icon: Layers3 },
   { path: '/grade', label: tr("Grade a paper"), icon: Check },
+  { path: '/school-exam', label: tr("School exam"), icon: FilePlus2 },
   { path: '/courses', label: tr("My courses"), icon: GraduationCap },
   { path: '/library', label: tr("Library"), icon: LibraryBig },
   { path: '/study', label: tr("Study Hub"), icon: GraduationCap },

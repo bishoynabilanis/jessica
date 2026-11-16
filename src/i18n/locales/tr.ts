@@ -1,6 +1,27 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "Okul kâğıdından. Kaynağındaki dersi tekrar et.",
+  "Paper saved — take it now or later.": "Kâğıt kaydedildi — şimdi ya da sonra kullan.",
+  "School exam": "Okul sınavı",
+  "Turn the paper from school into a real exam": "Okul kâğıdını gerçek bir sınava çevir",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "Soruları bir kez yapıştır, Jessica onları süreli sınav olarak çalıştırsın — değerlendirme, hata defteri ve karşılaştırılabilir puan.",
+  "Add a school paper": "Okul kâğıdı ekle",
+  "No school papers yet": "Henüz okul kâğıdı yok",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "Soruları bir kez yapıştır; uygulama kâğıdı saklar, sınavdan önce tekrar çözersin.",
+  "Saved papers": "Kayıtlı kâğıtlar",
+  "How to write a line": "Bir satır nasıl yazılır",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "Soru, dört seçenek, sonra doğru olanın numarası — her soru tek satır. Arap rakamları da olur.",
+  "Paper name, e.g. October exam": "Kâğıt adı, örn. Ekim sınavı",
+  "Paper name": "Kâğıt adı",
+  "Paste the questions here, one line each:": "Soruları buraya yapıştır, her satıra bir soru:",
+  "Fill an example": "Örnek doldur",
+  "Check these lines: {lines}": "Şu satırları kontrol et: {lines}",
+  "Save and start": "Kaydet ve başla",
+  "Try it again": "Tekrar dene",
+  "All papers": "Tüm kâğıtlar",
+  "Paste the paper and run it": "Kâğıdı yapıştır ve başlat",
+
   "ICT": "Bilişim",
   "Watch a video explanation": "Video anlatımı izle",
 

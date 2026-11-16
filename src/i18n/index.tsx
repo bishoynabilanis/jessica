@@ -14,6 +14,27 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "From a school paper. Review the lesson it came from.": "من ورقة مدرسة. راجع الدرس اللي جت منه.",
+  "Paper saved — take it now or later.": "الورقة اتحفظت — استخدمها دلوقتي أو بعدين.",
+  "School exam": "امتحان المدرسة",
+  "Turn the paper from school into a real exam": "حوّل ورقة المدرسة لامتحان حقيقي",
+  "Paste the questions once, and Jessica runs them as a timed exam — with marking, a mistakes notebook and a score you can compare.": "الصق الأسئلة مرة واحدة، وجيسيكا تشغّلها كامتحان مؤقت — بتصحيح ودفتر أخطاء ودرجة تقدر تقارنها.",
+  "Add a school paper": "أضف ورقة مدرسة",
+  "No school papers yet": "مفيش ورق مدارس لسه",
+  "Paste the questions once; the app keeps the paper so you can re-run it before the exam.": "الصق الأسئلة مرة واحدة؛ التطبيق بيحفظ الورقة عشان تعيدها قبل الامتحان.",
+  "Saved papers": "الورق المحفوظ",
+  "How to write a line": "إزاي تكتب السطر",
+  "Question, four options, then the number of the correct one — one paper line per question. Arabic digits work too.": "السؤال، أربع اختيارات، وبعدهم رقم الاختيار الصح — سطر واحد لكل سؤال. الأرقام العربية شغالة كمان.",
+  "Paper name, e.g. October exam": "اسم الورقة، مثال: امتحان أكتوبر",
+  "Paper name": "اسم الورقة",
+  "Paste the questions here, one line each:": "الصق الأسئلة هنا، سطر لكل سؤال:",
+  "Fill an example": "املأ مثال",
+  "Check these lines: {lines}": "راجع السطور دي: {lines}",
+  "Save and start": "احفظ وابدأ",
+  "Try it again": "جرّبها تاني",
+  "All papers": "كل الورق",
+  "Paste the paper and run it": "الصق الورقة وشغّلها",
+
   "ICT": "الحاسب الآلي",
   "Watch a video explanation": "شوف شرح بالفيديو",
 
