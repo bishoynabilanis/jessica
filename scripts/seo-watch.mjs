@@ -30,6 +30,11 @@ const KEY_PAGES = [
   `${SITE}/welcome/install/`,
   `${SITE}/welcome/topics/`,
   `${SITE}/welcome/topics/parents/`,
+  `${SITE}/welcome/bank/`,
+  `${SITE}/welcome/focus/`,
+  `${SITE}/welcome/en/bank/`,
+  `${SITE}/welcome/en/quiz/`,
+  `${SITE}/welcome/en/topics/`,
 ]
 
 const rows = []
