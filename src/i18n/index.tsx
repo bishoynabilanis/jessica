@@ -14,6 +14,19 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "اتدرّب واكسب نجوم",
+  "Ten questions from your own grade. Every right answer is a star.": "١٠ أسئلة من صفّك انت. كل إجابة صح = نجمة.",
+  "You got {n} of {m} right": "جاوبت {n} من {m} صح",
+  "Perfect — that is three stars!": "تمام! تلات نجوم.",
+  "Good work. Try again for three stars.": "شغل حلو. جرّب تاني على تلات نجوم.",
+  "Every try makes it easier. Go again!": "كل محاولة بتسهّل اللي بعدها. يلا تاني!",
+  "Play again": "العب تاني",
+  "Pick another subject": "اختار مادة تانية",
+  "Correct! ⭐": "صح! ⭐",
+  "Almost! The answer is {answer}": "قريب! الإجابة الصح: {answer}",
+  "See my stars": "شوف نجومي",
+  "Every right answer is one star for your buddy.": "كل إجابة صح نجمة لرفيقك.",
+
 
   "Profiles": "ملفات الأطفال",
   "More than one child on the same device": "أكتر من طفل على نفس الجهاز",

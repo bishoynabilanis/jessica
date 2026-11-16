@@ -1,6 +1,19 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "Alıştırma yap ve yıldız kazan",
+  "Ten questions from your own grade. Every right answer is a star.": "Kendi sınıfından on soru. Her doğru cevap bir yıldız.",
+  "You got {n} of {m} right": "{m} sorudan {n} doğru",
+  "Perfect — that is three stars!": "Harika — üç yıldız!",
+  "Good work. Try again for three stars.": "Aferin. Üç yıldız için tekrar dene.",
+  "Every try makes it easier. Go again!": "Her deneme sonrakini kolaylaştırır. Tekrar!",
+  "Play again": "Tekrar oyna",
+  "Pick another subject": "Başka ders seç",
+  "Correct! ⭐": "Doğru! ⭐",
+  "Almost! The answer is {answer}": "Neredeyse! Doğru cevap: {answer}",
+  "See my stars": "Yıldızlarımı gör",
+  "Every right answer is one star for your buddy.": "Her doğru cevap arkadaşın için bir yıldız.",
+
 
   "Profiles": "Profiller",
   "More than one child on the same device": "Aynı cihazda birden fazla çocuk",

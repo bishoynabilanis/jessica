@@ -165,6 +165,17 @@ export function KidsHome() {
         </div>
       </Card>
 
+      <Card className="flex flex-wrap items-center gap-3 border-2 border-emerald-200 bg-emerald-50/80 p-4">
+        <span className="kids-bob grid h-12 w-12 place-items-center rounded-2xl bg-emerald-100 text-2xl">🎯</span>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-extrabold text-ink-950">{tr('Practise and win stars')}</p>
+          <p className="text-[10px] text-ink-600">{tr('Ten questions from your own grade. Every right answer is a star.')}</p>
+        </div>
+        <Button size="sm" onClick={() => navigate('/kids/practice')} data-testid="kids-practice-entry">
+          {tr('Start')} <ArrowRight className="h-3.5 w-3.5" />
+        </Button>
+      </Card>
+
       <div className="flex flex-wrap justify-center gap-2">
         <span className="chip border-coral/30 bg-white text-coral">
           <Flame className="h-3 w-3" /> {tr('{n} day streak', { n: streak })}

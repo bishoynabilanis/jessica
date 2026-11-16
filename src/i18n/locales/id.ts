@@ -1,6 +1,19 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "Berlatih dan raih bintang",
+  "Ten questions from your own grade. Every right answer is a star.": "Sepuluh soal dari kelasmu. Setiap jawaban benar adalah bintang.",
+  "You got {n} of {m} right": "Kamu benar {n} dari {m}",
+  "Perfect — that is three stars!": "Sempurna — tiga bintang!",
+  "Good work. Try again for three stars.": "Kerja bagus. Coba lagi untuk tiga bintang.",
+  "Every try makes it easier. Go again!": "Setiap percobaan membuatnya lebih mudah. Lagi!",
+  "Play again": "Main lagi",
+  "Pick another subject": "Pilih pelajaran lain",
+  "Correct! ⭐": "Benar! ⭐",
+  "Almost! The answer is {answer}": "Hampir! Jawabannya {answer}",
+  "See my stars": "Lihat bintangku",
+  "Every right answer is one star for your buddy.": "Setiap jawaban benar adalah bintang untuk temanmu.",
+
 
   "Profiles": "Profil",
   "More than one child on the same device": "Lebih dari satu anak di perangkat yang sama",

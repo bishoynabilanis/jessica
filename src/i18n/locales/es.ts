@@ -1,6 +1,19 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "Practica y gana estrellas",
+  "Ten questions from your own grade. Every right answer is a star.": "Diez preguntas de tu curso. Cada respuesta correcta es una estrella.",
+  "You got {n} of {m} right": "Acertaste {n} de {m}",
+  "Perfect — that is three stars!": "¡Perfecto, tres estrellas!",
+  "Good work. Try again for three stars.": "Buen trabajo. Inténtalo para tres estrellas.",
+  "Every try makes it easier. Go again!": "Cada intento lo hace más fácil. ¡Otra vez!",
+  "Play again": "Jugar otra vez",
+  "Pick another subject": "Elegir otra materia",
+  "Correct! ⭐": "¡Correcto! ⭐",
+  "Almost! The answer is {answer}": "¡Casi! La respuesta es {answer}",
+  "See my stars": "Ver mis estrellas",
+  "Every right answer is one star for your buddy.": "Cada respuesta correcta es una estrella para tu compañero.",
+
 
   "Profiles": "Perfiles",
   "More than one child on the same device": "Más de un niño en el mismo dispositivo",

@@ -1,6 +1,19 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "Übe und sammle Sterne",
+  "Ten questions from your own grade. Every right answer is a star.": "Zehn Fragen aus deiner Klasse. Jede richtige Antwort ist ein Stern.",
+  "You got {n} of {m} right": "Du hast {n} von {m} richtig",
+  "Perfect — that is three stars!": "Perfekt – drei Sterne!",
+  "Good work. Try again for three stars.": "Gut gemacht. Versuch es für drei Sterne noch einmal.",
+  "Every try makes it easier. Go again!": "Jeder Versuch macht es leichter. Nochmal!",
+  "Play again": "Nochmal spielen",
+  "Pick another subject": "Anderes Fach wählen",
+  "Correct! ⭐": "Richtig! ⭐",
+  "Almost! The answer is {answer}": "Fast! Die Antwort ist {answer}",
+  "See my stars": "Meine Sterne ansehen",
+  "Every right answer is one star for your buddy.": "Jede richtige Antwort ist ein Stern für deinen Freund.",
+
 
   "Profiles": "Profile",
   "More than one child on the same device": "Mehr als ein Kind auf demselben Gerät",

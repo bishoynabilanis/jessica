@@ -10,6 +10,7 @@ import { KidsLesson } from '@/kids/KidsLesson'
 import { KidsMap } from '@/kids/KidsMap'
 import { ParentZone } from '@/kids/ParentZone'
 import { KidsLabs } from '@/kids/KidsLabs'
+import { KidsPractice } from '@/kids/KidsPractice'
 import { Reader } from '@/pages/Reader'
 
 export function KidsApp() {
@@ -21,6 +22,7 @@ export function KidsApp() {
           <Route path="library" element={<KidsLibrary />} />
           <Route path="reader/:bookId" element={<Reader />} />
           <Route path="play" element={<KidsPlay />} />
+          <Route path="practice" element={<KidsPractice />} />
           <Route path="lesson/:bookId" element={<KidsLesson />} />
           <Route path="map" element={<KidsMap />} />
           <Route path="labs" element={<KidsLabs />} />

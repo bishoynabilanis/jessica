@@ -1,6 +1,19 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Practise and win stars": "Entraîne-toi et gagne des étoiles",
+  "Ten questions from your own grade. Every right answer is a star.": "Dix questions de ta classe. Chaque bonne réponse est une étoile.",
+  "You got {n} of {m} right": "Tu as {n} sur {m}",
+  "Perfect — that is three stars!": "Parfait — trois étoiles !",
+  "Good work. Try again for three stars.": "Bien joué. Réessaie pour trois étoiles.",
+  "Every try makes it easier. Go again!": "Chaque essai rend le suivant plus facile. Encore !",
+  "Play again": "Rejouer",
+  "Pick another subject": "Choisir une autre matière",
+  "Correct! ⭐": "Correct ! ⭐",
+  "Almost! The answer is {answer}": "Presque ! La réponse est {answer}",
+  "See my stars": "Voir mes étoiles",
+  "Every right answer is one star for your buddy.": "Chaque bonne réponse est une étoile pour ton compagnon.",
+
 
   "Profiles": "Profils",
   "More than one child on the same device": "Plus d’un enfant sur le même appareil",
