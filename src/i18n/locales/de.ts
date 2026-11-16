@@ -1,6 +1,10 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on fire today!": "Du bist heute in Topform!",
+  "That was quick and clean!": "Schnell und sauber!",
+  "Your buddy is proud of you!": "Dein Freund ist stolz auf dich!",
+
   "My stars": "Meine Sterne",
   "You collected {n} stars in the last seven days.": "Du hast in den letzten sieben Tagen {n} Sterne gesammelt.",
   "All my stars": "Alle meine Sterne",

@@ -25,6 +25,7 @@ import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { BANK_SUBJECTS, buildDrill, buildSkillDrill, weakestSkills, type BankQuestion, type BankSubject } from '@/lib/questionBank'
 import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
+import { celebrate } from '@/lib/celebrate'
 import { levelLabel } from '@/lib/curriculum'
 import { buildCourse } from '@/lib/course'
 import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
@@ -171,6 +172,7 @@ export function Bank() {
       pushToast({ title: tr('Clean sheet!'), description: tr('Every answer right — try the next subject.'), type: 'success' })
     }
 
+    if (correct >= Math.ceil(questions.length * 0.6)) celebrate()
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 

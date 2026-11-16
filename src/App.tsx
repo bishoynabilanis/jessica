@@ -4,6 +4,7 @@ import { Compass, Home } from 'lucide-react'
 import { AppShell } from '@/components/layout/AppShell'
 import { Onboarding } from '@/components/Onboarding'
 import { RouteMemory } from '@/components/RouteMemory'
+import { CelebrationLayer } from '@/components/Celebration'
 import { SetupGate } from '@/components/SetupGate'
 import { TermsGate } from '@/components/TermsGate'
 import { TERMS_VERSION } from '@/data/terms'
@@ -205,6 +206,7 @@ export default function App() {
   return (
     <HashRouter>
       <RouteMemory />
+      <CelebrationLayer />
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route element={<AppShell />}>

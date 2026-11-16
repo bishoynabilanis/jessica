@@ -1,6 +1,10 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on fire today!": "Bugün harikasın!",
+  "That was quick and clean!": "Hızlı ve temiz!",
+  "Your buddy is proud of you!": "Arkadaşın seninle gurur duyuyor!",
+
   "My stars": "Yıldızlarım",
   "You collected {n} stars in the last seven days.": "Son yedi günde {n} yıldız topladın.",
   "All my stars": "Tüm yıldızlarım",

@@ -69,6 +69,7 @@ test('the weekly challenge counts papers and pays out once', async ({ page }) =>
   await expect(claim).toBeVisible()
   await claim.click()
 
+  await expect(page.getByTestId('confetti')).toBeVisible()
   await expect(page.getByTestId('kids-weekly-claim')).toHaveCount(0)
   const saved = await page.evaluate(() => {
     const raw = window.localStorage.getItem('jessica-profile-v1')

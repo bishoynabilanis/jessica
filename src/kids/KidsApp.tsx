@@ -12,11 +12,13 @@ import { ParentZone } from '@/kids/ParentZone'
 import { KidsLabs } from '@/kids/KidsLabs'
 import { KidsPractice } from '@/kids/KidsPractice'
 import { KidsStars } from '@/kids/KidsStars'
+import { CelebrationLayer } from '@/components/Celebration'
 import { Reader } from '@/pages/Reader'
 
 export function KidsApp() {
   return (
     <HashRouter>
+      <CelebrationLayer />
       <Routes>
         <Route path="kids" element={<KidsShell />}>
           <Route index element={<KidsHome />} />

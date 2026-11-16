@@ -14,6 +14,10 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on fire today!": "انت نار النهارده!",
+  "That was quick and clean!": "سريع ونضيف!",
+  "Your buddy is proud of you!": "رفيقك فخور بيك!",
+
   "My stars": "نجومي",
   "You collected {n} stars in the last seven days.": "جمعت {n} نجمة في آخر ٧ أيام.",
   "All my stars": "كل نجومي",

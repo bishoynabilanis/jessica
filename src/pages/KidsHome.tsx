@@ -7,6 +7,7 @@ import { BookCard } from '@/components/common/BookCard'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { useUI } from '@/store/useUI'
+import { celebrate } from '@/lib/celebrate'
 import { Modal } from '@/components/ui/Modal'
 import { giftStickers } from '@/data/kids'
 import { levelLabel } from '@/lib/curriculum'
@@ -26,7 +27,10 @@ export function KidsHome() {
   const claimedWeekly = Boolean(practiceClaimed[week])
   const claimWeekly = () => {
     const reward = claimPractice()
-    if (reward) pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: reward })
+    if (reward) {
+      celebrate()
+      pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: reward })
+    }
   }
   const [giftOpen, setGiftOpen] = useState(false)
   const [draftName, setDraftName] = useState('')

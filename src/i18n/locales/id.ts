@@ -1,6 +1,10 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on fire today!": "Kamu hebat hari ini!",
+  "That was quick and clean!": "Cepat dan bersih!",
+  "Your buddy is proud of you!": "Temanmu bangga padamu!",
+
   "My stars": "Bintangku",
   "You collected {n} stars in the last seven days.": "Kamu mengumpulkan {n} bintang dalam tujuh hari terakhir.",
   "All my stars": "Semua bintangku",

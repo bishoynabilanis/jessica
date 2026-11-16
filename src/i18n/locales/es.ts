@@ -1,6 +1,10 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on fire today!": "¡Estás que ardes hoy!",
+  "That was quick and clean!": "¡Rápido y limpio!",
+  "Your buddy is proud of you!": "¡Tu compañero está orgulloso de ti!",
+
   "My stars": "Mis estrellas",
   "You collected {n} stars in the last seven days.": "Ganaste {n} estrellas en los últimos siete días.",
   "All my stars": "Todas mis estrellas",

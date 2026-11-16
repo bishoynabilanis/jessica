@@ -7,6 +7,7 @@ import { buildDrill, type BankSubject, type BankQuestion } from '@/lib/questionB
 import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { playCorrect, playFinish, playWrong } from '@/lib/sound'
+import { celebrate } from '@/lib/celebrate'
 
 type Phase = 'pick' | 'quiz' | 'done'
 
@@ -41,6 +42,10 @@ export function KidsPractice() {
 
   const current = questions[index]
   const stars = useMemo(() => (score >= 9 ? 3 : score >= 6 ? 2 : score >= 1 ? 1 : 0), [score])
+  const praise = useMemo(
+    () => ['You are on fire today!', 'That was quick and clean!', 'Your buddy is proud of you!'][score % 3],
+    [score],
+  )
 
   const start = (next: BankSubject = subject) => {
     setSubject(next)
@@ -71,6 +76,7 @@ export function KidsPractice() {
     }
     addXP(5 + score)
     recordPractice()
+    if (score >= questions.length - 2) celebrate()
     if (sound) playFinish()
     setPhase('done')
   }
@@ -122,6 +128,7 @@ export function KidsPractice() {
           <p className="mt-3 font-display text-xl font-extrabold text-ink-950">
             {tr('You got {n} of {m} right', { n: num(score), m: num(questions.length) })}
           </p>
+          <p className="mt-1 text-sm font-extrabold text-violet-700">{tr(praise)}</p>
           <p className="mt-1 text-xs font-semibold text-ink-600">
             {stars === 3 ? tr('Perfect — that is three stars!') : stars >= 1 ? tr('Good work. Try again for three stars.') : tr('Every try makes it easier. Go again!')}
           </p>
