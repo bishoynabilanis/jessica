@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Check, Layers, Printer, RotateCcw, Share2, X } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -27,6 +27,22 @@ export function GradePaper() {
   const [phase, setPhase] = useState<Phase>('pick')
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [delta, setDelta] = useState<number | null>(null)
+  const [params, setParams] = useSearchParams()
+
+  useEffect(() => {
+    const code = params.get('code')
+    if (!code) return
+    const found = readPrintedPapers().find((item) => item.code === code)
+    if (found) {
+      setPaper(found)
+      setAnswers({})
+      setDelta(null)
+      setPhase('mark')
+    }
+    params.delete('code')
+    setParams(params, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const letters = language === 'ar' ? ['أ', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D']
   const answered = Object.keys(answers).length

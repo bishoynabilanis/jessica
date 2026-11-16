@@ -1,6 +1,13 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "Enlace copiado: mándalo a quien quieras",
+  "Whoever opens it gets the same paper.": "Quien lo abra recibe la misma hoja.",
+  "Could not copy the link": "No se pudo copiar el enlace",
+  "Shared paper added": "Hoja compartida añadida",
+  "Could not read this shared paper": "No se pudo leer esta hoja compartida",
+  "Scan to mark the sheet": "Escanea para corregir la hoja",
+
   "From a school paper. Review the lesson it came from.": "De una hoja del colegio. Repasa la lección de origen.",
   "Paper saved — take it now or later.": "Hoja guardada: úsala ahora o luego.",
   "School exam": "Examen del colegio",

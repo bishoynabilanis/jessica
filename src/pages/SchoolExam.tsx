@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight, Check, Clock, FilePlus2, Trash2, Upload } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { ArrowRight, Check, Clock, FilePlus2, Share2, Trash2, Upload } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar } from '@/components/ui/Card'
@@ -10,6 +10,7 @@ import { celebrate } from '@/lib/celebrate'
 import { addAttempt } from '@/lib/bankHistory'
 import { BANK_SUBJECTS, type BankSubject } from '@/lib/questionBank'
 import { parseSchoolPaper, readSchoolExams, removeSchoolExam, saveSchoolExam, type SchoolExam } from '@/lib/schoolExam'
+import { decodeShare, shareLink } from '@/lib/shareCode'
 import { dateLocale, num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 
@@ -31,12 +32,34 @@ export function SchoolExamPage() {
   const [subject, setSubject] = useState<BankSubject>('Social Studies')
   const [raw, setRaw] = useState('')
   const [exam, setExam] = useState<SchoolExam | null>(null)
+  const [params, setParams] = useSearchParams()
 
   const [index, setIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [endsAt, setEndsAt] = useState(0)
   const [now, setNow] = useState(Date.now())
   const [score, setScore] = useState(0)
+
+  useEffect(() => {
+    const code = params.get('share')
+    if (!code) return
+    const shared = decodeShare<{ title: string; subject: BankSubject; minutes: number; questions: SchoolExam['questions'] }>(code)
+    if (shared?.questions?.length) {
+      saveSchoolExam({
+        title: shared.title || shared.subject || 'Shared',
+        subject: shared.subject || 'Mathematics',
+        minutes: shared.minutes || Math.max(5, shared.questions.length + 5),
+        questions: shared.questions,
+      })
+      setExams(readSchoolExams())
+      pushToast({ title: tr('Shared paper added'), type: 'success' })
+    } else {
+      pushToast({ title: tr('Could not read this shared paper'), type: 'error' })
+    }
+    params.delete('share')
+    setParams(params, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const parsed = useMemo(() => parseSchoolPaper(raw, subject), [raw, subject])
   const current = exam?.questions[index]
@@ -93,6 +116,21 @@ export function SchoolExamPage() {
     if (phase === 'take' && endsAt && now >= endsAt) finish(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, endsAt, now])
+
+  const share = async (item: SchoolExam) => {
+    const link = shareLink('/school-exam', {
+      title: item.title,
+      subject: item.subject,
+      minutes: item.minutes,
+      questions: item.questions,
+    })
+    try {
+      await navigator.clipboard.writeText(link)
+      pushToast({ title: tr('Link copied — send it to anyone'), description: tr('Whoever opens it gets the same paper.'), type: 'success' })
+    } catch {
+      pushToast({ title: tr('Could not copy the link'), description: link, type: 'info', duration: 8000 })
+    }
+  }
 
   const save = () => {
     if (!parsed.questions.length) return
@@ -155,6 +193,14 @@ export function SchoolExamPage() {
                     <Button size="sm" onClick={() => start(item)}>
                       <Clock className="h-3.5 w-3.5" /> {tr('Start')}
                     </Button>
+                    <button
+                      onClick={() => share(item)}
+                      aria-label={tr('Share')}
+                      data-testid="school-share"
+                      className="rounded-lg border border-line p-1.5 text-muted-2 transition hover:border-aurora-400/40 hover:text-main"
+                    >
+                      <Share2 className="h-3.5 w-3.5" />
+                    </button>
                     <button
                       onClick={() => {
                         removeSchoolExam(item.id)

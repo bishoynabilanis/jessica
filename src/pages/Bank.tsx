@@ -92,6 +92,7 @@ export function Bank() {
   const [startedAt, setStartedAt] = useState(0)
   const [printList, setPrintList] = useState<BankQuestion[] | null>(null)
   const [printCode, setPrintCode] = useState('')
+  const [printQr, setPrintQr] = useState('')
   const [attempts, setAttempts] = useState<BankAttempt[]>(() => readAttempts())
   const [delta, setDelta] = useState<number | null>(null)
   const [unitBusy, setUnitBusy] = useState(false)
@@ -350,10 +351,17 @@ export function Bank() {
 
   const answered = Object.keys(answers).length
 
-  const printPaper = (list: BankQuestion[]) => {
+  const printPaper = async (list: BankQuestion[]) => {
     const paper = savePrintedPaper(subject, list)
     setPrintCode(paper.code)
     setPrintList(list)
+    try {
+      const QRCode = (await import('qrcode')).default
+      const url = `${window.location.origin}${window.location.pathname}#/grade?code=${encodeURIComponent(paper.code)}`
+      setPrintQr(await QRCode.toDataURL(url, { margin: 0, width: 200 }))
+    } catch {
+      setPrintQr('')
+    }
     document.body.classList.add('bank-print-mode')
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
@@ -811,7 +819,7 @@ export function Bank() {
 
       {printList &&
         createPortal(
-          <PaperSheet questions={printList} code={printCode} subject={tr(subject)} grade={levelLabel(gradeLevel, curriculum)} />,
+          <PaperSheet questions={printList} code={printCode} qr={printQr} subject={tr(subject)} grade={levelLabel(gradeLevel, curriculum)} />,
           document.body,
         )}
     </div>
@@ -819,7 +827,9 @@ export function Bank() {
 }
 
 /** The paper that comes out of the printer: questions first, key after. */
-function PaperSheet({ questions, code, subject, grade }: { questions: BankQuestion[]; code: string; subject: string; grade: string }) {
+const hasArabicLetters = (text: string) => /[\u0621-\u064A]/.test(text)
+
+function PaperSheet({ questions, code, qr, subject, grade }: { questions: BankQuestion[]; code: string; qr: string; subject: string; grade: string }) {
   const language = useApp((s) => s.settings.language)
   const letters = language === 'ar' ? ['أ', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D']
 
@@ -831,7 +841,15 @@ function PaperSheet({ questions, code, subject, grade }: { questions: BankQuesti
           <p className="text-[10px] text-[#5b6472]">{tr('Practice sheet from Jessica · generated on this device')}</p>
           {code && <p className="text-[10px] font-bold text-[#0f7f6d]">{tr('Sheet code: {code} · grade it in the app', { code })}</p>}
         </div>
-        <p className="text-[10px] font-bold text-[#5b6472]">is.gd/jessicaapp</p>
+        <div className="text-end">
+          <p className="text-[10px] font-bold text-[#5b6472]">is.gd/jessicaapp</p>
+          {qr && (
+            <div className="mt-1 flex flex-col items-center gap-0.5">
+              <img src={qr} alt="" width={56} height={56} data-testid="sheet-qr" />
+              <span className="text-[7px] font-bold text-[#5b6472]">{tr('Scan to mark the sheet')}</span>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-[11px] font-bold text-[#374151]">
@@ -843,12 +861,12 @@ function PaperSheet({ questions, code, subject, grade }: { questions: BankQuesti
       <ol className="mt-4 space-y-3">
         {questions.map((question, questionIndex) => (
           <li key={question.id} className="break-inside-avoid">
-            <p className="text-[12px] font-bold leading-relaxed" dir="auto">
+            <p className="text-[12px] font-bold leading-relaxed" dir={hasArabicLetters(question.prompt) ? 'auto' : 'ltr'}>
               <bdi dir="ltr">{num(questionIndex + 1)}.</bdi> {question.prompt}
             </p>
             <div className="mt-1 grid grid-cols-2 gap-x-4 gap-y-0.5 text-[11px] text-[#374151]">
               {question.options.map((option, optionIndex) => (
-                <p key={`${question.id}-${optionIndex}`} dir="auto">
+                <p key={`${question.id}-${optionIndex}`} dir={hasArabicLetters(option) ? 'auto' : 'ltr'}>
                   <bdi dir="ltr" className="font-extrabold">{letters[optionIndex]})</bdi> {option}
                 </p>
               ))}

@@ -1,6 +1,13 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "Bağlantı kopyalandı — dilediğine gönder",
+  "Whoever opens it gets the same paper.": "Açan kişi aynı kâğıdı alır.",
+  "Could not copy the link": "Bağlantı kopyalanamadı",
+  "Shared paper added": "Paylaşılan kâğıt eklendi",
+  "Could not read this shared paper": "Bu paylaşılan kâğıt okunamadı",
+  "Scan to mark the sheet": "Kâğıdı değerlendirmek için tara",
+
   "From a school paper. Review the lesson it came from.": "Okul kâğıdından. Kaynağındaki dersi tekrar et.",
   "Paper saved — take it now or later.": "Kâğıt kaydedildi — şimdi ya da sonra kullan.",
   "School exam": "Okul sınavı",

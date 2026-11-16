@@ -1,6 +1,13 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "Lien copié — envoie-le à qui tu veux",
+  "Whoever opens it gets the same paper.": "Qui l’ouvre reçoit la même copie.",
+  "Could not copy the link": "Impossible de copier le lien",
+  "Shared paper added": "Copie partagée ajoutée",
+  "Could not read this shared paper": "Impossible de lire cette copie partagée",
+  "Scan to mark the sheet": "Scanne pour corriger la copie",
+
   "From a school paper. Review the lesson it came from.": "D’une épreuve de l’école. Revois la leçon d’origine.",
   "Paper saved — take it now or later.": "Copie enregistrée — utilise-la maintenant ou plus tard.",
   "School exam": "Examen scolaire",

@@ -14,6 +14,13 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "اللينك اتنسخ — ابعته لأي حد",
+  "Whoever opens it gets the same paper.": "اللي يفتحه هيجيله نفس الورقة.",
+  "Could not copy the link": "مقدرتش أنسخ اللينك",
+  "Shared paper added": "الورقة المشتركة اتضافت",
+  "Could not read this shared paper": "مقدرتش أقرا الورقة المشتركة دي",
+  "Scan to mark the sheet": "امسح الكود عشان تصحح الورقة",
+
   "From a school paper. Review the lesson it came from.": "من ورقة مدرسة. راجع الدرس اللي جت منه.",
   "Paper saved — take it now or later.": "الورقة اتحفظت — استخدمها دلوقتي أو بعدين.",
   "School exam": "امتحان المدرسة",

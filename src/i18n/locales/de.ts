@@ -1,6 +1,13 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "Link kopiert — schick ihn weiter",
+  "Whoever opens it gets the same paper.": "Wer ihn öffnet, bekommt denselben Bogen.",
+  "Could not copy the link": "Link konnte nicht kopiert werden",
+  "Shared paper added": "Geteilter Bogen hinzugefügt",
+  "Could not read this shared paper": "Dieser geteilte Bogen ließ sich nicht lesen",
+  "Scan to mark the sheet": "Scannen, um den Bogen zu korrigieren",
+
   "From a school paper. Review the lesson it came from.": "Aus einer Schulprüfung. Wiederhole die Lektion dahinter.",
   "Paper saved — take it now or later.": "Bogen gespeichert — jetzt oder später nutzen.",
   "School exam": "Schulprüfung",

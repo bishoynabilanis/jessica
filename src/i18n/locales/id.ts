@@ -1,6 +1,13 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Link copied — send it to anyone": "Tautan disalin — kirim ke siapa saja",
+  "Whoever opens it gets the same paper.": "Siapa yang membukanya mendapat lembar yang sama.",
+  "Could not copy the link": "Tidak bisa menyalin tautan",
+  "Shared paper added": "Lembar bersama ditambahkan",
+  "Could not read this shared paper": "Tidak bisa membaca lembar bersama ini",
+  "Scan to mark the sheet": "Pindai untuk menilai lembar",
+
   "From a school paper. Review the lesson it came from.": "Dari lembar sekolah. Ulangi pelajaran asalnya.",
   "Paper saved — take it now or later.": "Lembar tersimpan — pakai sekarang atau nanti.",
   "School exam": "Ujian sekolah",
