@@ -1,6 +1,12 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "Défi de la semaine",
+  "{n} of 3 practice papers this week": "{n} sur 3 entraînements cette semaine",
+  "Collect 15 stars": "Récupérer 15 étoiles",
+  "Done! Come back next week for a new one.": "Terminé ! Reviens la semaine prochaine.",
+  "Weekly challenge done! +15 stars": "Défi terminé ! +15 étoiles",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "Salut ! Je suis Jessica. Révisons ta leçon ensemble, étape par étape.",
 
   "Voice on this device: {name}": "Voix sur cet appareil : {name}",

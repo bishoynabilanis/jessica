@@ -1,6 +1,12 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "Reto semanal",
+  "{n} of 3 practice papers this week": "{n} de 3 entrenamientos esta semana",
+  "Collect 15 stars": "Recoger 15 estrellas",
+  "Done! Come back next week for a new one.": "¡Hecho! Vuelve la próxima semana.",
+  "Weekly challenge done! +15 stars": "¡Reto completado! +15 estrellas",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "¡Hola! Soy Jessica. Estudiemos tu lección juntos, paso a paso.",
 
   "Voice on this device: {name}": "Voz en este dispositivo: {name}",

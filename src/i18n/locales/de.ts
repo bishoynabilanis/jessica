@@ -1,6 +1,12 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "Wochen-Challenge",
+  "{n} of 3 practice papers this week": "{n} von 3 Übungen diese Woche",
+  "Collect 15 stars": "15 Sterne abholen",
+  "Done! Come back next week for a new one.": "Geschafft! Komm nächste Woche wieder.",
+  "Weekly challenge done! +15 stars": "Wochen-Challenge geschafft! +15 Sterne",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "Hallo! Ich bin Jessica. Lernen wir deine Lektion zusammen, Schritt für Schritt.",
 
   "Voice on this device: {name}": "Stimme auf diesem Gerät: {name}",

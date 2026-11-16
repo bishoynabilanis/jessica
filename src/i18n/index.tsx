@@ -14,6 +14,12 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "تحدي الأسبوع",
+  "{n} of 3 practice papers this week": "{n} من ٣ تدريبات الأسبوع ده",
+  "Collect 15 stars": "استلم ١٥ نجمة",
+  "Done! Come back next week for a new one.": "خلصته! استنى تحدي جديد الأسبوع الجاي.",
+  "Weekly challenge done! +15 stars": "تحدي الأسبوع خلص! +١٥ نجمة",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "أهلاً! أنا جيسيكا. يلا نذاكر درسك مع بعض خطوة بخطوة.",
 
   "Voice on this device: {name}": "الصوت المستخدم على الجهاز: {name}",
@@ -26,7 +32,7 @@ export const arabic: Record<string, string> = {
   "Turn sounds on": "شغّل الصوت",
 
   "Practise and win stars": "اتدرّب واكسب نجوم",
-  "Ten questions from your own grade. Every right answer is a star.": "١٠ أسئلة من صفّك انت. كل إجابة صح = نجمة.",
+  "Ten questions from your own grade. Every right answer is a star.": "١٠ أسئلة من صفك انت. كل إجابة صح = نجمة.",
   "You got {n} of {m} right": "جاوبت {n} من {m} صح",
   "Perfect — that is three stars!": "تمام! تلات نجوم.",
   "Good work. Try again for three stars.": "شغل حلو. جرّب تاني على تلات نجوم.",

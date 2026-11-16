@@ -1,6 +1,12 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "Haftanın görevi",
+  "{n} of 3 practice papers this week": "Bu hafta 3 alıştırmadan {n} tanesi",
+  "Collect 15 stars": "15 yıldız al",
+  "Done! Come back next week for a new one.": "Tamamlandı! Gelecek hafta yenisini bekle.",
+  "Weekly challenge done! +15 stars": "Haftanın görevi tamam! +15 yıldız",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "Merhaba! Ben Jessica. Dersini adım adım birlikte çalışalım.",
 
   "Voice on this device: {name}": "Bu cihazdaki ses: {name}",

@@ -1,6 +1,12 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Weekly challenge": "Tantangan mingguan",
+  "{n} of 3 practice papers this week": "{n} dari 3 latihan minggu ini",
+  "Collect 15 stars": "Ambil 15 bintang",
+  "Done! Come back next week for a new one.": "Selesai! Kembali minggu depan.",
+  "Weekly challenge done! +15 stars": "Tantangan mingguan selesai! +15 bintang",
+
   "Hey! I am Jessica. Let us study your lesson together, step by step.": "Hai! Aku Jessica. Ayo belajar pelajaranmu bersama, langkah demi langkah.",
 
   "Voice on this device: {name}": "Suara di perangkat ini: {name}",
