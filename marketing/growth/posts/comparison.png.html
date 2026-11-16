@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Cairo'; src: url('file:///Volumes/Extreme%20Pro/تطبيق%20التعليم%20الشامل/marketing/films/jessica-launch/assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow: hidden; }
+      body {
+        width: 1080px; height: 1350px; font-family: 'Cairo', sans-serif; color: #f4f7ff; direction: rtl;
+        background:
+          radial-gradient(700px 560px at 94% -8%, rgba(107, 140, 255, 0.38), transparent 64%),
+          radial-gradient(680px 560px at 0% 106%, rgba(33, 230, 201, 0.22), transparent 64%),
+          linear-gradient(168deg, #05080f, #0a1020 58%, #0b1428);
+        padding: 74px 70px 44px; position: relative; display: flex; flex-direction: column;
+      }
+      .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 70px 70px; -webkit-mask-image: radial-gradient(760px 720px at 50% 42%, #000 26%, transparent 84%); }
+      .kicker { position: relative; font-size: 25px; font-weight: 800; color: #21e6c9; }
+      h1 { position: relative; margin-top: 14px; font-size: 76px; font-weight: 900; line-height: 1.16; }
+      h1 span { color: #8ea0c0; font-size: 52px; }
+      h1 em { font-style: normal; color: #21e6c9; }
+      .sub { position: relative; margin-top: 10px; font-size: 26px; font-weight: 600; color: #aebbdb; }
+
+      .table { position: relative; margin-top: 40px; border-radius: 26px; overflow: hidden; border: 1.5px solid rgba(255,255,255,.12); }
+      .row { display: grid; grid-template-columns: 1.05fr 1fr 1fr; align-items: stretch; }
+      .row + .row { border-top: 1.5px solid rgba(255,255,255,.09); }
+      .cell { padding: 30px 22px; font-size: 26px; font-weight: 700; line-height: 1.45; }
+      .cell.label { background: rgba(255,255,255,.04); color: #b9c7e4; font-weight: 800; }
+      .cell.book { background: rgba(255,255,255,.02); color: #8394b5; }
+      .cell.app { background: rgba(33,230,201,.09); color: #eafffb; font-weight: 800; }
+      .head .cell { font-size: 23px; font-weight: 900; padding: 18px 20px; }
+      .head .book { color: #9fb2d8; }
+      .head .app { color: #21e6c9; }
+      .cell b { color: #21e6c9; }
+
+      .note { position: relative; margin-top: 26px; border-radius: 22px; border: 1.5px solid rgba(107,140,255,.35); background: rgba(107,140,255,.1); padding: 22px 24px; font-size: 25px; font-weight: 600; line-height: 1.6; color: #dbe4f7; }
+      .note b { color: #9db4ff; }
+      .foot { position: relative; margin-top: auto; border-top: 1.5px solid rgba(255,255,255,.1); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .foot p { font-size: 25px; font-weight: 800; color: #dbe4f7; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand .j { width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #21e6c9, #6b8cff); color: #061018; display: grid; place-items: center; font-weight: 900; font-size: 21px; }
+      .brand b { font-size: 19px; letter-spacing: .22em; color: #9fb2d8; }
+      .link { position: relative; margin-top: 16px; font-size: 24px; font-weight: 800; color: #21e6c9; direction: ltr; }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <p class="kicker">مقارنة في ٣ أرقام</p>
+    <h1>الكتاب الخارجي<br><em>ولا جيسيكا؟</em></h1>
+    <p class="sub">مش «أحسن» — الفرق في حاجة واحدة: الأسئلة مش بتخلص</p>
+
+    <div class="table">
+      <div class="row head">
+        <div class="cell label">المقارنة</div>
+        <div class="cell book">كتاب خارجي</div>
+        <div class="cell app">جيسيكا</div>
+      </div>
+      <div class="row">
+        <div class="cell label">السعر</div>
+        <div class="cell book">١٥٠–٢٥٠ ج.م للمادة</div>
+        <div class="cell app">٠ ج.م · كل المواد</div>
+      </div>
+      <div class="row">
+        <div class="cell label">عدد الأسئلة</div>
+        <div class="cell book">عدد ثابت… بيخلص</div>
+        <div class="cell app"><b>لا نهائي</b> — جديد كل مرة</div>
+      </div>
+      <div class="row">
+        <div class="cell label">التصحيح</div>
+        <div class="cell book">انت تصحح من المفتاح</div>
+        <div class="cell app">بيصحح لوحده <b>ويقول السبب</b></div>
+      </div>
+    </div>
+
+      <div class="note">
+        <b>الفرق الحقيقي؟</b> مفتاح الكتاب بيقول «الإجابة ج» — جيسيكا بتقول ليه، وبتديك سؤال جديد على نفس الفكرة.
+      </div>
+
+    <div class="foot">
+      <p>الأسئلة من منهج صفك · بدون حساب</p>
+      <div class="brand"><span class="j">J</span><b>JESSICA</b></div>
+    </div>
+    <p class="link">is.gd/jessicabank</p>
+  </body>
+</html>
