@@ -1,6 +1,10 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Voice on this device: {name}": "Suara di perangkat ini: {name}",
+  "No matching voice is installed on this device yet.": "Belum ada suara yang cocok di perangkat ini.",
+  "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "Suara Mesir tidak ditemukan — aplikasi memakai suara Arab terdekat. Pasang satu dari pengaturan sistem.",
+
   "{n} stars went to today’s goal": "{n} bintang masuk ke target hari ini",
 
   "Mute sounds": "Matikan suara",

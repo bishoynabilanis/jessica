@@ -14,6 +14,10 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Voice on this device: {name}": "الصوت المستخدم على الجهاز: {name}",
+  "No matching voice is installed on this device yet.": "مفيش صوت مطابق متثبت على الجهاز لسه.",
+  "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "مفيش صوت مصري على الجهاز — التطبيق بيستخدم أقرب صوت عربي. ثبّت صوت مصري من إعدادات النظام عشان تسمع لكنة مصرية حقيقية.",
+
   "{n} stars went to today’s goal": "{n} نجمة راحوا لهدف النهارده",
 
   "Mute sounds": "اقفل الصوت",

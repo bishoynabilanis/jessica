@@ -55,7 +55,7 @@ import { cn, todayKey } from '@/lib/utils'
 import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { gradeLabel } from '@/data/officialBooks'
-import { VOICE_LOCALES, defaultVoiceLocale } from '@/lib/voices'
+import { VOICE_LOCALES, defaultVoiceLocale, pickVoice, resolveVoiceLocale } from '@/lib/voices'
 import { SCHOOL_TYPES } from '@/lib/school'
 
 import { catalogTemplate, parseCommunityCatalog } from '@/lib/communityCatalog'
@@ -112,6 +112,17 @@ export function Settings() {
   const [counting, setCounting] = useState(false)
   const communityRef = useRef<HTMLInputElement>(null)
   const { level } = levelInfo(xp)
+  const [ttsVoices, setTtsVoices] = useState<SpeechSynthesisVoice[]>([])
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return
+    const load = () => setTtsVoices(window.speechSynthesis.getVoices())
+    load()
+    window.speechSynthesis.addEventListener('voiceschanged', load)
+    return () => window.speechSynthesis.removeEventListener('voiceschanged', load)
+  }, [])
+  const arabicLocale = resolveVoiceLocale('ar', settings)
+  const activeVoice = pickVoice(ttsVoices, arabicLocale)
+  const hasEgyptianVoice = ttsVoices.some((voice) => /^ar-eg/i.test(voice.lang.replace('_', '-')))
 
   const [draftKey, setDraftKey] = useState(apiKey)
   const [showKey, setShowKey] = useState(false)
@@ -660,6 +671,16 @@ export function Settings() {
               <p className="mt-1 text-[10px] leading-relaxed text-muted-2">
                 {tr('Used for read-aloud and voice input. The browser picks the closest installed voice to this accent.')}
               </p>
+              <p className="mt-1 text-[10px] font-bold text-muted" data-testid="voice-in-use">
+                {activeVoice
+                  ? tr('Voice on this device: {name}', { name: `${activeVoice.name} (${activeVoice.lang})` })
+                  : tr('No matching voice is installed on this device yet.')}
+              </p>
+              {settings.language === 'ar' && !hasEgyptianVoice && (
+                <p className="mt-1 text-[10px] leading-relaxed text-amber-600">
+                  {tr('No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.')}
+                </p>
+              )}
               <Button
                 size="sm"
                 variant="secondary"

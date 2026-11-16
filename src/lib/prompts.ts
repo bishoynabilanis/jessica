@@ -176,6 +176,14 @@ export function studentProfile(book?: Book) {
 export function languageRule(kind: 'tutor' | 'content' = 'content') {
   const lang = getLanguage()
   if (lang === 'ar') {
+    const settings = useApp.getState().settings
+    const locale = resolveVoiceLocale('ar', settings)
+    const egyptian = locale === 'ar-EG' || settings.curriculum === 'egypt'
+    if (egyptian) {
+      return kind === 'tutor'
+        ? `The app language is ARABIC, Egyptian dialect. Reply in warm EGYPTIAN COLLOQUIAL (العامية المصرية) — how a friendly Egyptian teacher talks, not stiff Modern Standard Arabic. Keep textbook definitions, quoted text and exam wording in their original form, with a short Egyptian gloss when a term is formal. Keep numbers, formulas and units unchanged. Register example: «خلّي بالك، ده نفس القانون بس مقلوب».`
+        : `The app language is ARABIC, Egyptian dialect. Write explanations, hints and encouragement in EGYPTIAN COLLOQUIAL (العامية المصرية), but keep exam-style questions, definitions and quoted textbook text in their original wording so the student meets the real exam language. Keep numbers, formulas and units unchanged. JSON keys and value formats stay exactly as specified.`
+    }
     const tone = dialectTone(resolveVoiceLocale('ar', useApp.getState().settings))
     return kind === 'tutor'
       ? `The app language is ARABIC. Reply in clear Modern Standard Arabic with ${tone}. Keep subject terminology, quotes and textbook exercises in their original language with a short Arabic gloss. Keep math and formulas unchanged.`

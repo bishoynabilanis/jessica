@@ -43,8 +43,9 @@ export function useSpeech() {
       const settings = useApp.getState().settings
       const locale = resolveVoiceLocale(lang, settings)
       utter.lang = locale
-      utter.rate = opts?.rate ?? 0.97
-      utter.pitch = opts?.pitch ?? 1
+      const egyptian = locale === 'ar-EG'
+      utter.rate = opts?.rate ?? (egyptian ? 1.02 : 0.97)
+      utter.pitch = opts?.pitch ?? (egyptian ? 1.05 : 1)
       const voice = pickVoice(window.speechSynthesis.getVoices(), locale)
       if (voice) utter.voice = voice
       utter.onstart = () => setSpeaking(true)

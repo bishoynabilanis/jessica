@@ -11,13 +11,23 @@ import { Modal } from '@/components/ui/Modal'
 import { giftStickers } from '@/data/kids'
 import { levelLabel } from '@/lib/curriculum'
 import { useApp, levelInfo } from '@/store/useApp'
-import { firstName, pct, todayKey } from '@/lib/utils'
+import { firstName, pct, todayKey, weekKey, cn } from '@/lib/utils'
 import { tr } from '@/i18n'
 
 export function KidsHome() {
   const navigate = useNavigate()
   const { name, xp, streak, customBooks, quests, dailyLog, kidsGift, claimKidsGift, bookProgress, parentTasks, completeParentTask, settings } = useApp()
   const pushToast = useUI((s) => s.pushToast)
+  const practiceWeeks = useApp((s) => s.practiceWeeks)
+  const practiceClaimed = useApp((s) => s.practiceClaimed)
+  const claimPractice = useApp((s) => s.claimPractice)
+  const week = weekKey()
+  const practiceCount = Math.min(3, practiceWeeks[week] || 0)
+  const claimedWeekly = Boolean(practiceClaimed[week])
+  const claimWeekly = () => {
+    const reward = claimPractice()
+    if (reward) pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: reward })
+  }
   const [giftOpen, setGiftOpen] = useState(false)
   const [draftName, setDraftName] = useState('')
   const setName = useApp((s) => s.setName)
@@ -163,6 +173,32 @@ export function KidsHome() {
             </div>
           </div>
         </div>
+      </Card>
+
+      <Card className="flex flex-wrap items-center gap-3 border-2 border-violet-200 bg-violet-50/80 p-4">
+          <span className="grid h-12 w-12 place-items-center rounded-2xl bg-violet-100 text-2xl">🏅</span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-extrabold text-ink-950">{tr('Weekly challenge')}</p>
+            <p className="text-[10px] text-ink-600">
+              {claimedWeekly
+                ? tr('Done! Come back next week for a new one.')
+                : tr('{n} of 3 practice papers this week', { n: practiceCount })}
+            </p>
+            {!claimedWeekly && (
+              <div className="mt-1 flex gap-1" aria-hidden>
+                {[0, 1, 2].map((slot) => (
+                  <span key={slot} className={cn('h-1.5 w-6 rounded-full', slot < practiceCount ? 'bg-violet-500' : 'bg-black/10')} />
+                ))}
+              </div>
+            )}
+          </div>
+          {claimedWeekly ? (
+            <span className="rounded-full bg-white px-2 py-1 text-[10px] font-extrabold text-violet-600">✓</span>
+          ) : practiceCount >= 3 ? (
+            <Button size="sm" onClick={claimWeekly} data-testid="kids-weekly-claim">
+              {tr('Collect 15 stars')}
+            </Button>
+          ) : null}
       </Card>
 
       <Card className="flex flex-wrap items-center gap-3 border-2 border-emerald-200 bg-emerald-50/80 p-4">

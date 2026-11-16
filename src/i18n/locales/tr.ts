@@ -1,6 +1,10 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Voice on this device: {name}": "Bu cihazdaki ses: {name}",
+  "No matching voice is installed on this device yet.": "Bu cihazda uygun bir ses yüklü değil.",
+  "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "Mısır sesi bulunamadı — uygulama en yakın Arapça sesi kullanıyor. Gerçek Mısır aksanı için sistem ayarlarından bir tane yükle.",
+
   "{n} stars went to today’s goal": "{n} yıldız bugünün hedefine gitti",
 
   "Mute sounds": "Sesi kapat",

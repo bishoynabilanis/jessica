@@ -30,6 +30,7 @@ export function KidsPractice() {
   const recordSkill = useApp((s) => s.recordSkill)
   const sound = useApp((s) => s.settings.sound !== false)
   const updateSettings = useApp((s) => s.updateSettings)
+  const recordPractice = useApp((s) => s.recordPractice)
 
   const [phase, setPhase] = useState<Phase>('pick')
   const [subject, setSubject] = useState<BankSubject>('Mathematics')
@@ -69,6 +70,7 @@ export function KidsPractice() {
       return
     }
     addXP(5 + score)
+    recordPractice()
     if (sound) playFinish()
     setPhase('done')
   }

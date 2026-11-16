@@ -1,6 +1,10 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Voice on this device: {name}": "Stimme auf diesem Gerät: {name}",
+  "No matching voice is installed on this device yet.": "Auf diesem Gerät ist noch keine passende Stimme installiert.",
+  "No Egyptian voice found — the app uses the closest Arabic voice. Install an Egyptian one from your system settings for a real Egyptian accent.": "Keine ägyptische Stimme gefunden – die App nutzt die nächstliegende arabische. Installiere eine in den Systemeinstellungen.",
+
   "{n} stars went to today’s goal": "{n} Sterne für das Tagesziel",
 
   "Mute sounds": "Ton aus",

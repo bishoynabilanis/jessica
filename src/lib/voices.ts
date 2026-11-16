@@ -95,6 +95,12 @@ function scoreVoice(voice: SpeechSynthesisVoice, locale: string) {
   if (voice.localService) score += 6
   if (/natural|neural|premium|enhanced|google/i.test(voice.name)) score += 8
   if (/compact|espeak|robot/i.test(voice.name)) score -= 4
+  // An Egyptian voice is worth a detour: it is the dialect the app speaks in.
+  if (target.startsWith('ar-eg')) {
+    if (/egypt|masr|maged|hoda|shakir|salma|nour/i.test(voice.name)) score += 35
+    if (voiceLang === 'ar-001' || voiceLang === 'ar') score += 25 // generic Arabic is closer than another dialect
+    if (/^ar-(sa|ae|kw|qa|bh|om|jo|lb|sy|ps|iq|ma|dz|tn|ly|sd|ye)$/.test(voiceLang)) score -= 12
+  }
   return score
 }
 

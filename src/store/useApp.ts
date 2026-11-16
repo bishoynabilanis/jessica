@@ -16,7 +16,7 @@ import type {
   Settings,
   VaultEntry,
 } from '@/types'
-import { dayKeyOffset, todayKey, uid } from '@/lib/utils'
+import { dayKeyOffset, todayKey, uid, weekKey } from '@/lib/utils'
 import { riddleForDate } from '@/data/riddles'
 import { giftStickers } from '@/data/kids'
 import { useUI } from './useUI'
@@ -135,6 +135,10 @@ export interface AppState {
   unitMastery: Record<string, { best: number; total: number; attempts: number; lastAt: number; weak?: Record<string, number> }>
   examDates: Record<string, string>
   kidsGift: string
+  /** Practice papers finished, per week key. */
+  practiceWeeks: Record<string, number>
+  /** Weeks whose weekly sticker was already claimed. */
+  practiceClaimed: Record<string, boolean>
   kidsStickers: string[]
   lessonProgress: Record<string, { step: number; done: boolean; updatedAt: number }>
   lessonChest: Record<string, boolean>
@@ -179,6 +183,8 @@ export interface AppState {
   recordUnitScore: (key: string, score: number, total: number, weakTopics?: string[]) => void
   setExamDate: (subject: string, date: string) => void
   claimKidsGift: () => string | null
+  recordPractice: () => number
+  claimPractice: () => number | null
   setLessonStep: (key: string, step: number) => void
   completeLesson: (key: string) => void
   openLessonChest: (key: string) => { stars: number; sticker?: string } | null
@@ -245,6 +251,8 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   unitMastery: {},
   examDates: {},
   kidsGift: '',
+  practiceWeeks: {},
+  practiceClaimed: {},
   kidsStickers: [],
   lessonProgress: {},
   lessonChest: {},
@@ -663,6 +671,24 @@ export const useApp = create<AppState>()(
             [key]: { step: 3, done: true, updatedAt: Date.now() },
           },
         }))
+      },
+
+      recordPractice: () => {
+        const week = weekKey()
+        const next = (get().practiceWeeks[week] || 0) + 1
+        set((state) => ({ practiceWeeks: { ...state.practiceWeeks, [week]: next } }))
+        return next
+      },
+
+      claimPractice: () => {
+        const state = get()
+        const week = weekKey()
+        if (state.practiceClaimed[week]) return null
+        if ((state.practiceWeeks[week] || 0) < 3) return null
+        set({ practiceClaimed: { ...state.practiceClaimed, [week]: true } })
+        state.addXP(15, true)
+        useUI.getState().pushToast({ title: tr('Weekly challenge done! +15 stars'), type: 'xp', xp: 15 })
+        return 15
       },
 
       claimKidsGift: () => {
