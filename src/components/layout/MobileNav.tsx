@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { Modal } from '@/components/ui/Modal'
 import { tr } from '@/i18n'
-import { useKidsWorld } from '@/lib/stage'
+import { isKidsWorld } from '@/lib/stage'
 import { useApp } from '@/store/useApp'
 
 const primary = [
@@ -47,7 +47,7 @@ export function MobileNav() {
   const [open, setOpen] = useState(false)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
-  const kids = useKidsWorld(gradeLevel, primaryUi)
+  const kids = isKidsWorld(gradeLevel, primaryUi)
   const kidsLabels: Record<string, string> = {
     Home: 'Home',
     Library: 'My books',

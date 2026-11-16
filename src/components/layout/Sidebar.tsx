@@ -35,7 +35,7 @@ import { useApp, levelInfo } from '@/store/useApp'
 import { Mascot } from '@/components/Mascot'
 import { mascotForXp } from '@/data/mascots'
 import { tr } from '@/i18n'
-import { useKidsWorld } from '@/lib/stage'
+import { isKidsWorld } from '@/lib/stage'
 
 export const navItems = [
   { path: '/', label: tr("Home"), icon: Home },
@@ -97,7 +97,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   const { current, next } = mascotForXp(xp)
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
-  const kids = useKidsWorld(gradeLevel, primaryUi)
+  const kids = isKidsWorld(gradeLevel, primaryUi)
   const kidsLabels: Record<string, string> = {
     Home: 'Home',
     Library: 'My books',

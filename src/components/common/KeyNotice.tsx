@@ -66,7 +66,8 @@ export function VoiceButton({
     <button
       onClick={(e) => {
         e.stopPropagation()
-        speaking ? stop() : speak(text, lang)
+        if (speaking) stop()
+        else speak(text, lang)
       }}
       className={cn(
         'inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[10px] font-semibold text-muted transition hover:bg-white/5 hover:text-aurora-300',

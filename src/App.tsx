@@ -55,7 +55,7 @@ import { sendLocalNotification, useDailyRiddleNotification } from '@/hooks/usePl
 import { riddleForDate } from '@/data/riddles'
 import { todayKey } from '@/lib/utils'
 import { tr } from '@/i18n'
-import { useKidsWorld } from '@/lib/stage'
+import { isKidsWorld } from '@/lib/stage'
 import { registerInstall, registerOpen } from '@/lib/counter'
 import { reportError } from '@/lib/errorReporting'
 
@@ -195,7 +195,7 @@ export default function App() {
   // The AI key is optional; only one imported book is required to open the app.
   if ((!apiKey.trim() && !keyOptional) || customBooks.length === 0) return <SetupGate />
 
-  if (useKidsWorld(gradeLevel, primaryUi))
+  if (isKidsWorld(gradeLevel, primaryUi))
     return (
       <Suspense fallback={<RouteFallback />}>
         <LazyKidsApp />

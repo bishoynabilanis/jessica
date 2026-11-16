@@ -14,7 +14,7 @@ const VisionSolverModal = lazy(() =>
 )
 const ShareAppModal = lazy(() => import('@/components/ShareApp').then((m) => ({ default: m.ShareAppModal })))
 import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
-import { useKidsWorld } from '@/lib/stage'
+import { isKidsWorld } from '@/lib/stage'
 
 export function TopBar({ onMenu }: { onMenu: () => void }) {
   const navigate = useNavigate()
@@ -26,7 +26,7 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
   const [scanOpen, setScanOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const { level, into, needed, progress } = levelInfo(xp)
-  const kids = useKidsWorld(settings.gradeLevel, settings.primaryUi)
+  const kids = isKidsWorld(settings.gradeLevel, settings.primaryUi)
 
   const pageLabel = useMemo(() => {
     const found = navItems.find((n) => (n.path === '/' ? location.pathname === '/' : location.pathname.startsWith(n.path)))
