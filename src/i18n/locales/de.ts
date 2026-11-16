@@ -1,12 +1,6 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "Erste Sitzung",
-  "Welcome, {name}. Three small steps and the plan starts working.": "Willkommen, {name}. Drei kleine Schritte und der Plan läuft.",
-  "Three small steps and the plan starts working.": "Drei kleine Schritte und der Plan läuft.",
-  "Ten questions on my grade": "Zehn Fragen meiner Klasse",
-  "Take the level test": "Einstufungstest machen",
-  "Add my book": "Mein Buch hinzufügen",
 
   "Profiles": "Profile",
   "More than one child on the same device": "Mehr als ein Kind auf demselben Gerät",

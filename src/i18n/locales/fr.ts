@@ -1,12 +1,6 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "Première session",
-  "Welcome, {name}. Three small steps and the plan starts working.": "Bienvenue {name}. Trois petites étapes et le plan démarre.",
-  "Three small steps and the plan starts working.": "Trois petites étapes et le plan démarre.",
-  "Ten questions on my grade": "Dix questions de ma classe",
-  "Take the level test": "Faire le test de niveau",
-  "Add my book": "Ajouter mon livre",
 
   "Profiles": "Profils",
   "More than one child on the same device": "Plus d’un enfant sur le même appareil",

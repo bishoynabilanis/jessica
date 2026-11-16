@@ -1,12 +1,6 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "Sesi pertama",
-  "Welcome, {name}. Three small steps and the plan starts working.": "Selamat datang, {name}. Tiga langkah kecil dan rencananya berjalan.",
-  "Three small steps and the plan starts working.": "Tiga langkah kecil dan rencananya berjalan.",
-  "Ten questions on my grade": "Sepuluh soal kelas saya",
-  "Take the level test": "Ikuti tes level",
-  "Add my book": "Tambahkan bukuku",
 
   "Profiles": "Profil",
   "More than one child on the same device": "Lebih dari satu anak di perangkat yang sama",

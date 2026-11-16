@@ -1,12 +1,6 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "Primera sesión",
-  "Welcome, {name}. Three small steps and the plan starts working.": "Bienvenido {name}. Tres pasos pequeños y el plan arranca.",
-  "Three small steps and the plan starts working.": "Tres pasos pequeños y el plan arranca.",
-  "Ten questions on my grade": "Diez preguntas de mi curso",
-  "Take the level test": "Hacer el test de nivel",
-  "Add my book": "Añadir mi libro",
 
   "Profiles": "Perfiles",
   "More than one child on the same device": "Más de un niño en el mismo dispositivo",

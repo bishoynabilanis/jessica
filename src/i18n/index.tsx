@@ -14,12 +14,6 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "أول جلسة",
-  "Welcome, {name}. Three small steps and the plan starts working.": "أهلاً {name}. ٣ خطوات صغيرة والخطة تبدأ تشتغل.",
-  "Three small steps and the plan starts working.": "٣ خطوات صغيرة والخطة تبدأ تشتغل.",
-  "Ten questions on my grade": "١٠ أسئلة على مستوى صفي",
-  "Take the level test": "خد اختبار المستوى",
-  "Add my book": "ضيف كتابي",
 
   "Profiles": "ملفات الأطفال",
   "More than one child on the same device": "أكتر من طفل على نفس الجهاز",

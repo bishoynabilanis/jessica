@@ -1,12 +1,6 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
-  "First session": "İlk oturum",
-  "Welcome, {name}. Three small steps and the plan starts working.": "Hoş geldin {name}. Üç küçük adım ve plan çalışmaya başlar.",
-  "Three small steps and the plan starts working.": "Üç küçük adım ve plan çalışmaya başlar.",
-  "Ten questions on my grade": "Sınıfımın on sorusu",
-  "Take the level test": "Seviye testini yap",
-  "Add my book": "Kitabımı ekle",
 
   "Profiles": "Profiller",
   "More than one child on the same device": "Aynı cihazda birden fazla çocuk",

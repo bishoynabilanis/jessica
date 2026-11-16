@@ -39,7 +39,6 @@ import { subjectMeta } from '@/data/books'
 import { dueCards } from '@/lib/db'
 import { buildDailyPlan } from '@/lib/dailyPlan'
 import { buildCourse } from '@/lib/course'
-import { readAttempts } from '@/lib/bankHistory'
 import { shareStory } from '@/lib/shareCard'
 import { levelLabel } from '@/lib/curriculum'
 import type { Book, Quest } from '@/types'
@@ -83,15 +82,6 @@ export function Dashboard() {
       return true
     }
   })
-  const [isFirstRun] = useState(() => {
-    try {
-      const hasAttempts = readAttempts().length > 0
-      return !hasAttempts
-    } catch {
-      return false
-    }
-  })
-
   const dismissNews = () => {
     setShowNews(false)
     try {
@@ -149,7 +139,6 @@ export function Dashboard() {
     dismissInstall,
     bookProgress,
     completedTopics,
-    skillStats,
     customBooks,
     topicLog,
     planner,
@@ -162,9 +151,6 @@ export function Dashboard() {
     setQuests,
     completeTopic,
   } = state
-
-  const firstRun =
-    isFirstRun && studySeconds === 0 && completedTopics.length === 0 && Object.keys(skillStats).length === 0
   const pushToast = useUI((s) => s.pushToast)
   const { level, progress, into, needed } = levelInfo(xp)
   const mascot = mascotForXp(xp)
@@ -351,32 +337,6 @@ export function Dashboard() {
             <Link to="/focus">
               <Button size="sm" variant="secondary">
                 <Timer className="h-3.5 w-3.5" /> {tr('Start 25 minutes')}
-              </Button>
-            </Link>
-          </div>
-        </Card>
-      )}
-
-      {firstRun && (
-        <Card className="border-violet-neon/35 bg-gradient-to-l from-violet-neon/12 via-transparent to-transparent p-4" data-testid="first-run">
-          <p className="label text-violet-300">{tr('First session')}</p>
-          <p className="mt-1 font-display text-sm font-extrabold text-main">
-            {name ? tr('Welcome, {name}. Three small steps and the plan starts working.', { name: firstName(name) }) : tr('Three small steps and the plan starts working.')}
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Link to="/bank">
-              <Button size="sm" data-testid="first-run-bank">
-                <Layers className="h-3.5 w-3.5" /> {tr('Ten questions on my grade')}
-              </Button>
-            </Link>
-            <Link to="/diagnostic">
-              <Button size="sm" variant="secondary">
-                <Target className="h-3.5 w-3.5" /> {tr('Take the level test')}
-              </Button>
-            </Link>
-            <Link to="/library">
-              <Button size="sm" variant="ghost">
-                <BookOpen className="h-3.5 w-3.5" /> {tr('Add my book')}
               </Button>
             </Link>
           </div>
