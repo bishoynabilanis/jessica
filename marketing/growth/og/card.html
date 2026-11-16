@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Cairo'; src: url('file:///Volumes/Extreme%20Pro/تطبيق%20التعليم%20الشامل/marketing/films/jessica-launch/assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow: hidden; }
+      body {
+        width: 1200px; height: 630px; font-family: 'Cairo', sans-serif; color: #f4f7ff; position: relative;
+        background:
+          radial-gradient(760px 520px at 92% -10%, rgba(107, 140, 255, 0.45), transparent 62%),
+          radial-gradient(700px 520px at -6% 112%, rgba(33, 230, 201, 0.28), transparent 62%),
+          linear-gradient(160deg, #05080f, #0a1020 58%, #0b1428);
+        display: flex; align-items: center; gap: 48px; padding: 64px 72px;
+      }
+      body[dir='rtl'] { direction: rtl; }
+      .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(700px 600px at 55% 50%, #000 26%, transparent 86%); }
+      .col { position: relative; flex: 1; min-width: 0; }
+      .kicker { font-size: 24px; font-weight: 800; color: #21e6c9; }
+      h1 { font-size: 62px; line-height: 1.2; font-weight: 900; margin-top: 12px; }
+      h1 em { font-style: normal; color: #21e6c9; }
+      .sub { margin-top: 16px; font-size: 26px; font-weight: 600; color: #aebbdb; line-height: 1.5; }
+      .row { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+      .chip { border: 1.5px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); border-radius: 999px; padding: 8px 18px; font-size: 19px; font-weight: 800; color: #dbe4f7; }
+      .foot { position: absolute; left: 72px; right: 72px; bottom: 40px; display: flex; align-items: center; justify-content: space-between; }
+      .foot b { font-size: 20px; letter-spacing: .22em; color: #9fb2d8; }
+      .foot span { font-size: 20px; font-weight: 800; color: #21e6c9; direction: ltr; }
+      .badge { flex: 0 0 auto; width: 250px; height: 250px; border-radius: 46px; display: grid; place-items: center; font-size: 132px; background: linear-gradient(135deg, rgba(33,230,201,.22), rgba(107,140,255,.22)); border: 2px solid rgba(255,255,255,.12); }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <div class="col">
+      <p class="kicker" id="kicker"></p>
+      <h1 id="title"></h1>
+      <p class="sub" id="sub"></p>
+      <div class="row" id="chips"></div>
+    </div>
+    <div class="badge" id="badge"></div>
+    <div class="foot"><b>JESSICA</b><span id="url"></span></div>
+    <script>
+      const P = new URLSearchParams(location.search)
+      const topic = P.get('topic') || 'bank'
+      const lang = P.get('lang') || 'ar'
+      const EN = {
+        kicker: 'Jessica · question bank',
+        title: 'A bank that<br><em>never runs out</em>',
+        sub: 'Generated drills, a timed exam,<br>and a reason after every answer',
+        chips: ['20 questions · 20 minutes', 'Printable', 'Offline'],
+        badge: '🧩',
+        url: 'is.gd/jessicabank',
+      }
+      const ENF = {
+        kicker: 'Jessica · focus timer',
+        title: '25 minutes<br><em>that count</em>',
+        sub: 'The minutes become XP<br>and plan progress',
+        chips: ['15 · 25 · 50', '5-minute break', 'Offline'],
+        badge: '⏱️',
+        url: 'is.gd/jessicaapp',
+      }
+      const AR = {
+        kicker: 'بنك أسئلة جيسيكا',
+        title: 'بنك أسئلة<br><em>مبيخلصش</em>',
+        sub: 'أسئلة جديدة كل مرة،<br>وامتحان مؤقت بيصحح لوحده',
+        chips: ['٢٠ سؤال · ٢٠ دقيقة', 'ورقة للطباعة', 'شغّال أوفلاين'],
+        badge: '🧩',
+        url: 'is.gd/jessicabank',
+      }
+      const ARF = {
+        kicker: 'مؤقت التركيز في جيسيكا',
+        title: '٢٥ دقيقة<br><em>بتدخل خطتك</em>',
+        sub: 'اقرأ، والدقايق بتتحول<br>نقط وتقدّم لوحدها',
+        chips: ['١٥ · ٢٥ · ٥٠', 'راحة ٥ دقايق', 'شغّال أوفلاين'],
+        badge: '⏱️',
+        url: 'is.gd/jessicaapp',
+      }
+      const data = topic === 'focus' ? (lang === 'ar' ? ARF : ENF) : (lang === 'ar' ? AR : EN)
+      document.documentElement.lang = lang
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr'
+      document.getElementById('kicker').innerHTML = data.kicker
+      document.getElementById('title').innerHTML = data.title
+      document.getElementById('sub').innerHTML = data.sub
+      document.getElementById('chips').innerHTML = data.chips.map((c) => `<span class="chip">${c}</span>`).join('')
+      document.getElementById('badge').textContent = data.badge
+      document.getElementById('url').textContent = data.url
+    </script>
+  </body>
+</html>

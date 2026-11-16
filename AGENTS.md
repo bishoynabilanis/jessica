@@ -112,7 +112,8 @@ Arabic pages pair with English ones through reciprocal `hreflang` (`ar`, `en`, `
 - Rewriting generated marketing pages by hand without updating their generator.
 - Shipping a new page without `sitemap.xml` + `audit:seo` green.
 - Adding English-only text in a component instead of `tr()` — or adding a key to some locales only.
-- Hosting story/post artwork inside `public/` (keep it in `marketing/`, ship nothing unused).
+- Hosting story/post artwork inside `public/` (keep it in `marketing/`, ship nothing unused) — except the per-page `public/welcome/og/*.jpg` share cards.
+- Publishing a marketing post without checking `marketing/growth/posts/published.md`: every post needs a **new angle and a new image**, and a shape (list, story, poll, single question) that has not been used. Repeating a caption or reusing `og.jpg` for every link is a mistake this repo has already made.
 - Changing the brand palette, or restyling to imitate a reference video.
 - Leaving `dist/`, `test-results/`, `*.tsbuildinfo`, or scratch scripts in a commit.
 - Deleting a failing test instead of diagnosing it.
