@@ -67,7 +67,8 @@ export function Library() {
   const grade = settings.gradeLevel
   const curriculum = settings.curriculum
   const official = hasOfficialLibrary(curriculum)
-  const subjects: (Subject | 'All')[] = ['All', ...subjectsForSchool(settings.schoolType)]
+  const schoolType = settings.schoolType
+  const subjects = useMemo<(Subject | 'All')[]>(() => ['All', ...subjectsForSchool(schoolType)], [schoolType])
   const stage = stageForGrade(grade)
 
   const catalog = useMemo(() => {

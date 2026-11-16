@@ -124,7 +124,8 @@ export function createProfile(name: string, grade: number): ProfileSlot {
       streak: 0,
       dailyLog: {},
       customBooks: base?.state?.customBooks || [],
-      settings: { ...(base?.state?.settings || {}), gradeLevel: grade },
+      // a new child has never seen the checklist, whatever the parent turned off
+      settings: { ...(base?.state?.settings || {}), gradeLevel: grade, quickStart: true },
       apiKey: base?.state?.apiKey || '',
       model: base?.state?.model,
     },

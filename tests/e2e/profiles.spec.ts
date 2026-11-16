@@ -66,6 +66,10 @@ test('a second child gets a separate progress and comes back untouched', async (
   expect(state.name).toBe('Adam')
   expect(state.xp).toBeLessThan(60) // a fresh profile only gets the daily bonus, not 480
 
+  // the new child has never seen the guide, even though the parent dismissed it
+  await page.goto('/#/')
+  await expect(page.getByText('Your first five minutes')).toBeVisible()
+
   // give him some points through the app itself — writing the blob by hand races the store
   await page.goto('/#/bank')
   await page.getByTestId('bank-start').click()

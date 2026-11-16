@@ -28,6 +28,8 @@ export function Diagnostic() {
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [picked, setPicked] = useState<number | null>(null)
 
+  // `seed` is a re-roll trigger, not an input the callback reads — the rule cannot see that.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const questions = useMemo(() => placementTest(gradeLevel, QUESTION_COUNT), [gradeLevel, seed])
 
   const score = useMemo(

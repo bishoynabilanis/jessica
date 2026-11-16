@@ -29,7 +29,7 @@ Hard constraints, do not violate:
 npm run dev              # vite dev server
 npm run build            # tsc -b && vite build  → dist/
 npm run preview -- --port 4174 --strictPort --host 127.0.0.1   # what Playwright uses
-npm run lint             # eslint . (0 errors; 28 warnings = tracked debt)
+npm run lint             # eslint . (0 errors; 26 warnings = tracked debt)
 npm run test:e2e         # playwright test (builds nothing — build first)
 npm run audit:seo        # node scripts/audit-seo.mjs  → must print "no problems found"
 npm run content          # regenerate quiz/guides/topics/install/seo/feed pages
@@ -37,7 +37,7 @@ npm run content          # regenerate quiz/guides/topics/install/seo/feed pages
 
 Rules of thumb:
 
-- `npm run lint` must report **0 errors**. The remaining warnings are known debt (17 `exhaustive-deps`, 11 `no-explicit-any`); do not add new ones in files you touch, and clear them when you are already inside that code.
+- `npm run lint` must report **0 errors**. The remaining warnings are known debt (15 `exhaustive-deps`, 11 `no-explicit-any`); do not add new ones in files you touch, and clear them when you are already inside that code.
 - **Always `npm run build` before `npm run test:e2e`.** The tests run against `dist` through `vite preview`; a stale build produces false failures.
 - Playwright starts its own preview server on **4174** with `channel: 'chrome'` (not bundled Chromium). Do not point it at another port.
 - Node 20 in CI (`deploy.yml`), Node ≥20 locally.
