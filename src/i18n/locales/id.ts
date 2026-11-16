@@ -1,6 +1,7 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+
   "AI is ready on this device": "AI siap di perangkat ini",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Model offline sudah dimuat, jadi obrolan dan penjelasan berjalan tanpa internet dan tanpa kunci.",
   "You are on the free trial. Add your own key any time for unlimited use.": "Kamu dalam uji coba gratis. Tambahkan kuncimu kapan saja untuk pemakaian tanpa batas.",

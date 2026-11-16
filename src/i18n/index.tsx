@@ -14,6 +14,7 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+
   "AI is ready on this device": "الذكاء الاصطناعي جاهز على الجهاز",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "الموديل الأوفلاين محمّل، فالشات والشرح بيشتغلوا بدون نت وبدون مفتاح.",
   "You are on the free trial. Add your own key any time for unlimited use.": "انت على التجربة المجانية. تقدر تحط مفتاحك في أي وقت وتكمل من غير حدود.",

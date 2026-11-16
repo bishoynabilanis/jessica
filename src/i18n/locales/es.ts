@@ -1,6 +1,7 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+
   "AI is ready on this device": "La IA está lista en este dispositivo",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "El modelo sin conexión está cargado: el chat y las explicaciones funcionan sin internet ni clave.",
   "You are on the free trial. Add your own key any time for unlimited use.": "Estás en la prueba gratis. Añade tu clave cuando quieras para uso ilimitado.",

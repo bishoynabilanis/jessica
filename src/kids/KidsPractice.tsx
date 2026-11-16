@@ -8,6 +8,7 @@ import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { playCorrect, playFinish, playWrong } from '@/lib/sound'
 import { celebrate } from '@/lib/celebrate'
+import { SolutionSteps } from '@/components/tools/SolutionSteps'
 
 type Phase = 'pick' | 'quiz' | 'done'
 
@@ -228,6 +229,7 @@ export function KidsPractice() {
             <span className="mt-1 block text-[10px] font-semibold opacity-80" dir="auto">
               {current.explanation}
             </span>
+            <SolutionSteps question={current} />
           </div>
         )}
 

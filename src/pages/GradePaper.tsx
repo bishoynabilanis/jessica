@@ -9,6 +9,7 @@ import { useUI } from '@/store/useUI'
 import { celebrate } from '@/lib/celebrate'
 import { addAttempt, previousAttempt } from '@/lib/bankHistory'
 import { readPrintedPapers, type PrintedPaper } from '@/lib/printedPapers'
+import { SolutionSteps } from '@/components/tools/SolutionSteps'
 import { dateLocale, num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 
@@ -252,6 +253,7 @@ export function GradePaper() {
                         {tr('The child wrote: {answer}', { answer: question.options[chosen] })}
                       </p>
                     )}
+                    <SolutionSteps question={question} />
                   </div>
                 )
               })}

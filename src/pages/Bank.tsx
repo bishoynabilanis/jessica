@@ -27,6 +27,7 @@ import { BANK_SUBJECTS, buildDrill, buildSkillDrill, weakestSkills, type BankQue
 import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
 import { celebrate } from '@/lib/celebrate'
 import { savePrintedPaper } from '@/lib/printedPapers'
+import { SolutionSteps } from '@/components/tools/SolutionSteps'
 import { levelLabel } from '@/lib/curriculum'
 import { buildCourse } from '@/lib/course'
 import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
@@ -595,6 +596,7 @@ export function Bank() {
               <p className="mt-1 text-[11px] leading-relaxed text-muted" dir="auto">
                 <RichText text={current.explanation} />
               </p>
+              <SolutionSteps question={current} />
             </div>
           )}
 
@@ -794,6 +796,7 @@ export function Bank() {
                     <p className="mt-1 text-[10px] leading-relaxed text-muted" dir="auto">
                       <RichText text={question.explanation} />
                     </p>
+                    <SolutionSteps question={question} />
                   </div>
                 )
               })}

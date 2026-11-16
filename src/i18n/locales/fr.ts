@@ -1,6 +1,7 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+
   "AI is ready on this device": "L’IA est prête sur cet appareil",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Le modèle hors ligne est chargé : le chat et les explications marchent sans internet ni clé.",
   "You are on the free trial. Add your own key any time for unlimited use.": "Tu es sur l’essai gratuit. Ajoute ta clé quand tu veux pour un usage illimité.",

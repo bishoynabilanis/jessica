@@ -1,6 +1,7 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+
   "AI is ready on this device": "Yapay zekâ bu cihazda hazır",
   "The offline model is loaded, so chat and explanations work with no internet and no key.": "Çevrimdışı model yüklü: sohbet ve açıklamalar internetsiz ve anahtarsız çalışıyor.",
   "You are on the free trial. Add your own key any time for unlimited use.": "Ücretsiz denemedesin. Sınırsız kullanım için istediğin zaman anahtarını ekle.",
