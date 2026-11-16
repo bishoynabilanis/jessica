@@ -95,6 +95,7 @@ Arabic pages pair with English ones through reciprocal `hreflang` (`ar`, `en`, `
 
 - Seed a profile with `addInitScript` before `page.goto`, **guarded** with `if (localStorage.getItem('jessica-profile-v1')) return` — otherwise a reload re-seeds and breaks switching tests.
 - Minimal seed: `jessica-profile-v1` (`{ state: { onboarded: true, acceptedTerms: 1, name, apiKey: '', model, xp, streak, coins, customBooks: [...], completedTopics: [], skillStats: {}, mistakes: [], dailyLog: {}, settings: { language: 'en', gradeLevel: 7, curriculum: 'egypt', schoolType: 'government', primaryUi: 'auto', aiProvider: 'gemini', theme: 'dark', keyOptional: true, quickStart: false } }, version: 3 }`) plus `jessica-disclaimer-v1 = '1'`.
+- **Never mutate `jessica-profile-v1` by hand mid-test** — the zustand store re-persists its in-memory state and silently overwrites you. Earn XP/skills through the UI (the bank drill is the quickest path) or seed before the first load only.
 - Use `data-testid` for behaviour, roles/names for a11y. Avoid asserting on generated numbers — the bank is randomised.
 - Run the affected spec, then the full suite before committing.
 

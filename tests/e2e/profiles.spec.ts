@@ -66,13 +66,20 @@ test('a second child gets a separate progress and comes back untouched', async (
   expect(state.name).toBe('Adam')
   expect(state.xp).toBeLessThan(60) // a fresh profile only gets the daily bonus, not 480
 
-  // give him some points, then switch back
-  await page.evaluate(() => {
+  // give him some points through the app itself — writing the blob by hand races the store
+  await page.goto('/#/bank')
+  await page.getByTestId('bank-start').click()
+  for (let question = 1; question <= 10; question += 1) {
+    await page.getByTestId('bank-option').first().click()
+    await page.getByTestId('bank-next').click()
+  }
+  await expect(page.getByRole('button', { name: /New drill/ })).toBeVisible()
+  const adamXp = await page.evaluate(() => {
     const raw = window.localStorage.getItem('jessica-profile-v1')
-    const blob = JSON.parse(raw)
-    blob.state.xp = 90
-    window.localStorage.setItem('jessica-profile-v1', JSON.stringify(blob))
+    return raw ? JSON.parse(raw).state.xp : 0
   })
+  expect(adamXp).toBeGreaterThan(15)
+
   await page.goto('/#/profiles')
   await expect(page.getByTestId('profile-row')).toHaveCount(2)
   await page.getByTestId('profile-switch').first().click()
@@ -92,5 +99,5 @@ test('a second child gets a separate progress and comes back untouched', async (
     const blob = JSON.parse(window.localStorage.getItem(`jessica-slot-${other.id}`) || '{}')
     return blob.state?.xp
   })
-  expect(slots).toBeGreaterThanOrEqual(90)
+  expect(slots).toBe(adamXp)
 })
