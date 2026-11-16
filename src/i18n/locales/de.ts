@@ -1,6 +1,11 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} Sterne für das Tagesziel",
+
+  "Mute sounds": "Ton aus",
+  "Turn sounds on": "Ton an",
+
   "Practise and win stars": "Übe und sammle Sterne",
   "Ten questions from your own grade. Every right answer is a star.": "Zehn Fragen aus deiner Klasse. Jede richtige Antwort ist ein Stern.",
   "You got {n} of {m} right": "Du hast {n} von {m} richtig",

@@ -1,6 +1,11 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} estrellas para el objetivo de hoy",
+
+  "Mute sounds": "Silenciar",
+  "Turn sounds on": "Activar el sonido",
+
   "Practise and win stars": "Practica y gana estrellas",
   "Ten questions from your own grade. Every right answer is a star.": "Diez preguntas de tu curso. Cada respuesta correcta es una estrella.",
   "You got {n} of {m} right": "Acertaste {n} de {m}",

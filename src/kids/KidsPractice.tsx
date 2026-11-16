@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { buildDrill, type BankSubject, type BankQuestion } from '@/lib/questionBank'
 import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
+import { playCorrect, playFinish, playWrong } from '@/lib/sound'
 
 type Phase = 'pick' | 'quiz' | 'done'
 
@@ -27,6 +28,8 @@ export function KidsPractice() {
   const grade = useApp((s) => s.settings.gradeLevel)
   const addXP = useApp((s) => s.addXP)
   const recordSkill = useApp((s) => s.recordSkill)
+  const sound = useApp((s) => s.settings.sound !== false)
+  const updateSettings = useApp((s) => s.updateSettings)
 
   const [phase, setPhase] = useState<Phase>('pick')
   const [subject, setSubject] = useState<BankSubject>('Mathematics')
@@ -51,6 +54,10 @@ export function KidsPractice() {
     if (!current || picked !== null) return
     setPicked(option)
     const ok = option === current.answer
+    if (sound) {
+      if (ok) playCorrect()
+      else playWrong()
+    }
     if (ok) setScore((value) => value + 1)
     recordSkill(current.subject, current.skill, ok)
   }
@@ -62,6 +69,7 @@ export function KidsPractice() {
       return
     }
     addXP(5 + score)
+    if (sound) playFinish()
     setPhase('done')
   }
 
@@ -115,6 +123,9 @@ export function KidsPractice() {
           <p className="mt-1 text-xs font-semibold text-ink-600">
             {stars === 3 ? tr('Perfect — that is three stars!') : stars >= 1 ? tr('Good work. Try again for three stars.') : tr('Every try makes it easier. Go again!')}
           </p>
+          <p className="mt-2 inline-block rounded-full bg-amber-50 px-3 py-1 text-[11px] font-extrabold text-amber-700">
+            ⭐ {tr('{n} stars went to today’s goal', { n: num(5 + score) })}
+          </p>
           <div className="mt-4 flex flex-col gap-2">
             <Button size="md" onClick={() => start(subject)} data-testid="kids-practice-again">
               <Sparkles className="h-4 w-4" /> {tr('Play again')}
@@ -139,7 +150,17 @@ export function KidsPractice() {
         <span className="text-[11px] font-extrabold text-ink-700">
           {tr('Question {n} of {m}', { n: num(index + 1), m: num(questions.length) })}
         </span>
-        <span className="text-sm font-extrabold text-amber-600">⭐ {num(score)}</span>
+        <span className="flex items-center gap-2">
+          <button
+            onClick={() => updateSettings({ sound: !sound })}
+            aria-label={sound ? tr('Mute sounds') : tr('Turn sounds on')}
+            data-testid="kids-practice-sound"
+            className="rounded-full border border-black/10 bg-white px-2 py-0.5 text-xs"
+          >
+            {sound ? '🔊' : '🔇'}
+          </button>
+          <span className="text-sm font-extrabold text-amber-600">⭐ {num(score)}</span>
+        </span>
       </div>
 
       <div className="flex gap-1">

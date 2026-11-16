@@ -14,6 +14,11 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} نجمة راحوا لهدف النهارده",
+
+  "Mute sounds": "اقفل الصوت",
+  "Turn sounds on": "شغّل الصوت",
+
   "Practise and win stars": "اتدرّب واكسب نجوم",
   "Ten questions from your own grade. Every right answer is a star.": "١٠ أسئلة من صفّك انت. كل إجابة صح = نجمة.",
   "You got {n} of {m} right": "جاوبت {n} من {m} صح",

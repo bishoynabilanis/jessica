@@ -44,6 +44,7 @@ const defaultSettings: Settings = {
   textScale: 100,
   dyslexiaFont: false,
   reduceMotion: false,
+  sound: true,
   ttsRate: 0.95,
   autoSpeak: false,
   pdfDark: false,

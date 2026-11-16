@@ -240,6 +240,8 @@ export interface Settings {
   textScale: number
   dyslexiaFont: boolean
   reduceMotion: boolean
+  /** Kid-world sound effects (right/wrong cues, finish). */
+  sound: boolean
   ttsRate: number
   autoSpeak: boolean
   pdfDark: boolean

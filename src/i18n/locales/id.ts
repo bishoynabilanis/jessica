@@ -1,6 +1,11 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} bintang masuk ke target hari ini",
+
+  "Mute sounds": "Matikan suara",
+  "Turn sounds on": "Nyalakan suara",
+
   "Practise and win stars": "Berlatih dan raih bintang",
   "Ten questions from your own grade. Every right answer is a star.": "Sepuluh soal dari kelasmu. Setiap jawaban benar adalah bintang.",
   "You got {n} of {m} right": "Kamu benar {n} dari {m}",

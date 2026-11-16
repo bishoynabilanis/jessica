@@ -1,6 +1,11 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} yıldız bugünün hedefine gitti",
+
+  "Mute sounds": "Sesi kapat",
+  "Turn sounds on": "Sesi aç",
+
   "Practise and win stars": "Alıştırma yap ve yıldız kazan",
   "Ten questions from your own grade. Every right answer is a star.": "Kendi sınıfından on soru. Her doğru cevap bir yıldız.",
   "You got {n} of {m} right": "{m} sorudan {n} doğru",

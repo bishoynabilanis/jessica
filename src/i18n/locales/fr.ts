@@ -1,6 +1,11 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "{n} stars went to today’s goal": "{n} étoiles pour l’objectif du jour",
+
+  "Mute sounds": "Couper le son",
+  "Turn sounds on": "Activer le son",
+
   "Practise and win stars": "Entraîne-toi et gagne des étoiles",
   "Ten questions from your own grade. Every right answer is a star.": "Dix questions de ta classe. Chaque bonne réponse est une étoile.",
   "You got {n} of {m} right": "Tu as {n} sur {m}",
