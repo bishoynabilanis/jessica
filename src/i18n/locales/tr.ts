@@ -1,6 +1,9 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The offline model is already on this device — switch to it and go.": "Çevrimdışı model zaten bu cihazda — aç ve devam et.",
+  "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "Çevrimdışı yapay zekâ yalnızca bilgisayarlar ve güçlü cihazlar için. Bu cihazda ücretsiz bir anahtar kullan.",
+
   "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "Yapay zekâ iki ücretsiz şeyden birine ihtiyaç duyar: ayarlardan çevrimdışı modeli indir ya da Gemini anahtarını ekle.",
   "Want the AI to work? Two free ways.": "Yapay zekâ çalışsın mı? İki ücretsiz yol.",
   "Either of these is free, and both stay on your device.": "İkisi de ücretsiz ve cihazında kalır.",

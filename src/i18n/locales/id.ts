@@ -1,6 +1,9 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The offline model is already on this device — switch to it and go.": "Model offline sudah ada di perangkat ini — aktifkan dan lanjut.",
+  "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "AI offline hanya untuk komputer dan perangkat kuat. Di perangkat ini, pakai kunci gratis.",
+
   "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "AI butuh salah satu dari dua hal gratis: unduh model offline di pengaturan, atau tambahkan kunci Gemini-mu.",
   "Want the AI to work? Two free ways.": "Ingin AI berjalan? Dua cara gratis.",
   "Either of these is free, and both stay on your device.": "Keduanya gratis dan tetap di perangkatmu.",

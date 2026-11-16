@@ -5,6 +5,7 @@ import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
 import { onAiNeed, type AiNeed } from '@/lib/ai/setup'
 import { trialRemaining } from '@/lib/ai/trial'
+import { offlineReady, offlineSupport } from '@/lib/ai/offline'
 import { TRIAL_ACTIONS_PER_DAY } from '@/lib/ai/config'
 import { num, tr } from '@/i18n'
 
@@ -16,6 +17,8 @@ import { num, tr } from '@/i18n'
  */
 export function AiNeedModal() {
   const [reason, setReason] = useState<AiNeed | null>(null)
+  const support = offlineSupport()
+  const ready = offlineReady()
 
   useEffect(() => onAiNeed((next) => setReason(next)), [])
 
@@ -49,8 +52,15 @@ export function AiNeedModal() {
             <div className="mt-3 space-y-1.5 text-start">
               <p className="flex items-start gap-2 rounded-xl border border-line bg-card-2 px-2.5 py-2 text-[10px] leading-relaxed text-muted">
                 <Cpu className="mt-0.5 h-3.5 w-3.5 shrink-0 text-aurora-300" />
-                {tr('Download the offline model once (~1.8 GB) and the AI runs here with no internet.')}
+                {ready
+                  ? tr('The offline model is already on this device — switch to it and go.')
+                  : tr('Download the offline model once (~1.8 GB) and the AI runs here with no internet.')}
               </p>
+              {!support.ok && (
+                <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-2.5 py-2 text-[10px] leading-relaxed text-amber-200">
+                  {tr('Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.')}
+                </p>
+              )}
               <p className="flex items-start gap-2 rounded-xl border border-line bg-card-2 px-2.5 py-2 text-[10px] leading-relaxed text-muted">
                 <KeyRound className="mt-0.5 h-3.5 w-3.5 shrink-0 text-aurora-300" />
                 {tr('Or add a free Gemini key from Google AI Studio — you can delete it any time.')}

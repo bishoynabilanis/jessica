@@ -1,6 +1,9 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The offline model is already on this device — switch to it and go.": "Das Offline-Modell liegt schon auf diesem Gerät — aktiviere es und weiter.",
+  "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "Offline-KI gibt es nur für Computer und starke Geräte. Nutze auf diesem Gerät einen kostenlosen Schlüssel.",
+
   "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "Die KI braucht eines von zwei kostenlosen Dingen: lade das Offline-Modell in den Einstellungen oder trage deinen Gemini-Schlüssel ein.",
   "Want the AI to work? Two free ways.": "Soll die KI laufen? Zwei kostenlose Wege.",
   "Either of these is free, and both stay on your device.": "Beides ist kostenlos und bleibt auf deinem Gerät.",

@@ -14,6 +14,9 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The offline model is already on this device — switch to it and go.": "الموديل الأوفلاين محمّل على الجهاز بالفعل — حوّل عليه وكمّل.",
+  "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "الأوفلاين متاح للكمبيوتر والأجهزة القوية بس حفاظًا على استقرار المتصفح. على الجهاز ده استخدم مفتاح مجاني.",
+
   "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "الذكاء الاصطناعي محتاج حاجة من اتنين مجانًا: نزّل موديل الأوفلاين من الإعدادات، أو حط مفتاح Gemini بتاعك.",
   "Want the AI to work? Two free ways.": "عايز الذكاء الاصطناعي يشتغل؟ طريقتين مجانيين.",
   "Either of these is free, and both stay on your device.": "الاتنين مجانيين، والاتنين بيتفضلوا على جهازك.",

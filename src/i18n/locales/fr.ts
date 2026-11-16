@@ -1,6 +1,9 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "The offline model is already on this device — switch to it and go.": "Le modèle hors ligne est déjà sur cet appareil — active-le et continue.",
+  "Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.": "L’IA hors ligne est réservée aux ordinateurs et appareils puissants. Sur cet appareil, utilise une clé gratuite.",
+
   "The AI needs one of two free things: download the offline model from settings, or add your own Gemini key.": "L’IA a besoin d’une de ces deux choses gratuites : télécharge le modèle hors ligne dans les réglages, ou ajoute ta clé Gemini.",
   "Want the AI to work? Two free ways.": "Tu veux que l’IA marche ? Deux façons gratuites.",
   "Either of these is free, and both stay on your device.": "Les deux sont gratuites et restent sur ton appareil.",
