@@ -1,6 +1,8 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "Aún no hay preguntas para esta habilidad.",
+
   "Ten questions aimed at your weakest skills": "Diez preguntas sobre tus habilidades más débiles",
   "Start the weekly review": "Empezar el repaso semanal",
   "No skill data yet — finish a drill first and the paper builds itself.": "Aún no hay datos de habilidades: termina un entrenamiento y la hoja se arma sola.",

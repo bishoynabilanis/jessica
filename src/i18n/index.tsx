@@ -14,6 +14,8 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "مفيش أسئلة للمهارة دي لسه.",
+
   "Ten questions aimed at your weakest skills": "١٠ أسئلة على أضعف مهاراتك",
   "Start the weekly review": "ابدأ مراجعة الأسبوع",
   "No skill data yet — finish a drill first and the paper builds itself.": "مفيش بيانات مهارات لسه — خلّص تدريب الأول والورقة هتتبني لوحدها.",

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Award,
   Brain,
@@ -50,6 +50,7 @@ export function Skills() {
     lessonProgress,
   } = useApp()
   const pushToast = useUI((s) => s.pushToast)
+  const navigate = useNavigate()
   const [banks, setBanks] = useState<StoredBank[]>([])
   const [loading, setLoading] = useState(true)
   const [subject, setSubject] = useState('All')
@@ -116,11 +117,8 @@ export function Skills() {
       .flatMap((bank) => bank.questions)
       .filter((question) => normalize(question.topic || '') === topic || normalize(question.topic || '').includes(topic))
     if (!questions.length) {
-      pushToast({
-        title: tr('No saved questions for this skill yet'),
-        description: tr('Take a unit quiz for this skill first, then come back.'),
-        type: 'info',
-      })
+      // No saved paper for this skill: the bank can still generate one on the spot.
+      navigate(`/bank?skill=${encodeURIComponent(skill.topic)}&subject=${encodeURIComponent(skill.subject)}`)
       return
     }
     setPractice(questions.slice(0, 10))

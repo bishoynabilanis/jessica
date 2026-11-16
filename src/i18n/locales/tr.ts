@@ -1,6 +1,8 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "Bu beceri için henüz soru yok.",
+
   "Ten questions aimed at your weakest skills": "En zayıf becerilerine yönelik on soru",
   "Start the weekly review": "Haftalık tekrarı başlat",
   "No skill data yet — finish a drill first and the paper builds itself.": "Henüz beceri verisi yok — bir alıştırma bitir, kâğıt kendi kurulur.",

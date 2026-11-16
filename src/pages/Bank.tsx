@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {
   AlertTriangle,
   ArrowLeft,
@@ -69,6 +69,7 @@ export function Bank() {
   const completedTopics = useApp((s) => s.completedTopics)
   const lessonProgress = useApp((s) => s.lessonProgress)
   const skillStats = useApp((s) => s.skillStats)
+  const [searchParams, setSearchParams] = useSearchParams()
   const removeMistake = useApp((s) => s.removeMistake)
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
@@ -172,6 +173,30 @@ export function Bank() {
 
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  // A skill from the skills map can open a paper aimed at that skill.
+  useEffect(() => {
+    const skill = searchParams.get('skill')
+    if (!skill) return
+    const questions = buildSkillDrill([skill], gradeLevel, 10)
+    if (!questions.length) {
+      pushToast({ title: tr('No questions for this skill yet.'), type: 'info' })
+    } else {
+      setMode('drill')
+      setSubject(questions[0].subject)
+      setQuestions(questions)
+      setIndex(0)
+      setPicked(null)
+      setAnswers({})
+      setDelta(null)
+      setPrintList(null)
+      setStartedAt(Date.now())
+      setEndsAt(0)
+      setPhase('quiz')
+    }
+    setSearchParams({}, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Exam clock: it keeps running while the tab is open and marks the paper at zero.
   useEffect(() => {

@@ -1,6 +1,8 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "Belum ada soal untuk keterampilan ini.",
+
   "Ten questions aimed at your weakest skills": "Sepuluh soal untuk keterampilan terlemahmu",
   "Start the weekly review": "Mulai ulasan mingguan",
   "No skill data yet — finish a drill first and the paper builds itself.": "Belum ada data keterampilan — selesaikan latihan dulu, lembarnya terbentuk sendiri.",

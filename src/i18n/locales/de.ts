@@ -1,6 +1,8 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "Noch keine Fragen für diese Fähigkeit.",
+
   "Ten questions aimed at your weakest skills": "Zehn Fragen zu deinen schwächsten Fähigkeiten",
   "Start the weekly review": "Wochenrückblick starten",
   "No skill data yet — finish a drill first and the paper builds itself.": "Noch keine Daten – schließe ein Training ab, dann baut sich der Bogen selbst.",

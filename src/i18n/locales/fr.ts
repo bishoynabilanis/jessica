@@ -1,6 +1,8 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "No questions for this skill yet.": "Pas encore de questions pour cette compétence.",
+
   "Ten questions aimed at your weakest skills": "Dix questions sur tes compétences les plus faibles",
   "Start the weekly review": "Commencer la révision de la semaine",
   "No skill data yet — finish a drill first and the paper builds itself.": "Pas encore de données — termine un entraînement et la copie se construit.",
