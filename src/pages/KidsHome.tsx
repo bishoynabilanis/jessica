@@ -22,7 +22,7 @@ export function KidsHome() {
   const [draftName, setDraftName] = useState('')
   const setName = useApp((s) => s.setName)
   const [giftId, setGiftId] = useState<string | null>(null)
-  const { level, progress } = levelInfo(xp)
+  const { level } = levelInfo(xp)
   const books = customBooks.filter((b) => b.grade === settings.gradeLevel)
   const quest = quests.find((q) => !q.claimed)
   const activeTasks = parentTasks.filter((task) => !task.done).slice(0, 2)

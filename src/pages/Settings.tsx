@@ -57,7 +57,7 @@ import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
 import { gradeLabel } from '@/data/officialBooks'
 import { VOICE_LOCALES, defaultVoiceLocale } from '@/lib/voices'
 import { SCHOOL_TYPES } from '@/lib/school'
-import { ShareAppModal } from '@/components/ShareApp'
+
 import { catalogTemplate, parseCommunityCatalog } from '@/lib/communityCatalog'
 import { localOpens, readCounters, type AppCounters } from '@/lib/counter'
 import { useSpeech } from '@/lib/speech'
@@ -106,9 +106,10 @@ export function Settings() {
   }, [])
   const { canInstall, installed, install } = useInstallPrompt()
   const { speak } = useSpeech()
+  // the share sheet only ever needs the setter here
+  const [, setShareOpen] = useState(false)
   const [counters, setCounters] = useState<AppCounters | null>(null)
   const [counting, setCounting] = useState(false)
-  const [shareOpen, setShareOpen] = useState(false)
   const communityRef = useRef<HTMLInputElement>(null)
   const { level } = levelInfo(xp)
 

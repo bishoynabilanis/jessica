@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   Bookmark,
-  Check,
   Copy,
   GraduationCap,
   Mic,

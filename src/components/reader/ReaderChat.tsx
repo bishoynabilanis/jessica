@@ -3,16 +3,13 @@ import {
   ArrowUp,
   Bookmark,
   Camera,
-  Check,
   Copy,
   Languages,
   Mic,
   MicOff,
   RotateCcw,
-  Settings2,
   Sparkles,
   Square,
-  Trash2,
   Volume2,
   Wand2,
   X,
@@ -29,7 +26,7 @@ import { personas } from '@/data/personas'
 import { Markdown } from '@/components/Markdown'
 import { Mascot, moodFromText } from '@/components/Mascot'
 import { VoiceButton, useRequireKey } from '@/components/common/KeyNotice'
-import { Button } from '@/components/ui/Button'
+
 import { tr } from '@/i18n'
 
 export interface PendingAsk {

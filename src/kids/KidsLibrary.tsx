@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
-import { BookOpen, Download, Info, Sparkles, Trash2, Upload } from 'lucide-react'
+import { Download, Info, Sparkles, Trash2, Upload } from 'lucide-react'
 import type { OfficialBook } from '@/data/officialBooks'
 import { officialFor } from '@/data/officialBooks'
 import { levelLabel } from '@/lib/curriculum'

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getLanguage, dateLocale, tr } from '@/i18n'
+import { dateLocale, tr } from '@/i18n'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
   BookUnit,

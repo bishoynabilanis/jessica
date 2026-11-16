@@ -1,10 +1,10 @@
 import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Bell, Camera, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Share2, Sparkles, Sun, Zap } from 'lucide-react'
+import { Bell, Camera, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Share2, Sun, Zap } from 'lucide-react'
 import { useApp, levelInfo } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { Mascot } from '@/components/Mascot'
-import { cn, firstName } from '@/lib/utils'
+import { firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
 // These two modals pull in markdown/katex and the QR encoder, which are only

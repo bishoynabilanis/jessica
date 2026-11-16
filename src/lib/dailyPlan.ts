@@ -1,5 +1,5 @@
 import type { Book, PlanTask } from '@/types'
-import { todayKey } from '@/lib/utils'
+
 import { num, tr } from '@/i18n'
 
 export interface DailyMission {
@@ -55,7 +55,7 @@ export function buildDailyPlan(input: PlanInput): DailyMission[] {
     .sort((a, b) => a.accuracy - b.accuracy)[0]
 
   if (weakestSkill) {
-    const [subject, topic] = weakestSkill.key.split('|')
+    const [, topic] = weakestSkill.key.split('|')
     add({
       id: `skill-${weakestSkill.key}`,
       emoji: '🧠',

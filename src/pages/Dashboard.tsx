@@ -32,7 +32,7 @@ import { ParentReportModal } from '@/components/tools/ParentReport'
 import { QuickStart } from '@/components/QuickStart'
 import { RiddleCard } from '@/components/RiddleModal'
 import { Button } from '@/components/ui/Button'
-import { Card, ProgressBar, SectionTitle, Spinner } from '@/components/ui/Card'
+import { Card, ProgressBar, SectionTitle } from '@/components/ui/Card'
 import { useInstallPrompt } from '@/hooks/usePlatform'
 import { mascotForXp } from '@/data/mascots'
 import { subjectMeta } from '@/data/books'
@@ -41,7 +41,7 @@ import { buildDailyPlan } from '@/lib/dailyPlan'
 import { buildCourse } from '@/lib/course'
 import { shareStory } from '@/lib/shareCard'
 import { levelLabel } from '@/lib/curriculum'
-import type { Book, Quest } from '@/types'
+import type { Quest } from '@/types'
 import { generateJSON } from '@/lib/gemini'
 import { questsPrompt } from '@/lib/prompts'
 import { cn, firstName, formatDuration, pct, todayKey } from '@/lib/utils'
@@ -127,7 +127,6 @@ export function Dashboard() {
     xp,
     streak,
     coins,
-    dailyXP,
     studySeconds,
     quests,
     questsSource,
@@ -145,14 +144,11 @@ export function Dashboard() {
     exams,
     mascotName,
     mascotLook,
-    addXP,
-    track,
     claimQuest,
     setQuests,
-    completeTopic,
   } = state
   const pushToast = useUI((s) => s.pushToast)
-  const { level, progress, into, needed } = levelInfo(xp)
+  const { level, into, needed } = levelInfo(xp)
   const mascot = mascotForXp(xp)
   const today = dailyLog[todayKey()] || { xp: 0, seconds: 0 }
   const lastBook = useMemo(() => {
@@ -183,7 +179,6 @@ export function Dashboard() {
   const todayTopics = topicLog.filter((t) => t.date === todayKey()).slice(0, 3)
   const openPlanner = planner.filter((p) => !p.done).slice(0, 3)
   const dueNow = quests.filter((q) => q.progress >= q.target && !q.claimed).length
-
 
   const inProgress = useMemo(() => {
     return [...customBooks]

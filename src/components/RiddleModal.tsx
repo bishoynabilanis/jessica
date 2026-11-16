@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Bell, Check, Flame, Sparkles, Zap } from 'lucide-react'
-import { cn, todayKey } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { requestNotificationPermission, sendLocalNotification } from '@/hooks/usePlatform'
 import { Button } from '@/components/ui/Button'
 import { Modal } from '@/components/ui/Modal'
-import { getLanguage, tr, dateLocale } from '@/i18n'
+import { tr, dateLocale } from '@/i18n'
 
 export function RiddleCard({ compact }: { compact?: boolean }) {
   const riddle = useApp((s) => s.riddle)

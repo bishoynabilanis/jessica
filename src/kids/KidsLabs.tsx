@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Droplets, FlaskConical, Leaf, Pizza } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
-import { cn } from '@/lib/utils'
+
 import { tr } from '@/i18n'
 
 function polar(cx: number, cy: number, r: number, angle: number) {

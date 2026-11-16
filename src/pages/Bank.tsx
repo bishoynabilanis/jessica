@@ -235,7 +235,7 @@ export function Bank() {
       mistakes
         .filter((item) => item.options.length >= 2 && item.answer >= 0 && item.answer < item.options.length)
         .slice(0, EXAM_COUNT)
-        .map((item, position) => ({
+        .map((item) => ({
           id: `mistake-${item.id}`,
           subject: toBankSubject(item.subject),
           skill: item.topic || tr('Mistakes'),

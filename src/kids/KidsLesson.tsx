@@ -5,13 +5,11 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
-  Gift,
   Loader2,
   Mic,
   Sparkles,
   Star,
   Volume2,
-  X,
   XCircle,
 } from 'lucide-react'
 import type { ChapterText, QuizQuestion } from '@/types'
@@ -25,7 +23,7 @@ import { WordHelper } from '@/components/study/WordHelper'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { giftStickers } from '@/data/kids'
-import { useDictation, speakable, useSpeech } from '@/lib/speech'
+import { useDictation } from '@/lib/speech'
 import { cn, shuffle } from '@/lib/utils'
 import { tr } from '@/i18n'
 
@@ -76,7 +74,6 @@ export function KidsLesson() {
   const lessonChest = useApp((s) => s.lessonChest)
   const openLessonChest = useApp((s) => s.openLessonChest)
   const xp = useApp((s) => s.xp)
-  const { speak } = useSpeech()
   const { level } = levelInfo(xp)
 
   const book = customBooks.find((item) => item.id === bookId)

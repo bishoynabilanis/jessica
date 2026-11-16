@@ -108,7 +108,7 @@ export function Certificate() {
       g: grade,
       d: dateISO,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [name, level, xp, units, streak, skills, grade, dateISO],
   )
 

@@ -19,7 +19,6 @@ const KINDS: { id: Kind; label: string; emoji: string }[] = [
 ]
 
 export function Feedback() {
-  const settings = useApp((s) => s.settings)
   const name = useApp((s) => s.name)
   const pushToast = useUI((s) => s.pushToast)
   const [kind, setKind] = useState<Kind>('suggestion')

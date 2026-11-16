@@ -1,7 +1,7 @@
 import type { Book, BookUnit, GradeLevel } from '@/types'
 import { chapterCacheGet, getQuizzes } from '@/lib/db'
 import { clozeQuiz, keyTerms } from '@/lib/lesson'
-import { buildDrill, toBankSubject, type BankQuestion, type BankSubject } from '@/lib/questionBank'
+import { buildDrill, toBankSubject, type BankQuestion } from '@/lib/questionBank'
 
 /**
  * A review paper for ONE unit. The order matters: questions the app already

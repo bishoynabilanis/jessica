@@ -28,7 +28,7 @@ import { ParentGate } from '@/kids/ParentGate'
 import { hashPin, validPin } from '@/lib/pin'
 import { requestNotificationPermission, sendLocalNotification } from '@/hooks/usePlatform'
 import { levelLabel } from '@/lib/curriculum'
-import { cn, dayKeyOffset, pct, todayKey } from '@/lib/utils'
+import { cn, dayKeyOffset, todayKey } from '@/lib/utils'
 import { tr, dateLocale } from '@/i18n'
 
 const LIMITS = [0, 15, 20, 30, 45]

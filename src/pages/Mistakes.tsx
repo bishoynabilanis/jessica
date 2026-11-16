@@ -5,7 +5,6 @@ import {
   Brain,
   Volume2,
   CheckCircle2,
-  ChevronRight,
   Loader2,
   Play,
   Sparkles,

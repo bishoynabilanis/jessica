@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import {
   Bookmark,
   Mic,
-  MicOff,
-  Play,
   RotateCcw,
   Sparkles,
   Square,
@@ -15,7 +13,7 @@ import { Button } from '@/components/ui/Button'
 import { Spinner } from '@/components/ui/Card'
 import { useRequireKey } from '@/components/common/KeyNotice'
 import { generateJSON } from '@/lib/gemini'
-import { pronunciationInstruction, pronunciationInstruction as prompt } from '@/lib/prompts'
+import { pronunciationInstruction as prompt } from '@/lib/prompts'
 import { startRecording } from '@/lib/audio'
 import { useSpeech } from '@/lib/speech'
 import { useApp } from '@/store/useApp'

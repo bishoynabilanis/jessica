@@ -179,7 +179,7 @@ export function MascotPage() {
           <Card className="p-4">
             <p className="label mb-2">{tr("Stage progress")}</p>
             <div className="space-y-2">
-              {mascotStages.map((stage, i) => {
+              {mascotStages.map((stage) => {
                 const unlocked = xp >= stage.threshold
                 const active = stage.name === current.name
                 return (

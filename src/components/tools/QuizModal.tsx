@@ -3,7 +3,7 @@ import { Gamepad2, RefreshCw, Sparkles } from 'lucide-react'
 import type { Book, ChapterText, QuizQuestion } from '@/types'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
-import { Spinner } from '@/components/ui/Card'
+
 import { useRequireKey } from '@/components/common/KeyNotice'
 import { generateJSON } from '@/lib/gemini'
 import { quizPrompt } from '@/lib/prompts'
