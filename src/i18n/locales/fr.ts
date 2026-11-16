@@ -1,6 +1,10 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "Dix questions sur tes compétences les plus faibles",
+  "Start the weekly review": "Commencer la révision de la semaine",
+  "No skill data yet — finish a drill first and the paper builds itself.": "Pas encore de données — termine un entraînement et la copie se construit.",
+
   "Review your unit": "Révise ton unité",
   "Start the unit review": "Commencer la révision de l’unité",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 questions construites d’abord depuis cette unité — son quiz enregistré, puis ses propres pages — et la banque de la matière complète le reste.",

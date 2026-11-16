@@ -455,3 +455,93 @@ export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10):
 }
 
 export const BANK_SUBJECTS: BankSubject[] = ['Mathematics', 'Science', 'English', 'Arabic']
+
+/* ------------------------------- Skill focus ------------------------------ */
+
+const SUBJECT_PATTERNS: Array<[RegExp, BankSubject]> = [
+  [/math|رياض/i, 'Mathematics'],
+  [/science|علوم/i, 'Science'],
+  [/english|إنجليز|انجليز/i, 'English'],
+  [/arabic|عربي|عربى/i, 'Arabic'],
+]
+
+/** The four bank subjects are the app's subjects, spelled several ways elsewhere. */
+export function toBankSubject(subject: string | undefined): BankSubject {
+  if (!subject) return 'Mathematics'
+  for (const [pattern, name] of SUBJECT_PATTERNS) if (pattern.test(subject)) return name
+  return 'Mathematics'
+}
+
+export interface WeakSkill {
+  subject: BankSubject
+  skill: string
+  correct: number
+  total: number
+  ratio: number
+}
+
+/** The skills the learner gets wrong most, ignoring one-off answers. */
+export function weakestSkills(
+  stats: Record<string, { correct: number; total: number }>,
+  limit = 4,
+): WeakSkill[] {
+  return Object.entries(stats)
+    .map(([key, stat]) => {
+      const [subject, ...rest] = key.split('|')
+      const skill = rest.join('|')
+      return {
+        subject: toBankSubject(subject),
+        skill,
+        correct: stat.correct,
+        total: stat.total,
+        ratio: stat.total ? stat.correct / stat.total : 0,
+      }
+    })
+    .filter((item) => item.skill && item.total >= 2)
+    .sort((a, b) => a.ratio - b.ratio || b.total - a.total)
+    .slice(0, limit)
+}
+
+/** A drill that aims at named skills first, then fills with the same subject. */
+export function buildSkillDrill(skills: string[], grade: GradeLevel, count = 10): BankQuestion[] {
+  const wanted = new Set(skills)
+  const out: BankQuestion[] = []
+  const seen = new Set<string>()
+  const push = (question: BankQuestion) => {
+    if (!question.prompt || seen.has(question.prompt) || out.length >= count) return
+    seen.add(question.prompt)
+    out.push(question)
+  }
+
+  for (const question of placementTest(grade, 80)) {
+    if (!wanted.has(question.skill)) continue
+    push({
+      id: `focus-${out.length}`,
+      subject: 'Mathematics',
+      skill: question.skill,
+      prompt: question.prompt,
+      options: question.options,
+      answer: question.answer,
+      explanation: question.why,
+    })
+  }
+
+  const groups: Array<[BankSubject, Array<{ skill: string; make: () => Raw }>]> = [
+    ['Science', SCIENCE],
+    ['English', ENGLISH],
+    ['Arabic', ARABIC],
+  ]
+  for (const [subject, generators] of groups) {
+    for (const generator of generators) {
+      if (!wanted.has(generator.skill)) continue
+      push(toQuestion(generator.make(), subject, out.length))
+    }
+  }
+
+  if (out.length < count) {
+    const subject = out[0]?.subject || 'Mathematics'
+    for (const question of buildDrill(subject, grade, count - out.length)) push(question)
+  }
+
+  return out.slice(0, count)
+}

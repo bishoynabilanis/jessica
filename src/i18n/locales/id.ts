@@ -1,6 +1,10 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "Sepuluh soal untuk keterampilan terlemahmu",
+  "Start the weekly review": "Mulai ulasan mingguan",
+  "No skill data yet — finish a drill first and the paper builds itself.": "Belum ada data keterampilan — selesaikan latihan dulu, lembarnya terbentuk sendiri.",
+
   "Review your unit": "Ulas unitmu",
   "Start the unit review": "Mulai ulasan unit",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 soal dibangun dulu dari unit ini — kuis tersimpannya, lalu halaman-halamannya sendiri — sisanya diisi bank mata pelajaran.",

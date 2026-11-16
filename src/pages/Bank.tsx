@@ -23,7 +23,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar, Spinner } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
-import { BANK_SUBJECTS, buildDrill, type BankQuestion, type BankSubject } from '@/lib/questionBank'
+import { BANK_SUBJECTS, buildDrill, buildSkillDrill, weakestSkills, type BankQuestion, type BankSubject } from '@/lib/questionBank'
 import { addAttempt, readAttempts, previousAttempt, type BankAttempt } from '@/lib/bankHistory'
 import { levelLabel } from '@/lib/curriculum'
 import { buildCourse } from '@/lib/course'
@@ -32,7 +32,7 @@ import { cn } from '@/lib/utils'
 import { dateLocale, num, tr } from '@/i18n'
 
 type Phase = 'intro' | 'quiz' | 'result'
-type Mode = 'drill' | 'exam' | 'mistakes' | 'unit'
+type Mode = 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly'
 
 const COUNTS = [10, 20]
 const EXAM_COUNT = 20
@@ -68,6 +68,7 @@ export function Bank() {
   const unitMastery = useApp((s) => s.unitMastery)
   const completedTopics = useApp((s) => s.completedTopics)
   const lessonProgress = useApp((s) => s.lessonProgress)
+  const skillStats = useApp((s) => s.skillStats)
   const removeMistake = useApp((s) => s.removeMistake)
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
@@ -293,6 +294,30 @@ export function Bank() {
     }
   }
 
+  const weak = useMemo(() => weakestSkills(skillStats, 4), [skillStats])
+
+  const startWeekly = () => {
+    const skills = weak.map((item) => item.skill)
+    const questions = buildSkillDrill(skills, gradeLevel, 10)
+    if (!questions.length) {
+      pushToast({ title: tr('No skill data yet — finish a drill first and the paper builds itself.'), type: 'info' })
+      return
+    }
+    setMode('weekly')
+    setSubject(questions[0].subject)
+    setQuestions(questions)
+    setSeed((value) => value + 1)
+    setIndex(0)
+    setPicked(null)
+    setAnswers({})
+    setTimedOut(false)
+    setDelta(null)
+    setPrintList(null)
+    setStartedAt(Date.now())
+    setEndsAt(0)
+    setPhase('quiz')
+  }
+
   const answered = Object.keys(answers).length
 
   const printPaper = (list: BankQuestion[]) => {
@@ -332,6 +357,29 @@ export function Bank() {
             <Button size="md" onClick={startUnitReview} disabled={unitBusy} data-testid="bank-unit">
               {unitBusy ? <Spinner className="h-4 w-4" /> : <BookOpen className="h-4 w-4" />}
               {tr('Start the unit review')}
+            </Button>
+          </div>
+        </Card>
+      )}
+
+      {phase === 'intro' && weak.length > 0 && (
+        <Card className="border-violet-neon/35 bg-gradient-to-l from-violet-neon/10 via-transparent to-transparent p-4" data-testid="bank-weekly-card">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="label flex items-center gap-1.5 text-violet-300">
+                <Target className="h-3.5 w-3.5" /> {tr('Weekly review')}
+              </p>
+              <p className="mt-1 text-[11px] font-extrabold text-main">{tr('Ten questions aimed at your weakest skills')}</p>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                {weak.map((item) => (
+                  <span key={`${item.subject}-${item.skill}`} className="rounded-full border border-violet-neon/30 bg-violet-neon/10 px-2 py-0.5 text-[9px] font-bold text-violet-200">
+                    {tr(item.skill)} {num(item.correct)}/{num(item.total)}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Button size="md" variant="secondary" onClick={startWeekly} data-testid="bank-weekly">
+              <Target className="h-4 w-4" /> {tr('Start the weekly review')}
             </Button>
           </div>
         </Card>
@@ -427,7 +475,7 @@ export function Bank() {
                     {tr(attempt.subject)}
                   </span>
                   <span className="text-[10px] font-bold text-muted-2">
-                    {attempt.mode === 'exam' ? tr('Timed exam') : attempt.mode === 'mistakes' ? tr('Mistakes drill') : attempt.mode === 'unit' ? tr('Unit review') : tr('Practice')}
+                    {attempt.mode === 'exam' ? tr('Timed exam') : attempt.mode === 'mistakes' ? tr('Mistakes drill') : attempt.mode === 'unit' ? tr('Unit review') : attempt.mode === 'weekly' ? tr('Weekly review') : tr('Practice')}
                   </span>
                   <ProgressBar
                     value={attempt.score}
@@ -647,7 +695,7 @@ export function Bank() {
             )}
 
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <Button size="sm" onClick={() => (mode === 'mistakes' ? startMistakes() : mode === 'unit' ? startUnitReview() : start(subject, count, mode))}>
+              <Button size="sm" onClick={() => (mode === 'mistakes' ? startMistakes() : mode === 'unit' ? startUnitReview() : mode === 'weekly' ? startWeekly() : start(subject, count, mode))}>
                 <RotateCcw className="h-3.5 w-3.5" /> {mode === 'exam' ? tr('Another paper') : tr('New drill')}
               </Button>
               <Button size="sm" variant="secondary" onClick={() => setPhase('intro')}>

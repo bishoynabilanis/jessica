@@ -1,6 +1,10 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "En zayıf becerilerine yönelik on soru",
+  "Start the weekly review": "Haftalık tekrarı başlat",
+  "No skill data yet — finish a drill first and the paper builds itself.": "Henüz beceri verisi yok — bir alıştırma bitir, kâğıt kendi kurulur.",
+
   "Review your unit": "Üniteni tekrar et",
   "Start the unit review": "Ünite tekrarını başlat",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "Önce bu üniteden 20 soru — kayıtlı quizi, sonra kendi sayfaları — kalanını ders bankası tamamlar.",

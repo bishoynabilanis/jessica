@@ -1,6 +1,10 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "Diez preguntas sobre tus habilidades más débiles",
+  "Start the weekly review": "Empezar el repaso semanal",
+  "No skill data yet — finish a drill first and the paper builds itself.": "Aún no hay datos de habilidades: termina un entrenamiento y la hoja se arma sola.",
+
   "Review your unit": "Repasa tu unidad",
   "Start the unit review": "Empezar el repaso de la unidad",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 preguntas construidas primero desde esta unidad — su cuestionario guardado y luego sus propias páginas — y el banco de la materia completa el resto.",

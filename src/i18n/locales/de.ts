@@ -1,6 +1,10 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "Zehn Fragen zu deinen schwächsten Fähigkeiten",
+  "Start the weekly review": "Wochenrückblick starten",
+  "No skill data yet — finish a drill first and the paper builds itself.": "Noch keine Daten – schließe ein Training ab, dann baut sich der Bogen selbst.",
+
   "Review your unit": "Wiederhole deine Einheit",
   "Start the unit review": "Einheiten-Wiederholung starten",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "20 Fragen zuerst aus dieser Einheit — ihr gespeichertes Quiz, dann ihre eigenen Seiten — den Rest füllt die Fachbank auf.",

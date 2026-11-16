@@ -1,7 +1,7 @@
 import type { Book, BookUnit, GradeLevel } from '@/types'
 import { chapterCacheGet, getQuizzes } from '@/lib/db'
 import { clozeQuiz, keyTerms } from '@/lib/lesson'
-import { buildDrill, type BankQuestion, type BankSubject } from '@/lib/questionBank'
+import { buildDrill, toBankSubject, type BankQuestion, type BankSubject } from '@/lib/questionBank'
 
 /**
  * A review paper for ONE unit. The order matters: questions the app already
@@ -9,18 +9,7 @@ import { buildDrill, type BankQuestion, type BankSubject } from '@/lib/questionB
  * own pages, and only then the subject bank fills the rest.
  */
 
-const SUBJECTS: Array<[RegExp, BankSubject]> = [
-  [/math|رياض/i, 'Mathematics'],
-  [/science|علوم/i, 'Science'],
-  [/english|إنجليز|انجليز/i, 'English'],
-  [/arabic|عربي|عربى/i, 'Arabic'],
-]
-
-export function toBankSubject(subject: string | undefined): BankSubject {
-  if (!subject) return 'Mathematics'
-  for (const [pattern, name] of SUBJECTS) if (pattern.test(subject)) return name
-  return 'Mathematics'
-}
+export { toBankSubject }
 
 export interface UnitReview {
   questions: BankQuestion[]

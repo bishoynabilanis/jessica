@@ -14,6 +14,10 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Ten questions aimed at your weakest skills": "١٠ أسئلة على أضعف مهاراتك",
+  "Start the weekly review": "ابدأ مراجعة الأسبوع",
+  "No skill data yet — finish a drill first and the paper builds itself.": "مفيش بيانات مهارات لسه — خلّص تدريب الأول والورقة هتتبني لوحدها.",
+
   "Review your unit": "راجع وحدتك",
   "Start the unit review": "ابدأ مراجعة الوحدة",
   "20 questions built from this unit first — its saved quiz, then its own pages — and the subject bank fills the rest.": "٢٠ سؤال مبنيين من الوحدة الأول — الكويز المحفوظ بتاعها، وبعدين صفحاتها نفسها — والباقي من بنك المادة.",
