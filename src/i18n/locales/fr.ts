@@ -1,6 +1,22 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "Profils",
+  "More than one child on the same device": "Plus d’un enfant sur le même appareil",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "Chaque enfant garde sa progression, sa série et ses copies. Les livres et les réglages restent partagés.",
+  "Children on this device": "Enfants sur cet appareil",
+  "Add a child": "Ajouter un enfant",
+  "The child’s name": "Le prénom de l’enfant",
+  "Switch": "Changer",
+  "Current": "Actuel",
+  "Press delete again to remove this profile and its progress from this device.": "Appuie encore sur supprimer pour retirer ce profil et sa progression de l’appareil.",
+  "Keep at least one profile.": "Garde au moins un profil.",
+  "{name} is on this device now": "{name} est maintenant sur cet appareil",
+  "Switch to them whenever you want — each child keeps a separate progress.": "Bascule quand tu veux — chaque enfant a sa propre progression.",
+  "Profile deleted": "Profil supprimé",
+  "Write the child’s name first.": "Écris d’abord le prénom de l’enfant.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "Tout reste sur cet appareil. Changer de profil recharge l’app : les livres et les réglages sont partagés, la progression non.",
+
   "Edit the units": "Modifier les unités",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Renomme une unité, corrige ses pages ou ajoute les tiennes. Le cours et la révision d’unité suivent cette liste.",
   "Unit title": "Titre de l’unité",

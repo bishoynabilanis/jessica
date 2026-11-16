@@ -1,6 +1,22 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "Perfiles",
+  "More than one child on the same device": "Más de un niño en el mismo dispositivo",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "Cada niño mantiene su progreso, su racha y sus hojas. Los libros y los ajustes se comparten en este dispositivo.",
+  "Children on this device": "Niños en este dispositivo",
+  "Add a child": "Añadir un niño",
+  "The child’s name": "El nombre del niño",
+  "Switch": "Cambiar",
+  "Current": "Actual",
+  "Press delete again to remove this profile and its progress from this device.": "Pulsa eliminar otra vez para quitar este perfil y su progreso del dispositivo.",
+  "Keep at least one profile.": "Deja al menos un perfil.",
+  "{name} is on this device now": "{name} ya está en este dispositivo",
+  "Switch to them whenever you want — each child keeps a separate progress.": "Cambia cuando quieras: cada niño tiene su propio progreso.",
+  "Profile deleted": "Perfil eliminado",
+  "Write the child’s name first.": "Escribe primero el nombre del niño.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "Todo se queda en este dispositivo. Al cambiar se recarga la app: libros y ajustes se comparten, el progreso no.",
+
   "Edit the units": "Editar las unidades",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Renombra una unidad, corrige sus páginas o añade las tuyas. El curso y el repaso de unidad siguen esta lista.",
   "Unit title": "Título de la unidad",

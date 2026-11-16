@@ -1,6 +1,22 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "Profiller",
+  "More than one child on the same device": "Aynı cihazda birden fazla çocuk",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "Her çocuk kendi ilerlemesini, serisini ve kâğıtlarını korur. Kitaplar ve ayarlar cihazda ortaktır.",
+  "Children on this device": "Bu cihazdaki çocuklar",
+  "Add a child": "Çocuk ekle",
+  "The child’s name": "Çocuğun adı",
+  "Switch": "Geç",
+  "Current": "Geçerli",
+  "Press delete again to remove this profile and its progress from this device.": "Bu profili ve ilerlemesini cihazdan silmek için silmeye tekrar bas.",
+  "Keep at least one profile.": "En az bir profil bırak.",
+  "{name} is on this device now": "{name} artık bu cihazda",
+  "Switch to them whenever you want — each child keeps a separate progress.": "İstediğin zaman geç — her çocuğun ilerlemesi ayrı.",
+  "Profile deleted": "Profil silindi",
+  "Write the child’s name first.": "Önce çocuğun adını yaz.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "Her şey bu cihazda kalır. Geçiş yapınca uygulama yenilenir: kitaplar ve ayarlar ortak, ilerleme değil.",
+
   "Edit the units": "Üniteleri düzenle",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Bir üniteyi yeniden adlandır, sayfa aralığını düzelt veya kendi ünitelerini ekle. Kurs ve ünite tekrarı bu listeyi izler.",
   "Unit title": "Ünite adı",

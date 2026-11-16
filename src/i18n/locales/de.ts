@@ -1,6 +1,22 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "Profile",
+  "More than one child on the same device": "Mehr als ein Kind auf demselben Gerät",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "Jedes Kind behält seinen Fortschritt, seine Serie und seine Bögen. Bücher und Einstellungen bleiben geteilt.",
+  "Children on this device": "Kinder auf diesem Gerät",
+  "Add a child": "Kind hinzufügen",
+  "The child’s name": "Name des Kindes",
+  "Switch": "Wechseln",
+  "Current": "Aktiv",
+  "Press delete again to remove this profile and its progress from this device.": "Noch einmal löschen, um dieses Profil samt Fortschritt vom Gerät zu entfernen.",
+  "Keep at least one profile.": "Mindestens ein Profil behalten.",
+  "{name} is on this device now": "{name} ist jetzt auf diesem Gerät",
+  "Switch to them whenever you want — each child keeps a separate progress.": "Wechsle jederzeit – jedes Kind hat seinen eigenen Fortschritt.",
+  "Profile deleted": "Profil gelöscht",
+  "Write the child’s name first.": "Schreibe zuerst den Namen des Kindes.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "Alles bleibt auf diesem Gerät. Beim Wechseln lädt die App neu: Bücher und Einstellungen sind geteilt, der Fortschritt nicht.",
+
   "Edit the units": "Einheiten bearbeiten",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Benenne eine Einheit um, korrigiere ihren Seitenbereich oder füge eigene hinzu. Kurs und Einheiten-Wiederholung folgen dieser Liste.",
   "Unit title": "Titel der Einheit",

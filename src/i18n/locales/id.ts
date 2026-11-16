@@ -1,6 +1,22 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "Profil",
+  "More than one child on the same device": "Lebih dari satu anak di perangkat yang sama",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "Setiap anak menyimpan progres, rentetan, dan lembarnya sendiri. Buku dan pengaturan tetap dibagi di perangkat ini.",
+  "Children on this device": "Anak di perangkat ini",
+  "Add a child": "Tambah anak",
+  "The child’s name": "Nama anak",
+  "Switch": "Ganti",
+  "Current": "Aktif",
+  "Press delete again to remove this profile and its progress from this device.": "Tekan hapus lagi untuk menghapus profil ini dan progresnya dari perangkat.",
+  "Keep at least one profile.": "Sisakan minimal satu profil.",
+  "{name} is on this device now": "{name} sekarang ada di perangkat ini",
+  "Switch to them whenever you want — each child keeps a separate progress.": "Ganti kapan saja — setiap anak punya progres sendiri.",
+  "Profile deleted": "Profil dihapus",
+  "Write the child’s name first.": "Tulis dulu nama anak.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "Semua tetap di perangkat ini. Saat berganti, aplikasi dimuat ulang: buku dan pengaturan dibagi, progres tidak.",
+
   "Edit the units": "Sunting unit",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "Ganti nama unit, perbaiki rentang halamannya, atau tambahkan milikmu. Kursus dan ulasan unit mengikuti daftar ini.",
   "Unit title": "Judul unit",

@@ -14,6 +14,22 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Profiles": "ملفات الأطفال",
+  "More than one child on the same device": "أكتر من طفل على نفس الجهاز",
+  "Each child keeps their own progress, streak and papers. Books and settings stay shared on this device.": "كل طفل ليه تقدمه وسلسلته وأوراقه. الكتب والإعدادات مشتركة على الجهاز.",
+  "Children on this device": "الأطفال على الجهاز ده",
+  "Add a child": "أضف طفل",
+  "The child’s name": "اسم الطفل",
+  "Switch": "بدّل",
+  "Current": "الحالي",
+  "Press delete again to remove this profile and its progress from this device.": "اضغط حذف تاني عشان تشيل الملف وتقدمه من الجهاز.",
+  "Keep at least one profile.": "سيب ملف واحد على الأقل.",
+  "{name} is on this device now": "{name} بقى على الجهاز دلوقتي",
+  "Switch to them whenever you want — each child keeps a separate progress.": "بدّل عليه وقت ما تحب — كل طفل ليه تقدم منفصل.",
+  "Profile deleted": "الملف اتحذف",
+  "Write the child’s name first.": "اكتب اسم الطفل الأول.",
+  "Everything stays on this device. Switching reloads the app so the whole screen belongs to the other child — books and settings are shared, progress is not.": "كل حاجة على الجهاز ده. التبديل بيعيد تحميل التطبيق عشان الشاشة كلها تبقى للطفل التاني — الكتب والإعدادات مشتركة، لكن التقدم لأ.",
+
   "Edit the units": "تعديل الوحدات",
   "Rename a unit, fix its page range, or add your own. The course and the unit review follow this list.": "غيّر اسم وحدة، صحّح مداها من الصفحات، أو ضيف وحداتك. الكورس ومراجعة الوحدة بيمشوا على القايمة دي.",
   "Unit title": "اسم الوحدة",
