@@ -1,6 +1,11 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on the latest version.": "Du hast die neueste Version.",
+  "A new version is installing — the app will reload.": "Eine neue Version wird installiert — die App lädt neu.",
+  "Update check is not available here.": "Die Update-Prüfung ist hier nicht verfügbar.",
+  "Check for updates": "Nach Updates suchen",
+
   "Start with {topic}": "Beginne mit {topic}",
   "Accuracy is {n}% — the daily plan can carry it.": "Trefferquote {n} % — der Tagesplan kann das tragen.",
   "More days, not longer sessions": "Mehr Tage, nicht längere Sitzungen",

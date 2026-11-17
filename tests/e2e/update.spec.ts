@@ -48,10 +48,38 @@ test.beforeEach(async ({ page }) => {
 
 test('a new deploy raises the refresh banner even without a service worker', async ({ page }) => {
   await page.route('**/version.json*', (route) => route.fulfill({ json: { version: 'a-newer-deploy' } }))
-  await page.goto('/#/')
+  await page.goto('/#/plan')
 
   await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')))
   await expect(page.getByText('New version available.')).toBeVisible()
+})
+
+test('refresh bypasses the HTML cache with a version query', async ({ page }) => {
+  await page.route('**/version.json*', (route) => route.fulfill({ json: { version: 'a-newer-deploy' } }))
+  await page.goto('/#/plan')
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')))
+  await expect(page.getByText('New version available.')).toBeVisible()
+
+  const documents: string[] = []
+  page.on('request', (request) => {
+    if (request.resourceType() === 'document') documents.push(request.url())
+  })
+  await page.getByRole('button', { name: 'Refresh', exact: true }).click()
+  await expect.poll(() => documents.some((url) => url.includes('v='))).toBe(true)
+  await page.waitForLoadState('load').catch(() => undefined)
+  await page.close()
+})
+
+test('a deploy at the home route applies itself on launch', async ({ page }) => {
+  await page.route('**/version.json*', (route) => route.fulfill({ json: { version: 'a-newer-deploy' } }))
+  let documents = 0
+  page.on('request', (request) => {
+    if (request.resourceType() === 'document') documents += 1
+  })
+  await page.goto('/#/')
+  await expect.poll(() => documents).toBeGreaterThan(1)
+  await page.waitForLoadState('load').catch(() => undefined)
+  await page.close()
 })
 
 test('the built worker carries the same deploy id as version.json', async ({ request }) => {
@@ -61,4 +89,24 @@ test('the built worker carries the same deploy id as version.json', async ({ req
   const worker = await (await request.get('/sw.js')).text()
   expect(worker).toContain(`jessica-${version.version}`)
   expect(worker).not.toContain('__BUILD__')
+  expect(worker).toContain("endsWith('/version.json')")
+})
+
+test('settings can check for updates and says when it is current', async ({ page }) => {
+  await page.goto('/#/settings')
+  await page.getByTestId('check-update').click()
+  await expect(page.getByText('You are on the latest version.')).toBeVisible()
+})
+
+test('the manual check reloads when version.json is newer', async ({ page }) => {
+  await page.route('**/version.json*', (route) => route.fulfill({ json: { version: 'a-newer-deploy' } }))
+  await page.goto('/#/settings')
+  const documents: string[] = []
+  page.on('request', (request) => {
+    if (request.resourceType() === 'document') documents.push(request.url())
+  })
+  await page.getByTestId('check-update').click()
+  await expect.poll(() => documents.some((url) => url.includes('v='))).toBe(true)
+  await page.waitForLoadState('load').catch(() => undefined)
+  await page.close()
 })

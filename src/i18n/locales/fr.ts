@@ -1,6 +1,11 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on the latest version.": "Tu es sur la dernière version.",
+  "A new version is installing — the app will reload.": "Une nouvelle version s’installe — l’app va se recharger.",
+  "Update check is not available here.": "La vérification des mises à jour n’est pas disponible ici.",
+  "Check for updates": "Vérifier les mises à jour",
+
   "Start with {topic}": "Commence par {topic}",
   "Accuracy is {n}% — the daily plan can carry it.": "Précision : {n} % — le plan du jour peut la porter.",
   "More days, not longer sessions": "Plus de jours, pas des séances plus longues",

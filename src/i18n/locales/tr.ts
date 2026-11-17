@@ -1,6 +1,11 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on the latest version.": "En son sürümdesin.",
+  "A new version is installing — the app will reload.": "Yeni sürüm kuruluyor — uygulama yeniden yüklenecek.",
+  "Update check is not available here.": "Güncelleme denetimi burada kullanılamıyor.",
+  "Check for updates": "Güncellemeleri denetle",
+
   "Start with {topic}": "{topic} ile başla",
   "Accuracy is {n}% — the daily plan can carry it.": "Doğruluk %{n} — günlük plan bunu taşıyabilir.",
   "More days, not longer sessions": "Daha çok gün, daha uzun oturum değil",

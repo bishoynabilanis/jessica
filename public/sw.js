@@ -43,6 +43,15 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
+  // The deploy id must be read fresh, never from a cache, or the app compares
+  // against yesterday's version and misses today's update.
+  if (url.pathname.endsWith('/version.json') || url.pathname.endsWith('/sw.js')) {
+    event.respondWith(
+      fetch(req, { cache: 'no-store' }).catch(() => caches.match(req)),
+    )
+    return
+  }
+
   // Navigations: network-first with offline fallback to the cached shell.
   if (req.mode === 'navigate') {
     event.respondWith(

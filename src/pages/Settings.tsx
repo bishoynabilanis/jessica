@@ -21,6 +21,7 @@ import {
   Loader2,
   Lock,
   MoonStar,
+  RefreshCw,
   Save,
   ShieldCheck,
   Smartphone,
@@ -45,6 +46,7 @@ import { useUI } from '@/store/useUI'
 import { validateKey } from '@/lib/gemini'
 import { PROVIDERS, providerFor } from '@/lib/providers'
 import {
+  checkForUpdate,
   requestNotificationPermission,
   sendLocalNotification,
   useInstallPrompt,
@@ -1020,6 +1022,26 @@ export function Settings() {
               </a>
               <span className="chip border-aurora-400/25 text-aurora-200">
                 <CloudOff className="h-3 w-3" /> {tr("Offline shell")}
+              </span>
+              <Button
+                size="sm"
+                variant="ghost"
+                data-testid="check-update"
+                onClick={async () => {
+                  const result = await checkForUpdate()
+                  pushToast(
+                    result === 'current'
+                      ? { title: tr('You are on the latest version.'), type: 'success' }
+                      : result === 'updating'
+                        ? { title: tr('A new version is installing — the app will reload.'), type: 'info' }
+                        : { title: tr('Update check is not available here.'), type: 'info' },
+                  )
+                }}
+              >
+                <RefreshCw className="h-3.5 w-3.5" /> {tr('Check for updates')}
+              </Button>
+              <span className="text-[9px] font-bold text-muted-2" data-testid="app-version">
+                {__APP_VERSION__.split('-')[0]}
               </span>
             </div>
           </Card>

@@ -140,6 +140,52 @@ export function useDailyRiddleNotification(enabled: boolean, onFire: () => void)
 }
 
 /* --------------------------- PWA registration ----------------------------- */
+
+/**
+ * Reload through a fresh URL.
+ *
+ * GitHub Pages sends `index.html` with `max-age=600`, so a plain reload can
+ * serve the same HTML for ten minutes after a deploy — the exact reason an
+ * update "does not arrive". A unique `?v=` makes the navigation a new URL and
+ * bypasses that cache. `main.tsx` removes the query once the app has booted.
+ */
+function hardReload() {
+  try {
+    const url = new URL(window.location.href)
+    url.searchParams.set('v', Date.now().toString(36))
+    window.location.replace(url.toString())
+  } catch {
+    window.location.reload()
+  }
+}
+
+/**
+ * A manual check for the Settings screen: it asks the browser for a new worker,
+ * then compares version.json. Returns what the UI should say.
+ */
+export async function checkForUpdate(): Promise<'current' | 'updating' | 'unsupported'> {
+  if (!('serviceWorker' in navigator)) return 'unsupported'
+  try {
+    const reg = await navigator.serviceWorker.getRegistration()
+    await reg?.update().catch(() => undefined)
+    if (reg?.waiting) {
+      reg.waiting.postMessage({ type: 'SKIP_WAITING' })
+      window.setTimeout(hardReload, 900)
+      return 'updating'
+    }
+    const response = await fetch(`${import.meta.env.BASE_URL}version.json?ts=${Date.now()}`, { cache: 'no-store' })
+    if (!response.ok) return 'unsupported'
+    const data = (await response.json()) as { version?: string }
+    if (data.version && data.version !== __APP_VERSION__) {
+      hardReload()
+      return 'updating'
+    }
+    return 'current'
+  } catch {
+    return 'unsupported'
+  }
+}
+
 export function useServiceWorker() {
   const [updateReady, setUpdateReady] = useState(false)
   const regRef = useRef<ServiceWorkerRegistration | null>(null)
@@ -149,13 +195,14 @@ export function useServiceWorker() {
     if (!('serviceWorker' in navigator)) return
     const base = import.meta.env.BASE_URL
     const hadController = !!navigator.serviceWorker.controller
+    const launchedAt = Date.now()
     let refreshing = false
     let interval: number | undefined
 
     const reloadOnce = () => {
       if (refreshing) return
       refreshing = true
-      window.location.reload()
+      hardReload()
     }
 
     // A waiting worker means the new bundle is downloaded and ready.
@@ -172,7 +219,30 @@ export function useServiceWorker() {
         const response = await fetch(`${base}version.json?ts=${Date.now()}`, { cache: 'no-store' })
         if (!response.ok) return
         const data = (await response.json()) as { version?: string }
-        if (data.version && data.version !== __APP_VERSION__) setUpdateReady(true)
+        if (!data.version || data.version === __APP_VERSION__) return
+
+        // On a fresh launch at the home route, update silently instead of
+        // asking. Guarded so a broken cache can never reload in a loop.
+        const atRoot =
+          !window.location.hash || window.location.hash === '#/' || window.location.hash === '#/kids'
+        // Never reload over onboarding or the terms screen: a half-filled form
+        // matters more than a fresh bundle.
+        const booted = (() => {
+          try {
+            const raw = window.localStorage.getItem('jessica-profile-v1')
+            const state = raw ? (JSON.parse(raw) as { state?: { onboarded?: boolean; acceptedTerms?: number } }).state : null
+            return Boolean(state?.onboarded && state?.acceptedTerms)
+          } catch {
+            return false
+          }
+        })()
+        const lastAuto = Number(window.sessionStorage.getItem('jessica-auto-update') || 0)
+        if (atRoot && booted && Date.now() - launchedAt < 15_000 && Date.now() - lastAuto > 60_000) {
+          window.sessionStorage.setItem('jessica-auto-update', String(Date.now()))
+          hardReload()
+          return
+        }
+        setUpdateReady(true)
       } catch {
         /* offline: the update will be noticed when the network returns */
       }
@@ -222,12 +292,13 @@ export function useServiceWorker() {
   const applyUpdate = useCallback(() => {
     const waiting = regRef.current?.waiting
     if (!waiting) {
-      window.location.reload()
+      hardReload()
       return
     }
     // The waiting worker calls skipWaiting, then controllerchange reloads us.
     waiting.postMessage({ type: 'SKIP_WAITING' })
-    window.setTimeout(() => window.location.reload(), 1600)
+    // iOS can take a moment to activate; a longer fallback beats a stale reload.
+    window.setTimeout(hardReload, 2500)
   }, [])
 
   return { updateReady, applyUpdate }

@@ -36,6 +36,18 @@ function start() {
   )
 }
 
+// The update flow reloads with ?v=<deploy> to bypass a stale HTML cache. The
+// query has done its job by now, so keep the address bar clean.
+try {
+  const url = new URL(window.location.href)
+  if (url.searchParams.has('v')) {
+    url.searchParams.delete('v')
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+} catch {
+  /* an odd URL is not worth blocking boot */
+}
+
 const language = savedLanguage()
 if (language && language !== 'en' && language !== 'ar') {
   // Load the locale pack before the first paint so the UI never flashes English.

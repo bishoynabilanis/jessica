@@ -1,6 +1,11 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "You are on the latest version.": "Kamu memakai versi terbaru.",
+  "A new version is installing — the app will reload.": "Versi baru sedang dipasang — aplikasi akan dimuat ulang.",
+  "Update check is not available here.": "Pemeriksaan pembaruan tidak tersedia di sini.",
+  "Check for updates": "Periksa pembaruan",
+
   "Start with {topic}": "Mulai dari {topic}",
   "Accuracy is {n}% — the daily plan can carry it.": "Akurasi {n}% — rencana harian bisa mengangkatnya.",
   "More days, not longer sessions": "Lebih banyak hari, bukan sesi lebih lama",
