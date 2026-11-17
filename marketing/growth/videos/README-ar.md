@@ -7,6 +7,7 @@
 | `labs-demo.mp4` | عربي | ~29s | 39 معملاً: دورة المياه + النظام الثنائي |
 | `labs-demo-en.mp4` | إنجليزي | ~29s | نفس الجولة بكابشنز إنجليزية |
 | `full-tour-ar.mp4` | عربي | ~31s | الرئيسية → المكتبة → بنك الأسئلة → التركيز → الخطة → المعامل |
+| `explainer-ar.mp4` | عربي | ~62s | شرح بصوت مصري: ٦ فصول، عناوين كبيرة، أوفلاين |
 
 ## إعادة التسجيل
 
@@ -27,7 +28,26 @@ ffmpeg -i raw.webm -stream_loop -1 -i marketing/video/assets/music.m4a \
   -c:a aac -b:a 128k -shortest -movflags +faststart marketing/growth/videos/<name>.mp4
 ```
 
-`index.html` في نفس المجلد بيعرض الثلاثة في المتصفح.
+`index.html` في نفس المجلد بيعرض الأربعة في المتصفح.
+
+## الشرح المعلّق (Explainers)
+
+الفيديو المعلّق بيتبني على ٣ مراحل:
+
+```bash
+# 1) الصوت: edge-tts بصوت مصري (يحتاج إنترنت، مش part من التطبيق)
+python3 -m venv /tmp/tts-venv && /tmp/tts-venv/bin/pip install edge-tts
+/tmp/tts-venv/bin/python marketing/growth/videos/make_narration.py
+
+# 2) التسجيل: بيقرأ مدد الصوت من /tmp/jessica-narration/durations.json
+node marketing/growth/videos/record-explainer.mjs
+
+# 3) التركيب: الصوت + موسيقى explainer.m4a
+#    (نفس أوامر ffmpeg فوق، مع narration.m4a بدل music.m4a المفردة)
+```
+
+الصوت: `ar-EG-ShakirNeural` (ذكوري، مصري). البديل النسائي: `ar-EG-SalmaNeural`.
+
 
 ## الموسيقى
 

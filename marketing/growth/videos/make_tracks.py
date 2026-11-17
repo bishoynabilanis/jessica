@@ -190,7 +190,35 @@ def labs_en() -> np.ndarray:
     return buf
 
 
+def explainer() -> np.ndarray:
+    """Calm, voice-forward bed for the narrated explainer."""
+    dur = 70.0
+    buf = np.zeros(int(dur * SR))
+    beat = 60 / 80
+    bar = 4 * beat
+    chords = [
+        [261.63, 329.63, 392.0, 493.88],
+        [220.0, 261.63, 329.63, 392.0],
+        [174.61, 220.0, 261.63, 329.63],
+        [196.0, 246.94, 293.66, 392.0],
+    ]
+    roots = [130.81, 110.0, 87.31, 98.0]
+    for i in range(int(dur / bar) + 1):
+        chord = chords[i % 4]
+        at = i * bar
+        add(buf, pad(chord, bar + 0.4, 0.12), at)
+        add(buf, bass(roots[i % 4], bar * 0.8, 0.12), at)
+        if i % 2 == 0:
+            for step in range(4):
+                add(buf, pluck(chord[step % 4] * 2, 0.5, 0.045, 0.35), at + step * bar / 4)
+        if i >= 4:
+            add(buf, kick(0.26, 0.1), at)
+            add(buf, hat(0.05, 0.012), at + bar / 2)
+    return buf
+
+
 if __name__ == "__main__":
     write("tour.wav", tour())
     write("labs-ar.wav", labs_ar())
     write("labs-en.wav", labs_en())
+    write("explainer.wav", explainer())
