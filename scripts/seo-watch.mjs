@@ -184,8 +184,11 @@ async function gscReport(token) {
   if (!sitemapRes.ok) throw new Error(sitemapData.error?.message || `sitemaps HTTP ${sitemapRes.status}`)
   const sitemaps = (sitemapData.sitemap || []).map((item) => ({
     path: item.path,
+    type: item.type || 'unknown',
+    isPending: Boolean(item.isPending),
     errors: item.errors || 0,
     warnings: item.warnings || 0,
+    lastSubmitted: item.lastSubmitted || '',
     lastDownloaded: item.lastDownloaded || '',
     submitted: (item.contents || []).reduce((sum, part) => sum + Number(part.submitted || 0), 0),
   }))
@@ -228,6 +231,41 @@ async function gscReport(token) {
   return { sitemaps, inspections, analytics }
 }
 
+async function repairSitemaps(token) {
+  const api = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}/sitemaps`
+  const headers = { Authorization: `Bearer ${token}` }
+  let list = []
+  try {
+    const res = await fetch(api, { headers, signal: AbortSignal.timeout(20000) })
+    const data = await res.json()
+    if (res.ok) list = data.sitemap || []
+  } catch {
+    /* the submit below still runs */
+  }
+  // Every entry that is not the canonical XML sitemap is a page submitted by
+  // mistake (Google tries to parse HTML as XML and reports "Couldn't fetch").
+  const bogus = list.filter((item) => item.path !== SITEMAP_URL)
+  let removed = 0
+  for (const item of bogus) {
+    try {
+      const res = await fetch(`${api}/${encodeURIComponent(item.path)}`, {
+        method: 'DELETE',
+        headers,
+        signal: AbortSignal.timeout(20000),
+      })
+      if (res.ok) removed += 1
+    } catch {
+      /* keep going; the report shows what is left */
+    }
+  }
+  record('Sitemap cleanup', removed === bogus.length, `${removed}/${bogus.length} stale entries removed`)
+
+  const endpoint = `${api}/${encodeURIComponent(SITEMAP_URL)}`
+  await fetch(endpoint, { method: 'DELETE', headers, signal: AbortSignal.timeout(20000) }).catch(() => {})
+  const put = await fetch(endpoint, { method: 'PUT', headers, signal: AbortSignal.timeout(20000) })
+  record('Sitemap submitted', put.ok, `HTTP ${put.status} · ${SITEMAP_URL}`)
+}
+
 /* -------------------------------- report ------------------------------ */
 
 function markdown(report) {
@@ -235,10 +273,12 @@ function markdown(report) {
   for (const row of rows) lines.push(`| ${row.ok ? '✅' : '❌'} ${row.name} | ${row.detail} |`)
 
   if (report) {
-    lines.push('', '## Search Console — sitemaps', '', '| Sitemap | Last read | Submitted | Errors | Warnings |', '| --- | --- | --- | --- | --- |')
-    if (!report.sitemaps.length) lines.push('| — | — | — | — | — |')
+    lines.push('', '## Search Console — sitemaps', '', '| Sitemap | Type | Last read | Pending | Submitted | Errors | Warnings |', '| --- | --- | --- | --- | --- | --- | --- |')
+    if (!report.sitemaps.length) lines.push('| — | — | — | — | — | — | — |')
     for (const item of report.sitemaps) {
-      lines.push(`| ${item.path.replace(SITE, '')} | ${item.lastDownloaded ? item.lastDownloaded.slice(0, 10) : 'not read yet'} | ${item.submitted} | ${item.errors} | ${item.warnings} |`)
+      lines.push(
+        `| ${item.path.replace(SITE, '')} | ${item.type} | ${item.lastDownloaded ? item.lastDownloaded.slice(0, 10) : 'not read yet'} | ${item.isPending ? 'yes' : 'no'} | ${item.submitted} | ${item.errors} | ${item.warnings} |`,
+      )
     }
     lines.push('', '## Search Console — index status', '', '| URL | Verdict | Coverage | Fetch | Last crawl |', '| --- | --- | --- | --- | --- |')
     for (const item of report.inspections) {
@@ -301,10 +341,7 @@ let report = null
 try {
   const token = process.env.GSC_ACCESS_TOKEN || (process.env.GSC_SERVICE_ACCOUNT ? await googleToken(process.env.GSC_SERVICE_ACCOUNT) : '')
   if (token && process.env.SITEMAP_RESET === '1') {
-    const endpoint = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE_URL)}/sitemaps/${encodeURIComponent(SITEMAP_URL)}`
-    await fetch(endpoint, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }).catch(() => {})
-    const put = await fetch(endpoint, { method: 'PUT', headers: { Authorization: `Bearer ${token}` } })
-    record('Sitemap re-submitted', put.ok, `HTTP ${put.status}`)
+    await repairSitemaps(token)
   }
   if (token) report = await gscReport(token)
 } catch (error) {
