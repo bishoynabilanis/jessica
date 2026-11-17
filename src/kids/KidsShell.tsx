@@ -74,7 +74,7 @@ export function KidsShell() {
         <div className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-coral/15 blur-[100px]" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-line bg-white/70 backdrop-blur-2xl">
+      <header className="safe-top sticky top-0 z-40 border-b border-line bg-white/70 backdrop-blur-2xl">
         <div className="mx-auto flex h-16 max-w-5xl items-center gap-2 px-3 sm:px-5">
           <button onClick={() => navigate('/kids')} className="flex items-center gap-2">
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-sun to-coral text-lg shadow-lg">

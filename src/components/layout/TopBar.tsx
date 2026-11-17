@@ -42,7 +42,7 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line bg-app/70 backdrop-blur-2xl">
+      <header className="safe-top sticky top-0 z-40 border-b border-line bg-app/70 backdrop-blur-2xl">
         <div className="flex h-16 items-center gap-3 px-3 sm:px-6">
           <button
             onClick={onMenu}

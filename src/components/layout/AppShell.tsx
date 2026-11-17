@@ -83,7 +83,7 @@ export function AppShell() {
               animate={{ x: 0 }}
               exit={{ x: rtl ? 280 : -280 }}
               transition={{ type: 'spring', stiffness: 320, damping: 32 }}
-              className="relative h-full w-[280px] border-e border-line bg-app"
+              className="safe-top relative h-full w-[280px] border-e border-line bg-app"
             >
               <SidebarContent onNavigate={() => setMenuOpen(false)} />
             </motion.div>

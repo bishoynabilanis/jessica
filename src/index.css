@@ -185,6 +185,11 @@ html.reduce-motion *::after {
   .safe-bottom {
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
+  /* The status bar sits on top of the app on iOS standalone and on Android
+     devices with a cutout; the header must start below it, not under it. */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
   .tap {
     @apply active:scale-[0.98] transition-transform duration-150;
   }
