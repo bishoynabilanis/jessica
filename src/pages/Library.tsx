@@ -76,10 +76,10 @@ export function Library() {
     const community = communityBooks.filter(
       (book) => book.grade === grade && book.term === term && (subject === 'All' || book.subject === subject),
     )
-    return [...officialFor(grade, term, subject), ...community]
+    return [...officialFor(grade, term, subject, schoolType), ...community]
       .filter((book) => subjects.includes(book.subject))
       .filter((book) => !q || `${book.title} ${book.subject} ${book.term}`.toLowerCase().includes(q))
-  }, [grade, term, subject, query, communityBooks, subjects])
+  }, [grade, term, subject, query, communityBooks, subjects, schoolType])
 
   const imported = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -105,7 +105,7 @@ export function Library() {
 
   const stats = [
     ...(official
-      ? [{ label: tr('Official books'), value: officialFor(grade, term, 'All').filter((book) => subjects.includes(book.subject)).length, hint: levelLabel(grade, curriculum), icon: LibraryBig }]
+      ? [{ label: tr('Official books'), value: officialFor(grade, term, 'All', schoolType).filter((book) => subjects.includes(book.subject)).length, hint: levelLabel(grade, curriculum), icon: LibraryBig }]
       : []),
     { label: tr('In my library'), value: imported.length, hint: tr('{n} completed', { n: finished }), icon: CheckCircle2 },
     { label: tr('Read so far'), value: `${readPages}/${totalPages}`, hint: tr('pages across your books'), icon: BookOpen },

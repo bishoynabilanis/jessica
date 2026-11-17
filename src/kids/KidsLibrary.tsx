@@ -17,6 +17,7 @@ import { tr } from '@/i18n'
 export function KidsLibrary() {
   const customBooks = useApp((s) => s.customBooks)
   const grade = useApp((s) => s.settings.gradeLevel)
+  const schoolType = useApp((s) => s.settings.schoolType)
   const curriculum = useApp((s) => s.settings.curriculum)
   const removeCustomBook = useApp((s) => s.removeCustomBook)
   const pushToast = useUI((s) => s.pushToast)
@@ -26,7 +27,7 @@ export function KidsLibrary() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const books = useMemo(() => customBooks.filter((b) => b.grade === grade), [customBooks, grade])
-  const official = useMemo(() => officialFor(grade, 'Term 1', 'All'), [grade])
+  const official = useMemo(() => officialFor(grade, 'Term 1', 'All', schoolType), [grade, schoolType])
   const importedByCatalog = useMemo(() => {
     const map = new Map<string, (typeof books)[number]>()
     for (const book of books) if (book.catalogId) map.set(book.catalogId, book)

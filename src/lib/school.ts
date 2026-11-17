@@ -15,8 +15,13 @@ export const SCHOOL_TYPES: SchoolOption[] = [
   { id: 'azhar', label: 'Al-Azhar', hint: 'Azhar curriculum with religion', emoji: '🕌' },
 ]
 
-const CORE: Subject[] = ['English', 'Arabic', 'Mathematics', 'Science', 'Social Studies', 'Religion']
-const LANGUAGE_SUBJECTS: Subject[] = ['French', 'German']
+const CORE: Subject[] = ['English', 'Arabic', 'Mathematics', 'Science', 'Social Studies']
+const LANGUAGE_SUBJECTS: Subject[] = ['French']
+
+/** The language the content subjects (maths, science) are taught in. */
+export function schoolMedium(type: SchoolType): 'ar' | 'en' {
+  return type === 'languages' ? 'en' : 'ar'
+}
 
 /** Subjects a school type actually studies; language schools add French/German. */
 export function subjectsForSchool(type: SchoolType): Subject[] {

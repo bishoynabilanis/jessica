@@ -18,9 +18,16 @@ export function OfficialBookCard({
   basePath?: string
 }) {
   const meta = subjectMeta[entry.subject] || { emoji: '📚', color: '#21e6c9' }
+  const languageLabel =
+    entry.language === 'ar' ? tr('Arabic') : entry.language === 'fr' ? tr('French') : tr('English')
 
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-3xl border border-line bg-card p-5">
+    <div
+      className="relative flex flex-col overflow-hidden rounded-3xl border border-line bg-card p-5"
+      data-testid="catalog-card"
+      data-subject={entry.subject}
+      data-language={entry.language}
+    >
       <div
         className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full opacity-20 blur-2xl"
         style={{ background: meta.color }}
@@ -56,8 +63,11 @@ export function OfficialBookCard({
         <h3 className="mt-2 line-clamp-2 font-display text-sm font-extrabold leading-snug text-main" dir="auto">
           {entry.title}
         </h3>
-        <p className="mt-1.5 flex items-center gap-1 text-[10px] text-muted">
-          <FileText className="h-3 w-3" /> {tr('Ministry of Education · official PDF')}
+        <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10px] text-muted">
+          <span className="inline-flex items-center gap-1">
+            <FileText className="h-3 w-3" /> {tr('Ministry of Education · official PDF')}
+          </span>
+          <span className="chip border-line bg-card-2 px-1.5 py-0 text-[8px] text-muted-2">{languageLabel}</span>
         </p>
       </div>
 

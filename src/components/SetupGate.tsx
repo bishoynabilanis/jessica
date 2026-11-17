@@ -51,7 +51,7 @@ export function SetupGate() {
   const isEgypt = hasOfficialLibrary(settings.curriculum)
   const books = useMemo(() => {
     const allowed = subjectsForSchool(settings.schoolType)
-    return officialFor(grade, 'Term 1', 'All').filter((book) => allowed.includes(book.subject)).slice(0, 6)
+    return officialFor(grade, 'Term 1', 'All', settings.schoolType).filter((book) => allowed.includes(book.subject)).slice(0, 6)
   }, [grade, settings.schoolType])
   const keyOptional = settings.keyOptional
   const keyDone = Boolean(apiKey.trim()) || keyOptional
