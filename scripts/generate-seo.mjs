@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import { FEATURES } from './features-data.mjs'
 import path from 'node:path'
 import { execSync } from 'node:child_process'
 
@@ -484,6 +485,20 @@ const urls = [
   ...['parents', 'study-plan', 'exam-anxiety', 'homework', 'memorization', 'monthly-tests'].map((slug) => ({
     loc: `${BASE}/welcome/en/topics/${slug}/`,
     file: `public/welcome/en/topics/${slug}/index.html`,
+    freq: 'monthly',
+    priority: '0.7',
+  })),
+  { loc: `${BASE}/welcome/features/`, file: 'public/welcome/features/index.html', freq: 'monthly', priority: '0.8' },
+  { loc: `${BASE}/welcome/en/features/`, file: 'public/welcome/en/features/index.html', freq: 'monthly', priority: '0.7' },
+  ...FEATURES.map((feature) => ({
+    loc: `${BASE}/welcome/features/${feature.slug}/`,
+    file: `public/welcome/features/${feature.slug}/index.html`,
+    freq: 'monthly',
+    priority: '0.8',
+  })),
+  ...FEATURES.map((feature) => ({
+    loc: `${BASE}/welcome/en/features/${feature.slug}/`,
+    file: `public/welcome/en/features/${feature.slug}/index.html`,
     freq: 'monthly',
     priority: '0.7',
   })),
