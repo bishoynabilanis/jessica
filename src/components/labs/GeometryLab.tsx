@@ -128,7 +128,7 @@ export function GeometryLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Use width and height to find area and perimeter.')}
         question={tr('A square has a side of 5 cm. What is its area?')}
-        options={['10 cm²', '20 cm²', '25 cm²']}
+        options={[tr('10 cm²'), tr('20 cm²'), tr('25 cm²')]}
         correct={2}
         explanation={tr('Area = side × side = 5 × 5 = 25 cm².')}
       />

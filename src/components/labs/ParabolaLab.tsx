@@ -99,7 +99,7 @@ export function ParabolaLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('See how a, b and c shape the curve.')}
         question={tr('In y = x², which way does the parabola open?')}
-        options={['Upward', 'Downward', 'Sideways']}
+        options={[tr('Upward'), tr('Downward'), tr('Sideways')]}
         correct={0}
         explanation={tr('Here a = 1, a positive number, so the arms open upward.')}
       />

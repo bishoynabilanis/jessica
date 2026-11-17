@@ -113,7 +113,7 @@ export function AtomLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Build an atom and read its charge.')}
         question={tr('An atom has 11 protons and 10 electrons. What is it?')}
-        options={['A neutral atom', 'A positive ion', 'A negative ion']}
+        options={[tr('A neutral atom'), tr('A positive ion'), tr('A negative ion')]}
         correct={1}
         explanation={tr('One more proton than electrons leaves a charge of +1.')}
       />

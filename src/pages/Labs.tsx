@@ -176,7 +176,10 @@ export function Labs() {
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
   const awarded = useRef<Record<string, boolean>>({})
-  const visible = filterLabs(stageFilter, subjectFilter, query)
+  const visible = filterLabs(stageFilter, subjectFilter, query).sort((a, b) => {
+    const fit = (item: LabMeta) => (gradeLevel >= item.grades[0] && gradeLevel <= item.grades[1] ? 0 : 1)
+    return fit(a) - fit(b)
+  })
 
   useEffect(() => {
     const list = filterLabs(stageFilter, subjectFilter, query)

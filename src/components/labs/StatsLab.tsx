@@ -37,7 +37,15 @@ export function StatsLab({ onInteract }: { onInteract: () => void }) {
         visual={
           <div className="space-y-3">
             <div className="rounded-2xl border border-line bg-ink-950 p-4">
-              <div className="flex h-[170px] items-end justify-center gap-3" data-testid="stats-bars" dir="ltr">
+              <div className="relative flex h-[170px] items-end justify-center gap-3" data-testid="stats-bars" dir="ltr">
+                <span
+                  className="pointer-events-none absolute inset-x-0 border-t border-dashed border-sun"
+                  style={{ bottom: `${mean * 12}px` }}
+                >
+                  <b className="absolute -top-4 start-0 rounded-full bg-sun/15 px-1.5 text-[8px] font-bold text-sun">
+                    {tr('Mean')} {mean.toFixed(1)}
+                  </b>
+                </span>
                 {values.map((value, index) => (
                   <div key={index} className="flex w-full max-w-[54px] flex-col items-center gap-1">
                     <span className="text-[11px] font-extrabold text-main">{value}</span>
@@ -48,11 +56,6 @@ export function StatsLab({ onInteract }: { onInteract: () => void }) {
                     <span className="text-[9px] font-bold text-muted-2">{index + 1}</span>
                   </div>
                 ))}
-              </div>
-              <div className="relative h-px bg-white/10">
-                <span className="absolute -top-2 h-1.5 w-full border-t border-dashed border-sun" style={{ bottom: 0 }}>
-                  <b className="absolute -top-4 left-0 rounded-full bg-sun/15 px-1.5 text-[8px] font-bold text-sun">{tr('Mean')} {mean.toFixed(1)}</b>
-                </span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -94,7 +97,7 @@ export function StatsLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Tell mean, median, mode and range apart.')}
         question={tr('Scores are 2, 9, 9, 10, 10. Which value is the mode?')}
-        options={['9 only', '9 and 10', '8']}
+        options={[tr('9 only'), tr('9 and 10'), '8']}
         correct={1}
         explanation={tr('Both 9 and 10 appear twice, more than any other score, so both are modes.')}
       />

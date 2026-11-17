@@ -26,7 +26,7 @@ export function LabRange({
     <label className="block" data-testid={testid}>
       <span className="flex items-center justify-between text-[11px] font-bold text-muted">
         <span>{label}</span>
-        <span className="tabular-nums text-main">
+        <span className="tabular-nums text-main" dir="auto">
           {value}
           {unit ? ` ${unit}` : ''}
         </span>
@@ -58,7 +58,7 @@ export function LabStat({
   return (
     <div className="rounded-2xl border border-line bg-card-2 px-3 py-2" data-testid={testid}>
       <p className="text-[9px] font-bold text-muted-2">{label}</p>
-      <p className="mt-0.5 font-display text-lg font-extrabold tabular-nums text-main">{value}</p>
+      <p className="mt-0.5 font-display text-lg font-extrabold tabular-nums text-main" dir="auto">{value}</p>
       {hint && <p className="text-[9px] text-muted">{hint}</p>}
     </div>
   )

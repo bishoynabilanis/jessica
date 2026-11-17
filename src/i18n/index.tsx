@@ -14,6 +14,37 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Attract and repel": "تجاذب وتنافر",
+  "Solve an equation with a scale": "حل معادلة بالميزان",
+
+  "Add and subtract by jumping": "اجمع واطرح بالقفز على الخط",
+  "See multiplication as rows": "شوف الضرب صفوف وأعمدة",
+  "Read the time on the hands": "اقرأ الوقت من العقارب",
+  "What a leaf needs to grow": "اللي الورقة محتاجاه تنمو",
+  "Distance and year length": "البُعد وطول السنة",
+  "Discounts and sale prices": "الخصومات وأسعار البيع",
+  "Mean, median, mode and range": "المتوسط والوسيط والمنوال والمدى",
+  "Which rod conducts fastest": "أي قضيب بيوصل الحرارة أسرع",
+  "Frequency, pitch and volume": "التردد والحدة وعلو الصوت",
+  "Moments and mechanical advantage": "العزم والفائدة الميكانيكية",
+  "Measure pH and litmus": "قِس الأس الهيدروجيني وعباد الشمس",
+  "Heart rate and oxygen": "معدل ضربات القلب والأكسجين",
+  "Heat, particles and states": "الحرارة والجزيئات والحالات",
+  "Evaporation, clouds and rain": "التبخير والسحب والمطر",
+  "See how many dots": "شوف عدد النقط",
+
+  "10 cm²": "١٠ سم²",
+  "20 cm²": "٢٠ سم²",
+  "25 cm²": "٢٥ سم²",
+  "2 g/cm³": "٢ جم/سم³",
+  "0.5 g/cm³": "٠٫٥ جم/سم³",
+  "200 g/cm³": "٢٠٠ جم/سم³",
+  "15 EGP": "١٥ جنيه",
+  "30 EGP": "٣٠ جنيه",
+  "185 EGP": "١٨٥ جنيه",
+  "9 only": "٩ بس",
+  "9 and 10": "٩ و١٠",
+
   "Do the same operation on both sides.": "اعمل نفس العملية على الطرفين.",
 
   "Discover Ohm’s law by changing voltage and resistance.": "اكتشف قانون أوم بتغيير الجهد والمقاومة.",

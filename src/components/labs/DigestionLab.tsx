@@ -170,7 +170,7 @@ export function DigestionLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Follow food through the digestive system.')}
         question={tr('Where does most nutrient absorption happen?')}
-        options={['The stomach', 'The small intestine', 'The large intestine']}
+        options={[tr('The stomach'), tr('The small intestine'), tr('The large intestine')]}
         correct={1}
         explanation={tr('Villi in the small intestine absorb most of the nutrients.')}
       />

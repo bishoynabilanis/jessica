@@ -109,7 +109,7 @@ export function DensityLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Predict floating and sinking from density.')}
         question={tr('An object of 200 g has a volume of 100 cm³. What is its density?')}
-        options={['2 g/cm³', '0.5 g/cm³', '200 g/cm³']}
+        options={[tr('2 g/cm³'), tr('0.5 g/cm³'), tr('200 g/cm³')]}
         correct={0}
         explanation={tr('Density = mass ÷ volume = 200 ÷ 100 = 2 g/cm³.')}
       />

@@ -69,7 +69,7 @@ export function PercentLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr('Use percentages for real shopping maths.')}
         question={tr('A 200 EGP book is 15% off. How much do you save?')}
-        options={['15 EGP', '30 EGP', '185 EGP']}
+        options={[tr('15 EGP'), tr('30 EGP'), tr('185 EGP')]}
         correct={1}
         explanation={tr('15% of 200 is 200 × 15 ÷ 100 = 30 EGP, so the book costs 170 EGP.')}
       />

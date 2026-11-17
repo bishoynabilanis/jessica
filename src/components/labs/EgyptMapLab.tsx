@@ -137,7 +137,7 @@ export function EgyptMapLab({ onInteract }: { onInteract: () => void }) {
       <LabGuide
         goal={tr("Place Egypt's regions on the map.")}
         question={tr('Which region lies east of the Gulf of Suez?')}
-        options={['Sinai', 'The Western Desert', 'The Delta']}
+        options={[tr('Sinai'), tr('The Western Desert'), tr('The Delta')]}
         correct={0}
         explanation={tr('Sinai sits east of the Suez Canal and the Gulf of Suez.')}
       />
