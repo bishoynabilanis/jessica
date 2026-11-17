@@ -28,3 +28,24 @@ ffmpeg -i raw.webm -stream_loop -1 -i marketing/video/assets/music.m4a \
 ```
 
 `index.html` في نفس المجلد بيعرض الثلاثة في المتصفح.
+
+## الموسيقى
+
+كل فيديو ليه تراك أصلي مختلف، متولّد محليًا بـ numpy (بدون عينات أو تراخيص):
+
+| الملف | المزاج | الفيديو |
+| --- | --- | --- |
+| `music/tour.m4a` | دافئ/سينمائي، ٧٢ BPM، بناء تدريجي | الجولة الكاملة |
+| `music/labs-ar.m4a` | مينيمال/تكنو هادئ، ٩٢ BPM | المعامل عربي |
+| `music/labs-en.m4a` | مشرق/إلكتروني، ١١٦ BPM | المعامل إنجليزي |
+
+التوليد: `python3 marketing/growth/videos/make_tracks.py` (ينتج WAV في `/tmp/jessica-tracks` ثم تُحوَّل إلى m4a).
+
+إعادة تركيب الموسيقى على فيديو موجود بدون إعادة ترميز الفيديو:
+
+```bash
+ffmpeg -i old.mp4 -i music/track.m4a \
+  -filter_complex "[1:a]volume=0.38,afade=t=in:st=0:d=0.8,afade=t=out:st=26:d=3[a]" \
+  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -shortest -movflags +faststart out.mp4
+```
+
