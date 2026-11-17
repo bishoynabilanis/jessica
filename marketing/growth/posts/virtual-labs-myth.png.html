@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face { font-family: 'Cairo'; src: url('file:///Volumes/Extreme%20Pro/تطبيق%20التعليم%20الشامل/marketing/films/jessica-launch/assets/fonts/Cairo.ttf') format('truetype'); font-weight: 200 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow: hidden; }
+      body {
+        width: 1080px; height: 1350px; font-family: 'Cairo', sans-serif; color: #f4f7ff; direction: rtl;
+        background:
+          radial-gradient(760px 640px at 94% -6%, rgba(107, 140, 255, 0.38), transparent 64%),
+          radial-gradient(720px 640px at 0% 106%, rgba(33, 230, 201, 0.22), transparent 64%),
+          linear-gradient(168deg, #05080f, #0a1020 58%, #0b1428);
+        padding: 74px 70px 46px; position: relative; display: flex; flex-direction: column;
+      }
+      .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 70px 70px; -webkit-mask-image: radial-gradient(760px 720px at 52% 40%, #000 24%, transparent 84%); }
+      .head { position: relative; display: flex; align-items: center; justify-content: space-between; }
+      .kicker { font-size: 27px; font-weight: 800; color: #21e6c9; }
+      .pill { border: 1.5px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); border-radius: 999px; padding: 9px 22px; font-size: 21px; font-weight: 800; color: #b9c7e4; }
+      h1 { position: relative; margin-top: 18px; font-size: 78px; font-weight: 900; line-height: 1.2; }
+      h1 em { font-style: normal; color: #21e6c9; }
+
+      .myth, .fact { position: relative; margin-top: 34px; border-radius: 30px; padding: 32px 34px; display: flex; align-items: center; gap: 26px; }
+      .myth { border: 1.5px solid rgba(255,122,138,.35); background: linear-gradient(180deg, rgba(255,122,138,.10), rgba(12,18,34,.92)); }
+      .fact { border: 1.5px solid rgba(33,230,201,.45); background: linear-gradient(180deg, rgba(33,230,201,.13), rgba(12,18,34,.92)); }
+      .badge { flex: 0 0 auto; width: 88px; height: 88px; border-radius: 26px; display: grid; place-items: center; font-size: 44px; }
+      .myth .badge { background: rgba(255,122,138,.16); }
+      .fact .badge { background: rgba(33,230,201,.18); }
+      .label { font-size: 22px; font-weight: 800; letter-spacing: .04em; }
+      .myth .label { color: #ff9aa7; }
+      .fact .label { color: #4ff0d8; }
+      .line { font-size: 43px; font-weight: 900; line-height: 1.35; margin-top: 4px; }
+      .myth .line { color: #f3d5da; text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: rgba(255,122,138,.6); }
+      .fact .line { color: #ffffff; }
+      .fact .line b { color: #21e6c9; font-size: 54px; }
+
+      .arrow { position: relative; margin: 18px auto 0; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: #9fb2d8; font-size: 28px; }
+
+      .examples { position: relative; margin-top: 30px; display: flex; gap: 14px; }
+      .chip { flex: 1; border-radius: 20px; border: 1.5px solid rgba(255,255,255,.11); background: rgba(255,255,255,.04); padding: 18px 10px; text-align: center; font-size: 23px; font-weight: 800; color: #dbe4f7; }
+      .chip span { display: block; font-size: 31px; margin-bottom: 4px; }
+
+      .flow { position: relative; margin-top: 30px; text-align: center; font-size: 25px; font-weight: 800; color: #9fb2d8; }
+      .flow b { color: #ffd166; }
+
+      .band { position: relative; margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1.5px solid rgba(255,255,255,.1); padding-top: 22px; }
+      .band p { font-size: 27px; font-weight: 800; color: #dbe4f7; }
+      .band p b { color: #21e6c9; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .brand .j { width: 44px; height: 44px; border-radius: 13px; background: linear-gradient(135deg, #21e6c9, #6b8cff); color: #061018; display: grid; place-items: center; font-weight: 900; font-size: 21px; }
+      .brand b { font-size: 19px; letter-spacing: .22em; color: #9fb2d8; }
+      .link { position: relative; margin-top: 16px; font-size: 25px; font-weight: 800; color: #21e6c9; direction: ltr; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <div class="head">
+      <p class="kicker">🧪 ٣٩ معملاً افتراضياً</p>
+      <span class="pill">من الصف ١ إلى ٩</span>
+    </div>
+    <h1>مفيش معمل؟<br><em>يبقى مش هيفهم.</em></h1>
+
+    <div class="myth">
+      <span class="badge">❌</span>
+      <div>
+        <p class="label">خرافة</p>
+        <p class="line">العلوم محتاجة معمل ومعدات</p>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="fact">
+      <span class="badge">✅</span>
+      <div>
+        <p class="label">حقيقة</p>
+        <p class="line"><b>٣٩ تجربة</b> على الموبايل</p>
+      </div>
+    </div>
+
+    <div class="examples">
+      <div class="chip"><span>☀️</span>الشمس والظل</div>
+      <div class="chip"><span>🧲</span>المغناطيس</div>
+      <div class="chip"><span>🧬</span>الوراثة</div>
+    </div>
+
+    <p class="flow">هدف → <b>توقّع</b> → تجربة → شرح</p>
+
+    <div class="band">
+      <p>بتشتغل <b>أوفلاين</b> وبدون حساب</p>
+      <div class="brand"><span class="j">J</span><b>JESSICA</b></div>
+    </div>
+    <p class="link">bishoynabilanis.github.io/jessica/welcome/features/virtual-labs/</p>
+  </body>
+</html>
