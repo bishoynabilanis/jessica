@@ -14,6 +14,8 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "to": "إلى",
+
   "Attract and repel": "تجاذب وتنافر",
   "Solve an equation with a scale": "حل معادلة بالميزان",
 

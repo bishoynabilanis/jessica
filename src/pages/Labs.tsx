@@ -155,7 +155,7 @@ const LAB_META: LabMeta[] = [
 
 const SUBJECTS = ['all', 'Mathematics', 'Science', 'Chemistry', 'Biology', 'Geography', 'English', 'Arabic']
 
-const gradeBand = (grades: [number, number]) => `${num(grades[0])}–${num(grades[1])}`
+const gradeBand = (grades: [number, number]) => `${num(grades[0])} ${tr('to')} ${num(grades[1])}`
 
 function filterLabs(stage: 'all' | 'primary' | 'prep', subject: string, query: string) {
   const needle = query.trim().toLowerCase()
@@ -283,7 +283,7 @@ export function Labs() {
                     {item.stage === 'both' ? tr('All levels') : item.stage === 'primary' ? tr('Primary') : tr('Prep')}
                   </span>
                   <span className="inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">
-                    {tr('Grades')} <bdi dir="ltr">{gradeBand(item.grades)}</bdi>
+                    {tr('Grades')} {gradeBand(item.grades)}
                   </span>
                 </span>
               </span>
