@@ -63,7 +63,7 @@ const defaultSettings: Settings = {
   voiceLocale: '',
   voiceEngine: 'device',
   voiceName: '',
-  ttsVoice: 'Sulafat',
+  ttsVoice: 'Kore',
   shareCounts: true,
   shareErrors: true,
   schoolType: 'government',
