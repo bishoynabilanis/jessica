@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Jessica — demo videos</title>
+    <style>
+      body { margin: 0; background: #05080f; color: #eaf0ff; font-family: 'Cairo', system-ui, sans-serif; padding: 28px; }
+      h1 { font-size: 22px; margin: 0 0 6px; }
+      p { color: #9fb2d8; margin: 0 0 22px; font-size: 13px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+      .card { border: 1px solid #22304f; border-radius: 18px; padding: 12px; background: #0a1020; }
+      .card h2 { font-size: 14px; margin: 0 0 8px; }
+      video { width: 100%; border-radius: 12px; background: #000; display: block; }
+      .meta { color: #7f8db0; font-size: 11px; margin-top: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>فيديوهات جيسيكا</h1>
+    <p>تسجيل حقيقي من داخل التطبيق — 1080×1920 مع كابشنز وموسيقى.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>المعامل — عربي</h2>
+        <video controls preload="metadata" src="./labs-demo.mp4"></video>
+        <p class="meta">29s · جولة سريعة في 39 معملاً</p>
+      </div>
+      <div class="card">
+        <h2>Labs — English</h2>
+        <video controls preload="metadata" src="./labs-demo-en.mp4"></video>
+        <p class="meta">29s · English captions</p>
+      </div>
+      <div class="card">
+        <h2>جولة كاملة — عربي</h2>
+        <video controls preload="metadata" src="./full-tour-ar.mp4"></video>
+        <p class="meta">31s · كتب، بنك أسئلة، تركيز، خطة، معامل</p>
+      </div>
+    </div>
+  </body>
+</html>

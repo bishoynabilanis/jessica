@@ -2,10 +2,82 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { chromium } from 'playwright'
 
+/**
+ * Records the app with Playwright and writes an MP4-ready webm.
+ * Usage: DEMO=labs-ar|lab-en|tour-ar node marketing/growth/videos/record-demo.mjs
+ */
+const VARIANT = process.env.DEMO || 'labs-ar'
 const BASE = process.env.DEMO_URL || 'http://127.0.0.1:4175'
-const OUT = 'marketing/growth/videos'
-const RAW = '/tmp/jessica-demo-raw'
 
+const CONFIGS = {
+  'labs-ar': {
+    lang: 'ar',
+    output: 'labs-demo.mp4',
+    introTitle: 'جيسيكا',
+    introLines: ['جولة سريعة في المعامل', '٣٩ تجربة على جهازك'],
+    endTitle: 'جرّبها بنفسك',
+    endLines: ['كل الكتب والخطة والمعامل', 'على جهازك، بدون حساب'],
+    chips: ['مجاني', 'أوفلاين', 'بدون تسجيل'],
+    captions: {
+      home: 'كل كتبك المدرسية + مدرّس ذكي + خطة يومية',
+      labs: '٣٩ معملاً افتراضياً من الصف ١ إلى ٩',
+      change: 'غيّر متغير واحد… وشوف النتيجة بعينك',
+      rain: 'الحرارة بتبخّر المية… والسحابة بتمطر',
+      flow: 'هدف → توقّع → تجربة → شرح',
+      next: 'نفس الفكرة… في ٣٩ معمل',
+      binary: 'ومن العلوم للبرمجة: ٦٥ = الحرف A',
+      xp: 'كل معمل بيدّي XP… وكل حاجة أوفلاين',
+    },
+    labs: { water: /معمل دورة المية/, binary: /معمل النظام الثنائي/, pressure: /معمل الضغط/ },
+  },
+  'labs-en': {
+    lang: 'en',
+    output: 'labs-demo-en.mp4',
+    introTitle: 'Jessica',
+    introLines: ['A quick tour of the labs', '39 experiments on your device'],
+    endTitle: 'Try it yourself',
+    endLines: ['Every book, plan and lab', 'on your device, no account'],
+    chips: ['Free', 'Offline', 'No sign-up'],
+    captions: {
+      home: 'Your books, a smart tutor and a daily plan',
+      labs: '39 virtual labs, grade 1 to grade 9',
+      change: 'Change one variable… watch the result',
+      rain: 'Heat evaporates the sea… the cloud rains',
+      flow: 'Goal → predict → experiment → explain',
+      next: 'One pattern… thirty-nine labs',
+      binary: 'From science to coding: 65 = the letter A',
+      xp: 'Every lab earns XP — and works offline',
+    },
+    labs: { water: /Water cycle lab/, binary: /Binary lab/, pressure: /Pressure lab/ },
+  },
+  'tour-ar': {
+    lang: 'ar',
+    output: 'full-tour-ar.mp4',
+    introTitle: 'جيسيكا',
+    introLines: ['جولة كاملة في التطبيق', 'كتب · خطة · امتحانات · معامل'],
+    endTitle: 'ابدأ من كتابك',
+    endLines: ['نزّل كتاب الوزارة مرة واحدة', 'وكل حاجة على جهازك'],
+    chips: ['مجاني', 'أوفلاين', 'بدون حساب'],
+    captions: {
+      home: 'كل يومك الدراسي… في شاشة واحدة',
+      plan: 'خطة يومية على قد وقتك',
+      library: '٣٨ كتاب وزارة + أي PDF من جهازك',
+      bank: 'بنك أسئلة… تدريب جديد كل مرة',
+      answer: 'اختار إجابة… واقرأ السبب',
+      focus: '٢٥ دقيقة تركيز… والدقايق بتتحول XP',
+      today: 'مهام صغيرة… مبنية على أضعف مهاراتك',
+      labs: '٣٩ معملاً افتراضياً من الصف ١ إلى ٩',
+      pressure: 'جرّب… وشوف النتيجة بعينك',
+    },
+    labs: { water: /معمل دورة المية/, binary: /معمل النظام الثنائي/, pressure: /معمل الضغط/ },
+  },
+}
+
+const cfg = CONFIGS[VARIANT]
+if (!cfg) throw new Error(`Unknown DEMO variant: ${VARIANT}`)
+
+const OUT = 'marketing/growth/videos'
+const RAW = `/tmp/jessica-demo-${VARIANT}`
 fs.rmSync(RAW, { recursive: true, force: true })
 fs.mkdirSync(RAW, { recursive: true })
 
@@ -15,9 +87,7 @@ const context = await browser.newContext({
   deviceScaleFactor: 2,
   recordVideo: { dir: RAW, size: { width: 540, height: 960 } },
 })
-const page = await context.newPage()
-
-await page.addInitScript(() => {
+await context.addInitScript((language) => {
   if (localStorage.getItem('jessica-profile-v1')) return
   const book = {
     id: 'b1', title: 'رياضيات', subject: 'Mathematics', language: 'ar', emoji: '📘',
@@ -26,11 +96,11 @@ await page.addInitScript(() => {
   }
   localStorage.setItem('jessica-profile-v1', JSON.stringify({
     state: {
-      onboarded: true, acceptedTerms: 1, name: 'مينا', apiKey: '', model: 'gemini-1.5-flash',
+      onboarded: true, acceptedTerms: 1, name: 'Mina', apiKey: '', model: 'gemini-1.5-flash',
       xp: 420, streak: 5, coins: 9, customBooks: [book], completedTopics: [], skillStats: {},
       mistakes: [], dailyLog: {},
       settings: {
-        language: 'ar', gradeLevel: 7, curriculum: 'egypt', schoolType: 'government',
+        language, gradeLevel: 7, curriculum: 'egypt', schoolType: 'government',
         primaryUi: 'auto', aiProvider: 'gemini', theme: 'dark', keyOptional: true,
         quickStart: false, sound: false, aiMode: 'cloud',
       },
@@ -38,13 +108,23 @@ await page.addInitScript(() => {
     version: 3,
   }))
   localStorage.setItem('jessica-disclaimer-v1', '1')
-})
+}, cfg.lang)
 
+// Warm the lazy route chunks in a throwaway page so the recording never
+// shows the loading screen between scenes.
+const warm = await context.newPage()
+for (const route of ['#/labs', '#/library', '#/bank', '#/focus', '#/plan']) {
+  await warm.goto(`${BASE}/${route}`, { waitUntil: 'load' })
+  await warm.waitForTimeout(800)
+}
+await warm.close()
+
+const page = await context.newPage()
 await page.goto(`${BASE}/#/`, { waitUntil: 'load' })
 await page.waitForTimeout(900)
 
 async function setupOverlay() {
-  await page.evaluate(() => {
+  await page.evaluate((config) => {
     const style = document.createElement('style')
     style.textContent = `
       #demo-cap { position: fixed; left: 12px; right: 12px; top: 70px; z-index: 2147483000;
@@ -67,7 +147,7 @@ async function setupOverlay() {
                     radial-gradient(700px 620px at 0% 100%, rgba(33,230,201,.22), transparent 60%),
                     linear-gradient(165deg, #05080f, #0a1020 60%, #0b1428);
         transition: opacity .45s ease; }
-      #demo-intro.out, #demo-end.out { opacity: 0; pointer-events: none; }
+      #demo-intro.out { opacity: 0; pointer-events: none; }
       #demo-intro .j, #demo-end .j { width: 86px; height: 86px; border-radius: 26px; display: grid; place-items: center;
         background: linear-gradient(135deg,#21e6c9,#6b8cff); color: #061018; font-size: 42px; font-weight: 900; }
       #demo-intro h2, #demo-end h2 { font-size: 38px; font-weight: 900; margin: 0; }
@@ -86,7 +166,7 @@ async function setupOverlay() {
 
     const intro = document.createElement('div')
     intro.id = 'demo-intro'
-    intro.innerHTML = '<span class="j">J</span><h2>جيسيكا</h2><p>جولة سريعة في المعامل<br>٣٩ تجربة على جهازك</p>'
+    intro.innerHTML = `<span class="j">J</span><h2>${config.introTitle}</h2><p>${config.introLines.join('<br>')}</p>`
     document.body.appendChild(intro)
 
     window.__caption = (text, progress = 0) => {
@@ -103,12 +183,11 @@ async function setupOverlay() {
       end.id = 'demo-end'
       end.innerHTML = `
         <span class="j">J</span>
-        <h2>جرّبها بنفسك</h2>
-        <p>كل الكتب والخطة والمعامل<br>على جهازك، بدون حساب</p>
-        <div class="chips"><span class="chip">مجاني</span><span class="chip">أوفلاين</span><span class="chip">بدون تسجيل</span></div>
+        <h2>${config.endTitle}</h2>
+        <p>${config.endLines.join('<br>')}</p>
+        <div class="chips">${config.chips.map((chip) => `<span class="chip">${chip}</span>`).join('')}</div>
         <span class="link">bishoynabilanis.github.io/jessica</span>`
       document.body.appendChild(end)
-      requestAnimationFrame(() => requestAnimationFrame(() => end.classList.remove('out')))
     }
 
     document.addEventListener('pointerdown', (event) => {
@@ -119,73 +198,139 @@ async function setupOverlay() {
       document.body.appendChild(dot)
       setTimeout(() => dot.remove(), 600)
     }, true)
-  })
+  }, cfg)
 }
 
 const caption = (text, progress) => page.evaluate(([t, p]) => window.__caption(t, p), [text, progress])
-
+const go = async (hash, wait = 600) => {
+  await page.evaluate((next) => {
+    location.hash = next
+    window.scrollTo(0, 0)
+  }, hash)
+  await page.locator('h1').first().waitFor({ timeout: 9000 }).catch(() => {})
+  await page.waitForTimeout(wait)
+}
 async function smoothTo(locator) {
   await locator.evaluate((el) => el.scrollIntoView({ behavior: 'smooth', block: 'center' }))
   await page.waitForTimeout(900)
 }
 
+async function flowLabs() {
+  await page.waitForTimeout(1100)
+  await caption(cfg.captions.home, 0.06)
+  await page.waitForTimeout(1700)
+
+  await caption(cfg.captions.labs, 0.16)
+  await go('#/labs', 350)
+  await page.waitForTimeout(700)
+
+  await page.getByTestId('lab-filter-all').click()
+  await page.waitForTimeout(700)
+
+  const water = page.getByRole('button', { name: cfg.labs.water })
+  await smoothTo(water)
+  await water.click()
+  await page.waitForTimeout(900)
+  await caption(cfg.captions.change, 0.3)
+  await page.waitForTimeout(700)
+
+  await page.getByTestId('cycle-heat').fill('100')
+  await page.waitForFunction(
+    () => {
+      const state = document.querySelector('[data-testid="cycle-state"]')?.textContent || ''
+      return state.includes('بتمطر') || state.toLowerCase().includes('raining')
+    },
+    null,
+    { timeout: 16000 },
+  )
+  await caption(cfg.captions.rain, 0.44)
+  await page.waitForTimeout(1400)
+
+  await smoothTo(page.getByTestId('lab-guide-option-0'))
+  await page.getByTestId('lab-guide-option-0').click()
+  await page.waitForTimeout(700)
+  await caption(cfg.captions.flow, 0.56)
+  await page.waitForTimeout(1400)
+
+  await caption(cfg.captions.next, 0.64)
+  const binary = page.getByRole('button', { name: cfg.labs.binary })
+  await smoothTo(binary)
+  await binary.click()
+  await page.waitForTimeout(850)
+  await caption(cfg.captions.binary, 0.72)
+  await page.waitForTimeout(500)
+
+  await page.getByTestId('binary-bit-1').click()
+  await page.getByTestId('binary-bit-7').click()
+  await page.waitForTimeout(1100)
+  await caption(cfg.captions.xp, 0.86)
+  await page.waitForTimeout(1300)
+}
+
+async function flowTour() {
+  await page.waitForTimeout(900)
+  await caption(cfg.captions.home, 0.05)
+  await page.waitForTimeout(1700)
+
+  await page.evaluate(() => window.scrollTo({ top: 620, behavior: 'smooth' }))
+  await page.waitForTimeout(1200)
+  await caption(cfg.captions.plan, 0.12)
+  await page.waitForTimeout(1500)
+
+  await caption(cfg.captions.library, 0.24)
+  await go('#/library', 350)
+  await page.waitForTimeout(1700)
+
+  await caption(cfg.captions.bank, 0.34)
+  await go('#/bank', 500)
+  await page.waitForTimeout(500)
+  await page.getByTestId('bank-start').click()
+  await page.waitForTimeout(1400)
+  await caption(cfg.captions.answer, 0.44)
+  await page.waitForTimeout(500)
+  await page.getByTestId('bank-option').first().click()
+  await page.waitForTimeout(400)
+  await page.evaluate(() => window.scrollBy({ top: 420, behavior: 'smooth' }))
+  await page.waitForTimeout(1400)
+
+  await caption(cfg.captions.focus, 0.56)
+  await go('#/focus', 350)
+  await page.getByRole('button', { name: /^(ابدأ|Start|كمّل|Resume)$/ }).click()
+  await page.waitForTimeout(800)
+  await page.waitForTimeout(1600)
+
+  await caption(cfg.captions.today, 0.66)
+  await go('#/plan', 350)
+  await page.waitForTimeout(1700)
+
+  await caption(cfg.captions.labs, 0.76)
+  await go('#/labs', 350)
+  await page.waitForTimeout(600)
+  const pressure = page.getByRole('button', { name: cfg.labs.pressure })
+  await smoothTo(pressure)
+  await pressure.click()
+  await page.waitForTimeout(1100)
+  await page.getByTestId('pressure-area').fill('1')
+  await page.waitForTimeout(900)
+  await caption(cfg.captions.pressure, 0.87)
+  await page.waitForTimeout(2800)
+}
+
 await setupOverlay()
-await page.waitForTimeout(2100)
+await page.waitForTimeout(2000)
 await page.evaluate(() => document.getElementById('demo-intro')?.classList.add('out'))
 await page.waitForTimeout(450)
 
-await caption('كل كتبك المدرسية + مدرّس ذكي + خطة يومية', 0.06)
-await page.waitForTimeout(1900)
-
-await page.evaluate(() => { location.hash = '#/labs' })
-await page.waitForTimeout(1200)
-await caption('٣٩ معملاً افتراضياً من الصف ١ إلى ٩', 0.16)
-await page.waitForTimeout(700)
-
-await page.getByTestId('lab-filter-all').click()
-await page.waitForTimeout(900)
-
-const water = page.getByRole('button', { name: /معمل دورة المية/ })
-await smoothTo(water)
-await water.click()
-await page.waitForTimeout(900)
-await caption('غيّر متغير واحد… وشوف النتيجة بعينك', 0.3)
-await page.waitForTimeout(700)
-
-await page.getByTestId('cycle-heat').fill('100')
-await page.waitForFunction(
-  () => document.querySelector('[data-testid="cycle-state"]')?.textContent?.includes('بتمطر'),
-  null,
-  { timeout: 16000 },
-)
-await caption('الحرارة بتبخّر المية… والسحابة بتمطر', 0.44)
-await page.waitForTimeout(1500)
-
-await smoothTo(page.getByTestId('lab-guide-option-0'))
-await page.getByTestId('lab-guide-option-0').click()
-await page.waitForTimeout(700)
-await caption('هدف → توقّع → تجربة → شرح', 0.56)
-await page.waitForTimeout(1500)
-
-const binary = page.getByRole('button', { name: /معمل النظام الثنائي/ })
-await smoothTo(binary)
-await binary.click()
-await page.waitForTimeout(850)
-await caption('ومن العلوم للبرمجة: ٦٥ = الحرف A', 0.72)
-await page.waitForTimeout(500)
-
-await page.getByTestId('binary-bit-1').click()
-await page.getByTestId('binary-bit-7').click()
-await page.waitForTimeout(1200)
-await caption('كل معمل بيدّي XP… وكل حاجة أوفلاين', 0.86)
-await page.waitForTimeout(1500)
+if (VARIANT === 'tour-ar') await flowTour()
+else await flowLabs()
 
 await page.evaluate(() => window.__end())
-await page.waitForTimeout(3400)
+await page.waitForTimeout(3200)
 
 const video = page.video()
 await context.close()
 await browser.close()
 
 const rawPath = await video.path()
-console.log(rawPath)
+fs.copyFileSync(rawPath, path.join(RAW, `${VARIANT}.webm`))
+console.log(path.join(RAW, `${VARIANT}.webm`))
