@@ -1,6 +1,33 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "25 minutes, counted into your plan": "25 minutes comptées dans ton plan",
+  "Answer some quiz questions and your skills will appear here automatically.": "Réponds à quelques questions et tes compétences apparaîtront ici automatiquement.",
+  "Ask your teacher to send the full link or scan the QR code again.": "Demande à ton professeur le lien complet ou scanne à nouveau le QR.",
+  "Explain like I'm 5": "Explique comme à un enfant de 5 ans",
+  "Four weeks, skills and a printable PDF": "Quatre semaines, compétences et un PDF imprimable",
+  "Generating…": "Génération…",
+  "Import a book first": "Importe d’abord un livre",
+  "Legal": "Mentions légales",
+  "More sharing options": "Plus d’options de partage",
+  "Parent settings": "Réglages parentaux",
+  "Point the camera at the code, or send the short link below.": "Pointe la caméra vers le code ou envoie le lien court ci-dessous.",
+  "QR code": "Code QR",
+  "Review the unit.": "Révise l’unité.",
+  "Saved to Knowledge Vault": "Enregistré dans le coffre",
+  "Send the app to a friend, a classmate or a parent in one tap.": "Envoie l’app à un ami, un camarade ou un parent en un geste.",
+  "Sources": "Sources",
+  "The teacher tools work on the books already imported on this device.": "Les outils enseignant utilisent les livres déjà importés sur cet appareil.",
+  "This assignment link is incomplete": "Ce lien de devoir est incomplet",
+  "Twelve questions, two minutes": "Douze questions, deux minutes",
+  "Use the app language.": "Utilise la langue de l’app.",
+  "Your books as lesson paths": "Tes livres en parcours de leçons",
+  "Your printable A4 record": "Ton bilan A4 imprimable",
+  "e.g. fractions": "ex. fractions",
+  "units": "unités",
+  "This screen needs a connection the first time": "Cet écran a besoin d’une connexion la première fois",
+  "You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.": "Tu es hors ligne et cet écran n’a jamais été ouvert sur cet appareil. Retourne à l’accueil ou ouvre-le une fois quand le réseau revient.",
+
   "Language: {name}": "Langue : {name}",
 
   "Female": "Féminine",

@@ -37,6 +37,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
   render() {
     if (!this.state.error) return this.props.children
     const details = `${this.state.error.message}\n${this.state.error.stack || ''}`
+    const offline = typeof navigator !== 'undefined' && !navigator.onLine
 
     return (
       <div className="grid min-h-dvh place-items-center bg-app p-5">
@@ -44,14 +45,20 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-coral/15 text-coral">
             <AlertTriangle className="h-7 w-7" />
           </span>
-          <h1 className="mt-3 font-display text-xl font-extrabold text-main">{tr('Something went wrong')}</h1>
+          <h1 className="mt-3 font-display text-xl font-extrabold text-main">
+            {offline ? tr('This screen needs a connection the first time') : tr('Something went wrong')}
+          </h1>
           <p className="mt-1 text-[11px] leading-relaxed text-muted">
-            {tr('Your progress is saved on this device. Reload the app to continue.')}
+            {offline
+              ? tr('You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.')
+              : tr('Your progress is saved on this device. Reload the app to continue.')}
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <Button onClick={() => window.location.reload()}>
-              <RefreshCw className="h-4 w-4" /> {tr('Reload')}
-            </Button>
+            {!offline && (
+              <Button onClick={() => window.location.reload()}>
+                <RefreshCw className="h-4 w-4" /> {tr('Reload')}
+              </Button>
+            )}
             <Button
               variant="secondary"
               onClick={() => {

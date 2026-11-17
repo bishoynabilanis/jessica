@@ -1,6 +1,33 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "25 minutes, counted into your plan": "25 menit dihitung ke rencanamu",
+  "Answer some quiz questions and your skills will appear here automatically.": "Jawab beberapa soal dan keterampilanmu muncul di sini otomatis.",
+  "Ask your teacher to send the full link or scan the QR code again.": "Minta tautan lengkap ke gurumu atau pindai QR lagi.",
+  "Explain like I'm 5": "Jelaskan seperti ke anak 5 tahun",
+  "Four weeks, skills and a printable PDF": "Empat minggu, keterampilan, dan PDF yang bisa dicetak",
+  "Generating…": "Membuat…",
+  "Import a book first": "Impor buku dulu",
+  "Legal": "Legal",
+  "More sharing options": "Opsi berbagi lainnya",
+  "Parent settings": "Pengaturan orang tua",
+  "Point the camera at the code, or send the short link below.": "Arahkan kamera ke kode atau kirim tautan pendek di bawah.",
+  "QR code": "Kode QR",
+  "Review the unit.": "Ulangi unitnya.",
+  "Saved to Knowledge Vault": "Disimpan ke Gudang Pengetahuan",
+  "Send the app to a friend, a classmate or a parent in one tap.": "Kirim aplikasi ke teman, sekelas, atau orang tua dengan satu ketuk.",
+  "Sources": "Sumber",
+  "The teacher tools work on the books already imported on this device.": "Alat guru memakai buku yang sudah diimpor di perangkat ini.",
+  "This assignment link is incomplete": "Tautan tugas ini tidak lengkap",
+  "Twelve questions, two minutes": "Dua belas soal, dua menit",
+  "Use the app language.": "Pakai bahasa aplikasi.",
+  "Your books as lesson paths": "Bukumu sebagai jalur pelajaran",
+  "Your printable A4 record": "Catatan A4 yang bisa dicetak",
+  "e.g. fractions": "mis. pecahan",
+  "units": "unit",
+  "This screen needs a connection the first time": "Layar ini butuh koneksi saat pertama kali",
+  "You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.": "Kamu offline dan layar ini belum pernah dibuka di perangkat ini. Kembali ke beranda atau buka sekali saat jaringan kembali.",
+
   "Language: {name}": "Bahasa: {name}",
 
   "Female": "Perempuan",

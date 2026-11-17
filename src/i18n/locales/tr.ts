@@ -1,6 +1,33 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "25 minutes, counted into your plan": "Planına sayılan 25 dakika",
+  "Answer some quiz questions and your skills will appear here automatically.": "Birkaç soru yanıtla, becerilerin burada otomatik görünsün.",
+  "Ask your teacher to send the full link or scan the QR code again.": "Öğretmeninden tam bağlantıyı iste veya QR’ı tekrar tara.",
+  "Explain like I'm 5": "5 yaşındaki birine anlatır gibi anlat",
+  "Four weeks, skills and a printable PDF": "Dört hafta, beceriler ve yazdırılabilir PDF",
+  "Generating…": "Oluşturuluyor…",
+  "Import a book first": "Önce bir kitap içe aktar",
+  "Legal": "Yasal",
+  "More sharing options": "Daha fazla paylaşım seçeneği",
+  "Parent settings": "Ebeveyn ayarları",
+  "Point the camera at the code, or send the short link below.": "Kamerayı koda doğrult veya aşağıdaki kısa bağlantıyı gönder.",
+  "QR code": "QR kodu",
+  "Review the unit.": "Üniteyi tekrar et.",
+  "Saved to Knowledge Vault": "Bilgi Kasasına kaydedildi",
+  "Send the app to a friend, a classmate or a parent in one tap.": "Uygulamayı tek dokunuşla bir arkadaşa, sınıf arkadaşına veya ebeveyne gönder.",
+  "Sources": "Kaynaklar",
+  "The teacher tools work on the books already imported on this device.": "Öğretmen araçları bu cihazda içe aktarılmış kitaplarla çalışır.",
+  "This assignment link is incomplete": "Bu ödev bağlantısı eksik",
+  "Twelve questions, two minutes": "On iki soru, iki dakika",
+  "Use the app language.": "Uygulama dilini kullan.",
+  "Your books as lesson paths": "Kitapların ders yolları olarak",
+  "Your printable A4 record": "Yazdırılabilir A4 kaydın",
+  "e.g. fractions": "ör. kesirler",
+  "units": "üniteler",
+  "This screen needs a connection the first time": "Bu ekran ilk seferde bağlantı ister",
+  "You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.": "Çevrimdışısın ve bu ekran bu cihazda hiç açılmadı. Ana sayfaya dön veya ağ gelince bir kez aç.",
+
   "Language: {name}": "Dil: {name}",
 
   "Female": "Kadın",

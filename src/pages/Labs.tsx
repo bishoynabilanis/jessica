@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   Atom,
+  Beaker,
   FlaskConical,
+  Gauge,
+  HeartPulse,
+  Languages,
   Lightbulb,
+  LineChart,
+  Map,
+  PieChart,
   RotateCcw,
+  Ruler,
   Sparkles,
   Waves,
   Zap,
@@ -15,8 +23,17 @@ import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { cn } from '@/lib/utils'
 import { tr } from '@/i18n'
+import { FractionsLab } from '@/components/labs/FractionsLab'
+import { GeometryLab } from '@/components/labs/GeometryLab'
+import { DensityLab } from '@/components/labs/DensityLab'
+import { ForcesLab } from '@/components/labs/ForcesLab'
+import { AtomLab } from '@/components/labs/AtomLab'
+import { DigestionLab } from '@/components/labs/DigestionLab'
+import { EgyptMapLab } from '@/components/labs/EgyptMapLab'
+import { ParabolaLab } from '@/components/labs/ParabolaLab'
+import { EnglishLab } from '@/components/labs/EnglishLab'
 
-type Lab = 'circuit' | 'refraction'
+type Lab = 'fractions' | 'geometry' | 'circuit' | 'refraction' | 'density' | 'forces' | 'atom' | 'digestion' | 'map' | 'parabola' | 'english'
 
 const media = [
   { id: 'water', label: 'Water', n: 1.33, color: '#5cc8ff' },
@@ -42,14 +59,23 @@ export function Labs() {
       <PageHeader
         eyebrow={tr("Virtual labs")}
         title={tr("Touch the science")}
-        subtitle={tr("Change a variable, watch the result, then explain it back to Jessica. Real physics, running in your browser.")}
+        subtitle={tr("Change a variable, watch the result, then explain it back to Jessica. Maths, physics and chemistry, running in your browser.")}
         icon={<FlaskConical className="h-5 w-5" />}
       />
 
-      <div className="grid gap-2 sm:grid-cols-2">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { id: 'circuit' as Lab, label: tr("Circuit lab"), hint: tr("Voltage, resistance and brightness"), icon: Zap, tint: 'from-sun/20 to-card-2 text-sun' },
-          { id: 'refraction' as Lab, label: tr("Light lab"), hint: tr("Snell’s law and refraction"), icon: Waves, tint: 'from-sky/20 to-card-2 text-sky' },
+          { id: 'fractions' as Lab, label: tr('Fractions lab'), hint: tr('Equivalent fractions, visually'), icon: PieChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: tr('Mathematics') },
+          { id: 'geometry' as Lab, label: tr('Geometry lab'), hint: tr('Area and perimeter, live'), icon: Ruler, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: tr('Mathematics') },
+          { id: 'circuit' as Lab, label: tr("Circuit lab"), hint: tr("Voltage, resistance and brightness"), icon: Zap, tint: 'from-sun/20 to-card-2 text-sun', subject: tr('Science') },
+          { id: 'refraction' as Lab, label: tr("Light lab"), hint: tr("Snell’s law and refraction"), icon: Waves, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('Science') },
+          { id: 'density' as Lab, label: tr('Density lab'), hint: tr('Float, sink and density'), icon: Beaker, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('Science') },
+          { id: 'forces' as Lab, label: tr('Forces lab'), hint: tr('Force, mass and acceleration'), icon: Gauge, tint: 'from-coral/20 to-card-2 text-coral', subject: tr('Science') },
+          { id: 'atom' as Lab, label: tr('Atom lab'), hint: tr('Protons, neutrons and electrons'), icon: Atom, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: tr('Chemistry') },
+          { id: 'digestion' as Lab, label: tr('Digestion lab'), hint: tr('Follow the food step by step'), icon: HeartPulse, tint: 'from-coral/20 to-card-2 text-coral', subject: tr('Biology') },
+          { id: 'map' as Lab, label: tr('Egypt map lab'), hint: tr('Regions, Nile and Sinai'), icon: Map, tint: 'from-sun/20 to-card-2 text-sun', subject: tr('Geography') },
+          { id: 'parabola' as Lab, label: tr('Parabola lab'), hint: tr('a, b, c and the curve'), icon: LineChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: tr('Mathematics') },
+          { id: 'english' as Lab, label: tr('English lab'), hint: tr('Hear the word, pick the meaning'), icon: Languages, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('English') },
         ].map((item) => (
           <button
             key={item.id}
@@ -69,13 +95,26 @@ export function Labs() {
             <div>
               <p className="text-sm font-extrabold text-main">{tr(item.label)}</p>
               <p className="text-[10px] text-muted">{item.hint}</p>
+              <span className="mt-0.5 inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">
+                {item.subject}
+              </span>
             </div>
             <Sparkles className="ml-auto h-4 w-4 text-aurora-300/60" />
           </button>
         ))}
       </div>
 
-      {lab === 'circuit' ? <CircuitLab onInteract={() => reward('circuit')} /> : <RefractionLab onInteract={() => reward('refraction')} />}
+      {lab === 'fractions' && <FractionsLab onInteract={() => reward('fractions')} />}
+      {lab === 'geometry' && <GeometryLab onInteract={() => reward('geometry')} />}
+      {lab === 'circuit' && <CircuitLab onInteract={() => reward('circuit')} />}
+      {lab === 'refraction' && <RefractionLab onInteract={() => reward('refraction')} />}
+      {lab === 'density' && <DensityLab onInteract={() => reward('density')} />}
+      {lab === 'forces' && <ForcesLab onInteract={() => reward('forces')} />}
+      {lab === 'atom' && <AtomLab onInteract={() => reward('atom')} />}
+      {lab === 'digestion' && <DigestionLab onInteract={() => reward('digestion')} />}
+      {lab === 'map' && <EgyptMapLab onInteract={() => reward('map')} />}
+      {lab === 'parabola' && <ParabolaLab onInteract={() => reward('parabola')} />}
+      {lab === 'english' && <EnglishLab onInteract={() => reward('english')} />}
     </div>
   )
 }

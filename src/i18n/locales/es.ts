@@ -1,6 +1,33 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "25 minutes, counted into your plan": "25 minutos contados en tu plan",
+  "Answer some quiz questions and your skills will appear here automatically.": "Responde algunas preguntas y tus destrezas aparecerán aquí automáticamente.",
+  "Ask your teacher to send the full link or scan the QR code again.": "Pide a tu profesor el enlace completo o escanea el QR otra vez.",
+  "Explain like I'm 5": "Explícalo como a un niño de 5 años",
+  "Four weeks, skills and a printable PDF": "Cuatro semanas, destrezas y un PDF imprimible",
+  "Generating…": "Generando…",
+  "Import a book first": "Importa un libro primero",
+  "Legal": "Legal",
+  "More sharing options": "Más opciones para compartir",
+  "Parent settings": "Ajustes para padres",
+  "Point the camera at the code, or send the short link below.": "Apunta la cámara al código o envía el enlace corto de abajo.",
+  "QR code": "Código QR",
+  "Review the unit.": "Repasa la unidad.",
+  "Saved to Knowledge Vault": "Guardado en la bóveda",
+  "Send the app to a friend, a classmate or a parent in one tap.": "Envía la app a un amigo, compañero o padre con un toque.",
+  "Sources": "Fuentes",
+  "The teacher tools work on the books already imported on this device.": "Las herramientas del profesor usan los libros ya importados en este dispositivo.",
+  "This assignment link is incomplete": "Este enlace de tarea está incompleto",
+  "Twelve questions, two minutes": "Doce preguntas, dos minutos",
+  "Use the app language.": "Usa el idioma de la app.",
+  "Your books as lesson paths": "Tus libros como rutas de lecciones",
+  "Your printable A4 record": "Tu registro A4 imprimible",
+  "e.g. fractions": "p. ej. fracciones",
+  "units": "unidades",
+  "This screen needs a connection the first time": "Esta pantalla necesita conexión la primera vez",
+  "You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.": "Estás sin conexión y esta pantalla nunca se abrió en este dispositivo. Vuelve al inicio o ábrela una vez cuando vuelva la red.",
+
   "Language: {name}": "Idioma: {name}",
 
   "Female": "Femenina",

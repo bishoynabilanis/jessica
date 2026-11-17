@@ -1,6 +1,33 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "25 minutes, counted into your plan": "25 Minuten, die in deinem Plan zählen",
+  "Answer some quiz questions and your skills will appear here automatically.": "Beantworte ein paar Fragen und deine Fähigkeiten erscheinen hier automatisch.",
+  "Ask your teacher to send the full link or scan the QR code again.": "Bitte deinen Lehrer um den vollständigen Link oder scanne den QR erneut.",
+  "Explain like I'm 5": "Erklär es wie einem 5-Jährigen",
+  "Four weeks, skills and a printable PDF": "Vier Wochen, Fähigkeiten und ein druckbares PDF",
+  "Generating…": "Wird erzeugt…",
+  "Import a book first": "Importiere zuerst ein Buch",
+  "Legal": "Rechtliches",
+  "More sharing options": "Weitere Freigabeoptionen",
+  "Parent settings": "Elterneinstellungen",
+  "Point the camera at the code, or send the short link below.": "Richte die Kamera auf den Code oder sende den kurzen Link unten.",
+  "QR code": "QR-Code",
+  "Review the unit.": "Wiederhole die Einheit.",
+  "Saved to Knowledge Vault": "Im Wissensspeicher gespeichert",
+  "Send the app to a friend, a classmate or a parent in one tap.": "Schicke die App mit einem Tipp an Freunde, Mitschüler oder Eltern.",
+  "Sources": "Quellen",
+  "The teacher tools work on the books already imported on this device.": "Die Lehrerwerkzeuge nutzen die bereits importierten Bücher auf diesem Gerät.",
+  "This assignment link is incomplete": "Dieser Aufgabenlink ist unvollständig",
+  "Twelve questions, two minutes": "Zwölf Fragen, zwei Minuten",
+  "Use the app language.": "Nutze die App-Sprache.",
+  "Your books as lesson paths": "Deine Bücher als Lernpfade",
+  "Your printable A4 record": "Dein druckbarer A4-Nachweis",
+  "e.g. fractions": "z. B. Brüche",
+  "units": "Einheiten",
+  "This screen needs a connection the first time": "Dieser Bildschirm braucht beim ersten Mal eine Verbindung",
+  "You are offline and this page has not been opened on this device yet. Go back home, or open it once when the internet returns.": "Du bist offline und dieser Bildschirm wurde auf diesem Gerät noch nie geöffnet. Geh zurück zur Startseite oder öffne ihn einmal, wenn das Netz zurück ist.",
+
   "Language: {name}": "Sprache: {name}",
 
   "Female": "Weiblich",
