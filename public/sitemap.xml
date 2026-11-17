@@ -247,6 +247,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/features/camera-solver/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/features/flashcards/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/features/profiles/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/features/certificates/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/school-exam/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -290,6 +314,30 @@
   </url>
   <url>
     <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/kids/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/camera-solver/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/flashcards/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/profiles/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bishoynabilanis.github.io/jessica/welcome/en/features/certificates/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -231,11 +231,11 @@ function indexPage(lang) {
   const otherHref = isAr ? '../en/features/' : '../../features/'
   const canonical = `${BASE}/welcome/${isAr ? '' : 'en/'}features/`
   const alternate = { ar: `${BASE}/welcome/features/`, en: `${BASE}/welcome/en/features/` }
-  const title = isAr ? 'ميزات Jessica — ٨ حاجات بتغيّر المذاكرة' : 'Jessica features — eight things that change study'
+  const title = isAr ? 'ميزات Jessica — كل اللي بيغيّر المذاكرة' : 'Jessica features — everything that changes study'
   const description = isAr
-    ? '٨ ميزات بتشرح نفسها: امتحان المدرسة، تصحيح الورقة، تقرير الشهر، المراجعة المتباعدة، الصوت المصري، أوفلاين، وضع الفصل، وعالم الأطفال.'
-    : 'Eight features explained: the school paper, tap marking, the monthly report, spaced repetition, the Egyptian voice, offline, class mode and the kids world.'
-  const h1 = isAr ? '٨ ميزات… كل واحدة بتحل مشكلة حقيقية' : 'Eight features — each one fixes a real problem'
+    ? '١٢ ميزة بتشرح نفسها: امتحان المدرسة، التصحيح، تقرير الشهر، المراجعة المتباعدة، الصوت، أوفلاين، الفصل، الأطفال، الكاميرا، البطاقات، الملفات، والشهادة.'
+    : 'Twelve features explained: school paper, tap marking, monthly report, spaced review, voice, offline, class mode, kids, camera, cards, profiles and certificates.'
+  const h1 = isAr ? 'ميزات… كل واحدة بتحل مشكلة حقيقية' : 'Features — each one fixes a real problem'
   const intro = isAr
     ? [
         'التطبيق مش قايمة ميزات على البروشور. كل ميزة هنا اتولدت من مشكلة حقيقية في بيت مصري: ورقة مدرسة من غير مفتاح إجابة، تصحيح ٣٠ ورقة بالإيد، سؤال «ابنك بيعمل إيه؟» من غير أرقام، وصوت عربي جاف الطفل بيفصل منه.',

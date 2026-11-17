@@ -608,4 +608,305 @@ export const FEATURES = [
       ],
     },
   },
+
+  {
+    slug: 'camera-solver',
+    emoji: '📷',
+    color: '#fb923c',
+    appPath: '#/solve',
+    related: ['school-exam', 'flashcards', 'offline'],
+    ar: {
+      title: 'حل الواجب بالكاميرا — خطوات مش إجابة جاهزة',
+      description:
+        'صوّر السؤال، وجيسيكا تقرأه، تشرح الخطوات، وتديك سؤال شبيه للتدريب — بمفتاحك، ومن غير ما ترفع الصورة لسيرفرنا.',
+      eyebrow: 'الكاميرا',
+      h1: 'صوّر السؤال… وافهمه، مش تنسخه',
+      lead:
+        'تطبيقات كتير بتديك الإجابة النهائية وخلاص. جيسيكا بتقرأ السؤال من الصورة، تشرح كل خطوة، وبعدها تديك سؤال شبيه عشان تتأكد إنك فهمت.',
+      problem: [
+        'الطالب بيصوّر الواجب وبياخد الإجابة، وبيحس إنه خلّص. في الامتحان بيقف لأن مفيش صورة ينسخ منها ولا خطوات يفهمها.',
+        'وبعض الحلول بتقرأ الصورة غلط، خصوصًا مع خط الإيد أو الرموز الرياضية، وبتدي إجابة لسؤال تاني.',
+      ],
+      solution: [
+        'صفحة «حل بالكاميرا» بتصوّر السؤال أو تختار صورة من الجهاز. التطبيق يقرأ النص، ويعرضه لك تراجعه وتصححه قبل ما يتحل.',
+        'بعد كده جيسيكا تشرح خطوة بخطوة، وتربط الحل بالقاعدة، وتولّد سؤال شبيه للتدريب، وتحفظ الشرح في الخزنة لو حبيت.',
+      ],
+      bullets: [
+        'خطوات كاملة مع سبب كل خطوة، مش رقم نهائي.',
+        'سؤال شبيه عشان تتأكد إن الفهم حصل.',
+        'مراجعة النص اللي اتقرأ قبل الحل.',
+        'الصورة بتروح لمزود الذكاء الاصطناعي بمفتاحك، مفيش سيرفر لجيسيكا.',
+      ],
+      steps: [
+        { title: 'صوّر', text: 'افتح «حل بالكاميرا»، صوّر السؤال أو اختار صورة من المعرض.' },
+        { title: 'راجع النص', text: 'التطبيق يعرض اللي اتقرأ. صحّح أي كلمة أو رمز قبل الحل.' },
+        { title: 'افهم واتدرب', text: 'اقرأ الخطوات، وبعدها حل السؤال الشبيه بنفسك.' },
+      ],
+      audience:
+        'للطالب اللي بيوقف عند سؤال مش فاهمه، ولولي الأمر اللي عايز يشرح لابنه بدل ما يديله إجابة، ولأي حد بيذاكر من كتاب مش موجود في التطبيق.',
+      faq: [
+        { q: 'هل محتاج مفتاح؟', a: 'أيوه، الكاميرا والشرح بيستخدموا مزود الذكاء الاصطناعي بمفتاحك. التطبيق نفسه مجاني ومفتوح.' },
+        { q: 'هل الصورة بتترفع على سيرفركم؟', a: 'لا. مفيش سيرفر لجيسيكا. الصورة بتروح للمزود اللي انت اخترته بمفتاحك، وبنفس شروطه.' },
+      ],
+    },
+    en: {
+      title: 'Camera solver — steps, not a copied answer',
+      description:
+        'Photograph the question, Jessica reads it, explains every step and gives a similar question to practise — with your key and no upload to our server.',
+      eyebrow: 'Camera',
+      h1: 'Photograph the question… and understand it',
+      lead:
+        'Many apps hand over the final answer. Jessica reads the question from the photo, explains each step, then gives a similar question to prove you understood.',
+      problem: [
+        'A student photographs homework, copies the answer and feels done. In the exam there is no photo to copy and no steps to follow.',
+        'Some solvers also misread handwriting or maths symbols and answer a different question.',
+      ],
+      solution: [
+        'The camera page takes a photo or a gallery image. The app reads the text and shows it so you can correct a word or symbol before solving.',
+        'Jessica then explains step by step, ties the solution to the rule, generates a similar question and can save the explanation to the vault.',
+      ],
+      bullets: [
+        'Full steps with a reason for each, not just a number.',
+        'A similar question to confirm understanding.',
+        'Review the recognised text before solving.',
+        'The image goes to your AI provider with your key; no Jessica server.',
+      ],
+      steps: [
+        { title: 'Photograph', text: 'Open the camera solver, take a photo or pick one from the gallery.' },
+        { title: 'Check the text', text: 'The app shows what it read. Fix any word or symbol before solving.' },
+        { title: 'Understand and practise', text: 'Read the steps, then solve the similar question yourself.' },
+      ],
+      audience:
+        'For the student stuck on a question, the parent who wants to explain instead of handing over an answer, and anyone studying from a book that is not in the app.',
+      faq: [
+        { q: 'Do I need a key?', a: 'Yes, the camera and explanation use your AI provider with your key. The app itself is free and open source.' },
+        { q: 'Is the image uploaded to your server?', a: 'No. Jessica has no server. The image goes to the provider you chose with your key, under their terms.' },
+      ],
+    },
+  },
+  {
+    slug: 'flashcards',
+    emoji: '🃏',
+    color: '#22d3ee',
+    appPath: '#/study',
+    related: ['mistakes-review', 'offline', 'monthly-report'],
+    ar: {
+      title: 'بطاقات المراجعة — تذكّر، مش تعيد القراءة',
+      description:
+        'بطاقات بتتباعد ذكي: كل بطاقة بترجع في الوقت اللي هتنساها فيه، مع مراجعة يومية ٥ دقايق.',
+      eyebrow: 'البطاقات',
+      h1: 'القراءة بتحسّسك إنك فاهم… البطاقة بتثبت',
+      lead:
+        'بدل ما تعيد قراءة نفس الصفحة ٥ مرات، حوّل النقطة لبطاقة. جيسيكا بتسألك في الوقت اللي هتنساها فيه، وتفضّل تسألك لحد ما تثبت.',
+      problem: [
+        'إعادة القراءة والتظليل بيدّيوا إحساسًا زائفًا بالإنجاز. بعد يومين مش فاكر حاجة، والوقت كله راح على مراجعة عشوائية.',
+        'والبطاقات الورقية بتتكدس، ومحدش عارف يبدأ بإيه ولا إمتى.',
+      ],
+      solution: [
+        'كل بطاقة ليها جدول تباعد: تبدأ قريبة، وبعد كل إجابة صح بتبعد. الإجابة الغلط بترجّعها بكرة.',
+        'تقدر تعمل بطاقة من خطأ في دفتر الأخطاء، أو من صفحة في كتابك، أو من شرح في الخزنة. والمراجعة المستحقة بتظهر في خطة اليوم.',
+      ],
+      bullets: [
+        'تباعد ذكي بدل مراجعة عشوائية.',
+        'بطاقات من الأخطاء والكتب والشرح.',
+        'مراجعة يومية قصيرة (٥ دقايق).',
+        'شغالة أوفلاين بعد أول تحميل.',
+      ],
+      steps: [
+        { title: 'أنشئ البطاقة', text: 'من خطأ في الدفتر أو من صفحة في الكتاب، حوّلها لبطاقة بسؤال وجواب.' },
+        { title: 'راجع المستحق', text: 'افتح مراجعة اليوم، أو ابدأ من خطة اليوم. البطاقات المستحقة بس هي اللي بتظهر.' },
+        { title: 'قيّم نفسك', text: 'صح / غلط، والجدول بيتظبط تلقائيًا. البطاقة اللي بتتقنها بتبعد.' },
+      ],
+      audience:
+        'للطالب اللي بيعيد القراءة من غير نتيجة، ولولي الأمر اللي عايز مراجعة قصيرة يومية، ولأي حد عنده امتحان قريب وعايز يثبت المعلومات.',
+      faq: [
+        { q: 'البطاقات من الكتاب إزاي؟', a: 'من صفحة في القارئ أو من شرح في الخزنة، اضغط «أضف بطاقة». التطبيق يحفظ السؤال والجواب.' },
+        { q: 'هل بتشتغل أوفلاين؟', a: 'أيوه، البطاقات والجدول محفوظين على الجهاز، والمراجعة شغالة بدون نت.' },
+      ],
+    },
+    en: {
+      title: 'Flashcards — recall, not rereading',
+      description:
+        'Cards on a spaced schedule: each one returns when you would forget it, with a five-minute daily review.',
+      eyebrow: 'Flashcards',
+      h1: 'Rereading feels like learning… a card proves it',
+      lead:
+        'Instead of reading the same page five times, turn the point into a card. Jessica asks at the moment you would forget, and keeps asking until it sticks.',
+      problem: [
+        'Rereading and highlighting give a false sense of progress. Two days later nothing is left, and the time went into random revision.',
+        'Paper cards pile up, and nobody knows what to review first or when.',
+      ],
+      solution: [
+        'Every card gets a spaced schedule: close at first, further after each correct answer, back tomorrow after a miss.',
+        'Create a card from a mistake in the notebook, a page in your book, or an explanation in the vault. Due cards appear in the daily plan.',
+      ],
+      bullets: [
+        'Spaced scheduling instead of random revision.',
+        'Cards from mistakes, books and explanations.',
+        'A short daily review (five minutes).',
+        'Works offline after the first load.',
+      ],
+      steps: [
+        { title: 'Create a card', text: 'From a mistake in the notebook or a book page, turn it into a question and answer.' },
+        { title: 'Review what is due', text: 'Open today’s review or the daily plan. Only due cards appear.' },
+        { title: 'Grade yourself', text: 'Right or wrong, and the schedule adjusts. A mastered card moves further out.' },
+      ],
+      audience:
+        'For the student rereading without results, the parent who wants a short daily review, and anyone close to an exam who needs the facts to stick.',
+      faq: [
+        { q: 'How do cards come from a book?', a: 'From a page in the reader or an explanation in the vault, press add card. The app stores the question and answer.' },
+        { q: 'Do they work offline?', a: 'Yes. Cards and the schedule live on the device, and review works without a connection.' },
+      ],
+    },
+  },
+  {
+    slug: 'profiles',
+    emoji: '👧',
+    color: '#c084fc',
+    appPath: '#/profiles',
+    related: ['monthly-report', 'kids', 'offline'],
+    ar: {
+      title: 'أكتر من طفل على نفس الجهاز — كل واحد لوحده',
+      description:
+        'ملف مستقل لكل طفل: تقدمه، مهاراته، أخطاؤه، كتبه وإعداداته. بدّل في ثانية، والجهاز واحد.',
+      eyebrow: 'ملفات الأطفال',
+      h1: 'جهاز واحد… ومفيش طفل بياخد إنجاز التاني',
+      lead:
+        'لو أكتر من طفل بيستخدموا نفس الموبايل، كل واحد محتاج ملفه: XP وسلسلة ومهارات وأخطاء وكتب خاصة بيه. التبديل في ثانية، والبيانات كلها على الجهاز.',
+      problem: [
+        'لما طفلين يستخدموا نفس الحساب، سلسلة واحد بتخلط مع التاني، والأخطاء بتتجمّع، والتقرير بيبقى مش مفهوم.',
+        'والأسوأ إن الطفل الصغير بيشوف إعدادات الكبار وتقارير مش بتاعته.',
+      ],
+      solution: [
+        'كل ملف بيحفظ نسخة من حالة التطبيق: الاسم، الصف، XP، السلسلة، المهارات، الأخطاء، الكتب، والإعدادات. التبديل بيغيّر الحالة كلها مرة واحدة.',
+        'تقرير الشهر بيقارن الأشقاء على نفس الجهاز، وبوابة الأهل بتشوف كل طفل لوحده. والكتب تقدر تكون مشتركة أو لكل طفل.',
+      ],
+      bullets: [
+        'ملف مستقل لكل طفل (XP، سلسلة، مهارات، أخطاء).',
+        'تبديل فوري من شاشة الملفات.',
+        'مقارنة الأشقاء في تقرير الشهر.',
+        'كل البيانات محلية، بدون حساب أو سيرفر.',
+      ],
+      steps: [
+        { title: 'أنشئ ملف', text: 'من «الملفات»، اضغط «إضافة طفل»، اكتب الاسم واختار الصف.' },
+        { title: 'بدّل', text: 'اختار الطفل من القائمة، والتطبيق يفتح على حالته هو.' },
+        { title: 'قارن', text: 'افتح تقرير الشهر عشان تشوف كل طفل ومقارنة الأشقاء.' },
+      ],
+      audience:
+        'لأي أسرة عندها أكتر من طفل على نفس الموبايل أو التابلت، ولولي الأمر اللي عايز تقرير لكل طفل لوحده، وللمدرس اللي بيستخدم جهاز واحد لأكتر من طالب.',
+      faq: [
+        { q: 'هل الكتب بتتكرر؟', a: 'الكتب مشتركة على الجهاز عشان مساحة التخزين، لكن التقدم والمهارات والأخطاء لكل طفل لوحده.' },
+        { q: 'هل البيانات بتختلط لما أبدّل؟', a: 'لا. كل ملف بيتحفظ قبل التبديل، والحالة الجديدة بتتحمّل بالكامل.' },
+      ],
+    },
+    en: {
+      title: 'More than one child on one device — kept apart',
+      description:
+        'A separate profile for each child: progress, skills, mistakes, books and settings. Switch in a second on the same device.',
+      eyebrow: 'Child profiles',
+      h1: 'One device… and no child inherits another’s progress',
+      lead:
+        'When more than one child uses the same phone, each needs a profile: XP, streak, skills, mistakes and books. Switching takes a second, and the data stays on the device.',
+      problem: [
+        'Two children on one account mix streaks, pile up each other’s mistakes, and make every report meaningless.',
+        'A younger child also sees adult settings and reports that are not theirs.',
+      ],
+      solution: [
+        'Each profile saves a snapshot of the app state: name, grade, XP, streak, skills, mistakes, books and settings. Switching swaps the whole state at once.',
+        'The monthly report compares siblings on the same device, the parent zone sees each child separately, and books can be shared or per child.',
+      ],
+      bullets: [
+        'A separate profile per child (XP, streak, skills, mistakes).',
+        'Instant switching from the profiles screen.',
+        'Sibling comparison in the monthly report.',
+        'All data local, with no account or server.',
+      ],
+      steps: [
+        { title: 'Create a profile', text: 'On the profiles screen, add a child, type a name and pick a grade.' },
+        { title: 'Switch', text: 'Pick the child from the list and the app opens on their state.' },
+        { title: 'Compare', text: 'Open the monthly report to see each child and the sibling comparison.' },
+      ],
+      audience:
+        'For any family with more than one child on a phone or tablet, the parent who wants a separate report per child, and the tutor using one device for several students.',
+      faq: [
+        { q: 'Are books duplicated?', a: 'Books are shared on the device to save storage; progress, skills and mistakes are per child.' },
+        { q: 'Does switching mix data?', a: 'No. The current profile is saved before switching, and the new state is loaded completely.' },
+      ],
+    },
+  },
+  {
+    slug: 'certificates',
+    emoji: '🏅',
+    color: '#facc15',
+    appPath: '#/certificate',
+    related: ['monthly-report', 'kids', 'class-mode'],
+    ar: {
+      title: 'شهادة إنجاز — تتطبع وتتعلّق على الحيطة',
+      description:
+        'شهادة A4 باسم الطفل ومستواه وسلسلته، جاهزة للطباعة أو PDF — تحفيز حقيقي مش نجمة على الشاشة.',
+      eyebrow: 'الشهادة',
+      h1: 'النجمة على الشاشة بتتنسى… الورقة على الحيطة لأ',
+      lead:
+        'في آخر شهر أو ترم، جيسيكا بتطلّع شهادة A4 باسم الطفل ومستواه وسلسلته، جاهزة للطباعة أو حفظها PDF. حاجة ملموسة يفتخر بيها.',
+      problem: [
+        'الشارات الرقمية بتبهت بسرعة. الطفل بياخد نجمة، بيقفل التطبيق، ومفيش حاجة ملموسة تفضل.',
+        'وفي نهاية الترم، المدرسة والأهل محتاجين حاجة تتطبع وتتحط في الملف أو على الحيطة.',
+      ],
+      solution: [
+        'صفحة الشهادة بتجمع اسم الطالب، الصف، المستوى، السلسلة، وتاريخ الإنجاز في تصميم A4 نضيف.',
+        'بتضغط «اطبع» وبتطلع ورقة جاهزة، أو «حفظ PDF» وتبعتها للمدرسة أو الجروب. وفي آخرها مساحة لتوقيع ولي الأمر.',
+      ],
+      bullets: [
+        'A4 باسم الطفل ومستواه وسلسلته.',
+        'طباعة أو حفظ PDF بضغطة.',
+        'تصميم نضيف بدون عناصر التطبيق.',
+        'مساحة لتوقيع ولي الأمر.',
+      ],
+      steps: [
+        { title: 'افتح الشهادة', text: 'من القايمة، افتح «الشهادة». كل البيانات بتتجمع من ملف الطفل.' },
+        { title: 'راجع', text: 'شوف الاسم والصف والمستوى والسلسلة، وعدّل الاسم من الإعدادات لو محتاج.' },
+        { title: 'اطبع', text: 'اضغط «اطبع» للطابعة، أو «حفظ PDF» وابعت الملف.' },
+      ],
+      audience:
+        'لولي الأمر اللي عايز يحفّز طفله بحاجة ملموسة، وللمدرس اللي بيكرّم طلبة الفصل، ولأي حد بيجمع إنجازات الترم في ملف.',
+      faq: [
+        { q: 'هل فيها بيانات حقيقية؟', a: 'أيوه، من ملف الطفل على الجهاز: الاسم، الصف، XP، المستوى والسلسلة. بتتحدّث مع أي تغيير.' },
+        { q: 'هل تنفع لكل الصفوف؟', a: 'أيوه، من الأول الابتدائي للتالت الإعدادي، وبنفس التصميم.' },
+      ],
+    },
+    en: {
+      title: 'Certificate — print it and put it on the wall',
+      description:
+        'An A4 certificate with the child’s name, level and streak, ready to print or save as PDF — real motivation, not a star on a screen.',
+      eyebrow: 'Certificate',
+      h1: 'A star on a screen is forgotten… paper on the wall is not',
+      lead:
+        'At the end of a month or term, Jessica produces an A4 certificate with the child’s name, level and streak, ready to print or save as PDF. Something tangible to be proud of.',
+      problem: [
+        'Digital badges fade quickly. A child earns a star, closes the app, and nothing physical remains.',
+        'At the end of term, schools and parents need something to print for a file or a wall.',
+      ],
+      solution: [
+        'The certificate page gathers the student name, grade, level, streak and date into a clean A4 design.',
+        'Press print for a ready sheet, or save PDF to send to school or the family group. A parent signature line sits at the bottom.',
+      ],
+      bullets: [
+        'A4 with the child’s name, level and streak.',
+        'Print or save PDF in one press.',
+        'A clean design with no app chrome.',
+        'A parent signature line.',
+      ],
+      steps: [
+        { title: 'Open it', text: 'From the menu, open the certificate. Everything comes from the child’s profile.' },
+        { title: 'Review', text: 'Check the name, grade, level and streak; edit the name in Settings if needed.' },
+        { title: 'Print', text: 'Press print for a printer, or save PDF and send the file.' },
+      ],
+      audience:
+        'For the parent who wants tangible motivation, the teacher rewarding a class, and anyone collecting the term’s achievements in a file.',
+      faq: [
+        { q: 'Does it use real data?', a: 'Yes, from the child’s profile on the device: name, grade, XP, level and streak. It updates with any change.' },
+        { q: 'Does it work for every grade?', a: 'Yes, from Primary 1 to Preparatory 3, with the same design.' },
+      ],
+    },
+  },
 ]
