@@ -45,9 +45,13 @@ jobs:
       # its sitemap is submitted once in Search Console.
       - name: Ping IndexNow
         run: |
+          # The deploy job does not carry the build folder; read the live
+          # sitemap, with retries because Pages can take a minute to serve it.
+          curl -sS --retry 4 --retry-delay 10 \
+            "https://bishoynabilanis.github.io/jessica/sitemap.xml" -o /tmp/sitemap.xml
           python3 - <<'PY' > /tmp/indexnow.json
           import json, re
-          xml = open('dist/sitemap.xml', encoding='utf-8').read()
+          xml = open('/tmp/sitemap.xml', encoding='utf-8').read()
           urls = re.findall(r'<loc>(.*?)</loc>', xml)
           print(json.dumps({
               'host': 'bishoynabilanis.github.io',
