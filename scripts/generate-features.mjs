@@ -233,8 +233,8 @@ function indexPage(lang) {
   const alternate = { ar: `${BASE}/welcome/features/`, en: `${BASE}/welcome/en/features/` }
   const title = isAr ? 'ميزات Jessica — كل اللي بيغيّر المذاكرة' : 'Jessica features — everything that changes study'
   const description = isAr
-    ? '١٢ ميزة بتشرح نفسها: امتحان المدرسة، التصحيح، تقرير الشهر، المراجعة المتباعدة، الصوت، أوفلاين، الفصل، الأطفال، الكاميرا، البطاقات، الملفات، والشهادة.'
-    : 'Twelve features explained: school paper, tap marking, monthly report, spaced review, voice, offline, class mode, kids, camera, cards, profiles and certificates.'
+    ? '١٣ ميزة بتشرح نفسها: المعامل الافتراضية، امتحان المدرسة، التصحيح، تقرير الشهر، المراجعة، الصوت، أوفلاين، الفصل، الأطفال، الكاميرا، البطاقات، الملفات، والشهادة.'
+    : 'Thirteen features: virtual labs, school paper, tap marking, monthly report, review, voice, offline, class mode, kids, camera, cards, profiles, certificates.'
   const h1 = isAr ? 'ميزات… كل واحدة بتحل مشكلة حقيقية' : 'Features — each one fixes a real problem'
   const intro = isAr
     ? [

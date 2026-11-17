@@ -5,13 +5,21 @@ import {
   ArrowLeftRight,
   Atom,
   AudioWaveform,
+  Banknote,
   BarChart3,
   Beaker,
+  Binary,
+  Blocks,
   BookText,
+  Box,
   Calculator,
+  CircleGauge,
   Clock,
   CloudRain,
+  Dna,
+  Filter,
   Flame,
+  FlipHorizontal2,
   FlaskConical,
   Gauge,
   HeartPulse,
@@ -29,6 +37,8 @@ import {
   Search,
   Sparkles,
   Sprout,
+  Sun,
+  Table2,
   TestTube2,
   Thermometer,
   Waves,
@@ -70,6 +80,16 @@ import { LeverLab } from '@/components/labs/LeverLab'
 import { ArabicLab } from '@/components/labs/ArabicLab'
 import { CirculationLab } from '@/components/labs/CirculationLab'
 import { LabGuide } from '@/components/labs/LabGuide'
+import { PlaceValueLab } from '@/components/labs/PlaceValueLab'
+import { MoneyLab } from '@/components/labs/MoneyLab'
+import { SymmetryLab } from '@/components/labs/SymmetryLab'
+import { Shapes3DLab } from '@/components/labs/Shapes3DLab'
+import { ShadowLab } from '@/components/labs/ShadowLab'
+import { MixturesLab } from '@/components/labs/MixturesLab'
+import { PeriodicLab } from '@/components/labs/PeriodicLab'
+import { GeneticsLab } from '@/components/labs/GeneticsLab'
+import { PressureLab } from '@/components/labs/PressureLab'
+import { BinaryLab } from '@/components/labs/BinaryLab'
 
 type Lab =
   | 'fractions'
@@ -101,6 +121,16 @@ type Lab =
   | 'lever'
   | 'arabic'
   | 'circulation'
+  | 'placevalue'
+  | 'money'
+  | 'symmetry'
+  | 'shapes3d'
+  | 'shadow'
+  | 'mixtures'
+  | 'periodic'
+  | 'genetics'
+  | 'pressure'
+  | 'binary'
 
 type Stage = 'primary' | 'prep' | 'both'
 
@@ -123,19 +153,25 @@ const media = [
 
 const LAB_META: LabMeta[] = [
   { id: 'numberline', label: 'Number line lab', hint: 'Add and subtract by jumping', icon: ArrowLeftRight, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [1, 3] },
+  { id: 'placevalue', label: 'Place value lab', hint: 'Hundreds, tens and ones blocks', icon: Blocks, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [1, 3] },
+  { id: 'money', label: 'Money lab', hint: 'Pay with notes and count change', icon: Banknote, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Mathematics', stage: 'primary', grades: [2, 4] },
   { id: 'times', label: 'Times tables lab', hint: 'See multiplication as rows', icon: Calculator, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [2, 4] },
   { id: 'clock', label: 'Clock lab', hint: 'Read the time on the hands', icon: Clock, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Mathematics', stage: 'primary', grades: [2, 4] },
   { id: 'fractions', label: 'Fractions lab', hint: 'Equivalent fractions, visually', icon: PieChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [3, 5] },
   { id: 'geometry', label: 'Geometry lab', hint: 'Area and perimeter, live', icon: Ruler, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'primary', grades: [4, 6] },
+  { id: 'symmetry', label: 'Symmetry lab', hint: 'Find every mirror line', icon: FlipHorizontal2, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'primary', grades: [3, 5] },
+  { id: 'shapes3d', label: '3D shapes lab', hint: 'Faces, edges and corners', icon: Box, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Mathematics', stage: 'primary', grades: [4, 6] },
   { id: 'magnet', label: 'Magnetism lab', hint: 'Attract and repel', icon: Magnet, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'primary', grades: [4, 6] },
   { id: 'plants', label: 'Plants lab', hint: 'What a leaf needs to grow', icon: Sprout, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Biology', stage: 'primary', grades: [4, 6] },
   { id: 'solar', label: 'Solar system lab', hint: 'Distance and year length', icon: Orbit, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'primary', grades: [4, 6] },
+  { id: 'shadow', label: 'Shadow lab', hint: 'Sun height and shadow length', icon: Sun, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'primary', grades: [4, 6] },
   { id: 'english', label: 'English lab', hint: 'Hear the word, pick the meaning', icon: Languages, tint: 'from-sky/20 to-card-2 text-sky', subject: 'English', stage: 'primary', grades: [3, 6] },
   { id: 'arabic', label: 'Arabic lab', hint: 'Dissect the sentence', icon: BookText, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Arabic', stage: 'both', grades: [4, 9] },
   { id: 'percent', label: 'Percent lab', hint: 'Discounts and sale prices', icon: Percent, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'prep', grades: [6, 8] },
   { id: 'balance', label: 'Balance lab', hint: 'Solve an equation with a scale', icon: Scale, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'prep', grades: [7, 9] },
   { id: 'stats', label: 'Statistics lab', hint: 'Mean, median, mode and range', icon: BarChart3, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'prep', grades: [7, 9] },
   { id: 'parabola', label: 'Parabola lab', hint: 'a, b, c and the curve', icon: LineChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'prep', grades: [8, 9] },
+  { id: 'pressure', label: 'Pressure lab', hint: 'Force, area and sinking', icon: CircleGauge, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'prep', grades: [8, 9] },
   { id: 'circuit', label: 'Circuit lab', hint: 'Voltage, resistance and brightness', icon: Zap, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'prep', grades: [7, 9] },
   { id: 'density', label: 'Density lab', hint: 'Float, sink and density', icon: Beaker, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [7, 8] },
   { id: 'forces', label: 'Forces lab', hint: 'Force, mass and acceleration', icon: Gauge, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'prep', grades: [7, 9] },
@@ -143,17 +179,21 @@ const LAB_META: LabMeta[] = [
   { id: 'sound', label: 'Sound lab', hint: 'Frequency, pitch and volume', icon: AudioWaveform, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [7, 8] },
   { id: 'refraction', label: 'Light lab', hint: 'Snell’s law and refraction', icon: Waves, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [8, 9] },
   { id: 'lever', label: 'Lever lab', hint: 'Moments and mechanical advantage', icon: Wrench, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'prep', grades: [7, 9] },
+  { id: 'mixtures', label: 'Mixtures lab', hint: 'Filter, magnet and evaporation', icon: Filter, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [7, 8] },
   { id: 'atom', label: 'Atom lab', hint: 'Protons, neutrons and electrons', icon: Atom, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
   { id: 'reaction', label: 'Reaction lab', hint: 'Mix two reagents and observe', icon: FlaskConical, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
   { id: 'ph', label: 'Acids and bases lab', hint: 'Measure pH and litmus', icon: TestTube2, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
+  { id: 'periodic', label: 'Periodic table lab', hint: 'Elements, families and symbols', icon: Table2, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
+  { id: 'genetics', label: 'Genetics lab', hint: 'Cross parents and predict traits', icon: Dna, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Biology', stage: 'prep', grades: [9, 9] },
   { id: 'digestion', label: 'Digestion lab', hint: 'Follow the food step by step', icon: HeartPulse, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Biology', stage: 'prep', grades: [7, 8] },
   { id: 'circulation', label: 'Circulation lab', hint: 'Heart rate and oxygen', icon: Activity, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Biology', stage: 'prep', grades: [8, 9] },
+  { id: 'binary', label: 'Binary lab', hint: 'Bits, bytes and letter codes', icon: Binary, tint: 'from-sky/20 to-card-2 text-sky', subject: 'ICT', stage: 'prep', grades: [7, 9] },
   { id: 'map', label: 'Egypt map lab', hint: 'Regions, Nile and Sinai', icon: Map, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Geography', stage: 'both', grades: [4, 9] },
   { id: 'states', label: 'States lab', hint: 'Heat, particles and states', icon: Thermometer, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'both', grades: [4, 7] },
   { id: 'water', label: 'Water cycle lab', hint: 'Evaporation, clouds and rain', icon: CloudRain, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'both', grades: [4, 7] },
 ]
 
-const SUBJECTS = ['all', 'Mathematics', 'Science', 'Chemistry', 'Biology', 'Geography', 'English', 'Arabic']
+const SUBJECTS = ['all', 'Mathematics', 'Science', 'Chemistry', 'Biology', 'Geography', 'English', 'Arabic', 'ICT']
 
 const gradeBand = (grades: [number, number]) => `${num(grades[0])} ${tr('to')} ${num(grades[1])}`
 
@@ -198,7 +238,7 @@ export function Labs() {
       <PageHeader
         eyebrow={tr("Virtual labs")}
         title={tr("Touch the science")}
-        subtitle={tr("Twenty-nine simulations across the Egyptian curriculum, from grade 1 to grade 9. Change a variable, watch the result, then explain it back to Jessica.")}
+        subtitle={tr("Thirty-nine simulations across the Egyptian curriculum, from grade 1 to grade 9. Change a variable, watch the result, then explain it back to Jessica.")}
         icon={<FlaskConical className="h-5 w-5" />}
       />
 
@@ -322,6 +362,16 @@ export function Labs() {
       {lab === 'lever' && <LeverLab onInteract={() => reward('lever')} />}
       {lab === 'arabic' && <ArabicLab onInteract={() => reward('arabic')} />}
       {lab === 'circulation' && <CirculationLab onInteract={() => reward('circulation')} />}
+      {lab === 'placevalue' && <PlaceValueLab onInteract={() => reward('placevalue')} />}
+      {lab === 'money' && <MoneyLab onInteract={() => reward('money')} />}
+      {lab === 'symmetry' && <SymmetryLab onInteract={() => reward('symmetry')} />}
+      {lab === 'shapes3d' && <Shapes3DLab onInteract={() => reward('shapes3d')} />}
+      {lab === 'shadow' && <ShadowLab onInteract={() => reward('shadow')} />}
+      {lab === 'mixtures' && <MixturesLab onInteract={() => reward('mixtures')} />}
+      {lab === 'periodic' && <PeriodicLab onInteract={() => reward('periodic')} />}
+      {lab === 'genetics' && <GeneticsLab onInteract={() => reward('genetics')} />}
+      {lab === 'pressure' && <PressureLab onInteract={() => reward('pressure')} />}
+      {lab === 'binary' && <BinaryLab onInteract={() => reward('binary')} />}
     </div>
   )
 }

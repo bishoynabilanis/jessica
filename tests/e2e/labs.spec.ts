@@ -49,7 +49,7 @@ async function openAllLabs(page: import('@playwright/test').Page) {
 
 test('the lab hub covers maths, science, biology, geography and English', async ({ page }) => {
   await openAllLabs(page)
-  for (const name of ['معمل الكسور', 'معمل الهندسة', 'معمل خط الأعداد', 'معمل جدول الضرب', 'معمل الساعة', 'معمل الميزان', 'معمل النسبة المئوية', 'معمل الإحصاء', 'معمل القطع المكافئ', 'معمل الكثافة', 'معمل القوى', 'معمل الحرارة', 'معمل الصوت', 'معمل الرافعة', 'معمل الذرة', 'معمل التفاعلات', 'معمل الأحماض والقواعد', 'معمل الهضم', 'معمل الدورة الدموية', 'معمل النبات', 'معمل المجموعة الشمسية', 'خريطة مصر', 'معمل الإنجليزي', 'معمل العربي', 'معمل حالات المادة', 'معمل دورة المية', 'معمل المغناطيس']) {
+  for (const name of ['معمل الكسور', 'معمل الهندسة', 'معمل خط الأعداد', 'معمل جدول الضرب', 'معمل الساعة', 'معمل القيمة المكانية', 'معمل النقود', 'معمل التماثل', 'معمل المجسمات', 'معمل الميزان', 'معمل النسبة المئوية', 'معمل الإحصاء', 'معمل القطع المكافئ', 'معمل الكثافة', 'معمل القوى', 'معمل الحرارة', 'معمل الضغط', 'معمل الصوت', 'معمل الرافعة', 'معمل الذرة', 'معمل التفاعلات', 'معمل الأحماض والقواعد', 'معمل المخاليط', 'معمل الجدول الدوري', 'معمل الوراثة', 'معمل الهضم', 'معمل الدورة الدموية', 'معمل النبات', 'معمل المجموعة الشمسية', 'معمل الظل', 'خريطة مصر', 'معمل الإنجليزي', 'معمل العربي', 'معمل النظام الثنائي', 'معمل حالات المادة', 'معمل دورة المية', 'معمل المغناطيس']) {
     await expect(page.getByRole('button', { name: new RegExp(name) })).toBeVisible()
   }
 })
@@ -148,11 +148,11 @@ test('the water cycle rains when the cloud fills', async ({ page }) => {
   await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
 })
 
-test('the lab hub has 29 labs with subject filters and search', async ({ page }) => {
+test('the lab hub has 39 labs with subject filters and search', async ({ page }) => {
   await openAllLabs(page)
-  await expect(page.getByTestId('lab-count')).toContainText('29')
+  await expect(page.getByTestId('lab-count')).toContainText('39')
   await page.getByTestId('lab-subject-Chemistry').click()
-  await expect(page.getByTestId('lab-count')).toContainText('3')
+  await expect(page.getByTestId('lab-count')).toContainText('5')
   await expect(page.getByRole('button', { name: /معمل الكسور/ })).toHaveCount(0)
   await expect(page.getByRole('button', { name: /معمل الذرة/ })).toHaveCount(1)
   await page.getByTestId('lab-subject-all').click()
@@ -160,7 +160,7 @@ test('the lab hub has 29 labs with subject filters and search', async ({ page })
   await expect(page.getByTestId('lab-count')).toContainText('1')
   await expect(page.getByRole('button', { name: /معمل الساعة/ })).toBeVisible()
   await page.getByTestId('lab-search').fill('')
-  await expect(page.getByTestId('lab-count')).toContainText('29')
+  await expect(page.getByTestId('lab-count')).toContainText('39')
 })
 
 test('the primary labs build arrays, tell time, grow a plant and tour the planets', async ({ page }) => {
@@ -242,5 +242,70 @@ test('the lever, Arabic grammar and circulation labs respond', async ({ page }) 
   await page.getByRole('button', { name: /معمل الدورة الدموية/ }).click()
   await page.getByTestId('circulation-run').click()
   await expect(page.getByTestId('circulation-bpm')).toHaveText('150 bpm')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+})
+
+test('the primary labs teach place value, money, symmetry, solids and shadows', async ({ page }) => {
+  await openAllLabs(page)
+
+  await page.getByRole('button', { name: /معمل القيمة المكانية/ }).click()
+  await page.getByTestId('place-hundreds-slider').fill('4')
+  await page.getByTestId('place-tens-slider').fill('0')
+  await page.getByTestId('place-ones-slider').fill('7')
+  await expect(page.getByTestId('place-number')).toHaveText('407')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل النقود/ }).click()
+  await page.getByTestId('money-note-50').click()
+  await expect(page.getByTestId('money-change-value')).toContainText('15')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل التماثل/ }).click()
+  await page.getByTestId('symmetry-angle-slider').fill('45')
+  await page.getByTestId('symmetry-angle-slider').fill('90')
+  await page.getByTestId('symmetry-angle-slider').fill('135')
+  await page.getByTestId('symmetry-angle-slider').fill('0')
+  await expect(page.getByTestId('symmetry-found')).toHaveText('4 / 4')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل المجسمات/ }).click()
+  await page.getByTestId('shapes3d-sphere').click()
+  await expect(page.getByTestId('shapes3d-vertices')).toContainText('0')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل الظل/ }).click()
+  await page.getByTestId('shadow-slider').fill('15')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+})
+
+test('the prep labs separate mixtures, read elements, cross genes, press and count in binary', async ({ page }) => {
+  await openAllLabs(page)
+
+  await page.getByRole('button', { name: /معمل المخاليط/ }).click()
+  await page.getByTestId('mixture-iron').click()
+  await page.getByTestId('mixture-sand').click()
+  await page.getByTestId('mixture-salt').click()
+  await expect(page.getByTestId('mixture-left')).toContainText('0 / 3')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل الجدول الدوري/ }).click()
+  await page.getByTestId('periodic-Ar').click()
+  await expect(page.getByTestId('periodic-symbol')).toHaveText('Ar')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل الوراثة/ }).click()
+  await expect(page.getByTestId('genetics-ratio')).toHaveText('3 : 1')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل الضغط/ }).click()
+  await page.getByTestId('pressure-area').fill('1')
+  await expect(page.getByTestId('pressure-readout')).toContainText('kPa')
+  await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
+
+  await page.getByRole('button', { name: /معمل النظام الثنائي/ }).click()
+  await page.getByTestId('binary-bit-1').click()
+  await page.getByTestId('binary-bit-7').click()
+  await expect(page.getByTestId('binary-value')).toHaveText('65')
+  await expect(page.getByTestId('binary-char')).toContainText('A')
   await expect(page.getByTestId('lab-challenge')).toHaveAttribute('data-done', '1')
 })

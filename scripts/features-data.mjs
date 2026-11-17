@@ -9,6 +9,85 @@
 
 export const FEATURES = [
   {
+    slug: 'virtual-labs',
+    emoji: '🧪',
+    color: '#21e6c9',
+    appPath: '#/labs',
+    related: ['kids', 'flashcards', 'school-exam'],
+    ar: {
+      title: 'المعامل الافتراضية — ٣٩ تجربة من الصف ١ إلى ٩',
+      description:
+        '٣٩ معملاً افتراضياً في الرياضيات والعلوم والكيمياء والأحياء والعربي والإنجليزي: غيّر متغير، شوف النتيجة، وافهم السبب — بدون تحميل ولا إنترنت.',
+      eyebrow: 'المعامل',
+      h1: 'التجربة اللي المدرسة مش دايمًا بتقدر تعملها',
+      lead:
+        'المعمل في المدرسة بيعدّي في دقايق، والكتاب بيشرح التجربة بالكلام. جيسيكا بتحوّل الدرس لمعمل صغير على شاشتك: ٣٩ تجربة من الصف الأول للتاسع، بتشتغل أوفلاين وبتتقاس بأرقام حقيقية.',
+      problem: [
+        'مش كل مدرسة فيها معمل، واللي فيها بيدخله مرة في الترم. الطالب بيحفظ «الضغط = القوة ÷ المساحة» من غير ما يشوف حاجة بتغوص في الرمل، وبيحفظ «التماثل» من غير ما يلف محور بنفسه.',
+        'الفيديوهات بتوري التجربة، لكن الطالب فيها متفرج. والشرح بالكلام بيخلّي المفاهيم المجردة تتنسى بعد الامتحان.',
+      ],
+      solution: [
+        'كل معمل في جيسيكا مبني على نفس القاعدة: متغير واحد، نتيجة بتتغير قدامك، وقياس حقيقي. اسحب المسافة بين مغناطيسين وشوف القوة، غيّر زاوية الشمس وشوف الظل، أو اقلب بتات ثنائية وشوف الحرف بيتكوّن.',
+        'كل معمل بيبدأ بهدف، وبيسألك تتوقّع النتيجة قبل ما تلمس أي حاجة، وبعد التجربة بيفسّر السبب — عشان الفهم يفضل بعد ما تقفل التطبيق. وكل ده SVG وCSS جوه التطبيق، مفيش فيديو ولا تحميل ولا حساب.',
+      ],
+      bullets: [
+        '٣٩ معملاً من الصف ١ إلى ٩، متجمّعة حسب المادة والمرحلة.',
+        'قياسات حية: نيوتن، باسكال، هيرتز، فولت، pH، نبضات القلب.',
+        'تحدي صغير في كل معمل: ظل ٢٫٥ متر، راسب، رافعة متوازنة، أو كود الحرف A.',
+        'فلترة بالمادة والمرحلة وبحث، والمعامل اللي تخص صفك بتظهر الأول.',
+        'كل معمل بيدي XP وبيشتغل بدون إنترنت.',
+      ],
+      steps: [
+        { title: 'اختار معملك', text: 'افتح «المعامل»، فلتر بالمادة أو المرحلة، أو دوّر باسم التجربة.' },
+        { title: 'توقّع قبل ما تجرّب', text: 'اقرأ الهدف وأجب على سؤال التوقّع. الإجابة مش شرط تكون صح عشان تكمّل، لكنها بتخليك تشوف الفرق بعد التجربة.' },
+        { title: 'جرّب واشرح', text: 'حرّك المتغير، شوف القياس، حقّق التحدي، وبعدها اقرأ الشرح وارجع للمدرسة وأنت فاهم.' },
+      ],
+      audience:
+        'للطالب اللي عايز يشوف العلم بدل ما يحفظه، ولولي الأمر اللي عايز يشرح لابنه من غير أدوات، وللمدرس اللي محتاج تجربة سريعة على السبورة.',
+      faq: [
+        { q: 'هل المعامل محتاجة إنترنت؟', a: 'لأ. كلها SVG وCSS جوه التطبيق، وبتشتغل أوفلاين بعد أول تحميل.' },
+        { q: 'هل بتغني عن معمل المدرسة؟', a: 'لأ، دي طريقة تفهم بيها الفكرة وتجرّبها بأمان. المعمل الحقيقي يفضل أهم للتجارب اللي محتاجة مواد وأجهزة.' },
+        { q: 'مين المناسب لها؟', a: 'من الصف الأول الابتدائي للتاسع الإعدادي، وكل معمل مكتوب عليه الصفوف المناسبة له.' },
+      ],
+    },
+    en: {
+      title: 'Virtual labs — 39 simulations from grade 1 to grade 9',
+      description:
+        '39 hands-on simulations across maths, science, chemistry, biology, Arabic and English. Change a variable, watch the result and understand why — offline.',
+      eyebrow: 'Virtual labs',
+      h1: 'The experiment your school cannot always run',
+      lead:
+        'A school lab is over in minutes, and the book explains the experiment in words. Jessica turns the lesson into a small lab on your screen: 39 simulations from grade 1 to 9, offline, with real measurements.',
+      problem: [
+        'Not every school has a lab, and the ones that do use it once a term. A student memorises “pressure = force ÷ area” without ever seeing something sink into sand, and memorises symmetry without turning a mirror line by hand.',
+        'Videos show the experiment, but the student is only watching. Words alone let abstract ideas fade after the exam.',
+      ],
+      solution: [
+        'Every lab follows the same rule: one variable, a result that changes in front of you, and a real measurement. Drag two magnets apart and watch the force, change the sun angle and watch the shadow, or flip bits and watch a letter appear.',
+        'Each lab starts with a goal, asks you to predict before you touch anything, then explains why after the experiment — so the idea stays after you close the app. Everything is SVG and CSS inside the app: no video, no download, no account.',
+      ],
+      bullets: [
+        '39 labs from grade 1 to 9, grouped by subject and stage.',
+        'Live readings: newtons, pascals, hertz, volts, pH, heart rate.',
+        'A small challenge in every lab: a 2.5 m shadow, a precipitate, a balanced lever, the code for A.',
+        'Filter by subject and stage, search, and the labs for your grade come first.',
+        'Every lab awards XP and works without internet.',
+      ],
+      steps: [
+        { title: 'Pick a lab', text: 'Open Labs, filter by subject or stage, or search for the experiment by name.' },
+        { title: 'Predict first', text: 'Read the goal and answer the prediction. You do not have to be right to continue, but it makes the difference visible afterwards.' },
+        { title: 'Experiment and explain', text: 'Move the variable, read the measurement, clear the challenge, then read the explanation and go back to school understanding it.' },
+      ],
+      audience:
+        'For the student who wants to see science instead of memorising it, the parent explaining without equipment, and the teacher who needs a quick experiment at the board.',
+      faq: [
+        { q: 'Do the labs need internet?', a: 'No. They are SVG and CSS inside the app and work offline after the first load.' },
+        { q: 'Do they replace the school lab?', a: 'No. They help you understand the idea and try it safely. A real lab is still better for experiments that need materials and equipment.' },
+        { q: 'Who are they for?', a: 'Grades 1 to 9, and every lab states the grades it fits.' },
+      ],
+    },
+  },
+  {
     slug: 'school-exam',
     emoji: '📄',
     color: '#21e6c9',
