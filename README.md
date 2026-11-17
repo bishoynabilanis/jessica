@@ -10,6 +10,7 @@
 | [📘 أدلة المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/guides/) | طريقة المذاكرة من الكتاب، آخر أسبوع، البابل شيت |
 | [📲 دليل التثبيت](https://bishoynabilanis.github.io/jessica/welcome/install/) | تثبيت التطبيق على أندرويد وآيفون والكمبيوتر خطوة بخطوة |
 | [🇬🇧 English landing](https://bishoynabilanis.github.io/jessica/welcome/en/) | النسخة الإنجليزية من صفحة الهبوط |
+| [🗺️ خريطة الموقع](https://bishoynabilanis.github.io/jessica/welcome/sitemap/) | كل الصفحات والروابط في مكان واحد — مفيدة للزائر وللـcrawl |
 
 [![Deploy](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml)
 [![E2E](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml)

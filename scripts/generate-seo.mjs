@@ -246,7 +246,7 @@ ${body.examHtml}
 </section>
 </div>
 </main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../../">الرئيسية</a> · <a href="../../../#/disclaimer">إخلاء المسؤولية</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../../">الرئيسية</a> · <a href="../../sitemap/">خريطة الموقع</a> · <a href="../../../#/disclaimer">إخلاء المسؤولية</a></span></div></footer>
 </body>
 </html>`
 }
@@ -450,7 +450,7 @@ fs.writeFileSync(
 </section>
 <p class="about">كل الكتب منشورة على سيرفر وزارة التربية والتعليم الرسمي، وحقوق الطبع محفوظة للوزارة. التطبيق نفسه مجاني وبدون حساب، وبيشتغل على الموبايل والتابلت والكمبيوتر، ويقدر يقرا أي PDF تستورده من جهازك لو مادتك مش موجودة في الكتالوج.</p>
 </div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../topics/">مواضيع المذاكرة</a> · <a href="../install/">التثبيت</a> · <a href="../../">التطبيق</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../sitemap/">خريطة الموقع</a> · <a href="../topics/">مواضيع المذاكرة</a> · <a href="../install/">التثبيت</a> · <a href="../../">التطبيق</a></span></div></footer>
 </body>
 </html>`,
 )
@@ -487,6 +487,8 @@ const urls = [
     freq: 'monthly',
     priority: '0.7',
   })),
+  { loc: `${BASE}/welcome/sitemap/`, file: 'public/welcome/sitemap/index.html', freq: 'weekly', priority: '0.7' },
+  { loc: `${BASE}/welcome/en/sitemap/`, file: 'public/welcome/en/sitemap/index.html', freq: 'weekly', priority: '0.6' },
   { loc: `${BASE}/welcome/topics/`, file: 'public/welcome/topics/index.html', freq: 'weekly', priority: '0.9' },
   ...['study-plan', 'homework', 'parents', 'math', 'exam-anxiety', 'memorization', 'english', 'monthly-tests', 'focus', 'science', 'arabic', 'primary-kid', 'midyear', 'word-problems', 'study-notes'].map((slug) => ({
     loc: `${BASE}/welcome/topics/${slug}/`,
