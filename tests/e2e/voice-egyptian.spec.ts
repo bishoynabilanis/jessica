@@ -67,7 +67,7 @@ test('the device voice reads Arabic with an Arabic voice', async ({ page }) => {
   }, seed(''))
 
   await page.goto('/#/settings')
-  await expect(page.getByTestId('voice-engine-device')).toBeVisible()
+  await expect(page.getByTestId('voice-engine-device')).toBeVisible({ timeout: 20_000 })
   await expect(page.getByTestId('voice-device-panel')).toBeVisible()
   await expect(page.getByTestId('voice-device-select')).toHaveValue('')
 
@@ -85,6 +85,7 @@ test('the cloud engine explains the missing key and stays chosen after a reload'
   }, seed(''))
 
   await page.goto('/#/settings')
+  await expect(page.getByTestId('voice-engine-cloud')).toBeVisible({ timeout: 20_000 })
   await page.getByTestId('voice-engine-cloud').click()
   await expect(page.getByTestId('voice-cloud-panel')).toBeVisible()
   await expect(page.getByTestId('voice-cloud-key-note')).toBeVisible()

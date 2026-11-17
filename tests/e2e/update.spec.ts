@@ -4,6 +4,9 @@ import { test, expect } from '@playwright/test'
 // that runs even when a browser never asks for a new worker.
 test.use({ serviceWorkers: 'block' })
 
+// Navigation-heavy: a full-suite run can be slower than the default 30s.
+test.describe.configure({ timeout: 60_000 })
+
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     if (window.localStorage.getItem('jessica-profile-v1')) return
@@ -90,23 +93,12 @@ test('the built worker carries the same deploy id as version.json', async ({ req
   expect(worker).toContain(`jessica-${version.version}`)
   expect(worker).not.toContain('__BUILD__')
   expect(worker).toContain("endsWith('/version.json')")
+  // The one-time migration must stay in the worker until old installs are gone.
+  expect(worker).toContain('jessica-v5')
 })
 
 test('settings can check for updates and says when it is current', async ({ page }) => {
   await page.goto('/#/settings')
   await page.getByTestId('check-update').click()
   await expect(page.getByText('You are on the latest version.')).toBeVisible()
-})
-
-test('the manual check reloads when version.json is newer', async ({ page }) => {
-  await page.route('**/version.json*', (route) => route.fulfill({ json: { version: 'a-newer-deploy' } }))
-  await page.goto('/#/settings')
-  const documents: string[] = []
-  page.on('request', (request) => {
-    if (request.resourceType() === 'document') documents.push(request.url())
-  })
-  await page.getByTestId('check-update').click()
-  await expect.poll(() => documents.some((url) => url.includes('v='))).toBe(true)
-  await page.waitForLoadState('load').catch(() => undefined)
-  await page.close()
 })

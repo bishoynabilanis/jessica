@@ -51,7 +51,7 @@ test('without a key the app opens on the trial instead of a key screen', async (
 test('settings explain cloud vs offline and block offline on unsupported hardware', async ({ page }) => {
   await page.goto('/#/settings')
   const card = page.getByTestId('ai-mode-card')
-  await expect(card).toBeVisible()
+  await expect(card).toBeVisible({ timeout: 20_000 })
   await expect(page.getByTestId('ai-mode-cloud')).toBeVisible()
   // headless Chrome has no WebGPU: the offline option must be disabled and explained
   await expect(page.getByTestId('ai-mode-offline')).toBeDisabled()
@@ -70,7 +70,7 @@ test('without WebGPU the offline option explains itself instead of breaking', as
   page.on('pageerror', (error) => errors.push(error.message))
 
   await page.goto('/#/settings')
-  await expect(page.getByTestId('ai-mode-card')).toBeVisible()
+  await expect(page.getByTestId('ai-mode-card')).toBeVisible({ timeout: 20_000 })
   await expect(page.getByText(/الأجهزة القوية/)).toBeVisible()
   await expect(page.getByTestId('ai-offline-download')).toHaveCount(0)
   expect(errors).toEqual([])

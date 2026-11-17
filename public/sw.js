@@ -7,9 +7,26 @@ const RUNTIME = `${VERSION}-runtime`
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']
 
 self.addEventListener('install', (event) => {
-  // No skipWaiting here: the new worker waits until the app offers the user a
-  // refresh, so an update never swaps assets under a running session.
-  event.waitUntil(caches.open(SHELL).then((cache) => cache.addAll(CORE).catch(() => undefined)))
+  event.waitUntil(
+    (async () => {
+      // One-time migration: releases before 5396c11 cannot activate a waiting
+      // worker by themselves — their "refresh" button messages the controller
+      // instead of the waiter, so those devices would stay old forever. Free
+      // them once; activation deletes the old caches, so later installs wait.
+      const LEGACY = [
+        'jessica-v5',
+        'jessica-f1fdf17-',
+        'jessica-dd786ba-',
+        'jessica-8ea70e6-',
+        'jessica-86f72cc-',
+      ]
+      const keys = await caches.keys()
+      const stuckOnOldWorker = keys.some((key) => LEGACY.some((prefix) => key.startsWith(prefix)))
+      const cache = await caches.open(SHELL)
+      await cache.addAll(CORE).catch(() => undefined)
+      if (stuckOnOldWorker) await self.skipWaiting()
+    })(),
+  )
 })
 
 self.addEventListener('activate', (event) => {
