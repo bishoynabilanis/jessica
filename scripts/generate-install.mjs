@@ -239,7 +239,7 @@ ${FIXES.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`)
 </div>
 <a class="back" href="../">← رجوع للصفحة الرئيسية</a>
 </article></div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../sitemap/">خريطة الموقع</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
 </body>
 </html>
 `

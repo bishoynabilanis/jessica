@@ -1020,7 +1020,7 @@ ${body}
 </div>
 <a class="back" href="../">← كل مواضيع المذاكرة</a>
 </article></div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../../">الرئيسية</a> · <a href="../">المواضيع</a> · <a href="../../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../../">الرئيسية</a> · <a href="../../sitemap/">خريطة الموقع</a> · <a href="../">المواضيع</a> · <a href="../../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
 <script type="application/ld+json">
 ${JSON.stringify(faqLd)}
 </script>
@@ -1111,7 +1111,7 @@ ${TOPICS.map((topic) => `  <a class="topic-card" href="./${topic.slug}/">
   <a href="../install/">📲 تثبيت التطبيق</a>
 </div>
 </div></main>
-<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
+<footer><div class="wrap foot"><span>© Jessica — صُنع في مصر 🇪🇬</span><span><a href="../">الرئيسية</a> · <a href="../sitemap/">خريطة الموقع</a> · <a href="../grades/">كتب الوزارة</a> · <a href="../../">التطبيق</a></span></div></footer>
 </body>
 </html>
 `
