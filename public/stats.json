@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T09:06:23.175Z",
+  "updatedAt": "2026-11-17T07:39:58.121Z",
   "days": [
     {
       "date": "2026-11-15",
@@ -12,6 +12,12 @@
       "opens": 1617,
       "installs": null,
       "pwa": null
+    },
+    {
+      "date": "2026-11-17",
+      "opens": 3250,
+      "installs": null,
+      "pwa": 2
     }
   ]
 }
