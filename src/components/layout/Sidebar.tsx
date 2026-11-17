@@ -121,7 +121,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         <Brand />
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3">
+      <nav data-testid="sidebar-nav" className="min-h-0 flex-1 touch-pan-y space-y-1 overflow-y-auto overscroll-contain px-3 pb-4">
         {navItems.map((item) => {
           const Icon = item.icon
           return (

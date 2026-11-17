@@ -52,6 +52,28 @@ export function AppShell() {
     }
   }, [])
 
+  // Navigating from the drawer must always dismiss it, even if the link's own
+  // click handler is skipped (a route re-render, a lazy page, a fast tap).
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
+  // While the drawer is open, Escape closes it and the page behind cannot
+  // scroll — otherwise a swipe inside the menu feels like a frozen screen.
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = previous
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen])
+
   useEffect(() => {
     if (updateReady)
       pushToast({
@@ -74,14 +96,12 @@ export function AppShell() {
         <SidebarContent />
       </aside>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div className="fixed inset-0 z-[80] lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      {menuOpen && (
+          <motion.div className="fixed inset-0 z-[80] lg:hidden" data-testid="sidebar-drawer" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="absolute inset-0 bg-ink-950/70 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
             <motion.div
               initial={{ x: rtl ? 280 : -280 }}
               animate={{ x: 0 }}
-              exit={{ x: rtl ? 280 : -280 }}
               transition={{ type: 'spring', stiffness: 320, damping: 32 }}
               className="safe-top relative h-full w-[280px] border-e border-line bg-app"
             >
@@ -89,7 +109,7 @@ export function AppShell() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+
 
       <div className="lg:ps-[264px]">
         <TopBar onMenu={() => setMenuOpen(true)} />
