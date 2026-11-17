@@ -46,6 +46,7 @@ import {
   LazyReader,
   LazyReadingCoach,
   LazyReport,
+  LazyMonthlyReport,
   LazySettings,
   LazySkills,
   LazySolve,
@@ -234,6 +235,7 @@ export default function App() {
           <Route path="calendar" element={<LazyExamCalendar />} />
           <Route path="solve" element={<LazySolve />} />
           <Route path="report" element={<LazyReport />} />
+          <Route path="report-month" element={<LazyMonthlyReport />} />
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
           <Route path="diagnostic" element={<LazyDiagnostic />} />

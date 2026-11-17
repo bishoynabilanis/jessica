@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   AlertTriangle,
   BarChart3,
@@ -141,6 +141,11 @@ export function Report() {
         icon={<BarChart3 className="h-5 w-5" />}
         actions={
           <>
+            <Link to="/report-month">
+              <Button size="sm" variant="secondary">
+                <CalendarRange className="h-3.5 w-3.5" /> {tr('Monthly report')}
+              </Button>
+            </Link>
             <Button variant="secondary" size="sm" onClick={copy}>
               <Copy className="h-3.5 w-3.5" /> {tr('Copy')}
             </Button>

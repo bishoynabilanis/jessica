@@ -600,6 +600,14 @@ html.kids-mode .pdf-stage {
 .certificate-print { display: none; }
 
 @media print {
+  /* No transition may leave a half-faded element on the sheet. */
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
   body * { visibility: hidden; }
   .print-report,
   .print-report *,

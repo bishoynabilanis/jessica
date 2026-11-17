@@ -47,6 +47,11 @@ export function readAppState(): Persisted | null {
   return readJSON<Persisted>(STATE_KEY)
 }
 
+/** Another child's saved blob, for comparisons without switching profiles. */
+export function readSlotState(id: string): Persisted | null {
+  return readJSON<Persisted>(slotKey(id))
+}
+
 function newId(): string {
   return `p_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`
 }

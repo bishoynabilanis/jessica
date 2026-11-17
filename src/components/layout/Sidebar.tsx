@@ -62,6 +62,7 @@ export const navItems = [
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText },
   { path: '/teacher', label: tr("Class mode"), icon: Users },
   { path: '/report', label: tr("Parent report"), icon: BarChart3 },
+  { path: '/report-month', label: tr("Monthly report"), icon: CalendarCheck },
   { path: '/constellation', label: tr("Learning Map"), icon: Orbit },
   { path: '/vault', label: tr("Vault"), icon: Bookmark },
   { path: '/mascot', label: tr("Companion"), icon: Sparkles },

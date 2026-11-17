@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
+  BarChart3,
   ArrowRight,
   Bell,
   BookOpen,
@@ -491,6 +492,9 @@ function ParentDashboard() {
         </Button>
         <Button variant="secondary" onClick={() => window.print()}>
           <Printer className="h-4 w-4" /> {tr('Print / save PDF')}
+        </Button>
+        <Button variant="secondary" onClick={() => navigate('/report-month')}>
+          <BarChart3 className="h-4 w-4" /> {tr('Monthly report')}
         </Button>
         <Button variant="ghost" onClick={() => navigate('/kids')}>
           <Star className="h-4 w-4" /> {tr('Back to the kids world')}

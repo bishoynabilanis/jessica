@@ -33,6 +33,7 @@ const more = [
   { path: '/worksheets', label: tr("Worksheets"), icon: FileText, hint: tr("Printable sheets and answer keys") },
   { path: '/teacher', label: tr("Class mode"), icon: Users, hint: tr("Assignments, QR codes and results") },
   { path: '/report', label: tr("Parent report"), icon: BarChart3, hint: tr("Minutes, subjects and weak topics") },
+  { path: '/report-month', label: tr("Monthly report"), icon: CalendarCheck, hint: tr("Four weeks, skills and a printable PDF") },
   { path: '/constellation', label: tr("Learning map"), icon: Orbit, hint: tr("Your curriculum constellation") },
   { path: '/vault', label: tr("Knowledge Vault"), icon: Bookmark, hint: tr("Saved answers & rules") },
   { path: '/mascot', label: tr("Companion"), icon: Sparkles, hint: tr("Evolve your study buddy") },
