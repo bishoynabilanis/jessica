@@ -94,7 +94,19 @@ test('the cloud engine explains the missing key and stays chosen after a reload'
   await expect(page.getByTestId('voice-cloud-panel')).toBeVisible()
 })
 
-test('with a Gemini key the cloud panel offers the real Egyptian voices', async ({ page }) => {
+test('with a Gemini key the cloud panel picks a real Egyptian female voice', async ({ page }) => {
+  const requests: string[] = []
+  page.on('request', (request) => {
+    if (request.url().includes('/voices?')) requests.push(request.url())
+  })
+  await page.route('**/voices?*', (route) =>
+    route.fulfill({
+      json: {
+        voices: [{ id: 'voice_eg_female', display_name: 'Salma', accent: 'Egyptian', gender: 'female' }],
+      },
+    }),
+  )
+
   await page.addInitScript((profile) => {
     if (window.localStorage.getItem('jessica-profile-v1')) return
     window.localStorage.setItem('jessica-profile-v1', JSON.stringify(profile))
@@ -104,12 +116,15 @@ test('with a Gemini key the cloud panel offers the real Egyptian voices', async 
   await page.goto('/#/settings')
   await page.getByTestId('voice-engine-cloud').click()
   await expect(page.getByTestId('voice-cloud-panel')).toBeVisible()
-  await expect(page.getByTestId('voice-cloud-load')).toBeVisible()
   await expect(page.getByTestId('voice-cloud-key-note')).toHaveCount(0)
 
-  await page.getByTestId('voice-cloud-select').selectOption('Kore')
+  // The app asks the library for an Egyptian *female* voice and selects it.
+  await expect(page.getByTestId('voice-cloud-select')).toHaveValue('voice_eg_female')
+  await expect(page.getByTestId('voice-cloud-select')).toContainText('Salma')
+  expect(requests.some((url) => url.includes('gender=female'))).toBe(true)
+
   await page.reload()
-  await expect(page.getByTestId('voice-cloud-select')).toHaveValue('Kore')
+  await expect(page.getByTestId('voice-cloud-select')).toHaveValue('voice_eg_female')
 })
 
 const arabicMistake = {

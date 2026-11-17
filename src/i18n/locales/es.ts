@@ -1,6 +1,12 @@
 /** Spanish UI dictionary. Machine-translated, with reviewed core terms. */
 export const spanish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "Idioma: {name}",
+
+  "Female": "Femenina",
+  "Male": "Masculina",
+  "Neutral": "Neutra",
+
   "You are on the latest version.": "Estás en la última versión.",
   "A new version is installing — the app will reload.": "Se está instalando una nueva versión: la app se recargará.",
   "Update check is not available here.": "La comprobación de actualizaciones no está disponible aquí.",

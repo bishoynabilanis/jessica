@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { detectSpeechLang, normalizeForSpeech } from '../../src/lib/speechText'
+import { pickVoice } from '../../src/lib/voices'
 
 test('Arabic text forces an Arabic voice even when the caller asked for English', () => {
   expect(detectSpeechLang('اقرأ الدرس ده بصوت عالي', 'en')).toBe('ar')
@@ -15,4 +16,14 @@ test('maths is spoken as words in Arabic, untouched elsewhere', () => {
   expect(normalizeForSpeech('٢ + ٢ = ٤')).toContain('يساوي')
   expect(normalizeForSpeech('٢ + ٢ = ٤')).toContain('زائد')
   expect(normalizeForSpeech('1 + 1 = 2')).toBe('1 + 1 = 2')
+})
+
+const voice = (name: string, lang: string) =>
+  ({ name, lang, voiceURI: name, localService: true, default: false }) as SpeechSynthesisVoice
+
+test('the device prefers a female voice, because Jessica is a woman', () => {
+  expect(pickVoice([voice('Majed', 'ar-001'), voice('Mariam', 'ar-001')], 'ar-EG')?.name).toBe('Mariam')
+  expect(pickVoice([voice('Daniel', 'en-US'), voice('Samantha', 'en-US')], 'en-US')?.name).toBe('Samantha')
+  // never invent one: a device with only a male voice still gets a voice
+  expect(pickVoice([voice('Majed', 'ar-001')], 'ar-EG')?.name).toBe('Majed')
 })

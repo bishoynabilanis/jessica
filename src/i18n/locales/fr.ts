@@ -1,6 +1,12 @@
 /** French UI dictionary. Machine-translated, with reviewed core terms. */
 export const french: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "Langue : {name}",
+
+  "Female": "Féminine",
+  "Male": "Masculine",
+  "Neutral": "Neutre",
+
   "You are on the latest version.": "Tu es sur la dernière version.",
   "A new version is installing — the app will reload.": "Une nouvelle version s’installe — l’app va se recharger.",
   "Update check is not available here.": "La vérification des mises à jour n’est pas disponible ici.",

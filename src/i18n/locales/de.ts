@@ -1,6 +1,12 @@
 /** German UI dictionary. Machine-translated, with reviewed core terms. */
 export const german: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "Sprache: {name}",
+
+  "Female": "Weiblich",
+  "Male": "Männlich",
+  "Neutral": "Neutral",
+
   "You are on the latest version.": "Du hast die neueste Version.",
   "A new version is installing — the app will reload.": "Eine neue Version wird installiert — die App lädt neu.",
   "Update check is not available here.": "Die Update-Prüfung ist hier nicht verfügbar.",

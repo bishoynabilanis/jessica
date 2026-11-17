@@ -1,10 +1,10 @@
-import { Suspense, lazy, useEffect, useMemo, useState } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Bell, Camera, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Share2, Sun, Zap } from 'lucide-react'
+import { Bell, Camera, Check, ChevronDown, Flame, Gem, Languages, Menu, MoonStar, Search, Settings2, Share2, Sun, Zap } from 'lucide-react'
 import { useApp, levelInfo } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { Mascot } from '@/components/Mascot'
-import { firstName } from '@/lib/utils'
+import { cn, firstName } from '@/lib/utils'
 import { navItems } from './Sidebar'
 import { RiddleModal } from '@/components/RiddleModal'
 // These two modals pull in markdown/katex and the QR encoder, which are only
@@ -13,7 +13,7 @@ const VisionSolverModal = lazy(() =>
   import('@/components/tools/VisionSolver').then((m) => ({ default: m.VisionSolverModal })),
 )
 const ShareAppModal = lazy(() => import('@/components/ShareApp').then((m) => ({ default: m.ShareAppModal })))
-import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
+import { tr, UI_LANGUAGES } from '@/i18n'
 import { isKidsWorld } from '@/lib/stage'
 
 export function TopBar({ onMenu }: { onMenu: () => void }) {
@@ -23,9 +23,21 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
   const { updateSettings } = useApp()
   const toggleQuickPanel = useUI((s) => s.toggleQuickPanel)
   const [riddleOpen, setRiddleOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
   const [scanOpen, setScanOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const { level, into, needed, progress } = levelInfo(xp)
+  const langRef = useRef<HTMLDivElement>(null)
+  const currentLanguage = UI_LANGUAGES.find((item) => item.id === settings.language) || UI_LANGUAGES[0]
+
+  useEffect(() => {
+    if (!langOpen) return
+    const onDown = (event: MouseEvent) => {
+      if (!langRef.current?.contains(event.target as Node)) setLangOpen(false)
+    }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [langOpen])
   const kids = isKidsWorld(settings.gradeLevel, settings.primaryUi)
 
   const pageLabel = useMemo(() => {
@@ -134,15 +146,54 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
             >
               {settings.theme === 'dark' ? <MoonStar className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </button>
-            <button
-              onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
-              className="flex h-9 items-center gap-1.5 rounded-xl px-2 text-[11px] font-extrabold uppercase text-muted transition hover:bg-white/5 hover:text-main"
-              aria-label={tr('Switch language')}
-              title={tr('Switch language')}
-            >
-              <Languages className="h-4 w-4" />
-              <span className="hidden sm:inline">{UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.short}</span>
-            </button>
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setLangOpen((value) => !value)}
+                className="flex h-9 items-center gap-1.5 rounded-xl border border-line bg-card-2 px-2 text-muted transition hover:border-aurora-400/40 hover:text-main"
+                aria-label={tr('Language: {name}', { name: currentLanguage.label })}
+                aria-expanded={langOpen}
+                title={tr('Language: {name}', { name: currentLanguage.label })}
+                data-testid="language-button"
+              >
+                <Languages className="h-4 w-4 shrink-0" />
+                <span
+                  className="max-w-[74px] truncate text-[11px] font-bold sm:max-w-[110px]"
+                  dir="ltr"
+                  data-testid="language-current"
+                >
+                  {currentLanguage.label}
+                </span>
+                <ChevronDown className={cn('hidden h-3 w-3 transition sm:inline', langOpen && 'rotate-180')} />
+              </button>
+              {langOpen && (
+                <div
+                  className="absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-line bg-ink-900 p-1.5 shadow-card"
+                  data-testid="language-menu"
+                  role="menu"
+                >
+                  {UI_LANGUAGES.map((item) => (
+                    <button
+                      key={item.id}
+                      role="menuitemradio"
+                      aria-checked={item.id === settings.language}
+                      onClick={() => {
+                        updateSettings({ language: item.id })
+                        setLangOpen(false)
+                      }}
+                      className={cn(
+                        'flex w-full items-center justify-between gap-2 rounded-xl px-2.5 py-1.5 text-start text-[12px] font-bold transition',
+                        item.id === settings.language
+                          ? 'bg-aurora-400/15 text-aurora-200'
+                          : 'text-muted hover:bg-white/5 hover:text-main',
+                      )}
+                    >
+                      <span>{item.label}</span>
+                      {item.id === settings.language && <Check className="h-3.5 w-3.5" />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button
               onClick={() => navigate('/settings')}
               className="grid h-9 w-9 place-items-center rounded-xl text-muted transition hover:bg-white/5 hover:text-main"

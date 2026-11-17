@@ -82,6 +82,12 @@ const speechFallback: Record<string, string> = {
   id: 'id-ID',
 }
 
+const FEMALE_NAME =
+  /mariam|maryam|hoda|salma|sana|amal|laila|layla|zeina|zainab|nour|hala|rana|dalia|maya|zira|samantha|victoria|karen|moira|tessa|fiona|serena|allison|ava|susan|hazel|aria|jenny|michelle|sonia|natasha|clara|female/i
+
+const MALE_NAME =
+  /majed|maged|shakir|tarik|tariq|ahmed|mohamed|hassan|omar|daniel|alex|fred|tom|david|mark|george|james|oliver|arthur|guy|ryan|male/i
+
 function scoreVoice(voice: SpeechSynthesisVoice, locale: string) {
   const voiceLang = voice.lang.replace('_', '-').toLowerCase()
   const target = locale.toLowerCase()
@@ -95,6 +101,9 @@ function scoreVoice(voice: SpeechSynthesisVoice, locale: string) {
   if (voice.localService) score += 6
   if (/natural|neural|premium|enhanced|google/i.test(voice.name)) score += 8
   if (/compact|espeak|robot/i.test(voice.name)) score -= 4
+  // Jessica is a woman; the device should sound like one when it can.
+  if (FEMALE_NAME.test(voice.name)) score += 18
+  if (MALE_NAME.test(voice.name)) score -= 14
   // An Egyptian voice is worth a detour: it is the dialect the app speaks in.
   if (target.startsWith('ar-eg')) {
     if (/egypt|masr|maged|hoda|shakir|salma|nour/i.test(voice.name)) score += 35

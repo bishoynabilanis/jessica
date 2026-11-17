@@ -1,6 +1,12 @@
 /** Turkish UI dictionary. Machine-translated, with reviewed core terms. */
 export const turkish: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "Dil: {name}",
+
+  "Female": "Kadın",
+  "Male": "Erkek",
+  "Neutral": "Nötr",
+
   "You are on the latest version.": "En son sürümdesin.",
   "A new version is installing — the app will reload.": "Yeni sürüm kuruluyor — uygulama yeniden yüklenecek.",
   "Update check is not available here.": "Güncelleme denetimi burada kullanılamıyor.",

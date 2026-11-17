@@ -3,7 +3,7 @@ import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { pickVoice, resolveVoiceLocale } from '@/lib/voices'
 import { detectSpeechLang, isArabicText, normalizeForSpeech } from '@/lib/speechText'
-import { synthesizeSpeech } from '@/lib/ai/tts'
+import { resolveEgyptianVoice, synthesizeSpeech } from '@/lib/ai/tts'
 import { tr } from '@/i18n'
 
 export const speechLang: Record<string, string> = {
@@ -116,7 +116,19 @@ export function useSpeech() {
       const key = geminiKey()
       if (!key) return false
       const settings = useApp.getState().settings
-      const cacheKey = `${settings.ttsVoice}|${lang}|${text}`
+      // A prebuilt Gemini voice is generic Arabic. Ask the library for a real
+      // Egyptian voice (female, matching Jessica) and remember it once.
+      let voice = (settings.ttsVoice || '').trim()
+      if (!voice.startsWith('voice_')) {
+        const resolved = await resolveEgyptianVoice(key)
+        if (resolved) {
+          voice = resolved
+          useApp.getState().updateSettings({ ttsVoice: resolved })
+        }
+      }
+      if (!voice) voice = 'Kore'
+      if (requestRef.current !== requestId) return true
+      const cacheKey = `${voice}|${lang}|${text}`
       const cached = cloudCache.get(cacheKey)
       if (cached) {
         if (requestRef.current !== requestId) return true
@@ -141,10 +153,9 @@ export function useSpeech() {
         const blob = await synthesizeSpeech({
           key,
           text,
-          voice: settings.ttsVoice || 'Sulafat',
-          style: isArabicText(text)
-            ? 'warm, friendly Egyptian Arabic teacher speaking to a child'
-            : 'warm, friendly teacher',
+          voice,
+          // Accent comes from the voice itself; the style only sets warmth.
+          style: isArabicText(text) ? 'warm, friendly, clear teacher' : 'warm, friendly, clear teacher',
         })
         if (requestRef.current !== requestId) return true
         const url = URL.createObjectURL(blob)

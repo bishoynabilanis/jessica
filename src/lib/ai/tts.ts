@@ -17,7 +17,14 @@ export interface CloudVoice {
   id: string
   name: string
   accent?: string
+  gender?: string
   description?: string
+}
+
+export interface VoiceQuery {
+  /** Jessica is a woman, so the default query asks for a female voice. */
+  gender?: 'female' | 'male' | 'neutral'
+  signal?: AbortSignal
 }
 
 interface VoiceRow {
@@ -26,20 +33,25 @@ interface VoiceRow {
   display_name?: string
   displayName?: string
   accent?: string
+  gender?: string
   description?: string
 }
 
 const voiceId = (row: VoiceRow): string => row.id || (row.name || '').split('/').pop() || ''
 
 /** Ask the voice library for real Egyptian voices for this key. */
-export async function listEgyptianVoices(key: string, signal?: AbortSignal): Promise<CloudVoice[]> {
+export async function listEgyptianVoices(
+  key: string,
+  query: VoiceQuery = { gender: 'female' },
+): Promise<CloudVoice[]> {
   const params = new URLSearchParams()
   params.append('language_code', 'ar-EG')
   params.append('accent', 'Egyptian')
+  if (query.gender) params.append('gender', query.gender)
   params.append('page_size', '50')
   const response = await fetch(`${ROOT}/voices?${params.toString()}`, {
     headers: { 'x-goog-api-key': key.trim() },
-    signal,
+    signal: query.signal,
   })
   if (!response.ok) throw new Error(`voice list failed (${response.status})`)
   const data = (await response.json()) as { voices?: VoiceRow[] }
@@ -48,6 +60,7 @@ export async function listEgyptianVoices(key: string, signal?: AbortSignal): Pro
       id: voiceId(row),
       name: row.display_name || row.displayName || voiceId(row),
       accent: row.accent,
+      gender: row.gender,
       description: row.description,
     }))
     .filter((voice) => voice.id)
@@ -136,4 +149,24 @@ export async function synthesizeSpeech({ key, text, voice, style, signal }: Synt
   const base64 = collectBase64(payload)
   if (!base64) throw new Error('speech returned no audio')
   return toBlob(base64)
+}
+
+let resolvedKey = ''
+let resolvedVoice: Promise<string | null> | null = null
+
+/**
+ * The app should not ship a formal MSA voice and call it Egyptian. Ask the
+ * library for a real Egyptian voice, female by default, and remember the answer
+ * for the session. Returns null when the key has no access.
+ */
+export async function resolveEgyptianVoice(key: string): Promise<string | null> {
+  const clean = key.trim()
+  if (!clean) return null
+  if (resolvedKey !== clean || !resolvedVoice) {
+    resolvedKey = clean
+    resolvedVoice = listEgyptianVoices(clean, { gender: 'female' })
+      .then((voices) => voices[0]?.id || null)
+      .catch(() => null)
+  }
+  return resolvedVoice
 }

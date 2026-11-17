@@ -1,6 +1,12 @@
 /** Indonesian UI dictionary. Machine-translated, with reviewed core terms. */
 export const indonesian: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "Bahasa: {name}",
+
+  "Female": "Perempuan",
+  "Male": "Laki-laki",
+  "Neutral": "Netral",
+
   "You are on the latest version.": "Kamu memakai versi terbaru.",
   "A new version is installing — the app will reload.": "Versi baru sedang dipasang — aplikasi akan dimuat ulang.",
   "Update check is not available here.": "Pemeriksaan pembaruan tidak tersedia di sini.",

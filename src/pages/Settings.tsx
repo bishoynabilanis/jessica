@@ -179,6 +179,15 @@ export function Settings() {
     }
   }
 
+  // Choosing the cloud engine should not land on a generic prebuilt voice; fetch
+  // the real Egyptian (female) voices once a Gemini key is present.
+  useEffect(() => {
+    if (settings.voiceEngine !== 'cloud' || !geminiReady) return
+    if (cloudVoices.length || loadingCloudVoices) return
+    void loadCloudVoices()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settings.voiceEngine, geminiReady])
+
   const [draftKey, setDraftKey] = useState(apiKey)
   const [showKey, setShowKey] = useState(false)
   const [keyStatus, setKeyStatus] = useState<KeyStatus>(apiKey ? 'valid' : 'idle')
@@ -762,16 +771,17 @@ export function Settings() {
                     >
                       {cloudVoices.length === 0 && (
                         <>
-                          <option value="Sulafat">Sulafat — {tr('warm')}</option>
-                          <option value="Kore">Kore — {tr('clear')}</option>
-                          <option value="Aoede">Aoede — {tr('light')}</option>
-                          <option value="Achird">Achird — {tr('friendly')}</option>
+                          <option value="Kore">Kore — {tr('Female')}</option>
+                          <option value="Aoede">Aoede — {tr('Female')}</option>
+                          <option value="Leda">Leda — {tr('Female')}</option>
+                          <option value="Achernar">Achernar — {tr('Female')}</option>
                         </>
                       )}
                       {cloudVoices.map((voice) => (
                         <option key={voice.id} value={voice.id}>
                           {voice.name}
                           {voice.accent ? ` · ${voice.accent}` : ''}
+                          {voice.gender ? ` · ${tr(voice.gender === 'female' ? 'Female' : voice.gender === 'male' ? 'Male' : 'Neutral')}` : ''}
                         </option>
                       ))}
                     </select>

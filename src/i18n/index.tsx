@@ -14,6 +14,12 @@ export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
   /* --------------------------- Question bank --------------------------- */
+  "Language: {name}": "اللغة: {name}",
+
+  "Female": "أنثى",
+  "Male": "ذكر",
+  "Neutral": "محايد",
+
   "You are on the latest version.": "انت على آخر إصدار.",
   "A new version is installing — the app will reload.": "فيه نسخة جديدة بتتنزل — التطبيق هيعيد التحميل.",
   "Update check is not available here.": "التحقق من التحديثات مش متاح هنا.",
