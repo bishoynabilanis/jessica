@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { LabChallenge, LabFrame, LabRange, LabStat } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 type Shape = 'rectangle' | 'triangle' | 'circle'
 
@@ -28,6 +29,7 @@ export function GeometryLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div>
@@ -123,5 +125,13 @@ export function GeometryLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('Use width and height to find area and perimeter.')}
+        question={tr('A square has a side of 5 cm. What is its area?')}
+        options={['10 cm²', '20 cm²', '25 cm²']}
+        correct={2}
+        explanation={tr('Area = side × side = 5 × 5 = 25 cm².')}
+      />
+    </>
   )
 }

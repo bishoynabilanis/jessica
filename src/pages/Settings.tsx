@@ -506,7 +506,7 @@ export function Settings() {
             <div className="mt-3 flex items-start gap-2 rounded-xl border border-sun/20 bg-sun/10 p-2.5">
               <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sun" />
               <p className="text-[10px] leading-relaxed text-sun/90">
-                {tr("Requests go straight from your browser to Google. No middle server ever sees your key. Never share it\n                publicly or commit it to a repository.")}
+                {tr('Requests go straight from your browser to Google. No middle server ever sees your key. Never share it publicly or commit it to a repository.')}
               </p>
             </div>
           </Card>
@@ -970,7 +970,7 @@ export function Settings() {
               <h2 className="text-sm font-extrabold text-main">{tr("Daily riddle reminder")}</h2>
             </div>
             <p className="text-[10px] leading-relaxed text-muted">
-              {tr("At 4 PM Jessica can nudge you with the daily riddle. Because this app is fully static, reminders only fire\n              while the app is open — no background push server is involved.")}
+              {tr('At 4 PM Jessica can nudge you with the daily riddle. Because this app is fully static, reminders only fire while the app is open — no background push server is involved.')}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               <Button size="sm" variant={settings.notifications ? 'secondary' : 'primary'} onClick={enableNotifications}>
@@ -1005,7 +1005,7 @@ export function Settings() {
               <h2 className="text-sm font-extrabold text-main">{tr("Install & offline")}</h2>
             </div>
             <p className="text-[10px] leading-relaxed text-muted">
-              {tr("Install Jessica for a full-screen app with an offline shell. Your books, flashcards, vault and progress are\n              stored on this device, so they keep working without a connection. AI features need internet.")}
+              {tr('Install Jessica for a full-screen app with an offline shell. Your books, flashcards, vault and progress are stored on this device, so they keep working without a connection. AI features need internet.')}
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <Button
@@ -1338,7 +1338,7 @@ export function Settings() {
               />
             </div>
             <p className="mt-2 text-[9px] leading-relaxed text-muted-2">
-              {tr("Backups include XP, streaks, notes, planner, exams and settings — never your API key. Flashcards and chat\n              history live in IndexedDB and are not part of the JSON backup.")}
+              {tr('Backups include XP, streaks, notes, planner, exams and settings — never your API key. Flashcards and chat history live in IndexedDB and are not part of the JSON backup.')}
             </p>
           </Card>
 
@@ -1368,7 +1368,7 @@ export function Settings() {
               <h2 className="text-sm font-extrabold text-main">{tr("Danger zone")}</h2>
             </div>
             <p className="text-[10px] leading-relaxed text-muted">
-              {tr("Resetting clears XP, streaks, notes, planner, exam history, flashcards and chat threads. Your API key is\n              kept. Export a backup first if you want to return to this progress later.")}
+              {tr('Resetting clears XP, streaks, notes, planner, exam history, flashcards and chat threads. Your API key is kept. Export a backup first if you want to return to this progress later.')}
             </p>
             {!confirmReset ? (
               <Button size="sm" variant="danger" className="mt-2" onClick={() => setConfirmReset(true)}>

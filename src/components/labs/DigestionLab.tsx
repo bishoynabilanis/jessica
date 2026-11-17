@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { LabChallenge, LabFrame } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const ORGANS = [
   {
@@ -63,6 +64,7 @@ export function DigestionLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div className="flex items-center justify-between gap-2">
@@ -165,5 +167,13 @@ export function DigestionLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('Follow food through the digestive system.')}
+        question={tr('Where does most nutrient absorption happen?')}
+        options={['The stomach', 'The small intestine', 'The large intestine']}
+        correct={1}
+        explanation={tr('Villi in the small intestine absorb most of the nutrients.')}
+      />
+    </>
   )
 }

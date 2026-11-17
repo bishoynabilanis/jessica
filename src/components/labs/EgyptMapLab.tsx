@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { LabChallenge, LabFrame } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const REGIONS = [
   {
@@ -62,6 +63,7 @@ export function EgyptMapLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div>
@@ -132,5 +134,13 @@ export function EgyptMapLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr("Place Egypt's regions on the map.")}
+        question={tr('Which region lies east of the Gulf of Suez?')}
+        options={['Sinai', 'The Western Desert', 'The Delta']}
+        correct={0}
+        explanation={tr('Sinai sits east of the Suez Canal and the Gulf of Suez.')}
+      />
+    </>
   )
 }

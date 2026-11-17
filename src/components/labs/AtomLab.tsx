@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { LabChallenge, LabFrame, LabRange, LabStat } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const SYMBOLS = ['—', 'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca']
 const SHELL_CAPACITY = [2, 8, 8, 2]
@@ -32,6 +33,7 @@ export function AtomLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div className="flex items-center justify-between gap-2">
@@ -108,5 +110,13 @@ export function AtomLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('Build an atom and read its charge.')}
+        question={tr('An atom has 11 protons and 10 electrons. What is it?')}
+        options={['A neutral atom', 'A positive ion', 'A negative ion']}
+        correct={1}
+        explanation={tr('One more proton than electrons leaves a charge of +1.')}
+      />
+    </>
   )
 }

@@ -126,7 +126,7 @@ export function Onboarding() {
                     <span className="text-gradient">{tr("one smart app.")}</span>
                   </h1>
                   <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                    {tr("English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your\n                    textbook page. No accounts, no subscriptions, no data leaving your device.")}
+                    {tr('English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.')}
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-2">
                     {[

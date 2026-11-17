@@ -1,19 +1,38 @@
 import { useEffect, useRef, useState } from 'react'
+import type { LucideIcon } from 'lucide-react'
 import {
+  Activity,
+  ArrowLeftRight,
   Atom,
+  AudioWaveform,
+  BarChart3,
   Beaker,
+  BookText,
+  Calculator,
+  Clock,
+  CloudRain,
+  Flame,
   FlaskConical,
   Gauge,
   HeartPulse,
   Languages,
   Lightbulb,
   LineChart,
+  Magnet,
   Map,
+  Orbit,
+  Percent,
   PieChart,
   RotateCcw,
   Ruler,
+  Scale,
+  Search,
   Sparkles,
+  Sprout,
+  TestTube2,
+  Thermometer,
   Waves,
+  Wrench,
   Zap,
 } from 'lucide-react'
 import { PageHeader } from '@/components/common/PageHeader'
@@ -22,7 +41,7 @@ import { Card } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { cn } from '@/lib/utils'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 import { FractionsLab } from '@/components/labs/FractionsLab'
 import { GeometryLab } from '@/components/labs/GeometryLab'
 import { DensityLab } from '@/components/labs/DensityLab'
@@ -32,8 +51,69 @@ import { DigestionLab } from '@/components/labs/DigestionLab'
 import { EgyptMapLab } from '@/components/labs/EgyptMapLab'
 import { ParabolaLab } from '@/components/labs/ParabolaLab'
 import { EnglishLab } from '@/components/labs/EnglishLab'
+import { ReactionLab } from '@/components/labs/ReactionLab'
+import { StatesLab } from '@/components/labs/StatesLab'
+import { WaterCycleLab } from '@/components/labs/WaterCycleLab'
+import { MagnetismLab } from '@/components/labs/MagnetismLab'
+import { NumberLineLab } from '@/components/labs/NumberLineLab'
+import { BalanceLab } from '@/components/labs/BalanceLab'
+import { TimesLab } from '@/components/labs/TimesLab'
+import { ClockLab } from '@/components/labs/ClockLab'
+import { PlantsLab } from '@/components/labs/PlantsLab'
+import { SolarLab } from '@/components/labs/SolarLab'
+import { PhLab } from '@/components/labs/PhLab'
+import { HeatLab } from '@/components/labs/HeatLab'
+import { PercentLab } from '@/components/labs/PercentLab'
+import { StatsLab } from '@/components/labs/StatsLab'
+import { SoundLab } from '@/components/labs/SoundLab'
+import { LeverLab } from '@/components/labs/LeverLab'
+import { ArabicLab } from '@/components/labs/ArabicLab'
+import { CirculationLab } from '@/components/labs/CirculationLab'
+import { LabGuide } from '@/components/labs/LabGuide'
 
-type Lab = 'fractions' | 'geometry' | 'circuit' | 'refraction' | 'density' | 'forces' | 'atom' | 'digestion' | 'map' | 'parabola' | 'english'
+type Lab =
+  | 'fractions'
+  | 'geometry'
+  | 'circuit'
+  | 'refraction'
+  | 'density'
+  | 'forces'
+  | 'atom'
+  | 'digestion'
+  | 'map'
+  | 'parabola'
+  | 'english'
+  | 'reaction'
+  | 'states'
+  | 'water'
+  | 'magnet'
+  | 'numberline'
+  | 'balance'
+  | 'times'
+  | 'clock'
+  | 'plants'
+  | 'solar'
+  | 'ph'
+  | 'heat'
+  | 'percent'
+  | 'stats'
+  | 'sound'
+  | 'lever'
+  | 'arabic'
+  | 'circulation'
+
+type Stage = 'primary' | 'prep' | 'both'
+
+type LabMeta = {
+  id: Lab
+  label: string
+  hint: string
+  icon: LucideIcon
+  tint: string
+  subject: string
+  stage: Stage
+  grades: [number, number]
+}
 
 const media = [
   { id: 'water', label: 'Water', n: 1.33, color: '#5cc8ff' },
@@ -41,11 +121,67 @@ const media = [
   { id: 'diamond', label: 'Diamond', n: 2.42, color: '#e0f2fe' },
 ]
 
+const LAB_META: LabMeta[] = [
+  { id: 'numberline', label: 'Number line lab', hint: 'Add and subtract by jumping', icon: ArrowLeftRight, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [1, 3] },
+  { id: 'times', label: 'Times tables lab', hint: 'See multiplication as rows', icon: Calculator, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [2, 4] },
+  { id: 'clock', label: 'Clock lab', hint: 'Read the time on the hands', icon: Clock, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Mathematics', stage: 'primary', grades: [2, 4] },
+  { id: 'fractions', label: 'Fractions lab', hint: 'Equivalent fractions, visually', icon: PieChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'primary', grades: [3, 5] },
+  { id: 'geometry', label: 'Geometry lab', hint: 'Area and perimeter, live', icon: Ruler, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'primary', grades: [4, 6] },
+  { id: 'magnet', label: 'Magnetism lab', hint: 'Attract and repel', icon: Magnet, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'primary', grades: [4, 6] },
+  { id: 'plants', label: 'Plants lab', hint: 'What a leaf needs to grow', icon: Sprout, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Biology', stage: 'primary', grades: [4, 6] },
+  { id: 'solar', label: 'Solar system lab', hint: 'Distance and year length', icon: Orbit, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'primary', grades: [4, 6] },
+  { id: 'english', label: 'English lab', hint: 'Hear the word, pick the meaning', icon: Languages, tint: 'from-sky/20 to-card-2 text-sky', subject: 'English', stage: 'primary', grades: [3, 6] },
+  { id: 'arabic', label: 'Arabic lab', hint: 'Dissect the sentence', icon: BookText, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Arabic', stage: 'both', grades: [4, 9] },
+  { id: 'percent', label: 'Percent lab', hint: 'Discounts and sale prices', icon: Percent, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'prep', grades: [6, 8] },
+  { id: 'balance', label: 'Balance lab', hint: 'Solve an equation with a scale', icon: Scale, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'prep', grades: [7, 9] },
+  { id: 'stats', label: 'Statistics lab', hint: 'Mean, median, mode and range', icon: BarChart3, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Mathematics', stage: 'prep', grades: [7, 9] },
+  { id: 'parabola', label: 'Parabola lab', hint: 'a, b, c and the curve', icon: LineChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: 'Mathematics', stage: 'prep', grades: [8, 9] },
+  { id: 'circuit', label: 'Circuit lab', hint: 'Voltage, resistance and brightness', icon: Zap, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'prep', grades: [7, 9] },
+  { id: 'density', label: 'Density lab', hint: 'Float, sink and density', icon: Beaker, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [7, 8] },
+  { id: 'forces', label: 'Forces lab', hint: 'Force, mass and acceleration', icon: Gauge, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'prep', grades: [7, 9] },
+  { id: 'heat', label: 'Heat lab', hint: 'Which rod conducts fastest', icon: Flame, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Science', stage: 'prep', grades: [7, 9] },
+  { id: 'sound', label: 'Sound lab', hint: 'Frequency, pitch and volume', icon: AudioWaveform, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [7, 8] },
+  { id: 'refraction', label: 'Light lab', hint: 'Snell’s law and refraction', icon: Waves, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'prep', grades: [8, 9] },
+  { id: 'lever', label: 'Lever lab', hint: 'Moments and mechanical advantage', icon: Wrench, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Science', stage: 'prep', grades: [7, 9] },
+  { id: 'atom', label: 'Atom lab', hint: 'Protons, neutrons and electrons', icon: Atom, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
+  { id: 'reaction', label: 'Reaction lab', hint: 'Mix two reagents and observe', icon: FlaskConical, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
+  { id: 'ph', label: 'Acids and bases lab', hint: 'Measure pH and litmus', icon: TestTube2, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: 'Chemistry', stage: 'prep', grades: [8, 9] },
+  { id: 'digestion', label: 'Digestion lab', hint: 'Follow the food step by step', icon: HeartPulse, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Biology', stage: 'prep', grades: [7, 8] },
+  { id: 'circulation', label: 'Circulation lab', hint: 'Heart rate and oxygen', icon: Activity, tint: 'from-coral/20 to-card-2 text-coral', subject: 'Biology', stage: 'prep', grades: [8, 9] },
+  { id: 'map', label: 'Egypt map lab', hint: 'Regions, Nile and Sinai', icon: Map, tint: 'from-sun/20 to-card-2 text-sun', subject: 'Geography', stage: 'both', grades: [4, 9] },
+  { id: 'states', label: 'States lab', hint: 'Heat, particles and states', icon: Thermometer, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'both', grades: [4, 7] },
+  { id: 'water', label: 'Water cycle lab', hint: 'Evaporation, clouds and rain', icon: CloudRain, tint: 'from-sky/20 to-card-2 text-sky', subject: 'Science', stage: 'both', grades: [4, 7] },
+]
+
+const SUBJECTS = ['all', 'Mathematics', 'Science', 'Chemistry', 'Biology', 'Geography', 'English', 'Arabic']
+
+const gradeLabel = (grades: [number, number]) => `${tr('Grades')} ${num(grades[0])}–${num(grades[1])}`
+
+function filterLabs(stage: 'all' | 'primary' | 'prep', subject: string, query: string) {
+  const needle = query.trim().toLowerCase()
+  return LAB_META.filter((item) => {
+    const stageOk = stage === 'all' || item.stage === 'both' || item.stage === stage
+    const subjectOk = subject === 'all' || item.subject === subject
+    const textOk = !needle || tr(item.label).toLowerCase().includes(needle) || tr(item.hint).toLowerCase().includes(needle)
+    return stageOk && subjectOk && textOk
+  })
+}
+
 export function Labs() {
-  const [lab, setLab] = useState<Lab>('circuit')
+  const gradeLevel = useApp.getState().settings.gradeLevel
+  const [lab, setLab] = useState<Lab>(() => (gradeLevel <= 6 ? 'fractions' : 'circuit'))
+  const [stageFilter, setStageFilter] = useState<'all' | 'primary' | 'prep'>(() => (gradeLevel <= 6 ? 'primary' : 'prep'))
+  const [subjectFilter, setSubjectFilter] = useState('all')
+  const [query, setQuery] = useState('')
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
   const awarded = useRef<Record<string, boolean>>({})
+  const visible = filterLabs(stageFilter, subjectFilter, query)
+
+  useEffect(() => {
+    const list = filterLabs(stageFilter, subjectFilter, query)
+    if (list.length && !list.some((item) => item.id === lab)) setLab(list[0].id)
+  }, [stageFilter, subjectFilter, query, lab])
 
   const reward = (key: string) => {
     if (awarded.current[key]) return
@@ -59,50 +195,98 @@ export function Labs() {
       <PageHeader
         eyebrow={tr("Virtual labs")}
         title={tr("Touch the science")}
-        subtitle={tr("Change a variable, watch the result, then explain it back to Jessica. Maths, physics and chemistry, running in your browser.")}
+        subtitle={tr("Twenty-nine simulations across the Egyptian curriculum, from grade 1 to grade 9. Change a variable, watch the result, then explain it back to Jessica.")}
         icon={<FlaskConical className="h-5 w-5" />}
       />
 
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          { id: 'fractions' as Lab, label: tr('Fractions lab'), hint: tr('Equivalent fractions, visually'), icon: PieChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: tr('Mathematics') },
-          { id: 'geometry' as Lab, label: tr('Geometry lab'), hint: tr('Area and perimeter, live'), icon: Ruler, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: tr('Mathematics') },
-          { id: 'circuit' as Lab, label: tr("Circuit lab"), hint: tr("Voltage, resistance and brightness"), icon: Zap, tint: 'from-sun/20 to-card-2 text-sun', subject: tr('Science') },
-          { id: 'refraction' as Lab, label: tr("Light lab"), hint: tr("Snell’s law and refraction"), icon: Waves, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('Science') },
-          { id: 'density' as Lab, label: tr('Density lab'), hint: tr('Float, sink and density'), icon: Beaker, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('Science') },
-          { id: 'forces' as Lab, label: tr('Forces lab'), hint: tr('Force, mass and acceleration'), icon: Gauge, tint: 'from-coral/20 to-card-2 text-coral', subject: tr('Science') },
-          { id: 'atom' as Lab, label: tr('Atom lab'), hint: tr('Protons, neutrons and electrons'), icon: Atom, tint: 'from-violet-neon/20 to-card-2 text-violet-200', subject: tr('Chemistry') },
-          { id: 'digestion' as Lab, label: tr('Digestion lab'), hint: tr('Follow the food step by step'), icon: HeartPulse, tint: 'from-coral/20 to-card-2 text-coral', subject: tr('Biology') },
-          { id: 'map' as Lab, label: tr('Egypt map lab'), hint: tr('Regions, Nile and Sinai'), icon: Map, tint: 'from-sun/20 to-card-2 text-sun', subject: tr('Geography') },
-          { id: 'parabola' as Lab, label: tr('Parabola lab'), hint: tr('a, b, c and the curve'), icon: LineChart, tint: 'from-aurora-400/20 to-card-2 text-aurora-200', subject: tr('Mathematics') },
-          { id: 'english' as Lab, label: tr('English lab'), hint: tr('Hear the word, pick the meaning'), icon: Languages, tint: 'from-sky/20 to-card-2 text-sky', subject: tr('English') },
-        ].map((item) => (
-          <button
-            key={item.id}
-            onClick={() => {
-              setLab(item.id)
-              reward(item.id)
-            }}
-            className={cn(
-              'flex items-center gap-3 rounded-2xl border bg-gradient-to-br p-4 text-left transition',
-              item.tint,
-              lab === item.id ? 'border-aurora-400/40 shadow-glow' : 'border-line hover:border-line-strong',
-            )}
-          >
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10">
-              <item.icon className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-sm font-extrabold text-main">{tr(item.label)}</p>
-              <p className="text-[10px] text-muted">{item.hint}</p>
-              <span className="mt-0.5 inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">
-                {item.subject}
-              </span>
-            </div>
-            <Sparkles className="ml-auto h-4 w-4 text-aurora-300/60" />
-          </button>
-        ))}
+      <div className="space-y-2 rounded-3xl border border-line bg-card p-3">
+        <div className="flex flex-wrap items-center gap-1.5">
+          {([
+            ['all', tr('All labs')],
+            ['primary', tr('Primary')],
+            ['prep', tr('Prep')],
+          ] as Array<['all' | 'primary' | 'prep', string]>).map(([id, label]) => (
+            <button
+              key={id}
+              onClick={() => setStageFilter(id)}
+              data-testid={`lab-filter-${id}`}
+              className={cn(
+                'rounded-full border px-3 py-1 text-[11px] font-bold transition',
+                stageFilter === id ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200' : 'border-line bg-card-2 text-muted hover:text-main',
+              )}
+            >
+              {label}
+            </button>
+          ))}
+          <span className="ms-auto text-[10px] font-bold text-muted-2" data-testid="lab-count">
+            {visible.length} {tr('labs')}
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {SUBJECTS.map((id) => (
+            <button
+              key={id}
+              onClick={() => setSubjectFilter(id)}
+              data-testid={`lab-subject-${id}`}
+              className={cn(
+                'rounded-full border px-2.5 py-0.5 text-[10px] font-bold transition',
+                subjectFilter === id ? 'border-violet-neon/50 bg-violet-neon/15 text-violet-200' : 'border-line bg-card-2 text-muted-2 hover:text-main',
+              )}
+            >
+              {id === 'all' ? tr('All subjects') : tr(id)}
+            </button>
+          ))}
+        </div>
+        <label className="flex items-center gap-2 rounded-xl border border-line bg-card-2 px-3 py-2">
+          <Search className="h-3.5 w-3.5 shrink-0 text-muted-2" />
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={tr('Search the labs')}
+            data-testid="lab-search"
+            className="w-full bg-transparent text-[11px] font-bold text-main outline-none placeholder:text-muted-2"
+          />
+        </label>
       </div>
+
+      {visible.length === 0 ? (
+        <p className="rounded-3xl border border-line bg-card p-6 text-center text-[11px] font-bold text-muted" data-testid="lab-empty">
+          {tr('No lab matches this filter yet.')}
+        </p>
+      ) : (
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                setLab(item.id)
+                reward(item.id)
+              }}
+              className={cn(
+                'flex items-start gap-3 rounded-2xl border bg-gradient-to-br p-4 text-start transition',
+                item.tint,
+                lab === item.id ? 'border-aurora-400/40 shadow-glow' : 'border-line hover:border-line-strong',
+              )}
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white/10">
+                <item.icon className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-extrabold text-main">{tr(item.label)}</span>
+                <span className="block text-[10px] text-muted">{tr(item.hint)}</span>
+                <span className="mt-1 flex flex-wrap gap-1">
+                  <span className="inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">{tr(item.subject)}</span>
+                  <span className="inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">
+                    {item.stage === 'both' ? tr('All levels') : item.stage === 'primary' ? tr('Primary') : tr('Prep')}
+                  </span>
+                  <span className="inline-block rounded-full bg-white/5 px-1.5 py-0.5 text-[8px] font-bold text-muted-2">{gradeLabel(item.grades)}</span>
+                </span>
+              </span>
+              <Sparkles className={cn('mt-0.5 h-4 w-4 shrink-0', lab === item.id ? 'text-aurora-300' : 'text-aurora-300/40')} />
+            </button>
+          ))}
+        </div>
+      )}
 
       {lab === 'fractions' && <FractionsLab onInteract={() => reward('fractions')} />}
       {lab === 'geometry' && <GeometryLab onInteract={() => reward('geometry')} />}
@@ -115,6 +299,24 @@ export function Labs() {
       {lab === 'map' && <EgyptMapLab onInteract={() => reward('map')} />}
       {lab === 'parabola' && <ParabolaLab onInteract={() => reward('parabola')} />}
       {lab === 'english' && <EnglishLab onInteract={() => reward('english')} />}
+      {lab === 'reaction' && <ReactionLab onInteract={() => reward('reaction')} />}
+      {lab === 'states' && <StatesLab onInteract={() => reward('states')} />}
+      {lab === 'water' && <WaterCycleLab onInteract={() => reward('water')} />}
+      {lab === 'magnet' && <MagnetismLab onInteract={() => reward('magnet')} />}
+      {lab === 'numberline' && <NumberLineLab onInteract={() => reward('numberline')} />}
+      {lab === 'balance' && <BalanceLab onInteract={() => reward('balance')} />}
+      {lab === 'times' && <TimesLab onInteract={() => reward('times')} />}
+      {lab === 'clock' && <ClockLab onInteract={() => reward('clock')} />}
+      {lab === 'plants' && <PlantsLab onInteract={() => reward('plants')} />}
+      {lab === 'solar' && <SolarLab onInteract={() => reward('solar')} />}
+      {lab === 'ph' && <PhLab onInteract={() => reward('ph')} />}
+      {lab === 'heat' && <HeatLab onInteract={() => reward('heat')} />}
+      {lab === 'percent' && <PercentLab onInteract={() => reward('percent')} />}
+      {lab === 'stats' && <StatsLab onInteract={() => reward('stats')} />}
+      {lab === 'sound' && <SoundLab onInteract={() => reward('sound')} />}
+      {lab === 'lever' && <LeverLab onInteract={() => reward('lever')} />}
+      {lab === 'arabic' && <ArabicLab onInteract={() => reward('arabic')} />}
+      {lab === 'circulation' && <CirculationLab onInteract={() => reward('circulation')} />}
     </div>
   )
 }
@@ -129,6 +331,7 @@ function CircuitLab({ onInteract }: { onInteract: () => void }) {
   const glow = Math.round(28 + brightness * 70)
 
   return (
+    <>
     <div className="grid gap-4 lg:grid-cols-[1.35fr_1fr]">
       <Card className="p-4 sm:p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -257,6 +460,14 @@ function CircuitLab({ onInteract }: { onInteract: () => void }) {
         </Card>
       </div>
     </div>
+      <LabGuide
+        goal={tr('Discover Ohm’s law by changing voltage and resistance.')}
+        question={tr('You double the resistance and keep the voltage. What happens to the current?')}
+        options={[tr('It doubles'), tr('It halves'), tr('It stays the same')]}
+        correct={1}
+        explanation={tr('I = V ÷ R, so doubling R halves the current.')}
+      />
+    </>
   )
 }
 
@@ -359,6 +570,7 @@ function RefractionLab({ onInteract }: { onInteract: () => void }) {
   }, [angle, medium, refracted])
 
   return (
+    <>
     <div className="grid gap-4 lg:grid-cols-[1.35fr_1fr]">
       <Card className="p-4 sm:p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -446,5 +658,13 @@ function RefractionLab({ onInteract }: { onInteract: () => void }) {
         </Card>
       </div>
     </div>
+      <LabGuide
+        goal={tr('See why a straw looks bent in a glass of water.')}
+        question={tr('Light moves from air into water. Which way does it bend?')}
+        options={[tr('Toward the normal'), tr('Away from the normal'), tr('It does not bend')]}
+        correct={0}
+        explanation={tr('Water is denser than air, so light slows down and bends toward the normal.')}
+      />
+    </>
   )
 }

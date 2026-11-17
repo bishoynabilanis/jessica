@@ -10,9 +10,7 @@ const QUIZ_URL = 'https://is.gd/jessicaquiz'
 const COMMUNITY_URL = 'https://is.gd/jessicagroup'
 
 export function shareMessage() {
-  return tr(
-    'Try Jessica — a free study app for Egyptian students: Ministry books, an AI tutor, exams and flashcards. Free, offline and no account needed.',
-  )
+  return tr('Try Jessica — a free study app for Egyptian students: Ministry books, an AI tutor, exams and flashcards. Free, offline and no account needed.')
 }
 
 export function ShareAppModal({ open, onClose }: { open: boolean; onClose: () => void }) {

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { tr } from '@/i18n'
 import { LabChallenge, LabFrame, LabRange, LabStat } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const W = 360
 const H = 300
@@ -36,6 +37,7 @@ export function ParabolaLab({ onInteract }: { onInteract: () => void }) {
   const equation = `y = ${aa}x² ${b >= 0 ? '+' : '−'} ${Math.abs(b)}x ${c >= 0 ? '+' : '−'} ${Math.abs(c)}`
 
   return (
+    <>
     <LabFrame
       header={
         <div>
@@ -94,5 +96,13 @@ export function ParabolaLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('See how a, b and c shape the curve.')}
+        question={tr('In y = x², which way does the parabola open?')}
+        options={['Upward', 'Downward', 'Sideways']}
+        correct={0}
+        explanation={tr('Here a = 1, a positive number, so the arms open upward.')}
+      />
+    </>
   )
 }

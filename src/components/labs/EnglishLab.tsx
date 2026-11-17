@@ -4,6 +4,7 @@ import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { useSpeech } from '@/lib/speech'
 import { LabChallenge, LabFrame, LabStat } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const WORDS = [
   { word: 'Hello', meaning: 'مرحبًا', emoji: '👋', hint: 'تحية عند اللقاء' },
@@ -58,6 +59,7 @@ export function EnglishLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div className="flex items-center justify-between gap-2">
@@ -150,5 +152,13 @@ export function EnglishLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('Match English words to their Arabic meaning.')}
+        question={tr('What does “library” mean?')}
+        options={['مكتبة', 'مطبخ', 'ملعب']}
+        correct={0}
+        explanation={tr('A library is a place full of books — مكتبة.')}
+      />
+    </>
   )
 }

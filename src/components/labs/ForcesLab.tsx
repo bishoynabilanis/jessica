@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { LabChallenge, LabFrame, LabRange, LabStat } from './LabControls'
+import { LabGuide } from './LabGuide'
 
 const G = 9.8
 
@@ -22,6 +23,7 @@ export function ForcesLab({ onInteract }: { onInteract: () => void }) {
   }
 
   return (
+    <>
     <LabFrame
       header={
         <div className="flex items-center justify-between gap-2">
@@ -84,5 +86,13 @@ export function ForcesLab({ onInteract }: { onInteract: () => void }) {
         </>
       }
     />
+      <LabGuide
+        goal={tr('See how force, mass and friction change acceleration.')}
+        question={tr('The same force acts on double the mass. What happens to the acceleration?')}
+        options={['It doubles', 'It halves', 'It stays the same']}
+        correct={1}
+        explanation={tr('a = F ÷ m, so doubling the mass halves the acceleration.')}
+      />
+    </>
   )
 }
