@@ -18,7 +18,13 @@ npm install
 npm run studio          # معاينة تفاعلية
 npm run render          # out/intro.mp4 (5s, 1080×1920, 30fps)
 npm run still           # out/intro.png
+
+# الفيديو الـHybrid (تسجيل حقيقي + طبقات):
+node record-hybrid.mjs
+npx remotion render src/index.ts JessicaHybrid out/hybrid.mp4
 ```
+
+`JessicaHybrid` بيقرأ `public/screen.mp4` (تسجيل Playwright نظيف) ويضيف فوقه العنوان، الكالوت، شريط التقدم، والكارت النهائي، مع موسيقى `public/music.m4a`. الناتج: `marketing/growth/videos/hybrid-labs.mp4`.
 
 `remotion.config.ts` بيستخدم Chrome المثبّت على الجهاز بدل تنزيل Headless Shell.
 
