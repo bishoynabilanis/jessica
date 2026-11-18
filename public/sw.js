@@ -26,15 +26,14 @@ self.addEventListener('install', (event) => {
       const keys = await caches.keys()
       const stuckOnOldWorker = keys.some((key) => LEGACY.some((prefix) => key.startsWith(prefix)))
       const cache = await caches.open(SHELL)
-      // Add one by one: addAll is atomic, so a single missing decorative file
-      // would otherwise leave the whole shell uncached.
-      for (const url of [...CORE, ...ASSETS]) {
-        try {
-          await cache.add(url)
-        } catch {
-          /* skip a missing optional asset */
-        }
-      }
+      // Parallel with a hard timeout: addAll is atomic and a sequential loop
+      // can stall install on a slow CDN, leaving the app with no shell at all.
+      await Promise.allSettled(
+        [...CORE, ...ASSETS].map(async (url) => {
+          const response = await fetch(url, { signal: AbortSignal.timeout(8000) })
+          if (response.ok) await cache.put(url, response)
+        }),
+      )
       if (stuckOnOldWorker) await self.skipWaiting()
     })(),
   )

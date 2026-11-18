@@ -29,13 +29,16 @@ function buildVersion(): Plugin {
         const entryAssets = [...html.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g)].map((match) => match[1])
         // Fonts and images referenced from the built CSS never appear in
         // index.html; precache them too so Arabic text keeps its webfont offline.
-        const cssAssets = readdirSync(path.join(dir, 'assets'))
-          .filter((file) => file.endsWith('.css'))
+        const entryCss = entryAssets.filter((file) => file.endsWith('.css'))
+        const cssAssets = entryCss
           .flatMap((file) =>
-            [...readFileSync(path.join(dir, 'assets', file), 'utf8').matchAll(/url\(\.\/([^)'"]+)\)/g)].map(
+            [...readFileSync(path.join(dir, file.replace('./', '')), 'utf8').matchAll(/url\(\.\/([^)'"]+)\)/g)].map(
               (match) => `./assets/${match[1]}`,
             ),
           )
+          // Only the shell faces: Cairo (Arabic UI) and Plus Jakarta (Latin).
+          // KaTeX/Atkinson live in lazy chunks and stay runtime-cached.
+          .filter((url) => url.endsWith('.woff2') && /(cairo|plus-jakarta)-/.test(url))
         const assets = [...new Set([...entryAssets, ...cssAssets])]
         sw = `self.JESSICA_ASSETS = ${JSON.stringify(assets)};\n${sw}`
         writeFileSync(swPath, sw)
