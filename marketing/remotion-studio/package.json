@@ -1,0 +1,22 @@
+{
+  "name": "jessica-remotion-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Programmatic motion graphics for Jessica videos (Remotion).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts JessicaIntro out/intro.mp4",
+    "still": "remotion still src/index.ts JessicaIntro out/intro.png --frame=75"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.544",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.544"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
