@@ -5,6 +5,9 @@ const VERSION = 'jessica-__BUILD__'
 const SHELL = `${VERSION}-shell`
 const RUNTIME = `${VERSION}-runtime`
 const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']
+// The build injects the hashed entry bundles here (index.html references), so
+// a first visit can boot with no network even before any route is revisited.
+const ASSETS = Array.isArray(self.JESSICA_ASSETS) ? self.JESSICA_ASSETS : []
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -23,7 +26,15 @@ self.addEventListener('install', (event) => {
       const keys = await caches.keys()
       const stuckOnOldWorker = keys.some((key) => LEGACY.some((prefix) => key.startsWith(prefix)))
       const cache = await caches.open(SHELL)
-      await cache.addAll(CORE).catch(() => undefined)
+      // Add one by one: addAll is atomic, so a single missing decorative file
+      // would otherwise leave the whole shell uncached.
+      for (const url of [...CORE, ...ASSETS]) {
+        try {
+          await cache.add(url)
+        } catch {
+          /* skip a missing optional asset */
+        }
+      }
       if (stuckOnOldWorker) await self.skipWaiting()
     })(),
   )
@@ -47,7 +58,7 @@ self.addEventListener('fetch', (event) => {
   // Local textbook PDFs & fonts: cache-first for instant offline reading.
   if (url.pathname.includes('/books/') || /\.(woff2?|ttf|otf|png|jpg|jpeg|svg|webp|mjs)$/.test(url.pathname)) {
     event.respondWith(
-      caches.match(req).then(
+      caches.match(req, { ignoreVary: true }).then(
         (hit) =>
           hit ||
           fetch(req).then((res) => {
@@ -64,7 +75,7 @@ self.addEventListener('fetch', (event) => {
   // against yesterday's version and misses today's update.
   if (url.pathname.endsWith('/version.json') || url.pathname.endsWith('/sw.js')) {
     event.respondWith(
-      fetch(req, { cache: 'no-store' }).catch(() => caches.match(req)),
+      fetch(req, { cache: 'no-store' }).catch(() => caches.match(req, { ignoreVary: true })),
     )
     return
   }
@@ -78,14 +89,14 @@ self.addEventListener('fetch', (event) => {
           caches.open(SHELL).then((c) => c.put('./index.html', copy))
           return res
         })
-        .catch(() => caches.match('./index.html')),
+        .catch(() => caches.match('./index.html', { ignoreVary: true })),
     )
     return
   }
 
   // Assets: stale-while-revalidate.
   event.respondWith(
-    caches.match(req).then((hit) => {
+    caches.match(req, { ignoreVary: true }).then((hit) => {
       const network = fetch(req)
         .then((res) => {
           const copy = res.clone()

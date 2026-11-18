@@ -1,7 +1,7 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 
 /**
  * Every deploy must be distinguishable to the browser. The service worker is
@@ -22,7 +22,22 @@ function buildVersion(): Plugin {
       const dir = path.resolve(__dirname, 'dist')
       const swPath = path.join(dir, 'sw.js')
       try {
-        const sw = readFileSync(swPath, 'utf8').replace(/__BUILD__/g, version)
+        let sw = readFileSync(swPath, 'utf8').replace(/__BUILD__/g, version)
+        // Precache the hashed entry JS/CSS (and modulepreload chunks) so the
+        // very first visit can boot offline; lazy routes stay runtime-cached.
+        const html = readFileSync(path.join(dir, 'index.html'), 'utf8')
+        const entryAssets = [...html.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g)].map((match) => match[1])
+        // Fonts and images referenced from the built CSS never appear in
+        // index.html; precache them too so Arabic text keeps its webfont offline.
+        const cssAssets = readdirSync(path.join(dir, 'assets'))
+          .filter((file) => file.endsWith('.css'))
+          .flatMap((file) =>
+            [...readFileSync(path.join(dir, 'assets', file), 'utf8').matchAll(/url\(\.\/([^)'"]+)\)/g)].map(
+              (match) => `./assets/${match[1]}`,
+            ),
+          )
+        const assets = [...new Set([...entryAssets, ...cssAssets])]
+        sw = `self.JESSICA_ASSETS = ${JSON.stringify(assets)};\n${sw}`
         writeFileSync(swPath, sw)
         writeFileSync(path.join(dir, 'version.json'), JSON.stringify({ version }, null, 2))
       } catch {

@@ -9,6 +9,7 @@ export function Toggle({
   icon,
   disabled,
   className,
+  ariaLabel,
 }: {
   checked: boolean
   onChange: (checked: boolean) => void
@@ -17,6 +18,7 @@ export function Toggle({
   icon?: React.ReactNode
   disabled?: boolean
   className?: string
+  ariaLabel?: string
 }) {
   if (!label) {
     return (
@@ -24,6 +26,7 @@ export function Toggle({
         type="button"
         role="switch"
         aria-checked={checked}
+        aria-label={ariaLabel}
         disabled={disabled}
         onClick={() => onChange(!checked)}
         className={cn(
@@ -52,7 +55,7 @@ export function Toggle({
           {description && <p className="mt-0.5 text-[11px] leading-relaxed text-muted">{tr(description)}</p>}
         </div>
       </div>
-      <Toggle checked={checked} onChange={onChange} disabled={disabled} />
+      <Toggle checked={checked} onChange={onChange} disabled={disabled} ariaLabel={label} />
     </div>
   )
 }
