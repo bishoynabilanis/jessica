@@ -3,9 +3,8 @@ import { Cloud, Cpu, Download, Loader2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ProgressBar } from '@/components/ui/Card'
 import { useApp } from '@/store/useApp'
-import { useUI } from '@/store/useUI'
 import { OFFLINE_MODEL_SIZE_GB, proxyConfigured } from '@/lib/ai/config'
-import { clearOfflineModel, loadOfflineModel, offlineReady, offlineSupport } from '@/lib/ai/offline'
+import { useOfflineModel } from '@/lib/ai/useOfflineModel'
 import { trialRemaining } from '@/lib/ai/trial'
 import { cn } from '@/lib/utils'
 import { num, tr } from '@/i18n'
@@ -18,13 +17,8 @@ export function AiModeCard() {
   const settings = useApp((s) => s.settings)
   const apiKey = useApp((s) => s.apiKey)
   const updateSettings = useApp((s) => s.updateSettings)
-  const pushToast = useUI((s) => s.pushToast)
+  const model = useOfflineModel()
 
-  const support = offlineSupport()
-  const [ready, setReady] = useState(() => offlineReady())
-  const [downloading, setDownloading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [status, setStatus] = useState('')
   const [remaining, setRemaining] = useState(() => trialRemaining())
 
   useEffect(() => {
@@ -32,33 +26,9 @@ export function AiModeCard() {
     return () => window.clearInterval(id)
   }, [])
 
-  const download = async () => {
-    if (!support.ok || downloading) return
-    setDownloading(true)
-    setProgress(0)
-    setStatus(tr('Downloading the model… first time only.'))
-    try {
-      await loadOfflineModel((report) => {
-        setProgress(Math.round(report.progress * 100))
-        if (report.text) setStatus(report.text)
-      })
-      setReady(true)
-      updateSettings({ aiMode: 'offline' })
-      pushToast({ title: tr('The model is ready — AI now works offline.'), type: 'success' })
-    } catch {
-      pushToast({ title: tr('The download did not finish. Try again or use cloud mode.'), type: 'error' })
-    } finally {
-      setDownloading(false)
-      setStatus('')
-    }
-  }
-
-  const removeModel = async () => {
-    await clearOfflineModel()
-    setReady(false)
-    if (settings.aiMode === 'offline') updateSettings({ aiMode: 'cloud' })
-    pushToast({ title: tr('The model files were removed.'), type: 'info' })
-  }
+  const support = model.support
+  const ready = model.ready
+  const downloading = model.downloading
 
   const cloudHint = apiKey.trim()
     ? tr('You are using your own key — no daily limit.')
@@ -119,20 +89,20 @@ export function AiModeCard() {
           {downloading ? (
             <div>
               <div className="flex items-center justify-between text-[10px] font-bold text-muted">
-                <span className="truncate">{status || tr('Downloading the model…')}</span>
-                <span>{num(progress)}%</span>
+                <span className="truncate">{model.status || tr('Downloading the model…')}</span>
+                <span>{num(model.progress)}%</span>
               </div>
-              <ProgressBar value={progress} height="h-1.5" className="mt-1" />
+              <ProgressBar value={model.progress} height="h-1.5" className="mt-1" />
             </div>
           ) : ready ? (
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-[10px] font-bold text-aurora-200">{tr('Model loaded on this device.')}</span>
-              <Button size="sm" variant="ghost" onClick={removeModel} data-testid="ai-offline-delete">
+              <Button size="sm" variant="ghost" onClick={model.remove} data-testid="ai-offline-delete">
                 <Trash2 className="h-3.5 w-3.5" /> {tr('Delete the model files to free space')}
               </Button>
             </div>
           ) : (
-            <Button size="sm" variant="secondary" onClick={download} data-testid="ai-offline-download">
+            <Button size="sm" variant="secondary" onClick={() => void model.start()} data-testid="ai-offline-download">
               <Download className="h-3.5 w-3.5" /> {tr('Download the model for offline use')}
             </Button>
           )}

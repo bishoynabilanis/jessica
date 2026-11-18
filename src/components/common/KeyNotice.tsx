@@ -1,20 +1,23 @@
-import { Cpu, KeyRound, Sparkles, Volume2, VolumeX } from 'lucide-react'
+import { Cpu, Download, KeyRound, Sparkles, Volume2, VolumeX } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useApp } from '@/store/useApp'
 import { useSpeech } from '@/lib/speech'
 import { proxyConfigured } from '@/lib/ai/config'
 import { notifyAiNeed } from '@/lib/ai/setup'
-import { offlineReady, offlineSupport } from '@/lib/ai/offline'
+import { offlineReady } from '@/lib/ai/offline'
+import { useOfflineModel } from '@/lib/ai/useOfflineModel'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 
 export function KeyNotice({ compact }: { compact?: boolean }) {
   const apiKey = useApp((s) => s.apiKey)
+  // Hooks run before any early return: the banner disappears once a key exists.
+  const model = useOfflineModel()
   if (apiKey.trim()) return null
 
-  const ready = offlineReady()
-  const support = offlineSupport()
+  const ready = model.ready
+  const support = model.support
   const trial = proxyConfigured()
 
   // Nothing to sell here: everything the device can do for free is already on.
@@ -53,11 +56,25 @@ export function KeyNotice({ compact }: { compact?: boolean }) {
           </p>
         </div>
       </div>
-      <Link to="/settings">
-        <Button size="sm" variant="secondary" className="shrink-0 border-sun/30 text-sun">
-          {support.ok ? tr('Download the model') : tr('Add key')} <Sparkles className="h-3.5 w-3.5" />
+      {support.ok ? (
+        <Button
+          size="sm"
+          variant="secondary"
+          className="shrink-0 border-sun/30 text-sun"
+          loading={model.downloading}
+          onClick={() => void model.start()}
+          data-testid="key-notice-download"
+        >
+          <Download className="h-3.5 w-3.5" />
+          {model.downloading ? `${num(model.progress)}%` : tr('Download the model')}
         </Button>
-      </Link>
+      ) : (
+        <Link to="/settings">
+          <Button size="sm" variant="secondary" className="shrink-0 border-sun/30 text-sun">
+            {tr('Add key')} <Sparkles className="h-3.5 w-3.5" />
+          </Button>
+        </Link>
+      )}
     </div>
   )
 }

@@ -423,7 +423,7 @@ export async function generateText(opts: GenerateOptions): Promise<string> {
     }
     if (!offlineReady()) {
       notifyAiNeed('setup')
-      throw new GeminiError(tr('The offline model is not loaded. Download it from settings first (~1.8 GB).'), 0)
+      throw new GeminiError(tr('The offline model is not loaded yet. Download it once (~1.8 GB).'), 0)
     }
     const text = await offlineGenerate(promptText(opts), {
       temperature: opts.temperature ?? 0.4,

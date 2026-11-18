@@ -15,8 +15,10 @@ import { Mascot } from '@/components/Mascot'
 import { Button } from '@/components/ui/Button'
 import { AddBookModal } from '@/components/library/AddBookModal'
 import { KeyTutorial } from '@/components/KeyTutorial'
+import { OfflineModelSetup } from '@/components/ai/OfflineModelSetup'
 import { useApp } from '@/store/useApp'
 import { validateKey } from '@/lib/gemini'
+import { offlineReady, offlineSupport } from '@/lib/ai/offline'
 import { PROVIDERS, providerFor } from '@/lib/providers'
 import { officialFor, type OfficialBook } from '@/data/officialBooks'
 import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
@@ -44,6 +46,8 @@ export function SetupGate() {
   const [message, setMessage] = useState(apiKey ? tr('Key saved on this device.') : '')
   const [pendingFile, setPendingFile] = useState<File | null>(null)
   const [catalog, setCatalog] = useState<OfficialBook | null>(null)
+  const [modelReady, setModelReady] = useState(offlineReady)
+  const [modelSupported] = useState(() => offlineSupport().ok)
   const fileInput = useRef<HTMLInputElement>(null)
 
   const provider = providerFor(settings.aiProvider)
@@ -54,7 +58,8 @@ export function SetupGate() {
     return officialFor(grade, 'Term 1', 'All', settings.schoolType).filter((book) => allowed.includes(book.subject)).slice(0, 6)
   }, [grade, settings.schoolType])
   const keyOptional = settings.keyOptional
-  const keyDone = Boolean(apiKey.trim()) || keyOptional
+  // A downloaded model already is the AI, so the key step is done without a key.
+  const keyDone = Boolean(apiKey.trim()) || keyOptional || modelReady
   const bookDone = customBooks.length > 0
   const done = keyDone && bookDone
 
@@ -147,17 +152,21 @@ export function SetupGate() {
                 {keyDone ? <Check className="h-5 w-5" /> : <KeyRound className="h-5 w-5" />}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-extrabold text-main">{tr('1. Connect your AI key')}</p>
+                <p className="text-sm font-extrabold text-main">{tr('1. Turn on the AI tutor')}</p>
                 <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
-                  {tr('Free from Google AI Studio. It is stored in this browser only and never sent anywhere else.')}
+                  {modelSupported
+                    ? tr('Two free ways: download the model once, or add your own key. Either way it stays on this device.')
+                    : tr('Free from Google AI Studio. It is stored in this browser only and never sent anywhere else.')}
                 </p>
 
                 {keyDone ? (
                   <p className="mt-2 flex items-center gap-1.5 text-[10px] font-bold text-aurora-200">
-                    <Check className="h-3 w-3" /> {tr('Key connected.')}
+                    <Check className="h-3 w-3" />
+                    {apiKey.trim() ? tr('Key connected.') : tr('The AI is on — no key needed.')}
                   </p>
                 ) : (
                   <div className="mt-2.5 space-y-2">
+                    <OfflineModelSetup onReady={() => setModelReady(true)} withKeyDivider />
                     <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
                       {PROVIDERS.map((option) => (
                         <button

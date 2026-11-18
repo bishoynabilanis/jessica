@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { Mascot } from '@/components/Mascot'
 import { KeyTutorial } from '@/components/KeyTutorial'
+import { OfflineModelSetup } from '@/components/ai/OfflineModelSetup'
 import { Button } from '@/components/ui/Button'
 import { Segmented } from '@/components/ui/Toggle'
 import { useApp } from '@/store/useApp'
@@ -183,7 +184,7 @@ export function Onboarding() {
                   <p className="label text-aurora-300">{tr("Almost there")}</p>
                   <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">{tr("Make it comfortable.")}</h1>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    {tr("Choose how Jessica looks. The AI tutor needs a free Gemini key — you'll connect it on the next screen to unlock the app.")}
+                    {tr('Choose how Jessica looks. The AI is free either way — set it up on the next screen, with or without a key.')}
                   </p>
 
                   <div className="mt-4">
@@ -309,9 +310,11 @@ export function Onboarding() {
                     </button>
                   </div>
 
-                  <label className="mt-3 block">
+                  <OfflineModelSetup className="mt-3" withKeyDivider />
+
+                  <label className="mt-2 block">
                     <span className="label mb-1.5 flex items-center gap-1.5">
-                      <KeyRound className="h-3 w-3" /> {tr("Gemini API key")} <span className="normal-case tracking-normal text-muted-2">{tr("(required)")}</span>
+                      <KeyRound className="h-3 w-3" /> {tr("Gemini API key")} <span className="normal-case tracking-normal text-muted-2">{tr("(optional)")}</span>
                     </span>
                     <input
                       value={draftKey}
@@ -344,7 +347,7 @@ export function Onboarding() {
                       <Sparkles className="h-3 w-3" /> {tr("You’re all set")}
                     </p>
                     <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
-                      {tr("Next: connect your key and add one book. The app opens as soon as both are ready.")}
+                      {tr("Next: add one book to your library. The app opens as soon as it is there, and the AI can be switched on later.")}
                     </p>
                   </div>
                 </div>

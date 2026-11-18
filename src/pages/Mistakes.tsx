@@ -13,6 +13,8 @@ import {
 } from 'lucide-react'
 import type { QuizQuestion } from '@/types'
 import { useApp } from '@/store/useApp'
+import { notifyAiNeed } from '@/lib/ai/setup'
+import { offlineReady } from '@/lib/ai/offline'
 import { useUI } from '@/store/useUI'
 import { useSpeech } from '@/lib/speech'
 import { generateJSON, generateText } from '@/lib/gemini'
@@ -45,8 +47,9 @@ export function Mistakes() {
   const explain = async (id: string) => {
     const entry = mistakes.find((item) => item.id === id)
     if (!entry) return
-    if (!apiKey) {
-      pushToast({ title: tr('Add your Gemini key first'), type: 'info' })
+    // No key but the local model is downloaded: generateText handles it.
+    if (!apiKey && !offlineReady()) {
+      notifyAiNeed('setup')
       return
     }
     setExplaining(id)
@@ -79,8 +82,9 @@ Write in the app language: (1) why the chosen answer is wrong, (2) the correct i
   const makeSimilar = async (id: string) => {
     const entry = mistakes.find((item) => item.id === id)
     if (!entry) return
-    if (!apiKey) {
-      pushToast({ title: tr('Add your Gemini key first'), type: 'info' })
+    // No key but the local model is downloaded: generateText handles it.
+    if (!apiKey && !offlineReady()) {
+      notifyAiNeed('setup')
       return
     }
     setSimilarBusy(id)
