@@ -9,10 +9,13 @@
  * Both are pure functions so they can be tested without a browser.
  */
 
-const ARABIC = /[\u0600-\u06FF]/g
+const ARABIC_LETTER = /[\u0621-\u064A]/g
+const ARABIC_DIGIT = /[\u0660-\u0669]/g
 
 export function isArabicText(text: string): boolean {
-  return (text.match(ARABIC) || []).length >= 3
+  // Two letters is enough for a word; two Arabic-Indic digits are enough for
+  // a maths line like "٢ + ٢ = ٤", which is still Arabic to the reader.
+  return (text.match(ARABIC_LETTER) || []).length >= 2 || (text.match(ARABIC_DIGIT) || []).length >= 2
 }
 
 /** The language the voice should use, corrected from the text itself. */
