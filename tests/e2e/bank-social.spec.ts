@@ -59,3 +59,34 @@ test('social studies and computing are part of the bank', async ({ page }) => {
   await options.first().click()
   await expect(page.getByText(/Correct — here is why|Not quite — here is the trick/)).toBeVisible()
 })
+
+test('french and german are available in the question bank', async ({ page }) => {
+  await page.goto('/#/bank')
+
+  await expect(page.getByRole('button', { name: 'French' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'German' })).toBeVisible()
+
+  await page.getByRole('button', { name: 'French' }).click()
+  await page.getByTestId('bank-start').click()
+
+  await expect(page.getByText('Question 1 of 10')).toBeVisible()
+  await expect(page.locator('body')).toContainText('French')
+})
+
+test('official exam models run a timed paper and build a 7-day recovery plan', async ({ page }) => {
+  await page.goto('/#/bank')
+
+  await expect(page.getByTestId('bank-milestone-october')).toBeVisible()
+  await page.getByTestId('bank-milestone-october').click()
+
+  await expect(page.getByText('Question 1 of 15')).toBeVisible()
+  await expect(page.getByTestId('bank-clock')).toBeVisible()
+
+  // Hand in early so at least one skill is missed and the 7-day recovery plan appears.
+  await page.getByTestId('bank-submit').click()
+  await expect(page.getByText('October monthly assessment')).toBeVisible()
+  await expect(page.getByTestId('bank-recovery-plan')).toBeVisible()
+
+  await page.getByTestId('bank-recovery-plan').click()
+  await expect(page.getByTestId('bank-recovery-open')).toBeVisible()
+})

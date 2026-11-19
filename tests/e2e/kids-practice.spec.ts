@@ -63,3 +63,60 @@ test('a primary child can practise from the kids world and earn stars', async ({
   })
   expect(Object.keys(stats).length).toBeGreaterThan(0)
 })
+
+test('grades 4 to 6 unlock social studies, ICT and a mistakes review in kids mode', async ({ page }) => {
+  await page.addInitScript(() => {
+    const book = { id: 'k5', title: 'Maths 5', subject: 'Mathematics', grade: 5, term: 'Term 1', pageCount: 60, custom: true, units: [] }
+    window.localStorage.setItem(
+      'jessica-profile-v1',
+      JSON.stringify({
+        state: {
+          onboarded: true,
+          acceptedTerms: 1,
+          name: 'Omar',
+          apiKey: '',
+          model: 'gemini-1.5-flash',
+          xp: 150,
+          streak: 2,
+          coins: 4,
+          customBooks: [book],
+          completedTopics: [],
+          skillStats: {},
+          mistakes: [
+            {
+              id: 'm1',
+              subject: 'Social Studies',
+              topic: 'جغرافيا مصر',
+              question: 'عاصمة مصر هي؟',
+              options: ['القاهرة', 'الإسكندرية', 'أسوان', 'طنطا'],
+              answer: 0,
+              chosen: 1,
+              explanation: 'القاهرة هي عاصمة مصر.',
+              createdAt: Date.now(),
+            },
+          ],
+          dailyLog: {},
+          settings: {
+            language: 'en',
+            gradeLevel: 5,
+            curriculum: 'egypt',
+            schoolType: 'languages',
+            primaryUi: 'kids',
+            aiProvider: 'gemini',
+            theme: 'dark',
+            keyOptional: true,
+            quickStart: false,
+          },
+        },
+        version: 3,
+      }),
+    )
+    window.localStorage.setItem('jessica-disclaimer-v1', '1')
+  })
+
+  await page.goto('/#/kids/practice')
+  await expect(page.getByTestId('kids-practice-Social Studies')).toBeVisible()
+  await expect(page.getByTestId('kids-practice-ICT')).toBeVisible()
+  await expect(page.getByTestId('kids-practice-French')).toBeVisible()
+  await expect(page.getByTestId('kids-practice-mistakes')).toBeVisible()
+})

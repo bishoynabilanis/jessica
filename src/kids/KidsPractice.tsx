@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Check, Sparkles, Star, X } from 'lucide-react'
+import { ArrowRight, Check, RotateCcw, Sparkles, Star, X } from 'lucide-react'
 import { useApp } from '@/store/useApp'
 import { Button } from '@/components/ui/Button'
-import { buildDrill, type BankSubject, type BankQuestion } from '@/lib/questionBank'
+import { buildDrill, toBankSubject, type BankSubject, type BankQuestion } from '@/lib/questionBank'
 import { num, tr } from '@/i18n'
 import { cn } from '@/lib/utils'
 import { playCorrect, playFinish, playWrong } from '@/lib/sound'
@@ -12,11 +12,14 @@ import { SolutionSteps } from '@/components/tools/SolutionSteps'
 
 type Phase = 'pick' | 'quiz' | 'done'
 
-const SUBJECTS: Array<{ value: BankSubject; emoji: string }> = [
+const BASE_SUBJECTS: Array<{ value: BankSubject; emoji: string; minGrade?: number; languagesOnly?: boolean }> = [
   { value: 'Mathematics', emoji: '🔢' },
   { value: 'Science', emoji: '🔬' },
   { value: 'English', emoji: '🔤' },
   { value: 'Arabic', emoji: '📖' },
+  { value: 'Social Studies', emoji: '🌍', minGrade: 4 },
+  { value: 'ICT', emoji: '💻', minGrade: 4 },
+  { value: 'French', emoji: '🇫🇷', languagesOnly: true },
 ]
 
 const COUNT = 10
@@ -28,18 +31,50 @@ const COUNT = 10
 export function KidsPractice() {
   const navigate = useNavigate()
   const grade = useApp((s) => s.settings.gradeLevel)
+  const schoolType = useApp((s) => s.settings.schoolType)
   const addXP = useApp((s) => s.addXP)
   const recordSkill = useApp((s) => s.recordSkill)
+  const mistakes = useApp((s) => s.mistakes)
+  const addMistake = useApp((s) => s.addMistake)
+  const removeMistake = useApp((s) => s.removeMistake)
   const sound = useApp((s) => s.settings.sound !== false)
   const updateSettings = useApp((s) => s.updateSettings)
   const recordPractice = useApp((s) => s.recordPractice)
 
   const [phase, setPhase] = useState<Phase>('pick')
   const [subject, setSubject] = useState<BankSubject>('Mathematics')
+  const [mistakeRun, setMistakeRun] = useState(false)
   const [questions, setQuestions] = useState<BankQuestion[]>([])
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
   const [score, setScore] = useState(0)
+
+  const subjects = useMemo(
+    () =>
+      BASE_SUBJECTS.filter((item) => {
+        if (item.minGrade && grade < item.minGrade) return false
+        if (item.languagesOnly && schoolType !== 'languages') return false
+        return true
+      }),
+    [grade, schoolType],
+  )
+
+  const mistakeQuestions = useMemo<BankQuestion[]>(
+    () =>
+      mistakes
+        .filter((item) => item.options.length >= 2 && item.answer >= 0 && item.answer < item.options.length)
+        .slice(0, COUNT)
+        .map((item) => ({
+          id: item.id,
+          subject: toBankSubject(item.subject),
+          skill: item.topic || item.subject,
+          prompt: item.question,
+          options: item.options,
+          answer: item.answer,
+          explanation: item.explanation || '',
+        })),
+    [mistakes],
+  )
 
   const current = questions[index]
   const stars = useMemo(() => (score >= 9 ? 3 : score >= 6 ? 2 : score >= 1 ? 1 : 0), [score])
@@ -49,8 +84,19 @@ export function KidsPractice() {
   )
 
   const start = (next: BankSubject = subject) => {
+    setMistakeRun(false)
     setSubject(next)
     setQuestions(buildDrill(next, grade, COUNT))
+    setIndex(0)
+    setPicked(null)
+    setScore(0)
+    setPhase('quiz')
+  }
+
+  const startMistakes = () => {
+    if (!mistakeQuestions.length) return
+    setMistakeRun(true)
+    setQuestions(mistakeQuestions)
     setIndex(0)
     setPicked(null)
     setScore(0)
@@ -65,7 +111,20 @@ export function KidsPractice() {
       if (ok) playCorrect()
       else playWrong()
     }
-    if (ok) setScore((value) => value + 1)
+    if (ok) {
+      setScore((value) => value + 1)
+      if (mistakeRun) removeMistake(current.id)
+    } else {
+      addMistake({
+        subject: current.subject,
+        topic: current.skill,
+        question: current.prompt,
+        options: current.options,
+        answer: current.answer,
+        chosen: option,
+        explanation: current.explanation,
+      })
+    }
     recordSkill(current.subject, current.skill, ok)
   }
 
@@ -91,8 +150,29 @@ export function KidsPractice() {
           <p className="mt-1 text-xs font-semibold text-ink-600">{tr('Ten questions from your own grade. Every right answer is a star.')}</p>
         </div>
 
+        {mistakeQuestions.length > 0 && (
+          <button
+            onClick={startMistakes}
+            data-testid="kids-practice-mistakes"
+            className="flex w-full items-center justify-between gap-3 rounded-[28px] border-2 border-amber-300 bg-amber-50/90 px-4 py-3 text-start shadow-[0_14px_30px_-22px_rgba(15,23,42,.35)] transition active:scale-[.98]"
+          >
+            <span className="flex items-center gap-2.5">
+              <span className="text-2xl">🩹</span>
+              <span>
+                <span className="block text-sm font-extrabold text-ink-950">
+                  {tr('Drill my {n} mistakes', { n: num(mistakeQuestions.length) })}
+                </span>
+                <span className="block text-[11px] font-semibold text-ink-600">
+                  {tr('Every miss is already in your mistakes notebook, with its explanation.')}
+                </span>
+              </span>
+            </span>
+            <RotateCcw className="h-4 w-4 shrink-0 text-amber-700" />
+          </button>
+        )}
+
         <div className="grid grid-cols-2 gap-3">
-          {SUBJECTS.map((item) => (
+          {subjects.map((item) => (
             <button
               key={item.value}
               onClick={() => start(item.value)}

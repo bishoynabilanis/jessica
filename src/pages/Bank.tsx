@@ -33,15 +33,40 @@ import { buildCourse } from '@/lib/course'
 import { buildUnitReview, toBankSubject } from '@/lib/unitReview'
 import { dueMistakes } from '@/lib/mistakeReview'
 import type { MistakeEntry } from '@/types'
-import { cn } from '@/lib/utils'
+import { cn, dayKeyOffset } from '@/lib/utils'
 import { dateLocale, num, tr } from '@/i18n'
 
 type Phase = 'intro' | 'quiz' | 'result'
 type Mode = 'drill' | 'exam' | 'mistakes' | 'unit' | 'weekly'
+type MilestoneId = 'october' | 'november' | 'midyear'
 
 const COUNTS = [10, 20]
 const EXAM_COUNT = 20
 const EXAM_SECONDS = 20 * 60
+
+const MILESTONES: Array<{ id: MilestoneId; label: string; hint: string; questions: number; minutes: number }> = [
+  {
+    id: 'october',
+    label: 'October monthly assessment',
+    hint: '15 questions · 25 min',
+    questions: 15,
+    minutes: 25,
+  },
+  {
+    id: 'november',
+    label: 'November monthly assessment',
+    hint: '15 questions · 25 min',
+    questions: 15,
+    minutes: 25,
+  },
+  {
+    id: 'midyear',
+    label: 'Mid-year exam model',
+    hint: '20 questions · 40 min',
+    questions: 20,
+    minutes: 40,
+  },
+]
 
 /**
  * Arabic-Indic digits are weak-directional, so a pure equation inside an
@@ -87,10 +112,13 @@ export function Bank() {
   const skillStats = useApp((s) => s.skillStats)
   const [searchParams, setSearchParams] = useSearchParams()
   const addXP = useApp((s) => s.addXP)
+  const addPlannerTask = useApp((s) => s.addPlannerTask)
   const pushToast = useUI((s) => s.pushToast)
 
   const [phase, setPhase] = useState<Phase>('intro')
   const [mode, setMode] = useState<Mode>('drill')
+  const [milestone, setMilestone] = useState<MilestoneId | null>(null)
+  const [planSaved, setPlanSaved] = useState(false)
   const [subject, setSubject] = useState<BankSubject>('Mathematics')
   const [count, setCount] = useState(10)
   const [seed, setSeed] = useState(0)
@@ -240,6 +268,8 @@ export function Bank() {
 
   const start = (nextSubject: BankSubject = subject, nextCount = count, nextMode: Mode = 'drill') => {
     const total = nextMode === 'exam' ? EXAM_COUNT : nextCount
+    setMilestone(null)
+    setPlanSaved(false)
     setMode(nextMode)
     setSubject(nextSubject)
     setCount(nextCount)
@@ -255,6 +285,50 @@ export function Bank() {
     setNow(Date.now())
     setEndsAt(nextMode === 'exam' ? Date.now() + EXAM_SECONDS * 1000 : 0)
     setPhase('quiz')
+  }
+
+  const startMilestone = (id: MilestoneId) => {
+    const spec = MILESTONES.find((item) => item.id === id)
+    if (!spec) return
+    setMilestone(id)
+    setPlanSaved(false)
+    setMode('exam')
+    setQuestions(buildDrill(subject, gradeLevel, spec.questions))
+    setSeed((value) => value + 1)
+    setIndex(0)
+    setPicked(null)
+    setAnswers({})
+    setTimedOut(false)
+    setDelta(null)
+    setPrintList(null)
+    setStartedAt(Date.now())
+    setNow(Date.now())
+    setEndsAt(Date.now() + spec.minutes * 60 * 1000)
+    setPhase('quiz')
+  }
+
+  const missedSkills = useMemo(
+    () => bySkill.filter((item) => item.correct < item.total).map((item) => item.skill),
+    [bySkill],
+  )
+
+  const saveRecoveryPlan = () => {
+    if (planSaved) return
+    const skills = missedSkills.length ? missedSkills : bySkill.map((item) => item.skill)
+    if (!skills.length) return
+    for (let dayIndex = 0; dayIndex < 7; dayIndex += 1) {
+      const targetSkill = skills[dayIndex % skills.length]
+      addPlannerTask({
+        title: `${tr(subject)} · ${tr(targetSkill)}`,
+        detail: tr('7-day recovery drill from the question bank'),
+        day: dayKeyOffset(dayIndex),
+        minutes: 15,
+        subject,
+        xp: 20,
+      })
+    }
+    setPlanSaved(true)
+    pushToast({ title: tr('7-day recovery plan added to your schedule'), type: 'success' })
   }
 
   const usableMistakes = useMemo(
@@ -506,6 +580,26 @@ export function Bank() {
             </Button>
           </div>
 
+          <div className="mt-4 rounded-2xl border border-violet-neon/25 bg-violet-neon/5 p-3.5">
+            <p className="label text-violet-glow">{tr('Official exam models')}</p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {MILESTONES.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => startMilestone(item.id)}
+                  data-testid={`bank-milestone-${item.id}`}
+                  className="flex flex-col items-start rounded-xl border border-line bg-card-2 px-3 py-2.5 text-start transition hover:border-aurora-400/50 hover:bg-aurora-400/5"
+                >
+                  <span className="text-[11px] font-extrabold text-main">{tr(item.label)}</span>
+                  <span className="mt-0.5 flex items-center gap-1 text-[9px] font-bold text-muted">
+                    <Clock className="h-3 w-3 text-aurora-300" /> {tr(item.hint)}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
             <p className="rounded-2xl border border-line bg-card-2 px-3 py-2 text-[10px] leading-relaxed text-muted">
               {tr('Practice mode shows the answer straight away, with the reason, and turns every miss into a card in your mistakes notebook.')}
@@ -711,6 +805,11 @@ export function Bank() {
               <RichText text={`${num(score)} / ${num(questions.length)}`} />
             </p>
             <p className="text-[11px] text-muted">{tr('score')}</p>
+            {milestone && (
+              <p className="mx-auto mt-2 w-fit rounded-full border border-aurora-400/40 bg-aurora-400/10 px-3 py-1 text-[10px] font-bold text-aurora-200">
+                {tr(MILESTONES.find((item) => item.id === milestone)?.label || '')}
+              </p>
+            )}
             {timedOut && (
               <p className="mx-auto mt-2 w-fit rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-[10px] font-bold text-amber-200">
                 {tr('The clock marked the paper for you.')}
@@ -763,6 +862,30 @@ export function Bank() {
                     </span>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {missedSkills.length > 0 && (
+              <div className="mx-auto mt-4 max-w-md rounded-2xl border border-aurora-400/30 bg-aurora-400/5 p-3">
+                <p className="text-[11px] font-extrabold text-main">
+                  {tr('7-day recovery plan for your missed skills')}
+                </p>
+                <p className="mt-0.5 text-[10px] text-muted">
+                  {tr('Adds one 15-minute drill per day for the next 7 days on the skills you missed in this paper.')}
+                </p>
+                <div className="mt-2 flex flex-wrap justify-center gap-2">
+                  {planSaved ? (
+                    <Link to="/plan">
+                      <Button size="sm" variant="secondary" data-testid="bank-recovery-open">
+                        <Check className="h-3.5 w-3.5" /> {tr('Open my study plan')}
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button size="sm" onClick={saveRecoveryPlan} data-testid="bank-recovery-plan">
+                      <Target className="h-3.5 w-3.5" /> {tr('Add 7-day recovery plan')}
+                    </Button>
+                  )}
+                </div>
               </div>
             )}
 

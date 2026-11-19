@@ -7,7 +7,15 @@ import { placementTest } from '@/lib/placement'
  * network or AI key. This is the app's answer to a printed question book.
  */
 
-export type BankSubject = 'Mathematics' | 'Science' | 'English' | 'Arabic' | 'Social Studies' | 'ICT'
+export type BankSubject =
+  | 'Mathematics'
+  | 'Science'
+  | 'English'
+  | 'Arabic'
+  | 'Social Studies'
+  | 'ICT'
+  | 'French'
+  | 'German'
 
 export interface BankQuestion {
   id: string
@@ -1004,9 +1012,353 @@ const ICT: TextItem[] = [
   },
 ]
 
+const FRENCH: TextItem[] = [
+  {
+    skill: 'أفعال (Verbes)',
+    prompt: 'Je ___ égyptien.',
+    correct: 'suis',
+    wrongs: ['es', 'est', 'sommes'],
+    why: 'فعل être مع الضمير Je يتصرف إلى suis (Je suis = أنا أكون).',
+    band: 'all',
+  },
+  {
+    skill: 'أفعال (Verbes)',
+    prompt: 'Nous ___ un livre de français.',
+    correct: 'avons',
+    wrongs: ['avez', 'ont', 'as'],
+    why: 'فعل avoir مع الضمير Nous يتصرف إلى avons (Nous avons = نحن نملك).',
+    band: 'all',
+  },
+  {
+    skill: 'أفعال (Verbes)',
+    prompt: 'Ils ___ au club le vendredi.',
+    correct: 'vont',
+    wrongs: ['vais', 'vas', 'allons'],
+    why: 'فعل aller مع الضمير Ils يتصرف إلى vont.',
+    band: 'prep',
+  },
+  {
+    skill: 'أفعال (Verbes)',
+    prompt: 'Tu ___ le football ?',
+    correct: 'aimes',
+    wrongs: ['aime', 'aimons', 'aiment'],
+    why: 'أفعال المجموعة الأولى المنتهية بـ -er تأخذ -es مع الضمير Tu.',
+    band: 'all',
+  },
+  {
+    skill: 'أدوات (Articles)',
+    prompt: 'C’est ___ école moderne.',
+    correct: 'une',
+    wrongs: ['un', 'des', 'le'],
+    why: 'كلمة école مؤنثة مفردة في الفرنسية فتأخذ أداة النكرة une.',
+    band: 'all',
+  },
+  {
+    skill: 'أدوات (Articles)',
+    prompt: 'J’aime ___ mathématiques.',
+    correct: 'les',
+    wrongs: ['le', 'la', 'l’'],
+    why: 'كلمة mathématiques جمع، فتأخذ أداة المعرفة للجمع les.',
+    band: 'all',
+  },
+  {
+    skill: 'أدوات (Articles)',
+    prompt: 'Voici ___ ami de mon frère.',
+    correct: 'l’',
+    wrongs: ['le', 'la', 'les'],
+    why: 'كلمة ami مفرد يبدأ بحرف متحرك فنستخدم l’ بدلاً من le.',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situations)',
+    prompt: 'لتحية معلمك في الصباح تقول:',
+    correct: 'Bonjour monsieur',
+    wrongs: ['Bonsoir monsieur', 'Bonne nuit', 'Au revoir'],
+    why: 'Bonjour تُستخدم للتحية في الصباح، بينما Bonsoir للمساء.',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situations)',
+    prompt: 'للسؤال عن الاسم بالفرنسية تقول:',
+    correct: 'Comment tu t’appelles ?',
+    wrongs: ['Quel âge as-tu ?', 'Où habites-tu ?', 'Comment ça va ?'],
+    why: 'Comment tu t’appelles ? معناها: ما اسمك؟',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situations)',
+    prompt: 'للسؤال عن العمر تقول:',
+    correct: 'Quel âge as-tu ?',
+    wrongs: ['Quelle heure est-il ?', 'Quel jour sommes-nous ?', 'Comment vas-tu ?'],
+    why: 'كلمة âge تعني العمر، ونسأل عنها بـ Quel âge as-tu ?',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: 'Sara est ___ (سعيدة).',
+    correct: 'contente',
+    wrongs: ['content', 'contents', 'contentes'],
+    why: 'الفاعل Sara مفرد مؤنث، فنضيف -e للصفة content لتصبح contente.',
+    band: 'prep',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: 'Je vais ___ Caire.',
+    correct: 'au',
+    wrongs: ['en', 'à la', 'aux'],
+    why: 'مدينة القاهرة (Le Caire) تاخد حرف الجر au قبلها: au Caire.',
+    band: 'prep',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: 'J’habite ___ Égypte.',
+    correct: 'en',
+    wrongs: ['au', 'aux', 'à'],
+    why: 'الدول المؤنثة أو التي تبدأ بحرف متحرك مثل Égypte تأخذ حرف الجر en.',
+    band: 'prep',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: 'Je ne regarde ___ la télévision.',
+    correct: 'pas',
+    wrongs: ['plus', 'rien', 'non'],
+    why: 'النفي الأساسي في الفرنسية يتكون من ne ... pas حول الفعل.',
+    band: 'prep',
+  },
+  {
+    skill: 'مفردات (Vocabulaire)',
+    prompt: 'اليوم الذي يلي Lundi (الاثنين) هو:',
+    correct: 'Mardi',
+    wrongs: ['Dimanche', 'Mercredi', 'Jeudi'],
+    why: 'أيام الأسبوع: Lundi (الاثنين) ثم Mardi (الثلاثاء).',
+    band: 'all',
+  },
+  {
+    skill: 'مفردات (Vocabulaire)',
+    prompt: 'اللون الأخضر بالفرنسية هو:',
+    correct: 'vert',
+    wrongs: ['rouge', 'bleu', 'jaune'],
+    why: 'vert = أخضر، rouge = أحمر، bleu = أزرق، jaune = أصفر.',
+    band: 'primary',
+  },
+  {
+    skill: 'أعداد (Nombres)',
+    prompt: 'العدد ١٥ بالفرنسية هو:',
+    correct: 'quinze',
+    wrongs: ['quatorze', 'seize', 'cinq'],
+    why: 'quinze = ١٥، بينما quatorze = ١٤ و seize = ١٦.',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: 'C’est ___ livre. (كتابي أنا)',
+    correct: 'mon',
+    wrongs: ['ma', 'ton', 'son'],
+    why: 'كلمة livre مفرد مذكر، وصفة الملكية مع المتكلم المفرد المذكر هي mon.',
+    band: 'prep',
+  },
+  {
+    skill: 'مفردات (Vocabulaire)',
+    prompt: 'كلمة «أبي» بالفرنسية هي:',
+    correct: 'mon père',
+    wrongs: ['ma mère', 'mon frère', 'ma sœur'],
+    why: 'père = أب، mère = أم، frère = أخ، sœur = أخت.',
+    band: 'all',
+  },
+  {
+    skill: 'مفردات (Vocabulaire)',
+    prompt: 'فصل الصيف بالفرنسية هو:',
+    correct: 'l’été',
+    wrongs: ['l’hiver', 'le printemps', 'l’automne'],
+    why: 'l’été = الصيف، l’hiver = الشتاء، le printemps = الربيع، l’automne = الخريف.',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammaire)',
+    prompt: '___ heure est-il ?',
+    correct: 'Quelle',
+    wrongs: ['Quel', 'Quels', 'Quelles'],
+    why: 'كلمة heure مفرد مؤنث فنستخدم أداة الاستفهام المؤنثة Quelle.',
+    band: 'prep',
+  },
+  {
+    skill: 'أفعال (Verbes)',
+    prompt: 'Vous ___ le français ?',
+    correct: 'parlez',
+    wrongs: ['parle', 'parles', 'parlent'],
+    why: 'مع الضمير Vous تأخذ أفعال المجموعة الأولى النهاية -ez: Vous parlez.',
+    band: 'all',
+  },
+]
+
+const GERMAN: TextItem[] = [
+  {
+    skill: 'أفعال (Verben)',
+    prompt: 'Ich ___ aus Ägypten.',
+    correct: 'komme',
+    wrongs: ['kommst', 'kommt', 'kommen'],
+    why: 'مع الضمير Ich يأخذ الفعل النهاية -e في المضارع: Ich komme.',
+    band: 'all',
+  },
+  {
+    skill: 'أفعال (Verben)',
+    prompt: 'Wie ___ du?',
+    correct: 'heißt',
+    wrongs: ['heiße', 'heißen', 'heißt du'],
+    why: 'فعل heißen مع الضمير du يصبح heißt (لأن جذره ينتهي بـ ß).',
+    band: 'all',
+  },
+  {
+    skill: 'أفعال (Verben)',
+    prompt: 'Er ___ 12 Jahre alt.',
+    correct: 'ist',
+    wrongs: ['bin', 'bist', 'sind'],
+    why: 'تصريف فعل sein (يكون) مع الضمير Er هو ist.',
+    band: 'all',
+  },
+  {
+    skill: 'أفعال (Verben)',
+    prompt: 'Wir ___ Deutsch in der Schule.',
+    correct: 'lernen',
+    wrongs: ['lerne', 'lernst', 'lernt'],
+    why: 'مع الضمير Wir يبقى الفعل بصيغة المصدر المنتهية بـ -en: Wir lernen.',
+    band: 'all',
+  },
+  {
+    skill: 'أدوات (Artikel)',
+    prompt: 'Das ist ___ Buch. (الكتاب محايد)',
+    correct: 'das',
+    wrongs: ['der', 'die', 'den'],
+    why: 'كلمة Buch في الألمانية محايدة (neutral) فتأخذ أداة المعرفة das.',
+    band: 'all',
+  },
+  {
+    skill: 'أدوات (Artikel)',
+    prompt: '___ Schule ist groß.',
+    correct: 'Die',
+    wrongs: ['Der', 'Das', 'Den'],
+    why: 'كلمة Schule مؤنثة في الألمانية فتأخذ الأداة Die.',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situationen)',
+    prompt: 'لتحية شخص في الصباح بالألمانية تقول:',
+    correct: 'Guten Morgen',
+    wrongs: ['Guten Abend', 'Gute Nacht', 'Tschüss'],
+    why: 'Guten Morgen = صباح الخير، بينما Guten Abend = مساء الخير.',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situationen)',
+    prompt: 'للسؤال عن الموطن (من أين أنت؟) تقول:',
+    correct: 'Woher kommst du?',
+    wrongs: ['Wo wohnst du?', 'Wer bist du?', 'Wie geht es dir?'],
+    why: 'Woher تسأل عن المصدر/الموطن (من أين)، بينما Wo تسأل عن المكان (أين).',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situationen)',
+    prompt: 'عند توديع صديقك تقول:',
+    correct: 'Tschüss',
+    wrongs: ['Hallo', 'Guten Tag', 'Danke'],
+    why: 'Tschüss تُستخدم للوداع بين الأصدقاء بمعنى مع السلامة.',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammatik)',
+    prompt: 'أداة الاستفهام للسؤال عن العاقل (مَن هذا؟) هي:',
+    correct: 'Wer',
+    wrongs: ['Was', 'Wo', 'Wie'],
+    why: 'Wer = مَن (للعاقل)، بينما Was = ما/ماذا (لغير العاقل).',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammatik)',
+    prompt: 'Ich habe ___ Bruder. (حالة المفعول Akkusativ)',
+    correct: 'einen',
+    wrongs: ['ein', 'eine', 'einer'],
+    why: 'فعل haben ينصب مفعولاً به (Akkusativ)، والمفرد المذكر der Bruder يتحول إلى einen Bruder.',
+    band: 'prep',
+  },
+  {
+    skill: 'قواعد (Grammatik)',
+    prompt: '___ wohnst du? — In Kairo.',
+    correct: 'Wo',
+    wrongs: ['Woher', 'Wohin', 'Wer'],
+    why: 'فعل wohnen (يسكن) يسأل عن مكان ثابت فنستخدم أداة الاستفهام Wo (أين).',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammatik)',
+    prompt: 'Das ist ___ Tasche. (حقيبتي أنا — مؤنث)',
+    correct: 'meine',
+    wrongs: ['mein', 'meinen', 'dein'],
+    why: 'كلمة Tasche مؤنثة (die Tasche)، فتأخذ أداة الملكية المنتهية بـ -e: meine.',
+    band: 'prep',
+  },
+  {
+    skill: 'مفردات (Wortschatz)',
+    prompt: 'اليوم الذي يلي Montag (الاثنين) بالألمانية هو:',
+    correct: 'Dienstag',
+    wrongs: ['Sonntag', 'Mittwoch', 'Freitag'],
+    why: 'أيام الأسبوع بالألمانية: Montag (الاثنين) يليه Dienstag (الثلاثاء).',
+    band: 'all',
+  },
+  {
+    skill: 'أعداد (Zahlen)',
+    prompt: 'العدد ٧ بالألمانية هو:',
+    correct: 'sieben',
+    wrongs: ['sechs', 'acht', 'neun'],
+    why: 'sechs = ٦، sieben = ٧، acht = ٨، neun = ٩.',
+    band: 'primary',
+  },
+  {
+    skill: 'أعداد (Zahlen)',
+    prompt: 'العدد ٢٠ بالألمانية هو:',
+    correct: 'zwanzig',
+    wrongs: ['zwölf', 'zwei', 'zehn'],
+    why: 'zwanzig = ٢٠، بينما zwölf = ١٢ و zehn = ١٠.',
+    band: 'all',
+  },
+  {
+    skill: 'مفردات (Wortschatz)',
+    prompt: 'كلمة «عائلة» بالألمانية هي:',
+    correct: 'die Familie',
+    wrongs: ['die Schule', 'die Klasse', 'die Stadt'],
+    why: 'die Familie = العائلة، die Schule = المدرسة، die Stadt = المدينة.',
+    band: 'all',
+  },
+  {
+    skill: 'قواعد (Grammatik)',
+    prompt: 'Ich trinke ___ Tee. (نفي اسم نكرة)',
+    correct: 'keinen',
+    wrongs: ['nicht', 'kein', 'keine'],
+    why: 'كلمة Tee مفرد مذكر (der Tee) وفي حالة المفعول Akkusativ ننفيها بـ keinen.',
+    band: 'prep',
+  },
+  {
+    skill: 'أفعال (Verben)',
+    prompt: 'Ihr ___ sehr gut Fußball.',
+    correct: 'spielt',
+    wrongs: ['spiele', 'spielst', 'spielen'],
+    why: 'مع الضمير Ihr (أنتم) يأخذ الفعل النهاية -t: Ihr spielt.',
+    band: 'all',
+  },
+  {
+    skill: 'مواقف (Situationen)',
+    prompt: 'للرد على السؤال Wie geht es dir? تقول:',
+    correct: 'Danke, gut!',
+    wrongs: ['Ich heiße Ali.', 'Aus Kairo.', 'Auf Wiedersehen!'],
+    why: 'Wie geht es dir? معناها كيف حالك؟ والرد المناسب: Danke, gut! (شكراً، بخير).',
+    band: 'all',
+  },
+]
+
 const TEXT_BANKS: Partial<Record<BankSubject, TextItem[]>> = {
   'Social Studies': SOCIAL_STUDIES,
   ICT,
+  French: FRENCH,
+  German: GERMAN,
 }
 
 function buildTextDrill(subject: BankSubject, grade: GradeLevel, count: number): BankQuestion[] {
@@ -1045,7 +1397,7 @@ export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10):
     }))
   }
 
-  if (subject === 'Social Studies' || subject === 'ICT') return buildTextDrill(subject, grade, count)
+  if (TEXT_BANKS[subject]) return buildTextDrill(subject, grade, count)
 
   const seen = new Set<string>()
   const questions: BankQuestion[] = []
@@ -1062,7 +1414,16 @@ export function buildDrill(subject: BankSubject, grade: GradeLevel, count = 10):
   return questions
 }
 
-export const BANK_SUBJECTS: BankSubject[] = ['Mathematics', 'Science', 'English', 'Arabic', 'Social Studies', 'ICT']
+export const BANK_SUBJECTS: BankSubject[] = [
+  'Mathematics',
+  'Science',
+  'English',
+  'Arabic',
+  'Social Studies',
+  'ICT',
+  'French',
+  'German',
+]
 
 /* ------------------------------- Skill focus ------------------------------ */
 
@@ -1073,6 +1434,8 @@ const SUBJECT_PATTERNS: Array<[RegExp, BankSubject]> = [
   [/arabic|عربي|عربى/i, 'Arabic'],
   [/social|دراسات|اجتماع/i, 'Social Studies'],
   [/ict|كمبيوتر|حاسب|computer/i, 'ICT'],
+  [/french|فرنس|français/i, 'French'],
+  [/german|ألمان|المان|deutsch/i, 'German'],
 ]
 
 /** The four bank subjects are the app's subjects, spelled several ways elsewhere. */
@@ -1145,6 +1508,22 @@ export function buildSkillDrill(skills: string[], grade: GradeLevel, count = 10)
     for (const generator of generators) {
       if (!wanted.has(generator.skill)) continue
       push(toQuestion(generator.make(), subject, out.length))
+    }
+  }
+
+  for (const [subject, items] of Object.entries(TEXT_BANKS) as Array<[BankSubject, TextItem[]]>) {
+    for (const item of items || []) {
+      if (!wanted.has(item.skill)) continue
+      const options = seededShuffle([item.correct, ...item.wrongs], `${item.prompt}-${out.length}`)
+      push({
+        id: `focus-${out.length}`,
+        subject,
+        skill: item.skill,
+        prompt: item.prompt,
+        options,
+        answer: options.indexOf(item.correct),
+        explanation: item.why,
+      })
     }
   }
 

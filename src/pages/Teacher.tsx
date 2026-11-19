@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { Check, Copy, QrCode, Sparkles, Users } from 'lucide-react'
 import type { AssignmentPayload, AssignmentResult } from '@/lib/assignments'
 import { assignmentUrl, decodeResult } from '@/lib/assignments'
+import type { GradeLevel } from '@/types'
+import { gradeLabel } from '@/data/officialBooks'
+import { BANK_SUBJECTS, buildDrill, type BankSubject } from '@/lib/questionBank'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { getQuizzes, saveQuiz } from '@/lib/db'
@@ -10,18 +13,24 @@ import { generateJSON } from '@/lib/gemini'
 import { quizPrompt } from '@/lib/prompts'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
-import { Card, EmptyState } from '@/components/ui/Card'
+import { Card } from '@/components/ui/Card'
 import { cn, uid } from '@/lib/utils'
 import { tr } from '@/i18n'
 
 const STORAGE = 'jessica-assignment-results'
+const GRADES: GradeLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 export function Teacher() {
   const customBooks = useApp((s) => s.customBooks)
+  const defaultGrade = useApp((s) => s.settings.gradeLevel)
   const apiKey = useApp((s) => s.apiKey)
   const model = useApp((s) => s.model)
   const pushToast = useUI((s) => s.pushToast)
   const books = customBooks
+  const hasBookUnits = books.some((item) => (item.units || []).length > 0)
+  const [source, setSource] = useState<'bank' | 'book'>(() => (hasBookUnits ? 'book' : 'bank'))
+  const [bankSubject, setBankSubject] = useState<BankSubject>('Mathematics')
+  const [bankGrade, setBankGrade] = useState<GradeLevel>(defaultGrade)
   const [bookId, setBookId] = useState(books[0]?.id || '')
   const [unitId, setUnitId] = useState('')
   const [count, setCount] = useState(8)
@@ -62,66 +71,99 @@ export function Teacher() {
   }, [])
 
   const generate = async () => {
-    if (!book || !unit) return
+    if (source === 'book' && (!book || !unit)) return
     setBusy(true)
     setAssignment(null)
     setUrl('')
     setQr('')
     try {
-      const chapter = await openChapter(book)
-      if (!chapter) throw new Error(tr('Could not read the book'))
-      const pages = chapter.pages.filter((page) => page.page >= unit.startPage && page.page <= unit.endPage)
-      const unitChapter = {
-        bookId: `${book.id}:${unit.id}`,
-        pages,
-        text: pages.map((page) => `[Page ${page.page}]\n${page.text}`).join('\n\n'),
-        extractedAt: Date.now(),
-      }
-      const unitKey = `${book.id}:${unit.id}`
-      const bank = (await getQuizzes()).find((quiz) => quiz.id === unitKey)
-      let questions = bank?.questions || []
-      if (questions.length < count && apiKey) {
-        const data = await generateJSON<{ questions: AssignmentPayload['questions'] }>({
-          apiKey,
-          model,
-          system: 'You write fair, curriculum-aligned quizzes for Egyptian students. Return only JSON.',
-          parts: [{ text: quizPrompt(book, unitChapter, count) }],
-          temperature: 0.5,
-          maxOutputTokens: 2400,
-        })
-        const clean = (data.questions || []).filter(
-          (q) => q.question && Array.isArray(q.options) && q.options.length === 4 && Number.isInteger(q.answer),
-        )
-        if (clean.length) {
-          questions = clean
-          await saveQuiz({ id: unitKey, bookId: book.id, subject: book.subject, questions: clean, createdAt: Date.now() }).catch(() => undefined)
+      let payload: AssignmentPayload
+      if (source === 'bank') {
+        const built = buildDrill(bankSubject, bankGrade, count).map((item) => ({
+          question: item.prompt,
+          options: item.options,
+          answer: item.answer,
+          explanation: item.explanation,
+          topic: item.skill,
+          difficulty: 'medium' as const,
+        }))
+        if (!built.length) throw new Error(tr('Could not build the assignment'))
+        payload = {
+          v: 1,
+          id: uid('as_'),
+          grade: bankGrade,
+          subject: bankSubject,
+          bookTitle: tr('Question bank'),
+          unitTitle: `${tr(bankSubject)} · ${tr(gradeLabel(bankGrade))}`,
+          unitKey: `bank:${bankSubject}:${bankGrade}`,
+          questions: built,
+          createdAt: Date.now(),
         }
-      }
-      if (!questions.length) {
-        throw new Error(tr('No question bank for this unit yet. Add a Gemini key or take the unit quiz once.'))
-      }
-      const payload: AssignmentPayload = {
-        v: 1,
-        id: uid('as_'),
-        grade: book.grade,
-        subject: book.subject,
-        bookTitle: book.title,
-        unitTitle: unit.title,
-        unitKey,
-        questions: questions.slice(0, count),
-        createdAt: Date.now(),
+      } else {
+        if (!book || !unit) return
+        const chapter = await openChapter(book)
+        if (!chapter) throw new Error(tr('Could not read the book'))
+        const pages = chapter.pages.filter((page) => page.page >= unit.startPage && page.page <= unit.endPage)
+        const unitChapter = {
+          bookId: `${book.id}:${unit.id}`,
+          pages,
+          text: pages.map((page) => `[Page ${page.page}]\n${page.text}`).join('\n\n'),
+          extractedAt: Date.now(),
+        }
+        const unitKey = `${book.id}:${unit.id}`
+        const bank = (await getQuizzes()).find((quiz) => quiz.id === unitKey)
+        let questions = bank?.questions || []
+        if (questions.length < count && apiKey) {
+          const data = await generateJSON<{ questions: AssignmentPayload['questions'] }>({
+            apiKey,
+            model,
+            system: 'You write fair, curriculum-aligned quizzes for Egyptian students. Return only JSON.',
+            parts: [{ text: quizPrompt(book, unitChapter, count) }],
+            temperature: 0.5,
+            maxOutputTokens: 2400,
+          })
+          const clean = (data.questions || []).filter(
+            (q) => q.question && Array.isArray(q.options) && q.options.length === 4 && Number.isInteger(q.answer),
+          )
+          if (clean.length) {
+            questions = clean
+            await saveQuiz({ id: unitKey, bookId: book.id, subject: book.subject, questions: clean, createdAt: Date.now() }).catch(() => undefined)
+          }
+        }
+        if (!questions.length) {
+          throw new Error(tr('No question bank for this unit yet. Add a Gemini key or take the unit quiz once.'))
+        }
+        payload = {
+          v: 1,
+          id: uid('as_'),
+          grade: book.grade,
+          subject: book.subject,
+          bookTitle: book.title,
+          unitTitle: unit.title,
+          unitKey,
+          questions: questions.slice(0, count),
+          createdAt: Date.now(),
+        }
       }
       setAssignment(payload)
       const link = assignmentUrl(payload)
       setUrl(link)
       const QRCode = (await import('qrcode')).default
-      setQr(
-        await QRCode.toDataURL(link, {
-          margin: 1,
-          width: 360,
-          color: { dark: '#0b1220', light: '#ffffff' },
-        }),
-      )
+      const qrOpts = {
+        errorCorrectionLevel: 'L' as const,
+        margin: 1,
+        width: 360,
+        color: { dark: '#0b1220', light: '#ffffff' },
+      }
+      try {
+        setQr(await QRCode.toDataURL(link, qrOpts))
+      } catch {
+        const slimLink = assignmentUrl({
+          ...payload,
+          questions: payload.questions.map((q) => ({ ...q, explanation: '' })),
+        })
+        setQr(await QRCode.toDataURL(slimLink, qrOpts))
+      }
     } catch (err) {
       pushToast({
         title: tr('Could not build the assignment'),
@@ -214,19 +256,82 @@ export function Teacher() {
         icon={<Users className="h-5 w-5" />}
       />
 
-      {!books.length ? (
-        <EmptyState
-          icon={<Users className="h-6 w-6" />}
-          title={tr('Import a book first')}
-          description={tr('The teacher tools work on the books already imported on this device.')}
-        />
-      ) : (
-        <>
-        <div className="grid gap-4 xl:grid-cols-[1.05fr_1fr]">
-          <Card className="p-4 sm:p-5">
+      <div className="grid gap-4 xl:grid-cols-[1.05fr_1fr]">
+        <Card className="p-4 sm:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="flex items-center gap-1.5 text-sm font-extrabold text-main">
               <Sparkles className="h-4 w-4 text-aurora-300" /> {tr('Create an assignment')}
             </p>
+            <div className="inline-flex rounded-xl border border-line bg-card-2 p-0.5">
+              <button
+                type="button"
+                data-testid="teacher-source-bank"
+                onClick={() => setSource('bank')}
+                className={cn(
+                  'rounded-lg px-2.5 py-1 text-[10px] font-extrabold transition',
+                  source === 'bank' ? 'bg-aurora-400 text-ink-950' : 'text-muted hover:text-main',
+                )}
+              >
+                {tr('Question bank')}
+              </button>
+              <button
+                type="button"
+                data-testid="teacher-source-book"
+                onClick={() => setSource('book')}
+                className={cn(
+                  'rounded-lg px-2.5 py-1 text-[10px] font-extrabold transition',
+                  source === 'book' ? 'bg-aurora-400 text-ink-950' : 'text-muted hover:text-main',
+                )}
+              >
+                {tr('Book')}
+              </button>
+            </div>
+          </div>
+
+          {source === 'bank' ? (
+            <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
+              <label className="block">
+                <span className="label mb-1 block">{tr('Subject')}</span>
+                <select
+                  data-testid="teacher-bank-subject"
+                  value={bankSubject}
+                  onChange={(e) => setBankSubject(e.target.value as BankSubject)}
+                  className="field text-xs"
+                >
+                  {BANK_SUBJECTS.map((item) => (
+                    <option key={item} value={item}>
+                      {tr(item)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="label mb-1 block">{tr('Grade')}</span>
+                <select
+                  data-testid="teacher-bank-grade"
+                  value={bankGrade}
+                  onChange={(e) => setBankGrade(Number(e.target.value) as GradeLevel)}
+                  className="field text-xs"
+                >
+                  {GRADES.map((item) => (
+                    <option key={item} value={item}>
+                      {tr(gradeLabel(item))}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="label mb-1 block">{tr('Questions')}</span>
+                <select value={count} onChange={(e) => setCount(Number(e.target.value))} className="field text-xs">
+                  {[5, 8, 10, 15].map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          ) : (
             <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
                 <span className="label mb-1 block">{tr('Book')}</span>
@@ -259,9 +364,17 @@ export function Teacher() {
                 </select>
               </label>
             </div>
-            <Button className="mt-3" onClick={generate} loading={busy} disabled={!unit}>
-              <QrCode className="h-4 w-4" /> {tr('Generate link & QR')}
-            </Button>
+          )}
+
+          <Button
+            className="mt-3"
+            data-testid="teacher-generate"
+            onClick={generate}
+            loading={busy}
+            disabled={source === 'book' && !unit}
+          >
+            <QrCode className="h-4 w-4" /> {tr('Generate link & QR')}
+          </Button>
 
             {assignment && (
               <div className="mt-4 space-y-3">
@@ -424,8 +537,6 @@ export function Teacher() {
             </Button>
           </div>
         </Card>
-        </>
-      )}
     </div>
   )
 }
