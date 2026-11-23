@@ -97,7 +97,7 @@ export function Onboarding() {
               </div>
               <button
                 onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
-                className="chip border-aurora-400/30 bg-aurora-400/10 text-[10px] font-bold text-aurora-200"
+                className="chip min-h-[40px] border-aurora-400/40 bg-aurora-400/15 !px-4 !py-2 !text-sm font-bold text-aurora-100"
                 title={tr('Switch language')}
               >
                 {UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.label}
