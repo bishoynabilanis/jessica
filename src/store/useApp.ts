@@ -42,7 +42,7 @@ export function levelInfo(xp: number) {
 const defaultSettings: Settings = {
   theme: 'dark',
   language:
-    typeof navigator !== 'undefined' && navigator.language.toLowerCase().startsWith('ar') ? 'ar' : 'en',
+    typeof navigator !== 'undefined' && (navigator.language.toLowerCase().startsWith('ar') || /-eg$/i.test(navigator.language) || Intl.DateTimeFormat().resolvedOptions().timeZone === 'Africa/Cairo') ? 'ar' : 'en',
   textScale: 100,
   dyslexiaFont: false,
   reduceMotion: false,
