@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Cpu, KeyRound, Sparkles, Timer } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
@@ -21,6 +21,8 @@ import { num, tr } from '@/i18n'
  */
 export function AiNeedModal() {
   const [reason, setReason] = useState<AiNeed | null>(null)
+  const { pathname } = useLocation()
+  const settingsPath = pathname.startsWith('/kids') ? '/kids/settings' : '/settings'
   const support = offlineSupport()
   const ready = offlineReady()
 
@@ -59,7 +61,9 @@ export function AiNeedModal() {
           </>
         ) : (
           <>
-            <p className="mt-3 text-sm font-extrabold text-main">{tr('Either of these is free, and both stay on your device.')}</p>
+            <p className="mt-3 text-sm font-extrabold text-main">
+              {support.ok ? tr('Either of these is free, and both stay on your device.') : tr('It is free, and the key stays on your device.')}
+            </p>
             <div className="mt-3 space-y-1.5 text-start">
               {canDownload ? (
                 <OfflineModelSetup onReady={close} />
@@ -70,7 +74,7 @@ export function AiNeedModal() {
                 </p>
               ) : null}
               {!support.ok && (
-                <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-2.5 py-2 text-[10px] leading-relaxed text-amber-200">
+                <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 px-2.5 py-2 text-[10px] leading-relaxed text-amber-200 [.light_&]:border-amber-600/40 [.light_&]:bg-amber-100 [.light_&]:font-bold [.light_&]:text-amber-900">
                   {tr('Offline AI runs on computers and strong devices only, to keep the browser stable. On this device, use a free key.')}
                 </p>
               )}
@@ -83,7 +87,7 @@ export function AiNeedModal() {
         )}
 
         <div className="mt-4 flex flex-col gap-2">
-          <Link to="/settings" onClick={close}>
+          <Link to={settingsPath} onClick={close}>
             <Button className="w-full" data-testid="ai-need-settings">
               <Sparkles className="h-4 w-4" />
               {!isLimit && !support.ok ? tr('Add a free Gemini key') : tr('Open settings')}

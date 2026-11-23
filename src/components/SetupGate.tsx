@@ -162,7 +162,11 @@ export function SetupGate() {
                 {keyDone ? (
                   <p className="mt-2 flex items-center gap-1.5 text-[10px] font-bold text-aurora-200">
                     <Check className="h-3 w-3" />
-                    {apiKey.trim() ? tr('Key connected.') : tr('The AI is on — no key needed.')}
+                    {apiKey.trim()
+                      ? tr('Key connected.')
+                      : modelReady
+                        ? tr('The AI is on — no key needed.')
+                        : tr('The AI is off for now. Add a free key in Settings whenever you want it.')}
                   </p>
                 ) : (
                   <div className="mt-2.5 space-y-2">

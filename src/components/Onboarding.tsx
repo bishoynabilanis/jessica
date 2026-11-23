@@ -184,7 +184,7 @@ export function Onboarding() {
                   <p className="label text-aurora-300">{tr("Almost there")}</p>
                   <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">{tr("Make it comfortable.")}</h1>
                   <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    {tr('Choose how Jessica looks. The AI is free either way — set it up on the next screen, with or without a key.')}
+                    {tr('Choose how Jessica looks. The AI needs a free key or the offline model — set it up on the next screen or later.')}
                   </p>
 
                   <div className="mt-4">
