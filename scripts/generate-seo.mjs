@@ -467,7 +467,7 @@ const urls = [
     priority: '0.8',
   })),
   { loc: `${BASE}/welcome/guides/`, file: 'public/welcome/guides/index.html', freq: 'monthly', priority: '0.8' },
-  ...['study-method', 'exam-week', 'bubble-sheet'].map((slug) => ({
+  ...['study-method', 'exam-week', 'bubble-sheet', 'free-gemini-key'].map((slug) => ({
     loc: `${BASE}/welcome/guides/${slug}/`,
     file: `public/welcome/guides/${slug}/index.html`,
     freq: 'monthly',
