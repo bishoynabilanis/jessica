@@ -2916,4 +2916,12 @@ export const german: Record<string, string> = {
   "Result card": "Ergebniskarte",
   "Made on this device. It leaves only if a parent presses Share.": "Auf diesem Gerät erstellt. Sie verlässt es nur, wenn ein Elternteil auf Teilen tippt.",
   "Me": "Ich",
+  "Explain it on a board": "Erklär es auf einer Tafel",
+  "Science board": "Wissenschaftstafel",
+  "Type a science question. Jessica draws the idea as a few boxes that follow each other.": "Schreibe eine Naturwissenschaftsfrage. Jessica zeichnet die Idee als wenige Kästchen, die aufeinander folgen.",
+  "Example: How does a plant make food?": "Beispiel: Wie macht eine Pflanze ihre Nahrung?",
+  "Draw the board": "Tafel zeichnen",
+  "Your question goes only to your AI provider. Nothing is uploaded to us.": "Deine Frage geht nur an deinen KI-Anbieter. Bei uns wird nichts hochgeladen.",
+  "Could not make a board for this question. Try a school science question.": "Für diese Frage konnte keine Tafel erstellt werden. Versuche eine Schul-Naturwissenschaftsfrage.",
+  "Made by AI from your question, not from your textbook. It can be wrong. Check it against your book or ask your teacher.": "Von der KI aus deiner Frage gemacht, nicht aus deinem Schulbuch. Sie kann sich irren. Prüfe es in deinem Buch oder frage deine Lehrkraft.",
 }
