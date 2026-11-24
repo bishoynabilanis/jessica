@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BookmarkPlus, Copy, Loader2, RefreshCw, Sparkles, StopCircle, Volume2 } from 'lucide-react'
+import { BookmarkPlus, Copy, Download, Loader2, RefreshCw, Sparkles, StopCircle, Volume2 } from 'lucide-react'
 import type { Book, ChapterText } from '@/types'
 import { Button } from '@/components/ui/Button'
 import { ListenEgyptian } from '@/components/common/ListenEgyptian'
@@ -9,6 +9,7 @@ import { useRequireKey } from '@/components/common/KeyNotice'
 import { generateText } from '@/lib/gemini'
 import { unitSummaryPrompt } from '@/lib/prompts'
 import { kvGet, kvSet } from '@/lib/db'
+import { exportStudySheetPdf } from '@/lib/pdfExport'
 import { speakable, useSpeech } from '@/lib/speech'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
@@ -42,6 +43,7 @@ export function UnitSummaryModal({
   const [cachedAt, setCachedAt] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [exporting, setExporting] = useState(false)
 
   useEffect(() => {
     if (!open) return
@@ -162,6 +164,31 @@ export function UnitSummaryModal({
                 }}
               >
                 <BookmarkPlus className="h-3.5 w-3.5" /> {tr('Save to vault')}
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                data-testid="summary-pdf"
+                loading={exporting}
+                onClick={async () => {
+                  setExporting(true)
+                  try {
+                    await exportStudySheetPdf({
+                      title: unitTitle,
+                      subtitle: `${book.subject} · ${book.title}`,
+                      markdown: summary,
+                      accent: book.accent,
+                      footer: `Made with Jessica · ${book.title}`,
+                    })
+                    pushToast({ title: tr('Summary PDF saved'), type: 'success' })
+                  } catch {
+                    pushToast({ title: tr('Export failed'), type: 'error' })
+                  } finally {
+                    setExporting(false)
+                  }
+                }}
+              >
+                <Download className="h-3.5 w-3.5" /> {tr('Download PDF')}
               </Button>
               <Button size="sm" variant="ghost" onClick={generate} loading={loading}>
                 <RefreshCw className="h-3.5 w-3.5" /> {tr('Regenerate')}
