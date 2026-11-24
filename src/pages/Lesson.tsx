@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock3,
+  FlaskConical,
   GraduationCap,
   Layers,
   Play,
@@ -28,6 +29,7 @@ import { openChapter } from '@/lib/library'
 import { clozeQuiz, keyTerms, objectivesOf } from '@/lib/lesson'
 import { levelLabel } from '@/lib/curriculum'
 import { lessonVideoUrl } from '@/lib/youtube'
+import { labForUnit, labLink } from '@/lib/lessonLab'
 import { newCard } from '@/lib/srs'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar, Spinner } from '@/components/ui/Card'
@@ -283,6 +285,15 @@ export function Lesson() {
             >
               <Play className="h-3 w-3" /> {tr('Watch a video explanation')}
             </a>
+            {labForUnit(unit) && (
+              <Link
+                to={labLink('/labs', book, unit, labForUnit(unit) as string)}
+                data-testid="lesson-open-lab"
+                className="inline-flex items-center gap-1 rounded-full border border-aurora-400/40 bg-aurora-400/10 px-2.5 py-1 text-[10px] font-extrabold text-aurora-200 transition hover:text-main"
+              >
+                <FlaskConical className="h-3 w-3" /> {tr('Try it in the lab')}
+              </Link>
+            )}
           </div>
 
           <div className="mt-3 flex items-center gap-1">

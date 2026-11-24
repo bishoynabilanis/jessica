@@ -5,6 +5,7 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
+  FlaskConical,
   Loader2,
   Mic,
   Sparkles,
@@ -15,6 +16,7 @@ import {
 import type { ChapterText, QuizQuestion } from '@/types'
 import { useApp, levelInfo } from '@/store/useApp'
 import { openChapter } from '@/lib/library'
+import { KIDS_LAB_IDS, labForUnit, labLink } from '@/lib/lessonLab'
 import { getQuizzes, saveQuiz } from '@/lib/db'
 import { generateJSON } from '@/lib/gemini'
 import { quizPrompt } from '@/lib/prompts'
@@ -339,6 +341,17 @@ export function KidsLesson() {
         <Card className="border-2 border-white p-5">
           <p className="text-[10px] font-extrabold uppercase tracking-wide text-amber-700">{tr('Step 1 · Read')}</p>
           <h1 className="mt-1 font-display text-xl font-extrabold text-ink-950">{unit?.title || book.title}</h1>
+          {unit && labForUnit(unit) && KIDS_LAB_IDS.includes(labForUnit(unit) as string) && (
+            <Button
+              size="sm"
+              variant="secondary"
+              className="mt-2"
+              data-testid="lesson-open-lab"
+              onClick={() => navigate(labLink('/kids/labs', book, unit, labForUnit(unit) as string))}
+            >
+              <FlaskConical className="h-4 w-4" /> {tr('Try it in the lab')}
+            </Button>
+          )}
 
           <div className="mt-3 max-h-[50vh] overflow-y-auto rounded-2xl border border-sun/20 bg-sun/5 p-4">
             {readingText ? (

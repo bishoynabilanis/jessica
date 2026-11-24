@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { LessonLabBanner } from '@/components/labs/LessonLabBanner'
 import type { LucideIcon } from 'lucide-react'
 import {
   Activity,
@@ -209,13 +211,20 @@ function filterLabs(stage: 'all' | 'primary' | 'prep', subject: string, query: s
 
 export function Labs() {
   const gradeLevel = useApp.getState().settings.gradeLevel
-  const [lab, setLab] = useState<Lab>(() => (gradeLevel <= 6 ? 'fractions' : 'circuit'))
-  const [stageFilter, setStageFilter] = useState<'all' | 'primary' | 'prep'>(() => (gradeLevel <= 6 ? 'primary' : 'prep'))
+  const [params] = useSearchParams()
+  const fromLesson = LAB_META.find((item) => item.id === params.get('lab'))
+  const [lab, setLab] = useState<Lab>(() => fromLesson?.id ?? (gradeLevel <= 6 ? 'fractions' : 'circuit'))
+  const [stageFilter, setStageFilter] = useState<'all' | 'primary' | 'prep'>(() => (fromLesson ? 'all' : gradeLevel <= 6 ? 'primary' : 'prep'))
   const [subjectFilter, setSubjectFilter] = useState('all')
   const [query, setQuery] = useState('')
   const addXP = useApp((s) => s.addXP)
   const pushToast = useUI((s) => s.pushToast)
   const awarded = useRef<Record<string, boolean>>({})
+  const activeRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (fromLesson) window.setTimeout(() => activeRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const visible = filterLabs(stageFilter, subjectFilter, query).sort((a, b) => {
     const fit = (item: LabMeta) => (gradeLevel >= item.grades[0] && gradeLevel <= item.grades[1] ? 0 : 1)
     return fit(a) - fit(b)
@@ -241,6 +250,10 @@ export function Labs() {
         subtitle={tr("Thirty-nine simulations across the Egyptian curriculum, from grade 1 to grade 9. Change a variable, watch the result, then explain it back to Jessica.")}
         icon={<FlaskConical className="h-5 w-5" />}
       />
+
+      {fromLesson && params.get('book') && (
+        <LessonLabBanner bookId={params.get('book') || ''} unitId={params.get('unit') || ''} page={Number(params.get('page')) || 1} />
+      )}
 
       <div className="space-y-2 rounded-3xl border border-line bg-card p-3">
         <div className="flex flex-wrap items-center gap-1.5">
@@ -333,6 +346,7 @@ export function Labs() {
         </div>
       )}
 
+      <div ref={activeRef} className="scroll-mt-20" />
       {lab === 'fractions' && <FractionsLab onInteract={() => reward('fractions')} />}
       {lab === 'geometry' && <GeometryLab onInteract={() => reward('geometry')} />}
       {lab === 'circuit' && <CircuitLab onInteract={() => reward('circuit')} />}
