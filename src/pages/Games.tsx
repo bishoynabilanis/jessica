@@ -230,6 +230,14 @@ export function Games() {
           </Card>
 
           <Card className="p-4">
+            <p className="text-[11px] font-bold text-main">{tr('Book detective')}</p>
+            <p className="mt-1 text-[10px] leading-relaxed text-muted">{tr('Find the evidence in your book.')}</p>
+            <Button size="sm" variant="secondary" className="mt-2" onClick={() => navigate('/detective')} data-testid="open-detective">
+              {tr('Play')}
+            </Button>
+          </Card>
+
+          <Card className="p-4">
             <p className="flex items-center gap-1.5 text-[11px] font-bold text-main">
               <BookOpen className="h-3.5 w-3.5 text-aurora-300" /> {tr("Want a different challenge?")}
             </p>
