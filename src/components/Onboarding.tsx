@@ -8,6 +8,17 @@ import { tr } from '@/i18n'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { TERMS_VERSION } from '@/data/terms'
 
+const arabicFeatures: Record<string, string> = {
+  'Read any PDF': 'اقرأ أي PDF',
+  'Highlight a sentence → instant explanation': 'حدّد جملة ← شرح فوري',
+  'AI study tools': 'أدوات مذاكرة ذكية',
+  'Quizzes, flashcards, podcast, mind maps': 'اختبارات، بطاقات مراجعة، بودكاست، وخرائط ذهنية',
+  'XP & evolutions': 'نقاط وتطوّر',
+  'Grow a companion while you learn': 'كبّر صاحبك وإنت بتتعلّم',
+  'Private by design': 'خصوصيتك من الأساس',
+  'Everything stays on this device': 'كل حاجة بتفضل على الجهاز ده',
+}
+
 const features = [
   { icon: BookOpen, label: 'Read any PDF', hint: 'Highlight a sentence → instant explanation' },
   { icon: Sparkles, label: 'AI study tools', hint: 'Quizzes, flashcards, podcast, mind maps' },
@@ -16,7 +27,7 @@ const features = [
 ]
 
 export function Onboarding() {
-  const { name, setName, setOnboarded, acceptTerms } = useApp()
+  const { name, setName, setOnboarded, acceptTerms, settings } = useApp()
   const [draftName, setDraftName] = useState(name)
   const [checked, setChecked] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -65,8 +76,8 @@ export function Onboarding() {
                 <div key={f.label} className="flex items-center gap-2 rounded-xl border border-line bg-white/5 px-2.5 py-2">
                   <f.icon className="h-3.5 w-3.5 shrink-0 text-aurora-300" />
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-main">{tr(f.label)}</p>
-                    <p className="truncate text-[9px] text-muted">{tr(f.hint)}</p>
+                    <p className="text-[10px] font-bold text-main">{settings.language === 'ar' ? arabicFeatures[f.label] : tr(f.label)}</p>
+                    <p className="truncate text-[9px] text-muted">{settings.language === 'ar' ? arabicFeatures[f.hint] : tr(f.hint)}</p>
                   </div>
                 </div>
               ))}
