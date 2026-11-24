@@ -34,6 +34,7 @@ import { levelLabel } from '@/lib/curriculum'
 import { lessonVideoUrl } from '@/lib/youtube'
 import { cn } from '@/lib/utils'
 import { num, tr } from '@/i18n'
+import { MASTERY_LABEL } from '@/lib/mastery'
 
 export function Course() {
   const { bookId = '' } = useParams()
@@ -371,11 +372,21 @@ export function Course() {
                         {tr('Best {n}%', { n: num(lesson.best) })}
                       </span>
                     )}
+                    {lesson.mastery.level !== 'none' && (
+                      <span data-testid="lesson-mastery" className="chip border-violet-neon/25 bg-violet-neon/10 text-[8px] text-violet-glow">
+                        {tr('Mastery {n} points', { n: num(lesson.mastery.points) })} · {tr(MASTERY_LABEL[lesson.mastery.level])}
+                      </span>
+                    )}
                   </div>
                   <p className="mt-0.5 text-[9px] text-muted">
                     {tr('Pages {from}–{to}', { from: num(lesson.unit.startPage), to: num(lesson.unit.endPage) })} ·{' '}
                     {num(lesson.minutes)} {tr('min')} · {tr('50 XP')}
                   </p>
+                  {lesson.mastery.weakest && (
+                    <p data-testid="lesson-weakest" className="mt-0.5 text-[9px] font-bold text-sun">
+                      {tr('Review this idea: {topic}', { topic: lesson.mastery.weakest })}
+                    </p>
+                  )}
                   {started && lesson.step > 0 && (
                     <p className="mt-0.5 text-[9px] font-bold text-violet-glow">
                       {tr('Stopped at step {n} of 4', { n: num(lesson.step + 1) })}
