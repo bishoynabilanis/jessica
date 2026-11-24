@@ -40,33 +40,18 @@ async function seed(page: import('@playwright/test').Page) {
   }, profile)
 }
 
-test('setup offers the AI without a key when the device can run the model', async ({ page }) => {
+test('setup does not offer the offline model or a key on first run', async ({ page }) => {
   await seed(page)
   await page.addInitScript(() => {
     Object.defineProperty(navigator, 'gpu', { value: {}, configurable: true })
     Object.defineProperty(navigator, 'deviceMemory', { value: 8, configurable: true })
   })
-
-  await page.goto('/#/')
-  await expect(page.getByText('١. شغّل المدرّس الذكي')).toBeVisible({ timeout: 20_000 })
-  // The one-tap download is in the first screen a learner sees, not hidden in settings.
-  await expect(page.getByTestId('offline-model-download')).toBeVisible()
-  await expect(page.getByText('شغّل الذكاء من غير مفتاح')).toBeVisible()
-})
-
-test('on a device that cannot run the model, setup does not promise it', async ({ page }) => {
-  await seed(page)
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, 'gpu', { value: undefined, configurable: true })
-    Object.defineProperty(navigator, 'deviceMemory', { value: 4, configurable: true })
-  })
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
 
   await page.goto('/#/')
-  await expect(page.getByText('١. شغّل المدرّس الذكي')).toBeVisible({ timeout: 20_000 })
+  await expect(page.getByText('ضيف كتاب واحد على الأقل')).toBeVisible({ timeout: 20_000 })
   await expect(page.getByTestId('offline-model-download')).toHaveCount(0)
-  // The key path stays available instead.
-  await expect(page.getByRole('button', { name: /Google Gemini|Gemini/ }).first()).toBeVisible()
+  await expect(page.getByRole('button', { name: /Google Gemini|Gemini/ })).toHaveCount(0)
   expect(errors).toEqual([])
 })
