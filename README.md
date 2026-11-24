@@ -50,11 +50,11 @@ and no subscriptions**.
 | **Comfort** | Dark/light themes, text scaling, Atkinson Hyperlegible (dyslexia-friendly), reduced motion, offline shell, local notifications, question read-aloud, crash boundary, global search (⌘K) |
 | **Privacy** | Everything in `localStorage` + IndexedDB, JSON backup/restore, full ZIP backup with books and flashcards, one-click wipe, parent WhatsApp report generated on-device |
 | **Community catalog** | Import a JSON catalog shared by a teacher or school; books appear in the library with a Community badge and are downloaded/imported locally |
-| **Schools** | Government, private, language and Al-Azhar school types; subjects and the official catalog adapt (French/German only for language schools) |
+| **Schools** | Government, private and language school types; subjects and the official catalog adapt (French/German only for language schools) |
 | **Languages & regions** | English, Arabic, French, Spanish, German, Turkish and Indonesian UI (translated core, English fallback), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
 | **Primary mode** | A separate kids world for Primary 1–4 by default (5–6 get the full study shell, switchable in Settings): its own shell and routes, bright world theme, floating scenery, big controls, daily gift and stickers, sticker book, badges, parent gate, read-to-me page reader and age-appropriate explanations |
 
-The official catalog covers **Arabic, English, Mathematics, Science, Social Studies, French, German and Religion** depending on the grade and school type (government, private, language or Al-Azhar).
+The official catalog covers **Arabic, English, Mathematics, Science, Social Studies, French, German and Religion** depending on the grade and school type (government, private or language).
 
 ---
 
