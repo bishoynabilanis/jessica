@@ -60,7 +60,7 @@ export function Mascot({
         />
       )}
       <img
-        src={`${import.meta.env.BASE_URL}mascot/${size <= 80 ? 'jessica-face.png' : 'jessica-avatar.png'}`}
+        src={`${import.meta.env.BASE_URL}mascot/${size <= 80 ? 'jessica-face.webp' : 'jessica-avatar.webp'}`}
         alt=""
         draggable={false}
         className="relative h-full w-full select-none object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.35)]"

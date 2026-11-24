@@ -4,7 +4,7 @@
 const VERSION = 'jessica-__BUILD__'
 const SHELL = `${VERSION}-shell`
 const RUNTIME = `${VERSION}-runtime`
-const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.png', './mascot/jessica-face.png', './mascot/jessica-full.png']
+const CORE = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './mascot/jessica-avatar.webp', './mascot/jessica-face.webp', './mascot/jessica-full.webp']
 // The build injects the hashed entry bundles here (index.html references), so
 // a first visit can boot with no network even before any route is revisited.
 const ASSETS = Array.isArray(self.JESSICA_ASSETS) ? self.JESSICA_ASSETS : []
