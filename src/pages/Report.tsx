@@ -7,6 +7,7 @@ import {
   CalendarRange,
   Clock,
   Copy,
+  FileText,
   Flame,
   Send,
   Share2,
@@ -141,6 +142,11 @@ export function Report() {
         icon={<BarChart3 className="h-5 w-5" />}
         actions={
           <>
+            <Link to="/sheet" data-testid="sheet-link">
+              <Button size="sm" variant="secondary">
+                <FileText className="h-3.5 w-3.5" /> {tr('Study sheet')}
+              </Button>
+            </Link>
             <Link to="/report-month">
               <Button size="sm" variant="secondary">
                 <CalendarRange className="h-3.5 w-3.5" /> {tr('Monthly report')}

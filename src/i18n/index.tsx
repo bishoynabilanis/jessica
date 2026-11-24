@@ -3419,6 +3419,23 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Weekly study sheet": "ورقة المذاكرة الأسبوعية",
+  "Minutes studied": "دقايق المذاكرة",
+  "Topics finished": "دروس خلّصتها",
+  "What I studied this week": "ذاكرت إيه الأسبوع ده",
+  "No finished topics yet. A new week starts today.": "لسه مفيش دروس خلصت. أسبوع جديد بيبدأ النهارده.",
+  "{n} practice tests, average {avg}%": "{n} اختبارات تدريب، المتوسط {avg}%",
+  "To revisit next week": "للمراجعة الأسبوع الجاي",
+  "Mistakes ready to review: {n}": "أخطاء جاهزة للمراجعة: {n}",
+  "Nothing to catch up on. Keep going.": "مفيش حاجة متأخرة. كمّل كده.",
+  "Made on this device from what was done in the app. Nothing was uploaded.": "اتعملت على الجهاز ده من اللي اتعمل فعلًا في التطبيق. مفيش حاجة اتبعتت لأي مكان.",
+  "Sheet saved as an image": "الورقة اتحفظت كصورة",
+  "One page with what was really studied this week. It is built and kept on this device only.": "ورقة واحدة بالمذاكرة الحقيقية الأسبوع ده. بتتعمل وبتفضل على الجهاز ده بس.",
+  "No account, no tracking, no server. The sheet is drawn on this device. It leaves the device only if you press Share, and then you choose who gets it.": "من غير حساب ولا تتبّع ولا سيرفر. الورقة بتتعمل على الجهاز ده. مبتخرجش منه غير لما تدوس مشاركة، وانت اللي بتختار مين ياخدها.",
+  "Put the child’s name on the sheet": "حط اسم الطفل على الورقة",
+  "Share the sheet": "شارك الورقة",
+  "Save image": "احفظ الصورة",
+  "Study sheet": "ورقة المذاكرة",
   "Did you understand it, or guess?": "فهمتها ولا خمّنت؟",
   "I understood": "فهمت",
   "I guessed": "خمّنت",

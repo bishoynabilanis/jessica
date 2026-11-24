@@ -47,4 +47,5 @@ export const LazyDisclaimer = page(() => import('@/pages/Disclaimer'), 'Disclaim
 export const LazyExamCalendar = page(() => import('@/pages/ExamCalendar'), 'ExamCalendar')
 export const LazySolve = page(() => import('@/pages/Solve'), 'Solve')
 export const LazyReport = page(() => import('@/pages/Report'), 'Report')
+export const LazyStudySheet = page(() => import('@/pages/StudySheet'), 'StudySheet')
 export const LazyMonthlyReport = page(() => import('@/pages/MonthlyReport'), 'MonthlyReport')
