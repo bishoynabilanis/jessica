@@ -85,6 +85,16 @@ export const playAr: Record<string, string> = {
   "That line is right. Check the others.": "السطر ده صح. بُص على الباقي.",
   "You found the mistake and the right answer is shown.": "لقيت الغلطة والإجابة الصح ظهرت.",
   "Another board": "لوحة تانية",
+
+  // Hands-in
+  "Do it with your hands: the water journey": "جرّب بإيدك: رحلة الماء",
+  "Tap the stages in the order the water goes.": "دوس على المراحل بالترتيب اللي الماء بيمشي بيه.",
+  "Do it with your hands: plant parts": "جرّب بإيدك: أجزاء النبات",
+  "Read what the part does, then tap the part.": "اقرا الجزء ده بيعمل إيه، وبعدين دوس على الجزء.",
+  "Look at the list above to see what each part does.": "بُص على القايمة اللي فوق عشان تشوف كل جزء بيعمل إيه.",
+  "Try another one. Take your time.": "جرّب واحد تاني. خد وقتك.",
+  "You did it. Well done!": "عملتها. برافو!",
+  "Play again": "العب تاني",
 }
 
 export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string, string>> = {
@@ -167,6 +177,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That line is right. Check the others.": "Cette ligne est juste. Regarde les autres.",
     "You found the mistake and the right answer is shown.": "Tu as trouvé l’erreur et la bonne réponse est affichée.",
     "Another board": "Un autre tableau",
+    // Hands-in
+    "Do it with your hands: the water journey": "Fais-le avec tes mains : le voyage de l’eau",
+    "Tap the stages in the order the water goes.": "Touche les étapes dans l’ordre du voyage de l’eau.",
+    "Do it with your hands: plant parts": "Fais-le avec tes mains : les parties de la plante",
+    "Read what the part does, then tap the part.": "Lis ce que fait la partie, puis touche la partie.",
+    "Look at the list above to see what each part does.": "Regarde la liste au-dessus pour voir ce que fait chaque partie.",
+    "Try another one. Take your time.": "Essaie-en une autre. Prends ton temps.",
+    "You did it. Well done!": "Tu as réussi. Bravo !",
+    "Play again": "Rejouer",
   },
   es: {
     'Try it in the lab': 'Pruébalo en el laboratorio',
@@ -247,6 +266,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That line is right. Check the others.": "Esa línea está bien. Mira las otras.",
     "You found the mistake and the right answer is shown.": "Encontraste el error y se muestra la respuesta correcta.",
     "Another board": "Otra pizarra",
+    // Hands-in
+    "Do it with your hands: the water journey": "Hazlo con tus manos: el viaje del agua",
+    "Tap the stages in the order the water goes.": "Toca las etapas en el orden en que va el agua.",
+    "Do it with your hands: plant parts": "Hazlo con tus manos: partes de la planta",
+    "Read what the part does, then tap the part.": "Lee lo que hace la parte y toca la parte.",
+    "Look at the list above to see what each part does.": "Mira la lista de arriba para ver qué hace cada parte.",
+    "Try another one. Take your time.": "Prueba con otra. Tómate tu tiempo.",
+    "You did it. Well done!": "¡Lo lograste! Bien hecho.",
+    "Play again": "Jugar otra vez",
   },
   de: {
     'Try it in the lab': 'Im Labor ausprobieren',
@@ -327,6 +355,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That line is right. Check the others.": "Diese Zeile stimmt. Sieh dir die anderen an.",
     "You found the mistake and the right answer is shown.": "Du hast den Fehler gefunden, die richtige Antwort wird gezeigt.",
     "Another board": "Neue Tafel",
+    // Hands-in
+    "Do it with your hands: the water journey": "Mach es mit den Händen: die Reise des Wassers",
+    "Tap the stages in the order the water goes.": "Tippe die Stationen in der Reihenfolge, in der das Wasser reist.",
+    "Do it with your hands: plant parts": "Mach es mit den Händen: Pflanzenteile",
+    "Read what the part does, then tap the part.": "Lies, was der Teil tut, und tippe dann den Teil an.",
+    "Look at the list above to see what each part does.": "Schau in die Liste oben, was jeder Teil tut.",
+    "Try another one. Take your time.": "Versuche einen anderen. Lass dir Zeit.",
+    "You did it. Well done!": "Geschafft. Gut gemacht!",
+    "Play again": "Nochmal spielen",
   },
   tr: {
     'Try it in the lab': 'Laboratuvarda dene',
@@ -407,6 +444,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That line is right. Check the others.": "Bu satır doğru. Diğerlerine bak.",
     "You found the mistake and the right answer is shown.": "Hatayı buldun, doğru cevap gösteriliyor.",
     "Another board": "Başka tahta",
+    // Hands-in
+    "Do it with your hands: the water journey": "Elinle yap: suyun yolculuğu",
+    "Tap the stages in the order the water goes.": "Aşamalara suyun gittiği sırayla dokun.",
+    "Do it with your hands: plant parts": "Elinle yap: bitki bölümleri",
+    "Read what the part does, then tap the part.": "Bölümün ne yaptığını oku, sonra bölüme dokun.",
+    "Look at the list above to see what each part does.": "Her bölümün ne yaptığını görmek için yukarıdaki listeye bak.",
+    "Try another one. Take your time.": "Başka birini dene. Acele etme.",
+    "You did it. Well done!": "Başardın. Aferin!",
+    "Play again": "Tekrar oyna",
   },
   id: {
     'Try it in the lab': 'Coba di laboratorium',
@@ -487,5 +533,14 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That line is right. Check the others.": "Baris itu benar. Periksa yang lain.",
     "You found the mistake and the right answer is shown.": "Kamu menemukan kesalahannya dan jawaban yang benar ditampilkan.",
     "Another board": "Papan lain",
+    // Hands-in
+    "Do it with your hands: the water journey": "Lakukan dengan tanganmu: perjalanan air",
+    "Tap the stages in the order the water goes.": "Ketuk tahapan sesuai urutan perjalanan air.",
+    "Do it with your hands: plant parts": "Lakukan dengan tanganmu: bagian tumbuhan",
+    "Read what the part does, then tap the part.": "Baca apa yang dilakukan bagian itu, lalu ketuk bagiannya.",
+    "Look at the list above to see what each part does.": "Lihat daftar di atas untuk tahu apa yang dilakukan tiap bagian.",
+    "Try another one. Take your time.": "Coba yang lain. Santai saja.",
+    "You did it. Well done!": "Kamu berhasil. Hebat!",
+    "Play again": "Main lagi",
   },
 }
