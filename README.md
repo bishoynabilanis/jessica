@@ -1,3 +1,5 @@
+**Try it now:** https://bishoynabilanis.github.io/jessica/welcome/ | English page: https://bishoynabilanis.github.io/jessica/welcome/en/ | All grades: https://bishoynabilanis.github.io/jessica/welcome/grades/
+
 # Jessica — تطبيق مذاكرة بالذكاء الاصطناعي 🇪🇬
 
 [**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help) · [جروب المجتمع](https://is.gd/jessicagroup)
