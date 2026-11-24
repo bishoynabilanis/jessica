@@ -2891,4 +2891,7 @@ export const indonesian: Record<string, string> = {
   "Study sheet": "Lembar belajar",
   "Stop listening": "Berhenti mendengarkan",
   "Summary PDF saved": "Ringkasan PDF tersimpan",
+  "Mastery {n} points": "Penguasaan: {n} poin",
+  "Review this idea: {topic}": "Ulangi ide ini: {topic}",
+  "Warming up": "Pemanasan",
 }

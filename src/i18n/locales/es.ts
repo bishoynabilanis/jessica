@@ -2891,4 +2891,7 @@ export const spanish: Record<string, string> = {
   "Study sheet": "Hoja de estudio",
   "Stop listening": "Dejar de escuchar",
   "Summary PDF saved": "Resumen en PDF guardado",
+  "Mastery {n} points": "Dominio: {n} puntos",
+  "Review this idea: {topic}": "Repasa esta idea: {topic}",
+  "Warming up": "Calentando",
 }

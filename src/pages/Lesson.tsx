@@ -35,6 +35,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar, Spinner } from '@/components/ui/Card'
 import { cn, pct } from '@/lib/utils'
 import { num, tr } from '@/i18n'
+import { lessonMastery } from '@/lib/mastery'
 
 type Step = 'intro' | 'read' | 'terms' | 'check' | 'done'
 
@@ -174,6 +175,7 @@ export function Lesson() {
 
   const stat = unitMastery[key]
   const alreadyMastered = completedTopics.includes(key) || (stat ? stat.best / stat.total >= 0.8 : false)
+  const mastery = lessonMastery(stat, completedTopics.includes(key))
   const minutes = Math.max(3, Math.round(pages.length * 1.5))
 
   const go = (next: Step) => {
@@ -258,6 +260,11 @@ export function Lesson() {
         <div className="flex items-center gap-1.5 text-[10px] font-bold text-muted">
           <span className="chip border-line bg-white/5">{book.emoji} {book.subject}</span>
           <span className="chip border-line bg-white/5">{tr('Unit {n}', { n: num((book.units?.findIndex((item) => item.id === unit.id) ?? 0) + 1) })}</span>
+          {mastery.level !== 'none' && !alreadyMastered && (
+            <span data-testid="lesson-mastery" className="chip border-violet-neon/25 bg-violet-neon/10 text-violet-glow">
+              {tr('Mastery {n} points', { n: num(mastery.points) })}
+            </span>
+          )}
           {alreadyMastered && (
             <span className="chip border-aurora-400/30 bg-aurora-400/10 text-aurora-200">
               <CheckCircle2 className="h-3 w-3" /> {tr('Mastered')}

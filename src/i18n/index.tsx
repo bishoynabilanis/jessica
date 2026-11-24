@@ -3419,6 +3419,9 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Mastery {n} points": "الإتقان {n} نقطة",
+  "Review this idea: {topic}": "راجع الفكرة دي: {topic}",
+  "Warming up": "لسه بتسخّن",
   "Speak your question": "اسأل بصوتك",
   "Stop listening": "وقّف السماع",
   "Summary PDF saved": "اتحفظ الملخص PDF",
