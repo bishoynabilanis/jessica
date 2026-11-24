@@ -1,3 +1,4 @@
+import { Globe } from 'lucide-react'
 import { UI_LANGUAGES, tr } from '@/i18n'
 import { useApp } from '@/store/useApp'
 import { cn } from '@/lib/utils'
@@ -29,24 +30,33 @@ export function LanguageSwitch({ compact = false }: { compact?: boolean }) {
           {item.label}
         </button>
       ))}
-      <select
-        value={otherActive ? language : ''}
-        onChange={(e) => e.target.value && updateSettings({ language: e.target.value as typeof language })}
-        aria-label={tr('More languages')}
+      <label
         className={cn(
-          'chip border-line bg-card-2 font-bold text-muted',
-          compact ? 'min-h-[32px] w-12 !px-2 !py-1 !text-xs' : 'min-h-[40px] w-14 !px-3 !py-2 !text-sm',
+          'chip relative inline-flex items-center justify-center gap-1 font-bold',
+          compact ? 'min-h-[32px] !px-2.5 !py-1 !text-xs' : 'min-h-[40px] !px-3 !py-2 !text-sm',
+          otherActive
+            ? 'border-aurora-400/60 bg-aurora-400/25 text-aurora-100'
+            : 'border-line bg-card-2 text-muted',
         )}
       >
-        <option value="" disabled>
-          …
-        </option>
-        {others.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.label}
+        <Globe className={compact ? 'h-3.5 w-3.5' : 'h-4 w-4'} aria-hidden="true" />
+        {otherActive ? <span>{others.find((item) => item.id === language)?.label}</span> : null}
+        <select
+          value={otherActive ? language : ''}
+          onChange={(e) => e.target.value && updateSettings({ language: e.target.value as typeof language })}
+          aria-label={tr('More languages')}
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        >
+          <option value="" disabled>
+            {tr('More languages')}
           </option>
-        ))}
-      </select>
+          {others.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </label>
     </div>
   )
 }
