@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   ImagePlus,
   Lightbulb,
+  ListChecks,
   Loader2,
   RefreshCw,
   ScanLine,
@@ -13,6 +14,7 @@ import {
   Wand2,
   X,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -349,11 +351,18 @@ Student asks: ${message}`,
         subtitle={tr('A photo of a maths problem, a science diagram or a paragraph to translate — Jessica reads it, explains every step and gives you a similar question to practise.')}
         icon={<ScanLine className="h-5 w-5" />}
         actions={
-          result ? (
-            <Button variant="secondary" size="sm" onClick={reset}>
-              <RefreshCw className="h-3.5 w-3.5" /> {tr('New photo')}
-            </Button>
-          ) : undefined
+          <div className="flex flex-wrap gap-1.5">
+            <Link to="/steps">
+              <Button variant="secondary" size="sm" data-testid="steps-link">
+                <ListChecks className="h-3.5 w-3.5" /> {tr('Check my working')}
+              </Button>
+            </Link>
+            {result && (
+              <Button variant="secondary" size="sm" onClick={reset}>
+                <RefreshCw className="h-3.5 w-3.5" /> {tr('New photo')}
+              </Button>
+            )}
+          </div>
         }
       />
 
