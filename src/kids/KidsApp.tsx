@@ -10,7 +10,7 @@ import { KidsLesson } from '@/kids/KidsLesson'
 import { KidsMap } from '@/kids/KidsMap'
 import { ParentZone } from '@/kids/ParentZone'
 import { KidsLabs } from '@/kids/KidsLabs'
-import { LazyKidsBridgeRescue, LazyKidsBookDetective } from '@/pages/lazy'
+import { LazyKidsBridgeRescue, LazyKidsBookDetective, LazyKidsLabMistake } from '@/pages/lazy'
 import { KidsPractice } from '@/kids/KidsPractice'
 import { KidsStars } from '@/kids/KidsStars'
 import { CelebrationLayer } from '@/components/Celebration'
@@ -34,6 +34,7 @@ export function KidsApp() {
           <Route path="map" element={<KidsMap />} />
           <Route path="labs" element={<KidsLabs />} />
           <Route path="bridge" element={<LazyKidsBridgeRescue />} />
+          <Route path="mistake" element={<LazyKidsLabMistake />} />
           <Route path="detective" element={<LazyKidsBookDetective />} />
           <Route path="cards" element={<KidsCards />} />
           <Route path="me" element={<KidsMe />} />

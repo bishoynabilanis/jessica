@@ -51,5 +51,7 @@ export const LazyStudySheet = page(() => import('@/pages/StudySheet'), 'StudyShe
 export const LazyMonthlyReport = page(() => import('@/pages/MonthlyReport'), 'MonthlyReport')
 export const LazyBookDetective = page(() => import('@/pages/BookDetective'), 'BookDetective')
 export const LazyKidsBookDetective = page(() => import('@/pages/BookDetective'), 'KidsBookDetective')
+export const LazyLabMistake = page(() => import('@/pages/LabMistake'), 'LabMistake')
+export const LazyKidsLabMistake = page(() => import('@/pages/LabMistake'), 'KidsLabMistake')
 export const LazyBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'BridgeRescue')
 export const LazyKidsBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'KidsBridgeRescue')

@@ -75,6 +75,16 @@ export const playAr: Record<string, string> = {
   "Goes down or gets smaller": "بيقلّ أو بيصغر",
   "Stays the same": "بيفضل زي ما هو",
   "Next": "التالي",
+
+  // Lab mistake
+  "Find the lab's mistake": "اكتشف غلطة المعمل",
+  "Spot the wrong number on the board.": "لاقي الرقم الغلط على اللوحة.",
+  "One line on the lab board has a wrong number. Can you spot it?": "سطر واحد على لوحة المعمل فيه رقم غلط. تقدر تلاقيه؟",
+  "No lab board for your books yet": "مفيش لوحة معمل لكتبك لسه",
+  "Tap the line with the mistake.": "دوس على السطر اللي فيه الغلطة.",
+  "That line is right. Check the others.": "السطر ده صح. بُص على الباقي.",
+  "You found the mistake and the right answer is shown.": "لقيت الغلطة والإجابة الصح ظهرت.",
+  "Another board": "لوحة تانية",
 }
 
 export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string, string>> = {
@@ -148,6 +158,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "Goes down or gets smaller": "Diminue ou rapetisse",
     "Stays the same": "Reste pareil",
     "Next": "Suivant",
+    // Lab mistake
+    "Find the lab's mistake": "Trouve l’erreur du labo",
+    "Spot the wrong number on the board.": "Repère le mauvais nombre sur le tableau.",
+    "One line on the lab board has a wrong number. Can you spot it?": "Une ligne du tableau du labo a un mauvais nombre. Peux-tu la trouver ?",
+    "No lab board for your books yet": "Pas encore de tableau de labo pour tes livres",
+    "Tap the line with the mistake.": "Touche la ligne qui contient l’erreur.",
+    "That line is right. Check the others.": "Cette ligne est juste. Regarde les autres.",
+    "You found the mistake and the right answer is shown.": "Tu as trouvé l’erreur et la bonne réponse est affichée.",
+    "Another board": "Un autre tableau",
   },
   es: {
     'Try it in the lab': 'Pruébalo en el laboratorio',
@@ -219,6 +238,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "Goes down or gets smaller": "Baja o se hace más pequeño",
     "Stays the same": "Se queda igual",
     "Next": "Siguiente",
+    // Lab mistake
+    "Find the lab's mistake": "Encuentra el error del laboratorio",
+    "Spot the wrong number on the board.": "Detecta el número equivocado en la pizarra.",
+    "One line on the lab board has a wrong number. Can you spot it?": "Una línea de la pizarra del laboratorio tiene un número equivocado. ¿Puedes encontrarla?",
+    "No lab board for your books yet": "Todavía no hay pizarra de laboratorio para tus libros",
+    "Tap the line with the mistake.": "Toca la línea con el error.",
+    "That line is right. Check the others.": "Esa línea está bien. Mira las otras.",
+    "You found the mistake and the right answer is shown.": "Encontraste el error y se muestra la respuesta correcta.",
+    "Another board": "Otra pizarra",
   },
   de: {
     'Try it in the lab': 'Im Labor ausprobieren',
@@ -290,6 +318,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "Goes down or gets smaller": "Sinkt oder wird kleiner",
     "Stays the same": "Bleibt gleich",
     "Next": "Weiter",
+    // Lab mistake
+    "Find the lab's mistake": "Finde den Fehler im Labor",
+    "Spot the wrong number on the board.": "Entdecke die falsche Zahl auf der Tafel.",
+    "One line on the lab board has a wrong number. Can you spot it?": "Eine Zeile auf der Labortafel hat eine falsche Zahl. Findest du sie?",
+    "No lab board for your books yet": "Noch keine Labortafel für deine Bücher",
+    "Tap the line with the mistake.": "Tippe auf die Zeile mit dem Fehler.",
+    "That line is right. Check the others.": "Diese Zeile stimmt. Sieh dir die anderen an.",
+    "You found the mistake and the right answer is shown.": "Du hast den Fehler gefunden, die richtige Antwort wird gezeigt.",
+    "Another board": "Neue Tafel",
   },
   tr: {
     'Try it in the lab': 'Laboratuvarda dene',
@@ -361,6 +398,15 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "Goes down or gets smaller": "Azalır ya da küçülür",
     "Stays the same": "Aynı kalır",
     "Next": "İleri",
+    // Lab mistake
+    "Find the lab's mistake": "Laboratuvarın hatasını bul",
+    "Spot the wrong number on the board.": "Tahtadaki yanlış sayıyı yakala.",
+    "One line on the lab board has a wrong number. Can you spot it?": "Laboratuvar tahtasındaki bir satırda yanlış sayı var. Bulabilir misin?",
+    "No lab board for your books yet": "Kitapların için henüz laboratuvar tahtası yok",
+    "Tap the line with the mistake.": "Hatalı satıra dokun.",
+    "That line is right. Check the others.": "Bu satır doğru. Diğerlerine bak.",
+    "You found the mistake and the right answer is shown.": "Hatayı buldun, doğru cevap gösteriliyor.",
+    "Another board": "Başka tahta",
   },
   id: {
     'Try it in the lab': 'Coba di laboratorium',
@@ -432,5 +478,14 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "Goes down or gets smaller": "Turun atau jadi lebih kecil",
     "Stays the same": "Tetap sama",
     "Next": "Berikutnya",
+    // Lab mistake
+    "Find the lab's mistake": "Temukan kesalahan lab",
+    "Spot the wrong number on the board.": "Temukan angka yang salah di papan.",
+    "One line on the lab board has a wrong number. Can you spot it?": "Satu baris di papan lab punya angka yang salah. Bisakah kamu menemukannya?",
+    "No lab board for your books yet": "Belum ada papan lab untuk bukumu",
+    "Tap the line with the mistake.": "Ketuk baris yang salah.",
+    "That line is right. Check the others.": "Baris itu benar. Periksa yang lain.",
+    "You found the mistake and the right answer is shown.": "Kamu menemukan kesalahannya dan jawaban yang benar ditampilkan.",
+    "Another board": "Papan lain",
   },
 }
