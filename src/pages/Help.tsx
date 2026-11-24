@@ -4,7 +4,8 @@ import { ChevronDown, HelpCircle, MessageSquareWarning, Search, Youtube } from '
 import { PageHeader } from '@/components/common/PageHeader'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { getLanguage, tr } from '@/i18n'
+import { getLanguage } from '@/i18n'
+import { counterTr as tr } from '@/i18n/counters'
 import { geminiKeyVideo, youtubeWatchUrl } from '@/data/tutorials'
 import { COMMUNITY_GROUP, SUPPORT_EMAIL, SUPPORT_WHATSAPP } from '@/data/support'
 
@@ -135,7 +136,7 @@ const FAQ: { ar: FaqItem[]; en: FaqItem[] } = {
       tag: 'Privacy',
       question: 'What is the community counter?',
       answer:
-        'An anonymous counter that increments once per open, with no identifiers. You can turn it off in Settings.',
+        'Session opens and new browser/install signals increment public totals without sending a device identifier. Local flags reduce repeats; these are estimates, not a user census.',
     },
     {
       tag: 'Schools',

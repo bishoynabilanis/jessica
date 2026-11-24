@@ -23,7 +23,7 @@ async function read(key) {
   }
 }
 
-const [opens, installs, pwa] = await Promise.all([read('opens'), read('installs'), read('pwa-opens')])
+const [opens, installs, browsers] = await Promise.all([read('opens'), read('install-browsers-v2'), read('browsers-v2')])
 const today = new Date().toISOString().slice(0, 10)
 
 let store = { updatedAt: null, days: [] }
@@ -36,10 +36,10 @@ try {
 
 // Same-day runs replace the entry instead of appending.
 store.days = store.days.filter((day) => day.date !== today)
-store.days.push({ date: today, opens, installs, pwa })
+store.days.push({ date: today, opens, installs, browsers, counterVersion: 2 })
 store.days = store.days.sort((a, b) => a.date.localeCompare(b.date)).slice(-KEEP_DAYS)
 store.updatedAt = new Date().toISOString()
 
 await mkdir(dirname(OUTPUT), { recursive: true })
 await writeFile(OUTPUT, `${JSON.stringify(store, null, 2)}\n`, 'utf8')
-console.log(`stats: ${today} opens=${opens} installs=${installs} pwa=${pwa}`)
+console.log(`stats: ${today} opens=${opens} installs=${installs} browsers=${browsers}`)
