@@ -48,3 +48,5 @@ export const LazyExamCalendar = page(() => import('@/pages/ExamCalendar'), 'Exam
 export const LazySolve = page(() => import('@/pages/Solve'), 'Solve')
 export const LazyReport = page(() => import('@/pages/Report'), 'Report')
 export const LazyMonthlyReport = page(() => import('@/pages/MonthlyReport'), 'MonthlyReport')
+export const LazyBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'BridgeRescue')
+export const LazyKidsBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'KidsBridgeRescue')
