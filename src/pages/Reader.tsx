@@ -43,6 +43,7 @@ import { useUI } from '@/store/useUI'
 import { speakable, useSpeech } from '@/lib/speech'
 import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { ocrPdfPage } from '@/lib/ocr'
+import { OfflineReadyButton } from '@/components/library/OfflineReady'
 import { tr } from '@/i18n'
 import { stageForGrade } from '@/lib/stage'
 
@@ -433,6 +434,7 @@ export function Reader() {
               <Trash2 className="h-3.5 w-3.5 text-coral" />
             </Button>
           )}
+          {!kids && <OfflineReadyButton book={book} />}
           <Button size="sm" variant="secondary" onClick={() => setStudioOpen(true)}>
             <Sparkles className="h-3.5 w-3.5" /> {tr("Studio")}
           </Button>

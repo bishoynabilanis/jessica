@@ -22,6 +22,7 @@ import { subjectMeta } from '@/data/books'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { PageHeader } from '@/components/common/PageHeader'
+import { OfflineReadyButton } from '@/components/library/OfflineReady'
 import { Button } from '@/components/ui/Button'
 import { Card, EmptyState, ProgressBar } from '@/components/ui/Card'
 import type { BookUnit } from '@/types'
@@ -156,6 +157,7 @@ export function Course() {
         title={book.title}
         subtitle={`${tr(book.subject)} · ${tr(book.term)} · ${grade}`}
         icon={<GraduationCap className="h-5 w-5" />}
+        actions={<OfflineReadyButton book={book} />}
       />
 
       <Card className="relative overflow-hidden p-4 sm:p-5">
