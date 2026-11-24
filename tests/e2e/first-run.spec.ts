@@ -118,3 +118,23 @@ test('the primary action resumes the book the learner was reading', async ({ pag
   await cta.click()
   await expect(page).toHaveURL(/#\/reader\/test-book/)
 })
+
+
+test('retired school selection falls back safely and is no longer offered', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('jessica-profile-v1', JSON.stringify({ version: 3, state: {
+      onboarded: true, acceptedTerms: 1, name: 'School check', customBooks: [{id:'test',title:'Test',subject:'Mathematics',grade:4,term:'Term 1',pageCount:1,custom:true,units:[]}],
+      settings: { language: 'en', primaryUi: 'study', gradeLevel: 4, schoolType: 'azhar', sound: false },
+    } }))
+    localStorage.setItem('jessica-disclaimer-v1', '1')
+  })
+  const errors: string[] = []
+  page.on('pageerror', error => errors.push(error.message))
+  await page.goto('/#/settings')
+  await expect(page.getByRole('button', { name: /Government school/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Language school/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Private school/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Al-Azhar/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Government school/ })).toHaveClass(/border-aurora-400/ )
+  expect(errors).toEqual([])
+})
