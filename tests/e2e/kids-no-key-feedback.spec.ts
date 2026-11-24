@@ -29,7 +29,6 @@ function seed(customBooks: unknown[]) {
 test('kids world: asking Jessica without a key opens the AI need modal', async ({ page }) => {
   await page.addInitScript(seed, [])
   await page.goto('/')
-  await page.getByRole('button', { name: 'Continue without a key' }).click()
   await page.locator('input[type=file]').setInputFiles('tests/e2e/fixtures/mini-book.pdf')
   await page.getByRole('button', { name: 'Add to library' }).click()
   await expect(page.getByText('Jessica kids')).toBeVisible({ timeout: 20_000 })
@@ -42,10 +41,10 @@ test('kids world: asking Jessica without a key opens the AI need modal', async (
   await expect(page).toHaveURL(/#\/kids\/settings/)
 })
 
-test('setup: skipping the key does not claim the AI is on', async ({ page }) => {
+test('setup: first run no longer asks for an AI key', async ({ page }) => {
   await page.addInitScript(seed, [])
   await page.goto('/')
-  await page.getByRole('button', { name: 'Continue without a key' }).click()
-  await expect(page.getByText('The AI is on — no key needed.')).toHaveCount(0)
-  await expect(page.getByText(/The AI is off for now/)).toBeVisible()
+  await expect(page.getByText('Add at least one book')).toBeVisible()
+  await expect(page.getByText(/Gemini/)).toHaveCount(0)
+  await expect(page.getByTestId('offline-model-download')).toHaveCount(0)
 })
