@@ -24,6 +24,7 @@ import { subjectsForSchool } from '@/lib/school'
 import { useApp } from '@/store/useApp'
 import { BookCard } from '@/components/common/BookCard'
 import { PageHeader } from '@/components/common/PageHeader'
+import { BookCheckBadge, BookCheckButton } from '@/components/library/BookCheck'
 import { OfficialBookCard } from '@/components/library/OfficialBookCard'
 import { AddBookModal } from '@/components/library/AddBookModal'
 import { BatchImportModal } from '@/components/library/BatchImportModal'
@@ -324,6 +325,10 @@ export function Library() {
             {imported.map((book) => (
               <div key={book.id} className="relative">
                 <BookCard book={book} />
+                <div className="mt-1.5 flex items-center justify-between gap-2 px-1">
+                  <BookCheckBadge book={book} />
+                  <BookCheckButton book={book} className="ms-auto" />
+                </div>
                 <button
                   onClick={async () => {
                     if (!window.confirm(tr('Delete this book? Its progress and cached text will be removed.'))) return
