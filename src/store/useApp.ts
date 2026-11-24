@@ -23,7 +23,8 @@ import { giftStickers, type KidSticker } from '@/data/kids'
 import { useUI } from './useUI'
 import { providerFor } from '@/lib/providers'
 import type { OfficialBook } from '@/data/officialBooks'
-import { initialReview, nextReview } from '@/lib/mistakeReview'
+import { initialReview, isMastered, nextReview } from '@/lib/mistakeReview'
+import { applyConfidence, misunderstoodReviewAt, type Confidence, type SkillStat } from '@/lib/confidence'
 import { normalizeSchoolType } from '@/lib/school'
 
 export const XP_PER_LEVEL = 300
@@ -154,7 +155,7 @@ export interface AppState {
   parentTasks: ParentTask[]
   mistakes: MistakeEntry[]
   highlights: Record<string, PageHighlight[]>
-  skillStats: Record<string, { correct: number; total: number; lastAt: number }>
+  skillStats: Record<string, SkillStat>
   vault: VaultEntry[]
   planner: PlanTask[]
   exams: ExamResult[]
@@ -208,6 +209,15 @@ export interface AppState {
   addHighlight: (bookId: string, page: number, text: string, color?: string) => void
   removeHighlight: (bookId: string, id: string) => void
   recordSkill: (subject: string, topic: string, correct: boolean) => void
+  markConfidence: (input: {
+    subject: string
+    topic: string
+    correct: boolean
+    confidence: Confidence
+    question?: string
+    unitKey?: string
+    chosen?: number
+  }) => void
   addVault: (entry: Omit<VaultEntry, 'id' | 'createdAt'>) => string
   removeVault: (id: string) => void
   setPlanner: (tasks: PlanTask[]) => void
@@ -662,6 +672,27 @@ export const useApp = create<AppState>()(
               },
             },
           }
+        })
+      },
+
+      markConfidence: ({ subject, topic, correct, confidence, question, unitKey, chosen }) => {
+        const clean = topic.trim().slice(0, 60)
+        set((state) => {
+          const key = `${subject}|${clean}`
+          const previous = state.skillStats[key]
+          const patch: Partial<typeof state> = {}
+          if (clean && previous) {
+            patch.skillStats = { ...state.skillStats, [key]: applyConfidence(previous, correct, confidence) }
+          }
+          if (!correct && confidence === 'understood' && question) {
+            const at = misunderstoodReviewAt()
+            patch.mistakes = state.mistakes.map((item) =>
+              item.question === question && item.unitKey === unitKey && item.chosen === chosen && !isMastered(item)
+                ? { ...item, reviewAt: Math.min(item.reviewAt ?? at, at), reviewStep: 0 }
+                : item,
+            )
+          }
+          return patch
         })
       },
 

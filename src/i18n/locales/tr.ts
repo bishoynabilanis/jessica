@@ -2865,4 +2865,11 @@ export const turkish: Record<string, string> = {
   "Start scanning": "Taramayı başlat",
   "Pausing after this page…": "Bu sayfadan sonra duraklatılıyor…",
   "Try the failed pages again": "Başarısız sayfaları yeniden dene",
+  "Did you understand it, or guess?": "Anladın mı, tahmin mi ettin?",
+  "I understood": "Anladım",
+  "I guessed": "Tahmin ettim",
+  "Noted. Jessica will bring this topic back sooner.": "Not edildi. Jessica bu konuyu sana daha erken getirecek.",
+  "Noted. Good, you understand it.": "Not edildi. Güzel, bunu anlıyorsun.",
+  "Noted. This question will come back tomorrow.": "Not edildi. Bu soru yarın geri gelecek.",
+  "Answers you said you guessed count as half.": "Tahmin ettim dediğin cevaplar yarım sayılır.",
 }

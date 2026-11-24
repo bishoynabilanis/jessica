@@ -3418,6 +3418,13 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Did you understand it, or guess?": "فهمتها ولا خمّنت؟",
+  "I understood": "فهمت",
+  "I guessed": "خمّنت",
+  "Noted. Jessica will bring this topic back sooner.": "تمام. جيسيكا هترجّعلك الموضوع ده بدري.",
+  "Noted. Good, you understand it.": "تمام. كويس إنك فاهمها.",
+  "Noted. This question will come back tomorrow.": "تمام. السؤال ده هيرجعلك بكرة.",
+  "Answers you said you guessed count as half.": "الإجابات اللي قلت إنك خمّنتها بتتحسب بنص نقطة.",
   "Turn picture pages into text": "حوّل الدرس المصوّر لنص",
   "Scan pages": "امسح صفحات",
   "Text saved for {n} pages": "النص اتحفظ لـ{n} صفحة",

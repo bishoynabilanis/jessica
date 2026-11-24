@@ -2865,4 +2865,11 @@ export const german: Record<string, string> = {
   "Start scanning": "Scan starten",
   "Pausing after this page…": "Pause nach dieser Seite…",
   "Try the failed pages again": "Fehlgeschlagene Seiten erneut versuchen",
+  "Did you understand it, or guess?": "Hast du es verstanden oder geraten?",
+  "I understood": "Verstanden",
+  "I guessed": "Geraten",
+  "Noted. Jessica will bring this topic back sooner.": "Notiert. Jessica bringt dieses Thema früher wieder.",
+  "Noted. Good, you understand it.": "Notiert. Gut, du hast es verstanden.",
+  "Noted. This question will come back tomorrow.": "Notiert. Diese Frage kommt morgen wieder.",
+  "Answers you said you guessed count as half.": "Antworten, die du geraten hast, zählen nur halb.",
 }

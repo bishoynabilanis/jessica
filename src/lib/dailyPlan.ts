@@ -1,4 +1,5 @@
 import type { Book, PlanTask } from '@/types'
+import { effectiveAccuracy, type SkillStat } from '@/lib/confidence'
 
 import { num, tr } from '@/i18n'
 
@@ -12,7 +13,7 @@ export interface DailyMission {
 }
 
 interface PlanInput {
-  skillStats: Record<string, { correct: number; total: number; lastAt: number }>
+  skillStats: Record<string, SkillStat>
   unitMastery: Record<string, { best: number; total: number; attempts: number }>
   customBooks: Book[]
   bookProgress: Record<string, { lastPage: number; updatedAt: number }>
@@ -52,7 +53,7 @@ export function buildDailyPlan(input: PlanInput): DailyMission[] {
   }
 
   const weakestSkill = Object.entries(input.skillStats)
-    .map(([key, value]) => ({ key, ...value, accuracy: value.total ? value.correct / value.total : 0 }))
+    .map(([key, value]) => ({ key, ...value, accuracy: effectiveAccuracy(value) ?? 0 }))
     .filter((item) => item.total > 0)
     .sort((a, b) => a.accuracy - b.accuracy)[0]
 

@@ -2865,4 +2865,11 @@ export const spanish: Record<string, string> = {
   "Start scanning": "Empezar a escanear",
   "Pausing after this page…": "Pausa después de esta página…",
   "Try the failed pages again": "Reintentar las páginas fallidas",
+  "Did you understand it, or guess?": "¿Lo entendiste o lo adivinaste?",
+  "I understood": "Lo entendí",
+  "I guessed": "Lo adiviné",
+  "Noted. Jessica will bring this topic back sooner.": "Anotado. Jessica te traerá este tema antes.",
+  "Noted. Good, you understand it.": "Anotado. Bien, lo entiendes.",
+  "Noted. This question will come back tomorrow.": "Anotado. Esta pregunta volverá mañana.",
+  "Answers you said you guessed count as half.": "Las respuestas que adivinaste cuentan la mitad.",
 }
