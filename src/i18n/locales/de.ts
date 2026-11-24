@@ -2891,4 +2891,7 @@ export const german: Record<string, string> = {
   "Study sheet": "Lernblatt",
   "Stop listening": "Zuhören beenden",
   "Summary PDF saved": "Zusammenfassung als PDF gespeichert",
+  "Mastery {n} points": "Beherrschung: {n} Punkte",
+  "Review this idea: {topic}": "Wiederhole diese Idee: {topic}",
+  "Warming up": "Warmlaufen",
 }
