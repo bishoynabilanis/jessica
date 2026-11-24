@@ -184,6 +184,11 @@ export function Ask() {
         title={tr('Ask all your books')}
         subtitle={tr('One question searches your textbooks, saved notes and mistakes — then answers with the exact page as a source.')}
         icon={<Search className="h-5 w-5" />}
+        actions={
+          <Link to="/science-board">
+            <Button variant="secondary" size="sm" data-testid="board-link">{tr('Science board')}</Button>
+          </Link>
+        }
       />
 
       <Card className="p-4 sm:p-5">

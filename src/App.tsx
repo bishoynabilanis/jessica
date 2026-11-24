@@ -57,6 +57,7 @@ import {
   LazySkills,
   LazySolve,
   LazyCheckSteps,
+  LazyScienceBoard,
   LazyStudyHub,
   LazyTeacher,
   LazyVault,
@@ -247,6 +248,7 @@ export default function App() {
           <Route path="calendar" element={<LazyExamCalendar />} />
           <Route path="solve" element={<LazySolve />} />
           <Route path="steps" element={<LazyCheckSteps />} />
+          <Route path="science-board" element={<LazyScienceBoard />} />
           <Route path="report" element={<LazyReport />} />
           <Route path="sheet" element={<LazyStudySheet />} />
           <Route path="report-month" element={<LazyMonthlyReport />} />

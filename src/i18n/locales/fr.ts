@@ -2916,4 +2916,12 @@ export const french: Record<string, string> = {
   "Result card": "Carte de résultat",
   "Made on this device. It leaves only if a parent presses Share.": "Créée sur cet appareil. Elle ne sort que si un parent appuie sur Partager.",
   "Me": "Moi",
+  "Explain it on a board": "Explique-le sur un tableau",
+  "Science board": "Tableau de sciences",
+  "Type a science question. Jessica draws the idea as a few boxes that follow each other.": "Écris une question de sciences. Jessica dessine l'idée en quelques cases qui s'enchaînent.",
+  "Example: How does a plant make food?": "Exemple : comment une plante fabrique-t-elle sa nourriture ?",
+  "Draw the board": "Dessiner le tableau",
+  "Your question goes only to your AI provider. Nothing is uploaded to us.": "Ta question va seulement à ton fournisseur d'IA. Rien n'est envoyé chez nous.",
+  "Could not make a board for this question. Try a school science question.": "Impossible de faire un tableau pour cette question. Essaie une question de sciences scolaire.",
+  "Made by AI from your question, not from your textbook. It can be wrong. Check it against your book or ask your teacher.": "Fait par l'IA à partir de ta question, pas de ton manuel. Elle peut se tromper. Vérifie dans ton livre ou demande à ton professeur.",
 }
