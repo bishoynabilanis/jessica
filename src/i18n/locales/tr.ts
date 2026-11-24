@@ -2905,4 +2905,10 @@ export const turkish: Record<string, string> = {
   "Step {n}": "Adım {n}",
   "Start by fixing step {n}.": "{n}. adımı düzelterek başla.",
   "No wrong steps found. Nice work.": "Yanlış adım bulunmadı. Aferin.",
+  "Read the text only (no AI key)": "Yalnızca metni oku (yapay zekâ anahtarı olmadan)",
+  "Text read on this device": "Bu cihazda okunan metin",
+  "No text found in this photo. Try a sharper one.": "Bu fotoğrafta metin bulunamadı. Daha net bir fotoğraf dene.",
+  "Could not read the text. Check your connection and try again.": "Metin okunamadı. Bağlantını kontrol edip tekrar dene.",
+  "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Fotoğraf bu cihazda kalır. Okuma aracı internetten indirilir, bu yüzden bağlantı gerekir.",
+  "Scanned text": "Taranan metin",
 }

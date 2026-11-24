@@ -20,6 +20,8 @@ import { visionInstruction } from '@/lib/prompts'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { useSpeech, speakable } from '@/lib/speech'
+import { ocrImage, ocrLanguageFor } from '@/lib/ocrImage'
+import { getLanguage } from '@/i18n'
 import { cn, friendlyError } from '@/lib/utils'
 import { tr } from '@/i18n'
 
@@ -43,6 +45,8 @@ export function VisionSolverModal({
   const [loading, setLoading] = useState(false)
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState('')
+  const [readText, setReadText] = useState('')
+  const [reading, setReading] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -58,6 +62,7 @@ export function VisionSolverModal({
       stopCamera()
       setImage('')
       setAnswer('')
+      setReadText('')
       setError('')
       setNote('')
       setMode('camera')
@@ -103,6 +108,25 @@ export function VisionSolverModal({
     const reader = new FileReader()
     reader.onload = () => setImage(String(reader.result || ''))
     reader.readAsDataURL(file)
+  }
+
+  const readOnly = async () => {
+    if (!image) {
+      pushToast({ title: tr("Take a photo first"), type: 'info' })
+      return
+    }
+    setReading(true)
+    setError('')
+    setReadText('')
+    try {
+      const text = await ocrImage(image, ocrLanguageFor(getLanguage()))
+      if (!text) throw new Error(tr('No text found in this photo. Try a sharper one.'))
+      setReadText(text)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : tr('Could not read the text. Check your connection and try again.'))
+    } finally {
+      setReading(false)
+    }
   }
 
   const solve = async () => {
@@ -246,11 +270,60 @@ export function VisionSolverModal({
           className="field text-xs"
         />
 
-        <div className="flex justify-end">
+        <div className="flex flex-wrap justify-end gap-2">
+          <Button variant="secondary" data-testid="vision-read" onClick={readOnly} loading={reading} disabled={!image}>
+            <ScanLine className="h-4 w-4" /> {tr('Read the text only (no AI key)')}
+          </Button>
           <Button onClick={solve} loading={loading} disabled={!image}>
             <Sparkles className="h-4 w-4" /> {tr("Solve step by step")}
           </Button>
         </div>
+
+        {readText && (
+          <div className="space-y-2 rounded-2xl border border-line bg-card-2 p-3">
+            <p className="text-xs font-extrabold text-main">{tr('Text read on this device')}</p>
+            <textarea
+              data-testid="vision-text"
+              value={readText}
+              onChange={(e) => setReadText(e.target.value)}
+              rows={5}
+              dir="auto"
+              className="field w-full text-sm"
+            />
+            <div className="flex flex-wrap gap-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(readText)
+                    pushToast({ title: tr('Copied'), type: 'success' })
+                  } catch {
+                    pushToast({ title: tr('Copy failed'), type: 'error' })
+                  }
+                }}
+              >
+                {tr('Copy')}
+              </Button>
+              <Button size="sm" variant="secondary" data-testid="vision-text-listen" onClick={() => speak(speakable(readText), getLanguage())}>
+                <Volume2 className="h-3.5 w-3.5" /> {tr('Listen')}
+              </Button>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => {
+                  addVault({ title: tr('Scanned text'), content: readText, tag: tr('Scanned text'), bookId: undefined })
+                  pushToast({ title: tr('Saved to Knowledge Vault'), type: 'success' })
+                }}
+              >
+                <Bookmark className="h-3.5 w-3.5" /> {tr('Save')}
+              </Button>
+            </div>
+            <p className="text-[10px] text-muted-2">
+              {tr('The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.')}
+            </p>
+          </div>
+        )}
 
         {loading && <Spinner label={tr("Reading the question with vision…")} />}
         {error && <p className="rounded-xl border border-coral/30 bg-coral/10 p-2.5 text-[11px] text-coral">{error}</p>}

@@ -2905,4 +2905,10 @@ export const french: Record<string, string> = {
   "Step {n}": "Étape {n}",
   "Start by fixing step {n}.": "Commence par corriger l'étape {n}.",
   "No wrong steps found. Nice work.": "Aucune étape fausse. Beau travail.",
+  "Read the text only (no AI key)": "Lire le texte seulement (sans clé IA)",
+  "Text read on this device": "Texte lu sur cet appareil",
+  "No text found in this photo. Try a sharper one.": "Aucun texte trouvé dans cette photo. Essaie une photo plus nette.",
+  "Could not read the text. Check your connection and try again.": "Impossible de lire le texte. Vérifie ta connexion et réessaie.",
+  "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "La photo reste sur cet appareil. L'outil de lecture est téléchargé depuis internet, donc une connexion est nécessaire.",
+  "Scanned text": "Texte scanné",
 }

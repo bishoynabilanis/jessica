@@ -3419,6 +3419,12 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Read the text only (no AI key)": "اقرأ النص بس (من غير مفتاح)",
+  "Text read on this device": "النص اللي اتقرا على جهازك",
+  "No text found in this photo. Try a sharper one.": "مفيش نص ظاهر في الصورة دي. جرّب صورة أوضح.",
+  "Could not read the text. Check your connection and try again.": "معرفتش أقرا النص. اتأكد من النت وجرّب تاني.",
+  "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "الصورة بتفضل على جهازك. أداة القراية بتتحمّل من النت، فلازم يكون فيه اتصال.",
+  "Scanned text": "نص ممسوح",
   "Check my working": "راجع حلّي",
   "Did I solve it right?": "حلّيت صح؟",
   "Write the question and your own steps, one per line. Jessica marks each step and gives a hint on the wrong one, without giving the answer away.": "اكتب السؤال وخطوات حلّك، كل خطوة في سطر. جيسيكا هتصحّح كل خطوة وتدّيك تلميح على الغلط من غير ما تقولك الإجابة.",
