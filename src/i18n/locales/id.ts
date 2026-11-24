@@ -2905,4 +2905,10 @@ export const indonesian: Record<string, string> = {
   "Step {n}": "Langkah {n}",
   "Start by fixing step {n}.": "Mulai dengan memperbaiki langkah {n}.",
   "No wrong steps found. Nice work.": "Tidak ada langkah yang salah. Kerja bagus.",
+  "Read the text only (no AI key)": "Baca teks saja (tanpa kunci AI)",
+  "Text read on this device": "Teks yang dibaca di perangkat ini",
+  "No text found in this photo. Try a sharper one.": "Tidak ada teks di foto ini. Coba foto yang lebih tajam.",
+  "Could not read the text. Check your connection and try again.": "Teks tidak bisa dibaca. Periksa koneksimu dan coba lagi.",
+  "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Foto tetap di perangkat ini. Alat baca diunduh dari internet, jadi perlu koneksi.",
+  "Scanned text": "Teks hasil pindai",
 }
