@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { LessonLabBanner } from '@/components/labs/LessonLabBanner'
 import { ArrowRight, Droplets, FlaskConical, Leaf, Pizza } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -171,8 +172,13 @@ function Plants() {
 
 export function KidsLabs() {
   const navigate = useNavigate()
+  const [params] = useSearchParams()
+  const only = params.get('lab')
+  const bookId = params.get('book')
+  const show = (id: string) => !only || only === id
   return (
     <div className="space-y-4">
+      {only && bookId && <LessonLabBanner kids bookId={bookId} unitId={params.get('unit') || ''} page={Number(params.get('page')) || 1} />}
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
           <h1 className="font-display text-2xl font-extrabold text-ink-950 sm:text-3xl">🧪 {tr('Little labs')}</h1>
@@ -184,10 +190,10 @@ export function KidsLabs() {
       </div>
 
       <div className="grid gap-3 lg:grid-cols-2">
-        <Fractions />
-        <States />
-        <WaterCycle />
-        <Plants />
+        {show('fractions') && <Fractions />}
+        {show('states') && <States />}
+        {show('water') && <WaterCycle />}
+        {show('plants') && <Plants />}
       </div>
     </div>
   )
