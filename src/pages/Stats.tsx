@@ -21,12 +21,14 @@ export function Stats() {
   const { level } = levelInfo(xp)
   const today = dailyLog[todayKey()] || { xp: 0, seconds: 0 }
   const minutesToday = Math.round(today.seconds / 60)
-  const installs = (counters?.installs || 0) + (counters?.pwa || 0)
+  const installs = counters?.installs
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null)
 
   const refresh = async () => {
     setLoading(true)
     try {
       setCounters(await readCounters())
+      setUpdatedAt(new Date().toLocaleString())
     } finally {
       setLoading(false)
     }
@@ -55,10 +57,11 @@ export function Stats() {
         }
       />
 
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {[
+          { icon: Globe2, label: tr('Browser records'), value: counters?.browsers, accent: 'text-aurora-300' },
+          { icon: Smartphone, label: tr('Install browser records'), value: installs, accent: 'text-violet-glow' },
           { icon: Globe2, label: tr('App opens'), value: counters?.opens, accent: 'text-aurora-300' },
-          { icon: Smartphone, label: tr('Installs'), value: counters ? installs : null, accent: 'text-violet-glow' },
           { icon: Zap, label: tr('Opens on this device'), value: localOpens(), accent: 'text-sun' },
         ].map((item) => (
           <Card key={item.label} className="p-4">
@@ -71,21 +74,19 @@ export function Stats() {
         ))}
       </div>
 
-      {counters?.pwa ? (
-        <Card className="border-aurora-400/25 bg-aurora-400/5 p-4">
-          <p className="text-[11px] font-bold text-aurora-200">
-            {tr('{n} opened from the home screen', { n: num(counters.pwa) })}
-          </p>
-          <p className="mt-1 text-[10px] leading-relaxed text-muted">
-            {tr('That is the honest install count: the browser fired “installed” or the app launched from the home screen.')}
-          </p>
-        </Card>
-      ) : null}
+      <Card className="p-4 space-y-2" data-testid="counter-notice">
+        <p className="text-xs font-bold text-aurora-300">{tr('New browser and install counters start on 24 November 2026. Older totals cannot be recovered.')}</p>
+        <p className="text-xs text-muted">{tr('One local flag per browser profile, not one person or physical device. Clearing storage or using another browser can count again; failures and opt-outs can miss counts.')}</p>
+        <p className="text-xs text-muted">{tr("The counter provider receives normal connection metadata, including your IP address. Jessica does not store an IP address or send a device ID. Turn off the anonymous counter to stop these requests.")}</p>
+        <p className="text-xs text-muted">{tr('Country and governorate are not collected.')}</p>
+        <p className="text-xs text-muted">{tr('Totals are visible to anyone. This is not a private owner dashboard.')}</p>
+        {updatedAt && <p className="text-[10px] text-muted-2">{tr('Last checked: {time}', { time: updatedAt })}</p>}
+      </Card>
 
       {history && history.length >= 2 ? (
         <Card className="p-4 sm:p-5">
           <div className="flex items-center justify-between gap-2">
-            <p className="label text-aurora-300">{tr('Daily history')}</p>
+            <p className="label text-aurora-300">{tr('Cumulative snapshots')}</p>
             <span className="text-[9px] font-bold text-muted-2">
               {tr('{n} days', { n: history.length })}
             </span>
@@ -138,8 +139,8 @@ export function Stats() {
       <Card className="p-4">
         <p className="text-[11px] font-extrabold text-main">{tr('How these numbers work')}</p>
         <ul className="mt-2 space-y-1.5 text-[10px] leading-relaxed text-muted">
-          <li>• {tr('App opens: one anonymous increment per browsing session, no identifiers.')}</li>
-          <li>• {tr('Installs: a launch from the home screen, counted once per device.')}</li>
+          <li>• {tr('Session opens and new browser/install signals increment public totals without sending a device identifier. Local flags reduce repeats; these are estimates, not a user census.')}</li>
+          <li>• {tr('Installation and home-screen launch share one local flag, so the two signals are not added together.')}</li>
           <li>• {tr('Nothing about your books, answers or name ever leaves this device.')}</li>
         </ul>
         <div className="mt-3 flex flex-wrap gap-2">
