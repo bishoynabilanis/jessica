@@ -246,6 +246,14 @@ export function Games() {
           </Card>
 
           <Card className="p-4">
+            <p className="text-[11px] font-bold text-main">{tr('Restore the lesson board')}</p>
+            <p className="mt-1 text-[10px] leading-relaxed text-muted">{tr('Put a book page back in order.')}</p>
+            <Button size="sm" variant="secondary" className="mt-2" onClick={() => navigate('/board')} data-testid="open-board">
+              {tr('Play')}
+            </Button>
+          </Card>
+
+          <Card className="p-4">
             <p className="text-[11px] font-bold text-main">{tr("Find the lab's mistake")}</p>
             <p className="mt-1 text-[10px] leading-relaxed text-muted">{tr('Spot the wrong number on the board.')}</p>
             <Button size="sm" variant="secondary" className="mt-2" onClick={() => navigate('/mistake')} data-testid="open-mistake">
