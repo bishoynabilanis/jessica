@@ -108,7 +108,9 @@ export function KidsPlay() {
             </span>
             <span className="min-w-0 flex-1">
               <span className="block truncate text-sm font-extrabold text-main">{item.title}</span>
-              <span className="text-[10px] text-muted">{item.units?.length || 0} {tr('units')}</span>
+              <span className="text-[10px] text-muted">
+                {item.units?.length ? `${item.units.length} ${tr('units')}` : tr('No units yet. Use the lesson button below.')}
+              </span>
             </span>
             {bookId === item.id && <CheckCircle2 className="h-5 w-5 shrink-0 text-sun" />}
           </button>
@@ -132,6 +134,10 @@ export function KidsPlay() {
       {loading ? (
         <Card className="flex items-center justify-center gap-2 p-6 text-xs font-bold text-muted">
           <Loader2 className="h-4 w-4 animate-spin text-sun" /> {tr('Opening your book…')}
+        </Card>
+      ) : (book?.units || []).length === 0 && book ? (
+        <Card className="p-4 text-center text-xs font-semibold text-muted">
+          {tr('Jessica could not split this book into units. Tap the 5-minute lesson button above and she will read from any page.')}
         </Card>
       ) : (
         <div className="grid gap-2.5 sm:grid-cols-2">
