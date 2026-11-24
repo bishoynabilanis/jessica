@@ -2911,4 +2911,9 @@ export const turkish: Record<string, string> = {
   "Could not read the text. Check your connection and try again.": "Metin okunamadı. Bağlantını kontrol edip tekrar dene.",
   "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Fotoğraf bu cihazda kalır. Okuma aracı internetten indirilir, bu yüzden bağlantı gerekir.",
   "Scanned text": "Taranan metin",
+  "Share the result card": "Sonuç kartını paylaş",
+  "Result card saved as an image": "Sonuç kartı görsel olarak kaydedildi",
+  "Result card": "Sonuç kartı",
+  "Made on this device. It leaves only if a parent presses Share.": "Bu cihazda hazırlandı. Yalnızca bir ebeveyn Paylaş'a basarsa cihazdan çıkar.",
+  "Me": "Ben",
 }
