@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { LessonLabBanner } from '@/components/labs/LessonLabBanner'
+import { LabNotebook } from '@/components/labs/LabNotebook'
 import type { LucideIcon } from 'lucide-react'
 import {
   Activity,
@@ -386,6 +387,10 @@ export function Labs() {
       {lab === 'genetics' && <GeneticsLab onInteract={() => reward('genetics')} />}
       {lab === 'pressure' && <PressureLab onInteract={() => reward('pressure')} />}
       {lab === 'binary' && <BinaryLab onInteract={() => reward('binary')} />}
+
+      {fromLesson && params.get('book') && fromLesson.id === lab && (
+        <LabNotebook bookId={params.get('book') || ''} unitId={params.get('unit') || ''} lab={lab} page={Number(params.get('page')) || 1} />
+      )}
     </div>
   )
 }

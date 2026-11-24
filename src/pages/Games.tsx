@@ -222,7 +222,7 @@ export function Games() {
           )}
 
           <Card className="p-4">
-            <p className="text-[11px] font-bold text-main">🌉 {tr('Bridge rescue')}</p>
+            <p className="text-[11px] font-bold text-main">{tr('Bridge rescue')}</p>
             <p className="mt-1 text-[10px] leading-relaxed text-muted">{tr('Fix the bridge with the right planks.')}</p>
             <Button size="sm" variant="secondary" className="mt-2" onClick={() => navigate('/bridge')} data-testid="open-bridge">
               {tr('Play')}
