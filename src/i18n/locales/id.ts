@@ -2916,4 +2916,12 @@ export const indonesian: Record<string, string> = {
   "Result card": "Kartu hasil",
   "Made on this device. It leaves only if a parent presses Share.": "Dibuat di perangkat ini. Hanya keluar jika orang tua menekan Bagikan.",
   "Me": "Saya",
+  "Explain it on a board": "Jelaskan di papan",
+  "Science board": "Papan sains",
+  "Type a science question. Jessica draws the idea as a few boxes that follow each other.": "Tulis pertanyaan sains. Jessica menggambar idenya dalam beberapa kotak yang berurutan.",
+  "Example: How does a plant make food?": "Contoh: Bagaimana tumbuhan membuat makanannya?",
+  "Draw the board": "Gambar papannya",
+  "Your question goes only to your AI provider. Nothing is uploaded to us.": "Pertanyaanmu hanya dikirim ke penyedia AI-mu. Tidak ada yang diunggah ke kami.",
+  "Could not make a board for this question. Try a school science question.": "Tidak bisa membuat papan untuk pertanyaan ini. Coba pertanyaan sains sekolah.",
+  "Made by AI from your question, not from your textbook. It can be wrong. Check it against your book or ask your teacher.": "Dibuat oleh AI dari pertanyaanmu, bukan dari buku pelajaranmu. Bisa saja salah. Periksa di bukumu atau tanya gurumu.",
 }
