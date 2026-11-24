@@ -124,9 +124,7 @@ export async function importPdfFile(
       emoji: subjectInfo.emoji,
       accent: subjectInfo.color,
       term: meta.term,
-      description: meta.catalog
-        ? 'Official Ministry of Education book · Term 1'
-        : 'Added from your device · text stays local.',
+      description: 'Added from your device · text stays local.',
       file: `local:${id}`,
       pageCount,
       grade: meta.grade,
