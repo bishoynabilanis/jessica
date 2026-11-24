@@ -1,30 +1,12 @@
 import { useState } from 'react'
-import {
-  ArrowRight,
-  BookOpen,
-  Check,
-  ChevronLeft,
-  GraduationCap,
-  KeyRound,
-  MoonStar,
-  ShieldCheck,
-  Sparkles,
-  Sun,
-  Zap,
-} from 'lucide-react'
+import { BookOpen, Check, ShieldCheck, Sparkles, Zap } from 'lucide-react'
 import { Mascot } from '@/components/Mascot'
-import { KeyTutorial } from '@/components/KeyTutorial'
-import { OfflineModelSetup } from '@/components/ai/OfflineModelSetup'
 import { Button } from '@/components/ui/Button'
-import { Segmented } from '@/components/ui/Toggle'
 import { useApp } from '@/store/useApp'
 import { cn } from '@/lib/utils'
 import { tr } from '@/i18n'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
-import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
-import { CURRICULA, GLOBAL_LEVELS, hasOfficialLibrary } from '@/lib/curriculum'
-import { SCHOOL_TYPES } from '@/lib/school'
-import { gradeLabel } from '@/data/officialBooks'
+import { TERMS_VERSION } from '@/data/terms'
 
 const features = [
   { icon: BookOpen, label: 'Read any PDF', hint: 'Highlight a sentence → instant explanation' },
@@ -34,14 +16,16 @@ const features = [
 ]
 
 export function Onboarding() {
-  const { name, setName, setOnboarded, updateSettings, settings, apiKey, setApiKey } = useApp()
-  const [step, setStep] = useState(0)
+  const { name, setName, setOnboarded, acceptTerms } = useApp()
   const [draftName, setDraftName] = useState(name)
-  const [draftKey, setDraftKey] = useState(apiKey)
+  const [checked, setChecked] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+  const canStart = Boolean(draftName.trim()) && checked
 
-  const finish = () => {
-    if (draftName.trim()) setName(draftName.trim())
-    if (draftKey.trim()) setApiKey(draftKey.trim())
+  const start = () => {
+    if (!canStart) return
+    setName(draftName.trim())
+    acceptTerms(TERMS_VERSION)
     setOnboarded()
   }
 
@@ -90,281 +74,80 @@ export function Onboarding() {
           </div>
 
           <div className="flex flex-col p-5 sm:p-7">
-            <div className="mb-5 flex items-center justify-between">
+            <div className="mb-5 flex items-center justify-between gap-2">
               <div className="lg:hidden">
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-aurora-400 to-violet-neon text-sm font-black text-ink-950">
                   J
                 </span>
               </div>
               <LanguageSwitch />
-              <div className="ml-auto flex items-center gap-1.5">
-                {[0, 1, 2].map((i) => (
-                  <span
-                    key={i}
-                    className={cn(
-                      'h-1.5 rounded-full transition-all',
-                      step === i ? 'w-6 bg-aurora-400' : step > i ? 'w-3 bg-aurora-400/50' : 'w-3 bg-white/15',
-                    )}
-                  />
-                ))}
+            </div>
+
+            <div className="flex-1 animate-slide-up">
+              <h1 className="font-display text-2xl font-extrabold leading-tight text-main sm:text-3xl">
+                {tr('Welcome to Jessica')}
+              </h1>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                {tr('Your study helper for school books. Free, no account, and everything stays on this device.')}
+              </p>
+
+              <label className="mt-5 block">
+                <span className="label mb-1.5 block">{tr('Your first name')}</span>
+                <input
+                  value={draftName}
+                  onChange={(e) => setDraftName(e.target.value.slice(0, 40))}
+                  onKeyDown={(e) => e.key === 'Enter' && canStart && start()}
+                  placeholder={tr('e.g. Yassin, Malak, Omar…')}
+                  className="field text-base"
+                />
+              </label>
+
+              <div className="mt-4 rounded-2xl border border-line bg-card-2 p-3">
+                <ul className="space-y-1 text-[10px] leading-relaxed text-muted">
+                  <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr('Ministry books belong to the Ministry. Use them for your own study only.')}</li>
+                  <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr('AI answers can be wrong. Always check the original page.')}</li>
+                  <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr('Your data stays on your device. You can erase everything from Settings.')}</li>
+                </ul>
+                <button
+                  type="button"
+                  onClick={() => setExpanded((value) => !value)}
+                  className="mt-2 text-[10px] font-bold text-aurora-300 hover:underline"
+                >
+                  {expanded ? tr('Hide the full text') : tr('Read the full disclaimer')}
+                </button>
+                {expanded && (
+                  <div className="mt-2 space-y-2 text-[10px] leading-relaxed text-muted">
+                    <p>{tr('The Egyptian Ministry of Education owns the copyright of its textbooks. Jessica does not host, sell or redistribute these files. The Library only points to links published on the Ministry’s own public servers.')}</p>
+                    <p>{tr('If you own the rights to a file and want a link removed, contact us and we will remove it promptly.')}</p>
+                    <p>{tr('Jessica is an independent study tool and is not affiliated with or endorsed by the Ministry of Education.')}</p>
+                    <p>{tr('Your books, key and progress are stored in this browser only. The app sends requests only to your AI provider, the Ministry file host, the anonymous usage counter and anonymous crash reports — both can be turned off.')}</p>
+                  </div>
+                )}
               </div>
+
+              <label className="mt-3 flex cursor-pointer items-start gap-2.5 rounded-2xl border border-aurora-400/25 bg-aurora-400/5 p-3">
+                <button
+                  type="button"
+                  role="checkbox"
+                  aria-checked={checked}
+                  onClick={() => setChecked((value) => !value)}
+                  className={cn(
+                    'mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition',
+                    checked ? 'border-aurora-400 bg-aurora-400 text-ink-950' : 'border-line-strong bg-white/5 text-transparent',
+                  )}
+                >
+                  <Check className="h-3.5 w-3.5" />
+                </button>
+                <span className="text-[10px] leading-relaxed text-main">
+                  {tr('I have read and accept the disclaimer and terms of use. I understand that I am responsible for how I use official books and for checking AI answers.')}
+                </span>
+              </label>
             </div>
 
-            <div className="flex-1">
-              {step === 0 && (
-                <div className="animate-slide-up">
-                  <span className="chip border-aurora-400/30 bg-aurora-400/10 text-aurora-200">
-                    <GraduationCap className="h-3 w-3" /> {tr("Primary, preparatory and beyond")}
-                  </span>
-                  <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-main sm:text-4xl">
-                    {tr("Your whole school year,")}
-                    <br />
-                    <span className="text-gradient">{tr("one smart app.")}</span>
-                  </h1>
-                  <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                    {tr('English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.')}
-                  </p>
-                  <div className="mt-5 grid grid-cols-2 gap-2">
-                    {[
-                      { label: tr("70+ features"), hint: tr("Everything unlocked") },
-                      { label: tr("100% local"), hint: tr("Your data stays here") },
-                      { label: tr("BYOK free"), hint: tr("Your own Gemini key") },
-                      { label: tr("Works offline"), hint: tr("Books & cards") },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-line bg-card-2 px-3 py-2">
-                        <p className="text-[11px] font-extrabold text-main">{item.label}</p>
-                        <p className="text-[9px] text-muted">{item.hint}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-4 text-[10px] leading-relaxed text-muted-2">
-                    {tr("Official Ministry books for primary and preparatory grades are catalogued in the Library. Download one, import it once, and Jessica teaches from its real pages at the right level.")}
-                  </p>
-                </div>
-              )}
-
-              {step === 1 && (
-                <div className="animate-slide-up">
-                  <p className="label text-aurora-300">{tr("About you")}</p>
-                  <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">
-                    {tr("What should I call you?")}
-                  </h1>
-                  <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    {tr("A name makes the tutor feel like yours. You can change it later in Settings.")}
-                  </p>
-                  <label className="mt-5 block">
-                    <span className="label mb-1.5 block">{tr("Your first name")}</span>
-                    <input
-                      value={draftName}
-                      onChange={(e) => setDraftName(e.target.value.slice(0, 40))}
-                      onKeyDown={(e) => e.key === 'Enter' && setStep(2)}
-                      placeholder={tr("e.g. Yassin, Malak, Omar…")}
-                      autoFocus
-                      className="field text-base"
-                    />
-                  </label>
-                  <div className="mt-4 rounded-2xl border border-line bg-card-2 p-3">
-                    <p className="text-[10px] font-bold text-main">{tr("A quick promise")}</p>
-                    <ul className="mt-1.5 space-y-1 text-[10px] leading-relaxed text-muted">
-                      <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr("No sign-up, no email, no password.")}</li>
-                      <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr("Your key and your work never leave this browser.")}</li>
-                      <li className="flex gap-1.5"><Check className="mt-0.5 h-3 w-3 shrink-0 text-aurora-400" /> {tr("You can export or erase everything from Settings.")}</li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-
-              {step === 2 && (
-                <div className="animate-slide-up">
-                  <p className="label text-aurora-300">{tr("Almost there")}</p>
-                  <h1 className="mt-2 font-display text-2xl font-extrabold text-main sm:text-3xl">{tr("Make it comfortable.")}</h1>
-                  <p className="mt-1.5 text-xs leading-relaxed text-muted">
-                    {tr('Choose how Jessica looks. The AI needs a free key or the offline model — set it up on the next screen or later.')}
-                  </p>
-
-                  <div className="mt-4">
-                    <span className="label mb-1.5 block">{tr('Where do you study?')}</span>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {CURRICULA.map((option) => (
-                        <button
-                          key={option.id}
-                          onClick={() => updateSettings({ curriculum: option.id })}
-                          className={cn(
-                            'rounded-2xl border p-2.5 text-start transition',
-                            settings.curriculum === option.id
-                              ? 'border-aurora-400/50 bg-aurora-400/10'
-                              : 'border-line bg-card-2 hover:bg-white/5',
-                          )}
-                        >
-                          <span className="text-base">{option.emoji}</span>
-                          <span className="mt-1 block text-[11px] font-extrabold text-main">{tr(option.label)}</span>
-                          <span className="block text-[9px] leading-snug text-muted">{tr(option.hint)}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {settings.curriculum === 'egypt' && (
-  <div className="mt-3">
-    <span className="label mb-1.5 block">{tr('School type')}</span>
-    <div className="grid grid-cols-2 gap-1.5">
-      {SCHOOL_TYPES.map((option) => (
-        <button
-          key={option.id}
-          onClick={() => updateSettings({ schoolType: option.id })}
-          className={cn(
-            'rounded-2xl border p-2.5 text-start transition',
-            settings.schoolType === option.id
-              ? 'border-aurora-400/50 bg-aurora-400/10'
-              : 'border-line bg-card-2 hover:bg-white/5',
-          )}
-        >
-          <span className="text-base">{option.emoji}</span>
-          <span className="mt-1 block text-[11px] font-extrabold text-main">{tr(option.label)}</span>
-          <span className="block text-[9px] leading-snug text-muted">{tr(option.hint)}</span>
-        </button>
-      ))}
-    </div>
-  </div>
-)}
-
-                  <div className="mt-3">
-                    <span className="label mb-1.5 block">
-                      {hasOfficialLibrary(settings.curriculum) ? tr('Stage') : tr('Learner level')}
-                    </span>
-                    {hasOfficialLibrary(settings.curriculum) ? (
-                      <>
-                        <Segmented
-                          options={[
-                            { value: 'primary', label: 'Primary stage' },
-                            { value: 'prep', label: 'Preparatory stage' },
-                          ]}
-                          value={stageForGrade(settings.gradeLevel)}
-                          onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
-                        />
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {gradesForStage(stageForGrade(settings.gradeLevel)).map((value) => (
-                            <button
-                              key={value}
-                              onClick={() => updateSettings({ gradeLevel: value })}
-                              className={cn(
-                                'rounded-xl border px-2.5 py-1.5 text-[10px] font-bold transition',
-                                settings.gradeLevel === value
-                                  ? 'border-aurora-400/50 bg-aurora-400/15 text-aurora-200'
-                                  : 'border-line bg-card-2 text-muted hover:text-main',
-                              )}
-                            >
-                              {tr(gradeLabel(value))}
-                            </button>
-                          ))}
-                        </div>
-                      </>
-                    ) : (
-                      <div className="grid gap-1.5">
-                        {GLOBAL_LEVELS.map((level) => (
-                          <button
-                            key={level.grade}
-                            onClick={() => updateSettings({ gradeLevel: level.grade })}
-                            className={cn(
-                              'flex items-center justify-between gap-2 rounded-xl border px-3 py-2 text-start text-[11px] font-bold transition',
-                              settings.gradeLevel === level.grade
-                                ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
-                                : 'border-line bg-card-2 text-muted hover:text-main',
-                            )}
-                          >
-                            <span>{tr(level.label)}</span>
-                            <span className="text-[9px] font-semibold text-muted-2">{tr(level.hint)}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="mt-3 grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => updateSettings({ theme: 'dark' })}
-                      className={cn(
-                        'rounded-2xl border p-3 text-left transition',
-                        settings.theme === 'dark' ? 'border-aurora-400/50 bg-aurora-400/10' : 'border-line bg-card-2',
-                      )}
-                    >
-                      <MoonStar className="mb-2 h-4 w-4 text-violet-glow" />
-                      <p className="text-xs font-bold text-main">{tr("Midnight")}</p>
-                      <p className="text-[10px] text-muted">{tr("Focus after sunset")}</p>
-                    </button>
-                    <button
-                      onClick={() => updateSettings({ theme: 'light' })}
-                      className={cn(
-                        'rounded-2xl border p-3 text-left transition',
-                        settings.theme === 'light' ? 'border-aurora-400/50 bg-aurora-400/10' : 'border-line bg-card-2',
-                      )}
-                    >
-                      <Sun className="mb-2 h-4 w-4 text-sun" />
-                      <p className="text-xs font-bold text-main">{tr("Daylight")}</p>
-                      <p className="text-[10px] text-muted">{tr("Soft and bright")}</p>
-                    </button>
-                  </div>
-
-                  <OfflineModelSetup className="mt-3" withKeyDivider />
-
-                  <label className="mt-2 block">
-                    <span className="label mb-1.5 flex items-center gap-1.5">
-                      <KeyRound className="h-3 w-3" /> {tr("Gemini API key")} <span className="normal-case tracking-normal text-muted-2">{tr("(optional)")}</span>
-                    </span>
-                    <input
-                      value={draftKey}
-                      onChange={(e) => setDraftKey(e.target.value)}
-                      type="password"
-                      placeholder={tr("AIza…")}
-                      spellCheck={false}
-                      autoComplete="off"
-                      className="field font-mono text-xs"
-                    />
-                  </label>
-                  <p className="mt-1.5 text-[9px] leading-relaxed text-muted-2">
-                    {tr("Free from Google AI Studio. Stored only in this browser. Add or test it later in Settings.")}
-                  </p>
-                  <a
-                    href="https://aistudio.google.com/app/apikey"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-3 py-2 text-[11px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
-                  >
-                    <KeyRound className="h-3.5 w-3.5" />
-                    {tr('Get a free API key from Google AI Studio')}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-
-                  {!apiKey && <KeyTutorial />}
-
-                  <div className="mt-3 rounded-2xl border border-aurora-400/20 bg-aurora-400/5 p-3">
-                    <p className="flex items-center gap-1.5 text-[10px] font-bold text-aurora-200">
-                      <Sparkles className="h-3 w-3" /> {tr("You’re all set")}
-                    </p>
-                    <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
-                      {tr("Next: add one book to your library. The app opens as soon as it is there, and the AI can be switched on later.")}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-6 flex items-center justify-between gap-2">
-              <button
-                onClick={() => (step === 0 ? setStep(1) : setStep((s) => s - 1))}
-                className="flex items-center gap-1 text-[11px] font-bold text-muted transition hover:text-main"
-              >
-                {step === 0 ? tr('Skip intro') : <><ChevronLeft className="h-3.5 w-3.5 rtl-flip" /> {tr('Back')}</>}
-              </button>
-              <Button
-                onClick={() => {
-                  if (step === 2) finish()
-                  else setStep((s) => s + 1)
-                }}
-                disabled={step === 1 && !draftName.trim()}
-              >
-                {step === 2 ? tr('Finish setup') : tr('Continue')}
-                <ArrowRight className="h-4 w-4 rtl-flip" />
+            <div className="mt-6 flex items-center justify-end">
+              <Button onClick={start} disabled={!canStart}>
+                <Sparkles className="h-4 w-4" />
+                {tr('Start')}
               </Button>
             </div>
           </div>
