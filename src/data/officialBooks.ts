@@ -257,8 +257,8 @@ export const officialBooks: OfficialBook[] = [
     subject: 'Science',
     term: 'Term 1',
     title: 'Science (English) — Primary 5',
-    url: file('2026_2027/Primary/Primary5/Term1/StudentBook/Science_EN_prim5_TR1.pdf'),
-    sizeMb: 56.8,
+    url: file('2026_2027/Primary/Primary5/Term1/StudentBook/Science_EN_Prim5_TR1.pdf'),
+    sizeMb: 62.7,
     language: 'en',
   },
   {
@@ -453,8 +453,8 @@ export const officialBooks: OfficialBook[] = [
     subject: 'Mathematics',
     term: 'Term 1',
     title: 'Mathematics (English) — Second Preparatory',
-    url: file('2026/Prepratory/Prepratory2/Term1/StudentBook/Math_En_PE2_SB_T1.pdf'),
-    sizeMb: 11.9,
+    url: file('2026_2027/Prepratory/Prepratory2/Term1/StudentBook/Math_EN_Prp2_T1.pdf'),
+    sizeMb: 32.0,
     language: 'en',
   },
   {
@@ -473,8 +473,8 @@ export const officialBooks: OfficialBook[] = [
     subject: 'Science',
     term: 'Term 1',
     title: 'Science (English) — Second Preparatory',
-    url: file('2026/Prepratory/Prepratory2/Term1/StudentBook/Sci_En_PE2_SB_T1.pdf'),
-    sizeMb: 28.4,
+    url: file('2026_2027/Prepratory/Prepratory2/Term1/StudentBook/Science_EN_Pep2_T1.pdf'),
+    sizeMb: 48.1,
     language: 'en',
   },
   {
@@ -555,8 +555,8 @@ export const officialBooks: OfficialBook[] = [
     subject: 'Science',
     term: 'Term 1',
     title: 'Science (English) — Third Preparatory',
-    url: file('2026_2027/Prepratory/Prepratory3/Term1/StudentBook/Science_EN_Prp3_Tr1.pdf'),
-    sizeMb: 19.4,
+    url: file('2026_2027/Prepratory/Prepratory3/Term1/StudentBook/Science_EN_Prp3_TR1.pdf'),
+    sizeMb: 58.9,
     language: 'en',
   },
   {
