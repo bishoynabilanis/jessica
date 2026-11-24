@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { effectiveAccuracy, guessedShare } from '@/lib/confidence'
 import { Link } from 'react-router-dom'
 import { Brain, Loader2, Play, Target, TrendingUp } from 'lucide-react'
 import type { QuizQuestion } from '@/types'
@@ -180,8 +181,8 @@ export function Practice() {
     return Object.entries(skillStats)
       .map(([key, value]) => {
         const [subject, topic] = key.split('|')
-        const accuracy = value.total ? value.correct / value.total : 0
-        return { subject, topic, accuracy, total: value.total }
+        const accuracy = effectiveAccuracy(value) ?? 0
+        return { subject, topic, accuracy, total: value.total, guessed: guessedShare(value) }
       })
       .filter((item) => item.total > 0)
       .sort((a, b) => a.accuracy - b.accuracy)
@@ -197,7 +198,7 @@ export function Practice() {
     const scored = pool.map((candidate) => {
       const key = `${candidate.subject}|${candidate.topic}`.toLowerCase()
       const stat = skillStats[`${candidate.subject}|${candidate.topic}`]
-      const accuracy = stat && stat.total ? stat.correct / stat.total : null
+      const accuracy = effectiveAccuracy(stat)
       let weight = 2
       if (weakKeys.has(key)) weight = 4
       else if (accuracy !== null && accuracy < 0.9) weight = 3
@@ -337,6 +338,11 @@ export function Practice() {
                   </span>
                 ))}
               </div>
+              {weak.some((item) => item.guessed > 0) && (
+                <p className="mt-1.5 text-[10px] text-muted" data-testid="guess-note">
+                  {tr('Answers you said you guessed count as half.')}
+                </p>
+              )}
             </div>
           )}
 
