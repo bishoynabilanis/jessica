@@ -173,6 +173,58 @@ const GUIDES = [
     cta: 'صحّح ورقتك بالكاميرا في دقيقة',
   },
   {
+    slug: 'ministry-books-download',
+    emoji: '📥',
+    title: 'تحميل كتب الوزارة PDF 2026/2027 من الموقع الرسمي',
+    h1: 'إزاي تحمّل كتب وزارة التربية والتعليم 2026/2027 PDF مجانًا (٥ خطوات)',
+    description: 'شرح خطوة بخطوة لتحميل كتب وزارة التربية والتعليم 2026/2027 PDF مجانًا من السيرفر الرسمي لكل صفوف الابتدائي والإعدادي، وإزاي تذاكرها أوفلاين في Jessica.',
+    minutes: 4,
+    reel: { id: 'jessica-15', caption: 'شوف الاستيراد جوه التطبيق: بطاقة الكتاب في مكتبة Jessica وفتح القارئ على الكتاب.' },
+    intro:
+      'كل طالب في مصر يقدر ينزّل كتب الوزارة الرسمية مجانًا. المشكلة الوحيدة إن اللينكات بتتوه بين المواقع. الدليل ده بيوريك الطريقة المظبوطة خطوة بخطوة، وبعدها إزاي تحوّل الكتاب لمدرس أوفلاين في Jessica.',
+    sections: [
+      {
+        h: '١) افتح مكتبة الوزارة الرسمية',
+        p: [
+          'كل كتب الوزارة متاحة على سيرفرات وزارة التربية والتعليم الرسمية. أسهل طريق: افتح صفحة صفك على Jessica، وهتلاقي لينك مباشر لكل كتاب من غير بحث.',
+          'اللينكات اللي على Jessica بتوديك لنفس ملفات الوزارة، مش نسخ مرفوعة في مكان تاني.',
+        ],
+      },
+      {
+        h: '٢) اختار الصف والترم صح',
+        p: [
+          'الكتب متقسمة بالصف والترم: نفس المادة ليها كتاب مختلف في الترم الأول عن الترم التاني. اتأكد إنك بتنزّل الترم الصح قبل ما تبدأ.',
+        ],
+      },
+      {
+        h: '٣) نزّل ملف الـ PDF مرة واحدة',
+        p: [
+          'دوس على لينك التحميل واستنى الملف يكمل. الملفات كبيرة (بتوصل لعشرات الميجا)، فالأفضل تستخدم واي فاي.',
+          'لو التحميل وقف في النص، جرّب تاني في وقت مختلف — سيرفرات الوزارة بتبقى ثقيلة أول السنة.',
+        ],
+      },
+      {
+        h: '٤) استورد الكتاب في Jessica',
+        p: [
+          'افتح تطبيق Jessica واختار استيراد، وبعدها اختار ملف الـ PDF اللي نزّلته. التطبيق بيفهرس الكتاب كله: تقدر تدور فيه، تسأل عن أي صفحة، وتطلب أسئلة من نفس المنهج.',
+        ],
+      },
+      {
+        h: '٥) ذاكر شوية كل يوم',
+        p: [
+          '١٠ دقايق مذاكرة مركزة يوميًا أحسن من جلسة طويلة قبل الامتحان. استخدم فهرس الوحدات الموجود في صفحة كل مادة على Jessica كقائمة متابعة: خلصت وحدة، علّم عليها.',
+        ],
+      },
+    ],
+    faq: [
+      ['الكتب دي فعلاً مجانية؟', 'أيوه، الوزارة ناشراها لكل الطلبة مجانًا. Jessica مش بيبيع الكتب — هو بس بيساعدك تذاكر منها.'],
+      ['الكتب دي منهج 2026/2027؟', 'أيوه، اللينكات بتشاور على أحدث إصدارات وزارة التربية والتعليم للعام الدراسي 2026/2027، وبنراجعها مع بداية كل ترم.'],
+      ['لينك التحميل مش بيفتح، أعمل إيه؟', 'سيرفرات الوزارة بتتقل أول السنة الدراسية. جرّب تاني بعد شوية أو على واي فاي. كل اللينكات على Jessica بتشاور على الملفات الرسمية نفسها، فالمحاولة التانية غالبًا بتنجح.'],
+      ['أقدر أقرأ الكتب من غير نت؟', 'أيوه. بعد ما تستورد الـ PDF في Jessica مرة واحدة، القراءة والبحث والملاحظات والأسئلة كلها بتشتغل أوفلاين.'],
+    ],
+    cta: 'حمّل أول كتاب ليك دلوقتي',
+  },
+  {
     slug: 'free-gemini-key',
     emoji: '🔑',
     title: 'إزاي تجيب مفتاح Gemini مجاني لـ Jessica',
@@ -263,6 +315,9 @@ function head({ title, description, slug, ld, emoji }) {
   .article .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
   .article .faq p { margin-bottom: 0; }
   .article .back { display: inline-block; margin-top: 26px; color: var(--mint); font-size: 13px; font-weight: 700; }
+  .article .reel { margin: 26px 0; text-align: center; }
+  .article .reel video { width: 100%; max-width: 400px; border-radius: 18px; border: 1px solid var(--line); background: #000; }
+  .article .reel-cap { color: var(--muted); font-size: 13px; margin-top: 8px; }
 </style>
 <script type="application/ld+json">
 ${JSON.stringify(ld)}
@@ -315,6 +370,9 @@ for (const guide of GUIDES) {
   const body = guide.sections
     .map((section) => `<h2>${section.h}</h2>${section.p.map((text) => `<p>${text}</p>`).join('')}`)
     .join('\n')
+  const reelHtml = guide.reel
+    ? `<div class="reel"><video controls preload="none" playsinline poster="../../media/reels/${guide.reel.id}.jpg"><source src="../../media/reels/${guide.reel.id}.mp4" type="video/mp4"></video><p class="reel-cap">${guide.reel.caption}</p></div>`
+    : ''
   const faq = guide.faq
     .map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`)
     .join('')
@@ -326,6 +384,7 @@ for (const guide of GUIDES) {
 <h1>${guide.h1}</h1>
 <p class="meta">⏱️ ${guide.minutes} دقايق قراءة · تحديث نوفمبر ٢٠٢٦</p>
 <p class="lead">${guide.intro}</p>
+${reelHtml}
 ${body}
 <div class="cta-box">
   <p>${guide.cta}</p>
