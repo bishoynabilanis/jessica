@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { LessonLabBanner } from '@/components/labs/LessonLabBanner'
 import { LabNotebook } from '@/components/labs/LabNotebook'
+import { HandsIn } from '@/components/labs/HandsIn'
 import { ArrowRight, Droplets, FlaskConical, Leaf, Pizza } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -19,6 +20,14 @@ function slicePath(cx: number, cy: number, r: number, start: number, end: number
   const large = end - start > 180 ? 1 : 0
   return `M ${cx} ${cy} L ${a.x} ${a.y} A ${r} ${r} 0 ${large} 1 ${b.x} ${b.y} Z`
 }
+
+const WATER_STAGES = [{ label: 'Evaporation' }, { label: 'Condensation' }, { label: 'Rain' }, { label: 'Collection' }]
+const PLANT_PARTS = [
+  { label: 'Leaves', clue: 'make food using sunlight' },
+  { label: 'Stem', clue: 'carries water up the plant' },
+  { label: 'Roots', clue: 'hold the plant and drink water' },
+  { label: 'Flower', clue: 'makes seeds for new plants' },
+]
 
 function Fractions() {
   const [den, setDen] = useState(4)
@@ -136,6 +145,14 @@ function WaterCycle() {
       <p className="mt-2 text-[10px] leading-relaxed text-ink-600">
         {tr('The sun heats water, it rises, cools into clouds, falls as rain, and collects again in rivers and seas.')}
       </p>
+      <HandsIn
+        id="water"
+        mode="order"
+        title={tr('Do it with your hands: the water journey')}
+        prompt={tr('Tap the stages in the order the water goes.')}
+        hint={tr('The sun heats water, it rises, cools into clouds, falls as rain, and collects again in rivers and seas.')}
+        items={WATER_STAGES}
+      />
     </Card>
   )
 }
@@ -167,6 +184,14 @@ function Plants() {
           ))}
         </div>
       </div>
+      <HandsIn
+        id="plants"
+        mode="match"
+        title={tr('Do it with your hands: plant parts')}
+        prompt={tr('Read what the part does, then tap the part.')}
+        hint={tr('Look at the list above to see what each part does.')}
+        items={PLANT_PARTS}
+      />
     </Card>
   )
 }
