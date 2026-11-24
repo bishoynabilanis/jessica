@@ -35,6 +35,7 @@ import {
   LazyExamCalendar,
   LazyGames,
   LazyBridgeRescue,
+  LazyLessonBoard,
   LazyWordTrain,
   LazyLabMistake,
   LazyBookDetective,
@@ -225,6 +226,7 @@ export default function App() {
           <Route path="study" element={<LazyStudyHub />} />
           <Route path="games" element={<LazyGames />} />
           <Route path="bridge" element={<LazyBridgeRescue />} />
+          <Route path="board" element={<LazyLessonBoard />} />
           <Route path="train" element={<LazyWordTrain />} />
           <Route path="mistake" element={<LazyLabMistake />} />
           <Route path="detective" element={<LazyBookDetective />} />
