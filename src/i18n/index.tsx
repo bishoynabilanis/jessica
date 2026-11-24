@@ -3418,6 +3418,18 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  'Welcome to Jessica': 'أهلاً بيك في Jessica',
+  'Your study helper for school books. Free, no account, and everything stays on this device.': 'مساعدك في مذاكرة كتب المدرسة. مجاني، من غير حساب، وكل حاجة بتفضل على جهازك.',
+  'Ministry books belong to the Ministry. Use them for your own study only.': 'كتب الوزارة ملك الوزارة. استخدمها لمذاكرتك انت بس.',
+  'AI answers can be wrong. Always check the original page.': 'إجابات الذكاء الاصطناعي ممكن تغلط. راجع دايمًا الصفحة الأصلية.',
+  'Your data stays on your device. You can erase everything from Settings.': 'بياناتك بتفضل على جهازك. تقدر تمسح كل حاجة من الإعدادات.',
+  'Which grade are you in?': 'انت في أي صف؟',
+  'Last step': 'آخر خطوة',
+  'Add a book and the app opens': 'ضيف كتاب والتطبيق يفتح',
+  '1 step left': 'فاضل خطوة',
+  'Jessica opens once one book is in your library. Everything stays on this device.': 'جيسيكا بتفتح بمجرد ما يكون في كتاب واحد في مكتبتك. كل حاجة بتفضل على الجهاز ده.',
+  'Add at least one book': 'ضيف كتاب واحد على الأقل',
+  'One book unlocks the app. It takes about a minute.': 'كتاب واحد بيفتح التطبيق. بياخد حوالي دقيقة.',
   'More languages': 'لغات تانية',
   'Summarise page {page} simply': 'لخّص صفحة {page} ببساطة',
   'Explain the hardest idea on this page': 'اشرح أصعب فكرة في الصفحة دي',
