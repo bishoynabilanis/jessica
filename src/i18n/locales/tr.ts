@@ -2891,4 +2891,7 @@ export const turkish: Record<string, string> = {
   "Study sheet": "Çalışma kâğıdı",
   "Stop listening": "Dinlemeyi durdur",
   "Summary PDF saved": "Özet PDF olarak kaydedildi",
+  "Mastery {n} points": "Ustalık: {n} puan",
+  "Review this idea: {topic}": "Bu fikri tekrar et: {topic}",
+  "Warming up": "Isınıyorsun",
 }
