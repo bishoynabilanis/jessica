@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import { FEATURES } from './features-data.mjs'
+import { SUBJECT_META } from './subjects-data.mjs'
 import path from 'node:path'
 import { execSync } from 'node:child_process'
 
@@ -128,6 +129,7 @@ function page(grade, { title, description, body, slug }) {
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${BASE}/welcome/grades/${slug}/">
 <link rel="alternate" hreflang="ar" href="${BASE}/welcome/grades/${slug}/">
+<link rel="alternate" hreflang="en" href="${BASE}/welcome/en/grades/${slug}/">
 <link rel="alternate" hreflang="x-default" href="${BASE}/welcome/grades/${slug}/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Jessica">
@@ -318,6 +320,10 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
   }
   if (slug === 'prep-3') {
     rel.push(`<a href="../../guides/bubble-sheet/">✏️ حل البابل شيت صح</a>`)
+  }
+  for (const subject of subjects) {
+    const meta = SUBJECT_META[subject]
+    if (meta) rel.push(`<a href="./${meta.slug}/">📖 ${SUBJECT_AR[subject] || subject} ${arLabel}</a>`)
   }
   const related = rel.join('')
 
@@ -517,6 +523,29 @@ const urls = [
     freq: 'weekly',
     priority: '0.8',
   })),
+  ...(() => {
+    const out = []
+    const combos = new Map()
+    for (const b of books.filter((x) => x.term === 'Term 1')) {
+      const key = `${b.grade}|${b.subject}`
+      if (!combos.has(key)) combos.set(key, b)
+    }
+    out.push({ loc: `${BASE}/welcome/en/grades/`, file: 'public/welcome/en/grades/index.html', freq: 'monthly', priority: '0.7' })
+    for (const [gradeKey, [, , gSlug]] of Object.entries(LABELS)) {
+      out.push({ loc: `${BASE}/welcome/en/grades/${gSlug}/`, file: `public/welcome/en/grades/${gSlug}/index.html`, freq: 'monthly', priority: '0.7' })
+      for (const key of combos.keys()) {
+        const [g, subject] = key.split('|')
+        const meta = SUBJECT_META[subject]
+        if (Number(g) === Number(gradeKey) && meta) {
+          out.push({ loc: `${BASE}/welcome/grades/${gSlug}/${meta.slug}/`, file: `public/welcome/grades/${gSlug}/${meta.slug}/index.html`, freq: 'monthly', priority: '0.8' })
+          out.push({ loc: `${BASE}/welcome/en/grades/${gSlug}/${meta.slug}/`, file: `public/welcome/en/grades/${gSlug}/${meta.slug}/index.html`, freq: 'monthly', priority: '0.7' })
+        }
+      }
+    }
+    out.push({ loc: `${BASE}/welcome/guides/ministry-books-download/`, file: 'public/welcome/guides/ministry-books-download/index.html', freq: 'monthly', priority: '0.7' })
+    out.push({ loc: `${BASE}/welcome/en/guides/download-ministry-books/`, file: 'public/welcome/en/guides/download-ministry-books/index.html', freq: 'monthly', priority: '0.6' })
+    return out
+  })(),
   { loc: `${BASE}/`, file: 'index.html', freq: 'weekly', priority: '0.7' },
 ]
 
