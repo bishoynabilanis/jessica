@@ -210,7 +210,7 @@ export function SetupGate() {
             )}
           >
             {done ? <Check className="h-3.5 w-3.5" /> : <ShieldCheck className="h-3.5 w-3.5" />}
-            {tr(done ? 'App unlocked' : 'Add a book to unlock')}
+            {tr(done ? 'App unlocked' : 'Add at least one book')}
           </span>
         </div>
       </div>
