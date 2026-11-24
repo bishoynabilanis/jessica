@@ -7,6 +7,7 @@ import { useUI } from '@/store/useUI'
 import { Button } from '@/components/ui/Button'
 import { Markdown } from '@/components/Markdown'
 import { useSpeech } from '@/lib/speech'
+import type { Confidence } from '@/lib/confidence'
 import { tr } from '@/i18n'
 
 export function QuizGame({
@@ -33,6 +34,8 @@ export function QuizGame({
   const addXP = useApp((s) => s.addXP)
   const addMistake = useApp((s) => s.addMistake)
   const recordSkill = useApp((s) => s.recordSkill)
+  const markConfidence = useApp((s) => s.markConfidence)
+  const [confidence, setConfidence] = useState<Confidence | null>(null)
   const { speak, stop, speaking } = useSpeech()
   const track = useApp((s) => s.track)
   const pushToast = useUI((s) => s.pushToast)
@@ -55,6 +58,7 @@ export function QuizGame({
     setFinished(false)
     setXpEarned(0)
     setWrong([])
+    setConfidence(null)
   }, [questions])
 
   const current = deck[index]
@@ -103,7 +107,22 @@ export function QuizGame({
       setIndex((i) => i + 1)
       setSelected(null)
       setSubmitted(false)
+      setConfidence(null)
     }
+  }
+
+  const sayConfidence = (value: Confidence) => {
+    if (!current || selected === null || confidence) return
+    setConfidence(value)
+    markConfidence({
+      subject,
+      topic: current.topic || tr('General'),
+      correct: selected === current.answer,
+      confidence: value,
+      question: current.question,
+      unitKey,
+      chosen: selected,
+    })
   }
 
   const retry = () => {
@@ -285,6 +304,31 @@ export function QuizGame({
           </div>
           <div className="mt-1.5 text-[11px] leading-relaxed text-muted">
             <Markdown>{current.explanation}</Markdown>
+          </div>
+          <div className="mt-3 border-t border-line pt-2.5" data-testid="confidence" data-value={confidence || ''}>
+            {confidence ? (
+              <p className="text-[11px] font-bold text-muted" dir="auto">
+                {confidence === 'guessed'
+                  ? tr('Noted. Jessica will bring this topic back sooner.')
+                  : selected === current.answer
+                    ? tr('Noted. Good, you understand it.')
+                    : tr('Noted. This question will come back tomorrow.')}
+              </p>
+            ) : (
+              <>
+                <p className="text-[11px] font-extrabold text-main" dir="auto">
+                  {tr('Did you understand it, or guess?')}
+                </p>
+                <div className="mt-1.5 flex gap-2">
+                  <Button size="sm" variant="secondary" className="h-8" onClick={() => sayConfidence('understood')} data-testid="confidence-understood">
+                    {tr('I understood')}
+                  </Button>
+                  <Button size="sm" variant="secondary" className="h-8" onClick={() => sayConfidence('guessed')} data-testid="confidence-guessed">
+                    {tr('I guessed')}
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
