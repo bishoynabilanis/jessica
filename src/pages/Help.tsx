@@ -135,7 +135,7 @@ const FAQ: { ar: FaqItem[]; en: FaqItem[] } = {
       tag: 'Privacy',
       question: 'What is the community counter?',
       answer:
-        'An anonymous counter that increments once per open, with no identifiers. You can turn it off in Settings.',
+        'Session opens and new browser/install signals increment public totals without sending a device identifier. Local flags reduce repeats; these are estimates, not a user census.',
     },
     {
       tag: 'Schools',
