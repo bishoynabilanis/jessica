@@ -2916,4 +2916,12 @@ export const turkish: Record<string, string> = {
   "Result card": "Sonuç kartı",
   "Made on this device. It leaves only if a parent presses Share.": "Bu cihazda hazırlandı. Yalnızca bir ebeveyn Paylaş'a basarsa cihazdan çıkar.",
   "Me": "Ben",
+  "Explain it on a board": "Tahtada anlat",
+  "Science board": "Fen tahtası",
+  "Type a science question. Jessica draws the idea as a few boxes that follow each other.": "Bir fen sorusu yaz. Jessica fikri birbirini izleyen birkaç kutuyla çizer.",
+  "Example: How does a plant make food?": "Örnek: Bir bitki besinini nasıl yapar?",
+  "Draw the board": "Tahtayı çiz",
+  "Your question goes only to your AI provider. Nothing is uploaded to us.": "Sorun yalnızca yapay zekâ sağlayıcına gider. Bize hiçbir şey yüklenmez.",
+  "Could not make a board for this question. Try a school science question.": "Bu soru için tahta yapılamadı. Okul fen sorusu dene.",
+  "Made by AI from your question, not from your textbook. It can be wrong. Check it against your book or ask your teacher.": "Yapay zekâ tarafından sorundan yapıldı, ders kitabından değil. Yanılabilir. Kitabından kontrol et veya öğretmenine sor.",
 }
