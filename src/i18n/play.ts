@@ -108,6 +108,18 @@ export const playAr: Record<string, string> = {
   "That word does not come next. Read the sentence in your head. Take your time.": "الكلمة دي مش اللي بعدها. اقرا الجملة في دماغك. خد وقتك.",
   "The train is ready. This is the sentence from your book.": "القطار جاهز. دي الجملة اللي في كتابك.",
   "Another train": "قطار تاني",
+
+  // Lesson board
+  "Restore the lesson board": "رتّب لوحة الدرس",
+  "Put a book page back in order.": "رجّع صفحة من كتابك لترتيبها.",
+  "Put the sentences back in the order of your book page.": "رجّع الجمل لترتيبها في صفحة كتابك.",
+  "No lesson board for your books yet": "مفيش لوحة درس لكتبك لسه",
+  "No page to restore in this unit yet": "مفيش صفحة نرتّبها في الوحدة دي لسه",
+  "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "نص الوحدة دي فاضي أو مفيهوش جمل ورا بعض نرتّبها، فمفيش حاجة نرجّعها. جرّب وحدة تانية.",
+  "Tap the sentences in the order they come on the page.": "دوس على الجمل بالترتيب اللي جاية بيه في الصفحة.",
+  "Take back the last sentence": "ارجّع آخر جملة",
+  "That sentence does not come next. Read them again. Take your time.": "الجملة دي مش اللي بعدها. اقراهم تاني. خد وقتك.",
+  "The board is restored. This is the order of your book page.": "اللوحة اترجّعت. ده ترتيب صفحة كتابك.",
 }
 
 export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string, string>> = {
@@ -211,6 +223,17 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That word does not come next. Read the sentence in your head. Take your time.": "Ce mot ne vient pas ensuite. Lis la phrase dans ta tête. Prends ton temps.",
     "The train is ready. This is the sentence from your book.": "Le train est prêt. Voici la phrase de ton livre.",
     "Another train": "Un autre train",
+    // Lesson board
+    "Restore the lesson board": "Restaure le tableau de la leçon",
+    "Put a book page back in order.": "Remets une page du livre en ordre.",
+    "Put the sentences back in the order of your book page.": "Remets les phrases dans l’ordre de ta page du livre.",
+    "No lesson board for your books yet": "Pas encore de tableau de leçon pour tes livres",
+    "No page to restore in this unit yet": "Pas encore de page à restaurer dans cette unité",
+    "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "Le texte de cette unité est vide ou n’a pas de suite de phrases à ordonner, il n’y a rien à restaurer. Essaie une autre unité.",
+    "Tap the sentences in the order they come on the page.": "Touche les phrases dans l’ordre où elles viennent sur la page.",
+    "Take back the last sentence": "Reprendre la dernière phrase",
+    "That sentence does not come next. Read them again. Take your time.": "Cette phrase ne vient pas ensuite. Relis-les. Prends ton temps.",
+    "The board is restored. This is the order of your book page.": "Le tableau est restauré. Voici l’ordre de ta page.",
   },
   es: {
     'Try it in the lab': 'Pruébalo en el laboratorio',
@@ -312,6 +335,17 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That word does not come next. Read the sentence in your head. Take your time.": "Esa palabra no va ahora. Lee la frase en tu cabeza. Tómate tu tiempo.",
     "The train is ready. This is the sentence from your book.": "El tren está listo. Esta es la frase de tu libro.",
     "Another train": "Otro tren",
+    // Lesson board
+    "Restore the lesson board": "Restaura la pizarra de la lección",
+    "Put a book page back in order.": "Pon en orden una página del libro.",
+    "Put the sentences back in the order of your book page.": "Pon las frases en el orden de la página de tu libro.",
+    "No lesson board for your books yet": "Todavía no hay pizarra de lección para tus libros",
+    "No page to restore in this unit yet": "Todavía no hay una página para restaurar en esta unidad",
+    "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "El texto de esta unidad está vacío o no tiene frases seguidas para ordenar, no hay nada que restaurar. Prueba otra unidad.",
+    "Tap the sentences in the order they come on the page.": "Toca las frases en el orden en que van en la página.",
+    "Take back the last sentence": "Quitar la última frase",
+    "That sentence does not come next. Read them again. Take your time.": "Esa frase no va ahora. Léelas otra vez. Tómate tu tiempo.",
+    "The board is restored. This is the order of your book page.": "La pizarra está restaurada. Este es el orden de la página.",
   },
   de: {
     'Try it in the lab': 'Im Labor ausprobieren',
@@ -413,6 +447,17 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That word does not come next. Read the sentence in your head. Take your time.": "Dieses Wort kommt nicht als Nächstes. Lies den Satz im Kopf. Lass dir Zeit.",
     "The train is ready. This is the sentence from your book.": "Der Zug ist fertig. Das ist der Satz aus deinem Buch.",
     "Another train": "Neuer Zug",
+    // Lesson board
+    "Restore the lesson board": "Stelle die Lektionstafel wieder her",
+    "Put a book page back in order.": "Bringe eine Buchseite in Ordnung.",
+    "Put the sentences back in the order of your book page.": "Bringe die Sätze in die Reihenfolge deiner Buchseite.",
+    "No lesson board for your books yet": "Noch keine Lektionstafel für deine Bücher",
+    "No page to restore in this unit yet": "Noch keine Seite zum Wiederherstellen in dieser Einheit",
+    "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "Der Text dieser Einheit ist leer oder hat keine Satzfolge zum Ordnen, es gibt nichts wiederherzustellen. Probiere eine andere Einheit.",
+    "Tap the sentences in the order they come on the page.": "Tippe die Sätze in der Reihenfolge an, in der sie auf der Seite stehen.",
+    "Take back the last sentence": "Letzten Satz zurücknehmen",
+    "That sentence does not come next. Read them again. Take your time.": "Dieser Satz kommt nicht als Nächstes. Lies sie noch einmal. Lass dir Zeit.",
+    "The board is restored. This is the order of your book page.": "Die Tafel ist wiederhergestellt. So steht es auf deiner Buchseite.",
   },
   tr: {
     'Try it in the lab': 'Laboratuvarda dene',
@@ -514,6 +559,17 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That word does not come next. Read the sentence in your head. Take your time.": "Sıradaki kelime bu değil. Cümleyi kafandan oku. Acele etme.",
     "The train is ready. This is the sentence from your book.": "Tren hazır. Bu kitabındaki cümle.",
     "Another train": "Başka tren",
+    // Lesson board
+    "Restore the lesson board": "Ders tahtasını yeniden düzenle",
+    "Put a book page back in order.": "Kitaptan bir sayfayı sıraya koy.",
+    "Put the sentences back in the order of your book page.": "Cümleleri kitap sayfandaki sıraya koy.",
+    "No lesson board for your books yet": "Kitapların için henüz ders tahtası yok",
+    "No page to restore in this unit yet": "Bu ünitede henüz düzenlenecek sayfa yok",
+    "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "Bu ünitenin metni boş ya da sıraya koyulacak art arda cümle yok, yapılacak bir şey yok. Başka bir ünite dene.",
+    "Tap the sentences in the order they come on the page.": "Cümlelere sayfadaki sırayla dokun.",
+    "Take back the last sentence": "Son cümleyi geri al",
+    "That sentence does not come next. Read them again. Take your time.": "Sıradaki cümle bu değil. Tekrar oku. Acele etme.",
+    "The board is restored. This is the order of your book page.": "Tahta düzeldi. Kitap sayfanın sırası bu.",
   },
   id: {
     'Try it in the lab': 'Coba di laboratorium',
@@ -615,5 +671,16 @@ export const playLocales: Record<'fr' | 'es' | 'de' | 'tr' | 'id', Record<string
     "That word does not come next. Read the sentence in your head. Take your time.": "Kata itu bukan yang berikutnya. Baca kalimatnya dalam hati. Santai saja.",
     "The train is ready. This is the sentence from your book.": "Kereta sudah siap. Ini kalimat dari bukumu.",
     "Another train": "Kereta lain",
+    // Lesson board
+    "Restore the lesson board": "Pulihkan papan pelajaran",
+    "Put a book page back in order.": "Susun satu halaman buku dengan urutan benar.",
+    "Put the sentences back in the order of your book page.": "Susun kalimat sesuai urutan halaman bukumu.",
+    "No lesson board for your books yet": "Belum ada papan pelajaran untuk bukumu",
+    "No page to restore in this unit yet": "Belum ada halaman untuk dipulihkan di unit ini",
+    "The text of this unit is empty or has no run of sentences to put in order, so there is nothing to restore. Try another unit.": "Teks unit ini kosong atau tidak punya kalimat berurutan untuk disusun, jadi tidak ada yang dipulihkan. Coba unit lain.",
+    "Tap the sentences in the order they come on the page.": "Ketuk kalimat sesuai urutan di halaman.",
+    "Take back the last sentence": "Tarik kembali kalimat terakhir",
+    "That sentence does not come next. Read them again. Take your time.": "Kalimat itu bukan yang berikutnya. Baca lagi. Santai saja.",
+    "The board is restored. This is the order of your book page.": "Papan sudah pulih. Ini urutan halaman bukumu.",
   },
 }
