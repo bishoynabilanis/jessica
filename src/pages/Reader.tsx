@@ -29,7 +29,7 @@ import {
 import type { ChapterText } from '@/types'
 import { unitForPage } from '@/lib/units'
 import { extractChapter } from '@/lib/pdf'
-import { chapterCacheSet, deleteChapterCache, deletePdfBytes, getPdfBytes } from '@/lib/db'
+import { chapterCacheGet, chapterCacheSet, deleteChapterCache, deletePdfBytes, getPdfBytes } from '@/lib/db'
 import { useIdle, useStudyTimer } from '@/hooks/usePlatform'
 import { cn, pct } from '@/lib/utils'
 import { useApp } from '@/store/useApp'
@@ -45,6 +45,7 @@ import { ListenEgyptian } from '@/components/common/ListenEgyptian'
 import { ocrPdfPage } from '@/lib/ocr'
 import { OfflineReadyButton } from '@/components/library/OfflineReady'
 import { BookCheckButton } from '@/components/library/BookCheck'
+import { BatchOcrButton } from '@/components/library/BatchOcr'
 import { tr } from '@/i18n'
 import { stageForGrade } from '@/lib/stage'
 
@@ -437,6 +438,12 @@ export function Reader() {
           )}
           {!kids && <OfflineReadyButton book={book} />}
           {!kids && <BookCheckButton book={book} />}
+          {!kids && (
+            <BatchOcrButton
+              book={book}
+              onSaved={() => chapterCacheGet(book.id).then((value) => value && setChapterText(value))}
+            />
+          )}
           <Button size="sm" variant="secondary" onClick={() => setStudioOpen(true)}>
             <Sparkles className="h-3.5 w-3.5" /> {tr("Studio")}
           </Button>
