@@ -2865,4 +2865,11 @@ export const indonesian: Record<string, string> = {
   "Start scanning": "Mulai memindai",
   "Pausing after this page…": "Jeda setelah halaman ini…",
   "Try the failed pages again": "Coba lagi halaman yang gagal",
+  "Did you understand it, or guess?": "Kamu paham atau menebak?",
+  "I understood": "Aku paham",
+  "I guessed": "Aku menebak",
+  "Noted. Jessica will bring this topic back sooner.": "Dicatat. Jessica akan membawa topik ini kembali lebih cepat.",
+  "Noted. Good, you understand it.": "Dicatat. Bagus, kamu paham.",
+  "Noted. This question will come back tomorrow.": "Dicatat. Soal ini akan muncul lagi besok.",
+  "Answers you said you guessed count as half.": "Jawaban yang kamu bilang tebakan dihitung setengah.",
 }

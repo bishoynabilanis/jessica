@@ -2865,4 +2865,11 @@ export const french: Record<string, string> = {
   "Start scanning": "Lancer le scan",
   "Pausing after this page…": "Pause après cette page…",
   "Try the failed pages again": "Réessayer les pages échouées",
+  "Did you understand it, or guess?": "Tu as compris ou tu as deviné ?",
+  "I understood": "J'ai compris",
+  "I guessed": "J'ai deviné",
+  "Noted. Jessica will bring this topic back sooner.": "Noté. Jessica te reproposera ce sujet plus tôt.",
+  "Noted. Good, you understand it.": "Noté. Bien, tu as compris.",
+  "Noted. This question will come back tomorrow.": "Noté. Cette question reviendra demain.",
+  "Answers you said you guessed count as half.": "Les réponses que tu as devinées comptent pour moitié.",
 }
