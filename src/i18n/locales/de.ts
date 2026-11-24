@@ -2889,4 +2889,6 @@ export const german: Record<string, string> = {
   "Share the sheet": "Blatt teilen",
   "Save image": "Bild speichern",
   "Study sheet": "Lernblatt",
+  "Stop listening": "Zuhören beenden",
+  "Summary PDF saved": "Zusammenfassung als PDF gespeichert",
 }

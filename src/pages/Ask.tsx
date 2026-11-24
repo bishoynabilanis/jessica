@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BookOpen, Loader2, Quote, Search, Sparkles } from 'lucide-react'
+import { BookOpen, Loader2, Mic, MicOff, Quote, Search, Sparkles, StopCircle, Volume2 } from 'lucide-react'
 import { useApp } from '@/store/useApp'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Card } from '@/components/ui/Card'
@@ -9,7 +9,9 @@ import { Markdown } from '@/components/Markdown'
 import { buildLibraryIndex, searchLibrary, scoreText } from '@/lib/librarySearch'
 import { generateJSON, generateText } from '@/lib/gemini'
 import { languageRule } from '@/lib/prompts'
-import { tr } from '@/i18n'
+import { getLanguage, tr } from '@/i18n'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
+import { speakable, useDictation, useSpeech } from '@/lib/speech'
 
 interface Source {
   ref: number
@@ -34,6 +36,12 @@ export function Ask() {
   const model = useApp((s) => s.model)
 
   const [query, setQuery] = useState('')
+  const lang = getLanguage()
+  const { speak, stop, speaking } = useSpeech()
+  const dictation = useDictation(lang, (text) => {
+    setQuery(text)
+    void run(text)
+  })
   const [busy, setBusy] = useState(false)
   const [answer, setAnswer] = useState('')
   const [sources, setSources] = useState<Source[]>([])
@@ -187,6 +195,18 @@ export function Ask() {
             placeholder={tr('e.g. Explain photosynthesis from my science book')}
             className="field flex-1 text-sm"
           />
+          {dictation.supported && (
+            <Button
+              variant="secondary"
+              data-testid="ask-mic"
+              aria-label={dictation.listening ? tr('Stop listening') : tr('Speak your question')}
+              onClick={() => (dictation.listening ? dictation.stop() : dictation.start())}
+              className="shrink-0"
+            >
+              {dictation.listening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              {dictation.listening ? tr('Stop listening') : tr('Speak your question')}
+            </Button>
+          )}
           <Button onClick={() => run()} loading={busy} className="shrink-0">
             <Sparkles className="h-4 w-4" /> {tr('Ask')}
           </Button>
@@ -226,6 +246,17 @@ export function Ask() {
             <Sparkles className="h-3.5 w-3.5" /> {tr('Answer from your library')}
           </p>
           <Markdown>{answer}</Markdown>
+          <Button
+            size="sm"
+            variant="secondary"
+            data-testid="ask-listen"
+            className="mt-3"
+            onClick={() => (speaking ? stop() : speak(speakable(answer), lang))}
+          >
+            {speaking ? <StopCircle className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+            {speaking ? tr('Stop') : tr('Listen')}
+          </Button>
+          <ListenEgyptian text={speakable(answer)} lang={lang} className="ms-2 mt-3" />
         </Card>
       )}
 
