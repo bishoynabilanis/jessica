@@ -3419,6 +3419,17 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Check my working": "راجع حلّي",
+  "Did I solve it right?": "حلّيت صح؟",
+  "Write the question and your own steps, one per line. Jessica marks each step and gives a hint on the wrong one, without giving the answer away.": "اكتب السؤال وخطوات حلّك، كل خطوة في سطر. جيسيكا هتصحّح كل خطوة وتدّيك تلميح على الغلط من غير ما تقولك الإجابة.",
+  "Example: Solve 3x + 5 = 20": "مثال: حُلّ 3س + 5 = 20",
+  "My steps (one per line)": "خطواتي (خطوة في كل سطر)",
+  "Example: 3x = 20 - 5": "مثال: 3س = 20 - 5",
+  "Your working goes only to your AI provider so it can be marked. Nothing is uploaded to us.": "حلّك بيروح لمزوّد الذكاء الاصطناعي بتاعك بس عشان يتصحّح. مفيش حاجة بتترفع عندنا.",
+  "Could not check this working. Try again.": "معرفتش أراجع الحل ده. جرّب تاني.",
+  "Step {n}": "الخطوة {n}",
+  "Start by fixing step {n}.": "ابدأ بتصليح الخطوة {n}.",
+  "No wrong steps found. Nice work.": "مفيش خطوات غلط. شغل حلو.",
   "Mastery {n} points": "الإتقان {n} نقطة",
   "Review this idea: {topic}": "راجع الفكرة دي: {topic}",
   "Warming up": "لسه بتسخّن",
