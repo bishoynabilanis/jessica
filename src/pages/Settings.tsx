@@ -563,7 +563,9 @@ export function Settings() {
                   className="field text-xs"
                 />
                 <span className="mt-1 block text-[9px] leading-relaxed text-muted-2">
-                  {tr("Used only to build the weekly parent report message on your device. Nothing is sent automatically.")}
+                  {settings.language === 'ar'
+                    ? 'الرقم محفوظ في المتصفح ده لتقرير ولي الأمر، ومش بيتبعت تلقائيًا. لما تفتح واتساب، الرقم بيتنقل لواتساب وإنت بتختار تبعت التقرير ولا لأ. الرقم كمان موجود في أي نسخة احتياطية بتصدّرها.'
+                    : 'Saved in this browser for the parent report. Nothing is sent automatically. When you open WhatsApp, the number is passed to WhatsApp; you choose whether to send the report. The number is also included in backups you export.'}
                 </span>
               </label>
             </div>
