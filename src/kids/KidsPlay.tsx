@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { ArrowRight, CheckCircle2, Loader2, Play, Sparkles } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Loader2, Play, Search, Sparkles } from 'lucide-react'
 import type { BookUnit, ChapterText } from '@/types'
 import { useApp } from '@/store/useApp'
 import { openChapter } from '@/lib/library'
@@ -126,6 +126,19 @@ export function KidsPlay() {
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-extrabold text-ink-950">{tr('Bridge rescue')}</span>
           <span className="text-[10px] font-semibold text-ink-600">{tr('Fix the bridge with the right planks.')}</span>
+        </span>
+        <ArrowRight className="h-4 w-4 shrink-0 text-sky" />
+      </button>
+
+      <button
+        onClick={() => navigate('/kids/detective')}
+        data-testid="open-detective"
+        className="kids-sticker flex w-full items-center gap-3 rounded-3xl border-2 border-white bg-gradient-to-r from-sky/20 via-white to-sun/15 p-3.5 text-start"
+      >
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-sun/20 text-ink-800"><Search className="h-5 w-5" /></span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-extrabold text-ink-950">{tr('Book detective')}</span>
+          <span className="text-[10px] font-semibold text-ink-600">{tr('Find the evidence in your book.')}</span>
         </span>
         <ArrowRight className="h-4 w-4 shrink-0 text-sky" />
       </button>
