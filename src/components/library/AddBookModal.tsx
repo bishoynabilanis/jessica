@@ -118,7 +118,9 @@ export function AddBookModal({
               <p className="truncate text-xs font-bold text-main" dir="ltr">
                 {file.name}
               </p>
-              <p className="text-[10px] text-muted">{sizeMb.toFixed(1)} MB</p>
+              <p className="text-[10px] text-muted">
+                <span dir="ltr" className="inline-block">{file.size < 1024 * 1024 ? `${Math.max(1, Math.round(file.size / 1024))} KB` : `${sizeMb.toFixed(1)} MB`}</span>
+              </p>
             </div>
           </div>
         )}
