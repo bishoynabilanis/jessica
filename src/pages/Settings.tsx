@@ -65,7 +65,8 @@ import { SCHOOL_TYPES } from '@/lib/school'
 import { catalogTemplate, parseCommunityCatalog } from '@/lib/communityCatalog'
 import { localOpens, readCounters, type AppCounters } from '@/lib/counter'
 import { useSpeech } from '@/lib/speech'
-import { tr, UI_LANGUAGES } from '@/i18n'
+import { UI_LANGUAGES } from '@/i18n'
+import { counterTr as tr } from '@/i18n/counters'
 
 type KeyStatus = 'idle' | 'checking' | 'valid' | 'invalid'
 
@@ -1190,20 +1191,15 @@ export function Settings() {
             <div className="grid grid-cols-2 gap-2">
               <div className="rounded-xl border border-line bg-card-2 p-3">
                 <p className="font-display text-xl font-extrabold text-main">
-                  {counters?.opens != null ? counters.opens.toLocaleString() : '—'}
+                  {counters?.browsers != null ? counters.browsers.toLocaleString() : '—'}
                 </p>
-                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('App opens')}</p>
+                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Browser records')}</p>
               </div>
               <div className="rounded-xl border border-line bg-card-2 p-3">
                 <p className="font-display text-xl font-extrabold text-main">
-                  {counters ? ((counters.installs || 0) + (counters.pwa || 0)).toLocaleString() : '—'}
+                  {counters?.installs != null ? counters.installs.toLocaleString() : '—'}
                 </p>
-                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Installs')}</p>
-                {counters?.pwa ? (
-                  <p className="text-[9px] font-semibold text-aurora-300">
-                    {tr('{n} opened from the home screen', { n: counters.pwa })}
-                  </p>
-                ) : null}
+                <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Install browser records')}</p>
               </div>
             </div>
             <p className="mt-2 text-[10px] text-muted-2">
@@ -1214,8 +1210,9 @@ export function Settings() {
                 checked={settings.shareCounts}
                 onChange={(value) => updateSettings({ shareCounts: value })}
                 label={tr('Contribute to the anonymous counter')}
-                description={tr('Only a number is incremented — no identifiers and no personal data.')}
+                description={tr('Session opens and new browser/install signals increment public totals without sending a device identifier. Local flags reduce repeats; these are estimates, not a user census.')}
               />
+              <p className="mt-2 text-[10px] text-muted">{tr("The counter provider receives normal connection metadata, including your IP address. Jessica does not store an IP address or send a device ID. Turn off the anonymous counter to stop these requests.")}</p>
               <Toggle
                 checked={settings.shareErrors}
                 onChange={(value) => updateSettings({ shareErrors: value })}
