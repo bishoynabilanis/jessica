@@ -67,6 +67,8 @@ const STYLE = `
   .month-table th, .month-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: start; font-size: 14px; vertical-align: top; }
   .month-table th { background: rgba(255,255,255,.05); }
   .month-table td ul { margin: 0; padding-inline-start: 18px; line-height: 1.9; }
+  .rel-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 26px; margin: 22px 0 8px; }
+  .rel-grid a { font-weight: 600; font-size: 14.5px; }
   .note { color: var(--muted); font-size: 13px; line-height: 2; }
   .plan-box { border: 1px solid var(--line); border-radius: 20px; padding: 18px 22px; background: rgba(255,255,255,.03); margin: 16px 0 26px; }
   .plan-box h2 { font-size: 19px; margin: 0 0 8px; }
@@ -183,7 +185,7 @@ for (const [gradeNum, g] of Object.entries(GRADES)) {
       const units = unitsFor(sBooks, 'ar') || unitsFor(sBooks, 'en')
       if (!units) continue
       const chunks = chunkUnits(units)
-      const rows = chunks.map((c, i) => `<tr><td><strong>${MONTHS_AR[i]}</strong></td><td><ul>${c.map((u) => `<li>${esc(u)}</li>`).join('')}</ul></td></tr>`).join('')
+      const rows = chunks.map((c, i) => `<tr><td><strong>${MONTHS_AR[i]}</strong></td><td><ul>${c.length ? c.map((u) => `<li>${esc(u)}</li>`).join('') : '<li>مراجعة شاملة قبل الامتحانات</li>'}</ul></td></tr>`).join('')
       sections.push(`<section><h2>منهج ${meta.ar} - ${g.ar}</h2>
 <table class="month-table"><thead><tr><th>الشهر</th><th>الوحدات المقترحة</th></tr></thead><tbody>${rows}</tbody></table>
 <p class="note">الوحدات مكتوبة زي ما هي في كتاب الوزارة الرسمي. <a href="../../grades/${g.slug}/${meta.slug}/">حمّل كتاب ${meta.ar} ${g.colloq} PDF</a> وذاكره في Jessica أوفلاين.</p></section>`)
@@ -225,7 +227,7 @@ ${reelBlock(depth, 'jessica-09', 'شاشة نجوم الأسبوع في Jessica:
       const units = unitsFor(sBooks, 'en') || unitsFor(sBooks, 'ar')
       if (!units) continue
       const chunks = chunkUnits(units)
-      const rows = chunks.map((c, i) => `<tr><td><strong>${MONTHS_EN[i]}</strong></td><td><ul>${c.map((u) => `<li>${esc(u)}</li>`).join('')}</ul></td></tr>`).join('')
+      const rows = chunks.map((c, i) => `<tr><td><strong>${MONTHS_EN[i]}</strong></td><td><ul>${c.length ? c.map((u) => `<li>${esc(u)}</li>`).join('') : '<li>Full revision before exams</li>'}</ul></td></tr>`).join('')
       sections.push(`<section><h2>${meta.en} - ${g.en}</h2>
 <table class="month-table"><thead><tr><th>Month</th><th>Suggested units</th></tr></thead><tbody>${rows}</tbody></table>
 <p class="note">Unit names are copied from the official Ministry textbook. <a href="../../../grades/${g.slug}/${meta.slug}/">Download the ${meta.en} book for ${g.en} as a free PDF</a> and study it offline in Jessica.</p></section>`)
