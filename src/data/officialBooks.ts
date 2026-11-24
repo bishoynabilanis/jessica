@@ -106,6 +106,17 @@ export const officialBooks: OfficialBook[] = [
     language: 'en',
   },
 
+  {
+    id: 'off-p2-science-en-t1',
+    grade: 2,
+    subject: 'Science',
+    term: 'Term 1',
+    title: 'Discover (English, 2025-2026) — Primary 2',
+    url: file('2026/Primary/Primary2/Term1/StudentBook/Discovery_E_prim2_TR1_2.pdf'),
+    sizeMb: 8.4,
+    language: 'en',
+  },
+
   /* ------------------------------ Primary 3 ------------------------------ */
   {
     id: 'off-p3-english-t1',
@@ -136,6 +147,17 @@ export const officialBooks: OfficialBook[] = [
     url: file('2026_2027/Primary/Primary3/Term1/StudentBook/Math_Ar_prim3_t1.pdf'),
     sizeMb: 23.7,
     language: 'ar',
+  },
+
+  {
+    id: 'off-p3-science-en-t1',
+    grade: 3,
+    subject: 'Science',
+    term: 'Term 1',
+    title: 'Discover (English, 2025-2026) — Primary 3',
+    url: file('2026/Primary/Primary3/Term1/StudentBook/Discovery_E_prim3_TR1_2.pdf'),
+    sizeMb: 15.0,
+    language: 'en',
   },
 
   /* ------------------------------ Primary 4 ------------------------------ */
