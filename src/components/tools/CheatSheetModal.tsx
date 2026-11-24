@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Bookmark, Copy, Download, FileText, RefreshCw, Sparkles } from 'lucide-react'
+import { Bookmark, Copy, Download, FileText, RefreshCw, Sparkles, StopCircle, Volume2 } from 'lucide-react'
 import type { Book, ChapterText } from '@/types'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
@@ -9,6 +9,8 @@ import { useRequireKey } from '@/components/common/KeyNotice'
 import { generateText } from '@/lib/gemini'
 import { cheatSheetPrompt } from '@/lib/prompts'
 import { exportStudySheetPdf } from '@/lib/pdfExport'
+import { ListenEgyptian } from '@/components/common/ListenEgyptian'
+import { speakable, useSpeech } from '@/lib/speech'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { tr } from '@/i18n'
@@ -27,6 +29,7 @@ export function CheatSheetModal({
   const requireKey = useRequireKey()
   const { apiKey, model, addXP, addVault } = useApp()
   const pushToast = useUI((s) => s.pushToast)
+  const { speak, stop: stopSpeech, speaking } = useSpeech()
   const [loading, setLoading] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [sheet, setSheet] = useState('')
@@ -120,6 +123,16 @@ export function CheatSheetModal({
               >
                 <Bookmark className={"h-3.5 w-3.5"} /> {tr("Save")}
               </Button>
+              <Button
+                variant={"secondary"}
+                size={"sm"}
+                data-testid="cheat-listen"
+                onClick={() => (speaking ? stopSpeech() : speak(speakable(sheet), book.language))}
+              >
+                {speaking ? <StopCircle className={"h-3.5 w-3.5"} /> : <Volume2 className={"h-3.5 w-3.5"} />}
+                {speaking ? tr("Stop") : tr("Listen")}
+              </Button>
+              <ListenEgyptian text={speakable(sheet)} lang={book.language} />
               <Button size={"sm"} onClick={download} loading={exporting}>
                 <Download className={"h-3.5 w-3.5"} /> {tr("Download PDF")}
               </Button>
