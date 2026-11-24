@@ -2889,4 +2889,6 @@ export const indonesian: Record<string, string> = {
   "Share the sheet": "Bagikan lembar",
   "Save image": "Simpan gambar",
   "Study sheet": "Lembar belajar",
+  "Stop listening": "Berhenti mendengarkan",
+  "Summary PDF saved": "Ringkasan PDF tersimpan",
 }
