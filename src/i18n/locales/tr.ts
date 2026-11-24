@@ -2889,4 +2889,6 @@ export const turkish: Record<string, string> = {
   "Share the sheet": "Kâğıdı paylaş",
   "Save image": "Görseli kaydet",
   "Study sheet": "Çalışma kâğıdı",
+  "Stop listening": "Dinlemeyi durdur",
+  "Summary PDF saved": "Özet PDF olarak kaydedildi",
 }

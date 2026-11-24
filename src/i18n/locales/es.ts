@@ -2889,4 +2889,6 @@ export const spanish: Record<string, string> = {
   "Share the sheet": "Compartir la hoja",
   "Save image": "Guardar imagen",
   "Study sheet": "Hoja de estudio",
+  "Stop listening": "Dejar de escuchar",
+  "Summary PDF saved": "Resumen en PDF guardado",
 }
