@@ -13,7 +13,16 @@ import type { UiLanguage } from '@/types'
 export type Language = UiLanguage
 
 export const arabic: Record<string, string> = {
-  /* --------------------------- Question bank --------------------------- */
+  
+    "Install browser records": "سجلات تثبيت المتصفح",
+    "Browser records": "سجلات المتصفحات",
+    "New browser and install counters start on 24 November 2026. Older totals cannot be recovered.": "عدادات المتصفحات والتثبيت الجديدة بتبدأ من ٢٤ نوفمبر ٢٠٢٦. مينفعش نسترجع الأعداد القديمة.",
+    "One local flag per browser profile, not one person or physical device. Clearing storage or using another browser can count again; failures and opt-outs can miss counts.": "علامة محلية لكل ملف متصفح، مش لكل شخص أو جهاز فعلي. مسح التخزين أو تغيير المتصفح ممكن يتعد تاني؛ الأعطال وإيقاف المشاركة ممكن ينقصوا العدد.",
+    "Country and governorate are not collected.": "الدولة والمحافظة مش بيتجمعوا.",
+    "Totals are visible to anyone. This is not a private owner dashboard.": "الإجماليات متاحة لأي حد. دي مش لوحة خاصة بصاحب التطبيق.",
+    "Last checked: {time}": "آخر فحص: {time}",
+    "Cumulative snapshots": "لقطات تراكمية",
+    "Session opens and new browser/install signals inc/* --------------------------- Question bank --------------------------- */
   "Thirty-nine simulations across the Egyptian curriculum, from grade 1 to grade 9. Change a variable, watch the result, then explain it back to Jessica.": "٣٩ تجربة تفاعلية على منهج مصر من الصف الأول للصف التاسع. غيّر متغير، شوف النتيجة، وبعدين اشرحها لجيسيكا.",
   "Iron filings": "برادة الحديد",
   "Periodic table lab": "معمل الجدول الدوري",
