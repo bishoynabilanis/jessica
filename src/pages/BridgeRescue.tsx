@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, RotateCcw } from 'lucide-react'
+import { ArrowLeft, Bus, CheckCircle2, Construction, Flag, Lightbulb, RotateCcw, Waves } from 'lucide-react'
 import { useApp } from '@/store/useApp'
 import { bridgeHint, bridgeUnits, makeBridgeRound, type BridgeRound, type BridgeUnit } from '@/lib/bridge'
 import { Button } from '@/components/ui/Button'
@@ -78,7 +78,7 @@ export function BridgeRescue({ kids = false }: { kids?: boolean }) {
           <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
         </button>
         <div>
-          <h1 className="font-display text-xl font-extrabold text-ink-950 sm:text-2xl">🌉 {tr('Bridge rescue')}</h1>
+          <h1 className="flex items-center gap-1.5 font-display text-xl font-extrabold text-ink-950 sm:text-2xl"><Construction className="h-5 w-5 text-sun" /> {tr('Bridge rescue')}</h1>
           <p className="text-[11px] font-semibold text-ink-600">{tr('Put the right plank in every gap so the bus can cross.')}</p>
         </div>
       </div>
@@ -103,7 +103,7 @@ export function BridgeRescue({ kids = false }: { kids?: boolean }) {
                 data-testid="bridge-unit"
                 className="flex items-center gap-3 rounded-3xl border-2 border-white bg-white/80 p-3.5 text-start"
               >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-sun/20 text-xl">🌉</span>
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-sun/20 text-ink-800"><Construction className="h-5 w-5" /></span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-xs font-extrabold text-ink-950">{item.unit.title}</span>
                   <span className="text-[10px] font-semibold text-ink-600">
@@ -143,8 +143,16 @@ export function BridgeRescue({ kids = false }: { kids?: boolean }) {
                 )
               })}
             </div>
-            <p className="mt-2 text-center text-2xl" aria-hidden>
-              {done ? '🚌💨 🏁' : '🚌 … 🌊🌊🌊'}
+            <p className="mt-2 flex items-center justify-center gap-2 text-ink-800" aria-hidden>
+              {done ? (
+                <>
+                  <Bus className="h-6 w-6" /> <Flag className="h-6 w-6 text-aurora-600" />
+                </>
+              ) : (
+                <>
+                  <Bus className="h-6 w-6" /> <Waves className="h-6 w-6 text-sky" /> <Waves className="h-6 w-6 text-sky" />
+                </>
+              )}
             </p>
           </div>
 
@@ -169,7 +177,7 @@ export function BridgeRescue({ kids = false }: { kids?: boolean }) {
 
           {hint && (
             <p className="mt-3 rounded-xl bg-sun/15 px-3 py-2 text-[11px] font-bold text-amber-800" data-testid="bridge-hint">
-              💡 {hint} {tr('Try another plank. Take your time.')}
+              <Lightbulb className="me-1 inline h-3.5 w-3.5" /> {hint} {tr('Try another plank. Take your time.')}
             </p>
           )}
 
