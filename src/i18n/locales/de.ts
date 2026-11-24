@@ -2905,4 +2905,10 @@ export const german: Record<string, string> = {
   "Step {n}": "Schritt {n}",
   "Start by fixing step {n}.": "Beginne mit der Korrektur von Schritt {n}.",
   "No wrong steps found. Nice work.": "Keine falschen Schritte gefunden. Gut gemacht.",
+  "Read the text only (no AI key)": "Nur den Text lesen (ohne KI-Schlüssel)",
+  "Text read on this device": "Auf diesem Gerät gelesener Text",
+  "No text found in this photo. Try a sharper one.": "Kein Text im Foto gefunden. Versuche ein schärferes.",
+  "Could not read the text. Check your connection and try again.": "Der Text konnte nicht gelesen werden. Prüfe deine Verbindung und versuche es noch einmal.",
+  "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Das Foto bleibt auf diesem Gerät. Das Lese-Werkzeug wird aus dem Internet geladen, daher ist eine Verbindung nötig.",
+  "Scanned text": "Gescannter Text",
 }
