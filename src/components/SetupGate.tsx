@@ -24,7 +24,8 @@ import { officialFor, type OfficialBook } from '@/data/officialBooks'
 import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
 import { subjectsForSchool } from '@/lib/school'
 import { subjectMeta } from '@/data/books'
-import { tr, UI_LANGUAGES, nextLanguage } from '@/i18n'
+import { tr } from '@/i18n'
+import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { cn } from '@/lib/utils'
 
 type KeyStatus = 'idle' | 'checking' | 'ok' | 'error'
@@ -112,13 +113,7 @@ export function SetupGate() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => updateSettings({ language: nextLanguage(settings.language) })}
-              className="chip border-aurora-400/30 bg-aurora-400/10 text-[10px] font-bold text-aurora-200"
-              title={tr('Switch language')}
-            >
-              {UI_LANGUAGES.find((item) => item.id === nextLanguage(settings.language))?.short}
-            </button>
+            <LanguageSwitch compact />
             <span
               className={cn(
                 'chip',
@@ -231,7 +226,7 @@ export function SetupGate() {
                       {!apiKey.trim() && (
                         <button
                           onClick={() => updateSettings({ keyOptional: true })}
-                          className="text-[10px] font-bold text-muted underline decoration-dotted underline-offset-2 hover:text-main"
+                          className="rounded-xl border border-line bg-card-2 px-3 py-2 text-xs font-bold text-main transition hover:border-aurora-400/40"
                         >
                           {tr('Continue without a key')}
                         </button>

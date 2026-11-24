@@ -343,10 +343,10 @@ export function ReaderChat({
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {[
-                `Summarise page ${page} simply`,
-                'Explain the hardest idea on this page',
-                'Give me 3 exam questions',
-                'Translate the key terms to Arabic',
+                tr('Summarise page {page} simply', { page }),
+                tr('Explain the hardest idea on this page'),
+                tr('Give me 3 exam questions'),
+                tr('Translate the key terms to Arabic'),
               ].map((s) => (
                 <button
                   key={s}

@@ -3417,7 +3417,17 @@ export function nextLanguage(current: Language): Language {
   return UI_LANGUAGES[(index + 1) % UI_LANGUAGES.length].id
 }
 
-const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: arabic }
+const arabicExtra: Record<string, string> = {
+  'More languages': 'لغات تانية',
+  'Summarise page {page} simply': 'لخّص صفحة {page} ببساطة',
+  'Explain the hardest idea on this page': 'اشرح أصعب فكرة في الصفحة دي',
+  'Give me 3 exam questions': 'اديني ٣ أسئلة امتحان',
+  'Translate the key terms to Arabic': 'ترجم الكلمات المهمة للعربي',
+  'No units yet. Use the lesson button below.': 'مفيش وحدات لسه. استخدم زرار الدرس تحت.',
+  'Jessica could not split this book into units. Tap the 5-minute lesson button above and she will read from any page.': 'Jessica معرفتش تقسّم الكتاب لوحدات. دوس على زرار درس الـ٥ دقايق فوق وهي هتقرأ من أي صفحة.',
+}
+
+const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra } }
 
 const loaders: Partial<Record<Language, () => Promise<Record<string, string>>>> = {
   fr: () => import('./locales/fr').then((module) => module.french),
