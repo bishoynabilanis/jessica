@@ -34,6 +34,7 @@ import {
   LazyDisclaimer,
   LazyExamCalendar,
   LazyGames,
+  LazyBridgeRescue,
   LazyFeedback,
   LazyHelp,
   LazyInstall,
@@ -220,6 +221,7 @@ export default function App() {
           <Route path="reader/:bookId" element={<LazyReader />} />
           <Route path="study" element={<LazyStudyHub />} />
           <Route path="games" element={<LazyGames />} />
+          <Route path="bridge" element={<LazyBridgeRescue />} />
           <Route path="labs" element={<LazyLabs />} />
           <Route path="constellation" element={<LazyConstellation />} />
           <Route path="vault" element={<LazyVault />} />
