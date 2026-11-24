@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { LessonLabBanner } from '@/components/labs/LessonLabBanner'
+import { LabNotebook } from '@/components/labs/LabNotebook'
 import { ArrowRight, Droplets, FlaskConical, Leaf, Pizza } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -195,6 +196,8 @@ export function KidsLabs() {
         {show('water') && <WaterCycle />}
         {show('plants') && <Plants />}
       </div>
+
+      {only && bookId && <LabNotebook bookId={bookId} unitId={params.get('unit') || ''} lab={only} page={Number(params.get('page')) || 1} />}
     </div>
   )
 }
