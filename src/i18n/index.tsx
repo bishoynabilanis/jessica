@@ -6,6 +6,7 @@
  * plain helpers can use the same translations.
  */
 import { Fragment, useEffect, useState } from 'react'
+import { playAr, playLocales } from './play'
 import { useApp } from '@/store/useApp'
 import type { UiLanguage } from '@/types'
 
@@ -3518,14 +3519,14 @@ const arabicExtra: Record<string, string> = {
   'Jessica could not split this book into units. Tap the 5-minute lesson button above and she will read from any page.': 'Jessica معرفتش تقسّم الكتاب لوحدات. دوس على زرار درس الـ٥ دقايق فوق وهي هتقرأ من أي صفحة.',
 }
 
-const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra } }
+const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
 
 const loaders: Partial<Record<Language, () => Promise<Record<string, string>>>> = {
-  fr: () => import('./locales/fr').then((module) => module.french),
-  es: () => import('./locales/es').then((module) => module.spanish),
-  de: () => import('./locales/de').then((module) => module.german),
-  tr: () => import('./locales/tr').then((module) => module.turkish),
-  id: () => import('./locales/id').then((module) => module.indonesian),
+  fr: () => import('./locales/fr').then((module) => ({ ...module.french, ...playLocales.fr })),
+  es: () => import('./locales/es').then((module) => ({ ...module.spanish, ...playLocales.es })),
+  de: () => import('./locales/de').then((module) => ({ ...module.german, ...playLocales.de })),
+  tr: () => import('./locales/tr').then((module) => ({ ...module.turkish, ...playLocales.tr })),
+  id: () => import('./locales/id').then((module) => ({ ...module.indonesian, ...playLocales.id })),
 }
 
 export async function loadLanguage(language: Language): Promise<void> {
