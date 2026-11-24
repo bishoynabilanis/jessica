@@ -24,6 +24,7 @@ import { useUI } from './useUI'
 import { providerFor } from '@/lib/providers'
 import type { OfficialBook } from '@/data/officialBooks'
 import { initialReview, nextReview } from '@/lib/mistakeReview'
+import { normalizeSchoolType } from '@/lib/school'
 
 export const XP_PER_LEVEL = 300
 
@@ -787,7 +788,7 @@ export const useApp = create<AppState>()(
         get().addXP(30, true)
       },
 
-      updateSettings: (patch) => set((state) => ({ settings: { ...state.settings, ...patch } })),
+      updateSettings: (patch) => set((state) => ({ settings: { ...state.settings, ...patch, schoolType: normalizeSchoolType(patch.schoolType ?? state.settings.schoolType) } })),
       setName: (name) => set({ name: name.slice(0, 40) }),
       setApiKey: (apiKey) =>
         set((state) => ({
@@ -842,7 +843,7 @@ export const useApp = create<AppState>()(
       importState: (data) => {
         const safe = { ...data }
         delete (safe as any).apiKey
-        set((state) => ({ ...state, ...safe, settings: { ...state.settings, ...(data.settings || {}) } }))
+        set((state) => ({ ...state, ...safe, settings: { ...state.settings, ...(data.settings || {}), schoolType: normalizeSchoolType(data.settings?.schoolType ?? state.settings.schoolType) } }))
       },
 
       resetAll: () => {
@@ -877,7 +878,7 @@ export const useApp = create<AppState>()(
         return {
           ...current,
           ...saved,
-          settings: { ...current.settings, ...(saved.settings || {}) },
+          settings: { ...current.settings, ...(saved.settings || {}), schoolType: normalizeSchoolType(saved.settings?.schoolType ?? current.settings.schoolType) },
         } as AppState
       },
       partialize: (state) => {

@@ -221,7 +221,7 @@ export interface DailyLogEntry {
   seconds: number
 }
 
-export type SchoolType = 'government' | 'languages' | 'private' | 'azhar'
+export type SchoolType = 'government' | 'languages' | 'private'
 
 export type GradeLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
