@@ -2911,4 +2911,9 @@ export const german: Record<string, string> = {
   "Could not read the text. Check your connection and try again.": "Der Text konnte nicht gelesen werden. Prüfe deine Verbindung und versuche es noch einmal.",
   "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Das Foto bleibt auf diesem Gerät. Das Lese-Werkzeug wird aus dem Internet geladen, daher ist eine Verbindung nötig.",
   "Scanned text": "Gescannter Text",
+  "Share the result card": "Ergebniskarte teilen",
+  "Result card saved as an image": "Ergebniskarte als Bild gespeichert",
+  "Result card": "Ergebniskarte",
+  "Made on this device. It leaves only if a parent presses Share.": "Auf diesem Gerät erstellt. Sie verlässt es nur, wenn ein Elternteil auf Teilen tippt.",
+  "Me": "Ich",
 }

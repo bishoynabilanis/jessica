@@ -3419,6 +3419,11 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Share the result card": "ابعت كارت النتيجة",
+  "Result card saved as an image": "كارت النتيجة اتحفظ كصورة",
+  "Result card": "كارت النتيجة",
+  "Made on this device. It leaves only if a parent presses Share.": "اتعمل على جهازك. مبيخرجش منه غير لو ولي الأمر ضغط مشاركة.",
+  "Me": "أنا",
   "Read the text only (no AI key)": "اقرأ النص بس (من غير مفتاح)",
   "Text read on this device": "النص اللي اتقرا على جهازك",
   "No text found in this photo. Try a sharper one.": "مفيش نص ظاهر في الصورة دي. جرّب صورة أوضح.",

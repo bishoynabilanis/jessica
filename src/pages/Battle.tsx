@@ -1,6 +1,6 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { ArrowLeft, Copy, Home, RefreshCw, Swords, Trophy, Zap } from 'lucide-react'
+import { ArrowLeft, Copy, Download, Home, RefreshCw, Share2, Swords, Trophy, Zap } from 'lucide-react'
 import { decodeBattle, battleShareUrl } from '@/lib/battle'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
@@ -10,7 +10,9 @@ import { Mascot } from '@/components/Mascot'
 import { QuizGame } from '@/components/tools/QuizGame'
 import { PageHeader } from '@/components/common/PageHeader'
 import { useState } from 'react'
-import { tr } from '@/i18n'
+import { canvasToFile, saveSheetFile, shareSheetFile } from '@/lib/studySheet'
+import { battleBoard, drawBattleCard, recordBattleResult, type BattleResult } from '@/lib/battleCard'
+import { num, tr } from '@/i18n'
 
 export function Battle() {
   const [params] = useSearchParams()
@@ -20,6 +22,56 @@ export function Battle() {
   const [score, setScore] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
   const rewarded = useRef(false)
+  const [board, setBoard] = useState<BattleResult[]>([])
+  const [cardUrl, setCardUrl] = useState('')
+
+  const rtl = typeof document !== 'undefined' && document.documentElement.dir === 'rtl'
+  const cardLabels = (won: boolean) =>
+    payload && score !== null
+      ? {
+          title: tr('Peer battle'),
+          verdict: won ? tr('Victory is yours!') : tr('So close!'),
+          subject: `${tr(payload.subject)} · ${payload.challenger} vs ${name || tr('Me')}`,
+          score: `${num(score)}/${num(total)}`,
+          target: `${tr('correct · target')} ${num(payload.target)}`,
+          board: tr('On this device'),
+          privacy: tr('Made on this device. It leaves only if a parent presses Share.'),
+          rtl,
+        }
+      : null
+
+  const drawCard = () => {
+    if (!payload || score === null) return null
+    const rows = (board.length ? board : battleBoard(payload.id)).map((row) => ({
+      name: row.name,
+      score: `${num(row.score)}/${num(row.total)}`,
+    }))
+    const labels = cardLabels(score >= payload.target)
+    return labels ? drawBattleCard(labels, rows, score >= payload.target) : null
+  }
+
+  useEffect(() => {
+    const canvas = drawCard()
+    setCardUrl(canvas ? canvas.toDataURL('image/png') : '')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [score, total, board])
+
+  const makeCardFile = async () => {
+    const canvas = drawCard()
+    return canvas ? canvasToFile(canvas, 'jessica-battle-result.png') : null
+  }
+  const shareCard = async () => {
+    const file = await makeCardFile()
+    if (!file) return
+    const outcome = await shareSheetFile(file, tr('Peer battle'))
+    if (outcome === 'downloaded') pushToast({ title: tr('Result card saved as an image'), type: 'success' })
+  }
+  const saveCard = async () => {
+    const file = await makeCardFile()
+    if (!file) return
+    saveSheetFile(file)
+    pushToast({ title: tr('Result card saved as an image'), type: 'success' })
+  }
 
   if (!payload) {
     return (
@@ -47,6 +99,7 @@ export function Battle() {
   const handleFinish = (finalScore: number, finalTotal: number) => {
     setScore(finalScore)
     setTotal(finalTotal)
+    if (payload) setBoard(recordBattleResult(payload.id, { name: name || tr('Me'), score: finalScore, total: finalTotal }))
     if (rewarded.current) return
     rewarded.current = true
     const bonus = finalScore >= payload.target ? 45 : 15
@@ -125,7 +178,32 @@ export function Battle() {
               ? `${payload.challenger} set the bar at ${payload.target}. You cleared it. Send the screenshot and claim your bragging rights.`
               : `${payload.challenger} set the bar at ${payload.target}. Revise the explanations, then challenge them to a rematch.`}
           </p>
+          {cardUrl && (
+            <img src={cardUrl} alt={tr('Result card')} data-testid="battle-card-image" className="mx-auto mt-4 w-full max-w-xs rounded-xl border border-line" />
+          )}
+          {board.length > 0 && (
+            <div data-testid="battle-board" className="mx-auto mt-4 max-w-xs text-start">
+              <p className="label mb-1.5">{tr('On this device')}</p>
+              <ol className="space-y-1">
+                {board.map((row, index) => (
+                  <li key={row.name} className="flex items-center justify-between gap-2 rounded-xl border border-line bg-card-2 px-3 py-1.5 text-xs font-bold text-main">
+                    <span className="min-w-0 truncate">{num(index + 1)}. {row.name}</span>
+                    <span className="shrink-0 text-aurora-300">{num(row.score)}/{num(row.total)}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-1.5 text-[10px] text-muted-2">
+                {tr('Made on this device. It leaves only if a parent presses Share.')}
+              </p>
+            </div>
+          )}
           <div className="mt-5 flex flex-wrap justify-center gap-2">
+            <Button data-testid="battle-card-share" onClick={shareCard}>
+              <Share2 className="h-4 w-4" /> {tr('Share the result card')}
+            </Button>
+            <Button variant="secondary" data-testid="battle-card-save" onClick={saveCard}>
+              <Download className="h-4 w-4" /> {tr('Save image')}
+            </Button>
             <Button
               variant="secondary"
               onClick={async () => {

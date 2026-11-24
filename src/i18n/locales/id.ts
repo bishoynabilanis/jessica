@@ -2911,4 +2911,9 @@ export const indonesian: Record<string, string> = {
   "Could not read the text. Check your connection and try again.": "Teks tidak bisa dibaca. Periksa koneksimu dan coba lagi.",
   "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "Foto tetap di perangkat ini. Alat baca diunduh dari internet, jadi perlu koneksi.",
   "Scanned text": "Teks hasil pindai",
+  "Share the result card": "Bagikan kartu hasil",
+  "Result card saved as an image": "Kartu hasil disimpan sebagai gambar",
+  "Result card": "Kartu hasil",
+  "Made on this device. It leaves only if a parent presses Share.": "Dibuat di perangkat ini. Hanya keluar jika orang tua menekan Bagikan.",
+  "Me": "Saya",
 }

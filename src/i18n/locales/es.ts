@@ -2911,4 +2911,9 @@ export const spanish: Record<string, string> = {
   "Could not read the text. Check your connection and try again.": "No se pudo leer el texto. Revisa tu conexión e inténtalo otra vez.",
   "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "La foto se queda en este dispositivo. La herramienta de lectura se descarga de internet, así que hace falta conexión.",
   "Scanned text": "Texto escaneado",
+  "Share the result card": "Compartir la tarjeta de resultado",
+  "Result card saved as an image": "Tarjeta de resultado guardada como imagen",
+  "Result card": "Tarjeta de resultado",
+  "Made on this device. It leaves only if a parent presses Share.": "Creada en este dispositivo. Solo sale si un adulto pulsa Compartir.",
+  "Me": "Yo",
 }
