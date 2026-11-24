@@ -3419,6 +3419,14 @@ export function nextLanguage(current: Language): Language {
 }
 
 const arabicExtra: Record<string, string> = {
+  "Explain it on a board": "اشرحها على لوح",
+  "Science board": "لوح العلوم",
+  "Type a science question. Jessica draws the idea as a few boxes that follow each other.": "اكتب سؤال علوم. جيسيكا بترسم الفكرة في كام مربع ورا بعض.",
+  "Example: How does a plant make food?": "مثال: النبات بيعمل أكله إزاي؟",
+  "Draw the board": "ارسم اللوح",
+  "Your question goes only to your AI provider. Nothing is uploaded to us.": "سؤالك بيروح لمزوّد الذكاء الاصطناعي بتاعك بس. مفيش حاجة بتترفع عندنا.",
+  "Could not make a board for this question. Try a school science question.": "معرفتش أعمل لوح للسؤال ده. جرّب سؤال علوم من المدرسة.",
+  "Made by AI from your question, not from your textbook. It can be wrong. Check it against your book or ask your teacher.": "اتعمل بالذكاء الاصطناعي من سؤالك، مش من كتابك. ممكن يغلط. راجعه في كتابك أو اسأل مدرّسك.",
   "Share the result card": "ابعت كارت النتيجة",
   "Result card saved as an image": "كارت النتيجة اتحفظ كصورة",
   "Result card": "كارت النتيجة",
