@@ -1,26 +1,18 @@
 import { useMemo, useRef, useState } from 'react'
 import {
-  AlertTriangle,
-  ArrowRight,
   BookOpen,
   Check,
   Download,
-  KeyRound,
-  Loader2,
   ShieldCheck,
-  Sparkles,
   Upload,
 } from 'lucide-react'
 import { Mascot } from '@/components/Mascot'
 import { Button } from '@/components/ui/Button'
 import { AddBookModal } from '@/components/library/AddBookModal'
-import { KeyTutorial } from '@/components/KeyTutorial'
-import { OfflineModelSetup } from '@/components/ai/OfflineModelSetup'
 import { useApp } from '@/store/useApp'
-import { validateKey } from '@/lib/gemini'
-import { offlineReady, offlineSupport } from '@/lib/ai/offline'
-import { PROVIDERS, providerFor } from '@/lib/providers'
-import { officialFor, type OfficialBook } from '@/data/officialBooks'
+import { officialFor, gradeLabel, type OfficialBook } from '@/data/officialBooks'
+import { Segmented } from '@/components/ui/Toggle'
+import { defaultGradeForStage, gradesForStage, stageForGrade, type SchoolStage } from '@/lib/stage'
 import { hasOfficialLibrary, levelLabel } from '@/lib/curriculum'
 import { subjectsForSchool } from '@/lib/school'
 import { subjectMeta } from '@/data/books'
@@ -28,67 +20,27 @@ import { tr } from '@/i18n'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { cn } from '@/lib/utils'
 
-type KeyStatus = 'idle' | 'checking' | 'ok' | 'error'
-
 /**
  * Hard gate: the app only opens after the learner connects a Gemini key and
  * imports at least one book.
  */
 export function SetupGate() {
-  const apiKey = useApp((s) => s.apiKey)
-  const setApiKey = useApp((s) => s.setApiKey)
-  const setProvider = useApp((s) => s.setProvider)
   const settings = useApp((s) => s.settings)
   const customBooks = useApp((s) => s.customBooks)
   const updateSettings = useApp((s) => s.updateSettings)
 
-  const [draftKey, setDraftKey] = useState(apiKey)
-  const [status, setStatus] = useState<KeyStatus>(apiKey ? 'ok' : 'idle')
-  const [message, setMessage] = useState(apiKey ? tr('Key saved on this device.') : '')
   const [pendingFile, setPendingFile] = useState<File | null>(null)
   const [catalog, setCatalog] = useState<OfficialBook | null>(null)
-  const [modelReady, setModelReady] = useState(offlineReady)
-  const [modelSupported] = useState(() => offlineSupport().ok)
   const fileInput = useRef<HTMLInputElement>(null)
 
-  const provider = providerFor(settings.aiProvider)
   const grade = settings.gradeLevel
   const isEgypt = hasOfficialLibrary(settings.curriculum)
   const books = useMemo(() => {
     const allowed = subjectsForSchool(settings.schoolType)
     return officialFor(grade, 'Term 1', 'All', settings.schoolType).filter((book) => allowed.includes(book.subject)).slice(0, 6)
   }, [grade, settings.schoolType])
-  const keyOptional = settings.keyOptional
-  // A downloaded model already is the AI, so the key step is done without a key.
-  const keyDone = Boolean(apiKey.trim()) || keyOptional || modelReady
   const bookDone = customBooks.length > 0
-  const done = keyDone && bookDone
-
-  const saveKey = async (skipCheck = false) => {
-    const key = draftKey.trim()
-    if (!key) {
-      setStatus('error')
-      setMessage(tr('Paste your API key first.'))
-      return
-    }
-    if (skipCheck) {
-      setApiKey(key)
-      setStatus('ok')
-      setMessage(tr('Key saved. If answers fail, verify it again.'))
-      return
-    }
-    setStatus('checking')
-    setMessage(tr('Talking to Google…'))
-    const result = await validateKey(key)
-    if (result.ok) {
-      setApiKey(key)
-      setStatus('ok')
-      setMessage(result.message)
-    } else {
-      setStatus('error')
-      setMessage(result.message)
-    }
-  }
+  const done = bookDone
 
   const openPicker = (entry: OfficialBook | null) => {
     setCatalog(entry)
@@ -108,8 +60,8 @@ export function SetupGate() {
           <div className="flex items-center gap-3">
             <Mascot xp={0} size={64} mood="curious" animate={false} />
             <div>
-              <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-muted-2">{tr('Final setup')}</p>
-              <h1 className="font-display text-xl font-extrabold text-main sm:text-2xl">{tr('Two steps and the app opens')}</h1>
+              <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-muted-2">{tr('Last step')}</p>
+              <h1 className="font-display text-xl font-extrabold text-main sm:text-2xl">{tr('Add a book and the app opens')}</h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -121,143 +73,47 @@ export function SetupGate() {
               )}
             >
               {done ? <Check className="h-3 w-3" /> : <ShieldCheck className="h-3 w-3" />}
-              {done ? tr('Ready') : tr('{n} of 2 done', { n: (keyDone ? 1 : 0) + (bookDone ? 1 : 0) })}
+              {done ? tr('Ready') : tr('1 step left')}
             </span>
           </div>
         </div>
 
         <p className="mt-3 max-w-xl text-[11px] leading-relaxed text-muted">
-          {tr('Jessica opens once one book is in your library. The AI key is optional and can be added later. Everything stays on this device.')}
+          {tr('Jessica opens once one book is in your library. Everything stays on this device.')}
         </p>
 
-        <div className="mt-5 space-y-3">
-          <section
-            className={cn(
-              'rounded-3xl border p-4 transition',
-              keyDone ? 'border-aurora-400/30 bg-aurora-400/5' : 'border-line bg-card-2',
-            )}
-          >
-            <div className="flex items-start gap-3">
-              <span
+        {isEgypt && (
+        <div className="mt-4 rounded-2xl border border-line bg-card-2 p-3">
+          <span className="label mb-1.5 block">{tr('Which grade are you in?')}</span>
+          <Segmented
+            options={[
+              { value: 'primary', label: 'Primary stage' },
+              { value: 'prep', label: 'Preparatory stage' },
+            ]}
+            value={stageForGrade(settings.gradeLevel)}
+            onChange={(value) => updateSettings({ gradeLevel: defaultGradeForStage(value as SchoolStage) })}
+          />
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {gradesForStage(stageForGrade(settings.gradeLevel)).map((value) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => updateSettings({ gradeLevel: value })}
                 className={cn(
-                  'grid h-10 w-10 shrink-0 place-items-center rounded-2xl',
-                  keyDone ? 'bg-aurora-400/15 text-aurora-300' : 'bg-white/5 text-muted',
+                  'rounded-xl border px-2.5 py-1.5 text-[11px] font-bold transition',
+                  settings.gradeLevel === value
+                    ? 'border-aurora-400/50 bg-aurora-400/15 text-aurora-200'
+                    : 'border-line bg-card text-muted hover:text-main',
                 )}
               >
-                {keyDone ? <Check className="h-5 w-5" /> : <KeyRound className="h-5 w-5" />}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-extrabold text-main">{tr('1. Turn on the AI tutor')}</p>
-                <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
-                  {modelSupported
-                    ? tr('Two free ways: download the model once, or add your own key. Either way it stays on this device.')
-                    : tr('Free from Google AI Studio. It is stored in this browser only and never sent anywhere else.')}
-                </p>
+                {tr(gradeLabel(value))}
+              </button>
+            ))}
+          </div>
+        </div>
+        )}
 
-                {keyDone ? (
-                  <p className="mt-2 flex items-center gap-1.5 text-[10px] font-bold text-aurora-200">
-                    <Check className="h-3 w-3" />
-                    {apiKey.trim()
-                      ? tr('Key connected.')
-                      : modelReady
-                        ? tr('The AI is on — no key needed.')
-                        : tr('The AI is off for now. Add a free key in Settings whenever you want it.')}
-                  </p>
-                ) : (
-                  <div className="mt-2.5 space-y-2">
-                    <OfflineModelSetup onReady={() => setModelReady(true)} withKeyDivider />
-                    <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-                      {PROVIDERS.map((option) => (
-                        <button
-                          key={option.id}
-                          onClick={() => {
-                            setProvider(option.id)
-                            setDraftKey('')
-                            setStatus('idle')
-                            setMessage('')
-                          }}
-                          className={cn(
-                            'rounded-xl border px-2 py-1.5 text-start text-[10px] font-bold transition',
-                            settings.aiProvider === option.id
-                              ? 'border-aurora-400/50 bg-aurora-400/10 text-aurora-200'
-                              : 'border-line bg-card-2 text-muted hover:text-main',
-                          )}
-                        >
-                          {option.label}
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-col gap-2 sm:flex-row">
-                      <input
-                        value={draftKey}
-                        onChange={(e) => {
-                          setDraftKey(e.target.value)
-                          setStatus('idle')
-                        }}
-                        type="password"
-                        placeholder={provider.keyHint}
-                        spellCheck={false}
-                        autoComplete="off"
-                        className="field flex-1 font-mono text-xs"
-                      />
-                      <Button size="sm" onClick={() => saveKey(false)} disabled={status === 'checking'} className="shrink-0">
-                        {status === 'checking' ? (
-                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                        ) : (
-                          <Sparkles className="h-3.5 w-3.5" />
-                        )}
-                        {tr('Verify and connect')}
-                      </Button>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      {provider.docsUrl && (
-                        <a
-                          href={provider.docsUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-xl border border-aurora-400/30 bg-aurora-400/10 px-2.5 py-1.5 text-[10px] font-bold text-aurora-200 transition hover:bg-aurora-400/15"
-                        >
-                          <KeyRound className="h-3 w-3" />
-                          {tr('Get a key from {provider}', { provider: provider.label })}
-                          <ArrowRight className="h-3 w-3" />
-                        </a>
-                      )}
-                      {!apiKey.trim() && (
-                        <button
-                          onClick={() => updateSettings({ keyOptional: true })}
-                          className="rounded-xl border border-line bg-card-2 px-3 py-2 text-xs font-bold text-main transition hover:border-aurora-400/40"
-                        >
-                          {tr('Continue without a key')}
-                        </button>
-                      )}
-                      {status === 'error' && (
-                        <button
-                          onClick={() => saveKey(true)}
-                          className="text-[9px] font-semibold text-muted underline decoration-dotted underline-offset-2 hover:text-main"
-                        >
-                          {tr('Save without checking')}
-                        </button>
-                      )}
-                    </div>
-                    {message && (
-                      <p
-                        className={cn(
-                          'flex items-start gap-1.5 text-[10px] leading-relaxed',
-                          status === 'error' ? 'text-coral' : status === 'ok' ? 'text-aurora-200' : 'text-muted',
-                        )}
-                      >
-                        {status === 'error' && <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />}
-                        {message}
-                      </p>
-                    )}
-                    {settings.aiProvider === 'gemini' && <KeyTutorial />}
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
-
+        <div className="mt-5 space-y-3">
           <section
             className={cn(
               'rounded-3xl border p-4 transition',
@@ -274,7 +130,7 @@ export function SetupGate() {
                 {bookDone ? <Check className="h-5 w-5" /> : <BookOpen className="h-5 w-5" />}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-extrabold text-main">{tr('2. Add at least one book')}</p>
+                <p className="text-sm font-extrabold text-main">{tr('Add at least one book')}</p>
                 <p className="mt-0.5 text-[10px] leading-relaxed text-muted">
                   {tr('Download a Ministry book or pick a PDF from your device. {grade} · {n} in your library', {
                     grade: levelLabel(grade, settings.curriculum),
@@ -303,7 +159,7 @@ export function SetupGate() {
                             className="flex flex-wrap items-center gap-2 rounded-2xl border border-line bg-card px-2.5 py-2"
                           >
                             <span className="text-base">{meta.emoji}</span>
-                            <span className="min-w-0 flex-1">
+                            <span className="min-w-[8rem] flex-1">
                               <span className="block truncate text-[11px] font-bold text-main" dir="auto">
                                 {entry.title}
                               </span>
@@ -345,7 +201,7 @@ export function SetupGate() {
           <p className="text-[10px] text-muted-2">
             {done
               ? tr('Everything is ready — opening your dashboard…')
-              : tr('Both steps unlock the app. It takes about two minutes.')}
+              : tr('One book unlocks the app. It takes about a minute.')}
           </p>
           <span
             className={cn(
