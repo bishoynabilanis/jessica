@@ -1,4 +1,5 @@
 import type { Book, BookUnit } from '@/types'
+import { lessonMastery, type LessonMastery } from '@/lib/mastery'
 
 /** One unit of a book, seen as a lesson in a course. */
 export type LessonState = 'mastered' | 'started' | 'new'
@@ -12,6 +13,7 @@ export interface CourseLesson {
   /** Best unit-quiz score, 0–100. */
   best: number
   minutes: number
+  mastery: LessonMastery
 }
 
 export interface Course {
@@ -25,7 +27,7 @@ export interface Course {
 }
 
 interface ProgressInput {
-  unitMastery: Record<string, { best: number; total: number; attempts: number }>
+  unitMastery: Record<string, { best: number; total: number; attempts: number; weak?: Record<string, number> }>
   completedTopics: string[]
   lessonProgress: Record<string, { step: number; done: boolean; updatedAt: number }>
 }
@@ -47,6 +49,7 @@ export function buildCourse(book: Book, input: ProgressInput): Course {
       step: saved?.step ?? 0,
       best,
       minutes: Math.max(3, Math.round(pages * 1.5) + 1),
+      mastery: lessonMastery(stat, input.completedTopics.includes(key)),
     }
   })
 
