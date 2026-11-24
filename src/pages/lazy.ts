@@ -53,5 +53,7 @@ export const LazyBookDetective = page(() => import('@/pages/BookDetective'), 'Bo
 export const LazyKidsBookDetective = page(() => import('@/pages/BookDetective'), 'KidsBookDetective')
 export const LazyLabMistake = page(() => import('@/pages/LabMistake'), 'LabMistake')
 export const LazyKidsLabMistake = page(() => import('@/pages/LabMistake'), 'KidsLabMistake')
+export const LazyWordTrain = page(() => import('@/pages/WordTrain'), 'WordTrain')
+export const LazyKidsWordTrain = page(() => import('@/pages/WordTrain'), 'KidsWordTrain')
 export const LazyBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'BridgeRescue')
 export const LazyKidsBridgeRescue = page(() => import('@/pages/BridgeRescue'), 'KidsBridgeRescue')
