@@ -2911,4 +2911,9 @@ export const french: Record<string, string> = {
   "Could not read the text. Check your connection and try again.": "Impossible de lire le texte. Vérifie ta connexion et réessaie.",
   "The photo stays on this device. The reading tool is downloaded once from the internet, so this needs a connection.": "La photo reste sur cet appareil. L'outil de lecture est téléchargé depuis internet, donc une connexion est nécessaire.",
   "Scanned text": "Texte scanné",
+  "Share the result card": "Partager la carte de résultat",
+  "Result card saved as an image": "Carte de résultat enregistrée en image",
+  "Result card": "Carte de résultat",
+  "Made on this device. It leaves only if a parent presses Share.": "Créée sur cet appareil. Elle ne sort que si un parent appuie sur Partager.",
+  "Me": "Moi",
 }
