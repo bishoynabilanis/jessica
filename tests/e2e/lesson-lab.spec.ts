@@ -34,11 +34,15 @@ test('a prep lesson opens the matching lab with the goal and page number', async
   await expect(page.getByText('معمل الكسور').first()).toBeVisible()
   await page.waitForTimeout(1200)
   await page.screenshot({ path: process.env.SHOTS ? `${process.env.SHOTS}/lab-desktop.png` : undefined })
-  await page.getByTestId('lesson-lab-page').click()
-  await expect(page).toHaveURL(/#\/reader\/b1\?page=12/)
-  await page.goBack()
   await page.getByTestId('lesson-lab-back').click()
   await expect(page).toHaveURL(/#\/lesson\/b1\/u1/)
+})
+
+test('the lab banner links to the book page it came from', async ({ page }) => {
+  await page.addInitScript(init(7))
+  await page.goto('/#/labs?lab=fractions&book=b1&unit=u1&page=12')
+  await page.getByTestId('lesson-lab-page').click()
+  await expect(page).toHaveURL(/#\/reader\/b1\?page=12/)
 })
 
 test('a lesson with no matching lab shows no lab button', async ({ page }) => {
