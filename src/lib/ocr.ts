@@ -40,3 +40,49 @@ export async function ocrPdfPage(
     await worker.terminate().catch(() => undefined)
   }
 }
+
+export interface PageRecognizer {
+  recognize: (pageNumber: number) => Promise<string>
+  close: () => Promise<void>
+}
+
+/**
+ * Many pages in a row: open the PDF and the OCR engine once, then read page
+ * after page. Opening them again for every page would be slow and wasteful.
+ */
+export async function createPageRecognizer(
+  url: string,
+  language = 'ara+eng',
+  onProgress?: (status: string, progress: number) => void,
+): Promise<PageRecognizer> {
+  const doc = await loadPdf(url)
+  onProgress?.('loading', 0)
+  // @ts-expect-error remote ESM module loaded at runtime
+  const mod: any = await import(/* @vite-ignore */ 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js')
+  const worker = await mod.createWorker(language, 1, {
+    workerPath: 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js',
+    corePath: 'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.0.0',
+    langPath: 'https://tessdata.projectnaptha.com/4.0.0',
+    logger: (message: any) => {
+      if (message?.status) onProgress?.(message.status, Number(message.progress) || 0)
+    },
+  })
+  return {
+    recognize: async (pageNumber: number) => {
+      const page = await doc.getPage(pageNumber)
+      const viewport = page.getViewport({ scale: 2 })
+      const canvas = document.createElement('canvas')
+      canvas.width = Math.floor(viewport.width)
+      canvas.height = Math.floor(viewport.height)
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('Canvas is not available')
+      await page.render({ canvasContext: ctx, viewport }).promise
+      const { data } = await worker.recognize(canvas)
+      canvas.width = canvas.height = 0
+      return String(data?.text || '').replace(/\s+/g, ' ').trim()
+    },
+    close: async () => {
+      await worker.terminate().catch(() => undefined)
+    },
+  }
+}
