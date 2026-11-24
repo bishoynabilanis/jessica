@@ -55,6 +55,7 @@ const grades = urls.filter((url) => /\/welcome\/grades\/[^/]+\/$/.test(url))
 const topics = urls.filter((url) => /\/welcome\/topics\/[^/]+\/$/.test(url))
 const quizzes = urls.filter((url) => /\/welcome\/quiz\/[^/]+\/$/.test(url))
 const guides = urls.filter((url) => /\/welcome\/guides\/[^/]+\/$/.test(url))
+const monthly = urls.filter((url) => /\/welcome\/monthly\/[^/]+\/$/.test(url))
 const enAll = urls.filter((url) => url.includes('/welcome/en/') && url !== `${BASE}/welcome/en/`)
 const arCore = [
   `${BASE}/welcome/`,
@@ -128,6 +129,7 @@ ${sharedStyle}
     <section><h2>مواضيع المذاكرة</h2><ul>${links(topics, arHref)}</ul></section>
     <section><h2>اختبارات سريعة</h2><ul>${links(quizzes, arHref)}</ul></section>
     <section><h2>الأدلة</h2><ul>${links(guides, arHref)}</ul></section>
+    <section><h2>المنهج شهر بشهر</h2><ul>${links(monthly, arHref)}</ul></section>
     <section><h2>صفحات التطبيق</h2><ul>${links(arCore, arHref)}</ul></section>
     <section><h2>English pages</h2><ul dir="ltr">${links([...enCore, ...enOther, ...featuresEn], arHref)}</ul></section>
   </div>
@@ -176,7 +178,7 @@ ${sharedStyle}
     <section><h2>Features</h2><ul>${links(featuresEn, enHref)}</ul></section>
     <section><h2>English pages</h2><ul>${links(enCore, enHref)}</ul></section>
     <section><h2>English topics</h2><ul>${links(enOther.filter((url) => url.includes('/topics/')), enHref)}</ul></section>
-    <section><h2>Arabic pages</h2><ul dir="rtl">${links([...grades, ...topics, ...quizzes, ...guides, ...featuresAr, ...arCore], enHref)}</ul></section>
+    <section><h2>Arabic pages</h2><ul dir="rtl">${links([...grades, ...topics, ...quizzes, ...guides, ...monthly, ...featuresAr, ...arCore], enHref)}</ul></section>
   </div>
   <h2 style="font-size:21px">How to use this map</h2>
   <p class="map-lead">If an exam is close: open the grade page, pick the subject, download the ministry book, then open the question bank and run a ten-question drill on the same lesson. If one skill is the problem, the topics page has a guide for each skill. To understand a feature before using it, the features pages explain the problem, the solution and the steps. Every grade page links to its subjects and official books, so you rarely need to come back here.</p>

@@ -544,6 +544,16 @@ const urls = [
     }
     out.push({ loc: `${BASE}/welcome/guides/ministry-books-download/`, file: 'public/welcome/guides/ministry-books-download/index.html', freq: 'monthly', priority: '0.7' })
     out.push({ loc: `${BASE}/welcome/en/guides/download-ministry-books/`, file: 'public/welcome/en/guides/download-ministry-books/index.html', freq: 'monthly', priority: '0.6' })
+    out.push({ loc: `${BASE}/welcome/monthly/`, file: 'public/welcome/monthly/index.html', freq: 'weekly', priority: '0.8' })
+    out.push({ loc: `${BASE}/welcome/en/monthly/`, file: 'public/welcome/en/monthly/index.html', freq: 'weekly', priority: '0.7' })
+    for (const [, [, , gSlug]] of Object.entries(LABELS)) {
+      out.push({ loc: `${BASE}/welcome/monthly/${gSlug}/`, file: `public/welcome/monthly/${gSlug}/index.html`, freq: 'weekly', priority: '0.8' })
+      out.push({ loc: `${BASE}/welcome/en/monthly/${gSlug}/`, file: `public/welcome/en/monthly/${gSlug}/index.html`, freq: 'weekly', priority: '0.7' })
+    }
+    for (const seasonalSlug of ['exam-schedule-2027', 'december-revision', 'prep-3-model-exams', 'study-plan-term1']) {
+      out.push({ loc: `${BASE}/welcome/guides/${seasonalSlug}/`, file: `public/welcome/guides/${seasonalSlug}/index.html`, freq: 'monthly', priority: '0.8' })
+      out.push({ loc: `${BASE}/welcome/en/guides/${seasonalSlug}/`, file: `public/welcome/en/guides/${seasonalSlug}/index.html`, freq: 'monthly', priority: '0.7' })
+    }
     return out
   })(),
   { loc: `${BASE}/`, file: 'index.html', freq: 'weekly', priority: '0.7' },
