@@ -2952,4 +2952,6 @@ export const french: Record<string, string> = {
   "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Cela va télécharger environ {mb} Mo ({what}). Cela consomme vos données mobiles hors Wi-Fi.",
   "the offline AI model": "le modèle d'IA hors ligne",
   "the text-reading engine (Arabic + English)": "le lecteur de texte (arabe + anglais)",
+  "Comfortable reading": "Lecture confortable",
+  "Bigger text, wider spacing and a calm paper colour that is easy on the eyes.": "Texte plus grand, espacement plus large et couleur papier apaisante pour les yeux.",
 }
