@@ -3577,6 +3577,21 @@ const arabicExtra: Record<string, string> = {
   'Translate the key terms to Arabic': 'ترجم الكلمات المهمة للعربي',
   'No units yet. Use the lesson button below.': 'مفيش وحدات لسه. استخدم زرار الدرس تحت.',
   'Jessica could not split this book into units. Tap the 5-minute lesson button above and she will read from any page.': 'Jessica معرفتش تقسّم الكتاب لوحدات. دوس على زرار درس الـ٥ دقايق فوق وهي هتقرأ من أي صفحة.',
+  "Study the cards first": "ذاكر الكروت الأول",
+  "Card {n} of {total}": "كارت {n} من {total}",
+  "Tap to see the question": "اضغط عشان تشوف السؤال",
+  "Tap to see the answer": "اضغط عشان تشوف الإجابة",
+  "Previous card": "الكارت اللي قبله",
+  "Next card": "الكارت اللي بعده",
+  "Start the quiz": "ابدأ الكويز",
+  "Skip to the quiz": "روح للكويز على طول",
+  "These cards come from the unit pages in the textbook. Nothing about you is saved or sent.": "الكروت دي من صفحات الوحدة في الكتاب. مفيش حاجة عنك بتتحفظ أو بتتبعت.",
+  "Study cards could not be made this time. The pack has the quiz only.": "معرفتش أعمل كروت المذاكرة المرة دي. الحزمة فيها الكويز بس.",
+  "Study cards need an AI key on this device. The pack has the quiz only.": "كروت المذاكرة محتاجة مفتاح ذكاء اصطناعي على الجهاز ده. الحزمة فيها الكويز بس.",
+  "study cards": "كروت مذاكرة",
+  "The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.": "الـQR فيه {q} سؤال و{c} كارت مذاكرة. اللينك فيه {q2} سؤال و{c2} كارت مذاكرة.",
+  "For the full pack, send the link and not the QR.": "عشان الحزمة كاملة، ابعت اللينك مش الـQR.",
+  "Add study cards from the unit pages (needs an AI key on this device)": "ضيف كروت مذاكرة من صفحات الوحدة (محتاج مفتاح ذكاء اصطناعي على الجهاز ده)",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
