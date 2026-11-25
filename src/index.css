@@ -742,3 +742,39 @@ html.weak-phone *::after {
 }
 html.weak-phone .confetti-piece { display: none !important; }
 html.weak-phone *:not(canvas) { filter: none !important; }
+
+/* Comfortable reading: calm paper colour, roomier lines, no busy background. */
+html.comfy-reading {
+  --bg: #f6efdf;
+  --bg-soft: #f1e9d5;
+  --card: rgba(255, 252, 244, 0.92);
+  --card-solid: #fffcf4;
+  --card-2: rgba(240, 231, 210, 0.9);
+  --line: rgba(60, 45, 20, 0.14);
+  --line-strong: rgba(60, 45, 20, 0.24);
+  --text: #2b2418;
+  --muted: #5d5340;
+  --muted-2: #7a6f58;
+  --shadow: 0 10px 30px -22px rgba(60, 45, 20, 0.35);
+  --app-bg-image: none;
+  color-scheme: light;
+}
+html.comfy-reading body {
+  line-height: 1.85;
+  letter-spacing: 0.015em;
+  word-spacing: 0.07em;
+}
+html.comfy-reading p,
+html.comfy-reading li {
+  line-height: 1.9;
+  max-width: 68ch;
+}
+html.comfy-reading p + p { margin-top: 0.9em; }
+/* Pale accent text would vanish on paper colour: darken it. */
+html.comfy-reading .text-amber-100,
+html.comfy-reading .text-amber-200,
+html.comfy-reading .text-amber-300 { color: #7a4a00 !important; }
+html.comfy-reading .text-aurora-200,
+html.comfy-reading .text-aurora-300 { color: #0b6b5e !important; }
+html.comfy-reading .text-violet-glow { color: #5b3fc4 !important; }
+html.comfy-reading .text-sky { color: #0b5f8f !important; }

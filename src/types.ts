@@ -250,6 +250,8 @@ export interface Settings {
   textScale: number
   dyslexiaFont: boolean
   reduceMotion: boolean
+  /** Comfortable reading: bigger text, wider spacing, calm paper-colour palette. */
+  comfyReading: boolean
   /** Weak phone mode: lighter screens, page-by-page book loading, size warnings. */
   weakPhone: boolean
   /** Kid-world sound effects (right/wrong cues, finish). */
