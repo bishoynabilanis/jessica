@@ -50,6 +50,7 @@ export const LazyCheckSteps = page(() => import('@/pages/CheckSteps'), 'CheckSte
 export const LazySolve = page(() => import('@/pages/Solve'), 'Solve')
 export const LazyReport = page(() => import('@/pages/Report'), 'Report')
 export const LazyStudySheet = page(() => import('@/pages/StudySheet'), 'StudySheet')
+export const LazyAchievement = page(() => import('@/pages/Achievement'), 'Achievement')
 export const LazyMonthlyReport = page(() => import('@/pages/MonthlyReport'), 'MonthlyReport')
 export const LazyBookDetective = page(() => import('@/pages/BookDetective'), 'BookDetective')
 export const LazyKidsBookDetective = page(() => import('@/pages/BookDetective'), 'KidsBookDetective')
