@@ -3599,6 +3599,13 @@ const arabicExtra: Record<string, string> = {
   "Daily question done": "خلّصت سؤال اليوم",
   "Come back tomorrow for the next one.": "ارجع بكرة للسؤال اللي بعده.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "اختيارك بيتحفظ على جهازك بس. مفيش حاجة بتتبعت لأي مكان.",
+  "Weak phone mode": "وضع الموبايل الضعيف",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "شاشات أخف من غير تأثيرات، والكتاب بيتحمل صفحة صفحة، وتحذير بالحجم قبل أي تحميل كبير.",
+  "Big download": "تحميل كبير",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "ده هيحمّل حوالي {mb} ميجا ({what}). وهياكل من باقة النت لو مش على واي فاي.",
+  "Not now": "مش دلوقتي",
+  "the offline AI model": "موديل الذكاء الاصطناعي بدون نت",
+  "the text-reading engine (Arabic + English)": "محرك قراءة النصوص (عربي + إنجليزي)",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
