@@ -3606,6 +3606,8 @@ const arabicExtra: Record<string, string> = {
   "Not now": "مش دلوقتي",
   "the offline AI model": "موديل الذكاء الاصطناعي بدون نت",
   "the text-reading engine (Arabic + English)": "محرك قراءة النصوص (عربي + إنجليزي)",
+  "Comfortable reading": "القراءة المريحة",
+  "Bigger text, wider spacing and a calm paper colour that is easy on the eyes.": "خط أكبر ومسافات أوسع ولون ورق هادي مريح للعين.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
