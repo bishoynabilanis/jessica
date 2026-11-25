@@ -3633,6 +3633,23 @@ const arabicExtra: Record<string, string> = {
   "Share a win": "شارك إنجاز",
   "You earned a win to share": "كسبت إنجاز تشاركه",
   "Send a small card to your parents on WhatsApp.": "ابعت كارت صغير لأهلك على واتساب.",
+  "Trace with your finger": "ارسم بصباعك",
+  "Trace the letters, words and numbers of your book. No camera, nothing is saved.": "ارسم حروف وكلمات وأرقام كتابك بصباعك. من غير كاميرا ومفيش حاجة بتتحفظ.",
+  "Trace the letters and words of your book.": "ارسم حروف وكلمات كتابك بصباعك.",
+  "Nothing to trace yet": "لسه مفيش حاجة تترسم",
+  "Tracing uses the letters and words of a unit in your book. Ask a grown-up to add the book and its units first.": "الرسم بياخد حروف وكلمات من وحدة في كتابك. اطلب من حد كبير يضيف الكتاب ووحداته الأول.",
+  "No letters found in this unit yet": "مفيش حروف في الوحدة دي لسه",
+  "The text of this unit is empty, so there is nothing to trace. Try another unit.": "نص الوحدة دي فاضي فمفيش حاجة نرسمها. جرّب وحدة تانية.",
+  "Letters": "حروف",
+  "Words": "كلمات",
+  "Numbers": "أرقام",
+  "Put your finger on the grey shape and go over it.": "حط صباعك على الشكل الرمادي وامشي عليه.",
+  "Not yet. Try to cover the whole grey shape and stay on it. Clear and try again, there is no limit.": "لسه. حاول تغطي الشكل الرمادي كله وخليك عليه. امسح وجرّب تاني، من غير حد للمحاولات.",
+  "Well done! You traced it.": "برافو! رسمتها صح.",
+  "Clear": "امسح",
+  "Next": "التالي",
+  "Traced so far: {n}": "اللي رسمته لحد دلوقتي: {n}",
+  "Jessica checks the shape you drew, not the order of your strokes.": "جيسيكا بتتأكد من الشكل اللي رسمته، مش من ترتيب الخطوط.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
