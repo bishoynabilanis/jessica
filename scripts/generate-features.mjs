@@ -132,7 +132,7 @@ function featurePage(feature, lang) {
   const app = isAr ? '../../../' : '../../../../'
   const css = isAr ? '../../style.css' : '../../../style.css'
   const icons = isAr ? '../../../icons/' : '../../../../icons/'
-  const og = isAr ? '../../../og.jpg' : '../../../../og.jpg'
+  const og = BASE + '/og.jpg'
   const sitemap = isAr ? '../../sitemap/' : '../../sitemap/'
   const featuresHref = isAr ? '../' : '../'
   const otherHref = isAr ? `../../en/features/${feature.slug}/` : `../../../features/${feature.slug}/`
@@ -237,7 +237,7 @@ function indexPage(lang) {
   const home = '../'
   const css = isAr ? '../style.css' : '../../style.css'
   const icons = isAr ? '../../icons/' : '../../../icons/'
-  const og = isAr ? '../../og.jpg' : '../../../og.jpg'
+  const og = BASE + '/og.jpg'
   const sitemap = isAr ? '../sitemap/' : '../sitemap/'
   const otherHref = isAr ? '../en/features/' : '../../features/'
   const canonical = `${BASE}/welcome/${isAr ? '' : 'en/'}features/`
