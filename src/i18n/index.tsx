@@ -3592,6 +3592,13 @@ const arabicExtra: Record<string, string> = {
   "The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.": "الـQR فيه {q} سؤال و{c} كارت مذاكرة. اللينك فيه {q2} سؤال و{c2} كارت مذاكرة.",
   "For the full pack, send the link and not the QR.": "عشان الحزمة كاملة، ابعت اللينك مش الـQR.",
   "Add study cards from the unit pages (needs an AI key on this device)": "ضيف كروت مذاكرة من صفحات الوحدة (محتاج مفتاح ذكاء اصطناعي على الجهاز ده)",
+  "Daily question": "سؤال اليوم",
+  "From your book: {title}": "من كتابك: {title}",
+  "Grade skills practice: {subject}. Not from a book page.": "تمرين مهارات للصف: {subject}. مش من صفحة في الكتاب.",
+  "Right! Daily question done": "صح! خلّصت سؤال اليوم",
+  "Daily question done": "خلّصت سؤال اليوم",
+  "Come back tomorrow for the next one.": "ارجع بكرة للسؤال اللي بعده.",
+  "Picked and kept on this device only. Nothing is sent anywhere.": "اختيارك بيتحفظ على جهازك بس. مفيش حاجة بتتبعت لأي مكان.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
