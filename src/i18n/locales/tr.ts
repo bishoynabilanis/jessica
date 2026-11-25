@@ -2952,4 +2952,6 @@ export const turkish: Record<string, string> = {
   "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Bu yaklaşık {mb} MB indirecek ({what}). Wi-Fi yoksa mobil verinizi kullanır.",
   "the offline AI model": "çevrimdışı yapay zeka modeli",
   "the text-reading engine (Arabic + English)": "metin okuma motoru (Arapça + İngilizce)",
+  "Comfortable reading": "Rahat okuma",
+  "Bigger text, wider spacing and a calm paper colour that is easy on the eyes.": "Daha büyük yazı, daha geniş boşluklar ve gözü yormayan sakin bir kağıt rengi.",
 }
