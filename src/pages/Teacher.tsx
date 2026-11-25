@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Check, Copy, QrCode, Sparkles, Users } from 'lucide-react'
 import type { AssignmentPayload, AssignmentResult } from '@/lib/assignments'
-import { assignmentUrl, decodeResult } from '@/lib/assignments'
+import {
+  CHAT_LINK_LIMIT,
+  PACK_CARD_RULE,
+  QR_LINK_LIMIT,
+  cleanCards,
+  decodeResult,
+  fitPack,
+  type PackFit,
+} from '@/lib/assignments'
 import type { GradeLevel } from '@/types'
 import { gradeLabel } from '@/data/officialBooks'
 import { BANK_SUBJECTS, buildDrill, type BankSubject } from '@/lib/questionBank'
@@ -10,7 +18,7 @@ import { useUI } from '@/store/useUI'
 import { getQuizzes, saveQuiz } from '@/lib/db'
 import { openChapter } from '@/lib/library'
 import { generateJSON } from '@/lib/gemini'
-import { quizPrompt } from '@/lib/prompts'
+import { flashcardsPrompt, quizPrompt } from '@/lib/prompts'
 import { PageHeader } from '@/components/common/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -38,6 +46,9 @@ export function Teacher() {
   const [assignment, setAssignment] = useState<AssignmentPayload | null>(null)
   const [url, setUrl] = useState('')
   const [qr, setQr] = useState('')
+  const [withCards, setWithCards] = useState(true)
+  const [fit, setFit] = useState<{ chat: PackFit; qr: PackFit } | null>(null)
+  const [cardNote, setCardNote] = useState('')
   const [codes, setCodes] = useState('')
   const [results, setResults] = useState<AssignmentResult[]>([])
   const [author, setAuthor] = useState({
@@ -76,6 +87,8 @@ export function Teacher() {
     setAssignment(null)
     setUrl('')
     setQr('')
+    setFit(null)
+    setCardNote('')
     try {
       let payload: AssignmentPayload
       if (source === 'bank') {
@@ -89,7 +102,7 @@ export function Teacher() {
         }))
         if (!built.length) throw new Error(tr('Could not build the assignment'))
         payload = {
-          v: 1,
+          v: 2,
           id: uid('as_'),
           grade: bankGrade,
           subject: bankSubject,
@@ -133,8 +146,27 @@ export function Teacher() {
         if (!questions.length) {
           throw new Error(tr('No question bank for this unit yet. Add a Gemini key or take the unit quiz once.'))
         }
+        let cards: AssignmentPayload['cards'] = []
+        if (withCards && apiKey) {
+          try {
+            const data = await generateJSON<{ cards?: unknown }>({
+              apiKey,
+              model,
+              system: 'You write short study cards for Egyptian students, only from the given textbook pages. Return only JSON.',
+              parts: [{ text: `${flashcardsPrompt(book, unitChapter, 8)}\n${PACK_CARD_RULE}` }],
+              temperature: 0.3,
+              maxOutputTokens: 1800,
+            })
+            cards = cleanCards(data.cards, 8)
+          } catch {
+            cards = []
+          }
+          if (!cards.length) setCardNote(tr('Study cards could not be made this time. The pack has the quiz only.'))
+        } else if (withCards && !apiKey) {
+          setCardNote(tr('Study cards need an AI key on this device. The pack has the quiz only.'))
+        }
         payload = {
-          v: 1,
+          v: 2,
           id: uid('as_'),
           grade: book.grade,
           subject: book.subject,
@@ -142,28 +174,24 @@ export function Teacher() {
           unitTitle: unit.title,
           unitKey,
           questions: questions.slice(0, count),
+          cards,
           createdAt: Date.now(),
         }
       }
       setAssignment(payload)
-      const link = assignmentUrl(payload)
-      setUrl(link)
+      const chat = fitPack(payload, CHAT_LINK_LIMIT)
+      const small = fitPack(payload, QR_LINK_LIMIT)
+      setFit({ chat, qr: small })
+      setUrl(chat.link)
       const QRCode = (await import('qrcode')).default
-      const qrOpts = {
-        errorCorrectionLevel: 'L' as const,
-        margin: 1,
-        width: 360,
-        color: { dark: '#0b1220', light: '#ffffff' },
-      }
-      try {
-        setQr(await QRCode.toDataURL(link, qrOpts))
-      } catch {
-        const slimLink = assignmentUrl({
-          ...payload,
-          questions: payload.questions.map((q) => ({ ...q, explanation: '' })),
-        })
-        setQr(await QRCode.toDataURL(slimLink, qrOpts))
-      }
+      setQr(
+        await QRCode.toDataURL(small.link, {
+          errorCorrectionLevel: 'L' as const,
+          margin: 1,
+          width: 360,
+          color: { dark: '#0b1220', light: '#ffffff' },
+        }),
+      )
     } catch (err) {
       pushToast({
         title: tr('Could not build the assignment'),
@@ -363,6 +391,10 @@ export function Teacher() {
                   ))}
                 </select>
               </label>
+              <label className="flex items-center gap-2 text-[11px] font-bold text-muted sm:col-span-2">
+                <input type="checkbox" data-testid="teacher-with-cards" checked={withCards} onChange={(e) => setWithCards(e.target.checked)} />
+                {tr('Add study cards from the unit pages (needs an AI key on this device)')}
+              </label>
             </div>
           )}
 
@@ -381,9 +413,23 @@ export function Teacher() {
                 <div className="rounded-2xl border border-line bg-card-2 p-3">
                   <p className="text-xs font-extrabold text-main">{assignment.unitTitle}</p>
                   <p className="text-[10px] text-muted">
-                    {assignment.bookTitle} · {assignment.questions.length} {tr('questions')} · {tr(assignment.subject)}
+                    {assignment.bookTitle} · {assignment.questions.length} {tr('questions')}{fit?.chat.payload.cards?.length ? ` · ${fit.chat.payload.cards.length} ${tr('study cards')}` : ''} · {tr(assignment.subject)}
                   </p>
                 </div>
+                {cardNote && <p data-testid="pack-card-note" className="text-[10px] text-sun">{cardNote}</p>}
+                {fit && (
+                  <p data-testid="pack-size" className="text-[10px] leading-relaxed text-muted">
+                    {tr('The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.', {
+                      q: fit.qr.payload.questions.length,
+                      c: fit.qr.payload.cards?.length || 0,
+                      q2: fit.chat.payload.questions.length,
+                      c2: fit.chat.payload.cards?.length || 0,
+                    })}{' '}
+                    {fit.qr.droppedQuestions + fit.qr.droppedCards > 0 || !fit.qr.explanations
+                      ? tr('For the full pack, send the link and not the QR.')
+                      : ''}
+                  </p>
+                )}
                 {qr && <img src={qr} alt={tr('Assignment QR')} className="mx-auto h-48 w-48 rounded-2xl border border-line bg-white p-2" />}
                 <div className="flex flex-wrap gap-2">
                   <Button
