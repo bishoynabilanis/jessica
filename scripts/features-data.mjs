@@ -989,3 +989,6 @@ export const FEATURES = [
     },
   },
 ]
+
+import { NEW_FEATURES } from './features-new-data.mjs'
+FEATURES.push(...NEW_FEATURES)

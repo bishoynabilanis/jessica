@@ -16,6 +16,14 @@ function jsonLd(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c')
 }
 
+function shareRow(title, url, rtl) {
+  const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
+  const wa = `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`
+  return `<div class="share-row"><b>${rtl ? 'شارك الصفحة:' : 'Share this page:'}</b>
+      <a class="btn ghost" href="${fb}" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="btn ghost" href="${wa}" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>`
+}
+
 function layout({ lang, title, description, canonical, alternate, css, icons, og, feed, body, schema }) {
   const rtl = lang === 'ar'
   return `<!doctype html>
@@ -71,6 +79,8 @@ ${schema.map((item) => `<script type="application/ld+json">${jsonLd(item)}</scri
   .related a { display: block; border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; background: rgba(255,255,255,.03); color: var(--text); }
   .related a span { display: block; color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 5px; }
   .related a:hover { border-color: rgba(33,230,201,.45); }
+  .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 26px 0 6px; }
+  .share-row b { font-size: 14px; color: var(--muted); }
   .cta-box { margin: 30px 0 10px; border: 1px solid rgba(33,230,201,.35); background: linear-gradient(140deg, rgba(33,230,201,.12), rgba(107,140,255,.08)); border-radius: 24px; padding: 22px 24px; }
   .cta-box h2 { margin: 0 0 6px; font-size: 20px; }
   .cta-box p { margin: 0 0 12px; }
@@ -195,6 +205,7 @@ function featurePage(feature, lang) {
       .join('')}</div>
     <h2>${rtl ? 'ميزات قريبة' : 'Related features'}</h2>
     <div class="related">${related}</div>
+    ${feature.share ? shareRow(copy.title, canonical, rtl) : ''}
     <div class="cta-box">
       <h2>${rtl ? 'جرّبها على كتابك' : 'Try it on your own book'}</h2>
       <p>${rtl ? 'التطبيق مجاني، بدون حساب، وبعد أول تحميل بيشتغل أوفلاين.' : 'Free, no account, and it works offline after the first download.'}</p>
