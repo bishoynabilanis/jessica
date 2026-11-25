@@ -31,6 +31,7 @@ import { Mascot } from '@/components/Mascot'
 import { ParentReportModal } from '@/components/tools/ParentReport'
 import { QuickStart } from '@/components/QuickStart'
 import { RiddleCard } from '@/components/RiddleModal'
+import { DailyQuestionCard } from '@/components/DailyQuestion'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar, SectionTitle } from '@/components/ui/Card'
 import { useInstallPrompt } from '@/hooks/usePlatform'
@@ -602,6 +603,7 @@ export function Dashboard() {
         </Card>
 
         <div className="space-y-4">
+          <DailyQuestionCard />
           <RiddleCard />
           <Card className="p-4 sm:p-5">
             <div className="mb-3 flex items-center justify-between">
