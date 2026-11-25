@@ -2946,4 +2946,10 @@ export const french: Record<string, string> = {
   "Daily question done": "Question du jour terminée",
   "Come back tomorrow for the next one.": "Reviens demain pour la suivante.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "Choix gardé sur cet appareil seulement. Rien n'est envoyé.",
+  "Weak phone mode": "Mode téléphone lent",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "Écrans plus légers, sans effets, les livres se chargent page par page, et un avertissement de taille avant les gros téléchargements.",
+  "Big download": "Gros téléchargement",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Cela va télécharger environ {mb} Mo ({what}). Cela consomme vos données mobiles hors Wi-Fi.",
+  "the offline AI model": "le modèle d'IA hors ligne",
+  "the text-reading engine (Arabic + English)": "le lecteur de texte (arabe + anglais)",
 }
