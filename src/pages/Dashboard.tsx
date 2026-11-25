@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
+  Award,
   BookOpen,
   Brain,
   CalendarCheck,
@@ -32,6 +33,7 @@ import { ParentReportModal } from '@/components/tools/ParentReport'
 import { QuickStart } from '@/components/QuickStart'
 import { RiddleCard } from '@/components/RiddleModal'
 import { DailyQuestionCard } from '@/components/DailyQuestion'
+import { earnedAchievements } from '@/lib/achievementCard'
 import { Button } from '@/components/ui/Button'
 import { Card, ProgressBar, SectionTitle } from '@/components/ui/Card'
 import { useInstallPrompt } from '@/hooks/usePlatform'
@@ -604,6 +606,25 @@ export function Dashboard() {
 
         <div className="space-y-4">
           <DailyQuestionCard />
+          {earnedAchievements({
+            streak: state.streak,
+            completedTopics: state.completedTopics.length,
+            xp: state.xp,
+            weekSeconds: week.reduce((sum, d) => sum + d.seconds, 0),
+          }).length > 0 && (
+            <Link to="/achievement" data-testid="achievement-dash-link">
+              <Card className="flex items-center gap-3 p-3 transition hover:bg-white/5">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sun/15 text-sun">
+                  <Award className="h-4 w-4" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-extrabold text-main">{tr('You earned a win to share')}</span>
+                  <span className="block text-[11px] text-muted">{tr('Send a small card to your parents on WhatsApp.')}</span>
+                </span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-muted" />
+              </Card>
+            </Link>
+          )}
           <RiddleCard />
           <Card className="p-4 sm:p-5">
             <div className="mb-3 flex items-center justify-between">

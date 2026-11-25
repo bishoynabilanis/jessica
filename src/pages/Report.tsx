@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   AlertTriangle,
+  Award,
   BarChart3,
   BookOpen,
   CalendarRange,
@@ -145,6 +146,11 @@ export function Report() {
             <Link to="/sheet" data-testid="sheet-link">
               <Button size="sm" variant="secondary">
                 <FileText className="h-3.5 w-3.5" /> {tr('Study sheet')}
+              </Button>
+            </Link>
+            <Link to="/achievement" data-testid="achievement-link">
+              <Button size="sm" variant="secondary">
+                <Award className="h-3.5 w-3.5" /> {tr('Share a win')}
               </Button>
             </Link>
             <Link to="/report-month">
