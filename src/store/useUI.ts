@@ -10,7 +10,16 @@ export interface Toast {
   xp?: number
 }
 
+export interface DownloadAsk {
+  what: string
+  mb: number
+  resolve: (ok: boolean) => void
+}
+
 interface UIState {
+  downloadAsk: DownloadAsk | null
+  askDownload: (what: string, mb: number) => Promise<boolean>
+  answerDownload: (ok: boolean) => void
   toasts: Toast[]
   quickPanel: boolean
   palette: boolean
@@ -21,6 +30,14 @@ interface UIState {
 }
 
 export const useUI = create<UIState>((set, get) => ({
+  downloadAsk: null,
+  askDownload: (what, mb) =>
+    new Promise<boolean>((resolve) => set({ downloadAsk: { what, mb, resolve } })),
+  answerDownload: (ok) => {
+    const ask = get().downloadAsk
+    set({ downloadAsk: null })
+    ask?.resolve(ok)
+  },
   toasts: [],
   quickPanel: false,
   palette: false,
