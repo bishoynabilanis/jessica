@@ -3,6 +3,7 @@ import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import type { TextContent } from 'pdfjs-dist/types/src/display/api'
 import type { ChapterText, PageText } from '@/types'
 import { chapterCacheGet, chapterCacheSet } from './db'
+import { isWeakPhone } from './weakPhone'
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerUrl
 
@@ -13,7 +14,13 @@ const docCache = new Map<string, Promise<pdfjs.PDFDocumentProxy>>()
 export function loadPdf(url: string) {
   let promise = docCache.get(url)
   if (!promise) {
-    promise = pdfjs.getDocument({ url, cMapUrl: 'https://unpkg.com/pdfjs-dist@4.9.155/cmaps/', cMapPacked: true }).promise
+    promise = pdfjs.getDocument({
+      url,
+      cMapUrl: 'https://unpkg.com/pdfjs-dist@4.9.155/cmaps/',
+      cMapPacked: true,
+      // Weak phone mode: fetch the file in small ranges, only what the page needs.
+      ...(isWeakPhone() ? { rangeChunkSize: 65536, disableAutoFetch: true } : {}),
+    }).promise
     docCache.set(url, promise)
     promise.catch(() => docCache.delete(url))
   }
@@ -39,7 +46,11 @@ async function extractFromDoc(
     pages.push({ page: i, text })
     onProgress?.(i, doc.numPages)
     // Let the UI breathe on 100+ page books.
-    if (i % 4 === 0) await new Promise((resolve) => setTimeout(resolve, 0))
+    // Weak phone mode: free each page's memory and breathe after every page.
+    if (isWeakPhone()) {
+      page.cleanup()
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    } else if (i % 4 === 0) await new Promise((resolve) => setTimeout(resolve, 0))
   }
 
   const chapter: ChapterText = {
