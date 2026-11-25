@@ -1,4 +1,4 @@
-import { Accessibility, Bell, Check, MoonStar, Smartphone, Sun, Type, Zap } from 'lucide-react'
+import { Accessibility, BookOpen, Bell, Check, MoonStar, Smartphone, Sun, Type, Zap } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
 import { Toggle } from '@/components/ui/Toggle'
@@ -68,6 +68,13 @@ export function QuickPanel() {
             label={tr("Dyslexia-friendly font")}
             description={tr("Switch to Atkinson Hyperlegible everywhere.")}
             icon={<Type className="h-4 w-4" />}
+          />
+          <Toggle
+            checked={settings.comfyReading}
+            onChange={(v) => updateSettings({ comfyReading: v })}
+            label={tr('Comfortable reading')}
+            description={tr('Bigger text, wider spacing and a calm paper colour that is easy on the eyes.')}
+            icon={<BookOpen className="h-4 w-4" />}
           />
           <Toggle
             checked={settings.reduceMotion}

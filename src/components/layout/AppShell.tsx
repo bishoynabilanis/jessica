@@ -24,6 +24,7 @@ export function AppShell() {
   const textScale = useApp((s) => s.settings.textScale)
   const dyslexia = useApp((s) => s.settings.dyslexiaFont)
   const reduceMotion = useApp((s) => s.settings.reduceMotion)
+  const comfy = useApp((s) => s.settings.comfyReading)
   const weakPhone = useApp((s) => s.settings.weakPhone)
   const rtl = useApp((s) => s.settings.language === 'ar')
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
@@ -37,12 +38,13 @@ export function AppShell() {
     const root = document.documentElement
     root.classList.toggle('light', theme === 'light')
     root.classList.toggle('dark', theme === 'dark')
-    root.style.fontSize = `${textScale}%`
+    root.style.fontSize = `${comfy ? Math.max(textScale, 118) : textScale}%`
+    root.classList.toggle('comfy-reading', comfy)
     root.classList.toggle('dyslexic', dyslexia)
     root.classList.toggle('reduce-motion', reduceMotion || weakPhone)
     root.classList.toggle('weak-phone', weakPhone)
     root.classList.toggle('kids-mode', kids)
-  }, [theme, textScale, dyslexia, reduceMotion, weakPhone, kids])
+  }, [theme, textScale, dyslexia, reduceMotion, weakPhone, comfy, kids])
 
   useEffect(() => {
     const on = () => setOffline(false)
