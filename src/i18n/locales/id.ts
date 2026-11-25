@@ -2952,4 +2952,6 @@ export const indonesian: Record<string, string> = {
   "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Ini akan mengunduh sekitar {mb} MB ({what}). Memakai kuota data jika tidak memakai Wi-Fi.",
   "the offline AI model": "model AI offline",
   "the text-reading engine (Arabic + English)": "pembaca teks (Arab + Inggris)",
+  "Comfortable reading": "Membaca nyaman",
+  "Bigger text, wider spacing and a calm paper colour that is easy on the eyes.": "Teks lebih besar, jarak lebih lega, dan warna kertas yang tenang di mata.",
 }

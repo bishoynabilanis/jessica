@@ -48,6 +48,7 @@ const defaultSettings: Settings = {
   textScale: 100,
   dyslexiaFont: false,
   reduceMotion: false,
+  comfyReading: false,
   weakPhone: false,
   sound: true,
   aiMode: 'cloud',
