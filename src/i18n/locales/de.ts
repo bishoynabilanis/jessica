@@ -2952,4 +2952,6 @@ export const german: Record<string, string> = {
   "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Das lädt etwa {mb} MB herunter ({what}). Ohne WLAN verbraucht es Mobilfunkdaten.",
   "the offline AI model": "das Offline-KI-Modell",
   "the text-reading engine (Arabic + English)": "die Texterkennung (Arabisch + Englisch)",
+  "Comfortable reading": "Angenehmes Lesen",
+  "Bigger text, wider spacing and a calm paper colour that is easy on the eyes.": "Größere Schrift, mehr Abstand und eine ruhige Papierfarbe, die die Augen schont.",
 }
