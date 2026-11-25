@@ -2946,4 +2946,10 @@ export const spanish: Record<string, string> = {
   "Daily question done": "Pregunta del día hecha",
   "Come back tomorrow for the next one.": "Vuelve mañana para la siguiente.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "La elección se guarda solo en este dispositivo. No se envía nada.",
+  "Weak phone mode": "Modo móvil lento",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "Pantallas más ligeras, sin efectos, los libros cargan página a página y un aviso de tamaño antes de descargas grandes.",
+  "Big download": "Descarga grande",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Se descargarán unos {mb} MB ({what}). Gasta datos móviles si no estás con Wi-Fi.",
+  "the offline AI model": "el modelo de IA sin conexión",
+  "the text-reading engine (Arabic + English)": "el lector de texto (árabe + inglés)",
 }

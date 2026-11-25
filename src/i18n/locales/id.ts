@@ -2946,4 +2946,10 @@ export const indonesian: Record<string, string> = {
   "Daily question done": "Pertanyaan hari ini selesai",
   "Come back tomorrow for the next one.": "Kembali besok untuk yang berikutnya.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "Pilihan hanya disimpan di perangkat ini. Tidak ada yang dikirim.",
+  "Weak phone mode": "Mode ponsel lemah",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "Layar lebih ringan, tanpa efek, buku dimuat halaman demi halaman, dan peringatan ukuran sebelum unduhan besar.",
+  "Big download": "Unduhan besar",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Ini akan mengunduh sekitar {mb} MB ({what}). Memakai kuota data jika tidak memakai Wi-Fi.",
+  "the offline AI model": "model AI offline",
+  "the text-reading engine (Arabic + English)": "pembaca teks (Arab + Inggris)",
 }

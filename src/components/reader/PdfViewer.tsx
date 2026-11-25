@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Expand, Highlighter, Languages, Minus, Moon, MousePointerClick, Plus, Sparkles, Sun, Wand2 } from 'lucide-react'
 import { loadPdf, pdfjs } from '@/lib/pdf'
+import { isWeakPhone } from '@/lib/weakPhone'
 import type { TextContent } from 'pdfjs-dist/types/src/display/api'
 import { cn } from '@/lib/utils'
 import { useApp } from '@/store/useApp'
@@ -126,7 +127,7 @@ export function PdfViewer({
         const viewport = pdfPage.getViewport({ scale })
         const canvas = canvasRef.current
         if (!canvas) return
-        const dpr = Math.min(2, window.devicePixelRatio || 1)
+        const dpr = isWeakPhone() ? 1 : Math.min(2, window.devicePixelRatio || 1)
         canvas.width = Math.floor(viewport.width * dpr)
         canvas.height = Math.floor(viewport.height * dpr)
         canvas.style.width = `${viewport.width}px`

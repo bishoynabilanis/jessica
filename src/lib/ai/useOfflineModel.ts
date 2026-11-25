@@ -3,6 +3,8 @@ import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { clearOfflineModel, loadOfflineModel, offlineReady, offlineSupport } from '@/lib/ai/offline'
 import { tr } from '@/i18n'
+import { OFFLINE_MODEL_SIZE_GB } from '@/lib/ai/config'
+import { confirmBigDownload } from '@/lib/weakPhone'
 
 /**
  * The one place that owns "download the local model" state.
@@ -34,6 +36,7 @@ export function useOfflineModel(onReady?: () => void): OfflineModelState {
 
   const start = async () => {
     if (!support.ok || downloading) return
+    if (!(await confirmBigDownload(tr('the offline AI model'), Math.round(OFFLINE_MODEL_SIZE_GB * 1024)))) return
     setDownloading(true)
     setProgress(0)
     setStatus(tr('Downloading the model… first time only.'))

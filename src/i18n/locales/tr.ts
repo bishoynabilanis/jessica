@@ -2946,4 +2946,10 @@ export const turkish: Record<string, string> = {
   "Daily question done": "Günün sorusu bitti",
   "Come back tomorrow for the next one.": "Sıradaki için yarın gel.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "Seçim yalnızca bu cihazda tutulur. Hiçbir yere gönderilmez.",
+  "Weak phone mode": "Zayıf telefon modu",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "Daha hafif ekranlar, efektsiz, kitaplar sayfa sayfa yüklenir ve büyük indirmelerden önce boyut uyarısı.",
+  "Big download": "Büyük indirme",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Bu yaklaşık {mb} MB indirecek ({what}). Wi-Fi yoksa mobil verinizi kullanır.",
+  "the offline AI model": "çevrimdışı yapay zeka modeli",
+  "the text-reading engine (Arabic + English)": "metin okuma motoru (Arapça + İngilizce)",
 }

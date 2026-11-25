@@ -2946,4 +2946,10 @@ export const german: Record<string, string> = {
   "Daily question done": "Frage des Tages erledigt",
   "Come back tomorrow for the next one.": "Komm morgen für die nächste zurück.",
   "Picked and kept on this device only. Nothing is sent anywhere.": "Auswahl nur auf diesem Gerät gespeichert. Es wird nichts gesendet.",
+  "Weak phone mode": "Schwaches-Handy-Modus",
+  "Lighter screens, no effects, books load page by page, and a size warning before big downloads.": "Leichtere Bildschirme, keine Effekte, Bücher laden Seite für Seite, und eine Größenwarnung vor großen Downloads.",
+  "Big download": "Großer Download",
+  "This will download about {mb} MB ({what}). It uses your mobile data if you are not on Wi-Fi.": "Das lädt etwa {mb} MB herunter ({what}). Ohne WLAN verbraucht es Mobilfunkdaten.",
+  "the offline AI model": "das Offline-KI-Modell",
+  "the text-reading engine (Arabic + English)": "die Texterkennung (Arabisch + Englisch)",
 }

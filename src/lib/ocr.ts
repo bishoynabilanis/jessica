@@ -1,4 +1,5 @@
 import { loadPdf } from '@/lib/pdf'
+import { confirmBigDownload, OCR_DOWNLOAD_MB } from '@/lib/weakPhone'
 
 /**
  * OCR a single PDF page in the browser. Tesseract is loaded lazily from a CDN
@@ -20,6 +21,7 @@ export async function ocrPdfPage(
   if (!ctx) throw new Error('Canvas is not available')
   await page.render({ canvasContext: ctx, viewport }).promise
 
+  if (!(await confirmBigDownload('the text-reading engine (Arabic + English)', OCR_DOWNLOAD_MB))) throw new Error('Download cancelled')
   onProgress?.('loading', 0)
   // @ts-expect-error remote ESM module loaded at runtime
   const mod: any = await import(/* @vite-ignore */ 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js')
@@ -56,6 +58,7 @@ export async function createPageRecognizer(
   onProgress?: (status: string, progress: number) => void,
 ): Promise<PageRecognizer> {
   const doc = await loadPdf(url)
+  if (!(await confirmBigDownload('the text-reading engine (Arabic + English)', OCR_DOWNLOAD_MB))) throw new Error('Download cancelled')
   onProgress?.('loading', 0)
   // @ts-expect-error remote ESM module loaded at runtime
   const mod: any = await import(/* @vite-ignore */ 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.esm.min.js')
