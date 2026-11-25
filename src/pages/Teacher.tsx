@@ -413,7 +413,7 @@ export function Teacher() {
                 <div className="rounded-2xl border border-line bg-card-2 p-3">
                   <p className="text-xs font-extrabold text-main">{assignment.unitTitle}</p>
                   <p className="text-[10px] text-muted">
-                    {assignment.bookTitle} · {assignment.questions.length} {tr('questions')}{fit ? ` · ${fit.chat.payload.cards?.length || 0} ${tr('study cards')}` : ''} · {tr(assignment.subject)}
+                    {assignment.bookTitle} · {assignment.questions.length} {tr('questions')}{fit?.chat.payload.cards?.length ? ` · ${fit.chat.payload.cards.length} ${tr('study cards')}` : ''} · {tr(assignment.subject)}
                   </p>
                 </div>
                 {cardNote && <p data-testid="pack-card-note" className="text-[10px] text-sun">{cardNote}</p>}
