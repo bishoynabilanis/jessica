@@ -2939,4 +2939,11 @@ export const french: Record<string, string> = {
   "The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.": "Le QR contient {q} questions et {c} cartes d'étude. Le lien contient {q2} questions et {c2} cartes d'étude.",
   "For the full pack, send the link and not the QR.": "Pour le pack complet, envoie le lien et non le QR.",
   "Add study cards from the unit pages (needs an AI key on this device)": "Ajouter des cartes d'étude issues des pages de l'unité (clé IA requise sur cet appareil)",
+  "Daily question": "Question du jour",
+  "From your book: {title}": "Dans ton livre : {title}",
+  "Grade skills practice: {subject}. Not from a book page.": "Entraînement aux compétences de la classe : {subject}. Pas d'une page du livre.",
+  "Right! Daily question done": "Juste ! Question du jour terminée",
+  "Daily question done": "Question du jour terminée",
+  "Come back tomorrow for the next one.": "Reviens demain pour la suivante.",
+  "Picked and kept on this device only. Nothing is sent anywhere.": "Choix gardé sur cet appareil seulement. Rien n'est envoyé.",
 }

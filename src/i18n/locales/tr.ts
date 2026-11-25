@@ -2939,4 +2939,11 @@ export const turkish: Record<string, string> = {
   "The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.": "QR {q} soru ve {c} çalışma kartı taşır. Bağlantı {q2} soru ve {c2} çalışma kartı taşır.",
   "For the full pack, send the link and not the QR.": "Tam paket için QR'ı değil bağlantıyı gönder.",
   "Add study cards from the unit pages (needs an AI key on this device)": "Ünite sayfalarından çalışma kartları ekle (bu cihazda yapay zekâ anahtarı gerekir)",
+  "Daily question": "Günün sorusu",
+  "From your book: {title}": "Kitabından: {title}",
+  "Grade skills practice: {subject}. Not from a book page.": "Sınıf becerileri alıştırması: {subject}. Kitap sayfasından değil.",
+  "Right! Daily question done": "Doğru! Günün sorusu bitti",
+  "Daily question done": "Günün sorusu bitti",
+  "Come back tomorrow for the next one.": "Sıradaki için yarın gel.",
+  "Picked and kept on this device only. Nothing is sent anywhere.": "Seçim yalnızca bu cihazda tutulur. Hiçbir yere gönderilmez.",
 }

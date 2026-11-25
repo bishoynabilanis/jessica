@@ -2939,4 +2939,11 @@ export const indonesian: Record<string, string> = {
   "The QR carries {q} questions and {c} study cards. The link carries {q2} questions and {c2} study cards.": "QR membawa {q} soal dan {c} kartu belajar. Tautan membawa {q2} soal dan {c2} kartu belajar.",
   "For the full pack, send the link and not the QR.": "Untuk paket lengkap, kirim tautan, bukan QR.",
   "Add study cards from the unit pages (needs an AI key on this device)": "Tambahkan kartu belajar dari halaman unit (perlu kunci AI di perangkat ini)",
+  "Daily question": "Pertanyaan hari ini",
+  "From your book: {title}": "Dari bukumu: {title}",
+  "Grade skills practice: {subject}. Not from a book page.": "Latihan keterampilan kelas: {subject}. Bukan dari halaman buku.",
+  "Right! Daily question done": "Benar! Pertanyaan hari ini selesai",
+  "Daily question done": "Pertanyaan hari ini selesai",
+  "Come back tomorrow for the next one.": "Kembali besok untuk yang berikutnya.",
+  "Picked and kept on this device only. Nothing is sent anywhere.": "Pilihan hanya disimpan di perangkat ini. Tidak ada yang dikirim.",
 }
