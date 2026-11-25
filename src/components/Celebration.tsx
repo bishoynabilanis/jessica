@@ -30,7 +30,7 @@ export function CelebrationLayer() {
   const [bursts, setBursts] = useState<Burst[]>([])
 
   useEffect(() => {
-    if (reduceMotion) return
+    if (reduceMotion || useApp.getState().settings.weakPhone) return
     return onCelebrate(() => {
       const id = Date.now() + Math.random()
       setBursts((prev) => [...prev, { id, pieces: makePieces() }])

@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { useApp } from '@/store/useApp'
 import { mascotForXp } from '@/data/mascots'
 
 export type MascotMood = 'happy' | 'thinking' | 'celebrate' | 'sleepy' | 'proud' | 'curious'
@@ -44,6 +45,27 @@ export function Mascot({
 }) {
   const { current } = mascotForXp(xp)
   const accessory = LOOK_EMOJI[look || 'classic'] || '✨'
+  const weak = useApp((s) => s.settings.weakPhone)
+
+  // Weak phone mode: no picture to download or decode, just a plain badge.
+  if (weak) {
+    return (
+      <span
+        className={cn('relative inline-flex shrink-0 items-center justify-center', className)}
+        style={{ width: size, height: size }}
+        role="img"
+        aria-label={`${current.name} mascot, ${mood}`}
+        data-testid="mascot-lite"
+      >
+        <span
+          className="grid h-full w-full place-items-center rounded-full bg-aurora-400/20 font-extrabold text-aurora-200"
+          style={{ fontSize: Math.max(14, size * 0.42) }}
+        >
+          J
+        </span>
+      </span>
+    )
+  }
 
   return (
     <span
