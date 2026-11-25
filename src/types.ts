@@ -250,6 +250,8 @@ export interface Settings {
   textScale: number
   dyslexiaFont: boolean
   reduceMotion: boolean
+  /** Weak phone mode: lighter screens, page-by-page book loading, size warnings. */
+  weakPhone: boolean
   /** Kid-world sound effects (right/wrong cues, finish). */
   sound: boolean
   /** Where AI calls go: the shared trial proxy, the user's key, or the local model. */
