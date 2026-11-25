@@ -1,21 +1,25 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Check, ClipboardCheck, Copy, Send, Users } from 'lucide-react'
+import { Check, ChevronLeft, ClipboardCheck, Copy, Send, Users } from 'lucide-react'
 import type { AssignmentResult } from '@/lib/assignments'
-import { decodeAssignment, decodeResult, encodeResult, resultUrl } from '@/lib/assignments'
+import { decodeAnyAssignment, decodeResult, encodeResult, resultUrl } from '@/lib/assignments'
 import { QuizGame } from '@/components/tools/QuizGame'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
-import { tr } from '@/i18n'
+import { num, tr } from '@/i18n'
 
 export function Assignment() {
   const [params] = useSearchParams()
   const code = params.get('d') || ''
   const resultCode = params.get('r') || ''
-  const assignment = useMemo(() => (code ? decodeAssignment(code) : null), [code])
+  const packCode = params.get('p') || ''
+  const assignment = useMemo(() => decodeAnyAssignment(packCode, code), [packCode, code])
   const sharedResult = useMemo<AssignmentResult | null>(() => (resultCode ? decodeResult(resultCode) : null), [resultCode])
   const [name, setName] = useState('')
   const [started, setStarted] = useState(false)
+  const [studying, setStudying] = useState(false)
+  const [cardIndex, setCardIndex] = useState(0)
+  const [flipped, setFlipped] = useState(false)
   const [result, setResult] = useState<AssignmentResult | null>(null)
   const [copied, setCopied] = useState(false)
 
@@ -113,12 +117,55 @@ export function Assignment() {
               placeholder={tr('Your name')}
               className="field max-w-xs text-xs"
             />
-            <Button onClick={() => setStarted(true)}>
-              {tr('Start assignment')}
+            <Button
+              data-testid="pack-start"
+              onClick={() => {
+                if (assignment.cards?.length) setStudying(true)
+                else setStarted(true)
+              }}
+            >
+              {assignment.cards?.length ? tr('Study the cards first') : tr('Start assignment')}
             </Button>
           </div>
         )}
       </Card>
+
+      {studying && !started && assignment.cards && (
+        <Card className="p-4" data-testid="pack-cards">
+          <p className="text-[10px] font-bold text-muted">
+            {tr('Card {n} of {total}', { n: num(cardIndex + 1), total: num(assignment.cards.length) })}
+          </p>
+          <button
+            type="button"
+            data-testid="pack-card"
+            onClick={() => setFlipped((value) => !value)}
+            className="mt-2 grid min-h-[9rem] w-full place-items-center rounded-2xl border border-aurora-400/30 bg-aurora-400/10 p-4 text-center"
+          >
+            <span className="text-sm font-bold leading-relaxed text-main">
+              {flipped ? assignment.cards[cardIndex].back : assignment.cards[cardIndex].front}
+            </span>
+          </button>
+          <p className="mt-1 text-center text-[10px] text-muted">{flipped ? tr('Tap to see the question') : tr('Tap to see the answer')}</p>
+          <div className="mt-3 flex items-center justify-between gap-2">
+            <Button size="sm" variant="secondary" disabled={cardIndex === 0} onClick={() => { setCardIndex(cardIndex - 1); setFlipped(false) }} aria-label={tr('Previous card')}>
+              <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+            </Button>
+            {cardIndex < assignment.cards.length - 1 ? (
+              <Button size="sm" data-testid="pack-next" onClick={() => { setCardIndex(cardIndex + 1); setFlipped(false) }}>
+                {tr('Next card')}
+              </Button>
+            ) : (
+              <Button size="sm" data-testid="pack-begin-quiz" onClick={() => setStarted(true)}>
+                {tr('Start the quiz')}
+              </Button>
+            )}
+          </div>
+          <button type="button" className="mt-2 text-[10px] font-bold text-aurora-300 underline" onClick={() => setStarted(true)}>
+            {tr('Skip to the quiz')}
+          </button>
+          <p className="mt-2 text-[10px] text-muted-2">{tr('These cards come from the unit pages in the textbook. Nothing about you is saved or sent.')}</p>
+        </Card>
+      )}
 
       {started && (
         <Card className="p-4">
