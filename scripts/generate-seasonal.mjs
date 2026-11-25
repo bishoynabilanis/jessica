@@ -110,6 +110,9 @@ function head({ lang, dir, title, description, canonical, altAr, altEn, depth, j
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="${up}/../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

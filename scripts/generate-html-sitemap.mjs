@@ -111,6 +111,9 @@ const ar = `<!doctype html>
 <meta property="og:description" content="كل صفحات جيسيكا: الصفوف، المواضيع، الاختبارات، الأدلة وبنك الأسئلة.">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="خريطة الموقع — كل صفحات Jessica">
+<meta name="twitter:description" content="كل صفحات جيسيكا: الصفوف، المواضيع، الاختبارات، الأدلة وبنك الأسئلة.">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../icons/icon-192.png">
 <link rel="stylesheet" href="../style.css">
@@ -162,6 +165,9 @@ const en = `<!doctype html>
 <meta property="og:description" content="Grades, topics, quizzes, guides, features and the question bank in one index.">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Site map — every Jessica page">
+<meta name="twitter:description" content="Grades, topics, quizzes, guides, features and the question bank in one index.">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../../icons/icon-192.png">
 <link rel="stylesheet" href="../../style.css">

@@ -104,6 +104,9 @@ function headAr({ title, description, canonical, enUrl }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,6 +138,9 @@ function headEn({ title, description, canonical, arUrl }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -328,6 +334,9 @@ for (const [gradeNum, g] of Object.entries(GRADES)) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -411,6 +420,9 @@ console.log('total pages written:', written)
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -482,6 +494,9 @@ console.log('total pages written:', written)
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${BASE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
