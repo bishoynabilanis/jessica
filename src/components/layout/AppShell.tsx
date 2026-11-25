@@ -6,6 +6,7 @@ import { TopBar } from './TopBar'
 import { MobileNav } from './MobileNav'
 import { QuickPanel } from './QuickPanel'
 import { Toaster } from '@/components/Toaster'
+import { DownloadWarning } from '@/components/DownloadWarning'
 import { GlobalSearch } from '@/components/GlobalSearch'
 import { useEffect } from 'react'
 import { useApp } from '@/store/useApp'
@@ -23,6 +24,7 @@ export function AppShell() {
   const textScale = useApp((s) => s.settings.textScale)
   const dyslexia = useApp((s) => s.settings.dyslexiaFont)
   const reduceMotion = useApp((s) => s.settings.reduceMotion)
+  const weakPhone = useApp((s) => s.settings.weakPhone)
   const rtl = useApp((s) => s.settings.language === 'ar')
   const gradeLevel = useApp((s) => s.settings.gradeLevel)
   const primaryUi = useApp((s) => s.settings.primaryUi)
@@ -37,9 +39,10 @@ export function AppShell() {
     root.classList.toggle('dark', theme === 'dark')
     root.style.fontSize = `${textScale}%`
     root.classList.toggle('dyslexic', dyslexia)
-    root.classList.toggle('reduce-motion', reduceMotion)
+    root.classList.toggle('reduce-motion', reduceMotion || weakPhone)
+    root.classList.toggle('weak-phone', weakPhone)
     root.classList.toggle('kids-mode', kids)
-  }, [theme, textScale, dyslexia, reduceMotion, kids])
+  }, [theme, textScale, dyslexia, reduceMotion, weakPhone, kids])
 
   useEffect(() => {
     const on = () => setOffline(false)
@@ -145,6 +148,7 @@ export function AppShell() {
       <QuickPanel />
       <GlobalSearch />
       <Toaster />
+      <DownloadWarning />
     </div>
   )
 }

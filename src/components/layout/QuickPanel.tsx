@@ -1,4 +1,4 @@
-import { Accessibility, Bell, Check, MoonStar, Sun, Type, Zap } from 'lucide-react'
+import { Accessibility, Bell, Check, MoonStar, Smartphone, Sun, Type, Zap } from 'lucide-react'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
 import { Toggle } from '@/components/ui/Toggle'
@@ -75,6 +75,13 @@ export function QuickPanel() {
             label={tr("Reduce motion")}
             description={tr("Calmer animations for focus or sensitivity.")}
             icon={<Zap className="h-4 w-4" />}
+          />
+          <Toggle
+            checked={settings.weakPhone}
+            onChange={(v) => updateSettings({ weakPhone: v })}
+            label={tr('Weak phone mode')}
+            description={tr('Lighter screens, no effects, books load page by page, and a size warning before big downloads.')}
+            icon={<Smartphone className="h-4 w-4" />}
           />
           <Toggle
             checked={settings.autoSpeak}
