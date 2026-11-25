@@ -52,6 +52,7 @@ import {
   LazyReadingCoach,
   LazyReport,
   LazyStudySheet,
+  LazyAchievement,
   LazyMonthlyReport,
   LazySettings,
   LazySkills,
@@ -251,6 +252,7 @@ export default function App() {
           <Route path="science-board" element={<LazyScienceBoard />} />
           <Route path="report" element={<LazyReport />} />
           <Route path="sheet" element={<LazyStudySheet />} />
+          <Route path="achievement" element={<LazyAchievement />} />
           <Route path="report-month" element={<LazyMonthlyReport />} />
           <Route path="ask" element={<LazyAsk />} />
           <Route path="practice" element={<LazyPractice />} />
