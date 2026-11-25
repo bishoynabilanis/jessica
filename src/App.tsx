@@ -38,6 +38,7 @@ import {
   LazyLessonBoard,
   LazyWordTrain,
   LazyTracing,
+  LazyMathRace,
   LazyLabMistake,
   LazyBookDetective,
   LazyFeedback,
@@ -233,6 +234,7 @@ export default function App() {
           <Route path="board" element={<LazyLessonBoard />} />
           <Route path="train" element={<LazyWordTrain />} />
           <Route path="trace" element={<LazyTracing />} />
+          <Route path="race" element={<LazyMathRace />} />
           <Route path="mistake" element={<LazyLabMistake />} />
           <Route path="detective" element={<LazyBookDetective />} />
           <Route path="labs" element={<LazyLabs />} />
