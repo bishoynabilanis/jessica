@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test'
 
 // The PDF library is upgraded for security fixes. This runs the same calls the app uses
 // (canvas -> JPEG -> addImage -> setProperties) in a real browser and checks the PDF bytes.
+// The page has a strict security policy; this test injects the library by hand, so it opts out.
+test.use({ bypassCSP: true })
+
 test('jsPDF makes a valid two-page A4 PDF from canvases', async ({ page }) => {
   await page.goto('./#/')
   await page.addScriptTag({ path: 'node_modules/jspdf/dist/jspdf.umd.min.js' })

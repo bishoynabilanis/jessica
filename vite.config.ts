@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
+import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 
 /**
@@ -50,9 +51,48 @@ function buildVersion(): Plugin {
   }
 }
 
+/**
+ * Content Security Policy for the built app (a meta tag, because GitHub Pages
+ * cannot send headers). The two small inline scripts in index.html are allowed
+ * by hash, computed here so the policy always matches what ships.
+ *
+ * connect-src allows any https host on purpose: the "custom AI provider" setting
+ * lets people type their own endpoint. Everything that can run code stays tight.
+ */
+function contentSecurityPolicy(): Plugin {
+  return {
+    name: 'jessica-csp',
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        const hashes = [...html.matchAll(/<script(?![^>]*\b(?:src|type)=)[^>]*>([\s\S]*?)<\/script>/g)].map(
+          (match) => `'sha256-${createHash('sha256').update(match[1]).digest('base64')}'`,
+        )
+        const policy = [
+          "default-src 'self'",
+          `script-src 'self' 'wasm-unsafe-eval' ${hashes.join(' ')} https://cdn.jsdelivr.net https://esm.run`,
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: blob: https:",
+          "media-src 'self' data: blob: https:",
+          "font-src 'self' data:",
+          "connect-src 'self' https: data: blob: http://localhost:* http://127.0.0.1:*",
+          "worker-src 'self' blob: https://cdn.jsdelivr.net",
+          'frame-src https://www.youtube-nocookie.com',
+          "manifest-src 'self'",
+          "object-src 'none'",
+          "base-uri 'self'",
+          "form-action 'self'",
+        ].join('; ')
+        return html.replace('<head>', `<head>\n    <meta http-equiv="Content-Security-Policy" content="${policy}" />`)
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: './',
-  plugins: [react(), buildVersion()],
+  plugins: [react(), buildVersion(), contentSecurityPolicy()],
   resolve: {
     alias: { '@': path.resolve(__dirname, 'src') },
   },
