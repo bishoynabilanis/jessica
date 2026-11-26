@@ -16,7 +16,7 @@ export const NEW_FEATURES = [
     ar: {
       title: 'قراءة مريحة: خط أكبر ومسافات أوسع ولون ورق هادي',
       description:
-        'وضع «القراءة المريحة» في جيسيكا: نص أكبر ومسافات أوسع ولون ورق مريح للعين، وخط مناسب لعسر القراءة. مجاني وبيتحفظ على موبايلك بس.',
+        'وضع «القراءة المريحة» في جيسيكا: نص أكبر ومسافات أوسع ولون ورق مريح للعين، وخيار خط بحروف أوضح. مجاني وبيتحفظ على موبايلك بس.',
       eyebrow: 'القراءة المريحة',
       h1: 'كتاب المدرسة بقى أسهل على العين',
       lead:
@@ -26,18 +26,18 @@ export const NEW_FEATURES = [
         'ولي الأمر غالبًا مش عارف يظبط ده من غير أدوات، والطالب بيسكت ويكمل وهو مرهق.',
       ],
       solution: [
-        'زرار واحد في «راحة وسهولة الاستخدام» بيكبّر النص ويوسّع المسافات بين الحروف والسطور ويغيّر لون الخلفية للون ورقي هادي. وفي خيار منفصل لخط مناسب لعسر القراءة.',
+        'زرار واحد في «راحة وسهولة الاستخدام» بيكبّر النص ويوسّع المسافات بين الحروف والسطور ويغيّر لون الخلفية للون ورقي هادي. وفي خيار منفصل لخط بحروف أوضح.',
         'ده إعداد راحة للعين، مش علاج ومش تشخيص. لو عندك قلق من عسر القراءة، المختص هو اللي يقيّم. كل اللي بتغيّره بيتحفظ على موبايلك فقط.',
       ],
       bullets: [
         'نص أكبر ومسافات أوسع بين الحروف والسطور.',
         'لون ورق هادي بدل الأبيض الشديد.',
-        'خيار خط مناسب لعسر القراءة.',
+        'خيار خط بحروف أوضح.',
         'بيتحفظ على الجهاز، ومفيش حساب ولا بيانات بتتبعت.',
       ],
       steps: [
         { title: 'افتح الإعدادات', text: 'من القائمة اختار «الإعدادات» وانزل لقسم «راحة وسهولة الاستخدام».' },
-        { title: 'شغّل القراءة المريحة', text: 'فعّل الزرار، واختار خط عسر القراءة لو حابب.' },
+        { title: 'شغّل القراءة المريحة', text: 'فعّل الزرار، واختار الخط الأوضح لو حابب.' },
         { title: 'افتح كتابك', text: 'ارجع للكتاب أو الدرس وشوف الفرق، وغيّره في أي وقت.' },
       ],
       audience:
@@ -50,7 +50,7 @@ export const NEW_FEATURES = [
     en: {
       title: 'Comfortable reading: bigger text, wider spacing, calm colour',
       description:
-        'Comfortable reading mode gives bigger text, wider spacing and an easy paper colour, plus a dyslexia-friendly font. Free, saved on your phone only.',
+        'Comfortable reading mode gives bigger text, wider spacing and an easy paper colour, plus an optional clearer font. Free, saved on your phone only.',
       eyebrow: 'Comfortable reading',
       h1: 'School books that are easier on the eyes',
       lead:
@@ -60,18 +60,18 @@ export const NEW_FEATURES = [
         'Parents rarely know how to fix this without special tools, so the student carries on tired.',
       ],
       solution: [
-        'One switch in Comfort and accessibility makes the text bigger, widens the space between letters and lines, and swaps the background for a calm paper colour. A separate option gives you a dyslexia-friendly font.',
+        'One switch in Comfort and accessibility makes the text bigger, widens the space between letters and lines, and swaps the background for a calm paper colour. A separate option switches to a font with clearer letter shapes.',
         'This is a comfort setting, not a treatment and not a diagnosis. If you are worried about dyslexia, a specialist should assess it. Your choices are saved on your phone only.',
       ],
       bullets: [
         'Bigger text and wider spacing between letters and lines.',
         'A calm paper colour instead of bright white.',
-        'A dyslexia-friendly font option.',
+        'An optional clearer font.',
         'Saved on the device. No account and nothing is sent.',
       ],
       steps: [
         { title: 'Open Settings', text: 'From the menu choose Settings and scroll to Comfort and accessibility.' },
-        { title: 'Switch on Comfortable reading', text: 'Turn it on, and pick the dyslexia-friendly font if you like.' },
+        { title: 'Switch on Comfortable reading', text: 'Turn it on, and pick the clearer font if you like.' },
         { title: 'Open your book', text: 'Go back to the book or lesson and see the difference. Change it any time.' },
       ],
       audience:
