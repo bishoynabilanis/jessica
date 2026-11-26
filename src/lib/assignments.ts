@@ -1,5 +1,6 @@
 import type { QuizQuestion } from '@/types'
 import { decodeShare, encodeShare } from '@/lib/shareCode'
+import { MAX_CODE_CHARS, MAX_JSON_BYTES, cleanId, cleanNumber, cleanQuestions } from '@/lib/sharedPayload'
 
 export interface PackCard {
   front: string
@@ -39,10 +40,34 @@ function encodeBase64Url(str: string) {
 }
 
 function decodeBase64Url(str: string) {
+  if (str.length > MAX_CODE_CHARS) throw new Error('link too long')
   const padded = str.replace(/-/g, '+').replace(/_/g, '/')
   const binary = atob(padded + '==='.slice((padded.length + 3) % 4))
   const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0))
+  if (bytes.length > MAX_JSON_BYTES) throw new Error('link too big')
   return new TextDecoder().decode(bytes)
+}
+
+/** Rebuild a received paper from plain fields only; null when nothing usable is left. */
+export function cleanAssignment(raw: unknown): AssignmentPayload | null {
+  if (!raw || typeof raw !== 'object') return null
+  const r = raw as Record<string, unknown>
+  const questions = cleanQuestions(r.questions)
+  if (!questions.length) return null
+  const cards = cleanCards(r.cards, 40)
+  const grade = typeof r.grade === 'number' ? cleanNumber(r.grade, 1, 12) : undefined
+  return {
+    v: r.v === 2 ? 2 : 1,
+    id: cleanId(r.id) || 'shared',
+    grade,
+    subject: typeof r.subject === 'string' ? r.subject.slice(0, 80) : '',
+    bookTitle: typeof r.bookTitle === 'string' ? r.bookTitle.slice(0, 160) : '',
+    unitTitle: typeof r.unitTitle === 'string' ? r.unitTitle.slice(0, 160) : '',
+    unitKey: typeof r.unitKey === 'string' ? r.unitKey.slice(0, 200) : '',
+    questions,
+    ...(cards.length ? { cards } : {}),
+    createdAt: cleanNumber(r.createdAt, 0, 4e12, 0),
+  }
 }
 
 export function encodeAssignment(payload: AssignmentPayload) {
@@ -51,9 +76,7 @@ export function encodeAssignment(payload: AssignmentPayload) {
 
 export function decodeAssignment(code: string): AssignmentPayload | null {
   try {
-    const parsed = JSON.parse(decodeBase64Url(code)) as AssignmentPayload
-    if (!parsed?.questions?.length) return null
-    return parsed
+    return cleanAssignment(JSON.parse(decodeBase64Url(code)))
   } catch {
     return null
   }
@@ -65,9 +88,20 @@ export function encodeResult(result: AssignmentResult) {
 
 export function decodeResult(code: string): AssignmentResult | null {
   try {
-    const parsed = JSON.parse(decodeBase64Url(code)) as AssignmentResult
+    const parsed = JSON.parse(decodeBase64Url(code)) as Record<string, unknown>
     if (!parsed || typeof parsed.score !== 'number') return null
-    return parsed
+    const total = cleanNumber(parsed.total, 0, 1000, 0)
+    return {
+      v: 1,
+      id: cleanId(parsed.id) || 'shared',
+      name: typeof parsed.name === 'string' ? parsed.name.slice(0, 60) : '',
+      score: cleanNumber(parsed.score, 0, total || 1000, 0),
+      total,
+      date: cleanNumber(parsed.date, 0, 4e12, 0),
+      answers: Array.isArray(parsed.answers)
+        ? parsed.answers.slice(0, 60).map((a) => (typeof a === 'number' && Number.isInteger(a) && a >= 0 && a < 10 ? a : null))
+        : undefined,
+    }
   } catch {
     return null
   }
@@ -87,9 +121,7 @@ export function encodePack(payload: AssignmentPayload) {
 }
 
 export function decodePack(code: string): AssignmentPayload | null {
-  const parsed = decodeShare<AssignmentPayload>(code)
-  if (!parsed?.questions?.length) return null
-  return parsed
+  return cleanAssignment(decodeShare<unknown>(code))
 }
 
 /** Opens either kind of link: the new compressed `p=` or an old plain `d=`. */
