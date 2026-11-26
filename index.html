@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="en" dir="ltr" class="dark">
+<html lang="ar" dir="ltr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Jessica — تطبيق مذاكرة بالذكاء الاصطناعي لطلاب مصر | AI Learning Universe</title>
-    <meta name="description" content="Jessica تطبيق مذاكرة مجاني بالذكاء الاصطناعي لطلاب مصر: كتب الوزارة الرسمية، شرح أي صفحة، حل الواجب بالكاميرا، امتحانات وبطاقات مراجعة وخطة يومية — بدون حساب ويشتغل أوفلاين. من أولى ابتدائي لتالتة إعدادي. Jessica turns Ministry books into an AI tutor for Egyptian students, Primary 1 to Preparatory 3." />
+    <title>Jessica | مذاكرة بالذكاء الاصطناعي لطلاب مصر</title>
+    <meta name="description" content="تطبيق مذاكرة مجاني لطلاب مصر: كتب الوزارة الرسمية ومدرس ذكاء اصطناعي وامتحانات وبطاقات مراجعة. أوفلاين وبدون حساب، من أولى ابتدائي لتالتة إعدادي." />
     <meta name="google-site-verification" content="Pc1UZuGgrbpZwhgumyyIpRrd3liKA7CCA1IRc963_1E" />
     <meta name="theme-color" content="#05070f" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta property="og:url" content="https://bishoynabilanis.github.io/jessica/" />
+    <meta property="og:url" content="https://bishoynabilanis.github.io/jessica/welcome/" />
     <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
     <link rel="apple-touch-icon" href="./icons/icon-192.png" />
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="canonical" href="https://bishoynabilanis.github.io/jessica/" />
+    <link rel="canonical" href="https://bishoynabilanis.github.io/jessica/welcome/" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta property="og:title" content="Jessica — ذاكر على أوتوبايلوت بالذكاء الاصطناعي" />
@@ -20,6 +20,7 @@
     <meta property="og:type" content="website" />
     <link rel="alternate" hreflang="ar" href="https://bishoynabilanis.github.io/jessica/welcome/" />
     <link rel="alternate" hreflang="en" href="https://bishoynabilanis.github.io/jessica/welcome/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://bishoynabilanis.github.io/jessica/welcome/" />
     <meta property="og:image" content="https://bishoynabilanis.github.io/jessica/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -60,6 +61,9 @@
         var raw = localStorage.getItem('jessica-profile-v1')
         var saved = raw && JSON.parse(raw)
         var lang = saved && saved.state && saved.state.settings && saved.state.settings.language
+        if (lang && lang !== 'ar') {
+          document.documentElement.lang = lang
+        }
         if (lang === 'ar') {
           document.documentElement.lang = 'ar'
           document.documentElement.dir = 'rtl'
@@ -101,7 +105,7 @@
         font-size: 24px;
         margin-bottom: 12px;
       }
-      #boot-fallback h1 { font-size: 18px; margin: 0 0 8px; }
+      #boot-fallback .boot-title { font-size: 18px; font-weight: 700; margin: 0 0 8px; }
       #boot-fallback p {
         margin: 0 0 6px;
         font-size: 12.5px;
@@ -124,7 +128,7 @@
   </head>
   <body>
     <noscript>
-      <div style="max-width: 720px; margin: 0 auto; padding: 28px 20px; color: #e8eefc; font-family: system-ui, sans-serif; line-height: 1.9; direction: rtl">
+      <div lang="ar" style="max-width: 720px; margin: 0 auto; padding: 28px 20px; color: #e8eefc; font-family: system-ui, sans-serif; line-height: 1.9; direction: rtl">
         <h1>Jessica — كتب الوزارة + مدرس ذكي + امتحانات</h1>
         <p>تطبيق مذاكرة مجاني لطلاب مصر من الأول الابتدائي للتالت الإعدادي. التطبيق نفسه محتاج JavaScript، لكن تقدر تتصفح صفحات الكتب والتعريف من هنا:</p>
         <ul>
@@ -143,7 +147,7 @@
     <div id="boot-fallback" hidden dir="rtl" lang="ar">
       <div class="boot-card">
         <div class="boot-logo">J</div>
-        <h1>التطبيق مش قادر يفتح</h1>
+        <p class="boot-title">التطبيق مش قادر يفتح</p>
         <p id="boot-reason">حصلت مشكلة أثناء التحميل.</p>
         <p>جرّب إعادة المحاولة. لو المشكلة مستمرة، حدّث المتصفح أو افتح اللينك من Chrome أو Safari.</p>
         <button id="boot-retry" type="button">إعادة المحاولة</button>
