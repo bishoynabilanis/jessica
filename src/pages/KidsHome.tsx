@@ -17,7 +17,7 @@ import { tr } from '@/i18n'
 
 export function KidsHome() {
   const navigate = useNavigate()
-  const { name, xp, streak, customBooks, quests, dailyLog, kidsGift, claimKidsGift, bookProgress, parentTasks, completeParentTask, settings } = useApp()
+  const { name, xp, streak, restNote, restNoteDate, customBooks, quests, dailyLog, kidsGift, claimKidsGift, bookProgress, parentTasks, completeParentTask, settings } = useApp()
   const pushToast = useUI((s) => s.pushToast)
   const practiceWeeks = useApp((s) => s.practiceWeeks)
   const practiceClaimed = useApp((s) => s.practiceClaimed)
@@ -96,6 +96,12 @@ export function KidsHome() {
 
   return (
     <div className="space-y-4">
+      {restNote && restNoteDate === todayKey() && (
+        <p className="rounded-2xl border-2 border-white bg-white/80 px-3 py-2 text-center text-[11px] font-bold text-ink-700" data-testid="rest-note">
+          {restNote === 'friday' ? tr('Friday is a free rest day. Your streak is safe.') : tr('You took a rest day. Your streak is safe. One rest day a week is automatic.')}
+        </p>
+      )}
+
       {!name && (
         <Card className="border-2 border-sun/50 bg-gradient-to-r from-sun/20 via-white to-aurora-400/15 p-4">
           <p className="text-sm font-extrabold text-ink-950">👋 {tr('What’s your name?')}</p>

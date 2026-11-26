@@ -2991,4 +2991,7 @@ export const indonesian: Record<string, string> = {
   "Next": "Berikutnya",
   "Traced so far: {n}": "Sudah ditelusuri: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica memeriksa bentuk yang kamu gambar, bukan urutan goresanmu.",
+  "Your streak is safe": "Rangkaian harimu aman",
+  "Friday is a free rest day. Your streak is safe.": "Jumat adalah hari istirahat gratis. Rangkaian harimu aman.",
+  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Kamu istirahat sehari. Rangkaian harimu aman. Satu hari istirahat per minggu otomatis.",
 }

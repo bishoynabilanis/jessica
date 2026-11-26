@@ -2991,4 +2991,7 @@ export const turkish: Record<string, string> = {
   "Next": "Sonraki",
   "Traced so far: {n}": "Şimdiye kadar çizilen: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica çizdiğin şekle bakar, çizgilerinin sırasına değil.",
+  "Your streak is safe": "Serin güvende",
+  "Friday is a free rest day. Your streak is safe.": "Cuma ücretsiz bir dinlenme günüdür. Serin güvende.",
+  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Bir gün dinlendin. Serin güvende. Haftada bir dinlenme günü otomatiktir.",
 }

@@ -2991,4 +2991,7 @@ export const spanish: Record<string, string> = {
   "Next": "Siguiente",
   "Traced so far: {n}": "Trazados hasta ahora: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica revisa la forma que dibujaste, no el orden de tus trazos.",
+  "Your streak is safe": "Tu racha está a salvo",
+  "Friday is a free rest day. Your streak is safe.": "El viernes es un día de descanso gratis. Tu racha está a salvo.",
+  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Descansaste un día. Tu racha está a salvo. Un día de descanso por semana es automático.",
 }

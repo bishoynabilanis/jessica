@@ -3650,6 +3650,9 @@ const arabicExtra: Record<string, string> = {
   "Next": "التالي",
   "Traced so far: {n}": "اللي رسمته لحد دلوقتي: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "جيسيكا بتتأكد من الشكل اللي رسمته، مش من ترتيب الخطوط.",
+  "Your streak is safe": "عدّادك في أمان",
+  "Friday is a free rest day. Your streak is safe.": "الجمعة إجازة مجانية. عدّاد الأيام بتاعك في أمان.",
+  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "خدت يوم راحة وعدّادك في أمان. يوم راحة واحد في الأسبوع بيتحسب تلقائي.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }

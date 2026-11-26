@@ -26,6 +26,7 @@ import type { OfficialBook } from '@/data/officialBooks'
 import { initialReview, isMastered, nextReview } from '@/lib/mistakeReview'
 import { applyConfidence, misunderstoodReviewAt, type Confidence, type SkillStat } from '@/lib/confidence'
 import { normalizeSchoolType } from '@/lib/school'
+import { nextStreak } from '@/lib/streak'
 
 export const XP_PER_LEVEL = 300
 
@@ -125,6 +126,9 @@ export interface AppState {
   xp: number
   coins: number
   streak: number
+  restWeek: string
+  restNote: '' | 'friday' | 'weekly'
+  restNoteDate: string
   longestStreak: number
   lastLogin: string
   lastStudy: string
@@ -251,6 +255,9 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   xp: 0,
   coins: 0,
   streak: 0,
+  restWeek: '',
+  restNote: '' as const,
+  restNoteDate: '',
   longestStreak: 0,
   lastLogin: '',
   lastStudy: '',
@@ -313,11 +320,8 @@ export const useApp = create<AppState>()(
         }
 
         // Daily rollover + streaks.
-        const yesterday = dayKeyOffset(-1)
-        let streak = state.streak
-        if (state.lastLogin === yesterday) streak += 1
-        else if (state.lastLogin !== today) streak = 1
-        if (streak < 1) streak = 1
+        const step = state.lastLogin === today ? { streak: state.streak, restWeek: state.restWeek, rest: 'none' as const } : nextStreak(state.streak, state.lastLogin, today, state.restWeek ?? '')
+        const streak = Math.max(1, step.streak)
 
         const loginXP = state.lastLogin === today ? 0 : 15
         const entry = { ...(state.dailyLog[today] || { xp: 0, seconds: 0 }) }
@@ -331,6 +335,9 @@ export const useApp = create<AppState>()(
           },
           lastLogin: today,
           streak,
+          restWeek: step.restWeek,
+          restNote: step.rest === 'none' ? '' : step.rest,
+          restNoteDate: step.rest === 'none' ? '' : today,
           longestStreak: Math.max(state.longestStreak, streak),
           quests: questTemplates(today),
           questsSource: 'local',
@@ -340,7 +347,17 @@ export const useApp = create<AppState>()(
           lastSeen: Date.now(),
         })
 
-        if (loginXP) {
+        if (step.rest !== 'none') {
+          useUI.getState().pushToast({
+            title: 'Your streak is safe',
+            description:
+              step.rest === 'friday'
+                ? 'Friday is a free rest day. Your streak is safe.'
+                : 'You took a rest day. Your streak is safe. One rest day a week is automatic.',
+            type: 'success',
+            xp: loginXP,
+          })
+        } else if (loginXP) {
           useUI.getState().pushToast({
             title: `Day ${streak} streak!`,
             description: 'Welcome back. +15 XP daily login bonus.',
