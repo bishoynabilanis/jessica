@@ -65,7 +65,7 @@ export function QuickPanel() {
           <Toggle
             checked={settings.dyslexiaFont}
             onChange={(v) => updateSettings({ dyslexiaFont: v })}
-            label={tr("Dyslexia-friendly font")}
+            label={tr("Font with clearer letters")}
             description={tr("Switch to Atkinson Hyperlegible everywhere.")}
             icon={<Type className="h-4 w-4" />}
           />

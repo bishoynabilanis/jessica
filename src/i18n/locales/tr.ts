@@ -637,7 +637,7 @@ export const turkish: Record<string, string> = {
   "Jessica is fully client-side. Your settings live on this device only.": "Jessica tamamen müşteri tarafındadır. Ayarlarınız yalnızca bu cihazda yayınlanır.",
   "Text size": "Metin boyutu",
   "Speaking speed": "Konuşma hızı",
-  "Dyslexia-friendly font": "Disleksi dostu yazı tipi",
+  "Font with clearer letters": "Daha net harfli yazı tipi",
   "Switch to Atkinson Hyperlegible everywhere.": "Her yerde Atkinson Hyperlegible'a geçin.",
   "Reduce motion": "Hareketi azalt",
   "Calmer animations for focus or sensitivity.": "Odaklanma veya hassasiyet için daha sakin animasyonlar.",
@@ -2991,7 +2991,4 @@ export const turkish: Record<string, string> = {
   "Next": "Sonraki",
   "Traced so far: {n}": "Şimdiye kadar çizilen: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica çizdiğin şekle bakar, çizgilerinin sırasına değil.",
-  "Your streak is safe": "Serin güvende",
-  "Friday is a free rest day. Your streak is safe.": "Cuma ücretsiz bir dinlenme günüdür. Serin güvende.",
-  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Bir gün dinlendin. Serin güvende. Haftada bir dinlenme günü otomatiktir.",
 }

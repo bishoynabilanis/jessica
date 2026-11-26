@@ -637,7 +637,7 @@ export const indonesian: Record<string, string> = {
   "Jessica is fully client-side. Your settings live on this device only.": "Jessica sepenuhnya berada di sisi klien. Setelan Anda hanya tersedia di perangkat ini.",
   "Text size": "Ukuran teks",
   "Speaking speed": "Kecepatan berbicara",
-  "Dyslexia-friendly font": "Font ramah disleksia",
+  "Font with clearer letters": "Font dengan huruf lebih jelas",
   "Switch to Atkinson Hyperlegible everywhere.": "Beralih ke Atkinson Hyperlegible di mana saja.",
   "Reduce motion": "Kurangi gerakan",
   "Calmer animations for focus or sensitivity.": "Animasi yang lebih tenang untuk fokus atau sensitivitas.",
@@ -2991,7 +2991,4 @@ export const indonesian: Record<string, string> = {
   "Next": "Berikutnya",
   "Traced so far: {n}": "Sudah ditelusuri: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica memeriksa bentuk yang kamu gambar, bukan urutan goresanmu.",
-  "Your streak is safe": "Rangkaian harimu aman",
-  "Friday is a free rest day. Your streak is safe.": "Jumat adalah hari istirahat gratis. Rangkaian harimu aman.",
-  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Kamu istirahat sehari. Rangkaian harimu aman. Satu hari istirahat per minggu otomatis.",
 }

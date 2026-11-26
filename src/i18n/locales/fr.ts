@@ -649,7 +649,7 @@ export const french: Record<string, string> = {
   "Jessica is fully client-side. Your settings live on this device only.": "Jessica est entièrement côté client. Vos paramètres sont disponibles sur cet appareil uniquement.",
   "Text size": "Taille du texte",
   "Speaking speed": "Vitesse de parole",
-  "Dyslexia-friendly font": "Police adaptée à la dyslexie",
+  "Font with clearer letters": "Police aux lettres plus claires",
   "Switch to Atkinson Hyperlegible everywhere.": "Passez à Atkinson Hyperlegible partout.",
   "Reduce motion": "Réduire les mouvements",
   "Calmer animations for focus or sensitivity.": "Animations plus calmes pour la mise au point ou la sensibilité.",
@@ -2991,7 +2991,4 @@ export const french: Record<string, string> = {
   "Next": "Suivant",
   "Traced so far: {n}": "Tracés jusqu'ici : {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "Jessica vérifie la forme que tu as dessinée, pas l'ordre de tes traits.",
-  "Your streak is safe": "Ta série est en sécurité",
-  "Friday is a free rest day. Your streak is safe.": "Le vendredi est un jour de repos gratuit. Ta série est en sécurité.",
-  "You took a rest day. Your streak is safe. One rest day a week is automatic.": "Tu as pris un jour de repos. Ta série est en sécurité. Un jour de repos par semaine est automatique.",
 }

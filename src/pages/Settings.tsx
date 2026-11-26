@@ -925,7 +925,7 @@ export function Settings() {
               <Toggle
                 checked={settings.dyslexiaFont}
                 onChange={(v) => updateSettings({ dyslexiaFont: v })}
-                label={tr("Dyslexia-friendly font")}
+                label={tr("Font with clearer letters")}
                 description={tr("Atkinson Hyperlegible across the whole app.")}
                 icon={<Type className="h-4 w-4" />}
               />

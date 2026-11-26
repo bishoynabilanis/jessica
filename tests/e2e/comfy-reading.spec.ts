@@ -33,6 +33,8 @@ for (const [lang, width] of [['en', 1280], ['ar', 390]] as const) {
     const bgBefore = await page.evaluate(() => getComputedStyle(document.body).backgroundColor)
     await page.screenshot({ path: `test-results/comfy-before-${lang}.png` })
     await page.getByRole('button', { name: lang === 'en' ? 'Accessibility quick settings' : /إعدادات سريعة/ }).first().click({ timeout: 15000 })
+    await expect(page.getByRole('switch', { name: /Font with clearer letters|خط بحروف أوضح/ })).toBeVisible()
+    await expect(page.getByText(/dyslexia|عسر القراءة/i)).toHaveCount(0)
     await page.getByRole('switch', { name: /Comfortable reading|القراءة المريحة/ }).click()
     await expect(html).toHaveClass(/comfy-reading/)
     const after = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize))
