@@ -538,6 +538,9 @@ export function KidsLesson() {
             <Button variant="secondary" onClick={() => navigate('/kids/play')}>
               {tr('Play a game')} <ArrowRight className="h-4 w-4" />
             </Button>
+            <Button variant="secondary" onClick={() => navigate('/kids/today')} data-testid="kids-lesson-today">
+              🌙 {tr('My day')}
+            </Button>
             <Button
               variant="ghost"
               onClick={() => {

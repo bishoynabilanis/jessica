@@ -13,6 +13,7 @@ import { KidsLabs } from '@/kids/KidsLabs'
 import { LazyKidsBridgeRescue, LazyKidsBookDetective, LazyKidsLabMistake, LazyKidsWordTrain, LazyKidsTracing, LazyKidsLessonBoard } from '@/pages/lazy'
 import { KidsPractice } from '@/kids/KidsPractice'
 import { KidsStars } from '@/kids/KidsStars'
+import { KidsToday } from '@/kids/KidsToday'
 import { CelebrationLayer } from '@/components/Celebration'
 import { AiNeedModal } from '@/components/AiNeedModal'
 import { Reader } from '@/pages/Reader'
@@ -30,6 +31,7 @@ export function KidsApp() {
           <Route path="play" element={<KidsPlay />} />
           <Route path="practice" element={<KidsPractice />} />
           <Route path="stars" element={<KidsStars />} />
+          <Route path="today" element={<KidsToday />} />
           <Route path="lesson/:bookId" element={<KidsLesson />} />
           <Route path="map" element={<KidsMap />} />
           <Route path="labs" element={<KidsLabs />} />

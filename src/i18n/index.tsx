@@ -3650,6 +3650,22 @@ const arabicExtra: Record<string, string> = {
   "Next": "التالي",
   "Traced so far: {n}": "اللي رسمته لحد دلوقتي: {n}",
   "Jessica checks the shape you drew, not the order of your strokes.": "جيسيكا بتتأكد من الشكل اللي رسمته، مش من ترتيب الخطوط.",
+  "My day": "يومي",
+  "A quick look at today. Nothing leaves this phone.": "نظرة سريعة على يومك. مفيش حاجة بتطلع من الموبايل ده.",
+  "{n} minutes with Jessica today": "{n} دقيقة مع جيسيكا النهاردة",
+  "Just getting started today": "لسه بادئ النهاردة",
+  "Counts the time the app is open on this screen.": "بنحسب الوقت اللي التطبيق بيكون فيه مفتوح على الشاشة.",
+  "New things I finished today": "حاجات جديدة خلصتها النهاردة",
+  "Nothing finished yet today. One small lesson is enough.": "لسه ما خلصتش حاجة النهاردة. درس صغير واحد كفاية.",
+  "Tomorrow": "بكرة",
+  "We continue from: {title}": "هنكمل من: {title}",
+  "Next lesson: {title}": "الدرس الجاي: {title}",
+  "Start it now": "ابدأه دلوقتي",
+  "You finished every lesson in {book}. Pick another book tomorrow.": "خلصت كل دروس {book}. اختار كتاب تاني بكرة.",
+  "Pick a book tomorrow and start your first lesson.": "اختار كتاب بكرة وابدأ أول درس.",
+  "Here is your star for today!": "دي نجمتك النهاردة!",
+  "Do one small lesson and a star is waiting for you.": "اعمل درس صغير واحد ونجمة مستنياك.",
+  "You collected {n} stars today.": "جمعت {n} نجمة النهاردة.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }

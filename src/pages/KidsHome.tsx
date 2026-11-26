@@ -174,6 +174,14 @@ export function KidsHome() {
                 <span>⭐ {tr('My stars')}</span>
                 <span className="text-ink-500">7 {tr('days')} ›</span>
               </button>
+              <button
+                onClick={() => navigate('/kids/today')}
+                className="mb-2 flex w-full items-center justify-between rounded-xl bg-white/70 px-2.5 py-1.5 text-[10px] font-extrabold text-ink-700"
+                data-testid="kids-today-entry"
+              >
+                <span>🌙 {tr('My day')}</span>
+                <span className="text-ink-500">›</span>
+              </button>
               <div className="flex items-center justify-between text-[10px] font-extrabold text-ink-700">
                 <span>⭐ {tr('Today’s goal')}</span>
                 <span>
