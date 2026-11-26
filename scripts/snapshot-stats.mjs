@@ -34,12 +34,27 @@ try {
   /* first run */
 }
 
+// The counter is public, so anyone can raise it. Mark readings that look wrong
+// instead of presenting them as facts. These are estimates, never a census.
+const previous = [...store.days].filter((day) => day.date < today).sort((a, b) => b.date.localeCompare(a.date))[0]
+const suspect = []
+for (const [name, value] of [['opens', opens], ['installs', installs], ['browsers', browsers]]) {
+  if (value == null) continue
+  if (!Number.isInteger(value) || value < 0) suspect.push(`${name}: not a whole number`)
+  const before = previous?.[name]
+  if (typeof before === 'number') {
+    if (value < before) suspect.push(`${name}: went down`)
+    else if (value - before > Math.max(200, before * 3)) suspect.push(`${name}: jumped by ${value - before}`)
+  }
+}
+if (installs != null && browsers != null && installs > browsers) suspect.push('installs: more than browsers')
+
 // Same-day runs replace the entry instead of appending.
 store.days = store.days.filter((day) => day.date !== today)
-store.days.push({ date: today, opens, installs, browsers, counterVersion: 2 })
+store.days.push({ date: today, opens, installs, browsers, counterVersion: 2, ...(suspect.length ? { suspect } : {}) })
 store.days = store.days.sort((a, b) => a.date.localeCompare(b.date)).slice(-KEEP_DAYS)
 store.updatedAt = new Date().toISOString()
 
 await mkdir(dirname(OUTPUT), { recursive: true })
 await writeFile(OUTPUT, `${JSON.stringify(store, null, 2)}\n`, 'utf8')
-console.log(`stats: ${today} opens=${opens} installs=${installs} browsers=${browsers}`)
+console.log(`stats: ${today} opens=${opens} installs=${installs} browsers=${browsers}${suspect.length ? ` SUSPECT: ${suspect.join('; ')}` : ''}`)

@@ -1189,13 +1189,13 @@ export function Settings() {
             <div className="grid grid-cols-2 gap-2">
               <div className="rounded-xl border border-line bg-card-2 p-3">
                 <p className="font-display text-xl font-extrabold text-main">
-                  {counters?.browsers != null ? counters.browsers.toLocaleString() : '—'}
+                  {counters?.browsers != null ? `≈ ${counters.browsers.toLocaleString()}` : '—'}
                 </p>
                 <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Browser records')}</p>
               </div>
               <div className="rounded-xl border border-line bg-card-2 p-3">
                 <p className="font-display text-xl font-extrabold text-main">
-                  {counters?.installs != null ? counters.installs.toLocaleString() : '—'}
+                  {counters?.installs != null ? `≈ ${counters.installs.toLocaleString()}` : '—'}
                 </p>
                 <p className="text-[9px] font-bold uppercase tracking-wider text-muted-2">{tr('Install browser records')}</p>
               </div>

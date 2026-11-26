@@ -68,7 +68,7 @@ export function Stats() {
           <Card key={item.label} className="p-4">
             <item.icon className={`h-4 w-4 ${item.accent}`} />
             <p className="mt-2 font-display text-3xl font-extrabold text-main">
-              {item.value == null ? '—' : num(item.value)}
+              {item.value == null ? '—' : `${item.label === tr('Opens on this device') ? '' : '≈ '}${num(item.value)}`}
             </p>
             <p className="text-[10px] font-bold text-muted">{item.label}</p>
           </Card>
@@ -81,6 +81,7 @@ export function Stats() {
         <p className="text-xs text-muted">{tr("The counter provider receives normal connection metadata, including your IP address. Jessica does not store an IP address or send a device ID. Turn off the anonymous counter to stop these requests.")}</p>
         <p className="text-xs text-muted">{tr('Country and governorate are not collected.')}</p>
         <p className="text-xs text-muted">{tr('Totals are visible to anyone. This is not a private owner dashboard.')}</p>
+        <p className="text-xs text-muted">{tr('Anyone can add to these public totals, so read them as rough estimates (≈), not exact counts.')}</p>
         {updatedAt && <p className="text-[10px] text-muted-2">{tr('Last checked: {time}', { time: updatedAt })}</p>}
       </Card>
 
