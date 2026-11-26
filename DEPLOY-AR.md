@@ -95,14 +95,14 @@
 موضوع عام على `ntfy.sh` اسمه:
 
 ```
-jessica-err-6b1f9d2c7a
+jessica-err-7d5b7ab1903eb73b498046ca
 ```
 
 ### إزاي تستقبل البلاغات
 
 1. نزّل تطبيق **ntfy** من App Store أو Google Play (مجاني).
-2. اختار **Subscribe to topic** واكتب: `jessica-err-6b1f9d2c7a`.
-3. أو افتح اللينك ده في المتصفح: <https://ntfy.sh/jessica-err-6b1f9d2c7a>.
+2. اختار **Subscribe to topic** واكتب: `jessica-err-7d5b7ab1903eb73b498046ca`.
+3. أو افتح اللينك ده في المتصفح: <https://ntfy.sh/jessica-err-7d5b7ab1903eb73b498046ca>.
 
 المستخدم يقدر يوقف الإرسال من **الإعدادات ▸ الخصوصية ▸ إرسال بلاغات أخطاء مجهولة**،
 وبنبعت بلاغ واحد كحد أقصى كل ٥ دقايق، ومن غير أي تكرار لنفس الخطأ.

@@ -15,6 +15,7 @@ function hash(text: string) {
 function shouldSend(message: string) {
   if (typeof window === 'undefined') return false
   const settings = useApp.getState().settings
+  // Opt-out (Settings > Privacy) is respected.
   if (settings.shareErrors === false) return false
   try {
     const last = Number(localStorage.getItem(LAST_SENT_KEY) || 0)
@@ -30,7 +31,8 @@ function shouldSend(message: string) {
     localStorage.setItem(LAST_SENT_KEY, String(Date.now()))
     return true
   } catch {
-    return true
+    // If the browser will not let us remember the choice or the rate limit, stay quiet.
+    return false
   }
 }
 

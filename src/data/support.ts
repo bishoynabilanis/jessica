@@ -19,5 +19,5 @@ export const COMMUNITY_GROUP = 'https://www.facebook.com/groups/1892261725467926
  * or at https://ntfy.sh/<topic> to receive reports. Change the topic to a new
  * random string if it ever gets spammed.
  */
-export const ERROR_TOPIC = 'jessica-err-6b1f9d2c7a'
+export const ERROR_TOPIC = 'jessica-err-7d5b7ab1903eb73b498046ca'
 export const ERROR_ENDPOINT = `https://ntfy.sh/${ERROR_TOPIC}`
