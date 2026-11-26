@@ -33,6 +33,8 @@ test('the built page ships a policy that blocks plugins, other bases and inline 
   expect(policy).toContain("object-src 'none'")
   expect(policy).toContain("base-uri 'self'")
   expect(policy).not.toContain("'unsafe-eval'")
+  expect(policy).not.toMatch(/script-src[^;]*https?:/)
+  expect(policy).not.toMatch(/worker-src[^;]*https?:/)
   expect(policy).not.toMatch(/script-src[^;]*'unsafe-inline'/)
   const ran = await page.evaluate(() => {
     const s = document.createElement('script')

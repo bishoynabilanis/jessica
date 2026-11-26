@@ -1,6 +1,10 @@
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 
+// The app now serves the OCR engine from its own origin, where the service worker
+// would answer before a test double can; block it so the double is used.
+test.use({ serviceWorkers: 'block' })
+
 const book = {
   id: 'scan-book',
   title: 'Scan Book',

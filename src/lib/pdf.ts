@@ -16,7 +16,7 @@ export function loadPdf(url: string) {
   if (!promise) {
     promise = pdfjs.getDocument({
       url,
-      cMapUrl: 'https://unpkg.com/pdfjs-dist@4.9.155/cmaps/',
+      cMapUrl: new URL('cmaps/', document.baseURI).href,
       cMapPacked: true,
       // Weak phone mode: fetch the file in small ranges, only what the page needs.
       ...(isWeakPhone() ? { rangeChunkSize: 65536, disableAutoFetch: true } : {}),

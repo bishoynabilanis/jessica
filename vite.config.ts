@@ -71,13 +71,13 @@ function contentSecurityPolicy(): Plugin {
         )
         const policy = [
           "default-src 'self'",
-          `script-src 'self' 'wasm-unsafe-eval' ${hashes.join(' ')} https://cdn.jsdelivr.net https://esm.run`,
+          `script-src 'self' 'wasm-unsafe-eval' ${hashes.join(' ')}`,
           "style-src 'self' 'unsafe-inline'",
           "img-src 'self' data: blob: https:",
           "media-src 'self' data: blob: https:",
           "font-src 'self' data:",
           "connect-src 'self' https: data: blob: http://localhost:* http://127.0.0.1:*",
-          "worker-src 'self' blob: https://cdn.jsdelivr.net",
+          "worker-src 'self' blob:",
           'frame-src https://www.youtube-nocookie.com',
           "manifest-src 'self'",
           "object-src 'none'",

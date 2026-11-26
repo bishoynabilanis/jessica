@@ -2,11 +2,10 @@ import { OFFLINE_MODEL } from './config'
 
 /**
  * Mode C: a small language model that runs in the browser through WebGPU.
- * The library is pulled from a CDN only when the user asks for it, so the app
- * bundle and the first load stay exactly as they are.
+ * The library is a separate file shipped with the app, loaded only when the user
+ * asks for it, so the first load stays small. The model files download on demand.
  */
 
-const CDN = 'https://esm.run/@mlc-ai/web-llm'
 const READY_KEY = 'jessica-offline-model-v1'
 
 type Progress = { progress: number; text: string }
@@ -69,7 +68,8 @@ export function clearOfflineReady() {
 }
 
 async function loadLib(): Promise<Record<string, unknown>> {
-  const url = CDN
+  // Shipped with the app (copied at build time from the pinned npm package); loaded only when asked.
+  const url = new URL('vendor/web-llm.js', document.baseURI).href
   return (await import(/* @vite-ignore */ url)) as Record<string, unknown>
 }
 

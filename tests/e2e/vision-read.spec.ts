@@ -1,5 +1,9 @@
 import { test, expect, type Page } from '@playwright/test'
 
+// The app now serves the OCR engine from its own origin, where the service worker
+// would answer before a test double can; block it so the double is used.
+test.use({ serviceWorkers: 'block' })
+
 // 1x1 transparent PNG
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64')
 
