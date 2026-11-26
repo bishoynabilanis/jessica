@@ -143,10 +143,6 @@ function page(grade, { title, description, body, slug }) {
 <meta name="twitter:description" content="${description}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../style.css">
 <style>
   .grade-hero { padding: 60px 0 20px; text-align: center; }
@@ -410,10 +406,6 @@ fs.writeFileSync(
 <meta name="twitter:description" content="روابط رسمية لكتب وزارة التربية والتعليم المصرية من الأول الابتدائي للتالت الإعدادي.">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../style.css">
 <style>
   .grade-hero { padding: 60px 0 20px; text-align: center; }

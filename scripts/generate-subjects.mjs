@@ -108,10 +108,6 @@ function headAr({ title, description, canonical, enUrl }) {
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../../style.css">
 <style>${STYLE}</style>
 </head>`
@@ -142,10 +138,6 @@ function headEn({ title, description, canonical, arUrl }) {
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../../../style.css">
 <style>${STYLE}</style>
 </head>`
@@ -338,10 +330,6 @@ for (const [gradeNum, g] of Object.entries(GRADES)) {
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../../style.css">
 <style>${STYLE}</style>
 <script type="application/ld+json">
@@ -424,10 +412,6 @@ console.log('total pages written:', written)
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../../style.css">
 <style>${STYLE}</style>
 <script type="application/ld+json">
@@ -498,10 +482,6 @@ console.log('total pages written:', written)
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${BASE}/og.jpg">
 <link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../../style.css">
 <style>.sub-hero{padding:60px 0 20px;text-align:center}.sub-hero h1{font-size:clamp(28px,4vw,42px);margin:12px 0}.sub-hero p{color:var(--muted);max-width:680px;margin-inline:auto;line-height:2}.grades{display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin-top:22px}@media(max-width:860px){.grades{grid-template-columns:1fr 1fr}}@media(max-width:560px){.grades{grid-template-columns:1fr}}.about{margin-top:34px;color:var(--muted);font-size:13.5px;line-height:2}</style>
 <script type="application/ld+json">
