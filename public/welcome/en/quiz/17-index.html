@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>60-second maths test: find your child’s level | Jessica</title>
+<meta name="description" content="A free 60-second maths test for every Egyptian grade from Primary 1 to Preparatory 3: ten questions, instant marking, a reason for each answer and no sign-up.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://bishoynabilanis.github.io/jessica/welcome/en/quiz/">
+<link rel="alternate" hreflang="en" href="https://bishoynabilanis.github.io/jessica/welcome/en/quiz/">
+<link rel="alternate" hreflang="ar" href="https://bishoynabilanis.github.io/jessica/welcome/quiz/">
+<link rel="alternate" hreflang="x-default" href="https://bishoynabilanis.github.io/jessica/welcome/en/quiz/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jessica">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://bishoynabilanis.github.io/jessica/welcome/en/quiz/">
+<meta property="og:title" content="60-second maths test: find your child’s level">
+<meta property="og:description" content="Ten questions, instant marking and a reason for every answer. Free, offline, no sign-up.">
+<meta property="og:image" content="https://bishoynabilanis.github.io/jessica/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="60-second maths test: find your child’s level">
+<meta name="twitter:description" content="Ten questions, instant marking and a reason for every answer. Free, offline, no sign-up.">
+<meta name="twitter:image" content="https://bishoynabilanis.github.io/jessica/og.jpg">
+<link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../icons/icon-192.png">
+<link rel="stylesheet" href="../../style.css">
+<style>
+  .article { max-width: 780px; margin: 0 auto; padding: 40px 0 60px; }
+  .article h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.35; margin: 14px 0; }
+  .article .meta { color: var(--muted); font-size: 12px; margin-bottom: 22px; }
+  .article h2 { font-size: 21px; margin: 30px 0 10px; }
+  .article p { color: var(--muted); line-height: 1.95; font-size: 15px; margin-bottom: 10px; }
+  .article ul { color: var(--muted); line-height: 1.9; font-size: 14px; padding-inline-start: 22px; margin-bottom: 12px; }
+  .article ul li::marker { color: var(--mint); }
+  .lead { border-inline-start: 3px solid var(--mint); padding-inline-start: 14px; }
+
+  .quiz-card { border: 1px solid var(--line); background: rgba(255,255,255,.03); border-radius: 22px; padding: 20px; margin: 18px 0 4px; }
+  .quiz-setup { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .quiz-setup[hidden] { display: none; }
+  .quiz-setup label { font-size: 12px; font-weight: 800; color: var(--text); }
+  .quiz-setup select { border-radius: 12px; border: 1px solid var(--line); background: #0d1526; color: var(--text); padding: 10px 14px; font-size: 13px; font-weight: 700; font-family: inherit; }
+  .quiz-start { border: 0; cursor: pointer; border-radius: 999px; padding: 12px 22px; font-family: inherit; font-size: 13px; font-weight: 800; color: #04121a; background: linear-gradient(120deg, #21e6c9, #6b8cff); }
+  .quiz-start:hover { filter: brightness(1.06); }
+
+  .quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 800; color: var(--muted); }
+  .quiz-prompt { font-size: clamp(20px, 3vw, 26px); font-weight: 900; color: var(--text); margin: 14px 0 14px; line-height: 1.5; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 520px) { .choices { grid-template-columns: 1fr; } }
+  .choice { border: 1.5px solid var(--line); background: rgba(255,255,255,.03); color: var(--text); border-radius: 16px; padding: 14px 16px; font-family: inherit; font-size: 16px; font-weight: 800; text-align: start; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+  .choice:hover:not(:disabled) { border-color: rgba(33,230,201,.45); }
+  .choice:disabled { cursor: default; opacity: .75; }
+  .choice.is-correct { border-color: rgba(33,230,201,.7); background: rgba(33,230,201,.12); opacity: 1; }
+  .choice.is-wrong { border-color: rgba(255,99,120,.6); background: rgba(255,99,120,.12); opacity: 1; }
+  .feedback { margin-top: 14px; border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.8; font-weight: 700; }
+  .feedback.ok { border: 1px solid rgba(33,230,201,.45); background: rgba(33,230,201,.1); color: #d8fff8; }
+  .feedback.no { border: 1px solid rgba(255,99,120,.45); background: rgba(255,99,120,.08); color: #ffd9df; }
+  .quiz-next { margin-top: 12px; border: 1.5px solid var(--line); background: rgba(255,255,255,.04); color: var(--text); border-radius: 999px; padding: 10px 20px; font-family: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
+  .quiz-next:hover { border-color: rgba(33,230,201,.45); }
+
+  .quiz-result h3 { font-size: 20px; margin-bottom: 4px; }
+  .quiz-score { font-size: 42px; font-weight: 900; color: var(--mint); margin: 6px 0 2px; }
+  .review-head { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+  .review-row { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; }
+  .review-row.ok { border-color: rgba(33,230,201,.35); background: rgba(33,230,201,.05); }
+  .review-row.no { border-color: rgba(255,99,120,.35); background: rgba(255,99,120,.05); }
+  .review-q { font-size: 12px; font-weight: 800; color: var(--text); }
+  .review-a { font-size: 11px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+  .review-why { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .quiz-again { margin-top: 8px; border: 0; cursor: pointer; border-radius: 999px; padding: 11px 20px; font-family: inherit; font-size: 12px; font-weight: 800; color: #04121a; background: linear-gradient(120deg, #21e6c9, #6b8cff); }
+
+  .grade-table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; font-size: 13px; }
+  .grade-table td { border: 1px solid var(--line); padding: 9px 12px; color: var(--muted); }
+  .grade-table td:first-child { color: var(--text); font-weight: 800; white-space: nowrap; width: 40%; }
+  .cta-box { margin-top: 26px; border: 1px solid rgba(46,230,197,.3); background: rgba(46,230,197,.07); border-radius: 18px; padding: 18px; text-align: center; }
+  .cta-box p { color: var(--text); font-weight: 700; margin-bottom: 10px; }
+  .faq { margin-top: 28px; }
+  .faq details { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; background: rgba(255,255,255,.03); margin-bottom: 8px; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 14px; }
+  .faq p { margin-bottom: 0; }
+  .rel-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .rel-grid a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .rel-grid a:hover { color: var(--text); border-color: rgba(46,230,197,.35); }
+  .back { display: inline-block; margin-top: 26px; color: var(--mint); font-size: 13px; font-weight: 700; }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Quiz","name":"60-second maths test","description":"Ten maths questions for any Egyptian grade from Primary 1 to Preparatory 3, with instant marking and a reason for each answer.","inLanguage":"en","educationalLevel":"Primary to Preparatory","about":{"@type":"Thing","name":"Mathematics"},"url":"https://bishoynabilanis.github.io/jessica/welcome/en/quiz/","isAccessibleForFree":true}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Is the test free?","acceptedAnswer":{"@type":"Answer","text":"Yes. There is no account, no email and no payment. The questions are generated in the browser, so it also works with no internet."}},{"@type":"Question","name":"How many questions are there?","acceptedAnswer":{"@type":"Answer","text":"Ten, one after another, with the reason shown right after each answer. Most children finish in under two minutes."}},{"@type":"Question","name":"What if my child gets a low score?","acceptedAnswer":{"@type":"Answer","text":"The score is a starting point, not a verdict. Open the app after the test: it builds a plan from the skills that were answered wrong and drills them with explanations."}},{"@type":"Question","name":"Does it cover the whole curriculum?","acceptedAnswer":{"@type":"Answer","text":"It samples the core skills of each grade, not every lesson. The full question bank inside the app covers four subjects with unlimited generated questions."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Jessica","item":"https://bishoynabilanis.github.io/jessica/welcome/en/"},{"@type":"ListItem","position":2,"name":"60-second test","item":"https://bishoynabilanis.github.io/jessica/welcome/en/quiz/"}]}
+</script>
+</head>
+<body>
+<div class="bg-glow"></div>
+<header><div class="wrap nav"><a class="brand" href="../"><span class="mark">J</span><span>jessica<i>.</i></span></a><div class="nav-actions"><a class="btn sm" href="../../../">Open the app</a><a class="btn ghost sm" href="../../quiz/">العربية</a></div></div></header>
+<main><div class="wrap"><article class="article">
+<span class="eyebrow">⏱️ 60 seconds · free · no sign-up</span>
+<h1>Test your child’s maths level in 60 seconds</h1>
+<p class="meta">📖 2 minute read · updated November 2026</p>
+<p class="lead">Ten questions on the core skills of the chosen grade, marked instantly, with a short reason after every answer. No account, no email, no app to install — the questions are generated in your browser, so it works with no internet too.</p>
+
+<div class="quiz-card">
+  <div class="quiz-setup" id="quiz-setup">
+    <label for="quiz-grade">Choose the grade</label>
+    <select id="quiz-grade">
+      <option value="primary-1">Primary 1</option>
+      <option value="primary-2">Primary 2</option>
+      <option value="primary-3">Primary 3</option>
+      <option value="primary-4" selected>Primary 4</option>
+      <option value="primary-5">Primary 5</option>
+      <option value="primary-6">Primary 6</option>
+      <option value="prep-1">Preparatory 1</option>
+      <option value="prep-2">Preparatory 2</option>
+      <option value="prep-3">Preparatory 3</option>
+    </select>
+    <button class="quiz-start" id="quiz-start" type="button">Start the test →</button>
+  </div>
+
+  <div id="quiz-panel" hidden>
+    <div class="quiz-top"><span id="quiz-counter"></span><span>10 questions</span></div>
+    <p class="quiz-prompt" id="quiz-prompt"></p>
+    <div class="choices" id="quiz-choices"></div>
+    <div class="feedback" id="quiz-feedback" hidden></div>
+    <button class="quiz-next" id="quiz-next" type="button" hidden>Next question</button>
+  </div>
+
+  <div class="quiz-result" id="quiz-result" hidden>
+    <h3>Your result</h3>
+    <p class="quiz-score" id="quiz-score"></p>
+    <div id="quiz-review"></div>
+    <button class="quiz-again" id="quiz-again" type="button">Try another grade</button>
+  </div>
+</div>
+
+<h2>What the test looks at, grade by grade</h2>
+<table class="grade-table">
+  <tr><td>Primary 1</td><td>Addition and subtraction up to 20, and finding the missing number.</td></tr>
+  <tr><td>Primary 2</td><td>Adding and subtracting to 100, and the small multiplication tables.</td></tr>
+  <tr><td>Primary 3</td><td>Times tables, exact division, and adding three-digit numbers.</td></tr>
+  <tr><td>Primary 4</td><td>Two-digit multiplication, adding fractions with the same denominator, perimeter.</td></tr>
+  <tr><td>Primary 5</td><td>Decimals, area of a rectangle, and a first percentage.</td></tr>
+  <tr><td>Primary 6</td><td>Discounts, simplifying ratios, and the area of a triangle.</td></tr>
+  <tr><td>Preparatory 1</td><td>Signed numbers, a one-step equation, and sharing in a ratio.</td></tr>
+  <tr><td>Preparatory 2</td><td>Brackets, squares, and Pythagoras with one decimal place.</td></tr>
+  <tr><td>Preparatory 3</td><td>Two-step equations, the mean of four marks, powers and roots.</td></tr>
+</table>
+
+<h2>How to read the result</h2>
+<p>A score of 8 to 10 means the grade's core skills are in place and the next step is speed and harder word problems. Five to seven means the basics are there with a gap or two — usually one operation that has not settled. Under five means the grade is ahead of the child right now, and it is worth stepping back one grade and rebuilding, which is faster than pushing forward.</p>
+<p>The test samples the core skills, it does not cover every lesson. When you open the app after it, the questions your child missed become cards in the mistakes notebook, and the bank keeps generating fresh papers on exactly those skills until they hold.</p>
+
+<div class="cta-box">
+  <p>Finished the ten questions? The full bank is inside the app.</p>
+  <a class="btn" href="../../../#/bank">🧩 Open the question bank</a>
+</div>
+
+<h2>Frequently asked</h2>
+<div class="faq">
+  <details><summary>Is the test free?</summary><p>Yes. There is no account, no email and no payment. The questions are generated in the browser, so it also works with no internet.</p></details>
+  <details><summary>How many questions are there?</summary><p>Ten, one after another, with the reason shown right after each answer. Most children finish in under two minutes.</p></details>
+  <details><summary>What if my child gets a low score?</summary><p>The score is a starting point, not a verdict. Open the app after the test: it builds a plan from the skills that were answered wrong and drills them with explanations.</p></details>
+  <details><summary>Does it cover the whole curriculum?</summary><p>It samples the core skills of each grade, not every lesson. The full question bank inside the app covers four subjects with unlimited generated questions.</p></details>
+</div>
+
+<h2>Keep going</h2>
+<div class="rel-grid">
+  <a href="../bank/">🧩 Question bank</a>
+  <a href="../focus/">⏱️ Focus timer</a>
+  <a href="../install/">📲 Install the app</a>
+  <a href="../../quiz/">🇪🇬 النسخة العربية</a>
+</div>
+
+<a class="back" href="../">← Back to the English page</a>
+</article></div></main>
+<script src="./quiz-en.js"></script>
+</body>
+</html>
