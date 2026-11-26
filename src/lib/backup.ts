@@ -2,6 +2,7 @@ import { strFromU8, strToU8, unzipSync, zipSync } from 'fflate'
 import { allCards, getPdfBytes, putCards, savePdfBytes } from '@/lib/db'
 import { useApp } from '@/store/useApp'
 import { todayKey } from '@/lib/utils'
+import { exportablePayload } from '@/lib/backupSafe'
 
 /**
  * A full ZIP backup: profile/progress JSON + imported PDFs + flashcards.
@@ -9,10 +10,7 @@ import { todayKey } from '@/lib/utils'
  */
 export async function exportFullBackup() {
   const state = useApp.getState()
-  const payload: Record<string, unknown> = {}
-  for (const [key, value] of Object.entries(state)) {
-    if (typeof value !== 'function' && key !== 'apiKey') payload[key] = value
-  }
+  const payload = exportablePayload(state)
 
   const files: Record<string, Uint8Array> = {
     'jessica-backup.json': strToU8(

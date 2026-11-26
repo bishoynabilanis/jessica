@@ -1,3 +1,4 @@
+import { exportablePayload } from '@/lib/backupSafe'
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import {
@@ -249,10 +250,7 @@ export function Settings() {
 
   const exportData = () => {
     const data = useApp.getState()
-    const payload: Record<string, unknown> = {}
-    for (const [key, value] of Object.entries(data)) {
-      if (typeof value !== 'function' && key !== 'apiKey') payload[key] = value
-    }
+    const payload = exportablePayload(data)
     const blob = new Blob([JSON.stringify({ app: 'jessica', version: 2, exportedAt: Date.now(), data: payload }, null, 2)], {
       type: 'application/json',
     })

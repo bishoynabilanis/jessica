@@ -1,3 +1,4 @@
+import { sanitizeImport } from '@/lib/backupSafe'
 import { create } from 'zustand'
 import { dateLocale, tr } from '@/i18n'
 import { persist, createJSONStorage } from 'zustand/middleware'
@@ -891,9 +892,11 @@ export const useApp = create<AppState>()(
       dismissInstall: () => set({ installDismissed: true }),
 
       importState: (data) => {
-        const safe = { ...data }
-        delete (safe as any).apiKey
-        set((state) => ({ ...state, ...safe, settings: { ...state.settings, ...(data.settings || {}), schoolType: normalizeSchoolType(data.settings?.schoolType ?? state.settings.schoolType) } }))
+        const safe = sanitizeImport(data, get()) as Partial<AppState>
+        set((state) => {
+          const settings = { ...state.settings, ...(safe.settings || {}) }
+          return { ...state, ...safe, settings: { ...settings, schoolType: normalizeSchoolType(settings.schoolType) } }
+        })
       },
 
       resetAll: () => {
