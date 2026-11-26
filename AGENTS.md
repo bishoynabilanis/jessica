@@ -122,6 +122,10 @@ Arabic pages pair with English ones through reciprocal `hreflang` (`ar`, `en`, `
 - Leaving `dist/`, `test-results/`, `*.tsbuildinfo`, or scratch scripts in a commit.
 - Deleting a failing test instead of diagnosing it.
 
+## Fonts on the public pages
+
+`/welcome/` pages host Cairo from this site (`scripts/generate-fonts.mjs`, first step of `npm run content`). Never add a Google Fonts link; `npm run content` ends with a check that fails if one comes back.
+
 ## Where the product is heading
 
 Roadmap lives in `ROADMAP.md`. The current differentiator is the **question bank** (`/bank`): procedural, offline, explained questions with a timed exam, a printable sheet, a mistakes notebook, a unit review and a weekly paper. Marketing assets and the published log live in `marketing/growth/`.

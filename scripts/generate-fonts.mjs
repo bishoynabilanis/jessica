@@ -4,7 +4,30 @@
  * Copies the pinned @fontsource/cairo files into public/welcome/fonts and writes
  * the @font-face rules the pages' style.css imports.
  */
-import { copyFileSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
+import { copyFileSync, mkdirSync, writeFileSync, existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
+import { join } from 'node:path'
+
+// `node scripts/generate-fonts.mjs --check` runs last in `npm run content`. It fails the
+// build if any public page or generator brings back a Google font link (a visit would
+// then send the visitor's address to Google).
+if (process.argv.includes('--check')) {
+  const bad = []
+  const walk = (dir) => {
+    for (const name of readdirSync(dir)) {
+      const path = join(dir, name)
+      if (statSync(path).isDirectory()) walk(path)
+      else if (/\.(html|css|mjs)$/.test(name) && name !== 'generate-fonts.mjs' && /fonts\.(googleapis|gstatic)\.com/.test(readFileSync(path, 'utf8'))) bad.push(path)
+    }
+  }
+  walk('public/welcome')
+  walk('scripts')
+  if (bad.length) {
+    console.error(`Google font links found (host Cairo locally instead):\n${bad.join('\n')}`)
+    process.exit(1)
+  }
+  console.log('fonts check: no Google font links')
+  process.exit(0)
+}
 
 const src = 'node_modules/@fontsource/cairo/files'
 const out = 'public/welcome/fonts'
