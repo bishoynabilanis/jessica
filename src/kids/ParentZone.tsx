@@ -31,6 +31,7 @@ import { requestNotificationPermission, sendLocalNotification } from '@/hooks/us
 import { levelLabel } from '@/lib/curriculum'
 import { cn, dayKeyOffset, todayKey } from '@/lib/utils'
 import { tr, dateLocale } from '@/i18n'
+import { clipNote, noteLength, safeParentNote } from '@/lib/parentNote'
 
 const LIMITS = [0, 15, 20, 30, 45]
 
@@ -60,11 +61,16 @@ function ParentDashboard() {
     parentTasks,
     addParentTask,
     removeParentTask,
+    parentNote: rawParentNote,
+    setParentNote,
+    clearParentNote,
   } = useApp()
   const { level } = levelInfo(xp)
+  const parentNote = safeParentNote(rawParentNote)
   const [report, setReport] = useState('')
   const [taskTitle, setTaskTitle] = useState('')
   const [taskReward, setTaskReward] = useState(10)
+  const [noteText, setNoteText] = useState('')
   const [pinNew, setPinNew] = useState('')
   const [pinConfirm, setPinConfirm] = useState('')
   const [pinError, setPinError] = useState('')
@@ -334,6 +340,46 @@ function ParentDashboard() {
               {settings.kidsReminder ? tr('On at {time}', { time: settings.kidsReminder }) : tr('Off')}
             </span>
           </div>
+        </Card>
+
+        <Card className="border-2 border-white p-4" data-testid="parent-note-editor">
+          <p className="flex items-center gap-1.5 text-sm font-extrabold text-ink-950">
+            <span aria-hidden>💌</span> {tr('A note for your child')}
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-ink-600">
+            {tr('Write one short, kind line. Your child sees it on the home page and on My day. It stays on this phone.')}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            <input
+              value={noteText}
+              onChange={(e) => setNoteText(clipNote(e.target.value))}
+              dir="auto"
+              placeholder={tr('e.g. I am proud of you!')}
+              className="field min-w-[200px] flex-1 py-1.5 text-sm"
+              data-testid="parent-note-input"
+            />
+            <Button
+              size="sm"
+              data-testid="parent-note-save"
+              onClick={() => {
+                if (setParentNote(noteText)) {
+                  setNoteText('')
+                  pushToast({ title: tr('Message saved'), type: 'success' })
+                }
+              }}
+            >
+              {tr('Save the message')}
+            </Button>
+          </div>
+          <p dir="ltr" className="mt-1 text-xs font-semibold text-ink-500 rtl:text-right">{noteLength(noteText)}/100</p>
+          {parentNote && (
+            <div className="mt-2 flex items-center gap-2 rounded-xl border border-line bg-white px-2.5 py-1.5" data-testid="parent-note-current">
+              <span dir="auto" className="min-w-0 flex-1 break-words text-sm font-bold text-ink-950">{parentNote.text}</span>
+              <button onClick={() => clearParentNote()} className="shrink-0 text-ink-400 hover:text-coral" aria-label={tr('Delete')} data-testid="parent-note-clear">
+                <Trash2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          )}
         </Card>
 
         <Card className="border-2 border-white p-4">

@@ -1,3 +1,5 @@
+import { safeParentNote } from '@/lib/parentNote'
+
 // Safe rules for backups: secrets never leave in an export, and a restored
 // file can only fill fields the app already has, with the same kind of value.
 
@@ -52,6 +54,11 @@ export function sanitizeImport(data: unknown, current: object): Record<string, u
         if (acceptable(base[sk], sv)) clean[sk] = sv
       }
       out.settings = clean
+      continue
+    }
+    if (key === 'parentNote') {
+      const note = safeParentNote(value)
+      if (note) out.parentNote = note
       continue
     }
     if (acceptable(now[key], value)) out[key] = value

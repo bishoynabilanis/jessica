@@ -1,3 +1,4 @@
+import { cleanParentNote } from '@/lib/parentNote'
 import { sanitizeImport } from '@/lib/backupSafe'
 import { create } from 'zustand'
 import { dateLocale, tr } from '@/i18n'
@@ -160,6 +161,8 @@ export interface AppState {
   kidsUsage: Record<string, number>
   kidsReminderDate: string
   parentTasks: ParentTask[]
+  /** One short encouraging line a parent writes for the child. Stays on this device. */
+  parentNote: { text: string; at: number } | null
   mistakes: MistakeEntry[]
   highlights: Record<string, PageHighlight[]>
   skillStats: Record<string, SkillStat>
@@ -208,6 +211,8 @@ export interface AppState {
   addParentTask: (title: string, reward: number) => void
   completeParentTask: (id: string) => number | null
   removeParentTask: (id: string) => void
+  setParentNote: (text: string) => boolean
+  clearParentNote: () => void
   addMistake: (entry: Omit<MistakeEntry, 'id' | 'createdAt' | 'reviewAt' | 'reviewStep' | 'reviewedAt'>) => void
   reviewMistake: (id: string, correct: boolean) => void
   removeMistake: (id: string) => void
@@ -287,6 +292,7 @@ const initial = (): Omit<AppState, keyof AppState> | any => ({
   kidsUsage: {},
   kidsReminderDate: '',
   parentTasks: [],
+  parentNote: null,
   mistakes: [],
   highlights: {},
   skillStats: {},
@@ -734,6 +740,15 @@ export const useApp = create<AppState>()(
           mistakes: state.mistakes.map((item) => (item.id === id ? { ...item, aiExplanation: text } : item)),
         }))
       },
+
+      setParentNote: (text) => {
+        const clean = cleanParentNote(text)
+        if (!clean) return false
+        set({ parentNote: { text: clean, at: Date.now() } })
+        return true
+      },
+
+      clearParentNote: () => set({ parentNote: null }),
 
       removeParentTask: (id) => {
         set((state) => ({ parentTasks: state.parentTasks.filter((item) => item.id !== id) }))

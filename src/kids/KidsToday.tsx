@@ -6,6 +6,7 @@ import { useApp } from '@/store/useApp'
 import { summarizeDay } from '@/lib/kidsDay'
 import { todayKey } from '@/lib/utils'
 import { num, tr } from '@/i18n'
+import { ParentNoteCard } from '@/kids/ParentNoteCard'
 
 /** A calm end-of-day screen for children: time today, what was learned, what comes next, one star. */
 export function KidsToday() {
@@ -40,6 +41,8 @@ export function KidsToday() {
         <h1 className="mt-1 font-display text-2xl font-extrabold text-ink-950">{tr('My day')}</h1>
         <p className="mt-1 text-xs font-semibold text-ink-600">{tr('A quick look at today. Nothing leaves this phone.')}</p>
       </div>
+
+      <ParentNoteCard />
 
       <div className="rounded-3xl border-2 border-white bg-white/85 p-4" data-testid="kids-today-minutes">
         <div className="flex items-center gap-3">

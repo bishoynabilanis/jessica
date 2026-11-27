@@ -1,3 +1,4 @@
+import { ParentNoteCard } from '@/kids/ParentNoteCard'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, BookOpen, CheckCircle2, Gamepad2, Layers, Sparkles, Star, Flame, Trophy } from 'lucide-react'
@@ -205,6 +206,8 @@ export function KidsHome() {
           </div>
         </div>
       </Card>
+
+      <ParentNoteCard />
 
       <Card className="flex flex-wrap items-center gap-3 border-2 border-violet-200 bg-violet-50/80 p-4">
           <span className="grid h-12 w-12 place-items-center rounded-2xl bg-violet-100 text-2xl">🏅</span>
