@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import { FEATURES } from './features-data.mjs'
 import { SUBJECT_META } from './subjects-data.mjs'
+import { TOC_UNITS } from './toc-units.mjs'
 import path from 'node:path'
 import { execSync } from 'node:child_process'
 
@@ -234,6 +235,7 @@ function page(grade, { title, description, body, slug }) {
     <div><b>📴 أوفلاين</b>الكتاب والبطاقات والملاحظات تشتغل بدون إنترنت.</div>
   </div>
 </section>
+${body.unitsHtml}
 <section class="faq">
   <h2>أسئلة شائعة عن الصف ${body.gradeLabel}</h2>
   ${body.faqHtml}
@@ -349,6 +351,25 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
 </section>`
       : ''
 
+  const unitBooks = list
+    .map((book) => ({ book, units: (TOC_UNITS[book.id] || []).filter((u) => !/not captured/i.test(u)) }))
+    .filter((item) => item.units.length)
+  const unitsHtml = unitBooks.length
+    ? `<section class="exam units">
+  <h2>محتوى كتب الصف ${arLabel} وحدة بوحدة</h2>
+  <p>ده ترتيب الوحدات زي ما هو مكتوب في فهرس كل كتاب رسمي للترم الأول، علشان تعرف تقسّم المذاكرة قبل ما تفتح الكتاب.</p>
+  ${unitBooks
+    .map(
+      ({ book, units }) =>
+        `<h3 dir="auto">${book.title}</h3><ol dir="auto">${units.map((u) => `<li dir="auto">${u}</li>`).join('')}</ol>`,
+    )
+    .join('')}
+  <p>${unitBooks
+    .map(({ book, units }) => `${SUBJECT_AR[book.subject] || book.subject}: ${units.length} ${units.length > 2 && units.length < 11 ? 'وحدات' : 'وحدة'} في الترم، وبتبدأ بـ «${units[0].replace(/^(الوحدة|الفصل|Unit|Chapter|Module)[^:]*:\s*/i, '')}»`)
+    .join('. ')}.</p>
+</section>`
+    : ''
+
   const dir = path.join(outRoot, slug)
   fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(
@@ -357,7 +378,7 @@ for (const [gradeKey, [arLabel, enLabel, slug]] of Object.entries(LABELS)) {
       title: `كتب الوزارة ${arLabel} — تحميل PDF رسمي | Jessica`,
       description,
       slug,
-      body: { heading, intro, rows, note, nav, slug, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson, related, examHtml },
+      body: { heading, intro, rows, note, nav, slug, gradeLabel: arLabel, about, chips, whyIntro, faqHtml, faqJson, related, examHtml, unitsHtml },
     }),
   )
   console.log(slug, list.length)
