@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jessica — كتب الوزارة + مدرس ذكي + امتحانات، مجانًا وعلى جهازك</title>
+<meta name="description" content="تطبيق مذاكرة مجاني لطلاب مصر من أولى ابتدائي لتالتة إعدادي: كتب الوزارة الرسمية، مدرس ذكاء اصطناعي، امتحانات وبطاقات مراجعة — أوفلاين وبدون حساب.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://bishoynabilanis.github.io/jessica/welcome/">
+<link rel="alternate" type="application/rss+xml" title="Jessica — صفحات المذاكرة" href="https://bishoynabilanis.github.io/jessica/welcome/feed.xml">
+<link rel="alternate" hreflang="ar" href="https://bishoynabilanis.github.io/jessica/welcome/">
+<link rel="alternate" hreflang="en" href="https://bishoynabilanis.github.io/jessica/welcome/en/">
+<link rel="alternate" hreflang="x-default" href="https://bishoynabilanis.github.io/jessica/welcome/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jessica — ذاكر على أوتوبايلوت بالذكاء الاصطناعي">
+<meta property="og:description" content="كتب الوزارة + مدرس ذكي + امتحانات وبطاقات مراجعة — على جهازك، مجانًا وبدون حساب.">
+<meta property="og:image" content="https://bishoynabilanis.github.io/jessica/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jessica — ٤٥ دقيقة بدل ٣ ساعات">
+<meta property="og:url" content="https://bishoynabilanis.github.io/jessica/welcome/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jessica — ذاكر على أوتوبايلوت بالذكاء الاصطناعي">
+<meta name="twitter:description" content="كتب الوزارة + مدرس ذكي + امتحانات وبطاقات مراجعة — على جهازك، مجانًا وبدون حساب.">
+<meta name="twitter:image" content="https://bishoynabilanis.github.io/jessica/og.jpg">
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/icon-192.png">
+<link rel="stylesheet" href="./style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Jessica",
+  "alternateName": [
+    "جيسيكا"
+  ],
+  "url": "https://bishoynabilanis.github.io/jessica/welcome/",
+  "logo": "https://bishoynabilanis.github.io/jessica/icons/icon-192.png",
+  "sameAs": [
+    "https://www.facebook.com/groups/1892261725467926"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "support",
+      "email": "bishoynabilanis@gmail.com"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Jessica",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web, Android, iOS",
+  "inLanguage": ["ar", "en", "fr", "es", "de", "tr", "id"],
+  "description": "تطبيق مذاكرة بالذكاء الاصطناعي يقرأ كتب الوزارة المصرية ويشرحها للطالب، مع امتحانات وبطاقات مراجعة وخطة يومية، يعمل أوفلاين وبدون حساب.",
+  "url": "https://bishoynabilanis.github.io/jessica/",
+  "image": "https://bishoynabilanis.github.io/jessica/og.jpg",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EGP" },
+  "sameAs": [
+    "https://www.facebook.com/groups/1892261725467926",
+    "https://github.com/bishoynabilanis/jessica"
+  ],
+  "author": { "@type": "Person", "name": "Bishoy Nabil" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "هل التطبيق مجاني فعلًا؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "نعم، التطبيق مجاني بالكامل ومفتوح المصدر. تحتاج فقط مفتاح Gemini مجاني من Google AI Studio." }
+    },
+    {
+      "@type": "Question",
+      "name": "هل يحتاج إنترنت؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "أول تحميل واستيراد كتاب يحتاج إنترنت. بعد كده القراءة والبطاقات والامتحانات المحفوظة تشتغل أوفلاين، وميزات الذكاء الاصطناعي تحتاج اتصال." }
+    },
+    {
+      "@type": "Question",
+      "name": "فين بياناتي ومفتاحي؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "كل حاجة محفوظة على جهازك فقط: المفتاح في المتصفح والكتب في IndexedDB. مفيش سيرفر ومفيش حساب." }
+    },
+    {
+      "@type": "Question",
+      "name": "بيغطي أنهي صفوف؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "المرحلة الابتدائية من الأول للسادس، والمرحلة الإعدادية من الأول للتالت، مع كتب وزارة رسمية لكل مادة متاحة." }
+    },
+    {
+      "@type": "Question",
+      "name": "أقدر أستخدمه على الآيفون؟",
+      "acceptedAnswer": { "@type": "Answer", "text": "أيوه. افتح اللينك في Safari، واضغط زر المشاركة ثم إضافة إلى الشاشة الرئيسية." }
+    }
+  ]
+}
+</script>
+<style>
+  .card-link { display: block; color: inherit; position: relative; border-color: rgba(46, 230, 197, 0.32); background: linear-gradient(180deg, rgba(46, 230, 197, 0.09), rgba(12, 17, 32, 0.6)); transition: transform .18s ease, border-color .18s ease; }
+  .card-link:hover { transform: translateY(-2px); border-color: rgba(46, 230, 197, 0.55); }
+  .card-link .new { position: absolute; inset-inline-start: 16px; top: -9px; border-radius: 999px; padding: 3px 10px; font-size: 9px; font-weight: 800; letter-spacing: .06em; background: linear-gradient(90deg, #21e6c9, #6b8cff); color: #071018; }
+  .card-link .more { display: block; margin-top: 8px; font-size: 11px; font-weight: 800; color: #21e6c9; }
+</style>
+<link rel="preload" as="image" href="./preview.jpg" fetchpriority="high">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"Jessica في ٢٤ ثانية","description":"Jessica في ٢٤ ثانية | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/shots/dashboard.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/video.mp4","uploadDate":"2026-11-12","inLanguage":"ar"},{"@type":"VideoObject","name":"التطبيق في ٢٠ ثانية — «كتب الوزارة بقت درس»","description":"التطبيق في ٢٠ ثانية — «كتب الوزارة بقت درس» | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/jessica-launch.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/jessica-launch.mp4","uploadDate":"2026-11-14","inLanguage":"ar"},{"@type":"VideoObject","name":"اختبار المستوى ← الخطة ← شهادة الإنجاز","description":"اختبار المستوى ← الخطة ← شهادة الإنجاز | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/jessica-features.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/jessica-features.mp4","uploadDate":"2026-11-14","inLanguage":"ar"},{"@type":"VideoObject","name":"اسأل كل كتبك","description":"اسأل كل كتبك | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/ask.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/ask.mp4","uploadDate":"2026-11-12","inLanguage":"ar"},{"@type":"VideoObject","name":"تدريب تكيفي","description":"تدريب تكيفي | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/practice.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/practice.mp4","uploadDate":"2026-11-12","inLanguage":"ar"},{"@type":"VideoObject","name":"ليلة الامتحان","description":"ليلة الامتحان | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/night.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/night.mp4","uploadDate":"2026-11-12","inLanguage":"ar"},{"@type":"VideoObject","name":"صحّح ورقتك بالكاميرا","description":"صحّح ورقتك بالكاميرا | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/scan.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/scan.mp4","uploadDate":"2026-11-12","inLanguage":"ar"},{"@type":"VideoObject","name":"عالم الابتدائي","description":"عالم الابتدائي | تطبيق جيسيكا للمذاكرة","thumbnailUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/kids.jpg","contentUrl":"https://bishoynabilanis.github.io/jessica/welcome/videos/kids.mp4","uploadDate":"2026-11-12","inLanguage":"ar"}]}</script>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="./">
+      <span class="mark">J</span>
+      <span>jessica<i>.</i></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">المزايا</a>
+      <a href="#screens">صور التطبيق</a>
+      <a href="#video">فيديو</a>
+      <a href="#videos">فيديوهات الميزات</a>
+      <a href="#install">التثبيت</a>
+      <a href="./install/">دليل التثبيت</a>
+      <a href="#grades">الصفوف</a>
+      <a href="./features/">الميزات</a>
+      <a href="#topics">مواضيع</a>
+      <a href="#how">كيف يشتغل</a>
+      <a href="#faq">الأسئلة</a>
+      <a href="./quiz/">اختبر نفسك</a>
+      <a href="./guides/">أدلة المذاكرة</a>
+      ·
+      <a href="./sitemap/">خريطة الموقع</a>
+      <a href="./topics/">مواضيع المذاكرة</a>
+    </nav>
+    <a class="btn sm" href="../">افتح التطبيق</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">🇪🇬 مجاني · بدون حساب · يشتغل أوفلاين</span>
+        <h1>عامك الدراسي كله،<br><span class="grad">على أوتوبايلوت.</span></h1>
+        <p class="lead">
+          Jessica بتقرأ كتاب الوزارة معاك، تشرح أي صفحة، تلخّص، تعمل امتحانات وبطاقات مراجعة،
+          وتبني لك خطة مذاكرة يومية — على جهازك، ومن غير اشتراك.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="../">افتح التطبيق مجانًا ←</a>
+          <a class="btn ghost" href="./quiz/">⏱️ اختبار ٦٠ ثانية</a>
+          <button class="btn ghost" type="button" onclick="shareApp()">🔗 شارك التطبيق</button>
+        </div>
+        <div class="hero-points">
+          <span class="pill">📚 61 كتاب وزارة (نسخ عربي وإنجليزي وفرنسي، الترم الأول)</span>
+          <span class="pill">🧠 +50 شاشة وأداة</span>
+          <span class="pill">🎒 ابتدائي 1–6 وإعدادي 1–3</span>
+          <span class="pill">🏫 حكومي وخاص ولغات</span>
+          <span class="pill">🌍 7 لغات</span>
+          <span class="pill" id="opens-count" hidden></span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="./preview.jpg" alt="لوحة تقدّم Jessica — إتقان الوحدات وسلسلة الأيام" width="970" height="417" loading="eager">
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat"><b>+50</b><span>شاشة وأداة</span></div>
+      <div class="stat"><b>61</b><span>كتاب وزارة (نسخ عربي وإنجليزي وفرنسي، الترم الأول)</span></div>
+      <div class="stat"><b>9</b><span>صفوف (ابتدائي وإعدادي)</span></div>
+      <div class="stat"><b>0 ج.م</b><span>بدون اشتراك</span></div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>كل اللي محتاجه في مكان واحد</h2>
+        <p>مش مجرد PDF ولا شات بوت — عالم مذاكرة كامل مبني على كتابك الحقيقي.</p>
+      </div>
+      <div class="grid">
+        <a class="card card-link" href="./focus/"><span class="new">جديد</span><div class="ic">⏱️</div><h3>مؤقت التركيز</h3><p>٢٥ دقيقة مذاكرة و٥ راحة. الدقايق بتتحوّل نقاط وبتظهر في خطتك، والمؤقت بيكمّل حتى لو غيّرت التاب.</p><span class="more">جرّب جلسة ←</span></a>
+        <a class="card card-link" href="./bank/"><span class="new">جديد</span><div class="ic">🧩</div><h3>بنك أسئلة لا نهائي</h3><p>تدريب ١٠ أو ٢٠ سؤال بيتولّد من منهج صفك، مع شرح كل إجابة وامتحان مؤقت ٢٠ دقيقة ودفتر أخطاء.</p><span class="more">ابدأ تدريب ←</span></a>
+        <a class="card card-link" href="./features/virtual-labs/"><span class="new">جديد</span><div class="ic">🧪</div><h3>٣٩ معملاً افتراضياً</h3><p>من الصف ١ للتاسع: كسور ومجسمات ومغناطيس ودوائر وتفاعلات ووراثة ونظام ثنائي — غيّر متغير وشوف النتيجة.</p><span class="more">افتح المعامل ←</span></a>
+        <a class="card card-link" href="../#/profiles"><span class="new">جديد</span><div class="ic">👧</div><h3>أكتر من طفل</h3><p>لكل طفل ملف لوحده: تقدمه وسلسلته وأوراقه. بدّل بينهم في ثانية، والكتب والإعدادات مشتركة على الجهاز.</p><span class="more">افتح الملفات ←</span></a>
+        <article class="card"><div class="ic">📚</div><h3>كتب الوزارة</h3><p>نزّل الكتاب واستورده مرة واحدة، وجيسيكا تقرأ منه الصفحة اللي انت فيها وترد من الكتاب نفسه.</p></article>
+        <article class="card"><div class="ic">🧠</div><h3>مدرس ذكي</h3><p>حدّد أي فقرة → شرح، تبسيط، ترجمة، أو اسأل عن الصفحة كلها. بيجاوب بالعربي والمصري.</p></article>
+        <article class="card"><div class="ic">📝</div><h3>مراجعة وامتحانات</h3><p>ملخصات، كويزات، بطاقات بتباعد ذكي، امتحان محاكاة بتوقيت وحفظ تلقائي.</p></article>
+        <article class="card"><div class="ic">🎯</div><h3>خطة يومية</h3><p>٣ مهام على قد يومك، مبنية من أضعف مهاراتك وأقرب امتحان ووحدتك الحالية.</p></article>
+        <article class="card"><div class="ic">🧒</div><h3>عالم الابتدائي</h3><p>عالم منفصل للأطفال: هدية يومية، ستيكرز، دروس ٥ دقايق، وخريطة مغامرات.</p></article>
+        <article class="card"><div class="ic">👨‍👩‍👧</div><h3>ولي الأمر</h3><p>بوابة محمية، وقت استخدام محدد، مهام، وتقرير أسبوعي جاهز للطباعة أو واتساب.</p></article>
+        <article class="card"><div class="ic">📴</div><h3>أوفلاين</h3><p>بعد أول تحميل، الكتب والبطاقات والامتحانات تشتغل بدون نت، وتثبّته على الموبايل.</p></article>
+        <article class="card"><div class="ic">🔒</div><h3>خصوصية</h3><p>لا حساب، لا سيرفر، ولا بيانات بتطلع من جهازك. المفتاح والكتب محفوظين محليًا.</p></article>
+      </div>
+      <div class="hero-points" style="margin-top:18px">
+        <a class="pill" href="./features/virtual-labs/">🧪 المعامل الافتراضية</a>
+        <a class="pill" href="./features/school-exam/">📄 امتحان المدرسة</a>
+        <a class="pill" href="./features/grade-paper/">✅ صحّح الورقة</a>
+        <a class="pill" href="./features/monthly-report/">🗓️ تقرير الشهر</a>
+        <a class="pill" href="./features/mistakes-review/">🎯 مراجعة الأخطاء</a>
+        <a class="pill" href="./features/egyptian-voice/">🗣️ الصوت المصري</a>
+                <a class="pill" href="./features/camera-solver/">📷 حل بالكاميرا</a>
+        <a class="pill" href="./features/flashcards/">🃏 البطاقات</a>
+        <a class="pill" href="./features/profiles/">👧 ملفات الأطفال</a>
+        <a class="pill" href="./features/certificates/">🏅 الشهادة</a>
+<a class="pill" href="./features/offline/">📴 أوفلاين</a>
+        <a class="pill" href="./features/class-mode/">🏫 وضع الفصل</a>
+        <a class="pill" href="./features/kids/">🧸 عالم الأطفال</a>
+        <span class="pill" style="border-color:rgba(33,230,201,.45)">جديد</span>
+        <a class="pill" href="./features/comfortable-reading/">👁️ قراءة مريحة</a>
+        <a class="pill" href="./features/weak-phone/">📱 الموبايل الضعيف</a>
+        <a class="pill" href="./features/parent-card/">🏅 كارت إنجاز للأهل</a>
+        <a class="pill" href="./features/daily-question/">🗓️ سؤال اليوم</a>
+        <a class="pill" href="./features/right-edition/">📚 الطبعة الصح</a>
+        <a class="pill" href="./features/weekly-sheet/">🧾 ورقة الأسبوع</a>
+        <a class="pill" href="./features/science-board/">🔬 لوحة العلوم</a>
+        <a class="pill" href="./features/battle-card/">⚔️ تحدّي زميلك</a>
+        <a class="pill" href="./features/class-pack/">🎒 حزمة الفصل</a>
+        <a class="pill" href="./features/book-games/">🧩 ألعاب الكتاب</a>
+        <a class="pill" href="./features/lab-notebook/">📓 دفتر المعمل</a>
+        <a class="pill" href="./features/check-working/">✅ راجع خطواتي</a>
+        <a class="pill" href="./features/photo-text/">📷 نص من صورة</a>
+        <a class="pill" href="./features/" style="border-color:rgba(33,230,201,.45)">كل الميزات بالتفصيل ←</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="video">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Jessica في ٢٤ ثانية</h2>
+        <p>نظرة سريعة على التطبيق: كتب الوزارة، المدرس الذكي، والخطة اليومية.</p>
+      </div>
+      <div class="video-wrap">
+        <video controls preload="none" playsinline poster="./shots/dashboard.jpg">
+          <source src="./video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="films">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>أفلام جيسيكا</h2>
+        <p>دقيقة واحدة تعرف منها التطبيق كله — بهوية جيسيكا نفسها.</p>
+      </div>
+      <div class="films-grid">
+        <figure class="film">
+          <video controls preload="none" playsinline poster="./videos/jessica-launch.jpg">
+            <source src="./videos/jessica-launch.mp4" type="video/mp4">
+          </video>
+          <figcaption>التطبيق في ٢٠ ثانية — «كتب الوزارة بقت درس»</figcaption>
+        </figure>
+        <figure class="film">
+          <video controls preload="none" playsinline poster="./videos/jessica-features.jpg">
+            <source src="./videos/jessica-features.mp4" type="video/mp4">
+          </video>
+          <figcaption>اختبار المستوى ← الخطة ← شهادة الإنجاز</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>فيديوهات سريعة</h2>
+        <p>كل ميزة في ١٢ ثانية — من غير كلام كتير.</p>
+      </div>
+      <div class="videos-grid">
+        <figure class="vcard">
+          <video controls preload="none" playsinline poster="./videos/ask.jpg">
+            <source src="./videos/ask.mp4" type="video/mp4">
+          </video>
+          <figcaption>اسأل كل كتبك</figcaption>
+        </figure>
+        <figure class="vcard">
+          <video controls preload="none" playsinline poster="./videos/practice.jpg">
+            <source src="./videos/practice.mp4" type="video/mp4">
+          </video>
+          <figcaption>تدريب تكيفي</figcaption>
+        </figure>
+        <figure class="vcard">
+          <video controls preload="none" playsinline poster="./videos/night.jpg">
+            <source src="./videos/night.mp4" type="video/mp4">
+          </video>
+          <figcaption>ليلة الامتحان</figcaption>
+        </figure>
+        <figure class="vcard">
+          <video controls preload="none" playsinline poster="./videos/scan.jpg">
+            <source src="./videos/scan.mp4" type="video/mp4">
+          </video>
+          <figcaption>صحّح ورقتك بالكاميرا</figcaption>
+        </figure>
+        <figure class="vcard">
+          <video controls preload="none" playsinline poster="./videos/kids.jpg">
+            <source src="./videos/kids.mp4" type="video/mp4">
+          </video>
+          <figcaption>عالم الابتدائي</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>شوف التطبيق من جوه</h2>
+        <p>صور حقيقية من التطبيق — مش تصميمات.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <img src="./shots/dashboard.jpg" alt="لوحة Jessica الرئيسية" width="1440" height="1000" loading="lazy">
+          <figcaption>لوحتك اليومية: XP، سلسلة الأيام، مهام اليوم، وخطة المذاكرة.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <img src="./shots/library.jpg" alt="مكتبة Jessica وكتب الوزارة" width="1440" height="1000" loading="lazy">
+          <figcaption>مكتبتك: كتب الوزارة حسب الصف والمادة، مع تقدمك في كل كتاب.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="grades">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>من أولى ابتدائي لتالت إعدادي</h2>
+        <p>كتالوج رسمي لكل صف، ولو مادتك مش متاحة تقدر تستورد كتابها بنفسك في ثواني.</p>
+      </div>
+      <div class="grades">
+        <a class="grade" href="./grades/primary-1/">أولى ابتدائي<small>عربي وإنجليزي ورياضيات، وحدة بوحدة</small></a>
+        <a class="grade" href="./grades/primary-2/">تانية ابتدائي<small>عربي وإنجليزي ورياضيات، وحدة بوحدة</small></a>
+        <a class="grade" href="./grades/primary-3/">تالتة ابتدائي<small>عربي وإنجليزي ورياضيات وعلوم</small></a>
+        <a class="grade" href="./grades/primary-4/">رابعة ابتدائي<small>مواد رابعة وفهرس الوحدات</small></a>
+        <a class="grade" href="./grades/primary-5/">خامسة ابتدائي<small>عربي ورياضيات وعلوم ودراسات</small></a>
+        <a class="grade" href="./grades/primary-6/">سادسة ابتدائي<small>عربي ورياضيات وعلوم ودراسات</small></a>
+        <a class="grade" href="./grades/prep-1/">أولى إعدادي<small>كل مواد الترم الأول وفهرسها</small></a>
+        <a class="grade" href="./grades/prep-2/">تانية إعدادي<small>علوم ورياضيات ودراسات وفرنساوي</small></a>
+        <a class="grade" href="./grades/prep-3/">تالتة إعدادي<small>مواد شهادة الإعدادية وخطة السنة</small></a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="install">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>ثبّت التطبيق على أي جهاز</h2>
+        <p>موبايل، تابلت، آيباد أو كمبيوتر — ضغطة واحدة وبيشتغل زي أي تطبيق.</p>
+      </div>
+      <div class="install-grid">
+        <article class="install-card">
+          <h3>📱 آيفون / آيباد</h3>
+          <ol>
+            <li>افتح اللينك في <b>Safari</b>.</li>
+            <li>اضغط زر المشاركة (المربع اللي فيه سهم).</li>
+            <li>اختار «إضافة إلى الشاشة الرئيسية».</li>
+            <li>اضغط «إضافة».</li>
+          </ol>
+        </article>
+        <article class="install-card">
+          <h3>🤖 أندرويد</h3>
+          <ol>
+            <li>افتح اللينك في <b>Chrome</b> أو Samsung Internet.</li>
+            <li>اضغط قائمة ⋮.</li>
+            <li>اختار «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».</li>
+            <li>أكّد التثبيت.</li>
+          </ol>
+        </article>
+        <article class="install-card">
+          <h3>💻 كمبيوتر</h3>
+          <ol>
+            <li>افتح اللينك في <b>Chrome</b> أو <b>Edge</b>.</li>
+            <li>اضغط أيقونة التثبيت في شريط العنوان.</li>
+            <li>اضغط «تثبيت».</li>
+            <li>هيفتح في نافذة مستقلة واختصار على الديسكتوب.</li>
+          </ol>
+        </article>
+      </div>
+      <div class="install-qr">
+        <img src="./qr.png" alt="QR كود لتحميل Jessica" width="600" height="600" loading="lazy">
+        <p><b>على الكمبيوتر؟</b><br>امسح الكود بكاميرا الموبايل، أو اكتب اللينك القصير:<br><b dir="ltr">is.gd/jessicaapp</b></p>
+      </div>
+      <p style="text-align:center;margin-top:14px"><a href="./install/" style="color:var(--mint);font-weight:800;font-size:13px">دليل التثبيت الكامل خطوة بخطوة ←</a> &nbsp;·&nbsp; <a href="./grades/" style="color:var(--mint);font-weight:800;font-size:13px">كل الكتب حسب الصف ←</a></p>
+    </div>
+  </section>
+
+  <section id="topics">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>مواضيع بتفرق في المذاكرة</h2>
+        <p>أدلة قصيرة للطالب وولي الأمر: جدول مذاكرة، تركيز، علوم، عربي، حفظ، رياضيات، إنجليزي، ابتدائي، وقلق الامتحان.</p>
+      </div>
+      <div class="grades">
+        <a class="grade" href="./topics/study-plan/">جدول مذاكرة<small>خطة يومية وأسبوعية</small></a>
+        <a class="grade" href="./topics/homework/">حل الواجب<small>بالفهم مش بالنقل</small></a>
+        <a class="grade" href="./topics/math/">مذاكرة الرياضيات<small>من الحفظ للتطبيق</small></a>
+        <a class="grade" href="./topics/science/">مذاكرة العلوم<small>فهم مش حفظ</small></a>
+        <a class="grade" href="./topics/arabic/">مذاكرة العربي والنحو<small>إعراب جملة يوميًا</small></a>
+        <a class="grade" href="./topics/focus/">التركيز والتشتت<small>خطة ٢٥ دقيقة</small></a>
+        <a class="grade" href="./topics/word-problems/">المسائل الكلامية<small>خطوة التحويل</small></a>
+        <a class="grade" href="./topics/study-notes/">ملاحظات الحصة<small>٣ كلمات مش صفحتين</small></a>
+        <a class="grade" href="./topics/memorization/">الحفظ بدون نسيان<small>٥ طرق مجرّبة</small></a>
+        <a class="grade" href="./topics/english/">مذاكرة الإنجليزي<small>خطة ٢٥ دقيقة</small></a>
+        <a class="grade" href="./topics/monthly-tests/">امتحانات الشهر<small>استعداد في ٥ أيام</small></a>
+        <a class="grade" href="./topics/midyear/">نصف السنة<small>خطة ١٤ يوم</small></a>
+        <a class="grade" href="./topics/exam-anxiety/">التوتر قبل الامتحان<small>خطة تهدّي الأعصاب</small></a>
+        <a class="grade" href="./topics/parents/">دليل ولي الأمر<small>متابعة بدون خناق</small></a>
+        <a class="grade" href="./topics/primary-kid/">مساعدة طفلك في الابتدائي<small>أول ٣ سنوات</small></a>
+        <a class="grade" href="./topics/">كل المواضيع<small>١٥ دليل قصير</small></a>
+      </div>
+    </div>
+  </section>
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>٣ خطوات وتبدأ</h2>
+        <p>أول مرة بس، وبعدها التطبيق بيفتح على طول.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>اعمل مفتاح Gemini مجاني</h3>
+          <p>من Google AI Studio في دقيقة. جوه التطبيق فيه فيديو شرح لو مش عارف.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>استورد كتاب واحد</h3>
+          <p>نزّل كتاب الوزارة من قائمة الصف، أو ارفع أي PDF من جهازك.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>ابدأ المذاكرة</h3>
+          <p>اقرأ، اسأل، راجع، وامتحن نفسك — وجيسيكا بتتابع تقدمك.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="privacy">
+        <div>
+          <h2>بياناتك تفضل عندك</h2>
+          <p>مفيش سيرفر، مفيش حساب، ومفيش تتبع. المفتاح والكتب والتقدم كله على جهازك، وتقدر تصدّر نسخة احتياطية أو تمسح كل حاجة في أي وقت.</p>
+        </div>
+        <ul>
+          <li>المفتاح محفوظ في المتصفح فقط</li>
+          <li>الكتب مفهرسة محليًا على جهازك</li>
+          <li>نسخة احتياطية كاملة ZIP واسترجاع</li>
+          <li>مسح كل البيانات بضغطة</li>
+          <li>الكود مفتوح المصدر على GitHub</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>عندك سؤال؟ انضم لجروب جيسيكا</h2>
+        <p>مكان واحد لأولياء الأمور والطلاب: اسأل عن أي حاجة في التطبيق، اقرأ تجارب ناس زيك، وتابع التحديثات — والرد في نفس اليوم.</p>
+      </div>
+      <div class="privacy">
+        <div>
+          <h2>جروب أولياء الأمور والطلاب</h2>
+          <p>جروب عام على فيسبوك، مش تابع لجهة تجارية: بنجاوب على الأسئلة، بنشرح طرق مذاكرة عملية، وبنسمع الاقتراحات قبل ما تتنفذ. تقدر تقرأ المنشورات قبل ما تنضم.</p>
+        </div>
+        <div>
+          <ul>
+            <li>أسئلة وإجابات عن التطبيق خطوة بخطوة</li>
+            <li>طرق مذاكرة من غير كلام تسويقي</li>
+            <li>تحديثات وإصدارات جديدة أول بأول</li>
+            <li>اقتراحاتك بتوصل مباشرة للفريق</li>
+          </ul>
+          <a class="btn" style="margin-top:18px" href="https://is.gd/jessicagroup" target="_blank" rel="noreferrer noopener">انضم للجروب ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>أسئلة شائعة</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>هل التطبيق مجاني فعلًا؟</summary>
+          <p>أيوه، مجاني بالكامل ومفتوح المصدر. محتاج بس مفتاح Gemini مجاني من Google AI Studio، وده مجاني كمان.</p>
+        </details>
+        <details>
+          <summary>هل يحتاج إنترنت؟</summary>
+          <p>أول تحميل واستيراد كتاب يحتاج نت. بعد كده القراءة والبطاقات والامتحانات المحفوظة تشتغل أوفلاين. ميزات الذكاء الاصطناعي تحتاج اتصال.</p>
+        </details>
+        <details>
+          <summary>فين بياناتي ومفتاحي؟</summary>
+          <p>كل حاجة على جهازك فقط: المفتاح في المتصفح، والكتب في تخزين التطبيق المحلي. مفيش سيرفر ومفيش حساب.</p>
+        </details>
+        <details>
+          <summary>أقدر أستخدمه على الآيفون؟</summary>
+          <p>أيوه. افتح اللينك في Safari، اضغط زر المشاركة، وبعدين «إضافة إلى الشاشة الرئيسية».</p>
+        </details>
+        <details>
+          <summary>بيشتغل للمدارس الحكومية والخاصة واللغات؟</summary>
+          <p>أيوه. بتختار نوع مدرستك (حكومي / خاص / لغات) والتطبيق يظبط المواد والكتب المناسبة — مدارس اللغات بتشوف الفرنساوي والألماني كمان.</p>
+        </details>
+        <details>
+          <summary>لو مادتي مش موجودة في كتالوج الوزارة؟</summary>
+          <p>استورد أي PDF من جهازك، وجيسيكا تفهرسه وتعلّم منه عادي.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta">
+      <h2>ابدأ مذاكرتك دلوقتي</h2>
+      <p>مجاني، بدون حساب، وبيشتغل على أي موبايل.</p>
+      <a class="btn" href="../">افتح Jessica ←</a>
+      <button class="btn ghost" type="button" onclick="shareApp()">🔗 شارك مع صاحبك</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© Jessica — صُنع في مصر 🇪🇬</span>
+    <span>
+      <a href="https://github.com/bishoynabilanis/jessica" target="_blank" rel="noreferrer">GitHub</a>
+      ·
+      <a href="https://is.gd/jessicagroup" target="_blank" rel="noreferrer">جروب المناقشة</a>
+      ·
+      <a href="./guides/">أدلة المذاكرة</a>
+      <a href="./topics/">مواضيع المذاكرة</a>
+      ·
+      <a href="../welcome/en/" hreflang="en">English</a>
+      ·
+      <a href="../#/disclaimer">إخلاء المسؤولية</a>
+      ·
+      <a href="../">التطبيق</a>
+    </span>
+  </div>
+</footer>
+<script>
+(function () {
+  fetch('https://abacus.jasoncameron.dev/get/jessica-bishoy/opens', { cache: 'no-store' })
+    .then(function (r) { return r.json() })
+    .then(function (j) {
+      if (!j || typeof j.value !== 'number' || j.value < 5) return
+      var el = document.getElementById('opens-count')
+      el.textContent = '🔥 ' + j.value.toLocaleString('ar-EG') + ' فتحة'
+      el.hidden = false
+    })
+    .catch(function () {})
+})()
+</script>
+
+<script>
+function shareApp() {
+  var url = 'https://bishoynabilanis.github.io/jessica/welcome/';
+  var text = 'Jessica — تطبيق مذاكرة مجاني لطلاب مصر: كتب الوزارة الرسمية + مدرس ذكاء اصطناعي + امتحانات، يشتغل أوفلاين وبدون حساب.';
+  if (navigator.share) {
+    navigator.share({ title: 'Jessica', text: text, url: url }).catch(function () {});
+    return;
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank', 'noopener');
+}
+</script>
+</body>
+</html>
