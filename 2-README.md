@@ -1,0 +1,274 @@
+**Try it now:** https://bishoynabilanis.github.io/jessica/welcome/ | English page: https://bishoynabilanis.github.io/jessica/welcome/en/ | All grades: https://bishoynabilanis.github.io/jessica/welcome/grades/
+
+Reading and practice work offline after you load the app and download your books. The AI tutor needs internet and a free Gemini API key from Google AI Studio.
+
+# Jessica — تطبيق مذاكرة بالذكاء الاصطناعي 🇪🇬
+
+[**افتح التطبيق**](https://bishoynabilanis.github.io/jessica/) · [صفحة الهبوط](https://bishoynabilanis.github.io/jessica/welcome/) · [كتب الوزارة PDF](https://bishoynabilanis.github.io/jessica/welcome/grades/) · [مركز المساعدة](https://bishoynabilanis.github.io/jessica/#/help) · [جروب المجتمع](https://is.gd/jessicagroup)
+
+| الصفحة | إيه اللي فيها |
+| --- | --- |
+| [⏱️ اختبار ٦٠ ثانية](https://bishoynabilanis.github.io/jessica/welcome/quiz/) | ١٠ أسئلة على مستوى الصف، تصحيح فوري وشرح — من غير تحميل |
+| [📚 كتب الوزارة لكل الصفوف](https://bishoynabilanis.github.io/jessica/welcome/grades/) | ٦١ كتاب PDF رسمي (الترم الأول) بنسخ عربي وإنجليزي وفرنسي مقسّم على ٩ صفوف |
+| [🧭 مواضيع المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/topics/) | جدول مذاكرة، حل الواجب، الرياضيات، الحفظ، الإنجليزي، قلق الامتحان |
+| [📘 أدلة المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/guides/) | طريقة المذاكرة من الكتاب، آخر أسبوع، البابل شيت |
+| [📲 دليل التثبيت](https://bishoynabilanis.github.io/jessica/welcome/install/) | تثبيت التطبيق على أندرويد وآيفون والكمبيوتر خطوة بخطوة |
+| [🇬🇧 English landing](https://bishoynabilanis.github.io/jessica/welcome/en/) | النسخة الإنجليزية من صفحة الهبوط |
+| [🗺️ خريطة الموقع](https://bishoynabilanis.github.io/jessica/welcome/sitemap/) | كل الصفحات والروابط في مكان واحد — مفيدة للزائر وللـcrawl |
+| [✨ شرح كل ميزة](https://bishoynabilanis.github.io/jessica/welcome/features/) | ٨ صفحات مفصّلة: امتحان المدرسة، التصحيح، تقرير الشهر، المراجعة، الصوت، أوفلاين، وضع الفصل، والأطفال |
+
+[![Deploy](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/deploy.yml)
+[![E2E](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml/badge.svg)](https://github.com/bishoynabilanis/jessica/actions/workflows/e2e.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ee6c5.svg)](LICENSE)
+
+A free, **fully client-side** study PWA for Egyptian students from **Primary 1 to Preparatory 3**.
+Jessica reads the actual Ministry textbook page with the student, explains it, quizzes them, corrects
+their paper answer sheet from a photo, and turns revision into a game — with **no backend, no accounts
+and no subscriptions**.
+
+- 📚 **61 official Ministry books** (Term 1) with direct links, importable once and readable offline.
+- 🧠 **BYOK AI tutor**: Gemini, OpenAI, Claude, OpenRouter or any OpenAI-compatible endpoint.
+- 📸 **Photo solver**: snap a maths problem, a science diagram or a paragraph → steps, answer and a similar question.
+- 🌙 **Exam night, adaptive practice, flashcards (SM-2), mock exams, bubble-sheet scanner, class mode.**
+- 🌍 **7 UI languages**: Arabic (RTL), English, French, Spanish, German, Turkish, Indonesian.
+- 🔒 **Private by design**: books, key and progress stay in the browser (localStorage + IndexedDB).
+
+![Jessica dashboard](public/welcome/shots/dashboard.jpg)
+
+> **Bring your own key (BYOK):** every AI request goes straight from the browser to the provider.
+> Nothing is proxied, stored on a server or shared.
+>
+> **Live in Egypt:** GitHub Pages works where `*.netlify.app` domains are blocked by Egyptian ISPs.
+
+---
+
+## ✨ What's inside
+
+| Area | Features |
+| --- | --- |
+| **Reading** | Local PDF viewer with selectable text layer, highlight → explain / ELI5 / translate / save, saved highlights, page-grounded AI tutor, page OCR for scanned PDFs, zoom & fullscreen |
+| **AI tutor** | Bring your own key for Gemini, OpenAI, Claude, OpenRouter or any OpenAI-compatible endpoint; streaming chat, Socratic mode, role-play personas, Arabic & Egyptian-Arabic answers, KaTeX math, read-aloud (TTS) and voice input (STT) |
+| **Study** | Ask across every book with page citations, adaptive weak-first practice, ready-made per-unit question banks, adaptive daily plan, unit practice hub, cached per-unit question banks, skills map with exam readiness, achievements and printable certificates, unit summaries (offline + read-aloud), mistake notebook with explain-my-mistake and drills, quizzes, flashcards with SM-2 spaced repetition, cheat-sheet PDF, 5-day planner, mind maps (Mermaid), podcast mode, comic strips, essay grader |
+| **Practice** | Camera page scan to instant explanation, similar-question drills from the mistake notebook, shareable achievement cards, timed mock exams with question navigator, flags, autosave/resume and extra time, printable worksheets with answer keys, reading-fluency coach, class assignments via link/QR, teacher question studio and class CSV, pronunciation coach, vision solver (camera), virtual labs, peer battles via URL/QR |
+| **Motivation** | XP & levels, daily streaks, rotating quests, coins, evolving mascot with looks/cosmetics, daily riddle, learning constellation, gentle proactive nudges |
+| **Comfort** | Dark/light themes, text scaling, Atkinson Hyperlegible (dyslexia-friendly), reduced motion, offline shell, local notifications, question read-aloud, crash boundary, global search (⌘K) |
+| **Privacy** | Everything in `localStorage` + IndexedDB, JSON backup/restore, full ZIP backup with books and flashcards, one-click wipe, parent WhatsApp report generated on-device |
+| **Community catalog** | Import a JSON catalog shared by a teacher or school; books appear in the library with a Community badge and are downloaded/imported locally |
+| **Schools** | Government, private and language school types; subjects and the official catalog adapt (French/German only for language schools) |
+| **Languages & regions** | English, Arabic, French, Spanish, German, Turkish and Indonesian UI (translated core, English fallback), Arabic RTL, country & curriculum switch (Egypt, Gulf, international, other), learner bands, official catalog only where it exists, own-PDF flow everywhere |
+| **Primary mode** | A separate kids world for Primary 1–4 by default (5–6 get the full study shell, switchable in Settings): its own shell and routes, bright world theme, floating scenery, big controls, daily gift and stickers, sticker book, badges, parent gate, read-to-me page reader and age-appropriate explanations |
+
+The official catalog covers **Arabic, English, Mathematics, Science, Social Studies, French, German and Religion** depending on the grade and school type (government, private or language).
+
+---
+
+## 🚀 Quick start
+
+```bash
+npm install
+npm run dev          # http://localhost:5173
+npm run build        # type-check + production build → dist/
+npm run preview      # preview the production build
+```
+
+Requirements: **Node.js 18+** and npm.
+
+### Get a Gemini key
+
+1. Open [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Create a free API key.
+3. Paste it in the setup screen and press **Verify and connect**.
+4. Import at least one book (official Ministry PDF or your own file).
+
+A valid key **and** at least one imported book are required before the app opens. Both stay on the
+device: the key in `localStorage`, the books in IndexedDB.
+
+---
+
+## 📚 Official Egyptian book library
+
+Jessica ships with a catalogue of the **official Ministry of Education books** for the preparatory
+stage plus **Primary 4** (Term 1), covering English, Arabic, Mathematics, Science, Social Studies and French.
+
+The AI adapts its teaching style to the imported book: Primary 4 gets very short sentences, concrete examples and simpler quizzes, while preparatory grades keep the teen-level depth.
+
+Switching the **Stage** to Primary (Library, Settings or onboarding) opens **Jessica Kids**: a completely separate world with its own navigation, home, library, play area, cards, buddy page and parent-gated settings. It adds a daily gift (stars + collectible sticker), a daily star goal, streak encouragement, continue-reading, a 3-minute play shortcut, a 12-sticker book, badges, a read-to-me page button, a guided 5-minute lesson (read → play → reward, saved and resumable), tap-a-word helper with pronunciation and meanings, karaoke-style read-aloud highlighting, voice answers, a lesson mystery box, an illustrated adventure map, a parent dashboard with a daily time limit, a daily reminder, parent-set tasks with star rewards, week-over-week comparison, a weekly WhatsApp report and a printable PDF — with no advanced controls. Preparatory mode is unchanged, and the two stages keep separate books and progress.
+
+The catalogue lives in `src/data/officialBooks.ts` and points at the ministry's public PDF blobs
+(`elearnningcontent.blob.core.windows.net`). The ministry portal itself blocks access from outside
+Egypt, but the PDF files are public.
+
+**Why the PDFs are not bundled:** the books are 6–136 MB each; the full Term 1 set is over 700 MB,
+which cannot be shipped in a static deployment. Instead:
+
+1. Pick the grade, term and subject in the **Library**.
+2. Tap **Download PDF** — the official file opens in a new tab; save it.
+3. Tap **Import**, choose the saved file, and confirm.
+
+The app then reads the PDF locally, indexes every page into IndexedDB and detects its units, so the
+tutor, quizzes, flashcards and the unit rail all work from the real book — even offline afterwards.
+Text-based PDFs only: a scanned image PDF with no text layer cannot be indexed (use the Vision solver).
+
+To add or correct a catalogue entry, edit `src/data/officialBooks.ts`; no rebuild script is needed.
+Books imported by the student are stored in IndexedDB (`pdf:<bookId>` + `chapter:<bookId>`), never uploaded.
+
+> The textbooks are © Ministry of Education and Technical Education, Egypt, distributed free to students.
+> They are downloaded by the student for personal study and are not redistributed by this app.
+
+---
+
+## 🌍 Deployment & automatic updates
+
+The build is 100% static. `vite.config.ts` uses `base: './'`, so the same `dist/` works at a domain root
+**or** in a sub-path (GitHub Pages project sites). The app is a PWA, so visitors can install it on
+Android/iOS/desktop and it keeps working offline.
+
+> ⚠️ **Egypt note:** `*.netlify.app` subdomains are blocked by Egyptian ISPs (verified on the Netlify
+> forum and r/Egypt_Developers), so a Netlify Drop link shows a blank/blocked page inside Egypt even
+> though it opens everywhere else. Use GitHub Pages, Vercel, Firebase Hosting, or a custom domain.
+> See [`DEPLOY-AR.md`](./DEPLOY-AR.md) for Arabic step-by-step instructions.
+
+### Option A — Vercel (recommended, 2 minutes)
+
+1. Create a GitHub repository and push this project.
+2. In Vercel: **Add New → Project → Import** the repository.
+3. Vercel reads `vercel.json`: build `npm run build`, output `dist`.
+4. Deploy. Every push to `main` deploys automatically to the same public URL.
+
+### Option B — GitHub Pages (free)
+
+1. Create a repository on GitHub and push this project to `main`.
+2. Repository **Settings → Pages → Source: GitHub Actions**.
+3. The included workflow (`.github/workflows/deploy.yml`) builds and publishes on every push.
+4. The public URL appears under **Settings → Pages** (and in the Actions run).
+
+### Option C — Netlify
+
+Import the repository; `netlify.toml` already sets build command, publish directory and no-cache
+headers for `sw.js`.
+
+### How updates reach installed users
+
+- The service worker is registered with `updateViaCache: 'none'` and checks for a new version:
+  - every 30 minutes,
+  - whenever the app becomes visible again,
+  - when the browser checks after navigation.
+- When a new worker takes control, the page reloads once automatically, so the new bundle runs.
+- Progress, books, cards and settings are stored locally, so the reload keeps everything.
+- `sw.js` and `index.html` are served with `must-revalidate`, preventing a stale shell.
+- Users can always force an update by closing and reopening the installed app, or by refreshing.
+
+### Install on a phone
+
+- **Android/Chrome:** open the site → menu → **Install app** (or the install button in Settings).
+- **iPhone/Safari:** Share → **Add to Home Screen**.
+- **Desktop:** install icon in the address bar.
+
+---
+
+## 🔐 Privacy & security model
+
+- **No backend.** There is no database, no analytics and no account system.
+- **API key** lives in `localStorage` and is sent directly to `generativelanguage.googleapis.com`.
+  Anyone with access to the unlocked device/browser profile can read it — treat it like a password and
+  never commit it to a repository.
+- **Study data** (XP, streaks, notes, planner, exams, flashcards, chats) stays in `localStorage` and
+  IndexedDB on the device.
+- **Backups** exported from Settings contain progress and settings but **never the API key**.
+- **Parent report** is composed locally and only leaves the device when the student taps WhatsApp.
+- Vision images are sent to Gemini for the single request and are not stored by the app.
+
+### Static-PWA limitations
+
+- Daily riddle notifications fire at/after **16:00 only while the app is open** (or on the next open).
+  True background push requires a server, which this project intentionally avoids.
+- AI features need an internet connection; the reader, books, flashcards, vault, planner and labs work offline.
+- pdf.js serves CMap files from a CDN for some non-Latin PDFs. Arabic text extraction therefore needs a
+  connection the first time; the rendered page itself is cached.
+
+---
+
+## 🧱 Tech stack
+
+React 18 · TypeScript · Vite · TailwindCSS · Zustand (persisted) · React Router (hash) ·
+pdfjs-dist · IndexedDB (`idb`) · react-markdown + remark-math/rehype-katex · Mermaid ·
+jsPDF · qrcode · Framer Motion · lucide-react.
+
+### Project layout
+
+```
+public/
+  icons/                 PWA icons
+  manifest.webmanifest
+  sw.js                  service worker
+scripts/
+  generate-icons.mjs     SVG/PNG icon generator (npm run icons)
+src/
+  components/
+    common/              shared page chrome, book cards, key notices
+    layout/              shell, sidebar, top bar, mobile nav, quick panel
+    reader/              PdfViewer, ReaderChat, ReaderStudio
+    tools/               16 AI/study tools (quiz, SRS, exam, vision, podcast…)
+    ui/                  buttons, cards, modals, toggles, markdown
+  data/                  official book catalogue, riddles, mascots, personas
+  hooks/                 PWA install, notifications, idle detector, study timer
+  lib/                   gemini, prompts, pdf, SRS, speech, audio, export, battle
+  pages/                 Dashboard, Library, Reader, StudyHub, Games, Labs,
+                         Constellation, Vault, Mascot, Settings, Battle
+  store/                 useApp (profile/progress), useUI (toasts)
+```
+
+### IndexedDB & storage keys
+
+| Store | Key / name | Contents |
+| --- | --- | --- |
+| localStorage | `jessica-profile-v1` | XP, streaks, settings, vault, planner, exams, mascot |
+| IndexedDB | `pdf:<bookId>` | Imported official PDF bytes |
+| IndexedDB | `chapter:<bookId>` | Extracted per-book text cache + units |
+| IndexedDB | `chat:<bookId>` | Tutor conversations per book |
+| IndexedDB | `cards` | Flashcards + SRS scheduling |
+
+---
+
+## 🧪 Quality checks
+
+End-to-end smoke tests (Playwright + local Chrome):
+
+```bash
+npm run build
+npm run test:e2e
+```
+
+Covers the dashboard, ask-across-books, adaptive practice, help centre, auto bug reports and the install guide.
+
+```bash
+npm run build     # strict TypeScript + production bundle
+```
+
+The production build has been smoke-tested in Chromium for: onboarding → dashboard, official library with
+grade/term/subject filters, importing a real 112-page ministry PDF with unit detection, reader navigation,
+studio tool grid, whiteboard, study hub, arcade, labs, constellation, vault, mascot, settings, peer battle,
+parent report, daily riddle and theme/model switching.
+
+---
+
+## 💬 Community
+
+Questions, study tips and release notes live in the Facebook group — the same place parents and
+students ask for help:
+
+**[Jessica | جيسيكا — مذاكرة أذكى لأولادنا](https://is.gd/jessicagroup)** (public group, Arabic)
+
+## 🇪🇬 بالعربي السريع
+
+- التطبيق **مجاني بالكامل** وبدون سيرفر: كل البيانات بتتخزن على جهازك فقط.
+- محتاج **مفتاح Gemini مجاني** من Google AI Studio عشان تشغّل المدرس الذكي.
+- مكتبة الوزارة الرسمية جاهزة داخل التطبيق: اختار الصف والترم والمادة، نزّل الـPDF واستورده مرة واحدة.
+- الكتب مش مضمّنة في المشروع بسبب أحجامها (6–136 ميجا للكتاب)، وبتتخزن على جهازك بعد الاستيراد.
+- بعد أي تعديل: `npm run build` وارفع مجلد `dist` على Vercel أو GitHub Pages.
+- مفتاح الـ API بيتخزن في المتصفح فقط — متشاركوش مع حد ومتضيفوش على GitHub.
+- الإشعارات اليومية بتشتغل والتطبيق مفتوح فقط، لأن التطبيق ثابت بدون سيرفر.
+
+---
+
+Made with care for curious minds. **تعلّم، العب، واكبر.** 🦊✨
