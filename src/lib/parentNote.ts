@@ -4,6 +4,7 @@
  */
 export const PARENT_NOTE_MAX = 100
 
+// eslint-disable-next-line no-control-regex
 const INVISIBLE = /[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u2060\u202a-\u202e\u2066-\u2069\ufeff]+/g
 const TAG = /<(\/?[a-zA-Z!][^<>]*)?>/g
 const SCHEME_URL = /(https?:\/\/|www\.)\S*/gi
@@ -12,7 +13,7 @@ const DOMAIN_PATH = /\b[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}\/\S*/gi
 const DOMAIN_TLD =
   /\b[a-z0-9-]+(\.[a-z0-9-]+)*\.(com|net|org|io|co|me|ly|app|dev|xyz|info|biz|ai|gg|tv|us|uk|eg|ae|sa|ru|cc|link|click|site|online|shop|store|top|to|be|gl|ee|im|fm)\b/gi
 
-const DISGUISED_DOT = /\s*[\[(]\s*(\.|dot)\s*[\])]\s*|\s+\.(?=[a-z0-9])/gi
+const DISGUISED_DOT = /\s*[[(]\s*(\.|dot)\s*[\])]\s*|\s+\.(?=[a-z0-9])/gi
 const DIGIT = '[0-9\\u0660-\\u0669\\u06f0-\\u06f9]'
 const PHONE = new RegExp(`\\+?${DIGIT}(?:[\\s().-]?${DIGIT}){6,}`, 'g')
 const SCHEME = /\b(javascript|vbscript|data|file):/gi
