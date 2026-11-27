@@ -67,3 +67,16 @@ test('a language school gets the English maths and science books plus French', a
   await expect(maths).toHaveAttribute('data-language', 'en')
   await expect(page.locator('[data-testid="catalog-card"][data-subject="French"]')).toHaveCount(1)
 })
+
+test('the four new Ministry books show up for the right student', async ({ page }) => {
+  await seed(page, 'languages')
+  await page.addInitScript(() => {
+    const raw = window.localStorage.getItem('jessica-profile-v1')
+    if (!raw) return
+    const data = JSON.parse(raw)
+    data.state.settings.gradeLevel = 9
+    window.localStorage.setItem('jessica-profile-v1', JSON.stringify(data))
+  })
+  await page.goto('/#/library')
+  await expect(page.locator('[data-testid="catalog-card"][data-subject="ICT"]')).toHaveCount(1)
+})

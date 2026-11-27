@@ -59,7 +59,7 @@ export function checkBook(
 
   const medium = schoolMedium(student.schoolType)
   const contentSubject = book.subject === 'Mathematics' || book.subject === 'Science'
-  if (contentSubject && book.language !== medium) {
+  if (contentSubject && book.language !== medium && !(medium === 'en' && book.language === 'fr')) {
     findings.push({
       id: 'language',
       severity: 'warn',

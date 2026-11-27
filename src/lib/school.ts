@@ -19,7 +19,7 @@ export function normalizeSchoolType(type: unknown): SchoolType {
   return type === 'languages' || type === 'private' ? type : 'government'
 }
 
-const CORE: Subject[] = ['English', 'Arabic', 'Mathematics', 'Science', 'Social Studies']
+const CORE: Subject[] = ['English', 'Arabic', 'Mathematics', 'Science', 'Social Studies', 'ICT']
 const LANGUAGE_SUBJECTS: Subject[] = ['French']
 
 /** The language the content subjects (maths, science) are taught in. */

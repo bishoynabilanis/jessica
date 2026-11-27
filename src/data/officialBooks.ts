@@ -677,7 +677,8 @@ export function officialFor(
     // Maths and science exist in two media; showing the other one is worse
     // than showing nothing, because the words are unusable to the child.
     if (medium && (book.subject === 'Mathematics' || book.subject === 'Science')) {
-      return book.language === medium
+      // Language schools also teach some books in French.
+      return book.language === medium || (medium === 'en' && book.language === 'fr')
     }
     return true
   })
