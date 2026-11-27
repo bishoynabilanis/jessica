@@ -4,7 +4,7 @@ import { officialBooks, type OfficialBook } from '@/data/officialBooks'
 import { deleteChapterCache, deletePdfBytes, savePdfBytes } from '@/lib/db'
 import { detectUnits } from '@/lib/units'
 
-export const SUBJECTS: Subject[] = ['English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies', 'Religion']
+export const SUBJECTS: Subject[] = ['English', 'Arabic', 'German', 'French', 'Science', 'Mathematics', 'Social Studies', 'Religion', 'ICT']
 
 export interface ImportMeta {
   title: string

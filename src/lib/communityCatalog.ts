@@ -10,6 +10,7 @@ const SUBJECTS: Subject[] = [
   'Mathematics',
   'Social Studies',
   'Religion',
+  'ICT',
 ]
 
 const LANGUAGES: LanguageCode[] = ['en', 'ar', 'de', 'fr']

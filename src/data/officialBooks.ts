@@ -54,6 +54,16 @@ export const officialBooks: OfficialBook[] = [
     language: 'ar',
   },
   {
+    id: 'off-p1-math-fr-t1',
+    grade: 1,
+    subject: 'Mathematics',
+    term: 'Term 1',
+    title: 'Mathématiques (français) — 1ère primaire',
+    url: file('2026_2027/Primary/Primary1/Term1/StudentBook/Math_FR_P1_T1.pdf'),
+    sizeMb: 24.9,
+    language: 'fr',
+  },
+  {
     id: 'off-p1-math-en-t1',
     grade: 1,
     subject: 'Mathematics',
@@ -146,6 +156,16 @@ export const officialBooks: OfficialBook[] = [
     title: 'الرياضيات — الصف الثالث الابتدائي',
     url: file('2026_2027/Primary/Primary3/Term1/StudentBook/Math_Ar_prim3_t1.pdf'),
     sizeMb: 23.7,
+    language: 'ar',
+  },
+  {
+    id: 'off-p3-arabic-t1',
+    grade: 3,
+    subject: 'Arabic',
+    term: 'Term 1',
+    title: 'اللغة العربية — الصف الثالث الابتدائي',
+    url: file('2026_2027/Primary/Primary3/Term1/StudentBook/Arabic_language_prim3_t1.pdf'),
+    sizeMb: 36.7,
     language: 'ar',
   },
 
@@ -510,6 +530,16 @@ export const officialBooks: OfficialBook[] = [
     language: 'ar',
   },
   {
+    id: 'off-g2-science-fr-t1',
+    grade: 8,
+    subject: 'Science',
+    term: 'Term 1',
+    title: 'Découvre et apprends (français) — Deuxième Préparatoire',
+    url: file('2026/Prepratory/Prepratory2/Term1/StudentBook/Science_FR_prp2_Tr1.pdf.pdf'),
+    sizeMb: 58.3,
+    language: 'fr',
+  },
+  {
     id: 'off-g2-social-t1',
     grade: 8,
     subject: 'Social Studies',
@@ -610,6 +640,16 @@ export const officialBooks: OfficialBook[] = [
     url: file('2026/Prepratory/Prepratory3/Term1/StudentBook/French_Prp3_TR1.pdf'),
     sizeMb: 32,
     language: 'fr',
+  },
+  {
+    id: 'off-g3-ict-en-t1',
+    grade: 9,
+    subject: 'ICT',
+    term: 'Term 1',
+    title: 'ICT (English) — Third Preparatory',
+    url: file('2026_2027/Prepratory/Prepratory3/Term1/StudentBook/ICT_EN_Prp3_TR1.pdf'),
+    sizeMb: 11.6,
+    language: 'en',
   },
 ]
 

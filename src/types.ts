@@ -7,6 +7,7 @@ export type Subject =
   | 'Mathematics'
   | 'Social Studies'
   | 'Religion'
+  | 'ICT'
 
 export type LanguageCode = 'en' | 'ar' | 'de' | 'fr'
 
