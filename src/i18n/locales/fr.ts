@@ -669,7 +669,7 @@ export const french: Record<string, string> = {
   "Your whole school year,": "Toute votre année scolaire,",
   "one smart app.": "une application intelligente.",
   "English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.": "Anglais, arabe, allemand, français, sciences et mathématiques – avec un tuteur IA qui connaît réellement la page de votre manuel. Aucun compte, aucun abonnement, aucune donnée ne sortant de votre appareil.",
-  "70+ features": "70+ fonctionnalités",
+  "50+ screens and tools": "50+ écrans et outils",
   "Everything unlocked": "Tout débloqué",
   "100% local": "100% local",
   "Your data stays here": "Vos données restent ici",

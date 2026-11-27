@@ -3,7 +3,7 @@
 **Vision:** any student, in any country, can point Jessica at their own textbook and get a
 tutor that speaks their language, on their device, without an account.
 
-Today Jessica is strong where it counts: local-first, offline, 70+ features, official Egyptian
+Today Jessica is strong where it counts: local-first, offline, 50+ screens and tools, official Egyptian
 books, and an AI tutor grounded in the real page. The gap to a global product is mostly
 **localisation, distribution and trust** — not features.
 

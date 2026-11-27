@@ -9,7 +9,7 @@ Reading and practice work offline after you load the app and download your books
 | الصفحة | إيه اللي فيها |
 | --- | --- |
 | [⏱️ اختبار ٦٠ ثانية](https://bishoynabilanis.github.io/jessica/welcome/quiz/) | ١٠ أسئلة على مستوى الصف، تصحيح فوري وشرح — من غير تحميل |
-| [📚 كتب الوزارة لكل الصفوف](https://bishoynabilanis.github.io/jessica/welcome/grades/) | ٣٨ كتاب PDF رسمي مقسّم على ٩ صفوف |
+| [📚 كتب الوزارة لكل الصفوف](https://bishoynabilanis.github.io/jessica/welcome/grades/) | ٦١ كتاب PDF رسمي (الترم الأول) بنسخ عربي وإنجليزي وفرنسي مقسّم على ٩ صفوف |
 | [🧭 مواضيع المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/topics/) | جدول مذاكرة، حل الواجب، الرياضيات، الحفظ، الإنجليزي، قلق الامتحان |
 | [📘 أدلة المذاكرة](https://bishoynabilanis.github.io/jessica/welcome/guides/) | طريقة المذاكرة من الكتاب، آخر أسبوع، البابل شيت |
 | [📲 دليل التثبيت](https://bishoynabilanis.github.io/jessica/welcome/install/) | تثبيت التطبيق على أندرويد وآيفون والكمبيوتر خطوة بخطوة |
@@ -26,7 +26,7 @@ Jessica reads the actual Ministry textbook page with the student, explains it, q
 their paper answer sheet from a photo, and turns revision into a game — with **no backend, no accounts
 and no subscriptions**.
 
-- 📚 **38 official Ministry books** (Term 1) with direct links, importable once and readable offline.
+- 📚 **61 official Ministry books** (Term 1) with direct links, importable once and readable offline.
 - 🧠 **BYOK AI tutor**: Gemini, OpenAI, Claude, OpenRouter or any OpenAI-compatible endpoint.
 - 📸 **Photo solver**: snap a maths problem, a science diagram or a paragraph → steps, answer and a similar question.
 - 🌙 **Exam night, adaptive practice, flashcards (SM-2), mock exams, bubble-sheet scanner, class mode.**

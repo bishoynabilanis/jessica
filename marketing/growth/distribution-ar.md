@@ -25,7 +25,7 @@
 
 أنا باني تطبيق مجاني اسمه Jessica للطلاب المصري من أولى ابتدائي لتالتة إعدادي، ودي الحاجات اللي بتفرق فيه:
 
-١) بيقرأ كتاب الوزارة نفسه (٣٨ كتاب رسمي)، ويشرح الصفحة اللي الطالب واقف عندها — مش إجابات عامة.
+١) بيقرأ كتاب الوزارة نفسه (٦١ كتاب رسمي، الترم الأول، بنسخ عربي وإنجليزي وفرنسي)، ويشرح الصفحة اللي الطالب واقف عندها — مش إجابات عامة.
 ٢) حل الواجب بالكاميرا بيعطي خطوات + شرح + سؤال شبيه، عشان الطالب يتدرب مش ينقل.
 ٣) اختبار ٦٠ ثانية لكل صف: ١٠ أسئلة، تصحيح فوري وشرح لكل إجابة.
 ٤) يشتغل أوفلاين بعد أول تحميل، وبدون حساب — كل البيانات على جهاز الطالب.
@@ -52,7 +52,7 @@ https://is.gd/jessicaquiz
 • PWA بالكامل — يثبَّت من المتصفح، ويشتغل أوفلاين بعد أول تحميل.
 • الكتب في IndexedDB، والتقدّم في localStorage — مفيش حساب ومفيش تسجيل.
 • الذكاء الاصطناعي BYOK: كل طلب بيروح من متصفح الطالب لمزوّد الخدمة مباشرة. مفيش وسيط.
-• ٣٨ كتاب وزارة رسمي + ٩ صفوف + ٧ لغات + +٧٠ ميزة.
+• ٦١ كتاب وزارة رسمي (الترم الأول) + ٩ صفوف + ٧ لغات + +٥٠ شاشة وأداة.
 
 النتيجة: التكلفة الشهرية صفر، والخصوصية حقيقية مش بند في سياسة.
 
@@ -69,7 +69,7 @@ https://is.gd/jessicaquiz
 دي القصة في ٥ تغريدات 🧵
 ```
 ```
-٢/ المشكلة: ٣٨ كتاب وزارة PDF متفرقين على سيرفر الوزارة، والطالب بيدور على الشرح في ٥ تطبيقات.
+٢/ المشكلة: ٦١ كتاب وزارة PDF (الترم الأول، بنسخ عربي وإنجليزي وفرنسي) متفرقين على سيرفر الوزارة، والطالب بيدور على الشرح في ٥ تطبيقات.
 الحل: التطبيق بيقرأ الصفحة اللي هو واقف عندها ويشرحها من الكتاب نفسه.
 ```
 ```
@@ -97,7 +97,7 @@ I built a free offline-first study app for Egyptian students (Primary 1 → Prep
 Context: my family is in Egypt, and every "study app" I found was either subscription-based, required an account, or just handed the student the answer.
 
 So I built a PWA:
-• All 38 official Ministry books (Term 1), readable offline after one import
+• All 61 official Ministry books (Arabic, English and French editions, Term 1), readable offline after one import
 • BYOK AI tutor (Gemini/OpenAI/Claude) — requests go straight from the browser to the provider, no server in between
 • Photo homework solver that gives steps + a similar question to practise
 • 60-second math quiz per grade, with instant feedback and explanations

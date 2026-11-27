@@ -1,3 +1,4 @@
+// OLD, do not use: numbers here (38 books, +70 features) are outdated. Current: 61 Ministry books (Term 1, Arabic/English/French editions), 50+ screens and tools.
 import fs from 'node:fs'
 import path from 'node:path'
 import { chromium } from 'playwright'

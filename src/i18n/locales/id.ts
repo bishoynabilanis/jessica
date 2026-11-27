@@ -657,7 +657,7 @@ export const indonesian: Record<string, string> = {
   "Your whole school year,": "Sepanjang tahun ajaranmu,",
   "one smart app.": "satu aplikasi pintar.",
   "English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.": "Bahasa Inggris, Arab, Jerman, Prancis, Sains, dan Matematika — dengan tutor AI yang benar-benar mengetahui halaman buku teks Anda. Tidak ada akun, tidak ada langganan, tidak ada data yang keluar dari perangkat Anda.",
-  "70+ features": "70+ fitur",
+  "50+ screens and tools": "50+ layar dan alat",
   "Everything unlocked": "Semuanya tidak terkunci",
   "100% local": "100% lokal",
   "Your data stays here": "Data Anda tetap di sini",

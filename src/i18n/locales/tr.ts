@@ -657,7 +657,7 @@ export const turkish: Record<string, string> = {
   "Your whole school year,": "Bütün okul yılınız,",
   "one smart app.": "tek bir akıllı uygulama.",
   "English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.": "İngilizce, Arapça, Almanca, Fransızca, Bilim ve Matematik — ders kitabınızın sayfasını gerçekten bilen bir yapay zeka öğretmeniyle. Hesap yok, abonelik yok, cihazınızdan veri çıkmıyor.",
-  "70+ features": "70+ özellik",
+  "50+ screens and tools": "50+ ekran ve araç",
   "Everything unlocked": "Her şeyin kilidi açıldı",
   "100% local": "%100 yerli",
   "Your data stays here": "Verileriniz burada kalır",

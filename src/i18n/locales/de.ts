@@ -657,7 +657,7 @@ export const german: Record<string, string> = {
   "Your whole school year,": "Dein ganzes Schuljahr,",
   "one smart app.": "eine intelligente App.",
   "English, Arabic, German, French, Science and Maths — with an AI tutor that actually knows your textbook page. No accounts, no subscriptions, no data leaving your device.": "Englisch, Arabisch, Deutsch, Französisch, Naturwissenschaften und Mathematik – mit einem KI-Lehrer, der Ihre Lehrbuchseite tatsächlich kennt. Keine Konten, keine Abonnements, keine Daten verlassen Ihr Gerät.",
-  "70+ features": "Über 70 Funktionen",
+  "50+ screens and tools": "Über 50 Bildschirme und Werkzeuge",
   "Everything unlocked": "Alles freigeschaltet",
   "100% local": "100 % lokal",
   "Your data stays here": "Ihre Daten bleiben hier",
