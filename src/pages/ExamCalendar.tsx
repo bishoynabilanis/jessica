@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CalendarDays, Check, ChevronLeft, Clock, Flame, MoonStar, Plus } from 'lucide-react'
+import { CalendarDays, Check, ChevronLeft, Clock, Flame, MoonStar, Plus, Wind } from 'lucide-react'
 import { useApp } from '@/store/useApp'
 import { useUI } from '@/store/useUI'
 import { getQuizzes, type StoredQuiz } from '@/lib/db'
@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Modal } from '@/components/ui/Modal'
 import { QuizGame } from '@/components/tools/QuizGame'
+import { CalmMinute } from '@/components/study/CalmMinute'
 import { dateLocale, tr } from '@/i18n'
 import { cn, dayKeyOffset, todayKey } from '@/lib/utils'
 
@@ -40,6 +41,7 @@ export function ExamCalendar() {
 
   const [banks, setBanks] = useState<StoredQuiz[]>([])
   const [night, setNight] = useState<string | null>(null)
+  const [calm, setCalm] = useState(false)
   const [drill, setDrill] = useState<{ subject: string; questions: StoredQuiz['questions'] } | null>(null)
 
   useEffect(() => {
@@ -174,6 +176,21 @@ export function ExamCalendar() {
         </div>
       </Card>
 
+      <Card className="flex flex-wrap items-center justify-between gap-3 p-4">
+        <div className="flex items-start gap-2.5">
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-aurora-400/10 text-aurora-300">
+            <Wind className="h-4 w-4" />
+          </span>
+          <div>
+            <p className="text-[12px] font-extrabold text-main">{tr('Calm minute')}</p>
+            <p className="text-[10px] text-muted">{tr('A short breathing break before a mock exam or exam night.')}</p>
+          </div>
+        </div>
+        <Button size="sm" variant="secondary" onClick={() => setCalm(true)} data-testid="calm-open">
+          <Wind className="h-3.5 w-3.5" /> {tr('Start the calm minute')}
+        </Button>
+      </Card>
+
       {exams.length > 0 && (
         <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
           {exams.map((exam) => (
@@ -296,11 +313,16 @@ export function ExamCalendar() {
               </Button>
             </Link>
           </div>
+          <Button variant="ghost" size="sm" className="w-full" onClick={() => setCalm(true)}>
+            <Wind className="h-3.5 w-3.5" /> {tr('Start the calm minute')}
+          </Button>
           <p className="flex items-center gap-1 text-[9px] text-muted-2">
             <Check className="h-3 w-3" /> {tr('Your answers update skills and the mistake notebook automatically.')}
           </p>
         </div>
       </Modal>
+
+      <CalmMinute open={calm} onClose={() => setCalm(false)} />
     </div>
   )
 }

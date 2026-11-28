@@ -3672,6 +3672,20 @@ const arabicExtra: Record<string, string> = {
   "Here is your star for today!": "دي نجمتك النهاردة!",
   "Do one small lesson and a star is waiting for you.": "اعمل درس صغير واحد ونجمة مستنياك.",
   "You collected {n} stars today.": "جمعت {n} نجمة النهاردة.",
+  "A calm minute before the exam": "دقيقة هدوء قبل الامتحان",
+  "One minute of slow breathing. Nothing is saved and no sound plays.": "دقيقة تنفس بالراحة. مفيش حاجة بتتحفظ ومفيش صوت.",
+  "Breathe in": "شهيق",
+  "Breathe out": "زفير",
+  "Seconds left: {n}": "فاضل {n} ثانية",
+  "Well done. Carry on at your own pace.": "برافو. كمّل على راحتك.",
+  "Stop the breathing minute": "وقّف دقيقة التنفس",
+  "Start the calm minute": "ابدأ دقيقة الهدوء",
+  "Drink some water and loosen your shoulders.": "اشرب شوية مية وريّح كتافك.",
+  "Read each question twice before you answer.": "اقرا كل سؤال مرتين قبل ما تجاوب.",
+  "Start with the easiest question for you.": "ابدأ بأسهل سؤال عندك.",
+  "This is general breathing and calm tips, not treatment. If worry stays strong, talk to someone you trust.": "ده تنفس عام ونصايح تهدّي، مش علاج. لو القلق فضل قوي، كلّم حد بتثق فيه.",
+  "Calm minute": "دقيقة هدوء",
+  "A short breathing break before a mock exam or exam night.": "استراحة تنفس قصيرة قبل امتحان تجريبي أو ليلة الامتحان.",
 }
 
 const cache: Partial<Record<Language, Record<string, string>>> = { en: {}, ar: { ...arabic, ...arabicExtra, ...playAr } }
