@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T07:42:34.778Z",
+  "updatedAt": "2026-11-28T07:36:38.053Z",
   "days": [
     {
       "date": "2026-11-15",
@@ -80,6 +80,13 @@
       "opens": 10461,
       "installs": 1,
       "browsers": 7740,
+      "counterVersion": 2
+    },
+    {
+      "date": "2026-11-28",
+      "opens": 17048,
+      "installs": 1,
+      "browsers": 15063,
       "counterVersion": 2
     }
   ]
